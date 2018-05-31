@@ -7,6 +7,7 @@
 //
 
 #import "JJImageViewPicker.h"
+#import "PhotosViewController.h"
 
 @implementation JJImageViewPicker
 
@@ -18,7 +19,11 @@
     }];
 
     UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册中选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        //弹出相册选择器
+        PhotosViewController *photosView = [[PhotosViewController alloc] init];
+        [viewController presentViewController:photosView animated:YES completion:^{
+            
+        }];
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

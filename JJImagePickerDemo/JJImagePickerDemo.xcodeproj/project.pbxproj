@@ -10,6 +10,13 @@
 		E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784320BF8F4E003E2F38 /* ImageManager.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
+		E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785020BFD8FF003E2F38 /* CameraRollViewController.m */; };
+		E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785320BFD918003E2F38 /* PhotosViewController.m */; };
+		E522785820BFD9B3003E2F38 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785720BFD9B3003E2F38 /* GridView.m */; };
+		E522785B20BFDA44003E2F38 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785A20BFDA44003E2F38 /* TabBarView.m */; };
+		E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785E20BFDBBE003E2F38 /* CustomNaviViewController.m */; };
+		E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786120BFE4FC003E2F38 /* CustomNaviBarView.m */; };
+		E522786620BFF625003E2F38 /* CustomPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786520BFF625003E2F38 /* CustomPhotoViewController.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -24,6 +31,21 @@
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
+		E522784F20BFD8FF003E2F38 /* CameraRollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraRollViewController.h; sourceTree = "<group>"; };
+		E522785020BFD8FF003E2F38 /* CameraRollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraRollViewController.m; sourceTree = "<group>"; };
+		E522785220BFD918003E2F38 /* PhotosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		E522785320BFD918003E2F38 /* PhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
+		E522785620BFD9B3003E2F38 /* GridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		E522785720BFD9B3003E2F38 /* GridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
+		E522785920BFDA44003E2F38 /* TabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
+		E522785A20BFDA44003E2F38 /* TabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
+		E522785D20BFDBBE003E2F38 /* CustomNaviViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNaviViewController.h; sourceTree = "<group>"; };
+		E522785E20BFDBBE003E2F38 /* CustomNaviViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNaviViewController.m; sourceTree = "<group>"; };
+		E522786020BFE4FC003E2F38 /* CustomNaviBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNaviBarView.h; sourceTree = "<group>"; };
+		E522786120BFE4FC003E2F38 /* CustomNaviBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNaviBarView.m; sourceTree = "<group>"; };
+		E522786320BFE7E6003E2F38 /* GlobalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefine.h; sourceTree = "<group>"; };
+		E522786420BFF625003E2F38 /* CustomPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPhotoViewController.h; sourceTree = "<group>"; };
+		E522786520BFF625003E2F38 /* CustomPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPhotoViewController.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +73,7 @@
 		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
 				E522784B20BFCE80003E2F38 /* Controller */,
 				E522784A20BFCE38003E2F38 /* Model */,
 				E522784720BFC921003E2F38 /* Views */,
@@ -74,6 +97,12 @@
 		E522784820BFCDB7003E2F38 /* CameraRoll */ = {
 			isa = PBXGroup;
 			children = (
+				E522785C20BFDA56003E2F38 /* Custom */,
+				E522785520BFD969003E2F38 /* SubViews */,
+				E522784F20BFD8FF003E2F38 /* CameraRollViewController.h */,
+				E522785020BFD8FF003E2F38 /* CameraRollViewController.m */,
+				E522785220BFD918003E2F38 /* PhotosViewController.h */,
+				E522785320BFD918003E2F38 /* PhotosViewController.m */,
 			);
 			path = CameraRoll;
 			sourceTree = "<group>";
@@ -97,6 +126,30 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E522785520BFD969003E2F38 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E522785620BFD9B3003E2F38 /* GridView.h */,
+				E522785720BFD9B3003E2F38 /* GridView.m */,
+				E522785920BFDA44003E2F38 /* TabBarView.h */,
+				E522785A20BFDA44003E2F38 /* TabBarView.m */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		E522785C20BFDA56003E2F38 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				E522785D20BFDBBE003E2F38 /* CustomNaviViewController.h */,
+				E522785E20BFDBBE003E2F38 /* CustomNaviViewController.m */,
+				E522786020BFE4FC003E2F38 /* CustomNaviBarView.h */,
+				E522786120BFE4FC003E2F38 /* CustomNaviBarView.m */,
+				E522786420BFF625003E2F38 /* CustomPhotoViewController.h */,
+				E522786520BFF625003E2F38 /* CustomPhotoViewController.m */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		E56B9CB620AD2FA700021DF8 = {
@@ -211,10 +264,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E522785B20BFDA44003E2F38 /* TabBarView.m in Sources */,
+				E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */,
+				E522786620BFF625003E2F38 /* CustomPhotoViewController.m in Sources */,
+				E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
+				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
+				E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */,
+				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
 				E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
