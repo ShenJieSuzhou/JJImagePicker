@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784320BF8F4E003E2F38 /* ImageManager.m */; };
+		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
+		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -16,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E522784220BF8F4E003E2F38 /* ImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		E522784320BF8F4E003E2F38 /* ImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
+		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
+		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,17 +41,70 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				E522784B20BFCE80003E2F38 /* Controller */,
+				E522784A20BFCE38003E2F38 /* Model */,
+				E522784720BFC921003E2F38 /* Views */,
+				E522784220BF8F4E003E2F38 /* ImageManager.h */,
+				E522784320BF8F4E003E2F38 /* ImageManager.m */,
+				E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */,
+				E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		E522784720BFC921003E2F38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E522784920BFCDEE003E2F38 /* Camera */,
+				E522784820BFCDB7003E2F38 /* CameraRoll */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E522784820BFCDB7003E2F38 /* CameraRoll */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CameraRoll;
+			sourceTree = "<group>";
+		};
+		E522784920BFCDEE003E2F38 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		E522784A20BFCE38003E2F38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E522784B20BFCE80003E2F38 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		E56B9CB620AD2FA700021DF8 = {
 			isa = PBXGroup;
 			children = (
 				E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */,
 				E56B9CC020AD2FA700021DF8 /* Products */,
+				E56B9CDE20AD7D2100021DF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +119,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E522784120BF8F0F003E2F38 /* ImagePicker */,
 				E56B9CC220AD2FA700021DF8 /* AppDelegate.h */,
 				E56B9CC320AD2FA700021DF8 /* AppDelegate.m */,
 				E56B9CC520AD2FA700021DF8 /* ViewController.h */,
@@ -69,6 +131,14 @@
 				E56B9CD120AD2FA800021DF8 /* main.m */,
 			);
 			path = JJImagePickerDemo;
+			sourceTree = "<group>";
+		};
+		E56B9CDE20AD7D2100021DF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E522784520BF8F7A003E2F38 /* Photos.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +213,9 @@
 			files = (
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
+				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
+				E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +355,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = WSSN499SLU;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -291,6 +364,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "92111631-3f21-4216-b1c3-d616949e35d8";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalSnailDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -299,7 +374,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = WSSN499SLU;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,6 +383,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "92111631-3f21-4216-b1c3-d616949e35d8";
+				PROVISIONING_PROFILE_SPECIFIER = UniversalSnailDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "JJImageViewPicker.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
 }
 
 
@@ -24,6 +25,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)start:(id)sender {
+    [JJImageViewPicker showTheActionsheet:self];
+}
+
 
 
 @end
