@@ -16,7 +16,8 @@
 @synthesize imgViewBg = _imgViewBg;
 @synthesize btnLeft = _btnLeft;
 @synthesize btnRight = _btnRight;
-@synthesize titleImage = _titleImage;
+//@synthesize titleImage = _titleImage;
+@synthesize btnTitle = _btnTitle;
 
 + (CGRect)leftBtnFrame{
     return Rect(10, 22.0f, [[self class] barBtnSize].width, [[self class] barBtnSize].height);
@@ -38,8 +39,12 @@
     return Rect(65.0f, 22.0F, ScreenWidth - 130, 40.0f);
 }
 
-+ (CGRect)titleImageViewFrame{
-    return Rect(65.0f, 22.0F, 40.0f, 40.0f);
+//+ (CGRect)titleImageViewFrame{
+//    return Rect(65.0f, 22.0F, 40.0f, 40.0f);
+//}
+
++ (CGRect)titleBtnFrame{
+    return Rect(65.0f, 22.0F, ScreenWidth - 130, 40.0f);
 }
 
 + (UIButton *)createNavBarImageBtn:(NSString *)imgStr
@@ -87,17 +92,8 @@
     
     [self addSubview:self.imgViewBg];
     [self addSubview:self.labelTitle];
-    [self addSubview:self.titleImage];
     
     [self addSubview:self.btnBack];
-    
-//    _labelTitle = labelTitle;
-//    if(_labelTitle){
-//        NSString *textStr = _labelTitle.text;
-//        CGSize textSize = [textStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:10.0F]}];
-//        [_labelTitle setFrame:Rect((ScreenWidth - 130 - 40)/2, 22.0F, textSize.width, 40.0f)];
-//        [self addSubview:_labelTitle];
-//    }
 }
 
 - (UIImage *)m_background{
@@ -118,13 +114,14 @@
     [self.labelTitle setTextColor:color];
 
     CGSize textSize = [titleStr sizeWithAttributes:@{NSFontAttributeName: font}];
-    [_labelTitle setFrame:Rect((ScreenWidth - 130 - 40)/2, 22.0F, textSize.width, 40.0f)];
+    [_labelTitle setFrame:Rect((ScreenWidth - textSize.width - 40)/2, 22.0F, textSize.width, 40.0f)];
 }
 
-- (void)setTitleImg:(NSString *)imgStr{
-    [self.titleImage setImage:[UIImage imageNamed:imgStr]];
-    [self.titleImage setFrame:Rect(_labelTitle.frame.origin.x + _labelTitle.frame.size.width, 22.0f, 40.0F, 40.0F)];
-}
+//- (void)setTitleImg:(NSString *)imgStr{
+//    [self.titleImage setImage:[UIImage imageNamed:imgStr]];
+//    [self.titleImage setFrame:Rect(_labelTitle.frame.origin.x + _labelTitle.frame.size.width, 22.0f, 40.0F, 40.0F)];
+//    NSLog(@"%@", self.titleImage);
+//}
 
 - (void)setLabelTitle:(UILabel *)labelTitle{
     if(_labelTitle){
@@ -139,16 +136,16 @@
     }
 }
 
--(void)setTitleImage:(UIImageView *)titleImage{
-    if(_titleImage){
-        [_titleImage removeFromSuperview];
-        _titleImage = nil;
-    }
-
-    _titleImage = titleImage;
-    [_titleImage setFrame:[[self class] titleImageViewFrame]];
-    [self addSubview:_titleImage];
-}
+//-(void)setTitleImage:(UIImageView *)titleImage{
+//    if(_titleImage){
+//        [_titleImage removeFromSuperview];
+//        _titleImage = nil;
+//    }
+//
+//    _titleImage = titleImage;
+//    [_titleImage setFrame:[[self class] titleImageViewFrame]];
+//    [self addSubview:_titleImage];
+//}
 
 - (void)setLeftBtn:(UIButton *)btn{
     if(_btnLeft){
@@ -173,6 +170,29 @@
     if(_btnRight){
         [_btnRight setFrame:[[self class] rightBtnFrame]];
         [self addSubview:_btnRight];
+    }
+}
+
+- (void)setTitleBtn:(UIButton *)titleBtn{
+    if(_btnTitle){
+        [_btnTitle removeFromSuperview];
+        _btnTitle = nil;
+    }
+    
+    if(_labelTitle){
+        [_labelTitle removeFromSuperview];
+        _labelTitle = nil;
+    }
+    
+//    if(_titleImage){
+//        [_titleImage removeFromSuperview];
+//        _titleImage = nil;
+//    }
+    
+    _btnTitle = titleBtn;
+    if(_btnTitle){
+        [_btnTitle setFrame:[[self class] titleBtnFrame]];
+        [self addSubview:_btnTitle];
     }
 }
 
@@ -255,6 +275,16 @@
     if (_labelTitle)
     {
         _labelTitle.hidden = bIsHide;
+    }
+    
+//    if (_titleImage)
+//    {
+//        _titleImage.hidden = bIsHide;
+//    }
+    
+    if (_btnTitle)
+    {
+        _btnTitle.hidden = bIsHide;
     }
 }
 

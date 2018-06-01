@@ -17,7 +17,8 @@
 @property (nonatomic, strong) UIImageView *imgViewBg;
 @property (nonatomic, strong) UIButton *btnLeft;
 @property (nonatomic, strong) UIButton *btnRight;
-@property (nonatomic, strong) UIImageView *titleImage;
+//@property (nonatomic, strong) UIImageView *titleImage;
+@property (nonatomic, strong) UIButton *btnTitle;
 
 
 //创建一个自定义按钮
@@ -29,8 +30,9 @@
 //设置按钮与标题
 - (void)setLeftBtn:(UIButton *)leftBtn;
 - (void)setRightBtn:(UIButton *)rightBtn;
+- (void)setTitleBtn:(UIButton *)titleBtn;
 - (void)setTitle:(NSString *)titleStr textColor:(UIColor *)color font:(UIFont *)font;
-- (void)setTitleImg:(NSString *)imgStr;
+//- (void)setTitleImg:(NSString *)imgStr;
 
 
 // 在导航条上覆盖一层自定义视图。
@@ -41,9 +43,10 @@
 
 + (CGRect)leftBtnFrame;
 + (CGRect)rightBtnFrame;
++ (CGRect)titleBtnFrame;
 + (CGSize)barBtnSize;
 + (CGSize)barSize;
 + (CGRect)titleViewFrame;
-+ (CGRect)titleImageViewFrame;
+//+ (CGRect)titleImageViewFrame;
 
 @end

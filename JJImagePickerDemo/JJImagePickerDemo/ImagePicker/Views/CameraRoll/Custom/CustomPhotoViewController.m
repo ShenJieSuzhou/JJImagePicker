@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
 
     _customNaviBar = [[CustomNaviBarView alloc] initWithFrame:Rect(0, 0, [CustomNaviBarView barSize].width, [CustomNaviBarView barSize].height)];
+    [_customNaviBar setBackgroundColor:[UIColor whiteColor]];
     _customNaviBar.m_viewCtrlParent = self;
     
     [self.view addSubview:_customNaviBar];
@@ -53,12 +54,6 @@
     }
 }
 
-- (void)setTitleImg:(NSString *)imgStr{
-    if(_customNaviBar){
-        [_customNaviBar setTitleImg:imgStr];
-    }
-}
-
 - (void)setNaviBarLeftBtn:(UIButton *)leftBtn{
     if(_customNaviBar){
         [_customNaviBar setLeftBtn:leftBtn];
@@ -68,6 +63,12 @@
 - (void)setNaviBarRightBtn:(UIButton *)rightBtn{
     if(_customNaviBar){
         [_customNaviBar setRightBtn:rightBtn];
+    }
+}
+
+- (void)setTitlebtn:(UIButton *)titleBtn{
+    if(_customNaviBar){
+        [_customNaviBar setTitleBtn:titleBtn];
     }
 }
 

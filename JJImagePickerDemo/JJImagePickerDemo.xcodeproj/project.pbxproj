@@ -17,6 +17,11 @@
 		E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785E20BFDBBE003E2F38 /* CustomNaviViewController.m */; };
 		E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786120BFE4FC003E2F38 /* CustomNaviBarView.m */; };
 		E522786620BFF625003E2F38 /* CustomPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786520BFF625003E2F38 /* CustomPhotoViewController.m */; };
+		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
+		E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54520C0FB8200E74CA1 /* DropButton.m */; };
+		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
+		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
+		E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54C20C13C1200E74CA1 /* CameraRollView.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -46,6 +51,13 @@
 		E522786320BFE7E6003E2F38 /* GlobalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefine.h; sourceTree = "<group>"; };
 		E522786420BFF625003E2F38 /* CustomPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPhotoViewController.h; sourceTree = "<group>"; };
 		E522786520BFF625003E2F38 /* CustomPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPhotoViewController.m; sourceTree = "<group>"; };
+		E522786820C0E464003E2F38 /* redarrowRighticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redarrowRighticon.png; sourceTree = "<group>"; };
+		E545F54420C0FB8200E74CA1 /* DropButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropButton.h; sourceTree = "<group>"; };
+		E545F54520C0FB8200E74CA1 /* DropButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropButton.m; sourceTree = "<group>"; };
+		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
+		E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@3x.png"; sourceTree = "<group>"; };
+		E545F54B20C13C1200E74CA1 /* CameraRollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraRollView.h; sourceTree = "<group>"; };
+		E545F54C20C13C1200E74CA1 /* CameraRollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraRollView.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -135,6 +147,10 @@
 				E522785720BFD9B3003E2F38 /* GridView.m */,
 				E522785920BFDA44003E2F38 /* TabBarView.h */,
 				E522785A20BFDA44003E2F38 /* TabBarView.m */,
+				E545F54420C0FB8200E74CA1 /* DropButton.h */,
+				E545F54520C0FB8200E74CA1 /* DropButton.m */,
+				E545F54B20C13C1200E74CA1 /* CameraRollView.h */,
+				E545F54C20C13C1200E74CA1 /* CameraRollView.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -150,6 +166,16 @@
 				E522786520BFF625003E2F38 /* CustomPhotoViewController.m */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		E522786720C0E433003E2F38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */,
+				E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */,
+				E522786820C0E464003E2F38 /* redarrowRighticon.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E56B9CB620AD2FA700021DF8 = {
@@ -172,6 +198,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E522786720C0E433003E2F38 /* Resources */,
 				E522784120BF8F0F003E2F38 /* ImagePicker */,
 				E56B9CC220AD2FA700021DF8 /* AppDelegate.h */,
 				E56B9CC320AD2FA700021DF8 /* AppDelegate.m */,
@@ -252,8 +279,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
+				E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */,
+				E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */,
 				E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */,
 				E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */,
+				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +296,11 @@
 			files = (
 				E522785B20BFDA44003E2F38 /* TabBarView.m in Sources */,
 				E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */,
+				E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */,
 				E522786620BFF625003E2F38 /* CustomPhotoViewController.m in Sources */,
 				E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
+				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,

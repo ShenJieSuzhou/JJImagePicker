@@ -16,7 +16,7 @@
 - (void)bringNaviBarToTopmost;
 
 - (void)setNaviBarTitle:(NSString *)strTitle color:(UIColor *)color font:(UIFont *)font;
-- (void)setTitleImg:(NSString *)imgStr;
+- (void)setTitlebtn:(UIButton *)titleBtn;
 - (void)setNaviBarLeftBtn:(UIButton *)leftBtn;
 - (void)setNaviBarRightBtn:(UIButton *)rightBtn;
 @end
