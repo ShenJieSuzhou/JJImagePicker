@@ -43,8 +43,14 @@
 }
 
 - (void)OnCameraRollClick:(id)sender{
-    CameraRollViewController *cameraRollView = [[CameraRollViewController alloc] init];
-    
+    DropButton *cameraRollBtn = (DropButton *)sender;
+    [cameraRollBtn setSelected:!cameraRollBtn.isSelected];
+    if(cameraRollBtn.isSelected){
+        [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow_up"] forState:UIControlStateNormal];
+    }else{
+        [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
+    }
+
 }
 
 - (void)OnCancelCLick:(id)sender{
