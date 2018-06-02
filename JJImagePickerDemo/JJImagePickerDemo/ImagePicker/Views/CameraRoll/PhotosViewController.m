@@ -8,13 +8,16 @@
 
 #import "PhotosViewController.h"
 #import "DropButton.h"
-#import "CameraRollViewController.h"
-
+#import "CameraRollView.h"
 @interface PhotosViewController ()
+
+@property (nonatomic, strong) CameraRollView *cameraRollView;
 
 @end
 
 @implementation PhotosViewController
+@synthesize cameraRollView = _cameraRollView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +38,7 @@
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
     [self setNaviBarRightBtn:cancel];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,19 +48,29 @@
 
 - (void)OnCameraRollClick:(id)sender{
     DropButton *cameraRollBtn = (DropButton *)sender;
+    
     [cameraRollBtn setSelected:!cameraRollBtn.isSelected];
     if(cameraRollBtn.isSelected){
         [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow_up"] forState:UIControlStateNormal];
+        
+        
     }else{
         [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
+        
     }
-
 }
 
 - (void)OnCancelCLick:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+
+//懒加载
+- (void)setCameraRollView:(CameraRollView *)cameraRollView{
+    
+    
 }
 
 
