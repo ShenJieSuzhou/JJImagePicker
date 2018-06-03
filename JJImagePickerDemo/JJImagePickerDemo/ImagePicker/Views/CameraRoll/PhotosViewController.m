@@ -9,14 +9,19 @@
 #import "PhotosViewController.h"
 #import "DropButton.h"
 #import "CameraRollView.h"
+#import "GridView.h"
+
 @interface PhotosViewController ()
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
+
+@property (nonatomic, strong) GridView *photoGridView;
 
 @end
 
 @implementation PhotosViewController
 @synthesize cameraRollView = _cameraRollView;
+@synthesize photoGridView = _photoGridView;
 
 
 - (void)viewDidLoad {
@@ -39,6 +44,12 @@
     [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
     [self setNaviBarRightBtn:cancel];
     
+    //相簿
+    _cameraRollView = [[CameraRollView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
+    
+    _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
+    
+    [self.view addSubview:_photoGridView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,11 +63,10 @@
     [cameraRollBtn setSelected:!cameraRollBtn.isSelected];
     if(cameraRollBtn.isSelected){
         [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow_up"] forState:UIControlStateNormal];
-        
-        
+        [self.view addSubview:_cameraRollView];
     }else{
         [cameraRollBtn setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
-        
+        [_cameraRollView removeFromSuperview];
     }
 }
 

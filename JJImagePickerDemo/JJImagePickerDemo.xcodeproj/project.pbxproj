@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		446D04E520C40F26009B53FC /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D04E420C40F26009B53FC /* JJPhoto.m */; };
+		446D04E820C4102D009B53FC /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D04E720C4102D009B53FC /* JJImageManager.m */; };
 		44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */; };
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
 		E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784320BF8F4E003E2F38 /* ImageManager.m */; };
@@ -33,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		446D04E320C40F26009B53FC /* JJPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJPhoto.h; path = JJImagePickerDemo/Resources/JJPhoto.h; sourceTree = SOURCE_ROOT; };
+		446D04E420C40F26009B53FC /* JJPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JJPhoto.m; path = JJImagePickerDemo/Resources/JJPhoto.m; sourceTree = SOURCE_ROOT; };
+		446D04E620C4102D009B53FC /* JJImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJImageManager.h; path = JJImagePickerDemo/Resources/JJImageManager.h; sourceTree = SOURCE_ROOT; };
+		446D04E720C4102D009B53FC /* JJImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JJImageManager.m; path = JJImagePickerDemo/Resources/JJImageManager.m; sourceTree = SOURCE_ROOT; };
 		44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@3x.png"; sourceTree = "<group>"; };
 		44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@2x.png"; sourceTree = "<group>"; };
 		E522784220BF8F4E003E2F38 /* ImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 		E522784A20BFCE38003E2F38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				446D04E320C40F26009B53FC /* JJPhoto.h */,
+				446D04E420C40F26009B53FC /* JJPhoto.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -140,6 +148,8 @@
 		E522784B20BFCE80003E2F38 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				446D04E620C4102D009B53FC /* JJImageManager.h */,
+				446D04E720C4102D009B53FC /* JJImageManager.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -313,7 +323,9 @@
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
+				446D04E520C40F26009B53FC /* JJPhoto.m in Sources */,
 				E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */,
+				446D04E820C4102D009B53FC /* JJImageManager.m in Sources */,
 				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
 				E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */,
 			);

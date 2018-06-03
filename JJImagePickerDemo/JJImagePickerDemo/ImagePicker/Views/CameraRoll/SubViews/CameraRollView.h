@@ -10,6 +10,9 @@
 
 @interface CameraRollView : UIView<UITableViewDataSource, UITableViewDelegate>
 
+//背景色
+@property (strong, nonatomic) UIView *background;
+
 //胶卷视图
 @property (strong, nonatomic) UITableView *rollsTableView;
 
