@@ -7,10 +7,11 @@
 //
 
 #import "JJPhoto.h"
-
+#import <MobileCoreServices/UTCoreTypes.h>
+#define ScreenScale ([[UIScreen mainScreen] scale])
 @implementation JJPhoto
-@synthesize thumbImage = _thumbImage;
-@synthesize originImage = _originImage;
+//@synthesize thumbImage = _thumbImage;
+//@synthesize originImage = _originImage;
 
 - (instancetype)initWithPHAsset:(PHAsset *)phAsset{
     if(self = [super init]){
@@ -51,6 +52,35 @@
 
 - (PHAsset *)asset{
     return _asset;
+}
+
+- (UIImage *)originImage{
+    __block UIImage *resultImage = nil;
+    PHImageRequestOptions *phImageRequestOptions = [[PHImageRequestOptions alloc] init];
+    phImageRequestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+
+//    phImageRequestOptions.networkAccessAllowed = YES;
+//    phImageRequestOptions.synchronous = YES;
+
+    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        resultImage = result;
+    }];
+    
+    return resultImage;
+}
+
+- (UIImage *)thumbnailWithSize:(CGSize)size{
+    __block UIImage *resultImage;
+    PHImageRequestOptions *phImageRequestOptions = [[PHImageRequestOptions alloc] init];
+    phImageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
+    
+    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset
+                                                                  targetSize:CGSizeMake(size.width * ScreenScale, size.height * ScreenScale) contentMode:PHImageContentModeAspectFill options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                                                                      
+                                                                      resultImage = result;
+    }];
+    
+    return resultImage;
 }
 
 @end

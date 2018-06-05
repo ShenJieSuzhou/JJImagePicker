@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import "JJImageManager.h"
 
 /// Asset 的类型
 typedef NS_ENUM(NSUInteger, JJAssetType) {
