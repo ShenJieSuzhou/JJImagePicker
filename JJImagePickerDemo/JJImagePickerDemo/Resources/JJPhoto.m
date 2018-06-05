@@ -9,6 +9,9 @@
 #import "JJPhoto.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #define ScreenScale ([[UIScreen mainScreen] scale])
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+
 @implementation JJPhoto
 //@synthesize thumbImage = _thumbImage;
 //@synthesize originImage = _originImage;
@@ -82,5 +85,89 @@
     
     return resultImage;
 }
+
+- (NSInteger)requestThumbnailImageWithSize:(CGSize)size
+                                completion:(void(^)(UIImage *result, NSDictionary *info))completion{
+    
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
+    
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset
+                                                                         targetSize:CGSizeMake(size.width * ScreenScale, size.height * ScreenScale) contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                                                                      
+                                                                      if (completion) {
+                                                                          completion(result, info);
+                                                                      }
+                                                                  }];
+}
+
+
+- (NSInteger)requestOriginImageWithCompletion:(void (^)(UIImage *result, NSDictionary<NSString *, id> *info))completion withProgressHandler:(PHAssetImageProgressHandler)phProgressHandler{
+    
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.networkAccessAllowed = YES; // 允许访问网络
+    imageRequestOptions.progressHandler = phProgressHandler;
+    
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        if(completion){
+            completion(result, info);
+        }
+    }];
+}
+
+- (NSInteger)requestPreviewImageWithCompletion:(void (^)(UIImage *result, NSDictionary<NSString *, id> *info))completion withProgressHandler:(PHAssetImageProgressHandler)phProgressHandler{
+    
+    PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
+    imageRequestOptions.networkAccessAllowed = YES;
+    imageRequestOptions.progressHandler = phProgressHandler;
+    
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        if(completion){
+            completion(result, info);
+        }
+    }];
+}
+
+- (NSInteger)requestLivePhotoWithCompletion:(void (^)(PHLivePhoto *livePhoto, NSDictionary<NSString *, id> *info))completion withProgressHandler:(PHAssetImageProgressHandler)phProgressHandler{
+    if([[PHCachingImageManager class] instancesRespondToSelector:@selector(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]){
+        PHLivePhotoRequestOptions *livePhotoRequestOptions = [[PHLivePhotoRequestOptions alloc] init];
+        livePhotoRequestOptions.networkAccessAllowed = YES;
+        livePhotoRequestOptions.progressHandler = phProgressHandler;
+        
+        return [[JJImageManager getInstance].phCachingImageManager requestLivePhotoForAsset:_asset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:livePhotoRequestOptions resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
+            
+            if(completion){
+                completion(livePhoto, info);
+            }
+        }];
+    }else{
+        if(completion){
+            completion(nil, nil);
+        }
+        
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
