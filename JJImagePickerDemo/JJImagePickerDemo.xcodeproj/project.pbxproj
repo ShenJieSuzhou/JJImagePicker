@@ -32,6 +32,7 @@
 		E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */; };
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
+		E575B53120C65F33000BCDBD /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = E575B53020C65F33000BCDBD /* JJPhotoAlbum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,8 @@
 		E56B9CCE20AD2FA800021DF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56B9CD020AD2FA800021DF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E575B52F20C65F33000BCDBD /* JJPhotoAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
+		E575B53020C65F33000BCDBD /* JJPhotoAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 			children = (
 				446D04E320C40F26009B53FC /* JJPhoto.h */,
 				446D04E420C40F26009B53FC /* JJPhoto.m */,
+				E575B52F20C65F33000BCDBD /* JJPhotoAlbum.h */,
+				E575B53020C65F33000BCDBD /* JJPhotoAlbum.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
+				E575B53120C65F33000BCDBD /* JJPhotoAlbum.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
 				446D04E520C40F26009B53FC /* JJPhoto.m in Sources */,

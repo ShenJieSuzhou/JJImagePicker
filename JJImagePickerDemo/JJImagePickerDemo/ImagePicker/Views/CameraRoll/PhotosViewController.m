@@ -10,6 +10,7 @@
 #import "DropButton.h"
 #import "CameraRollView.h"
 #import "GridView.h"
+#import "JJImageManager.h"
 
 @interface PhotosViewController ()
 
@@ -17,16 +18,34 @@
 
 @property (nonatomic, strong) GridView *photoGridView;
 
+@property (nonatomic, strong) NSMutableArray *photosArray;
+
 @end
 
 @implementation PhotosViewController
 @synthesize cameraRollView = _cameraRollView;
 @synthesize photoGridView = _photoGridView;
+@synthesize photosArray = _photosArray;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if([JJImageManager requestAlbumPemission] == JJPHAuthorizationStatusNotAuthorized){
+        //如果没有获取访问权限，或者访问权限已被明确静止，则显示提示语，引导用户开启授权
+//        NSString *tipString =
+    }else{
+        self.photosArray = [[NSMutableArray alloc] init];
+        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            __weak typeof(self)weakSelf = self;
+            
+            
+            
+        });
+        
+    }
     
     //设置标题
     DropButton *cameraRoll = [DropButton buttonWithType:UIButtonTypeCustom withSpace:12.0f];
