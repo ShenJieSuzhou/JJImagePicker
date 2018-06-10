@@ -7,6 +7,7 @@
 //
 
 #import "JJPhotoAlbum.h"
+#import "JJImageManager.h"
 
 @interface JJPhotoAlbum()
 

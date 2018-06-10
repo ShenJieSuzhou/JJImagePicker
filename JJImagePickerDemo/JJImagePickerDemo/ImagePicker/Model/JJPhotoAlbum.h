@@ -8,20 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "JJPhoto.h"
-#import "JJImageManager.h"
-
-//相册展示内容的类型
-typedef NS_ENUM(NSInteger, JJAlbumContentType){
-    JJAlbumContentTypeAll,                                  // 展示所有资源
-    JJAlbumContentTypeOnlyPhoto,                            // 只展示照片
-    JJAlbumContentTypeOnlyVideo,                            // 只展示视频
-    JJAlbumContentTypeOnlyAudio                             // 只展示音频
-};
-
-//typedef NS_ENUM(NSInteger, JJAlbumSortType){
-//
-//};
-
 
 @interface JJPhotoAlbum : NSObject
 

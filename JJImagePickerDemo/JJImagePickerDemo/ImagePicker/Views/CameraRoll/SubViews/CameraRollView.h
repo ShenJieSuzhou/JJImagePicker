@@ -19,5 +19,9 @@
 //胶卷数据源
 @property (strong, nonatomic) NSMutableArray *rollsArray;
 
+/*
+ * 刷新相册
+ */
+- (void)refreshAlbumAseets:(NSMutableArray *)albums;
 
 @end

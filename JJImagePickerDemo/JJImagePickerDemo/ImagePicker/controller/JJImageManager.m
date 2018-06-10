@@ -7,6 +7,7 @@
 //
 
 #import "JJImageManager.h"
+#import <Photos/PHPhotoLibrary.h>
 
 @interface JJImageManager()
 
@@ -44,20 +45,26 @@
 
 - (void)getAllAlbumsWithAlbumContentType:(JJAlbumContentType) contentType
                           showEmptyAlbum:(BOOL)showEmptyAlbum
-                          showSmartAlbum:(BOOL)showSmartAlbum{
+                          showSmartAlbum:(BOOL)showSmartAlbum usingBlock:(enumerationBlock)block{
     
     //获取所有的相册
-    NSArray *tempAlbumArray = [PHPhotoLibrary fetchAllAlbumsWithAlbumContentType:contentType showEmptyAlbum:showEmptyAlbum showSmartAlbum:showSmartAlbum];
+    NSArray *tempAlbumArray = [JJImageManager fetchAllAlbumsWithAlbumContentType:contentType showEmptyAlbum:showEmptyAlbum showSmartAlbum:showSmartAlbum];
     //创建一个 PHFetchOptions
-    PHFetchOptions *fetchOptions = [PHPhotoLibrary createFetchOptionsWithAlbumContentType:contentType];
+    PHFetchOptions *fetchOptions = [JJImageManager createFetchOptionsWithAlbumContentType:contentType];
     
     //遍历结果
     for (int i = 0; i < tempAlbumArray.count; i++) {
         PHAssetCollection *phAssetCollection = [tempAlbumArray objectAtIndex:i];
-        
+        JJPhotoAlbum *photoAlbum = [[JJPhotoAlbum alloc] initWithPHCollection:phAssetCollection fetchAssetOptions:fetchOptions];
+        if(block){
+            block(photoAlbum);
+        }
     }
     
-    
+    //所有结果遍历结束，传递nil作为实参，作为枚举结束的标记
+    if(block){
+        block(nil);
+    }
 }
 
 - (PHCachingImageManager *)phCachingImageManager {
@@ -82,10 +89,6 @@
 //    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
 //
 //}
-
-@end
-
-@implementation PHPhotoLibrary (JJ)
 
 + (PHFetchOptions *)createFetchOptionsWithAlbumContentType:(JJAlbumContentType)contentType{
     PHFetchOptions *fetchOptions = [[PHFetchOptions alloc] init];

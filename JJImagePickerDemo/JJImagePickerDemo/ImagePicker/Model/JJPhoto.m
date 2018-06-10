@@ -7,6 +7,7 @@
 //
 
 #import "JJPhoto.h"
+#import "JJImageManager.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #define ScreenScale ([[UIScreen mainScreen] scale])
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)

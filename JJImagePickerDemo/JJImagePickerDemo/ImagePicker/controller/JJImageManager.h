@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
+#import "JJPhotoAlbum.h"
 
 //asset 授权状态
 typedef NS_ENUM(NSInteger, JJPHAuthorizationStatus){
@@ -24,6 +25,8 @@ typedef NS_ENUM(NSUInteger, JJAlbumContentType){
     JJAlbumContentTypeOnlyAudio                             // 只展示音频
 };
 
+typedef void(^enumerationBlock)(JJPhotoAlbum *resultAlbum);
+
 
 @interface JJImageManager : NSObject
 
@@ -36,30 +39,6 @@ typedef NS_ENUM(NSUInteger, JJAlbumContentType){
  * 请求相册权限
  */
 + (JJPHAuthorizationStatus)requestAlbumPemission;
-
-/*
- * 获取所有相册
- * @param contentType       相册类型
- * @param showEmptyAlbum    是否显示空相册
- * @param showSmartAlbum    是否显示只能相册
- */
-- (void)getAllAlbumsWithAlbumContentType:(JJAlbumContentType) contentType
-                          showEmptyAlbum:(BOOL)showEmptyAlbum
-                          showSmartAlbum:(BOOL)showSmartAlbum;
-
-
-/// 获取一个 PHCachingImageManager 的实例
-- (PHCachingImageManager *)phCachingImageManager;
-
-@end
-
-
-
-//====================================================================================================================
-// 扩展 PHPhotoLibrary
-//
-
-@interface PHPhotoLibrary (JJ)
 
 /*
  * 创建一个相册类型
@@ -81,5 +60,21 @@ typedef NS_ENUM(NSUInteger, JJAlbumContentType){
  * 获取一个PHAssertCollection中创建日期最新的资源
  */
 + (PHAsset *)fetchLatestAssetWithAssetCollection:(PHAssetCollection *)assetCollection;
+
+/*
+ * 获取所有相册
+ * @param contentType       相册类型
+ * @param showEmptyAlbum    是否显示空相册
+ * @param showSmartAlbum    是否显示只能相册
+ * @param
+ */
+- (void)getAllAlbumsWithAlbumContentType:(JJAlbumContentType) contentType
+                          showEmptyAlbum:(BOOL)showEmptyAlbum
+                          showSmartAlbum:(BOOL)showSmartAlbum
+                              usingBlock:(enumerationBlock)block;
+
+
+/// 获取一个 PHCachingImageManager 的实例
+- (PHCachingImageManager *)phCachingImageManager;
 
 @end

@@ -36,6 +36,13 @@
     [self.rollsTableView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     }
 
+- (void)refreshAlbumAseets:(NSMutableArray *)albums{
+    
+    
+}
+
+
+
 //懒加载
 - (UITableView *)rollsTableView{
     if(!_rollsTableView){
