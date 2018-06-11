@@ -58,6 +58,10 @@
     return _asset;
 }
 
+- (NSString *)identifier {
+    return _asset.localIdentifier;
+}
+
 - (UIImage *)originImage{
     __block UIImage *resultImage = nil;
     PHImageRequestOptions *phImageRequestOptions = [[PHImageRequestOptions alloc] init];

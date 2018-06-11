@@ -7,6 +7,10 @@
 //
 
 #import "GridView.h"
+#import "JJCollectionViewCell.h"
+
+#define JJ_CELL_VIDEO_IDENTIFIER @"video"
+#define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageorunknown"
 
 @implementation GridView
 @synthesize imagesAssetArray = _imagesAssetArray;
@@ -79,11 +83,14 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //自动网格布局
         _photoCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
-        [_photoCollectionView setBackgroundColor:[UIColor whiteColor]];
-        [_photoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         //设置数据源代理
         _photoCollectionView.dataSource = self;
         _photoCollectionView.delegate = self;
+        _photoCollectionView.showsVerticalScrollIndicator = NO;
+        _photoCollectionView.alwaysBounceHorizontal = NO;
+        [_photoCollectionView setBackgroundColor:[UIColor whiteColor]];
+        [_photoCollectionView registerClass:[JJCollectionViewCell class] forCellWithReuseIdentifier:JJ_CELL_VIDEO_IDENTIFIER];
+        [_photoCollectionView registerClass:[JJCollectionViewCell class] forCellWithReuseIdentifier:JJ_CELL_IMAGE_UNKNOWNTYPE];
     }
     
     return _photoCollectionView;
@@ -110,11 +117,29 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    //获得一个照片对象
+    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    NSString *identifier = nil;
+    if(imageAsset.assetType == JJAssetTypeAudio){
+        identifier = JJ_CELL_VIDEO_IDENTIFIER;
+    }else{
+        identifier = JJ_CELL_IMAGE_UNKNOWNTYPE;
+    }
     
-    [cell setBackgroundColor:[UIColor redColor]];
+    JJCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.assetIdentifier = imageAsset.identifier;
     
+    //异步请求资源对应的缩略图
+    [imageAsset requestThumbnailImageWithSize:CGSizeMake(80, 80) completion:^(UIImage *result, NSDictionary *info) {
+        if([cell.assetIdentifier isEqualToString:imageAsset.identifier]){
+            cell.contentImageView.image = result;
+        }else{
+            cell.contentImageView.image = nil;
+        }
+    }];
+    
+    [cell setNeedsLayout];
     return cell;
 }
 

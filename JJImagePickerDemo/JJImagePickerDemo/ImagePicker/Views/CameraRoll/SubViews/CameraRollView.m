@@ -34,7 +34,8 @@
 
 - (void)layoutSubviews{
     [self.rollsTableView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    }
+
+}
 
 - (void)refreshAlbumAseets:(NSMutableArray *)albums{
     
