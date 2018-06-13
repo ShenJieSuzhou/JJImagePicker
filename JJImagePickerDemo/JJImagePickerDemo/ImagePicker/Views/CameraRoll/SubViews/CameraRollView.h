@@ -15,24 +15,11 @@
 /// 点击相簿里某一行时，需要给一个 PhotosViewController 对象用于展示九宫格图片列表
 - (void)imagePickerViewControllerForCameraRollView:(JJPhotoAlbum *)album;
 
-///**
-// *  取消查看相册列表后被调用
-// */
-//- (void)albumViewControllerDidCancel:(QMUIAlbumViewController *)albumViewController;
+////即将需要显示 Loading 时调用
+//- (void)albumViewWillStartLoading:(QMUIAlbumViewController *)albumViewController;
 //
-///**
-// *  即将需要显示 Loading 时调用
-// *
-// *  @see shouldShowDefaultLoadingView
-// */
-//- (void)albumViewControllerWillStartLoading:(QMUIAlbumViewController *)albumViewController;
-//
-///**
-// *  即将需要隐藏 Loading 时调用
-// *
-// *  @see shouldShowDefaultLoadingView
-// */
-//- (void)albumViewControllerWillFinishLoading:(QMUIAlbumViewController *)albumViewController;
+////即将需要隐藏 Loading 时调用
+//- (void)albumViewWillFinishLoading:(QMUIAlbumViewController *)albumViewController;
 
 @end
 

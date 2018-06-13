@@ -20,13 +20,15 @@
 
 @property (nonatomic, strong) NSMutableArray<JJPhotoAlbum *> *albumsArray;
 
+@property (nonatomic, strong) DropButton *cameraRoll;
+
 @end
 
 @implementation PhotosViewController
 @synthesize cameraRollView = _cameraRollView;
 @synthesize photoGridView = _photoGridView;
-@synthesize albumsArray = _albumsArray;;
-
+@synthesize albumsArray = _albumsArray;
+@synthesize cameraRoll = _cameraRoll;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,14 +53,14 @@
     });
     
     //设置标题
-    DropButton *cameraRoll = [DropButton buttonWithType:UIButtonTypeCustom withSpace:12.0f];
-    cameraRoll.buttonStyle = JJSButtonImageRight;
-    [cameraRoll setTitle:@"相机胶卷" forState:UIControlStateNormal];
-    [cameraRoll setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
-    [cameraRoll setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    cameraRoll.backgroundColor = [UIColor clearColor];
-    [cameraRoll addTarget:self action:@selector(OnCameraRollClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self setTitlebtn:cameraRoll];
+    _cameraRoll = [DropButton buttonWithType:UIButtonTypeCustom withSpace:12.0f];
+    _cameraRoll.buttonStyle = JJSButtonImageRight;
+    [_cameraRoll setTitle:@"相机胶卷" forState:UIControlStateNormal];
+    [_cameraRoll setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
+    [_cameraRoll setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _cameraRoll.backgroundColor = [UIColor clearColor];
+    [_cameraRoll addTarget:self action:@selector(OnCameraRollClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self setTitlebtn:_cameraRoll];
     
     //取消
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -93,10 +95,21 @@
     }
 }
 
+//点击取消操作，跳转到app主界面
 - (void)OnCancelCLick:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+//调整标题按钮的箭头方向
+- (void)adjustTitleButtonStyle{
+    [_cameraRoll setSelected:!_cameraRoll.isSelected];
+    if(_cameraRoll.isSelected){
+        [_cameraRoll setImage:[UIImage imageNamed:@"gallery_title_arrow_up"] forState:UIControlStateNormal];
+    }else{
+        [_cameraRoll setImage:[UIImage imageNamed:@"gallery_title_arrow"] forState:UIControlStateNormal];
+    }
 }
 
 
@@ -106,8 +119,10 @@
 - (void)refreshAlbumAndShow{
     if([self.albumsArray count] > 0){
         //hide loading
+        
         //初始化网格照片界面
         JJPhotoAlbum *album = [self.albumsArray objectAtIndex:0];
+        [_cameraRoll setTitle:[album albumName] forState:UIControlStateNormal];
         [_photoGridView refreshPhotoAsset:album];
         
         //初始化相薄界面
@@ -119,6 +134,8 @@
 
 #pragma -mark CameraRollViewDelegate
 - (void)imagePickerViewControllerForCameraRollView:(JJPhotoAlbum *)album{
+    [self adjustTitleButtonStyle];
+    [_cameraRoll setTitle:[album albumName] forState:UIControlStateNormal];
     //加载网格照片界面
     [_photoGridView refreshPhotoAsset:album];
 }
