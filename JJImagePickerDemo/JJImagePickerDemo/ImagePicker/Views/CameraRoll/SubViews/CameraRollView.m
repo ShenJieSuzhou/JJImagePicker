@@ -8,10 +8,12 @@
 
 #import "CameraRollView.h"
 
+
 @implementation CameraRollView
 @synthesize rollsTableView = _rollsTableView;
 @synthesize rollsArray = _rollsArray;
 @synthesize background = _background;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -38,16 +40,19 @@
 }
 
 - (void)refreshAlbumAseets:(NSMutableArray *)albums{
-    
-    
+    if(!albums){
+        return;
+    }
+
+    self.rollsArray = albums;
+    [_rollsTableView reloadData];
 }
-
-
 
 //懒加载
 - (UITableView *)rollsTableView{
     if(!_rollsTableView){
         _rollsTableView = [[UITableView alloc] initWithFrame:CGRectZero];
+        _rollsTableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _rollsTableView.delegate = self;
         _rollsTableView.dataSource = self;
     }
@@ -60,36 +65,57 @@
         return;
     }
     
-    self.rollsArray = rollsArray;
+    _rollsArray = rollsArray;
 }
 
 
 //tableview datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-//    return [self.rollsArray count];
-    return 20;
+    return [self.rollsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThumbCell"];
+    static NSString *jjIdentifier = @"jjCellIdentifier";
+    JJTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:jjIdentifier];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 45)];
+        cell = [[JJTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:jjIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [cell setFrame:CGRectMake(0, 0, self.frame.size.width, 65.0f)];
+        }else{
+            [cell setFrame:CGRectMake(0, 0, self.frame.size.width, 57.0f)];
+        }
     }
     
-    [cell.textLabel setText:@"111111"];
+    //取一个相册
+    JJPhotoAlbum *album = [self.rollsArray objectAtIndex:indexPath.row];
+    //显示相册缩略图
+    cell.imageView.image = [album albumThumbWithSize:CGSizeMake(cell.frame.size.height - 5, cell.frame.size.height - 5)];
+    //显示相册名称
+    cell.textLabel.text = [album albumName];
+    //显示相册的照片数量
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"(%ld)", (long)[album numberOfAsset]];
+    
     return cell;
 }
 
 
 //tableview delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45.0f;
+    JJTableViewCell *cell = (JJTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    JJPhotoAlbum *album = [self.rollsArray objectAtIndex:indexPath.row];
+    //将获取到的相册回调给 PhotosViewController 展示九宫格图片列表
+    [_delegate imagePickerViewControllerForCameraRollView:album];
     
+    //跳转到 PhotosViewController 
+    [self removeFromSuperview];
 }
+
+
 
 @end

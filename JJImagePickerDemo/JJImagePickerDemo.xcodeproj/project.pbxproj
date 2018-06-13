@@ -35,6 +35,7 @@
 		E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */; };
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
+		E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,8 @@
 		E56B9CCE20AD2FA800021DF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56B9CD020AD2FA800021DF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTableViewCell.h; sourceTree = "<group>"; };
+		E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				E545F54C20C13C1200E74CA1 /* CameraRollView.m */,
 				4491541320CEC0D400DDE7A9 /* JJCollectionViewCell.h */,
 				4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */,
+				E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */,
+				E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
+				E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */,
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
