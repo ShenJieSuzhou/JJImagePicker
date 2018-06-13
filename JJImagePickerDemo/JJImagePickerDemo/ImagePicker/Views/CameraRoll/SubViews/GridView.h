@@ -27,8 +27,15 @@
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *photoCollectionView;
 
+//是否允许选择多张
+@property (assign) BOOL isAllowedMutipleSelect;
+
+//允许选择的最大张数
+@property (assign) NSUInteger maxSeledtedNum;
+
 /*
  * 刷新照片
+ * @param album 相簿
  */
 - (void)refreshPhotoAsset:(JJPhotoAlbum *)album;
 

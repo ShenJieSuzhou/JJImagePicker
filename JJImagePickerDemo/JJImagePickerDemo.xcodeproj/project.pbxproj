@@ -14,7 +14,6 @@
 		4491541520CEC0D400DDE7A9 /* JJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */; };
 		44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */; };
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
-		E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784320BF8F4E003E2F38 /* ImageManager.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785020BFD8FF003E2F38 /* CameraRollViewController.m */; };
@@ -36,6 +35,7 @@
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
 		E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */; };
+		E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53620D112090021EB68 /* JJCollectionViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +51,6 @@
 		4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCollectionViewCell.m; sourceTree = "<group>"; };
 		44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@3x.png"; sourceTree = "<group>"; };
 		44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@2x.png"; sourceTree = "<group>"; };
-		E522784220BF8F4E003E2F38 /* ImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
-		E522784320BF8F4E003E2F38 /* ImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -90,6 +88,8 @@
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTableViewCell.h; sourceTree = "<group>"; };
 		E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTableViewCell.m; sourceTree = "<group>"; };
+		E5CFB53520D112090021EB68 /* JJCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		E5CFB53620D112090021EB68 /* JJCollectionViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,12 +125,10 @@
 		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				E5CFB53420D10F840021EB68 /* Util */,
 				443D3C4A20CD002800E0C255 /* controller */,
-				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
 				E522784A20BFCE38003E2F38 /* Model */,
 				E522784720BFC921003E2F38 /* Views */,
-				E522784220BF8F4E003E2F38 /* ImageManager.h */,
-				E522784320BF8F4E003E2F38 /* ImageManager.m */,
 				E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */,
 				E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */,
 			);
@@ -184,6 +182,8 @@
 				4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */,
 				E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */,
 				E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */,
+				E5CFB53520D112090021EB68 /* JJCollectionViewFlowLayout.h */,
+				E5CFB53620D112090021EB68 /* JJCollectionViewFlowLayout.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -255,6 +255,14 @@
 				E522784520BF8F7A003E2F38 /* Photos.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5CFB53420D10F840021EB68 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +352,7 @@
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
 				4462607420CD00BA0004C579 /* JJPhoto.m in Sources */,
+				E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
@@ -351,7 +360,6 @@
 				E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
-				E522784420BF8F4E003E2F38 /* ImageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

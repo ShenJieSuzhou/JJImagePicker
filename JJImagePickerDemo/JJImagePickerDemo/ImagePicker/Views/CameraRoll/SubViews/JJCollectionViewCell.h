@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@interface SelectButton: UIButton
+
+
+@end
+
 @interface JJCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView *contentImageView;
 
 @property (nonatomic, copy) NSString *assetIdentifier;
+
+@property (nonatomic, strong) UIImageView *livePhotoView;
+
+@property (nonatomic, strong) UIImageView *videoView;
+
+@property (nonatomic, copy) NSString *timeMark;
 
 @end

@@ -8,14 +8,18 @@
 
 #import "GridView.h"
 #import "JJCollectionViewCell.h"
+#import "JJCollectionViewFlowLayout.h"
 
 #define JJ_CELL_VIDEO_IDENTIFIER @"video"
-#define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageorunknown"
+#define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"
 
 @implementation GridView
 @synthesize imagesAssetArray = _imagesAssetArray;
 @synthesize selectedImageAssetArray = _selectedImageAssetArray;
 @synthesize photoAlbum = _photoAlbum;
+@synthesize isAllowedMutipleSelect = _isAllowedMutipleSelect;
+@synthesize maxSeledtedNum = _maxSeledtedNum;
+
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -80,7 +84,7 @@
 //懒加载
 -(UICollectionView *)photoCollectionView{
     if (!_photoCollectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        JJCollectionViewFlowLayout *layout = [[JJCollectionViewFlowLayout alloc] init];
         //自动网格布局
         _photoCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
         //设置数据源代理

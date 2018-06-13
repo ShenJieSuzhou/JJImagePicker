@@ -8,8 +8,25 @@
 
 #import "JJCollectionViewCell.h"
 
+@implementation SelectButton
+
++ (instancetype)buttonWithType:(UIButtonType)buttonType{
+    SelectButton *btn = [super buttonWithType:buttonType];
+//    [btn setBackgroundImage:<#(nullable UIImage *)#> forState:<#(UIControlState)#>]
+    return btn;
+}
+
+@end
+
+
+
 @implementation JJCollectionViewCell
 @synthesize contentImageView = _contentImageView;
+@synthesize assetIdentifier = _assetIdentifier;
+@synthesize livePhotoView = _livePhotoView;
+@synthesize videoView = _videoView;
+@synthesize timeMark = _timeMark;
+
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
