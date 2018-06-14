@@ -30,9 +30,11 @@ typedef NS_ENUM(NSUInteger, JJAssetSubType) {
 @property(nonatomic, assign, readonly) JJAssetType assetType;
 @property(nonatomic, assign, readonly) JJAssetSubType assetSubType;
 
-@property (nonatomic, strong) PHAsset *asset;
+@property (nonatomic, strong) PHAsset *jjAsset;
 //Asset 标识
 @property (nonatomic, copy) NSString *identifier;
+
+
 ////缩略图
 //@property (nonatomic, strong) UIImage *thumbImage;
 ////原图
@@ -111,5 +113,13 @@ typedef NS_ENUM(NSUInteger, JJAssetSubType) {
  * @param completion 完成请求后调用的 block，参数中包含了请求的图片 Data, 该图片是否为 GIF 的判断值
  */
 - (void)requestImageData:(void (^)(NSData *imageData, NSDictionary<NSString *, id> *info, BOOL isGIF, BOOL isHEIC))completion;
+
+
+/**
+ * 获取 Asset 的体积（数据大小）
+ */
+- (void)assetSize:(void (^)(long long size))completion;
+
+- (NSTimeInterval)duration;
 
 @end

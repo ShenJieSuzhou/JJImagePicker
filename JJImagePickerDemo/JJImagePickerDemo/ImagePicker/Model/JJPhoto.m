@@ -19,7 +19,7 @@
 
 - (instancetype)initWithPHAsset:(PHAsset *)phAsset{
     if(self = [super init]){
-        _asset = phAsset;
+        _jjAsset = phAsset;
         switch (phAsset.mediaType) {
             case PHAssetMediaTypeImage:
                 _assetType = JJAssetTypeImage;
@@ -54,12 +54,20 @@
     return self;
 }
 
-- (PHAsset *)asset{
-    return _asset;
+- (PHAsset *)jjAsset{
+    return _jjAsset;
 }
 
 - (NSString *)identifier {
-    return _asset.localIdentifier;
+    return _jjAsset.localIdentifier;
+}
+
+- (NSTimeInterval)duration{
+    if(self.assetType != JJAssetTypeVideo){
+        return 0;
+    }
+    
+    return _jjAsset.duration;
 }
 
 - (UIImage *)originImage{
@@ -70,7 +78,7 @@
 //    phImageRequestOptions.networkAccessAllowed = YES;
 //    phImageRequestOptions.synchronous = YES;
 
-    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         resultImage = result;
     }];
     
@@ -82,7 +90,7 @@
     PHImageRequestOptions *phImageRequestOptions = [[PHImageRequestOptions alloc] init];
     phImageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
     
-    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset
+    [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset
                                                                   targetSize:CGSizeMake(size.width * ScreenScale, size.height * ScreenScale) contentMode:PHImageContentModeAspectFill options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                                                                       
                                                                       resultImage = result;
@@ -97,7 +105,7 @@
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeFast;
     
-    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset
                                                                          targetSize:CGSizeMake(size.width * ScreenScale, size.height * ScreenScale) contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                                                                       
                                                                       if (completion) {
@@ -113,7 +121,7 @@
     imageRequestOptions.networkAccessAllowed = YES; // 允许访问网络
     imageRequestOptions.progressHandler = phProgressHandler;
     
-    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         if(completion){
             completion(result, info);
         }
@@ -126,7 +134,7 @@
     imageRequestOptions.networkAccessAllowed = YES;
     imageRequestOptions.progressHandler = phProgressHandler;
     
-    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_asset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         if(completion){
             completion(result, info);
         }
@@ -139,7 +147,7 @@
         livePhotoRequestOptions.networkAccessAllowed = YES;
         livePhotoRequestOptions.progressHandler = phProgressHandler;
         
-        return [[JJImageManager getInstance].phCachingImageManager requestLivePhotoForAsset:_asset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:livePhotoRequestOptions resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
+        return [[JJImageManager getInstance].phCachingImageManager requestLivePhotoForAsset:_jjAsset targetSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT) contentMode:PHImageContentModeAspectFill options:livePhotoRequestOptions resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
             
             if(completion){
                 completion(livePhoto, info);
