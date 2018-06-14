@@ -43,6 +43,7 @@
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
 		E5CFB54720D25A940021EB68 /* QMUI_pickerImage_video_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54620D25A940021EB68 /* QMUI_pickerImage_video_mark@2x.png */; };
 		E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */; };
+		E5CFB54D20D28DDF0021EB68 /* PhotoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54C20D28DDF0021EB68 /* PhotoPreviewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,8 @@
 		E5CFB54620D25A940021EB68 /* QMUI_pickerImage_video_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QMUI_pickerImage_video_mark@2x.png"; sourceTree = "<group>"; };
 		E5CFB54820D284BD0021EB68 /* UICollectionView+JJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JJ.h"; sourceTree = "<group>"; };
 		E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JJ.m"; sourceTree = "<group>"; };
+		E5CFB54B20D28DDF0021EB68 /* PhotoPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewViewController.h; sourceTree = "<group>"; };
+		E5CFB54C20D28DDF0021EB68 /* PhotoPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 				E522785020BFD8FF003E2F38 /* CameraRollViewController.m */,
 				E522785220BFD918003E2F38 /* PhotosViewController.h */,
 				E522785320BFD918003E2F38 /* PhotosViewController.m */,
+				E5CFB54B20D28DDF0021EB68 /* PhotoPreviewViewController.h */,
+				E5CFB54C20D28DDF0021EB68 /* PhotoPreviewViewController.m */,
 			);
 			path = CameraRoll;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				4491541520CEC0D400DDE7A9 /* JJCollectionViewCell.m in Sources */,
 				E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
+				E5CFB54D20D28DDF0021EB68 /* PhotoPreviewViewController.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
 			);

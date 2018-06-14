@@ -11,6 +11,7 @@
 #import "CameraRollView.h"
 #import "GridView.h"
 #import "JJImageManager.h"
+#import "PhotoPreviewViewController.h"
 
 @interface PhotosViewController ()<CameraRollViewDelegate>
 
@@ -22,6 +23,8 @@
 
 @property (nonatomic, strong) DropButton *cameraRoll;
 
+@property (nonatomic, strong) PhotoPreviewViewController *photoPreviewViewController;
+
 @end
 
 @implementation PhotosViewController
@@ -29,6 +32,7 @@
 @synthesize photoGridView = _photoGridView;
 @synthesize albumsArray = _albumsArray;
 @synthesize cameraRoll = _cameraRoll;
+@synthesize photoPreviewViewController = _photoPreviewViewController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
