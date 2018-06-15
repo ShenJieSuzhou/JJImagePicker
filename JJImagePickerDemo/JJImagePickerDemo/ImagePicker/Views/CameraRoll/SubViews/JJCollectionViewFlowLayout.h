@@ -11,5 +11,4 @@
 @interface JJCollectionViewFlowLayout : UICollectionViewFlowLayout
 
 
-
 @end

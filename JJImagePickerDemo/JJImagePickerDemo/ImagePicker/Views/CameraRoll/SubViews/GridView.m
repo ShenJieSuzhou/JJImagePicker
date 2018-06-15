@@ -21,6 +21,7 @@
 @synthesize photoAlbum = _photoAlbum;
 @synthesize isAllowedMutipleSelect = _isAllowedMutipleSelect;
 @synthesize maxSeledtedNum = _maxSeledtedNum;
+@synthesize mDelegate = _mDelegate;
 
 
 - (id)initWithFrame:(CGRect)frame{
@@ -132,9 +133,9 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
+    if(self.mDelegate && [self.mDelegate respondsToSelector:@selector(JJImagePickerViewController:selectAtIndex:)]){
+        [_mDelegate JJImagePickerViewController:self selectAtIndex:indexPath];
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -198,5 +199,8 @@
         //更新UI
     }
 }
+
+//处理多选逻辑
+
 
 @end

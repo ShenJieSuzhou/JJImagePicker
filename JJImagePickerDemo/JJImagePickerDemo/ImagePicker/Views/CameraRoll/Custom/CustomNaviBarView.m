@@ -28,7 +28,7 @@
 }
 
 + (CGSize)barBtnSize{
-    return Size(50.0f, 40.0f);
+    return Size(35.0f, 35.0f);
 }
 
 + (CGSize)barSize{
@@ -92,7 +92,7 @@
     
     [self addSubview:self.imgViewBg];
     [self addSubview:self.labelTitle];
-    
+
     [self addSubview:self.btnBack];
 }
 

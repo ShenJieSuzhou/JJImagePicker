@@ -13,7 +13,7 @@
 #import "JJImageManager.h"
 #import "PhotoPreviewViewController.h"
 
-@interface PhotosViewController ()<CameraRollViewDelegate>
+@interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate>
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
 
@@ -77,8 +77,11 @@
     _cameraRollView.delegate = self;
     
     _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
-    
+    _photoGridView.mDelegate = self;
     [self.view addSubview:_photoGridView];
+    
+    //预览图界面
+    self.photoPreviewViewController = [[PhotoPreviewViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -142,6 +145,16 @@
     [_cameraRoll setTitle:[album albumName] forState:UIControlStateNormal];
     //加载网格照片界面
     [_photoGridView refreshPhotoAsset:album];
+}
+
+#pragma -mark JJImagePickerViewControllerDelegate
+- (void)JJImagePickerViewController:(GridView *)gridView selectAtIndex:(NSIndexPath *)indexath{
+    //初始化预览相册，当前显示的照片索引
+    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:gridView.imagesAssetArray selectedImageAssetArray:gridView.selectedImageAssetArray currentImageIndex:indexath.row singleCheckMode:NO];
+    
+    [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
+        
+    }];
 }
 
 @end

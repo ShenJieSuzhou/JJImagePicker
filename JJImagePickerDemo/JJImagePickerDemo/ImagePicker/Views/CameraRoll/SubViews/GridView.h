@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JJPhotoAlbum.h"
-
+@class GridView;
 @protocol JJImagePickerViewControllerDelegate <NSObject>
-
+- (void)JJImagePickerViewController:(GridView *)gridView selectAtIndex:(NSIndexPath *)indexath;
 
 @end
 
@@ -32,6 +32,9 @@
 
 //允许选择的最大张数
 @property (assign) NSUInteger maxSeledtedNum;
+
+//预览图回调
+@property (strong, nonatomic) id<JJImagePickerViewControllerDelegate> mDelegate;
 
 /*
  * 刷新照片
