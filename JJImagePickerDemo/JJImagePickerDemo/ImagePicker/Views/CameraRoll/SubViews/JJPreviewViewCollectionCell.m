@@ -9,5 +9,44 @@
 #import "JJPreviewViewCollectionCell.h"
 
 @implementation JJPreviewViewCollectionCell
+@synthesize videoBtn = _videoBtn;
+@synthesize previewImage = _previewImage;
+@synthesize isVideoType = _isVideoType;
+@synthesize isLivePhotoType = _isLivePhotoType;
+@synthesize identifier = _identifier;
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self commonInitlization];
+    }
+    
+    return self;
+}
+
+- (id)init{
+    return [self initWithFrame:CGRectZero];
+}
+
+- (void)commonInitlization{
+    _previewImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_videoBtn setBackgroundColor:[UIColor clearColor]];
+    [_videoBtn setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateNormal];
+    [self.contentView addSubview:self.previewImage];
+    [self.contentView addSubview:self.videoBtn];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_previewImage setFrame:self.bounds];
+    [_videoBtn setFrame:CGRectMake(50, 50, 50, 50)];
+    
+    if(_isVideoType){
+        [_videoBtn setHidden:NO];
+    }else{
+        [_videoBtn setHidden:YES];
+    }
+}
 
 @end

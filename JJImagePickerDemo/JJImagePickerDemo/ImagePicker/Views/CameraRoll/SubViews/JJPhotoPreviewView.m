@@ -66,12 +66,10 @@
     
     self.imagesAssetArray = imageAssetArray;
     self.selectedImageAssetArray = selectedImageAssetArray;
-    
 }
 
 #pragma -mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     
 }
 
@@ -80,12 +78,24 @@
     return [_imagesAssetArray count];
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_DEFAULT forIndexPath:indexPath];
     if(cell){
         cell = [[JJPreviewViewCollectionCell alloc] init];
     }
+    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];
+    cell.identifier = imageAsset.identifier;
+    [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+        if([cell.identifier isEqualToString:imageAsset.identifier]){
+            [cell.previewImage setImage:result];
+        }else{
+            [cell.previewImage setImage:nil];
+        }
+        
+    } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+        
+    }];
     
     return cell;
 }

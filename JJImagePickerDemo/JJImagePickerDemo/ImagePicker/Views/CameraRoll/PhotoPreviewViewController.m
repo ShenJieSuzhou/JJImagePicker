@@ -48,7 +48,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +62,6 @@
                                        singleCheckMode:(BOOL)singleCheckMode{
         
     [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:imageAssetArray selectedImageAssetArray:selectedImageAssetArray currentImageIndex:currentImageIndex singleCheckMode:singleCheckMode];
-    
 }
 
 

@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "JJPhoto.h"
 
-@interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
 
 //dataSource
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
-
-
 @property (strong, nonatomic) UICollectionView *photoPreviewView;
 
 /*
