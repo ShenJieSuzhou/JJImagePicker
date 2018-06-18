@@ -33,6 +33,7 @@
 @synthesize albumsArray = _albumsArray;
 @synthesize cameraRoll = _cameraRoll;
 @synthesize photoPreviewViewController = _photoPreviewViewController;
+//@synthesize jjTabBarView = _jjTabBarView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

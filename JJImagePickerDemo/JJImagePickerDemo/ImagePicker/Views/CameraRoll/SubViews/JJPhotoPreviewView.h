@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JJPhoto.h"
+//#import "TabBarView.h"
 
 @interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
 @property (strong, nonatomic) UICollectionView *photoPreviewImage;
+
 
 /*
  * 初始化数据

@@ -18,6 +18,7 @@
 @synthesize imagesAssetArray = _imagesAssetArray;
 @synthesize selectedImageAssetArray = _selectedImageAssetArray;
 @synthesize photoPreviewImage = _photoPreviewImage;
+//@synthesize jjTabBarView = _jjTabBarView;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];

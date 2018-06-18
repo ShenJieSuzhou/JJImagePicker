@@ -29,7 +29,9 @@
 }
 
 - (void)commonInitlization{
+    [self setBackgroundColor:[UIColor clearColor]];
     _previewImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _previewImage.contentMode = UIViewContentModeScaleAspectFit;
     _videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_videoBtn setBackgroundColor:[UIColor clearColor]];
     [_videoBtn setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateNormal];

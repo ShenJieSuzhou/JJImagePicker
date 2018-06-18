@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JJTabBarViewDelegate<NSObject>
+
+
+@end
+
+
 @interface TabBarView : UIView
+//编辑按钮
+@property (strong, nonatomic) UIButton *editBtn;
+//预览按钮
+@property (strong, nonatomic) UIButton *previewBtn;
+//完成按钮
+@property (strong, nonatomic) UIButton *finishBtn;
+//画廊view
+@property (strong, nonatomic) UIView *gallaryView;
+
+- (void)setEditBtnHidden:(BOOL) hidden;
+
+- (void)setPreViewBtnHidden:(BOOL) hidden;
 
 @end

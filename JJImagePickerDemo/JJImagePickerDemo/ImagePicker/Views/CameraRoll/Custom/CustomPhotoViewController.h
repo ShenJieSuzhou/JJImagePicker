@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomNaviBarView.h"
+#import "TabBarView.h"
 
 @interface CustomPhotoViewController : UIViewController
 
 @property (strong, nonatomic) CustomNaviBarView *customNaviBar;
+@property (nonatomic, strong) TabBarView *jjTabBarView;
 
 - (void)bringNaviBarToTopmost;
 
