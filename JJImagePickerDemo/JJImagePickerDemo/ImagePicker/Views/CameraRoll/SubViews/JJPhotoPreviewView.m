@@ -18,6 +18,7 @@
 @synthesize imagesAssetArray = _imagesAssetArray;
 @synthesize selectedImageAssetArray = _selectedImageAssetArray;
 @synthesize photoPreviewImage = _photoPreviewImage;
+@synthesize currentIndex = _currentIndex;
 //@synthesize jjTabBarView = _jjTabBarView;
 
 - (id)initWithFrame:(CGRect)frame{
@@ -41,7 +42,9 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+
     [self.photoPreviewImage setFrame:self.bounds];
+    [self.photoPreviewImage scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 - (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
@@ -51,6 +54,7 @@
     
     self.imagesAssetArray = imageAssetArray;
     self.selectedImageAssetArray = selectedImageAssetArray;
+    self.currentIndex = currentImageIndex;
     [self.photoPreviewImage reloadData];
 }
 
@@ -108,5 +112,13 @@
     return cell;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
 
 @end

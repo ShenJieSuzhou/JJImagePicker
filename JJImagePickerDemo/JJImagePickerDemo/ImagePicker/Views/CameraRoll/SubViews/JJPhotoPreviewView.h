@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
 @property (strong, nonatomic) UICollectionView *photoPreviewImage;
-
+@property (assign) NSInteger currentIndex;
 
 /*
  * 初始化数据
