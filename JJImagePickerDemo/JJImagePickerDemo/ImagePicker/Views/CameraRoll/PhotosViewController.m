@@ -79,9 +79,6 @@
     _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
     _photoGridView.mDelegate = self;
     [self.view addSubview:_photoGridView];
-    
-    //预览图界面
-    self.photoPreviewViewController = [[PhotoPreviewViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,6 +116,14 @@
     }
 }
 
+//大图预览界面
+- (PhotoPreviewViewController *)photoPreviewViewController{
+    if(!_photoPreviewViewController){
+        _photoPreviewViewController = [[PhotoPreviewViewController alloc] init];
+    }
+    
+    return _photoPreviewViewController;
+}
 
 /*
  * 刷新相册

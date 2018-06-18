@@ -17,7 +17,7 @@
 @implementation JJPhotoPreviewView
 @synthesize imagesAssetArray = _imagesAssetArray;
 @synthesize selectedImageAssetArray = _selectedImageAssetArray;
-@synthesize photoPreviewView = _photoPreviewView;
+@synthesize photoPreviewImage = _photoPreviewImage;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -35,28 +35,12 @@
 - (void)commonInitlization{
     self.imagesAssetArray = [[NSMutableArray alloc] init];
     self.selectedImageAssetArray = [[NSMutableArray alloc] init];
-    [self addSubview:self.photoPreviewView];
+    [self addSubview:self.photoPreviewImage];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [self.photoPreviewView setFrame:self.bounds];
-}
-
-//懒加载
-- (UICollectionView *)photoPreviewView{
-    if(!_photoPreviewView){
-        JJPreviewViewCollectionLayout *layout = [[JJPreviewViewCollectionLayout alloc] init];
-        _photoPreviewView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-        _photoPreviewView.delegate = self;
-        _photoPreviewView.dataSource = self;
-        [_photoPreviewView setBackgroundColor:[UIColor clearColor]];
-        [_photoPreviewView registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_DEFAULT];
-        [_photoPreviewView registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_VIDEO];
-        [_photoPreviewView registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO];
-    }
-    
-    return _photoPreviewView;
+    [self.photoPreviewImage setFrame:self.bounds];
 }
 
 - (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
@@ -66,6 +50,23 @@
     
     self.imagesAssetArray = imageAssetArray;
     self.selectedImageAssetArray = selectedImageAssetArray;
+    [self.photoPreviewImage reloadData];
+}
+
+//懒加载
+- (UICollectionView *)photoPreviewImage{
+    if(!_photoPreviewImage){
+        JJPreviewViewCollectionLayout *layout = [[JJPreviewViewCollectionLayout alloc] init];
+        _photoPreviewImage = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
+        _photoPreviewImage.delegate = self;
+        _photoPreviewImage.dataSource = self;
+        [_photoPreviewImage setBackgroundColor:[UIColor clearColor]];
+        [_photoPreviewImage registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_DEFAULT];
+        [_photoPreviewImage registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_VIDEO];
+        [_photoPreviewImage registerClass:[JJPreviewViewCollectionCell class] forCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO];
+    }
+    
+    return _photoPreviewImage;
 }
 
 #pragma -mark UICollectionViewDelegate
@@ -79,19 +80,25 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JJ_PREVIEWCELL_IDENTIFIER_DEFAULT forIndexPath:indexPath];
-    if(cell){
-        cell = [[JJPreviewViewCollectionCell alloc] init];
-    }
     JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];
+
+    //初始化cell
+    NSString *identifier = nil;
+    if(imageAsset.assetType == JJAssetTypeImage){
+        identifier = JJ_PREVIEWCELL_IDENTIFIER_DEFAULT;
+    }else if(imageAsset.assetType == JJAssetTypeVideo){
+        identifier = JJ_PREVIEWCELL_IDENTIFIER_VIDEO;
+    }
+    
+    JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.identifier = imageAsset.identifier;
+    
     [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-        if([cell.identifier isEqualToString:imageAsset.identifier]){
-            [cell.previewImage setImage:result];
-        }else{
-            [cell.previewImage setImage:nil];
-        }
+    if([cell.identifier isEqualToString:imageAsset.identifier]){
+        [cell.previewImage setImage:result];
+    }else{
+        [cell.previewImage setImage:nil];
+    }
         
     } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
         

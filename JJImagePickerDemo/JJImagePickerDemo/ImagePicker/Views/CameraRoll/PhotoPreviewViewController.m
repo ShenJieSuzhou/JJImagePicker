@@ -47,7 +47,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+//    [self.photoPreviewView.photoPreviewImage reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +61,10 @@
                                      currentImageIndex:(NSInteger)currentImageIndex
                                        singleCheckMode:(BOOL)singleCheckMode{
         
-    [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:imageAssetArray selectedImageAssetArray:selectedImageAssetArray currentImageIndex:currentImageIndex singleCheckMode:singleCheckMode];
+    self.imagesAssetArray = imageAssetArray;
+    self.selectedImageAssetArray = selectedImageAssetArray;
+    self.currentIndex = currentImageIndex;
+    self.singleCheckMode = singleCheckMode;
 }
 
 
@@ -69,9 +72,26 @@
 - (JJPhotoPreviewView *)photoPreviewView{
     if(!_photoPreviewView){
         _photoPreviewView = [[JJPhotoPreviewView alloc] initWithFrame:self.view.bounds];
+        [_photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
     }
     
     return _photoPreviewView;
+}
+
+- (NSMutableArray<JJPhoto *> *)imagesAssetArray{
+    if(!_imagesAssetArray){
+        _imagesAssetArray = [[NSMutableArray alloc] init];
+    }
+    
+    return _imagesAssetArray;
+}
+
+- (NSMutableArray<JJPhoto *> *)selectedImageAssetArray{
+    if(!_selectedImageAssetArray){
+        _selectedImageAssetArray = [[NSMutableArray alloc] init];
+    }
+    
+    return _selectedImageAssetArray;
 }
 
 //返回到imagePickView

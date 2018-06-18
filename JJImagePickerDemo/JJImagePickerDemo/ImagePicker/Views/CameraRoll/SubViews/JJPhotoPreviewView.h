@@ -14,7 +14,7 @@
 //dataSource
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
-@property (strong, nonatomic) UICollectionView *photoPreviewView;
+@property (strong, nonatomic) UICollectionView *photoPreviewImage;
 
 /*
  * 初始化数据

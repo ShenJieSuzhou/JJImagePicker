@@ -14,6 +14,12 @@
 @interface PhotoPreviewViewController : CustomPhotoViewController
 //预览图展示view
 @property (strong, nonatomic) JJPhotoPreviewView *photoPreviewView;
+//dataSource
+@property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
+@property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
+
+@property (assign) NSInteger currentIndex;
+@property (assign) BOOL singleCheckMode;
 
 //底部tabbarView
 
