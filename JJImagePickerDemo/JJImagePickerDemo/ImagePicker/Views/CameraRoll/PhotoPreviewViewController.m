@@ -44,10 +44,10 @@
     [self.view addSubview:self.photoPreviewView];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    [self.photoPreviewView.photoPreviewImage reloadData];
+    [self refreshImagePreview];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,14 +65,17 @@
     self.selectedImageAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     self.singleCheckMode = singleCheckMode;
+    
 }
 
+- (void)refreshImagePreview{
+    [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
+}
 
 //懒加载
 - (JJPhotoPreviewView *)photoPreviewView{
     if(!_photoPreviewView){
         _photoPreviewView = [[JJPhotoPreviewView alloc] initWithFrame:self.view.bounds];
-        [_photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
     }
     
     return _photoPreviewView;
@@ -97,7 +100,7 @@
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:^{
-        
+//        [self.photoPreviewView removeFromSuperview];ß
     }];
 }
 

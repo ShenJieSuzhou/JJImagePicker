@@ -37,4 +37,6 @@
                                        currentImageIndex:(NSInteger)currentImageIndex
                                          singleCheckMode:(BOOL)singleCheckMode;
 
+- (void)refreshImagePreview;
+
 @end
