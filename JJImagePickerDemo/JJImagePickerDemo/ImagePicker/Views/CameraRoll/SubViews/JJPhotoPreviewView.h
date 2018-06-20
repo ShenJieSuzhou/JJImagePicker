@@ -25,5 +25,10 @@
                                selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
                                      currentImageIndex:(NSInteger)currentImageIndex
                                        singleCheckMode:(BOOL)singleCheckMode;
+/*
+ * 初始化 已选的预览图数据
+ */
+- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+                               currentImageIndex:(NSInteger)currentImageIndex;
 
 @end

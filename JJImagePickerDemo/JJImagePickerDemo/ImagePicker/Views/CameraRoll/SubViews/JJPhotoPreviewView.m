@@ -35,8 +35,8 @@
 }
 
 - (void)commonInitlization{
-    self.imagesAssetArray = [[NSMutableArray alloc] init];
-    self.selectedImageAssetArray = [[NSMutableArray alloc] init];
+//    self.imagesAssetArray = [[NSMutableArray alloc] init];
+//    self.selectedImageAssetArray = [[NSMutableArray alloc] init];
     [self addSubview:self.photoPreviewImage];
 }
 
@@ -51,8 +51,22 @@
                                      currentImageIndex:(NSInteger)currentImageIndex
                                        singleCheckMode:(BOOL)singleCheckMode{
     
+
     self.imagesAssetArray = imageAssetArray;
     self.selectedImageAssetArray = selectedImageAssetArray;
+    self.currentIndex = currentImageIndex;
+    
+    [self.photoPreviewImage reloadData];
+    
+    [self.photoPreviewImage scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+}
+
+- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+                               currentImageIndex:(NSInteger)currentImageIndex{
+    
+    [self.imagesAssetArray removeAllObjects];
+    
+    self.imagesAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     
     [self.photoPreviewImage reloadData];

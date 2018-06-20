@@ -80,6 +80,15 @@
     _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
     _photoGridView.mDelegate = self;
     [self.view addSubview:_photoGridView];
+    
+    //底部tabBarView按钮添加事件
+    [self.jjTabBarView.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.jjTabBarView.finishBtn addTarget:self action:@selector(imagePickViewFinishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,7 +112,7 @@
 //点击取消操作，跳转到app主界面
 - (void)OnCancelCLick:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [self.photoGridView.selectedImageAssetArray removeAllObjects];
     }];
 }
 
@@ -157,10 +166,26 @@
 - (void)JJImagePickerViewController:(GridView *)gridView selectAtIndex:(NSIndexPath *)indexath{
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:gridView.imagesAssetArray selectedImageAssetArray:gridView.selectedImageAssetArray currentImageIndex:indexath.row singleCheckMode:NO];
+
+    [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
+
+    }];
+}
+
+#pragma -mark 底部按钮点击事件
+- (void)previewBtnClick:(UIButton *)sender{
+    //初始化预览相册，当前显示的照片索引
+    [self.photoPreviewViewController initImagePickerPreviewWithSelectedImages:self.photoGridView.selectedImageAssetArray currentImageIndex:0];
     
     [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
         
     }];
+}
+
+- (void)imagePickViewFinishBtnClick:(UIButton *)sender{
+    [self.photoGridView.selectedImageAssetArray removeAllObjects];
+    
+    //跳转到 demo 编辑文本照片界面
 }
 
 @end

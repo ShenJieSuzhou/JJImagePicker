@@ -15,12 +15,16 @@
 #define JJ_CELL_VIDEO_IDENTIFIER @"video"
 #define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"
 
+#define JJ_MAX_PHOTO_NUM 9
+
 @implementation GridView
 @synthesize imagesAssetArray = _imagesAssetArray;
 @synthesize selectedImageAssetArray = _selectedImageAssetArray;
 @synthesize photoAlbum = _photoAlbum;
 @synthesize isAllowedMutipleSelect = _isAllowedMutipleSelect;
-@synthesize maxSeledtedNum = _maxSeledtedNum;
+@synthesize maxSelectedNum = _maxSelectedNum;
+@synthesize minSelectedNum = _minSelectedNum;
+@synthesize alertTitleWhenPhotoExceedMaxCount = _alertTitleWhenPhotoExceedMaxCount;
 @synthesize mDelegate = _mDelegate;
 
 
@@ -41,6 +45,8 @@
     self.imagesAssetArray = [[NSMutableArray alloc] init];
     self.selectedImageAssetArray = [[NSMutableArray alloc] init];
     
+    self.maxSelectedNum = JJ_MAX_PHOTO_NUM;
+    self.minSelectedNum = 0;
     self.background = [[UIView alloc] init];
     [self addSubview:self.background];
     [self addSubview:self.photoCollectionView];
@@ -176,6 +182,10 @@
 
 //点击checkbox按钮响应事件
 - (void)handleCheckBoxClick:(UIButton *)sender{
+//    if(!_isAllowedMutipleSelect){
+//        return;
+//    }
+    
     sender.selected = !sender.selected;
     NSIndexPath *indexPath = [self.photoCollectionView jj_indexPathForItemAtView:sender];
     JJCollectionViewCell *cell = (JJCollectionViewCell *)[self.photoCollectionView cellForItemAtIndexPath:indexPath];
@@ -183,13 +193,14 @@
     
     if(sender.selected){
         //照片被选中，加入到队列中
-        if([self.selectedImageAssetArray count] > self.maxSeledtedNum){
+        if([self.selectedImageAssetArray count] > self.maxSelectedNum){
             NSLog(@"提示:已选达到最大数量");
             return;
         }
         
         [self.selectedImageAssetArray addObject:imageAsset];
-        
+        //回调已选的图片数量
+//        [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
         //更新UI
         
     }else{

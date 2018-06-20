@@ -20,6 +20,7 @@
 
 @property (assign) NSInteger currentIndex;
 @property (assign) BOOL singleCheckMode;
+@property (assign) BOOL previewSelectedMode;
 
 //底部tabbarView
 
@@ -36,6 +37,14 @@
                                  selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
                                        currentImageIndex:(NSInteger)currentImageIndex
                                          singleCheckMode:(BOOL)singleCheckMode;
+
+/*
+ * 初始化已选图片预览 UI
+ * @param selectedImageAssetArray 包含所有需要展示的图片中已经被选中的图片的数组
+ * @param currentImageIndex       当前展示的图片在 imageAssetArray 的索引
+ */
+- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+                               currentImageIndex:(NSInteger)currentImageIndex;
 
 - (void)refreshImagePreview;
 

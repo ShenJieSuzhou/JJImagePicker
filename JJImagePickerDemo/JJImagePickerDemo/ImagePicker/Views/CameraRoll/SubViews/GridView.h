@@ -10,7 +10,10 @@
 #import "JJPhotoAlbum.h"
 @class GridView;
 @protocol JJImagePickerViewControllerDelegate <NSObject>
+
 - (void)JJImagePickerViewController:(GridView *)gridView selectAtIndex:(NSIndexPath *)indexath;
+
+- (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts;
 
 @end
 
@@ -31,7 +34,13 @@
 @property (assign) BOOL isAllowedMutipleSelect;
 
 //允许选择的最大张数
-@property (assign) NSUInteger maxSeledtedNum;
+@property (assign) NSUInteger maxSelectedNum;
+
+// 最少需要选择的图片数
+@property (assign) NSUInteger minSelectedNum;
+
+// 选择图片超出最大图片限制数提示
+@property (nonatomic, copy) NSString *alertTitleWhenPhotoExceedMaxCount;
 
 //预览图回调
 @property (strong, nonatomic) id<JJImagePickerViewControllerDelegate> mDelegate;

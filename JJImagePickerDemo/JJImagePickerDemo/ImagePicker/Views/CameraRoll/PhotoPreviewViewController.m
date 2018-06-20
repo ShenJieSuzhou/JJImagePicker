@@ -65,11 +65,24 @@
     self.selectedImageAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     self.singleCheckMode = singleCheckMode;
+    self.previewSelectedMode = NO;
     
 }
 
+- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+                               currentImageIndex:(NSInteger)currentImageIndex{
+    
+    self.selectedImageAssetArray = selectedImageAssetArray;
+    self.currentIndex = currentImageIndex;
+    self.previewSelectedMode = YES;
+}
+
 - (void)refreshImagePreview{
-    [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
+    if(self.previewSelectedMode){
+        [self.photoPreviewView initImagePickerPreviewWithSelectedImages:self.selectedImageAssetArray currentImageIndex:self.currentIndex];
+    }else{
+        [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
+    }
 }
 
 //懒加载
@@ -81,21 +94,21 @@
     return _photoPreviewView;
 }
 
-- (NSMutableArray<JJPhoto *> *)imagesAssetArray{
-    if(!_imagesAssetArray){
-        _imagesAssetArray = [[NSMutableArray alloc] init];
-    }
-    
-    return _imagesAssetArray;
-}
-
-- (NSMutableArray<JJPhoto *> *)selectedImageAssetArray{
-    if(!_selectedImageAssetArray){
-        _selectedImageAssetArray = [[NSMutableArray alloc] init];
-    }
-    
-    return _selectedImageAssetArray;
-}
+//- (NSMutableArray<JJPhoto *> *)imagesAssetArray{
+//    if(!_imagesAssetArray){
+//        _imagesAssetArray = [[NSMutableArray alloc] init];
+//    }
+//
+//    return _imagesAssetArray;
+//}
+//
+//- (NSMutableArray<JJPhoto *> *)selectedImageAssetArray{
+//    if(!_selectedImageAssetArray){
+//        _selectedImageAssetArray = [[NSMutableArray alloc] init];
+//    }
+//
+//    return _selectedImageAssetArray;
+//}
 
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{

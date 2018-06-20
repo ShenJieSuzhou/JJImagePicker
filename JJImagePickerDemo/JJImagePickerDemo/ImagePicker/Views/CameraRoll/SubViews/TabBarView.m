@@ -30,20 +30,20 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
 - (void)commonInitlization{
     self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-    [self.editBtn addTarget:self action:@selector(editBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.editBtn addTarget:self action:@selector(editBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.editBtn setBackgroundColor:[UIColor blueColor]];
     [self addSubview:self.editBtn];
     
     self.previewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.previewBtn setTitle:@"预览" forState:UIControlStateNormal];
     [self.previewBtn setBackgroundColor:[UIColor blueColor]];
-    [self.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.previewBtn];
     
     self.finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.finishBtn setTitle:@"发送" forState:UIControlStateNormal];
     [self.finishBtn setBackgroundColor:[UIColor blueColor]];
-    [self.finishBtn addTarget:self action:@selector(finishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.finishBtn addTarget:self action:@selector(finishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.finishBtn];
     
     self.gallaryView = [[UIView alloc] init];
@@ -68,17 +68,17 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     
 }
 
-- (void)editBtnClick:(UIButton *)sender{
-    
-}
-
-- (void)previewBtnClick:(UIButton *)sender{
-    
-}
-
-- (void)finishBtnClick:(UIButton *)sender{
-    
-}
+//- (void)editBtnClick:(UIButton *)sender{
+//
+//}
+//
+//- (void)previewBtnClick:(UIButton *)sender{
+//
+//}
+//
+//- (void)finishBtnClick:(UIButton *)sender{
+//
+//}
 
 - (void)setEditBtnHidden:(BOOL) hidden{
     [self.editBtn setHidden:hidden];
