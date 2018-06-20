@@ -194,6 +194,9 @@
     if(sender.selected){
         //照片被选中，加入到队列中
         if([self.selectedImageAssetArray count] > self.maxSelectedNum){
+            if(!_alertTitleWhenPhotoExceedMaxCount){
+                _alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(_maxSelectedNum)];
+            }
             NSLog(@"提示:已选达到最大数量");
             return;
         }
