@@ -7,17 +7,31 @@
 //
 
 #import "PhotoPreviewViewController.h"
+#import "GlobalDefine.h"
 
 @interface PhotoPreviewViewController ()
 
 @end
 
 @implementation PhotoPreviewViewController
+@synthesize photoPreviewView = _photoPreviewView;
+@synthesize imagesAssetArray = _imagesAssetArray;
+@synthesize selectedImageAssetArray = _selectedImageAssetArray;
+@synthesize mDelegate = _mDelegate;
+@synthesize currentIndex = _currentIndex;
+@synthesize singleCheckMode = _singleCheckMode;
+@synthesize previewSelectedMode = _previewSelectedMode;
+@synthesize maxSelectedNum = _maxSelectedNum;
+@synthesize minSelectedNum = _minSelectedNum;
+@synthesize alertTitleWhenPhotoExceedMaxCount = _alertTitleWhenPhotoExceedMaxCount;
+@synthesize checkBox = _checkBox;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
+    self.maxSelectedNum = JJ_MAX_PHOTO_NUM;
+    self.minSelectedNum = 0;
     
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor clearColor]];
@@ -33,12 +47,12 @@
     [self.customNaviBar setTitle:@"123/1000" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15.0f]];
     
     //CheckBox
-    UIButton *checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-    [checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox"] forState:UIControlStateNormal];
-    [checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateSelected];
-    [checkBox setBackgroundColor:[UIColor clearColor]];
-    [checkBox addTarget:self action:@selector(checkBoxBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setRightBtn:checkBox];
+    self.checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox"] forState:UIControlStateNormal];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateSelected];
+    [self.checkBox setBackgroundColor:[UIColor clearColor]];
+    [self.checkBox addTarget:self action:@selector(checkBoxBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.customNaviBar setRightBtn:self.checkBox];
     
     //添加预览图视图
     [self.view addSubview:self.photoPreviewView];
@@ -46,15 +60,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self.photoPreviewView.photoPreviewImage reloadData];
     [self refreshImagePreview];
+    //标记该照片是否在选中行列
+    if(!self.singleCheckMode){
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+        self.checkBox.selected = [self.selectedImageAssetArray containsObject:imageAsset];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
                                selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
@@ -65,30 +82,31 @@
     self.selectedImageAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     self.singleCheckMode = singleCheckMode;
-    self.previewSelectedMode = NO;
+//    self.previewSelectedMode = NO;
     
 }
 
-- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-                               currentImageIndex:(NSInteger)currentImageIndex{
-    
-    self.selectedImageAssetArray = selectedImageAssetArray;
-    self.currentIndex = currentImageIndex;
-    self.previewSelectedMode = YES;
-}
+//- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+//                               currentImageIndex:(NSInteger)currentImageIndex{
+//
+//    self.selectedImageAssetArray = selectedImageAssetArray;
+//    self.currentIndex = currentImageIndex;
+//    self.previewSelectedMode = YES;
+//}
 
 - (void)refreshImagePreview{
-    if(self.previewSelectedMode){
-        [self.photoPreviewView initImagePickerPreviewWithSelectedImages:self.selectedImageAssetArray currentImageIndex:self.currentIndex];
-    }else{
+//    if(self.previewSelectedMode){
+//        [self.photoPreviewView initImagePickerPreviewWithSelectedImages:self.selectedImageAssetArray currentImageIndex:self.currentIndex];
+//    }else{
         [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
-    }
+//    }
 }
 
 //懒加载
 - (JJPhotoPreviewView *)photoPreviewView{
     if(!_photoPreviewView){
         _photoPreviewView = [[JJPhotoPreviewView alloc] initWithFrame:self.view.bounds];
+        _photoPreviewView.mDelegate = self;
     }
     
     return _photoPreviewView;
@@ -113,13 +131,49 @@
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:^{
-//        [self.photoPreviewView removeFromSuperview];ß
+//        [self.photoPreviewView removeFromSuperview];
     }];
 }
 
 //点击CheckBox
 - (void)checkBoxBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
+    if(sender.selected){
+        //删除
+        if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didUncheckImageAtIndex:)]){
+            [_mDelegate imagePickerPreviewViewController:self didUncheckImageAtIndex:self.currentIndex];
+        }
+        
+        sender.selected = NO;
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+        [self.selectedImageAssetArray removeObject:imageAsset];
+    }else{
+        //添加
+        if([self.selectedImageAssetArray count] >= self.maxSelectedNum){
+            if(!self.alertTitleWhenPhotoExceedMaxCount){
+                self.alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(self.maxSelectedNum)];
+            }
+            
+            NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
+        }
+        
+        sender.selected = YES;
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+        [self.selectedImageAssetArray addObject:imageAsset];
+        
+        if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didCheckImageAtIndex:)]){
+            [_mDelegate imagePickerPreviewViewController:self didCheckImageAtIndex:self.currentIndex];
+        }
+    }
+}
+
+#pragma -mark JJPhotoPreviewDelegate
+- (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didScrollToIndex:(NSUInteger)index{
+    if(!self.singleCheckMode){
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
+        self.checkBox.selected = [self.selectedImageAssetArray containsObject:imageAsset];
+        self.currentIndex = index;
+    }
 }
 
 @end

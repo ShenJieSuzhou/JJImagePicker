@@ -180,8 +180,10 @@
 #pragma -mark 底部按钮点击事件
 - (void)previewBtnClick:(UIButton *)sender{
     //初始化预览相册，当前显示的照片索引
-    [self.photoPreviewViewController initImagePickerPreviewWithSelectedImages:self.photoGridView.selectedImageAssetArray currentImageIndex:0];
+    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.photoGridView.selectedImageAssetArray selectedImageAssetArray:self.photoGridView.selectedImageAssetArray currentImageIndex:0 singleCheckMode:NO];
     
+//    [self.photoPreviewViewController initImagePickerPreviewWithSelectedImages:self.photoGridView.selectedImageAssetArray currentImageIndex:0];
+//
     [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
         
     }];

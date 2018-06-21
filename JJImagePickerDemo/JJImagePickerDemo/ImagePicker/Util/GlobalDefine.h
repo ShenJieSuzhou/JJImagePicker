@@ -23,4 +23,15 @@
 #define RGB_TitleNormal                     RGB(255.0f, 255.0f, 255.0f)
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define RGB(r, g, b)                        [UIColor colorWithRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
+
+
+
+#define JJ_MAX_PHOTO_NUM 9
+#define JJ_CELL_VIDEO_IDENTIFIER @"video"
+#define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"
+
+#define JJ_PREVIEWCELL_IDENTIFIER_DEFAULT @"jj_previewcell_identifer"
+#define JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO @"jj_previewcell_identifer_live"
+#define JJ_PREVIEWCELL_IDENTIFIER_VIDEO @"jj_previewcell_identifer_video"
+
 #endif /* GlobalDefine_h */

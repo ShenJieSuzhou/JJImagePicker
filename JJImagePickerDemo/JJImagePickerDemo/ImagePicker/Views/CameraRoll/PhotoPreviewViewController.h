@@ -11,18 +11,39 @@
 #import "JJPhotoPreviewView.h"
 #import "JJPhoto.h"
 
-@interface PhotoPreviewViewController : CustomPhotoViewController
+@class PhotoPreviewViewController;
+@protocol PhotoPreviewViewControllerDelegate<NSObject>
+
+/// 已经选中图片
+- (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index;
+
+/// 已经取消选中图片
+- (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index;
+
+@end
+
+@interface PhotoPreviewViewController : CustomPhotoViewController<JJPhotoPreviewDelegate>
 //预览图展示view
 @property (strong, nonatomic) JJPhotoPreviewView *photoPreviewView;
+
 //dataSource
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
 
+@property (strong, nonatomic) id<PhotoPreviewViewControllerDelegate> mDelegate;
 @property (assign) NSInteger currentIndex;
 @property (assign) BOOL singleCheckMode;
 @property (assign) BOOL previewSelectedMode;
+//允许选择的最大张数
+@property (assign) NSUInteger maxSelectedNum;
+// 最少需要选择的图片数
+@property (assign) NSUInteger minSelectedNum;
+// 选择图片超出最大图片限制数提示
+@property (nonatomic, copy) NSString *alertTitleWhenPhotoExceedMaxCount;
 
-//底部tabbarView
+@property (strong, nonatomic) UIButton *checkBox;
+
+
 
 
 /**
@@ -43,8 +64,8 @@
  * @param selectedImageAssetArray 包含所有需要展示的图片中已经被选中的图片的数组
  * @param currentImageIndex       当前展示的图片在 imageAssetArray 的索引
  */
-- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-                               currentImageIndex:(NSInteger)currentImageIndex;
+//- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+//                               currentImageIndex:(NSInteger)currentImageIndex;
 
 - (void)refreshImagePreview;
 

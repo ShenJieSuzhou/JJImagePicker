@@ -11,11 +11,7 @@
 #import "JJCollectionViewFlowLayout.h"
 #import "NSString+JJUI.h"
 #import "UICollectionView+JJ.h"
-
-#define JJ_CELL_VIDEO_IDENTIFIER @"video"
-#define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"
-
-#define JJ_MAX_PHOTO_NUM 9
+#import "GlobalDefine.h"
 
 @implementation GridView
 @synthesize imagesAssetArray = _imagesAssetArray;
