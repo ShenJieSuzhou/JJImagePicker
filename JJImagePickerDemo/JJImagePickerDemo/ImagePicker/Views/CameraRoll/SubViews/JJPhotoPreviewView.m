@@ -64,8 +64,6 @@
 - (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
                                currentImageIndex:(NSInteger)currentImageIndex{
     
-    [self.imagesAssetArray removeAllObjects];
-    
     self.imagesAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     

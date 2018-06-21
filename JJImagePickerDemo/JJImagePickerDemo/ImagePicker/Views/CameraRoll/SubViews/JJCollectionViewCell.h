@@ -37,4 +37,7 @@
 
 @property (nonatomic, strong) UILabel *videoDuration;
 
+@property (nonatomic, assign) BOOL checked;
+
+
 @end

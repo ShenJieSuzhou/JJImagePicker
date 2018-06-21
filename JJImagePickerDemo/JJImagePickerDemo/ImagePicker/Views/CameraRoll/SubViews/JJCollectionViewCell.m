@@ -32,6 +32,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
 @synthesize selectedImage = _selectedImage;
 @synthesize unselectedImage = _unselectedImage;
 @synthesize videoDuration = _videoDuration;
+@synthesize checked = _checked;
 
 
 - (id)initWithFrame:(CGRect)frame{
@@ -113,6 +114,13 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
         CGSize textSize = [_videoDuration.text sizeWithAttributes:@{NSFontAttributeName:_videoDuration.font}];
         [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - textSize.height - durationMargins.bottom, textSize.width, textSize.height)];
     }
+}
+
+- (void)setChecked:(BOOL)checked{
+    _checked = checked;
+    self.checkBox.selected = checked;
+    //动画效果
+    
 }
 
 @end

@@ -174,24 +174,25 @@
         [cell.videoDuration setHidden:NO];
     }
     
-    [cell.checkBox addTarget:self action:@selector(handleCheckBoxClick:) forControlEvents:UIControlEventTouchUpInside];
+    if(_isAllowedMutipleSelect){
+        [cell.checkBox addTarget:self action:@selector(handleCheckBoxClicked:) forControlEvents:UIControlEventTouchUpInside];
+        cell.checked = [self.selectedImageAssetArray containsObject:imageAsset];
+    }else{
+        [cell.checkBox setHidden:YES];
+    }
     
     [cell setNeedsLayout];
     return cell;
 }
 
 //点击checkbox按钮响应事件
-- (void)handleCheckBoxClick:(UIButton *)sender{
-//    if(!_isAllowedMutipleSelect){
-//        return;
-//    }
-    
-    sender.selected = !sender.selected;
+- (void)handleCheckBoxClicked:(UIButton *)sender{
+//    sender.selected = !sender.selected;
     NSIndexPath *indexPath = [self.photoCollectionView jj_indexPathForItemAtView:sender];
     JJCollectionViewCell *cell = (JJCollectionViewCell *)[self.photoCollectionView cellForItemAtIndexPath:indexPath];
     JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];
     
-    if(sender.selected){
+    if(!cell.checked){
         //照片被选中，加入到队列中
         if([self.selectedImageAssetArray count] > self.maxSelectedNum){
             if(!_alertTitleWhenPhotoExceedMaxCount){
@@ -201,20 +202,19 @@
             return;
         }
         
+        cell.checked = YES;
         [self.selectedImageAssetArray addObject:imageAsset];
-        //回调已选的图片数量
+        //回调更新底部预览，发送按钮的状态，以及图片的数量
 //        [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
         //更新UI
         
     }else{
         //取消选中状态，从队列中移除
+        cell.checked = NO;
         [self.selectedImageAssetArray removeObject:imageAsset];
         
-        //更新UI
+        //回调更新底部预览，发送按钮的状态，以及图片的数量
     }
 }
-
-//处理多选逻辑
-
 
 @end

@@ -79,11 +79,16 @@
     
     _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
     _photoGridView.mDelegate = self;
+    _photoGridView.isAllowedMutipleSelect = YES;
     [self.view addSubview:_photoGridView];
     
     //底部tabBarView按钮添加事件
     [self.jjTabBarView.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.jjTabBarView.finishBtn addTarget:self action:@selector(imagePickViewFinishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if(!_photoGridView.isAllowedMutipleSelect){
+        [self.jjTabBarView setHidden:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
