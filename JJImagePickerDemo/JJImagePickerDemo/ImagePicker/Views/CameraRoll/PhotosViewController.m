@@ -13,7 +13,7 @@
 #import "JJImageManager.h"
 #import "PhotoPreviewViewController.h"
 
-@interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate>
+@interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
 
@@ -93,7 +93,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,6 +134,7 @@
 - (PhotoPreviewViewController *)photoPreviewViewController{
     if(!_photoPreviewViewController){
         _photoPreviewViewController = [[PhotoPreviewViewController alloc] init];
+        _photoPreviewViewController.mDelegate = self;
     }
     
     return _photoPreviewViewController;
@@ -193,6 +193,17 @@
     [self.photoGridView.selectedImageAssetArray removeAllObjects];
     
     //跳转到 demo 编辑文本照片界面
+}
+
+
+#pragma -mark PhotoPreviewViewControllerDelegate
+- (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
+    [self.photoGridView.photoCollectionView reloadData];
+}
+
+
+- (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index{
+    [self.photoGridView.photoCollectionView reloadData];
 }
 
 @end

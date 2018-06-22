@@ -139,15 +139,6 @@
 - (void)checkBoxBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
     if(sender.selected){
-        //删除
-        if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didUncheckImageAtIndex:)]){
-            [_mDelegate imagePickerPreviewViewController:self didUncheckImageAtIndex:self.currentIndex];
-        }
-        
-        sender.selected = NO;
-        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
-        [self.selectedImageAssetArray removeObject:imageAsset];
-    }else{
         //添加
         if([self.selectedImageAssetArray count] >= self.maxSelectedNum){
             if(!self.alertTitleWhenPhotoExceedMaxCount){
@@ -157,13 +148,22 @@
             NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
         }
         
-        sender.selected = YES;
+        //        sender.selected = YES;
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray addObject:imageAsset];
         
         if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didCheckImageAtIndex:)]){
             [_mDelegate imagePickerPreviewViewController:self didCheckImageAtIndex:self.currentIndex];
         }
+    }else{
+        //删除
+        if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didUncheckImageAtIndex:)]){
+            [_mDelegate imagePickerPreviewViewController:self didUncheckImageAtIndex:self.currentIndex];
+        }
+        
+        //        sender.selected = NO;
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+        [self.selectedImageAssetArray removeObject:imageAsset];
     }
 }
 
@@ -175,5 +175,8 @@
         self.currentIndex = index;
     }
 }
+
+
+
 
 @end
