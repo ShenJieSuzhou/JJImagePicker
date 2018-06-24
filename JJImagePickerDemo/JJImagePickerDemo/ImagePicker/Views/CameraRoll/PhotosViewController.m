@@ -89,6 +89,8 @@
     if(!_photoGridView.isAllowedMutipleSelect){
         [self.jjTabBarView setHidden:YES];
     }
+    
+    [self.jjTabBarView.previewBtn setEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -177,6 +179,15 @@
     }];
 }
 
+- (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts{
+    if(selectedCounts > 0){
+        [self.jjTabBarView.previewBtn setEnabled:YES];
+    }else{
+        [self.jjTabBarView.previewBtn setEnabled:NO];
+    }
+}
+
+
 #pragma -mark 底部按钮点击事件
 - (void)previewBtnClick:(UIButton *)sender{
     //初始化预览相册，当前显示的照片索引
@@ -198,12 +209,22 @@
 
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
+    if([previewViewController.selectedImageAssetArray count] > 0){
+        [self.jjTabBarView.previewBtn setEnabled:YES];
+    }
+    
     [self.photoGridView.photoCollectionView reloadData];
+    
 }
 
 
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index{
+    if([previewViewController.selectedImageAssetArray count] == 0){
+        [self.jjTabBarView.previewBtn setEnabled:NO];
+    }
     [self.photoGridView.photoCollectionView reloadData];
 }
+
+
 
 @end

@@ -201,7 +201,7 @@
         cell.checked = YES;
         [self.selectedImageAssetArray addObject:imageAsset];
         //回调更新底部预览，发送按钮的状态，以及图片的数量
-//        [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
+        [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
         //更新UI
         
     }else{
@@ -210,6 +210,7 @@
         [self.selectedImageAssetArray removeObject:imageAsset];
         
         //回调更新底部预览，发送按钮的状态，以及图片的数量
+        [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
     }
 }
 
