@@ -78,7 +78,7 @@
                                      currentImageIndex:(NSInteger)currentImageIndex
                                        singleCheckMode:(BOOL)singleCheckMode{
         
-    self.imagesAssetArray = imageAssetArray;
+    self.imagesAssetArray = [imageAssetArray copy];
     self.selectedImageAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     self.singleCheckMode = singleCheckMode;
