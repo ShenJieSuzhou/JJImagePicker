@@ -41,18 +41,18 @@
     [backBtn setBackgroundImage:[UIImage imageNamed:@"uls_tb_intro_return_n"] forState:UIControlStateNormal];
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:backBtn];
+    [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 22.0f, 14.0f, 23.0f)];
     
     //标题
 //    [self.customNaviBar setTitle:@"123/1000" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15.0f]];
     
     //CheckBox
     self.checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox"] forState:UIControlStateNormal];
-    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateSelected];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"chooseInterest_uncheaked"] forState:UIControlStateNormal];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"chooseInterest_cheaked"] forState:UIControlStateSelected];
     [self.checkBox setBackgroundColor:[UIColor clearColor]];
     [self.checkBox addTarget:self action:@selector(checkBoxBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setRightBtn:self.checkBox];
+    [self.customNaviBar setRightBtn:self.checkBox withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];
     
     //添加预览图视图
     [self.view addSubview:self.photoPreviewView];

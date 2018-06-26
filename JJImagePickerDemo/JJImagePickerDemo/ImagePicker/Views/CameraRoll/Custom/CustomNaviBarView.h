@@ -28,11 +28,15 @@
                             Action:(SEL)action;
 
 //设置按钮与标题
-- (void)setLeftBtn:(UIButton *)leftBtn;
-- (void)setRightBtn:(UIButton *)rightBtn;
-- (void)setTitleBtn:(UIButton *)titleBtn;
+- (void)setLeftBtn:(UIButton *)btn;
+- (void)setRightBtn:(UIButton *)btn;
+- (void)setTitleBtn:(UIButton *)btn;
 - (void)setTitle:(NSString *)titleStr textColor:(UIColor *)color font:(UIFont *)font;
 //- (void)setTitleImg:(NSString *)imgStr;
+
+//设置按钮+大小
+- (void)setLeftBtn:(UIButton *)btn withFrame:(CGRect)frame;
+- (void)setRightBtn:(UIButton *)btn withFrame:(CGRect)frame;
 
 
 // 在导航条上覆盖一层自定义视图。

@@ -173,6 +173,32 @@
     }
 }
 
+- (void)setLeftBtn:(UIButton *)btn withFrame:(CGRect)frame{
+    if(_btnLeft){
+        [_btnLeft removeFromSuperview];
+        _btnLeft = nil;
+    }
+    
+    _btnLeft = btn;
+    if(_btnLeft){
+        [_btnLeft setFrame:frame];
+        [self addSubview:_btnLeft];
+    }
+}
+
+- (void)setRightBtn:(UIButton *)btn withFrame:(CGRect)frame{
+    if(_btnRight){
+        [_btnRight removeFromSuperview];
+        _btnRight = nil;
+    }
+    
+    _btnRight = btn;
+    if(_btnRight){
+        [_btnRight setFrame:frame];
+        [self addSubview:_btnRight];
+    }
+}
+
 - (void)setTitleBtn:(UIButton *)titleBtn{
     if(_btnTitle){
         [_btnTitle removeFromSuperview];
