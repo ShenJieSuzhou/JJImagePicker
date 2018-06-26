@@ -56,7 +56,6 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     [super layoutSubviews];
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
-    [self setEditBtnHidden:YES];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         

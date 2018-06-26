@@ -95,6 +95,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [self.jjTabBarView setPreViewBtnHidden:NO];
+    [self.jjTabBarView setEditBtnHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {

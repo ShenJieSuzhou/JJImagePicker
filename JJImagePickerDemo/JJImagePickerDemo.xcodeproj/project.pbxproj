@@ -54,6 +54,7 @@
 		E5CFB55E20D394DE0021EB68 /* JJPhotoPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB55D20D394DE0021EB68 /* JJPhotoPreviewView.m */; };
 		E5CFB56120D395210021EB68 /* JJPreviewViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56020D395210021EB68 /* JJPreviewViewCollectionCell.m */; };
 		E5CFB56420D399D70021EB68 /* JJPreviewViewCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56320D399D70021EB68 /* JJPreviewViewCollectionLayout.m */; };
+		E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,8 @@
 		E5CFB56020D395210021EB68 /* JJPreviewViewCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPreviewViewCollectionCell.m; sourceTree = "<group>"; };
 		E5CFB56220D399D70021EB68 /* JJPreviewViewCollectionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPreviewViewCollectionLayout.h; sourceTree = "<group>"; };
 		E5CFB56320D399D70021EB68 /* JJPreviewViewCollectionLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPreviewViewCollectionLayout.m; sourceTree = "<group>"; };
+		E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerHelper.h; sourceTree = "<group>"; };
+		E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImagePickerHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
+				E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */,
+				E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				E5CFB56420D399D70021EB68 /* JJPreviewViewCollectionLayout.m in Sources */,
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */,
+				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */,
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,

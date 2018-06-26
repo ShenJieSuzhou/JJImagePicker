@@ -44,7 +44,7 @@
     [self.customNaviBar setLeftBtn:backBtn];
     
     //标题
-    [self.customNaviBar setTitle:@"123/1000" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15.0f]];
+//    [self.customNaviBar setTitle:@"123/1000" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15.0f]];
     
     //CheckBox
     self.checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -56,6 +56,9 @@
     
     //添加预览图视图
     [self.view addSubview:self.photoPreviewView];
+    
+    [self.jjTabBarView.editBtn addTarget:self action:@selector(editPhotoBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.jjTabBarView.finishBtn addTarget:self action:@selector(finishBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -66,6 +69,9 @@
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         self.checkBox.selected = [self.selectedImageAssetArray containsObject:imageAsset];
     }
+    
+    [self.jjTabBarView setPreViewBtnHidden:YES];
+    [self.jjTabBarView setEditBtnHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,6 +171,14 @@
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray removeObject:imageAsset];
     }
+}
+
+- (void)editPhotoBtnClicked:(UIButton *)sender{
+    
+}
+
+- (void)finishBtnClicked:(UIButton *)sender{
+    
 }
 
 #pragma -mark JJPhotoPreviewDelegate

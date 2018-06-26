@@ -7,6 +7,7 @@
 //
 
 #import "JJCollectionViewCell.h"
+#import "JJImagePickerHelper.h"
 
 const UIEdgeInsets checkBoxMargins = {6, 0, 0, 6};
 const UIEdgeInsets videoMarkMargins = {0, 8, 8, 0};
@@ -120,7 +121,10 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     _checked = checked;
     self.checkBox.selected = checked;
     //动画效果
-    
+    [JJImagePickerHelper removeactionSpringAnimationForView:self.checkBox];
+    if(checked){
+        [JJImagePickerHelper actionSpringAnimationForView:self.checkBox];
+    }
 }
 
 @end
