@@ -12,6 +12,7 @@
 #import "NSString+JJUI.h"
 #import "UICollectionView+JJ.h"
 #import "GlobalDefine.h"
+#import "JJImagePickerHelper.h"
 
 @implementation GridView
 @synthesize imagesAssetArray = _imagesAssetArray;
@@ -61,6 +62,7 @@
     }
     
     //加载照片比较耗时，所以start loading
+    [JJImagePickerHelper startLoadingAnimation:self];
     
     //遍历相册的事情，就交由子线程去完成吧
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -73,13 +75,10 @@
                     //当result为nil时，遍历照片完毕
                     [self.photoCollectionView reloadData];
                     //加载结束 stop loading
+                    [JJImagePickerHelper stopLoadingAnimation:self];
                 }
-                
-                
             });
         }];
-        
-        
     });
     
     [_photoCollectionView reloadData];
@@ -183,7 +182,6 @@
 
 //点击checkbox按钮响应事件
 - (void)handleCheckBoxClicked:(UIButton *)sender{
-//    sender.selected = !sender.selected;
     NSIndexPath *indexPath = [self.photoCollectionView jj_indexPathForItemAtView:sender];
     JJCollectionViewCell *cell = (JJCollectionViewCell *)[self.photoCollectionView cellForItemAtIndexPath:indexPath];
     JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];

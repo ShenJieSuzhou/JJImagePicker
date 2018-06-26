@@ -154,7 +154,6 @@
             NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
         }
         
-        //        sender.selected = YES;
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray addObject:imageAsset];
         
@@ -167,7 +166,6 @@
             [_mDelegate imagePickerPreviewViewController:self didUncheckImageAtIndex:self.currentIndex];
         }
         
-        //        sender.selected = NO;
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray removeObject:imageAsset];
     }
@@ -189,8 +187,5 @@
         self.currentIndex = index;
     }
 }
-
-
-
 
 @end

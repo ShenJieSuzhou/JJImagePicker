@@ -27,11 +27,11 @@
 /**
  * 菊花 loading 动画
  */
-+ (void)startLoadingAnimation:(UIViewController *)baseView;
++ (void)startLoadingAnimation:(UIView *)baseView;
 
 /**
  * 关闭 菊花 loading 动画
  */
-+ (void)stopLoadingAnimation:(UIViewController *)baseView;
++ (void)stopLoadingAnimation:(UIView *)baseView;
 
 @end

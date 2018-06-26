@@ -167,7 +167,6 @@
     }
     
     self.previousScrollIndex = index;
-    
 }
 
 @end

@@ -25,21 +25,22 @@ NSString *const JJSpringAnimationKey = @"JJSpringAnimationKey";
     [view.layer removeAnimationForKey:JJSpringAnimationKey];
 }
 
-+ (void)startLoadingAnimation:(UIViewController *)baseView{
-    UIView *view = [[UIView alloc] initWithFrame:baseView.view.bounds];
++ (void)startLoadingAnimation:(UIView *)baseView{
+    UIView *view = [[UIView alloc] initWithFrame:baseView.bounds];
     [view setTag:8090];
     [view setBackgroundColor:[UIColor clearColor]];
     
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
+    indicator.color = [UIColor colorWithRed:248.0f green:201.0f blue:65.0f alpha:1.0f];
     [indicator setTag:8091];
-    [indicator setFrame:CGRectMake((baseView.view.frame.size.width - 80) / 2, (baseView.view.frame.size.height - 80) / 2, 80, 80)];
+    [indicator setFrame:CGRectMake((baseView.frame.size.width - 100) / 2, (baseView.frame.size.height - 100) / 2, 100, 100)];
     [view addSubview:indicator];
-    [baseView.view addSubview:view];
+    [baseView addSubview:view];
     [indicator startAnimating];
 }
 
-+ (void)stopLoadingAnimation:(UIViewController *)baseView{
-    UIView *view = [baseView.view viewWithTag:8090];
++ (void)stopLoadingAnimation:(UIView *)baseView{
+    UIView *view = [baseView viewWithTag:8090];
     UIActivityIndicatorView *indicator = [view viewWithTag:8091];
     [indicator stopAnimating];
     [indicator removeFromSuperview];
