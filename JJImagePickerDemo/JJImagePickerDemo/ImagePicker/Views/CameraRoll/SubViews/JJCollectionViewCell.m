@@ -61,7 +61,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         [self.checkBox setFrame:CGRectMake(0, 0, 30, 30)];
     }else{
-        [self.checkBox setFrame:CGRectMake(0, 0, 22, 22)];
+        [self.checkBox setFrame:CGRectMake(0, 0, 23, 23)];
     }
     //设置CheckBox背景
     self.unselectedImage = [UIImage imageNamed:@"chooseInterest_uncheaked"];

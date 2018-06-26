@@ -21,11 +21,15 @@
 @property (strong, nonatomic) UIButton *previewBtn;
 //完成按钮
 @property (strong, nonatomic) UIButton *finishBtn;
+//选择图片的数量
+@property (strong, nonatomic) UILabel *selectedNum;
 //画廊view
 @property (strong, nonatomic) UIView *gallaryView;
 
 - (void)setEditBtnHidden:(BOOL) hidden;
 
 - (void)setPreViewBtnHidden:(BOOL) hidden;
+
+- (void)setSelectedLabelHidden:(BOOL) hidden;
 
 @end

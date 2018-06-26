@@ -55,6 +55,7 @@
 		E5CFB56120D395210021EB68 /* JJPreviewViewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56020D395210021EB68 /* JJPreviewViewCollectionCell.m */; };
 		E5CFB56420D399D70021EB68 /* JJPreviewViewCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56320D399D70021EB68 /* JJPreviewViewCollectionLayout.m */; };
 		E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */; };
+		E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB56820E2169F0021EB68 /* wb_style_orange.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +136,7 @@
 		E5CFB56320D399D70021EB68 /* JJPreviewViewCollectionLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPreviewViewCollectionLayout.m; sourceTree = "<group>"; };
 		E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerHelper.h; sourceTree = "<group>"; };
 		E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImagePickerHelper.m; sourceTree = "<group>"; };
+		E5CFB56820E2169F0021EB68 /* wb_style_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wb_style_orange.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5CFB56820E2169F0021EB68 /* wb_style_orange.png */,
 				E5CFB55820D3879B0021EB68 /* uls_tb_intro_return_n@3x.png */,
 				E5CFB55920D3879B0021EB68 /* uls_tb_intro_return_p@3x.png */,
 				E5CFB55020D37D580021EB68 /* QMUI_previewImage_checkbox_checked@2x.png */,
@@ -393,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
 				E5CFB54F20D36DE20021EB68 /* uls_tb_all_return_p@3x.png in Resources */,
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,

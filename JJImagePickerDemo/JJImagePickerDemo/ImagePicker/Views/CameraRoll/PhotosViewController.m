@@ -185,8 +185,11 @@
 - (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts{
     if(selectedCounts > 0){
         [self.jjTabBarView.previewBtn setEnabled:YES];
+        [self.jjTabBarView setSelectedLabelHidden:NO];
+        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)selectedCounts]];
     }else{
         [self.jjTabBarView.previewBtn setEnabled:NO];
+        [self.jjTabBarView setSelectedLabelHidden:YES];
     }
 }
 

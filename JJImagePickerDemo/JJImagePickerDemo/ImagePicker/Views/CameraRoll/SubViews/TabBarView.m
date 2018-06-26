@@ -30,21 +30,34 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
 - (void)commonInitlization{
     self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-//    [self.editBtn addTarget:self action:@selector(editBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.editBtn setBackgroundColor:[UIColor blueColor]];
+    [self.editBtn setBackgroundColor:[UIColor clearColor]];
+    self.editBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    [self.editBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self addSubview:self.editBtn];
     
     self.previewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.previewBtn setTitle:@"预览" forState:UIControlStateNormal];
-    [self.previewBtn setBackgroundColor:[UIColor blueColor]];
-//    [self.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.previewBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    [self.previewBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.previewBtn setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.previewBtn];
     
     self.finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.finishBtn.layer.cornerRadius = 4.0;
+    self.finishBtn.layer.masksToBounds = YES;
     [self.finishBtn setTitle:@"发送" forState:UIControlStateNormal];
-    [self.finishBtn setBackgroundColor:[UIColor blueColor]];
-//    [self.finishBtn addTarget:self action:@selector(finishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.finishBtn setBackgroundImage:[UIImage imageNamed:@"wb_style_orange"] forState:UIControlStateNormal];
+    self.finishBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    [self.finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:self.finishBtn];
+    
+    self.selectedNum = [[UILabel alloc] init];
+    [self.selectedNum setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wb_style_orange"]]];
+    [self.selectedNum setFont:[UIFont systemFontOfSize:18.0]];
+    [self.selectedNum setTextColor:[UIColor whiteColor]];
+    [self.selectedNum setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:self.selectedNum];
+    [self.selectedNum setHidden:YES];
     
     self.gallaryView = [[UIView alloc] init];
     [self.gallaryView setBackgroundColor:[UIColor whiteColor]];
@@ -62,22 +75,13 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     }else{
         [self.previewBtn setFrame:CGRectMake(previewBtnMargins.left, previewBtnMargins.top, 50, 30)];
         [self.editBtn setFrame:CGRectMake(editBtnMargins.left, editBtnMargins.top, 50, 30)];
-        [self.finishBtn setFrame:CGRectMake(width - 50 - finishBtnMargins.right, finishBtnMargins.top, 50, 30)];
+        [self.finishBtn setFrame:CGRectMake(width - 60 - finishBtnMargins.right, finishBtnMargins.top, 60, 30)];
+        [self.selectedNum setFrame:CGRectMake(width - 30 - finishBtnMargins.right - 65, finishBtnMargins.top, 30, 30)];
+        self.selectedNum.layer.cornerRadius = self.selectedNum.bounds.size.width / 2;
+        self.selectedNum.layer.masksToBounds = YES;
     }
     
 }
-
-//- (void)editBtnClick:(UIButton *)sender{
-//
-//}
-//
-//- (void)previewBtnClick:(UIButton *)sender{
-//
-//}
-//
-//- (void)finishBtnClick:(UIButton *)sender{
-//
-//}
 
 - (void)setEditBtnHidden:(BOOL) hidden{
     [self.editBtn setHidden:hidden];
@@ -85,6 +89,10 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
 
 - (void)setPreViewBtnHidden:(BOOL) hidden{
     [self.previewBtn setHidden:hidden];
+}
+
+- (void)setSelectedLabelHidden:(BOOL) hidden{
+    [self.selectedNum setHidden:hidden];
 }
 
 @end
