@@ -24,4 +24,14 @@
  */
 + (void)removeactionSpringAnimationForView:(UIView *)view;
 
+/**
+ * 菊花 loading 动画
+ */
++ (void)startLoadingAnimation:(UIViewController *)baseView;
+
+/**
+ * 关闭 菊花 loading 动画
+ */
++ (void)stopLoadingAnimation:(UIViewController *)baseView;
+
 @end
