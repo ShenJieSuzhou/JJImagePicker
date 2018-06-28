@@ -38,7 +38,7 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     self.previewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.previewBtn setTitle:@"预览" forState:UIControlStateNormal];
     self.previewBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    [self.previewBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.previewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [self.previewBtn setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.previewBtn];
     
@@ -49,6 +49,7 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     [self.finishBtn setBackgroundImage:[UIImage imageNamed:@"wb_style_orange"] forState:UIControlStateNormal];
     self.finishBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     [self.finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.finishBtn setEnabled:NO];
     [self addSubview:self.finishBtn];
     
     self.selectedNum = [[UILabel alloc] init];

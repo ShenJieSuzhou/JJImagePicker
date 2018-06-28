@@ -184,11 +184,15 @@
 
 - (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts{
     if(selectedCounts > 0){
+        [self.jjTabBarView.previewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.previewBtn setEnabled:YES];
         [self.jjTabBarView setSelectedLabelHidden:NO];
+        [self.jjTabBarView.finishBtn setEnabled:YES];
         [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)selectedCounts]];
     }else{
         [self.jjTabBarView.previewBtn setEnabled:NO];
+        [self.jjTabBarView.previewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self.jjTabBarView.finishBtn setEnabled:NO];
         [self.jjTabBarView setSelectedLabelHidden:YES];
     }
 }
