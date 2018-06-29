@@ -145,7 +145,7 @@
     
     //初始化cell
     NSString *identifier = nil;
-    if(imageAsset.assetType == JJAssetTypeAudio){
+    if(imageAsset.assetType == JJAssetTypeVideo){
         identifier = JJ_CELL_VIDEO_IDENTIFIER;
     }else{
         identifier = JJ_CELL_IMAGE_UNKNOWNTYPE;

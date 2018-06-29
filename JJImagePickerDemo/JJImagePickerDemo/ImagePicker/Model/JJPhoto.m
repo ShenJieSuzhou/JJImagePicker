@@ -162,23 +162,10 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void)assetSize:(void (^)(long long size))completion{
+    
+    
+}
 
 
 
