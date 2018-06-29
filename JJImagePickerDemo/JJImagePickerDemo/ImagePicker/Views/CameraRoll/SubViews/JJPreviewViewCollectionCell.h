@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "JJVideoToolBar.h"
 
 @interface JJPreviewViewCollectionCell : UICollectionViewCell
+// 设置当前要显示的图片，会把 livePhoto/video 相关内容清空，因此注意不要直接通过 imageView.image 来设置图片。
+@property(nonatomic, weak) UIImage *image;
 //预览图
 @property (strong, nonatomic) UIImageView *previewImage;
 //是否是视频
@@ -19,6 +23,21 @@
 @property (strong, nonatomic) UIButton *videoBtn;
 //cell 标识
 @property (nonatomic, copy) NSString *identifier;
+//设置当前要显示的video
+@property (nonatomic, strong) AVPlayerItem *videoPlayerItem;
+//用于显示 video 的layer
+@property (nonatomic, strong) AVPlayerLayer *videoPlayerLayer;
+//AVPlayer
+@property (nonatomic, strong) AVPlayer *avPlayer;
+//视频尺寸
+@property (nonatomic, strong) CGSize videoSize;
+//底部的播放栏目
+@property (nonatomic, strong) JJVideoToolBar *jjVideoToolBar;
 
+//暂停视频播放
+- (void)pauseVideo;
+//停止视频播放
+- (void)endPlayingVideo;
+//zoom  控件
 
 @end
