@@ -127,6 +127,8 @@
         
     }];
     
+    cell.isVideoType = imageAsset.assetType == JJAssetTypeVideo;
+    
     return cell;
 }
 

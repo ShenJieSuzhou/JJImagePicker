@@ -14,6 +14,8 @@
 		4491541520CEC0D400DDE7A9 /* JJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */; };
 		44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */; };
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
+		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
+		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785020BFD8FF003E2F38 /* CameraRollViewController.m */; };
@@ -72,6 +74,10 @@
 		4491541420CEC0D400DDE7A9 /* JJCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCollectionViewCell.m; sourceTree = "<group>"; };
 		44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@3x.png"; sourceTree = "<group>"; };
 		44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@2x.png"; sourceTree = "<group>"; };
+		44BB19BA20E8C88800544001 /* JJImageVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageVideoPlayerView.h; sourceTree = "<group>"; };
+		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
+		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
+		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -340,6 +346,10 @@
 				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
 				E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */,
 				E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */,
+				44BB19BA20E8C88800544001 /* JJImageVideoPlayerView.h */,
+				44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */,
+				44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */,
+				44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -451,7 +461,9 @@
 				E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
+				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
+				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
 				4491541520CEC0D400DDE7A9 /* JJCollectionViewCell.m in Sources */,
 				E5CFB57620E613690021EB68 /* JJVideoToolBar.m in Sources */,
 				E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */,

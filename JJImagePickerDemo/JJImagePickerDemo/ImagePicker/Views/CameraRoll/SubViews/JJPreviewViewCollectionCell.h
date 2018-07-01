@@ -30,7 +30,7 @@
 //AVPlayer
 @property (nonatomic, strong) AVPlayer *avPlayer;
 //视频尺寸
-@property (nonatomic, strong) CGSize videoSize;
+@property (nonatomic, assign) CGSize videoSize;
 //底部的播放栏目
 @property (nonatomic, strong) JJVideoToolBar *jjVideoToolBar;
 

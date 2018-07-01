@@ -7,6 +7,7 @@
 //
 
 #import "JJPreviewViewCollectionCell.h"
+#import "JJZoomImageViewImageGenerator.h"
 
 @implementation JJPreviewViewCollectionCell
 @synthesize videoBtn = _videoBtn;
@@ -43,8 +44,8 @@
     _previewImage.contentMode = UIViewContentModeScaleAspectFit;
     _videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_videoBtn setBackgroundColor:[UIColor clearColor]];
-    [_videoBtn setBackgroundImage:[UIImage imageNamed:@"QMUI_previewImage_checkbox_checked"] forState:UIControlStateNormal];
-    [_videoBtn addTarget:self action:@selector(handlePlayButton:) forControlEvents:UIControlStateNormal];
+    [_videoBtn setBackgroundImage:[JJZoomImageViewImageGenerator largePlayImage] forState:UIControlStateNormal];
+    [_videoBtn addTarget:self action:@selector(handlePlayButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.previewImage];
     [self.contentView addSubview:self.videoBtn];
 }
@@ -55,10 +56,10 @@
     
     if(_videoBtn){
         [_videoBtn sizeToFit];
-        _videoBtn.center = CGPointMake(self.center.x, self.center.y);
+        _videoBtn.center = CGPointMake(0, 0);
+        [_videoBtn setFrame:CGRectMake((self.frame.size.width - _videoBtn.frame.size.width)/2, (self.frame.size.height - _videoBtn.frame.size.height)/2, _videoBtn.frame.size.width, _videoBtn.frame.size.height)];
     }
 
-    
     if(_isVideoType){
         [_videoBtn setHidden:NO];
     }else{
@@ -110,13 +111,28 @@
 }
 
 - (void)pauseVideo{
+    if(!self.avPlayer){
+        return;
+    }
+    
     [self.avPlayer pause];
     
 }
 
 - (void)endPlayingVideo{
+    if(!self.avPlayer){
+        return;
+    }
     
+    [self.avPlayer seekToTime:CMTimeMake(0, 1)];
+    [self pauseVideo];
     
+    self.jjVideoToolBar.hidden = YES;
+    self.videoBtn.hidden = NO;
+}
+
+- (AVPlayerLayer *)videoPlayerLayer{
+    return _videoPlayerLayer;
 }
 
 @end
