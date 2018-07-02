@@ -7,8 +7,7 @@
 //
 
 #import "JJPhotoPreviewView.h"
-#import "JJPreviewViewCollectionCell.h"
-#import "GlobalDefine.h"
+
 
 @implementation JJPhotoPreviewView
 @synthesize imagesAssetArray = _imagesAssetArray;
@@ -116,18 +115,23 @@
     JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.identifier = imageAsset.identifier;
     
-    [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-    if([cell.identifier isEqualToString:imageAsset.identifier]){
-        [cell.previewImage setImage:result];
-    }else{
-        [cell.previewImage setImage:nil];
-    }
-        
-    } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-        
-    }];
+//    [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+//    if([cell.identifier isEqualToString:imageAsset.identifier]){
+//        [cell.previewImage setImage:result];
+//    }else{
+//        [cell.previewImage setImage:nil];
+//    }
+//
+//    } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+//
+//    }];
     
     cell.isVideoType = imageAsset.assetType == JJAssetTypeVideo;
+    cell.videoPlayerItem = nil;
+    
+    if([self.mDelegate respondsToSelector:@selector(imagePreviewView:renderCell:atIndex:)]){
+        [self.mDelegate imagePreviewView:self renderCell:cell atIndex:indexPath.row];
+    }
     
     return cell;
 }

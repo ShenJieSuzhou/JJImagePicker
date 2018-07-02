@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "JJPhoto.h"
 #import "JJPreviewViewCollectionLayout.h"
+#import "JJPreviewViewCollectionCell.h"
+#import "GlobalDefine.h"
 
 @class JJPhotoPreviewView;
 @protocol JJPhotoPreviewDelegate<NSObject>
 
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didScrollToIndex:(NSUInteger)index;
+
+- (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView renderCell:(JJPreviewViewCollectionCell *)cell atIndex:(NSUInteger)index;
 
 @end
 

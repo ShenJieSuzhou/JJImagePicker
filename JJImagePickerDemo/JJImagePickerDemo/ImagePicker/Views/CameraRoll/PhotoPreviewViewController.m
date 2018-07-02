@@ -188,4 +188,42 @@
     }
 }
 
+- (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView renderCell:(JJPreviewViewCollectionCell *)cell atIndex:(NSUInteger)index{
+    //得到指定的照片资源
+    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
+    //判断照片类型
+    if(imageAsset.assetType == JJAssetTypeVideo){
+        //视频
+        [imageAsset requestPlayerItemWithCompletion:^(AVPlayerItem *playerItem, NSDictionary<NSString *,id> *info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.videoPlayerItem = playerItem;
+            });
+            
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+        }];
+        
+        
+    }else if(imageAsset.assetType == JJAssetTypeImage){
+        if(imageAsset.assetSubType == JJAssetSubTypeLivePhoto){
+            
+        }else if(imageAsset.assetSubType == JJAssetSubTypeGIF){
+            
+        }else {
+            //获取图片,
+            [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+                //在主线程上更新UI
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.previewImage setImage:result];
+                });
+                
+            } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                
+            }];
+            
+        }
+        
+    }
+}
+
 @end
