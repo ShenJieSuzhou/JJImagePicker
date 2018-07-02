@@ -128,6 +128,26 @@
     }];
 }
 
+- (NSInteger)requestPlayerItemWithCompletion:(void (^)(AVPlayerItem *playerItem, NSDictionary<NSString *, id> *info))completion withProgressHandler:(PHAssetVideoProgressHandler)phProgressHandler{
+
+    if ([[PHCachingImageManager class] instancesRespondToSelector:@selector(requestPlayerItemForVideo:options:resultHandler:)]) {
+        PHVideoRequestOptions *videoRequestOptions = [[PHVideoRequestOptions alloc] init];
+        videoRequestOptions.networkAccessAllowed = YES; // 允许访问网络
+        videoRequestOptions.progressHandler = phProgressHandler;
+        return [[[JJImageManager getInstance] phCachingImageManager] requestPlayerItemForVideo:_jjAsset options:videoRequestOptions resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
+            if (completion) {
+                completion(playerItem, info);
+            }
+        }];
+    } else {
+        if (completion) {
+            completion(nil, nil);
+        }
+        return 0;
+    }
+
+}
+
 - (NSInteger)requestPreviewImageWithCompletion:(void (^)(UIImage *result, NSDictionary<NSString *, id> *info))completion withProgressHandler:(PHAssetImageProgressHandler)phProgressHandler{
     
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];

@@ -7,9 +7,13 @@
 //
 
 #import "JJImageVideoPlayerView.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation JJImageVideoPlayerView
 
++ (Class)layerClass {
+    return [AVPlayerLayer class];
+}
 
 
 @end

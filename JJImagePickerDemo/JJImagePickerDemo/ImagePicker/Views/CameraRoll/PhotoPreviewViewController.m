@@ -196,8 +196,17 @@
         //视频
         [imageAsset requestPlayerItemWithCompletion:^(AVPlayerItem *playerItem, NSDictionary<NSString *,id> *info) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                cell.videoPlayerItem = playerItem;
-            });
+                
+                if([cell.identifier isEqualToString:imageAsset.identifier]){
+//                    [cell.previewImage setImage:result];
+                    cell.videoPlayerItem = playerItem;
+
+                }else{
+//                    [cell.previewImage setImage:nil];
+                    cell.videoPlayerItem = nil;
+                }
+
+                            });
             
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
             
@@ -214,7 +223,11 @@
             [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
                 //在主线程上更新UI
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [cell.previewImage setImage:result];
+                    if([cell.identifier isEqualToString:imageAsset.identifier]){
+                        [cell.previewImage setImage:result];
+                    }else{
+                        [cell.previewImage setImage:nil];
+                    }
                 });
                 
             } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {

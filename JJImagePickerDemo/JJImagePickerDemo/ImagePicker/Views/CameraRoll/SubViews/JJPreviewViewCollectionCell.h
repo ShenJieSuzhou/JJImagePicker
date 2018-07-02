@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "JJVideoToolBar.h"
+#import "JJImageVideoPlayerView.h"
 
 @interface JJPreviewViewCollectionCell : UICollectionViewCell<UIGestureRecognizerDelegate>
 // 设置当前要显示的图片，会把 livePhoto/video 相关内容清空，因此注意不要直接通过 imageView.image 来设置图片。
@@ -16,7 +17,7 @@
 //预览图
 @property (strong, nonatomic) UIImageView *previewImage;
 //视频播放
-@property (strong, nonatomic) UIView *videoPlayerView;
+@property (strong, nonatomic) JJImageVideoPlayerView *videoPlayerView;
 //是否是视频
 @property (assign) BOOL isVideoType;
 //是否是livephoto

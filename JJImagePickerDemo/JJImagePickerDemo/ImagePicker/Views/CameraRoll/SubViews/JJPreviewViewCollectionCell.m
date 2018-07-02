@@ -49,7 +49,7 @@
     [_videoBtn setBackgroundImage:[JJZoomImageViewImageGenerator largePlayImage] forState:UIControlStateNormal];
     [_videoBtn addTarget:self action:@selector(handlePlayButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    _videoPlayerView = [[UIView alloc] init];
+    _videoPlayerView = [[JJImageVideoPlayerView alloc] init];
     _videoPlayerLayer = (AVPlayerLayer *)_videoPlayerView.layer;
     _videoPlayerView.hidden = YES;
     
