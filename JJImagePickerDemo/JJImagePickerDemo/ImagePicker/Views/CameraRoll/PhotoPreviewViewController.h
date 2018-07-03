@@ -10,6 +10,7 @@
 #import "CustomPhotoViewController.h"
 #import "JJPhotoPreviewView.h"
 #import "JJPhoto.h"
+#import "InterestingViewController.h"
 
 @class PhotoPreviewViewController;
 @protocol PhotoPreviewViewControllerDelegate<NSObject>
@@ -43,7 +44,7 @@
 
 @property (strong, nonatomic) UIButton *checkBox;
 
-
+@property (nonatomic, strong) InterestingViewController *interestingViewController;
 
 
 /**

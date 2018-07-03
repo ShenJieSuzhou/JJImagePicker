@@ -12,6 +12,7 @@
 #import "GridView.h"
 #import "JJImageManager.h"
 #import "PhotoPreviewViewController.h"
+#import "InterestingViewController.h"
 
 @interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
@@ -25,6 +26,8 @@
 
 @property (nonatomic, strong) PhotoPreviewViewController *photoPreviewViewController;
 
+@property (nonatomic, strong) InterestingViewController *interestingViewController;
+
 @end
 
 @implementation PhotosViewController
@@ -33,7 +36,9 @@
 @synthesize albumsArray = _albumsArray;
 @synthesize cameraRoll = _cameraRoll;
 @synthesize photoPreviewViewController = _photoPreviewViewController;
-//@synthesize jjTabBarView = _jjTabBarView;
+@synthesize interestingViewController = _interestingViewController;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -145,6 +150,15 @@
     return _photoPreviewViewController;
 }
 
+//新鲜事发表界面
+- (InterestingViewController *)interestingViewController{
+    if(!_interestingViewController){
+        _interestingViewController = [[InterestingViewController alloc] init];
+    }
+    
+    return _interestingViewController;
+}
+
 /*
  * 刷新相册
  */
@@ -209,9 +223,12 @@
 }
 
 - (void)imagePickViewFinishBtnClick:(UIButton *)sender{
-    [self.photoGridView.selectedImageAssetArray removeAllObjects];
     
+    [self.interestingViewController setSelectedImages:[self.photoGridView.selectedImageAssetArray copy]];
     //跳转到 demo 编辑文本照片界面
+    [self presentViewController:self.interestingViewController animated:YES completion:^{
+
+    }];
 }
 
 

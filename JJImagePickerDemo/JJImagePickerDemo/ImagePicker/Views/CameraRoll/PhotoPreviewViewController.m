@@ -118,6 +118,15 @@
     return _photoPreviewView;
 }
 
+//新鲜事发表界面
+- (InterestingViewController *)interestingViewController{
+    if(!_interestingViewController){
+        _interestingViewController = [[InterestingViewController alloc] init];
+    }
+    
+    return _interestingViewController;
+}
+
 //- (NSMutableArray<JJPhoto *> *)imagesAssetArray{
 //    if(!_imagesAssetArray){
 //        _imagesAssetArray = [[NSMutableArray alloc] init];
@@ -186,7 +195,10 @@
 }
 
 - (void)finishBtnClicked:(UIButton *)sender{
-    
+    //跳转到 demo 编辑文本照片界面
+    [self presentViewController:self.interestingViewController animated:YES completion:^{
+        
+    }];
 }
 
 #pragma -mark JJPhotoPreviewDelegate
@@ -206,23 +218,15 @@
         //视频
         [imageAsset requestPlayerItemWithCompletion:^(AVPlayerItem *playerItem, NSDictionary<NSString *,id> *info) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                
                 if([cell.identifier isEqualToString:imageAsset.identifier]){
-//                    [cell.previewImage setImage:result];
                     cell.videoPlayerItem = playerItem;
-
                 }else{
-//                    [cell.previewImage setImage:nil];
                     cell.videoPlayerItem = nil;
                 }
-
                             });
             
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-            
         }];
-        
-        
     }else if(imageAsset.assetType == JJAssetTypeImage){
         if(imageAsset.assetSubType == JJAssetSubTypeLivePhoto){
             
@@ -239,13 +243,10 @@
                         [cell.previewImage setImage:nil];
                     }
                 });
-                
             } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
                 
             }];
-            
         }
-        
     }
 }
 

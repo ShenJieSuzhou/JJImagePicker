@@ -26,6 +26,8 @@
 		E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786120BFE4FC003E2F38 /* CustomNaviBarView.m */; };
 		E522786620BFF625003E2F38 /* CustomPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522786520BFF625003E2F38 /* CustomPhotoViewController.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
+		E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538520EB4E81003862F4 /* DemoViewController.m */; };
+		E52C538B20EB5161003862F4 /* InterestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538A20EB5161003862F4 /* InterestingViewController.m */; };
 		E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54520C0FB8200E74CA1 /* DropButton.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
@@ -97,6 +99,11 @@
 		E522786420BFF625003E2F38 /* CustomPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPhotoViewController.h; sourceTree = "<group>"; };
 		E522786520BFF625003E2F38 /* CustomPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPhotoViewController.m; sourceTree = "<group>"; };
 		E522786820C0E464003E2F38 /* redarrowRighticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redarrowRighticon.png; sourceTree = "<group>"; };
+		E52C538420EB4E81003862F4 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		E52C538520EB4E81003862F4 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		E52C538820EB4EE6003862F4 /* JJImagePickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerDelegate.h; sourceTree = "<group>"; };
+		E52C538920EB5161003862F4 /* InterestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterestingViewController.h; sourceTree = "<group>"; };
+		E52C538A20EB5161003862F4 /* InterestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterestingViewController.m; sourceTree = "<group>"; };
 		E545F54420C0FB8200E74CA1 /* DropButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropButton.h; sourceTree = "<group>"; };
 		E545F54520C0FB8200E74CA1 /* DropButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropButton.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
@@ -191,6 +198,7 @@
 				E522784720BFC921003E2F38 /* Views */,
 				E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */,
 				E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */,
+				E52C538820EB4EE6003862F4 /* JJImagePickerDelegate.h */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -214,6 +222,8 @@
 				E522785320BFD918003E2F38 /* PhotosViewController.m */,
 				E5CFB54B20D28DDF0021EB68 /* PhotoPreviewViewController.h */,
 				E5CFB54C20D28DDF0021EB68 /* PhotoPreviewViewController.m */,
+				E52C538920EB5161003862F4 /* InterestingViewController.h */,
+				E52C538A20EB5161003862F4 /* InterestingViewController.m */,
 			);
 			path = CameraRoll;
 			sourceTree = "<group>";
@@ -323,6 +333,8 @@
 				E56B9CC320AD2FA700021DF8 /* AppDelegate.m */,
 				E56B9CC520AD2FA700021DF8 /* ViewController.h */,
 				E56B9CC620AD2FA700021DF8 /* ViewController.m */,
+				E52C538420EB4E81003862F4 /* DemoViewController.h */,
+				E52C538520EB4E81003862F4 /* DemoViewController.m */,
 				E56B9CC820AD2FA700021DF8 /* Main.storyboard */,
 				E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */,
 				E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */,
@@ -443,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E522785B20BFDA44003E2F38 /* TabBarView.m in Sources */,
+				E52C538B20EB5161003862F4 /* InterestingViewController.m in Sources */,
 				E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */,
 				E5CFB55E20D394DE0021EB68 /* JJPhotoPreviewView.m in Sources */,
 				E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */,
@@ -451,6 +464,7 @@
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E522785F20BFDBBE003E2F38 /* CustomNaviViewController.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
+				E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */,
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
