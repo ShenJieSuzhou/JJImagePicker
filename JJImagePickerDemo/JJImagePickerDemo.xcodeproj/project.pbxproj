@@ -28,6 +28,7 @@
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
 		E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538520EB4E81003862F4 /* DemoViewController.m */; };
 		E52C538B20EB5161003862F4 /* InterestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538A20EB5161003862F4 /* InterestingViewController.m */; };
+		E52C538E20EB65D5003862F4 /* JJPublishPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538D20EB65D5003862F4 /* JJPublishPreviewCell.m */; };
 		E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54520C0FB8200E74CA1 /* DropButton.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
@@ -104,6 +105,8 @@
 		E52C538820EB4EE6003862F4 /* JJImagePickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerDelegate.h; sourceTree = "<group>"; };
 		E52C538920EB5161003862F4 /* InterestingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterestingViewController.h; sourceTree = "<group>"; };
 		E52C538A20EB5161003862F4 /* InterestingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterestingViewController.m; sourceTree = "<group>"; };
+		E52C538C20EB65D5003862F4 /* JJPublishPreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPublishPreviewCell.h; sourceTree = "<group>"; };
+		E52C538D20EB65D5003862F4 /* JJPublishPreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublishPreviewCell.m; sourceTree = "<group>"; };
 		E545F54420C0FB8200E74CA1 /* DropButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropButton.h; sourceTree = "<group>"; };
 		E545F54520C0FB8200E74CA1 /* DropButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropButton.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				E5CFB56320D399D70021EB68 /* JJPreviewViewCollectionLayout.m */,
 				E5CFB57420E613690021EB68 /* JJVideoToolBar.h */,
 				E5CFB57520E613690021EB68 /* JJVideoToolBar.m */,
+				E52C538C20EB65D5003862F4 /* JJPublishPreviewCell.h */,
+				E52C538D20EB65D5003862F4 /* JJPublishPreviewCell.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E5CFB54D20D28DDF0021EB68 /* PhotoPreviewViewController.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
+				E52C538E20EB65D5003862F4 /* JJPublishPreviewCell.m in Sources */,
 				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
 				E5CFB56120D395210021EB68 /* JJPreviewViewCollectionCell.m in Sources */,
 			);
