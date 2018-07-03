@@ -156,6 +156,9 @@
         
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray addObject:imageAsset];
+        [self.jjTabBarView.finishBtn setEnabled:YES];
+        [self.jjTabBarView setSelectedLabelHidden:NO];
+        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedImageAssetArray count]]];
         
         if([_mDelegate respondsToSelector:@selector(imagePickerPreviewViewController:didCheckImageAtIndex:)]){
             [_mDelegate imagePickerPreviewViewController:self didCheckImageAtIndex:self.currentIndex];
@@ -168,6 +171,13 @@
         
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
         [self.selectedImageAssetArray removeObject:imageAsset];
+        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedImageAssetArray count]]];
+        
+        if([self.selectedImageAssetArray count] == 0){
+            [self.jjTabBarView.finishBtn setEnabled:NO];
+            [self.jjTabBarView setSelectedLabelHidden:YES];
+        }
+        
     }
 }
 

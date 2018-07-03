@@ -203,8 +203,6 @@
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.photoGridView.selectedImageAssetArray selectedImageAssetArray:self.photoGridView.selectedImageAssetArray currentImageIndex:0 singleCheckMode:NO];
     
-//    [self.photoPreviewViewController initImagePickerPreviewWithSelectedImages:self.photoGridView.selectedImageAssetArray currentImageIndex:0];
-//
     [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
         
     }];
@@ -220,7 +218,11 @@
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
     if([previewViewController.selectedImageAssetArray count] > 0){
+        [self.jjTabBarView.previewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.previewBtn setEnabled:YES];
+        [self.jjTabBarView setSelectedLabelHidden:NO];
+        [self.jjTabBarView.finishBtn setEnabled:YES];
+        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[previewViewController.selectedImageAssetArray count]]];
     }
     
     [self.photoGridView.photoCollectionView reloadData];
@@ -231,6 +233,9 @@
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index{
     if([previewViewController.selectedImageAssetArray count] == 0){
         [self.jjTabBarView.previewBtn setEnabled:NO];
+        [self.jjTabBarView.previewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self.jjTabBarView.finishBtn setEnabled:NO];
+        [self.jjTabBarView setSelectedLabelHidden:YES];
     }
     [self.photoGridView.photoCollectionView reloadData];
 }
