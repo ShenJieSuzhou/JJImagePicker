@@ -239,4 +239,18 @@
     }
 }
 
+- (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didHideNaviBarAndToolBar:(BOOL)didHide{
+    if(didHide){
+        [UIView animateWithDuration:0.1f animations:^{
+            [self.customNaviBar setHidden:YES];
+            [self.jjTabBarView setHidden:YES];
+        }];
+    }else{
+        [UIView animateWithDuration:0.1f animations:^{
+            [self.customNaviBar setHidden:NO];
+            [self.jjTabBarView setHidden:NO];
+        }];
+    }
+}
+
 @end

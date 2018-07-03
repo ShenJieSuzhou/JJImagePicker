@@ -114,20 +114,9 @@
     
     JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.identifier = imageAsset.identifier;
-    
-//    [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-//    if([cell.identifier isEqualToString:imageAsset.identifier]){
-//        [cell.previewImage setImage:result];
-//    }else{
-//        [cell.previewImage setImage:nil];
-//    }
-//
-//    } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-//
-//    }];
-    
     cell.isVideoType = imageAsset.assetType == JJAssetTypeVideo;
     cell.videoPlayerItem = nil;
+    cell.mDelegate = self;
     
     if([self.mDelegate respondsToSelector:@selector(imagePreviewView:renderCell:atIndex:)]){
         [self.mDelegate imagePreviewView:self renderCell:cell atIndex:indexPath.row];
@@ -173,6 +162,13 @@
     }
     
     self.previousScrollIndex = index;
+}
+
+#pragma mark -videoPlayerButtonDelegate
+
+- (void)videoPlayerButtonClick:(UIButton *)button didModifyUI:(BOOL)didhide{
+    
+    [_mDelegate imagePreviewView:self didHideNaviBarAndToolBar:didhide];
 }
 
 @end

@@ -19,11 +19,13 @@
 
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView renderCell:(JJPreviewViewCollectionCell *)cell atIndex:(NSUInteger)index;
 
+- (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didHideNaviBarAndToolBar:(BOOL)didHide;
+
 @end
 
 
 
-@interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, videoPlayerButtonDelegate>
 
 //dataSource
 @property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;

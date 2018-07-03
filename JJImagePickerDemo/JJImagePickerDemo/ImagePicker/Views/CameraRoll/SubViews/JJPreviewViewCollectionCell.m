@@ -24,7 +24,7 @@
 @synthesize videoSize = _videoSize;
 
 @synthesize jjVideoToolBar = _jjVideoToolBar;
-
+@synthesize mDelegate = _mDelegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -128,24 +128,29 @@
     
     [self.avPlayer play];
     self.videoBtn.hidden = YES;
-    //播放视频，回调通知界面做相应的修改
-    
+    //播放视频，回调通知界面隐藏上方导航和底部工具栏
+    [_mDelegate videoPlayerButtonClick:button didModifyUI:YES];
 }
 
 //视频播放结束
 - (void)handleVideoPlayToEndEvent {
     [self.avPlayer seekToTime:CMTimeMake(0, 1)];
     self.videoBtn.hidden = NO;
+    //视频播放结束，回调通知界面显示上方导航和底部工具栏
+    [_mDelegate videoPlayerButtonClick:self.videoBtn didModifyUI:NO];
 }
 
+//暂停
 - (void)pauseVideo{
     if(!self.avPlayer){
         return;
     }
     
     [self.avPlayer pause];
+    [_mDelegate videoPlayerButtonClick:self.videoBtn didModifyUI:NO];
 }
 
+//结束
 - (void)endPlayingVideo{
     if(!self.avPlayer){
         return;
@@ -155,25 +160,26 @@
     [self pauseVideo];
     
     self.videoBtn.hidden = NO;
+    [_mDelegate videoPlayerButtonClick:self.videoBtn didModifyUI:NO];
 }
 
 - (void)applicationDidEnterBackground {
-//    [self pauseVideo];
+    //app 进入后台后，结束视频播放
+    [self endPlayingVideo];
 }
 
 #pragma mark - GestureRecognizers
 
 - (void)handleSingleTapGestureWithPoint:(UITapGestureRecognizer *)gestureRecognizer {
-//    CGPoint gesturePoint = [gestureRecognizer locationInView:gestureRecognizer.view];
-////    if ([self.delegate respondsToSelector:@selector(singleTouchInZoomingImageView:location:)]) {
-////        [self.delegate singleTouchInZoomingImageView:self location:gesturePoint];
-////    }
-//    if (self.videoPlayerItem) {
-////        self.videoToolbar.hidden = !self.videoToolbar.hidden;
-////        if ([self.delegate respondsToSelector:@selector(zoomImageView:didHideVideoToolbar:)]) {
-////            [self.delegate zoomImageView:self didHideVideoToolbar:self.videoToolbar.hidden];
-////        }
-//    }
+    if(!self.avPlayer){
+        return;
+    }
+    
+    [self.avPlayer seekToTime:CMTimeMake(0, 1)];
+    [self pauseVideo];
+    
+    self.videoBtn.hidden = NO;
+    [_mDelegate videoPlayerButtonClick:self.videoBtn didModifyUI:NO];
 }
 
 

@@ -11,6 +11,12 @@
 #import "JJVideoToolBar.h"
 #import "JJImageVideoPlayerView.h"
 
+@protocol videoPlayerButtonDelegate<NSObject>
+
+- (void)videoPlayerButtonClick:(UIButton *)button didModifyUI:(BOOL)didhide;
+
+@end
+
 @interface JJPreviewViewCollectionCell : UICollectionViewCell<UIGestureRecognizerDelegate>
 // 设置当前要显示的图片，会把 livePhoto/video 相关内容清空，因此注意不要直接通过 imageView.image 来设置图片。
 @property(nonatomic, weak) UIImage *image;
@@ -36,6 +42,8 @@
 @property (nonatomic, assign) CGSize videoSize;
 //底部的播放栏目
 @property (nonatomic, strong) JJVideoToolBar *jjVideoToolBar;
+
+@property (nonatomic, strong) id<videoPlayerButtonDelegate> mDelegate;
 
 //暂停视频播放
 - (void)pauseVideo;
