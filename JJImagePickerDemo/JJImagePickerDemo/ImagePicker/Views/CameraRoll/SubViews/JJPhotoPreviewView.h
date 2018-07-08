@@ -15,6 +15,10 @@
 @class JJPhotoPreviewView;
 @protocol JJPhotoPreviewDelegate<NSObject>
 
+- (NSUInteger)numberOfImagesInImagePreviewView:(JJPhotoPreviewView *)imagePreviewView;
+
+- (JJAssetSubType)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView assetTypeAtIndex:(NSUInteger)index;
+
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didScrollToIndex:(NSUInteger)index;
 
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView renderCell:(JJPreviewViewCollectionCell *)cell atIndex:(NSUInteger)index;
@@ -27,22 +31,12 @@
 
 @interface JJPhotoPreviewView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, videoPlayerButtonDelegate>
 
-//dataSource
-@property (strong, nonatomic) NSMutableArray<JJPhoto *>* imagesAssetArray;
-@property (strong, nonatomic) NSMutableArray<JJPhoto *>* selectedImageAssetArray;
 @property (strong, nonatomic) UICollectionView *photoPreviewImage;
 @property (strong, nonatomic) JJPreviewViewCollectionLayout *layout;
 @property (strong, nonatomic) id<JJPhotoPreviewDelegate> mDelegate;
 @property (assign) NSInteger currentIndex;
 @property (assign) NSInteger previousScrollIndex;
 
-/*
- * 初始化数据
- */
-- (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
-                               selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-                                     currentImageIndex:(NSInteger)currentImageIndex
-                                       singleCheckMode:(BOOL)singleCheckMode;
 ///*
 // * 初始化 已选的预览图数据
 // */

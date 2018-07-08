@@ -10,8 +10,6 @@
 
 
 @implementation JJPhotoPreviewView
-@synthesize imagesAssetArray = _imagesAssetArray;
-@synthesize selectedImageAssetArray = _selectedImageAssetArray;
 @synthesize photoPreviewImage = _photoPreviewImage;
 @synthesize currentIndex = _currentIndex;
 @synthesize previousScrollIndex = _previousScrollIndex;
@@ -31,8 +29,6 @@
 }
 
 - (void)commonInitlization{
-//    self.imagesAssetArray = [[NSMutableArray alloc] init];
-//    self.selectedImageAssetArray = [[NSMutableArray alloc] init];
     [self addSubview:self.photoPreviewImage];
 }
 
@@ -42,29 +38,18 @@
     [self.photoPreviewImage setFrame:self.bounds];
 }
 
-- (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
-                               selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-                                     currentImageIndex:(NSInteger)currentImageIndex
-                                       singleCheckMode:(BOOL)singleCheckMode{
-    
-
-    self.imagesAssetArray = imageAssetArray;
-    self.selectedImageAssetArray = selectedImageAssetArray;
-    self.currentIndex = currentImageIndex;
-    
-    [self.photoPreviewImage reloadData];
-    
-    [self.photoPreviewImage scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-}
-
-//- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-//                               currentImageIndex:(NSInteger)currentImageIndex{
+//- (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
+//                               selectedImageAssetArray:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
+//                                     currentImageIndex:(NSInteger)currentImageIndex
+//                                       singleCheckMode:(BOOL)singleCheckMode{
+//    
 //
-//    self.imagesAssetArray = selectedImageAssetArray;
+//    self.imagesAssetArray = imageAssetArray;
+//    self.selectedImageAssetArray = selectedImageAssetArray;
 //    self.currentIndex = currentImageIndex;
-//
+//    
 //    [self.photoPreviewImage reloadData];
-//
+//    
 //    [self.photoPreviewImage scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 //}
 
@@ -98,23 +83,28 @@
 
 #pragma -mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [_imagesAssetArray count];
+    if([self.mDelegate respondsToSelector:@selector(numberOfImagesInImagePreviewView:)]){
+        return [self.mDelegate numberOfImagesInImagePreviewView:self];
+    }
+
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:indexPath.row];
-
     //初始化cell
-    NSString *identifier = nil;
-    if(imageAsset.assetType == JJAssetTypeImage){
-        identifier = JJ_PREVIEWCELL_IDENTIFIER_DEFAULT;
-    }else if(imageAsset.assetType == JJAssetTypeVideo){
-        identifier = JJ_PREVIEWCELL_IDENTIFIER_VIDEO;
+    NSString *identifier = JJ_PREVIEWCELL_IDENTIFIER_DEFAULT;
+    if([self.mDelegate respondsToSelector:@selector(imagePreviewView:assetTypeAtIndex:)]){
+        JJAssetSubType type = [self.mDelegate imagePreviewView:self assetTypeAtIndex:indexPath.row];
+        if(type == JJAssetSubTypeImage){
+            identifier = JJ_PREVIEWCELL_IDENTIFIER_DEFAULT;
+        }else if(type == JJAssetSubTypeVideo){
+            identifier = JJ_PREVIEWCELL_IDENTIFIER_VIDEO;
+        }else if(type == JJAssetSubTypeLivePhoto){
+            identifier = JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO;
+        }
     }
     
     JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.identifier = imageAsset.identifier;
-    cell.isVideoType = imageAsset.assetType == JJAssetTypeVideo;
     cell.videoPlayerItem = nil;
     cell.mDelegate = self;
     
@@ -157,7 +147,7 @@
         if(index >= 0 && index < [self.photoPreviewImage numberOfItemsInSection:0]){
             self.currentIndex = index;
             //回调
-            [_mDelegate imagePreviewView:self didScrollToIndex:self.currentIndex];
+            [self.mDelegate imagePreviewView:self didScrollToIndex:self.currentIndex];
         }
     }
     
@@ -168,7 +158,7 @@
 
 - (void)videoPlayerButtonClick:(UIButton *)button didModifyUI:(BOOL)didhide{
     
-    [_mDelegate imagePreviewView:self didHideNaviBarAndToolBar:didhide];
+    [self.mDelegate imagePreviewView:self didHideNaviBarAndToolBar:didhide];
 }
 
 @end

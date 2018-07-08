@@ -20,7 +20,8 @@ typedef NS_ENUM(NSUInteger, JJAssetSubType) {
     JJAssetSubTypeUnknow,                                 // 未知类型
     JJAssetSubTypeImage,                                  // 静态图片
     JJAssetSubTypeLivePhoto NS_ENUM_AVAILABLE_IOS(9_1),   // Live Photo
-    JJAssetSubTypeGIF                                     // GIF类型
+    JJAssetSubTypeGIF,                                    // GIF类型
+    JJAssetSubTypeVideo                                   // 视频
 };
 
 @interface JJPhoto : NSObject

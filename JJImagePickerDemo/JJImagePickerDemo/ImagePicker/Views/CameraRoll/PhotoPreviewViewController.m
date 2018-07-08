@@ -64,6 +64,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self refreshImagePreview];
+    
     //标记该照片是否在选中行列
     if(!self.singleCheckMode){
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
@@ -84,28 +85,15 @@
                                      currentImageIndex:(NSInteger)currentImageIndex
                                        singleCheckMode:(BOOL)singleCheckMode{
         
-    self.imagesAssetArray = [imageAssetArray copy];
+    self.imagesAssetArray = imageAssetArray;
     self.selectedImageAssetArray = selectedImageAssetArray;
     self.currentIndex = currentImageIndex;
     self.singleCheckMode = singleCheckMode;
-//    self.previewSelectedMode = NO;
-    
 }
 
-//- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
-//                               currentImageIndex:(NSInteger)currentImageIndex{
-//
-//    self.selectedImageAssetArray = selectedImageAssetArray;
-//    self.currentIndex = currentImageIndex;
-//    self.previewSelectedMode = YES;
-//}
-
 - (void)refreshImagePreview{
-//    if(self.previewSelectedMode){
-//        [self.photoPreviewView initImagePickerPreviewWithSelectedImages:self.selectedImageAssetArray currentImageIndex:self.currentIndex];
-//    }else{
-        [self.photoPreviewView initImagePickerPreviewViewWithImagesAssetArray:self.imagesAssetArray selectedImageAssetArray:self.selectedImageAssetArray currentImageIndex:self.currentIndex singleCheckMode:self.singleCheckMode];
-//    }
+    [self.photoPreviewView.photoPreviewImage reloadData];
+    [self.photoPreviewView.photoPreviewImage scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 //懒加载
@@ -126,22 +114,6 @@
     
     return _interestingViewController;
 }
-
-//- (NSMutableArray<JJPhoto *> *)imagesAssetArray{
-//    if(!_imagesAssetArray){
-//        _imagesAssetArray = [[NSMutableArray alloc] init];
-//    }
-//
-//    return _imagesAssetArray;
-//}
-//
-//- (NSMutableArray<JJPhoto *> *)selectedImageAssetArray{
-//    if(!_selectedImageAssetArray){
-//        _selectedImageAssetArray = [[NSMutableArray alloc] init];
-//    }
-//
-//    return _selectedImageAssetArray;
-//}
 
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{
@@ -213,9 +185,12 @@
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView renderCell:(JJPreviewViewCollectionCell *)cell atIndex:(NSUInteger)index{
     //得到指定的照片资源
     JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
+    cell.identifier = imageAsset.identifier;
+
     //判断照片类型
     if(imageAsset.assetType == JJAssetTypeVideo){
         //视频
+        cell.isVideoType = YES;
         [imageAsset requestPlayerItemWithCompletion:^(AVPlayerItem *playerItem, NSDictionary<NSString *,id> *info) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if([cell.identifier isEqualToString:imageAsset.identifier]){
@@ -262,6 +237,10 @@
             [self.jjTabBarView setHidden:NO];
         }];
     }
+}
+
+- (NSUInteger)numberOfImagesInImagePreviewView:(JJPhotoPreviewView *)imagePreviewView{
+    return [self.imagesAssetArray count];
 }
 
 @end
