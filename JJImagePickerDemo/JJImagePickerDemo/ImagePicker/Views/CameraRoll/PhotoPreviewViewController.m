@@ -174,6 +174,22 @@
 }
 
 #pragma -mark JJPhotoPreviewDelegate
+- (JJAssetSubType)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView assetTypeAtIndex:(NSUInteger)index{
+    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
+    if(imageAsset.assetType == JJAssetTypeImage){
+        if(@available(iOS 9.1, *)){
+            if(imageAsset.assetSubType == JJAssetSubTypeLivePhoto){
+                return JJAssetSubTypeLivePhoto;
+            }
+        }
+        return JJAssetSubTypeImage;
+    }else if(imageAsset.assetType == JJAssetTypeVideo){
+        return JJAssetSubTypeVideo;
+    }else{
+        return JJAssetSubTypeUnknow;
+    }
+}
+
 - (void)imagePreviewView:(JJPhotoPreviewView *)imagePreviewView didScrollToIndex:(NSUInteger)index{
     if(!self.singleCheckMode){
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
@@ -204,7 +220,19 @@
         }];
     }else if(imageAsset.assetType == JJAssetTypeImage){
         if(imageAsset.assetSubType == JJAssetSubTypeLivePhoto){
-            
+            //获取图片,
+            [imageAsset requestPreviewImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+                //在主线程上更新UI
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if([cell.identifier isEqualToString:imageAsset.identifier]){
+                        [cell.previewImage setImage:result];
+                    }else{
+                        [cell.previewImage setImage:nil];
+                    }
+                });
+            } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                
+            }];
         }else if(imageAsset.assetSubType == JJAssetSubTypeGIF){
             
         }else {

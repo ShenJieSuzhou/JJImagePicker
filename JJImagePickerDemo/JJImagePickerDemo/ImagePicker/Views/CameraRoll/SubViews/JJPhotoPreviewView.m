@@ -105,6 +105,7 @@
     }
     
     JJPreviewViewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+//    cell.previewImage = nil;
     cell.videoPlayerItem = nil;
     cell.mDelegate = self;
     
