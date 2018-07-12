@@ -33,6 +33,8 @@
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
 		E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54C20C13C1200E74CA1 /* CameraRollView.m */; };
+		E547D15820F72E3C00893D85 /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15720F72E3C00893D85 /* CameraSessionView.m */; };
+		E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15A20F7304D00893D85 /* CameraSessionManager.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -113,6 +115,10 @@
 		E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@3x.png"; sourceTree = "<group>"; };
 		E545F54B20C13C1200E74CA1 /* CameraRollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraRollView.h; sourceTree = "<group>"; };
 		E545F54C20C13C1200E74CA1 /* CameraRollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraRollView.m; sourceTree = "<group>"; };
+		E547D15620F72E3C00893D85 /* CameraSessionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
+		E547D15720F72E3C00893D85 /* CameraSessionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
+		E547D15920F7304D00893D85 /* CameraSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraSessionManager.h; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.h; sourceTree = SOURCE_ROOT; };
+		E547D15A20F7304D00893D85 /* CameraSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CameraSessionManager.m; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.m; sourceTree = SOURCE_ROOT; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 			children = (
 				4462607020CD00B10004C579 /* JJImageManager.h */,
 				4462606F20CD00B10004C579 /* JJImageManager.m */,
+				E547D15920F7304D00893D85 /* CameraSessionManager.h */,
+				E547D15A20F7304D00893D85 /* CameraSessionManager.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -269,6 +277,8 @@
 				E5CFB57520E613690021EB68 /* JJVideoToolBar.m */,
 				E52C538C20EB65D5003862F4 /* JJPublishPreviewCell.h */,
 				E52C538D20EB65D5003862F4 /* JJPublishPreviewCell.m */,
+				E547D15620F72E3C00893D85 /* CameraSessionView.h */,
+				E547D15720F72E3C00893D85 /* CameraSessionView.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -475,12 +485,14 @@
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
+				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,
 				4462607420CD00BA0004C579 /* JJPhoto.m in Sources */,
 				E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */,
 				E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
+				E547D15820F72E3C00893D85 /* CameraSessionView.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
 				4491541520CEC0D400DDE7A9 /* JJCollectionViewCell.m in Sources */,

@@ -9,6 +9,7 @@
 #import "JJImageViewPicker.h"
 #import "PhotosViewController.h"
 #import "JJImageManager.h"
+#import "CameraRollViewController.h"
 
 @implementation JJImageViewPicker
 
@@ -16,7 +17,11 @@
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"请选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        //弹出相机 📷
+        CameraRollViewController *cameraView = [[CameraRollViewController alloc] init];
+        [viewController presentViewController:cameraView animated:YES completion:^{
+            
+        }];
     }];
 
     UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册中选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
