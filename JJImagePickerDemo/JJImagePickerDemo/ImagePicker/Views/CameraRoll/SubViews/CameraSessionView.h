@@ -11,9 +11,7 @@
 
 @protocol JJCameraSessionDelegate <NSObject>
 
-- (void)captureImage:(UIImage *)image;
-
-- (void)captureImageWithData:(NSData *)imageData;
+- (void)captureImageCancel;
 
 @end
 
@@ -50,9 +48,9 @@
 
 @property (nonatomic, strong) CameraButtomBar *buttomBar;
 
+@property (nonatomic, assign) CameraType cameraType;
+
 - (void)setTopBarColor:(UIColor *)topBarColor;
-- (void)hideFlashButton;
-- (void)hideCameraToggleButton;
-- (void)hideDismissButton;
+- (void)hideButtomBar:(BOOL)isHide;
 
 @end

@@ -115,6 +115,7 @@ const UIEdgeInsets flashBtnMargins = {10, 0, 0, 0};
 @implementation CameraSessionView
 @synthesize captureManager = _captureManager;
 @synthesize buttomBar = _buttomBar;
+@synthesize cameraType = _cameraType;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -130,12 +131,19 @@ const UIEdgeInsets flashBtnMargins = {10, 0, 0, 0};
 }
 
 - (void)commonInitlization{
-    [self setupCaptureManager:RearFacingCamera];
+    _cameraType = RearFacingCamera;
+    [self setupCaptureManager:_cameraType];
     [self composeInterface];
     [_captureManager.session startRunning];
 }
 
 -(void)setupCaptureManager:(CameraType)camera {
+    // remove existing input
+    AVCaptureInput* currentCameraInput = [self.captureManager.session.inputs objectAtIndex:0];
+    [self.captureManager.session removeInput:currentCameraInput];
+    _captureManager = nil;
+    
+    //setup
     _captureManager = [CameraSessionManager getInstance];
     [_captureManager.session beginConfiguration];
     
@@ -164,37 +172,52 @@ const UIEdgeInsets flashBtnMargins = {10, 0, 0, 0};
 }
 
 -(void)composeInterface {
-        
+    
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
         
     }else{
         self.buttomBar = [[CameraButtomBar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 100)];
         [self.buttomBar.shutterBtn addTarget:self action:@selector(clickShutterBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [self.buttomBar.backBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+        [self.buttomBar.switchBtn addTarget:self action:@selector(ClickSwitchBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.buttomBar];
     }
 }
 
+#pragma mark -buttom click event
 //按下快门
 - (void)clickShutterBtn:(UIButton *)sender{
     [_captureManager captureStillImage];
+}
+
+- (void)dismiss:(UIButton *)sender{
+    [_captureManager stop];
+    [_delegate captureImageCancel];
+}
+
+- (void)ClickSwitchBtn:(UIButton *)sender{
+    if(_cameraType == FrontFacingCamera){
+        _cameraType = RearFacingCamera;
+        [self setupCaptureManager:_cameraType];
+        [self composeInterface];
+        [_captureManager.session startRunning];
+    }else{
+        _cameraType = FrontFacingCamera;
+        [self setupCaptureManager:_cameraType];
+        [self composeInterface];
+        [_captureManager.session startRunning];
+    }
 }
 
 - (void)setTopBarColor:(UIColor *)topBarColor{
     
 }
 
-- (void)hideFlashButton{
-    
+- (void)hideButtomBar:(BOOL)isHide{
+    [self.buttomBar setHidden:isHide];
 }
 
-- (void)hideCameraToggleButton{
-    
-}
-
-- (void)hideDismissButton{
-    
-}
-
+#pragma mark -JJCameraSessionManagerDelegate
 - (void)captureOutputDidFinish:(UIImage *)image{
     
 }
