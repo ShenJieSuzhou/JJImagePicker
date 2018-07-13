@@ -21,7 +21,7 @@ typedef NS_ENUM(BOOL, CameraType){
 
 @end
 
-@interface CameraSessionManager : NSObject
+@interface CameraSessionManager : NSObject<AVCapturePhotoCaptureDelegate>
 
 @property (nonatomic, weak) id<JJCameraSessionManagerDelegate> delegate;
 //相机设备
@@ -31,7 +31,7 @@ typedef NS_ENUM(BOOL, CameraType){
 //用于捕捉视频和音频,协调视频和音频的输入和输出流
 @property (nonatomic, strong) AVCaptureSession *session;
 
-@property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
+@property (nonatomic, strong) AVCapturePhotoOutput *stillImageOutput;
 
 @property (nonatomic, strong) UIImage *stillImage;
 

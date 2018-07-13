@@ -99,8 +99,9 @@
 }
 
 - (void)commonInitlization{
-    [self composeInterface];
     [self setupCaptureManager:RearFacingCamera];
+    [self composeInterface];
+    [_captureManager.session startRunning];
 }
 
 -(void)setupCaptureManager:(CameraType)camera {

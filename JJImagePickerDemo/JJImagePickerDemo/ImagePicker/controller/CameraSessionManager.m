@@ -16,8 +16,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         m_instance = [[CameraSessionManager alloc] init];
-        m_instance.session = [[AVCaptureSession alloc] init];
-        m_instance.session.sessionPreset = AVCaptureSessionPresetHigh;
     });
     
     return m_instance;
@@ -47,6 +45,9 @@
         }
     }
     
+    self.session = [[AVCaptureSession alloc] init];
+    self.session.sessionPreset = AVCaptureSessionPresetPhoto;
+    
     NSError *error = nil;
     BOOL deviceAvailability = YES;
     
@@ -59,16 +60,15 @@
     }
     
     //回调
-    
 }
 
 
 - (void)addStillImageOutput{
-    self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey,nil];
-    [self.stillImageOutput setOutputSettings:outputSettings];
+    self.stillImageOutput = [AVCapturePhotoOutput new];
     
-    [self getOrientationAdaptedCaptureConnection];
+    if(![self.session canAddOutput:self.stillImageOutput]){
+        return;
+    }
     
     [self.session addOutput:self.stillImageOutput];
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -80,78 +80,14 @@
 }
 
 - (void)captureStillImage{
-    AVCaptureConnection *videoConnection = [self getOrientationAdaptedCaptureConnection];
-    if(videoConnection){
-        [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef  _Nullable imageDataSampleBuffer, NSError * _Nullable error) {
-           
-            CFDictionaryRef exifAttachments = CMGetAttachment(imageDataSampleBuffer, kCGImagePropertyExifDictionary, NULL);
-            
-            NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            
-            [self setStillImage:image];
-            [self setStillImageData:imageData];
-            
-            //回调
-            
-        }];
-    }
-    
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if([device hasTorch]){
-        [device lockForConfiguration:nil];
-        [device setTorchMode:AVCaptureTorchModeOff];
-        [device unlockForConfiguration];
-    }
-}
-
-
-- (AVCaptureConnection *)getOrientationAdaptedCaptureConnection{
-    
-    AVCaptureConnection *videoConnection = nil;
-    
-    for(AVCaptureConnection *connection in [_stillImageOutput connections]){
-        for(AVCaptureInputPort *port in [connection inputPorts]){
-            if([[port mediaType] isEqual:AVMediaTypeVideo]){
-                videoConnection = connection;
-                [self assignVideoOrienationForVideoConnection:videoConnection];
-                break;
-            }
-        }
-        if(videoConnection){
-            [self assignVideoOrienationForVideoConnection:videoConnection];
-        }
-    }
-    
-    return videoConnection;
-}
-
-- (void)assignVideoOrienationForVideoConnection:(AVCaptureConnection *)videoConnection
-{
-    AVCaptureVideoOrientation newOrientation;
-    switch ([[UIDevice currentDevice] orientation]) {
-        case UIDeviceOrientationPortrait:
-            newOrientation = AVCaptureVideoOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
-            break;
-        case UIDeviceOrientationLandscapeLeft:
-            newOrientation = AVCaptureVideoOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            newOrientation = AVCaptureVideoOrientationLandscapeLeft;
-            break;
-        default:
-            newOrientation = AVCaptureVideoOrientationPortrait;
-    }
-    [videoConnection setVideoOrientation: newOrientation];
+    AVCapturePhotoSettings *settings = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey: AVVideoCodecTypeJPEG}];
+    [self.stillImageOutput capturePhotoWithSettings:settings delegate:self];
 }
 
 
 - (void)stop{
     [self.session stopRunning];
-    
+
     if(self.session.inputs.count > 0){
         AVCaptureInput *input = [self.session.inputs objectAtIndex:0];
         [self.session removeInput:input];
@@ -167,5 +103,12 @@
     [self stop];
 }
 
+#pragma mark -AVCapturePhotoCaptureDelegate
+- (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(nullable NSError *)error{
+    
+    NSData *imageData = photo.fileDataRepresentation;
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+}
 
 @end

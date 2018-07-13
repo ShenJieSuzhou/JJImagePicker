@@ -34,7 +34,7 @@
 @interface CameraButtomBar : UIView
 
 //快门
-@property (nonatomic, weak) UIButton *shutterBtn;
+@property (nonatomic, strong) UIButton *shutterBtn;
 
 @end
 

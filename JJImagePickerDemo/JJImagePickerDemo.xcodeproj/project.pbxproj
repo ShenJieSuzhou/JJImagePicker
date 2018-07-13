@@ -35,6 +35,7 @@
 		E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E545F54C20C13C1200E74CA1 /* CameraRollView.m */; };
 		E547D15820F72E3C00893D85 /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15720F72E3C00893D85 /* CameraSessionView.m */; };
 		E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15A20F7304D00893D85 /* CameraSessionManager.m */; };
+		E547D15E20F870F000893D85 /* oie_transparent-20.png in Resources */ = {isa = PBXBuildFile; fileRef = E547D15D20F870F000893D85 /* oie_transparent-20.png */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -119,6 +120,7 @@
 		E547D15720F72E3C00893D85 /* CameraSessionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
 		E547D15920F7304D00893D85 /* CameraSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraSessionManager.h; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.h; sourceTree = SOURCE_ROOT; };
 		E547D15A20F7304D00893D85 /* CameraSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CameraSessionManager.m; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.m; sourceTree = SOURCE_ROOT; };
+		E547D15D20F870F000893D85 /* oie_transparent-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oie_transparent-20.png"; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E547D15D20F870F000893D85 /* oie_transparent-20.png */,
 				E5CFB56820E2169F0021EB68 /* wb_style_orange.png */,
 				E5CFB55820D3879B0021EB68 /* uls_tb_intro_return_n@3x.png */,
 				E5CFB55920D3879B0021EB68 /* uls_tb_intro_return_p@3x.png */,
@@ -444,6 +447,7 @@
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,
 				E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */,
 				E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */,
+				E547D15E20F870F000893D85 /* oie_transparent-20.png in Resources */,
 				E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */,
 				E5CFB54420D257D00021EB68 /* chooseInterest_cheaked@3x.png in Resources */,
 				E5CFB55620D37D580021EB68 /* QMUI_previewImage_checkbox@2x.png in Resources */,
