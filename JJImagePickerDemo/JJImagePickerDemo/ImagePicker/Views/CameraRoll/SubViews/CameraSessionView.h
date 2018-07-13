@@ -17,15 +17,36 @@
 
 @end
 
+//-------------------------- topBar ------------------------------------
+@interface CameraTopBar : UIView
+
+@property (nonatomic, strong) UIImage *background;
+
+@property (nonatomic, weak) UIButton *backBtn;
+
+@property (nonatomic, weak) UIButton *flashBtn;
+
+@property (nonatomic, weak) UIButton *switchBtn;
+
+@end
+
+//-------------------------- buttomBar ---------------------------------
+@interface CameraButtomBar : UIView
+
+//快门
+@property (nonatomic, weak) UIButton *shutterBtn;
+
+@end
+
+
+
 @interface CameraSessionView : UIView<JJCameraSessionManagerDelegate>
 
 @property (nonatomic, weak) id<JJCameraSessionDelegate> delegate;
 
 @property (nonatomic, strong) CameraSessionManager *captureManager;
-//快门
-@property (nonatomic, weak) UIButton *shutterBtn;
-//取消
-@property (nonatomic, weak) UIButton *cancelBtn;
+
+@property (nonatomic, strong) CameraButtomBar *buttomBar;
 
 - (void)setTopBarColor:(UIColor *)topBarColor;
 - (void)hideFlashButton;

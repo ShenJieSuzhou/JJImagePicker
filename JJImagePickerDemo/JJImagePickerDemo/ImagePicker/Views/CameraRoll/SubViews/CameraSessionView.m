@@ -8,8 +8,11 @@
 
 #import "CameraSessionView.h"
 
-@implementation CameraSessionView
-@synthesize captureManager = _captureManager;
+@implementation CameraTopBar
+@synthesize background = _background;
+@synthesize backBtn = _backBtn;
+@synthesize flashBtn = _flashBtn;
+@synthesize switchBtn = _switchBtn;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -26,7 +29,78 @@
 
 - (void)commonInitlization{
     
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+}
+
+@end
+
+@implementation CameraButtomBar
+@synthesize shutterBtn = _shutterBtn;
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self commonInitlization];
+    }
     
+    return self;
+}
+
+- (id)init{
+    return [self initWithFrame:CGRectZero];
+}
+
+- (void)commonInitlization{
+    //无背景色
+    [self setBackgroundColor:[UIColor clearColor]];
+    
+    self.shutterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.shutterBtn setBackgroundColor:[UIColor clearColor]];
+    [self.shutterBtn setImage:[UIImage imageNamed:@"oie_transparent-20"] forState:UIControlStateNormal];
+    [self.shutterBtn setImage:[UIImage imageNamed:@"oie_transparent-20"] forState:UIControlStateSelected];
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        [self.shutterBtn setFrame:CGRectMake(0, 0, 100, 100)];
+    }else{
+        [self.shutterBtn setFrame:CGRectMake(0, 0, 80, 80)];
+    }
+    
+    [self addSubview:self.shutterBtn];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    [self.shutterBtn setFrame:CGRectMake((self.frame.size.width - self.shutterBtn.frame.size.width)/2, 10, self.shutterBtn.frame.size.width, self.shutterBtn.frame.size.height)];
+}
+
+@end
+
+
+
+@implementation CameraSessionView
+@synthesize captureManager = _captureManager;
+@synthesize buttomBar = _buttomBar;
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self commonInitlization];
+    }
+    
+    return self;
+}
+
+- (id)init{
+    return [self initWithFrame:CGRectZero];
+}
+
+- (void)commonInitlization{
+    [self composeInterface];
+    [self setupCaptureManager:RearFacingCamera];
 }
 
 -(void)setupCaptureManager:(CameraType)camera {
@@ -62,11 +136,37 @@
 }
 
 -(void)composeInterface {
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
+    
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
         
     }else{
-        
+        self.buttomBar = [[CameraButtomBar alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 100)];
+        [self.buttomBar.shutterBtn addTarget:self action:@selector(clickShutterBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.buttomBar];
     }
+}
+
+//按下快门
+- (void)clickShutterBtn:(UIButton *)sender{
+    [_captureManager captureStillImage];
+}
+
+- (void)setTopBarColor:(UIColor *)topBarColor{
+    
+}
+
+- (void)hideFlashButton{
+    
+}
+
+- (void)hideCameraToggleButton{
+    
+}
+
+- (void)hideDismissButton{
+    
 }
 
 @end

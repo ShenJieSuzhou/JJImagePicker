@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomPhotoViewController.h"
 
-@interface CameraRollViewController : CustomPhotoViewController
+@interface CameraRollViewController : UIViewController
 
 
 @end
