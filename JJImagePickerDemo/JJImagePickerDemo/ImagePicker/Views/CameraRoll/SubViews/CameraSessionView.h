@@ -21,12 +21,8 @@
 @interface CameraTopBar : UIView
 
 @property (nonatomic, strong) UIImage *background;
-
-@property (nonatomic, weak) UIButton *backBtn;
-
-@property (nonatomic, weak) UIButton *flashBtn;
-
-@property (nonatomic, weak) UIButton *switchBtn;
+//闪光灯
+@property (nonatomic, strong) UIButton *flashBtn;
 
 @end
 
@@ -35,6 +31,12 @@
 
 //快门
 @property (nonatomic, strong) UIButton *shutterBtn;
+//返回
+@property (nonatomic, strong) UIButton *backBtn;
+//切换
+@property (nonatomic, strong) UIButton *switchBtn;
+//相册
+@property (nonatomic, strong) UIButton *albumBtn;
 
 @end
 

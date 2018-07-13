@@ -10,6 +10,12 @@
 
 
 @implementation CameraSessionManager
+@synthesize delegate = _delegate;
+@synthesize captureDevice = _captureDevice;
+@synthesize previewLayer = _previewLayer;
+@synthesize session = _session;
+@synthesize stillImageOutput = _stillImageOutput;
+
 
 + (CameraSessionManager *)getInstance{
     static CameraSessionManager *m_instance = nil;
@@ -109,6 +115,12 @@
     NSData *imageData = photo.fileDataRepresentation;
     UIImage *image = [UIImage imageWithData:imageData];
     
+    if(error){
+        [_delegate captureOutputWithError:error];
+        return;
+    }
+    
+    [_delegate captureOutputDidFinish:image];
 }
 
 @end

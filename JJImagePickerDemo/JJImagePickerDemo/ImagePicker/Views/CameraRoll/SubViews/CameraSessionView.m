@@ -6,13 +6,17 @@
 //  Copyright © 2018年 shenjie. All rights reserved.
 //
 
+
+
 #import "CameraSessionView.h"
+
+const UIEdgeInsets backBtnMargins = {10, 10, 0, 0};
+const UIEdgeInsets switchBtnMargins = {10, 0, 0, 10};
+const UIEdgeInsets flashBtnMargins = {10, 0, 0, 0};
 
 @implementation CameraTopBar
 @synthesize background = _background;
-@synthesize backBtn = _backBtn;
 @synthesize flashBtn = _flashBtn;
-@synthesize switchBtn = _switchBtn;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -28,17 +32,29 @@
 }
 
 - (void)commonInitlization{
+    [self setBackground:_background];
+    
+    self.flashBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.flashBtn setBackgroundColor:[UIColor clearColor]];
+    [self.flashBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [self addSubview:self.flashBtn];
     
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
+//    [self.flashBtn setFrame:CGRectMake(self.frame.size.width - self.switchBtn.frame.size.width - 30 - switchBtnMargins.right * 2, flashBtnMargins.top, 30, 30)];
 }
 
 @end
 
 @implementation CameraButtomBar
+
+@synthesize backBtn = _backBtn;
 @synthesize shutterBtn = _shutterBtn;
+@synthesize switchBtn = _switchBtn;
+@synthesize albumBtn = _albumBtn;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -57,10 +73,20 @@
     //无背景色
     [self setBackgroundColor:[UIColor clearColor]];
     
+    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.backBtn setBackgroundColor:[UIColor clearColor]];
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"closeButton"] forState:UIControlStateNormal];
+    [self addSubview:self.backBtn];
+    
     self.shutterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.shutterBtn setBackgroundColor:[UIColor clearColor]];
-    [self.shutterBtn setImage:[UIImage imageNamed:@"oie_transparent-20"] forState:UIControlStateNormal];
-    [self.shutterBtn setImage:[UIImage imageNamed:@"oie_transparent-20"] forState:UIControlStateSelected];
+    [self.shutterBtn setImage:[UIImage imageNamed:@"cameraButton"] forState:UIControlStateNormal];
+    [self.shutterBtn setImage:[UIImage imageNamed:@"cameraButton"] forState:UIControlStateSelected];
+    
+    self.switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.switchBtn setBackgroundColor:[UIColor clearColor]];
+    [self.switchBtn setBackgroundImage:[UIImage imageNamed:@"swapButton"] forState:UIControlStateNormal];
+    [self addSubview:self.switchBtn];
     
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
         [self.shutterBtn setFrame:CGRectMake(0, 0, 100, 100)];
@@ -68,17 +94,22 @@
         [self.shutterBtn setFrame:CGRectMake(0, 0, 80, 80)];
     }
     
+    [self addSubview:self.backBtn];
     [self addSubview:self.shutterBtn];
+    [self addSubview:self.switchBtn];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+
+    [self.backBtn setFrame:CGRectMake(25, 25, 50, 50)];
     
     [self.shutterBtn setFrame:CGRectMake((self.frame.size.width - self.shutterBtn.frame.size.width)/2, 10, self.shutterBtn.frame.size.width, self.shutterBtn.frame.size.height)];
+    
+    [self.switchBtn setFrame:CGRectMake(self.frame.size.width - 50 - 25, 25, 50, 50)];
 }
 
 @end
-
 
 
 @implementation CameraSessionView
@@ -105,11 +136,7 @@
 }
 
 -(void)setupCaptureManager:(CameraType)camera {
-    
     _captureManager = [CameraSessionManager getInstance];
-//    //删除已经存在的input
-//    AVCaptureInput *currentCameraInput = [sessionManager.session.inputs objectAtIndex:0];
-//    [sessionManager.session removeInput:currentCameraInput];
     [_captureManager.session beginConfiguration];
     
     if(_captureManager){
@@ -137,9 +164,7 @@
 }
 
 -(void)composeInterface {
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    
+        
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
         
     }else{
@@ -167,6 +192,14 @@
 }
 
 - (void)hideDismissButton{
+    
+}
+
+- (void)captureOutputDidFinish:(UIImage *)image{
+    
+}
+
+- (void)captureOutputWithError:(NSError *)error{
     
 }
 

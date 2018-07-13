@@ -18,6 +18,9 @@ typedef NS_ENUM(BOOL, CameraType){
 
 @protocol JJCameraSessionManagerDelegate <NSObject>
 
+- (void)captureOutputDidFinish:(UIImage *)image;
+
+- (void)captureOutputWithError:(NSError *)error;
 
 @end
 
