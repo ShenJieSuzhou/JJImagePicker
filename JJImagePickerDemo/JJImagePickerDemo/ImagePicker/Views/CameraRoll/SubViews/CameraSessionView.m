@@ -219,7 +219,9 @@ const UIEdgeInsets flashBtnMargins = {10, 0, 0, 0};
 
 #pragma mark -JJCameraSessionManagerDelegate
 - (void)captureOutputDidFinish:(UIImage *)image{
-    
+    if([_delegate respondsToSelector:@selector(captureImageFinished:)]){
+        [_delegate captureImageFinished:image];
+    }
 }
 
 - (void)captureOutputWithError:(NSError *)error{

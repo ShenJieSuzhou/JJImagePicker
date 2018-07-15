@@ -13,6 +13,8 @@
 
 - (void)captureImageCancel;
 
+- (void)captureImageFinished:(UIImage *)image;
+
 @end
 
 //-------------------------- topBar ------------------------------------

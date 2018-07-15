@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */; };
+		445CB8CC20FB31F4002A8498 /* SnapshotPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 445CB8CB20FB31F4002A8498 /* SnapshotPreviewView.m */; };
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
 		4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */; };
@@ -112,6 +113,8 @@
 /* Begin PBXFileReference section */
 		443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 		443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
+		445CB8CA20FB31F4002A8498 /* SnapshotPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotPreviewView.h; sourceTree = "<group>"; };
+		445CB8CB20FB31F4002A8498 /* SnapshotPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapshotPreviewView.m; sourceTree = "<group>"; };
 		4462606F20CD00B10004C579 /* JJImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJImageManager.m; sourceTree = "<group>"; };
 		4462607020CD00B10004C579 /* JJImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJImageManager.h; sourceTree = "<group>"; };
 		4462607220CD00B90004C579 /* JJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhoto.m; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				E52C538D20EB65D5003862F4 /* JJPublishPreviewCell.m */,
 				E547D15620F72E3C00893D85 /* CameraSessionView.h */,
 				E547D15720F72E3C00893D85 /* CameraSessionView.m */,
+				445CB8CA20FB31F4002A8498 /* SnapshotPreviewView.h */,
+				445CB8CB20FB31F4002A8498 /* SnapshotPreviewView.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */,
 				E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
+				445CB8CC20FB31F4002A8498 /* SnapshotPreviewView.m in Sources */,
 				E522785420BFD918003E2F38 /* PhotosViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
 				E547D15820F72E3C00893D85 /* CameraSessionView.m in Sources */,
