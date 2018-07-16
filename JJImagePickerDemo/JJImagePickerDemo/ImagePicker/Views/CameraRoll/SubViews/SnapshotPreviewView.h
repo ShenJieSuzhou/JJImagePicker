@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) UIImage *snapShot;
 
+- (void)setImage:(UIImage *)image;
+
 @end

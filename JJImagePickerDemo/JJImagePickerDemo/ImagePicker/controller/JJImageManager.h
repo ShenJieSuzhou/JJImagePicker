@@ -77,4 +77,5 @@ typedef void(^enumerationBlock)(JJPhotoAlbum *resultAlbum);
 /// 获取一个 PHCachingImageManager 的实例
 - (PHCachingImageManager *)phCachingImageManager;
 
+
 @end

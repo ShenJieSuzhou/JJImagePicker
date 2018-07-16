@@ -71,8 +71,12 @@
     if (!_phCachingImageManager) {
         _phCachingImageManager = [[PHCachingImageManager alloc] init];
     }
+    
     return _phCachingImageManager;
 }
+
+
+
 
 ////获取相册
 //+ (void)getPhotoAlbum{

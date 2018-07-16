@@ -9,6 +9,7 @@
 #import "CameraRollViewController.h"
 #import "CameraSessionView.h"
 #import "SnapshotPreviewView.h"
+#import <Photos/Photos.h>
 
 
 @interface CameraRollViewController ()<JJCameraSessionDelegate>
@@ -51,15 +52,15 @@
     if(!image){
         return;
     }
-    
-    self.snapShotView.snapShot = image;
+        
+    [self.snapShotView setImage:image];
     [self.view addSubview:self.snapShotView];
 }
 
 //懒加载
 - (SnapshotPreviewView *)snapShotView{
     if(!_snapShotView){
-         _snapShotView = [[SnapshotPreviewView alloc] init];
+         _snapShotView = [[SnapshotPreviewView alloc] initWithFrame:self.view.frame];
         [_snapShotView.cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_snapShotView.useBtn addTarget:self action:@selector(useBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -77,8 +78,17 @@
 
     UIImage *photoImage = self.snapShotView.snapShot;
     //保存至相册
-    
-    
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        //写入图片到相册
+        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:photoImage];
+        
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        if(!error){
+            NSLog(@"success = %d", success);
+        }else{
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 @end
