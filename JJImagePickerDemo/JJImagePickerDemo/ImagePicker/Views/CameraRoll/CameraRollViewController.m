@@ -63,6 +63,7 @@
          _snapShotView = [[SnapshotPreviewView alloc] initWithFrame:self.view.frame];
         [_snapShotView.cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_snapShotView.useBtn addTarget:self action:@selector(useBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_snapShotView.editBtn addTarget:self action:@selector(editImage:) forControlEvents:UIControlEventTouchUpInside];
     }
    
     return _snapShotView;
@@ -71,6 +72,11 @@
 //取消选用该照片
 - (void)cancelBtnClick:(UIButton *)sender{
     [self.snapShotView removeFromSuperview];
+}
+
+//编辑照片
+- (void)editImage:(UIButton *)sender{
+    
 }
 
 //使用该照片，并存入相册

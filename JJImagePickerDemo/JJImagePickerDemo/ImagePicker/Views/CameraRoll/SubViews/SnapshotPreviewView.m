@@ -11,6 +11,7 @@
 @implementation SnapshotPreviewView
 @synthesize snapshotView = _snapshotView;
 @synthesize cancelBtn = _cancelBtn;
+@synthesize editBtn = _editBtn;
 @synthesize useBtn = _useBtn;
 @synthesize snapShot = _snapShot;
 
@@ -35,12 +36,17 @@
     [_cancelBtn setBackgroundColor:[UIColor clearColor]];
     [_cancelBtn setImage:[UIImage imageNamed:@"retakeButton"] forState:UIControlStateNormal];
     
+    _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_editBtn setBackgroundColor:[UIColor clearColor]];
+    [_cancelBtn setImage:[UIImage imageNamed:@"retakeButton"] forState:UIControlStateNormal];
+    
     _useBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_useBtn setBackgroundColor:[UIColor clearColor]];
     [_useBtn setImage:[UIImage imageNamed:@"confirmButton"] forState:UIControlStateNormal];
     
     [self addSubview:_snapshotView];
     [self addSubview:_cancelBtn];
+    [self addSubview:_editBtn];
     [self addSubview:_useBtn];
 }
 
@@ -52,6 +58,7 @@
         
     }else{
         [self.cancelBtn setFrame:CGRectMake(80, self.frame.size.height - 100, 60, 60)];
+        [self.editBtn setFrame:CGRectMake(150, self.frame.size.height - 100, 60, 60)];
         [self.useBtn setFrame:CGRectMake(self.frame.size.width - 80 - 60, self.frame.size.height - 100, 60, 60)];
     }
 }

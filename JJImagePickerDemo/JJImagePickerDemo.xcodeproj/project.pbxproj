@@ -85,6 +85,7 @@
 		E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */; };
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
+		E571BD2E2109ACF4009DD369 /* PhotoEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E571BD2D2109ACF4009DD369 /* PhotoEditingViewController.m */; };
 		E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */; };
 		E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53620D112090021EB68 /* JJCollectionViewFlowLayout.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
@@ -218,6 +219,8 @@
 		E56B9CCE20AD2FA800021DF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56B9CD020AD2FA800021DF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E571BD2C2109ACF4009DD369 /* PhotoEditingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoEditingViewController.h; sourceTree = "<group>"; };
+		E571BD2D2109ACF4009DD369 /* PhotoEditingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditingViewController.m; sourceTree = "<group>"; };
 		E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTableViewCell.h; sourceTree = "<group>"; };
 		E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTableViewCell.m; sourceTree = "<group>"; };
 		E5CFB53520D112090021EB68 /* JJCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				E5CFB54C20D28DDF0021EB68 /* PhotoPreviewViewController.m */,
 				E52C538920EB5161003862F4 /* InterestingViewController.h */,
 				E52C538A20EB5161003862F4 /* InterestingViewController.m */,
+				E571BD2C2109ACF4009DD369 /* PhotoEditingViewController.h */,
+				E571BD2D2109ACF4009DD369 /* PhotoEditingViewController.m */,
 			);
 			path = CameraRoll;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */,
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
+				E571BD2E2109ACF4009DD369 /* PhotoEditingViewController.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,

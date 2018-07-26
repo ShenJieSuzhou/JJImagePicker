@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIButton *cancelBtn;
 
+@property (nonatomic, strong) UIButton *editBtn;
+
 @property (nonatomic, strong) UIButton *useBtn;
 
 @property (nonatomic, strong) UIImage *snapShot;
