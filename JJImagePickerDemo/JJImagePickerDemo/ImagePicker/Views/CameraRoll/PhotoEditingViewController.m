@@ -9,6 +9,7 @@
 #import "PhotoEditingViewController.h"
 
 #define JJ_PHOTO_EDITING_CELL @"PHOTO_EDITING_CELL"
+#define JJ_EDITTOOL_HEIGHT 100
 
 @implementation EditingToolCell
 @synthesize previewImage = _previewImage;
@@ -149,7 +150,7 @@
     [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];
     
     //底部工具栏
-    self.editToolView = [[EditingToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 100, self.view.bounds.size.width, 100)];
+    self.editToolView = [[EditingToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
     [self.view addSubview:self.editToolView];
     
     //预览图
@@ -184,6 +185,7 @@
 
 //finished 完成
 - (void)finishedBtnClick:(UIButton *)sender{
+    //跳转到发布页面
     
 }
 

@@ -9,13 +9,14 @@
 #import "CameraRollViewController.h"
 #import "CameraSessionView.h"
 #import "SnapshotPreviewView.h"
+#import "PhotoEditingViewController.h"
 #import <Photos/Photos.h>
 
 
 @interface CameraRollViewController ()<JJCameraSessionDelegate>
 @property (nonatomic, strong) CameraSessionView *cameraView;
 @property (nonatomic, strong) SnapshotPreviewView *snapShotView;
-
+@property (nonatomic, strong) PhotoEditingViewController *photoEditingView;
 
 
 @end
@@ -24,6 +25,7 @@
 
 @synthesize cameraView = _cameraView;
 @synthesize snapShotView = _snapShotView;
+@synthesize photoEditingView = _photoEditingView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
