@@ -1,4 +1,4 @@
-﻿{
+{
     "name": "BeJson",
     "url": "http://www.bejson.com",
     "page": 88,
@@ -63,7 +63,346 @@
         },
         {
             "name": "调整",
-            "imagePath": "qqqqq"
-        }
+            "imagePath": "qqqqq",
+            "subTools": [
+                 {
+                 "name": "美颜",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "曝光",
+                 "imagePtah": 2222
+                 },
+                 {
+                 "name": "色温",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "对比度",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "饱和度",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "锐化",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "颗粒",
+                 "imagePath": 2222
+                 },
+                 {
+                 "name": "暗角",
+                 "imagePath": 2222
+                 }
+            ]
+        },
+        {
+          "name": "滤镜",
+          "imagePath": "qqqqq",
+          "subTools": [
+                       {
+                       "name": "美颜",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "曝光",
+                       "imagePtah": 2222
+                       },
+                       {
+                       "name": "色温",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "对比度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "饱和度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "锐化",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "颗粒",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "暗角",
+                       "imagePath": 2222
+                       }
+            ]
+        },
+        {
+          "name": "贴纸",
+          "imagePath": "qqqqq",
+          "subTools": [
+                       {
+                       "name": "美颜",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "曝光",
+                       "imagePtah": 2222
+                       },
+                       {
+                       "name": "色温",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "对比度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "饱和度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "锐化",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "颗粒",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "暗角",
+                       "imagePath": 2222
+                       }
+            ]
+        },
+        {
+          "name": "玩字",
+          "imagePath": "qqqqq",
+          "subTools": [
+                       {
+                       "name": "美颜",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "曝光",
+                       "imagePtah": 2222
+                       },
+                       {
+                       "name": "色温",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "对比度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "饱和度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "锐化",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "颗粒",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "暗角",
+                       "imagePath": 2222
+                       }
+            ]
+        },
+        {
+          "name": "玩字",
+          "imagePath": "qqqqq",
+          "subTools": [
+                       {
+                       "name": "美颜",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "曝光",
+                       "imagePtah": 2222
+                       },
+                       {
+                       "name": "色温",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "对比度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "饱和度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "锐化",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "颗粒",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "暗角",
+                       "imagePath": 2222
+                       }
+            ]
+       },
+       {
+          "name": "贴纸笔刷",
+          "imagePath": "qqqqq",
+          "subTools": [
+                       {
+                       "name": "美颜",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "曝光",
+                       "imagePtah": 2222
+                       },
+                       {
+                       "name": "色温",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "对比度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "饱和度",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "锐化",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "颗粒",
+                       "imagePath": 2222
+                       },
+                       {
+                       "name": "暗角",
+                       "imagePath": 2222
+                       }
+            ]
+       },
+      {
+      "name": "标签",
+      "imagePath": "qqqqq",
+      "subTools": [
+                   {
+                   "name": "美颜",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "曝光",
+                   "imagePtah": 2222
+                   },
+                   {
+                   "name": "色温",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "对比度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "饱和度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "锐化",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "颗粒",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "暗角",
+                   "imagePath": 2222
+                   }
+        ]
+      },
+      {
+      "name": "涂抹",
+      "imagePath": "qqqqq",
+      "subTools": [
+                   {
+                   "name": "美颜",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "曝光",
+                   "imagePtah": 2222
+                   },
+                   {
+                   "name": "色温",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "对比度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "饱和度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "锐化",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "颗粒",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "暗角",
+                   "imagePath": 2222
+                   }
+        ]
+      },
+      {
+      "name": "大头",
+      "imagePath": "qqqqq",
+      "subTools": [
+                   {
+                   "name": "美颜",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "曝光",
+                   "imagePtah": 2222
+                   },
+                   {
+                   "name": "色温",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "对比度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "饱和度",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "锐化",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "颗粒",
+                   "imagePath": 2222
+                   },
+                   {
+                   "name": "暗角",
+                   "imagePath": 2222
+                   }
+        ]
+      }
     ]
 }
+

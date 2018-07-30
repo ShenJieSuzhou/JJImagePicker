@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */; };
+		4459B7BB210E06BB002348BA /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 4459B7BA210E06BB002348BA /* content.json */; };
 		445CB8CC20FB31F4002A8498 /* SnapshotPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 445CB8CB20FB31F4002A8498 /* SnapshotPreviewView.m */; };
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
@@ -17,6 +18,7 @@
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
+		44CD7DEA210E067100332868 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CD7DE8210E067100332868 /* JSONKit.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522785120BFD8FF003E2F38 /* CameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E522785020BFD8FF003E2F38 /* CameraRollViewController.m */; };
@@ -114,6 +116,7 @@
 /* Begin PBXFileReference section */
 		443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 		443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
+		4459B7BA210E06BB002348BA /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = content.json; path = editTools/content.json; sourceTree = "<group>"; };
 		445CB8CA20FB31F4002A8498 /* SnapshotPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotPreviewView.h; sourceTree = "<group>"; };
 		445CB8CB20FB31F4002A8498 /* SnapshotPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapshotPreviewView.m; sourceTree = "<group>"; };
 		4462606F20CD00B10004C579 /* JJImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJImageManager.m; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
+		44CD7DE8210E067100332868 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		44CD7DE9210E067100332868 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -292,6 +297,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		44CD7DE7210E067100332868 /* JSONKIT */ = {
+			isa = PBXGroup;
+			children = (
+				44CD7DE8210E067100332868 /* JSONKit.m */,
+				44CD7DE9210E067100332868 /* JSONKit.h */,
+			);
+			path = JSONKIT;
+			sourceTree = "<group>";
+		};
 		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +409,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4459B7BA210E06BB002348BA /* content.json */,
 				E547D16A20F89AC500893D85 /* cameraButton.png */,
 				E547D17720F89AC800893D85 /* cameraButton@2x.png */,
 				E547D16B20F89AC500893D85 /* cameraButton@3x.png */,
@@ -509,6 +524,7 @@
 		E5CFB53420D10F840021EB68 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				44CD7DE7210E067100332868 /* JSONKIT */,
 				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
 				E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */,
 				E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */,
@@ -632,6 +648,7 @@
 				E547D1AC20F89ACE00893D85 /* cameraButtonHighlighted@2x.png in Resources */,
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
+				4459B7BB210E06BB002348BA /* content.json in Resources */,
 				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
 				E547D1AA20F89ACE00893D85 /* placeholder@2x.png in Resources */,
 				E547D1AB20F89ACE00893D85 /* placeholder@3x.png in Resources */,
@@ -667,6 +684,7 @@
 				E545F54D20C13C1200E74CA1 /* CameraRollView.m in Sources */,
 				E571BD2E2109ACF4009DD369 /* PhotoEditingViewController.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
+				44CD7DEA210E067100332868 /* JSONKit.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,
 				4462607420CD00BA0004C579 /* JJPhoto.m in Sources */,
