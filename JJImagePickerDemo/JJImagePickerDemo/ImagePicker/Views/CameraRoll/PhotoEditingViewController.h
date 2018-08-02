@@ -52,6 +52,8 @@
 @property (nonatomic, strong) UIImage *preImage;
 //工具烂
 @property (nonatomic, strong) EditingToolView *editToolView;
+//编辑工具数据
+@property (nonatomic, strong) NSDictionary *editData;
 
 /*
  * @brief 设置要编辑的图

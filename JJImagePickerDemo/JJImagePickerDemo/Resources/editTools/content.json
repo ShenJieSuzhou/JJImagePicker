@@ -25,7 +25,7 @@
     "field": [
         {
             "name": "裁剪",
-            "imagePath": 1111,
+            "imagePath": "editor_crop",
             "subTools": [
                 {
                     "name": "美颜",
@@ -63,7 +63,7 @@
         },
         {
             "name": "调整",
-            "imagePath": "qqqqq",
+            "imagePath": "editor_adjust",
             "subTools": [
                  {
                  "name": "美颜",
@@ -101,7 +101,7 @@
         },
         {
           "name": "滤镜",
-          "imagePath": "qqqqq",
+          "imagePath": "editor_filter",
           "subTools": [
                        {
                        "name": "美颜",
@@ -139,7 +139,7 @@
         },
         {
           "name": "贴纸",
-          "imagePath": "qqqqq",
+          "imagePath": "editor_sticker",
           "subTools": [
                        {
                        "name": "美颜",
@@ -177,45 +177,7 @@
         },
         {
           "name": "玩字",
-          "imagePath": "qqqqq",
-          "subTools": [
-                       {
-                       "name": "美颜",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "曝光",
-                       "imagePtah": 2222
-                       },
-                       {
-                       "name": "色温",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "对比度",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "饱和度",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "锐化",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "颗粒",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "暗角",
-                       "imagePath": 2222
-                       }
-            ]
-        },
-        {
-          "name": "玩字",
-          "imagePath": "qqqqq",
+          "imagePath": "editor_word",
           "subTools": [
                        {
                        "name": "美颜",
@@ -253,7 +215,7 @@
        },
        {
           "name": "贴纸笔刷",
-          "imagePath": "qqqqq",
+          "imagePath": "editor_tracksticker",
           "subTools": [
                        {
                        "name": "美颜",
@@ -291,7 +253,7 @@
        },
       {
       "name": "标签",
-      "imagePath": "qqqqq",
+      "imagePath": "editor_tag",
       "subTools": [
                    {
                    "name": "美颜",
@@ -329,7 +291,7 @@
       },
       {
       "name": "涂抹",
-      "imagePath": "qqqqq",
+      "imagePath": "editor_pain",
       "subTools": [
                    {
                    "name": "美颜",
@@ -367,7 +329,7 @@
       },
       {
       "name": "大头",
-      "imagePath": "qqqqq",
+      "imagePath": "adjust_beautiful",
       "subTools": [
                    {
                    "name": "美颜",

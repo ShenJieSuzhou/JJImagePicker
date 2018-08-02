@@ -124,6 +124,8 @@
     NSString *identifier = JJ_PHOTO_EDITING_CELL;
     EditingToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     NSString *asset = [self.toolArray objectAtIndex:indexPath.row];
+    
+    
 //    [cell.previewImage setImage:[UIImage imageNamed:asset]];
     
     return cell;
@@ -140,6 +142,7 @@
 @synthesize preViewImage = _preViewImage;
 @synthesize preImage = _preImage;
 @synthesize editToolView = _editToolView;
+@synthesize editData = _editData;
 
 
 - (void)viewDidLoad {
@@ -165,7 +168,14 @@
     [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];
     
     //底部工具栏
+    self.editData = [self loadEditToolConfigFile];
+    if(![self.editData objectForKey:@"field"]){
+        NSLog(@"配置文件加载失败");
+        return;
+    }
+
     self.editToolView = [[EditingToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
+    self.editToolView.toolArray = [self.editData objectForKey:@"field"];
     [self.view addSubview:self.editToolView];
     
     //预览图
@@ -180,6 +190,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
+}
+
+#pragma mark - init edit tool
+- (NSDictionary *)loadEditToolConfigFile{
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"json"];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    // 对数据进行JSON格式化并返回字典形式
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
 #pragma mark - image process business
