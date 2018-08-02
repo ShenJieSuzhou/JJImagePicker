@@ -12,7 +12,10 @@
 #define JJ_EDITTOOL_HEIGHT 100
 
 @implementation EditingToolCell
-@synthesize previewImage = _previewImage;
+@synthesize editImage = _editImage;
+@synthesize editTitle = _editTitle;
+@synthesize editBtn = _editBtn;
+@synthesize editImageSel = _editImageSel;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -28,12 +31,24 @@
 }
 
 - (void)commonInitlization{
-    [self.contentView addSubview:self.previewImage];
+    self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.editBtn setImage:_editImage forState:UIControlStateNormal];
+    [self.editBtn setImage:_editImageSel forState:UIControlStateSelected];
+    
+    CGFloat fDeltaWidth = (self.bounds.size.width - _editImage.size.width)/2.0f;
+    CGFloat fDeltaHeight = (self.bounds.size.height - _editImage.size.height)/2.0f;
+    fDeltaWidth = (fDeltaWidth >= 2.0f) ? fDeltaWidth/2.0f : 0.0f;
+    fDeltaHeight = (fDeltaHeight >= 2.0f) ? fDeltaHeight/2.0f : 0.0f;
+    
+    [self.editBtn setImageEdgeInsets:UIEdgeInsetsMake(fDeltaHeight, fDeltaWidth, fDeltaHeight, fDeltaWidth)];
+    [self.editBtn setTitleEdgeInsets:UIEdgeInsetsMake(fDeltaHeight, -_editImage.size.width, fDeltaHeight, fDeltaWidth)];
+    
+    [self.contentView addSubview:self.editBtn];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [_previewImage setFrame:self.bounds];
+    [self.editBtn setFrame:self.bounds];
 }
 
 @end
@@ -109,7 +124,7 @@
     NSString *identifier = JJ_PHOTO_EDITING_CELL;
     EditingToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     NSString *asset = [self.toolArray objectAtIndex:indexPath.row];
-    [cell.previewImage setImage:[UIImage imageNamed:asset]];
+//    [cell.previewImage setImage:[UIImage imageNamed:asset]];
     
     return cell;
 }

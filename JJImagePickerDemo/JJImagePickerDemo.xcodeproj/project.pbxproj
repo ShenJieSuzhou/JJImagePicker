@@ -86,6 +86,7 @@
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
 		E571BD2E2109ACF4009DD369 /* PhotoEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E571BD2D2109ACF4009DD369 /* PhotoEditingViewController.m */; };
+		E571BD44210F0045009DD369 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = E571BD43210F0044009DD369 /* content.json */; };
 		E5CFB53320D0EB810021EB68 /* JJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */; };
 		E5CFB53720D112090021EB68 /* JJCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53620D112090021EB68 /* JJCollectionViewFlowLayout.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
@@ -221,6 +222,7 @@
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E571BD2C2109ACF4009DD369 /* PhotoEditingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoEditingViewController.h; sourceTree = "<group>"; };
 		E571BD2D2109ACF4009DD369 /* PhotoEditingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditingViewController.m; sourceTree = "<group>"; };
+		E571BD43210F0044009DD369 /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
 		E5CFB53120D0EB810021EB68 /* JJTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTableViewCell.h; sourceTree = "<group>"; };
 		E5CFB53220D0EB810021EB68 /* JJTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTableViewCell.m; sourceTree = "<group>"; };
 		E5CFB53520D112090021EB68 /* JJCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E571BD42210F0044009DD369 /* editTools */,
 				E547D16A20F89AC500893D85 /* cameraButton.png */,
 				E547D17720F89AC800893D85 /* cameraButton@2x.png */,
 				E547D16B20F89AC500893D85 /* cameraButton@3x.png */,
@@ -504,6 +507,14 @@
 				E522784520BF8F7A003E2F38 /* Photos.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E571BD42210F0044009DD369 /* editTools */ = {
+			isa = PBXGroup;
+			children = (
+				E571BD43210F0044009DD369 /* content.json */,
+			);
+			path = editTools;
 			sourceTree = "<group>";
 		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
@@ -632,6 +643,7 @@
 				E547D1AC20F89ACE00893D85 /* cameraButtonHighlighted@2x.png in Resources */,
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
+				E571BD44210F0045009DD369 /* content.json in Resources */,
 				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
 				E547D1AA20F89ACE00893D85 /* placeholder@2x.png in Resources */,
 				E547D1AB20F89ACE00893D85 /* placeholder@3x.png in Resources */,

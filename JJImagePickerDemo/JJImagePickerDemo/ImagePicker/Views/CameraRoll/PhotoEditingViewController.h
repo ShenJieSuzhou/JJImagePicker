@@ -19,7 +19,13 @@
 @interface EditingToolCell : UICollectionViewCell
 
 //icon asset
-@property (strong, nonatomic) UIImageView *previewImage;
+@property (strong, nonatomic) UIImage *editImage;
+
+@property (strong, nonatomic) UIImage *editImageSel;
+//title
+@property (strong, nonatomic) NSString *editTitle;
+//button
+@property (strong, nonatomic) UIButton *editBtn;
 
 @end
 
