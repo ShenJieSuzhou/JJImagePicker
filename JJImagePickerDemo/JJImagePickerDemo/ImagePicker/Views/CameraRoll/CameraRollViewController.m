@@ -71,6 +71,13 @@
     return _snapShotView;
 }
 
+- (PhotoEditingViewController *)photoEditingView{
+    if(!_photoEditingView){
+        _photoEditingView = [[PhotoEditingViewController alloc] init];
+    }
+    return _photoEditingView;
+}
+
 //取消选用该照片
 - (void)cancelBtnClick:(UIButton *)sender{
     [self.snapShotView removeFromSuperview];
@@ -78,7 +85,11 @@
 
 //编辑照片
 - (void)editImage:(UIButton *)sender{
-    
+    UIImage *photoImage = self.snapShotView.snapShot;
+    __weak typeof(self) weakSelf = self;
+    [self presentViewController:self.photoEditingView animated:YES completion:^{
+        [weakSelf.photoEditingView setEditImage:photoImage];
+    }];
 }
 
 //使用该照片，并存入相册

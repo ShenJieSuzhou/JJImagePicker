@@ -34,12 +34,20 @@
 
 //tool asset
 @property (strong, nonatomic) NSMutableArray *toolArray;
-@property (strong, nonatomic) NSMutableArray *subToolArray;
 
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *toolCollectionView;
 
+@end
+
+//编辑工具栏
+@interface EditingSubToolView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@property (strong, nonatomic) NSMutableArray *subToolArray;
 @property (strong, nonatomic) UICollectionView *subToolCollectionView;
+//UIButton
+@property (strong, nonatomic) UIButton *cancel;
+@property (strong, nonatomic) UIButton *confirm;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 @end
 

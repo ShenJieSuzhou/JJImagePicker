@@ -38,7 +38,7 @@
     
     _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_editBtn setBackgroundColor:[UIColor clearColor]];
-    [_cancelBtn setImage:[UIImage imageNamed:@"retakeButton"] forState:UIControlStateNormal];
+    [_editBtn setImage:[UIImage imageNamed:@"confirmButton"] forState:UIControlStateNormal];
     
     _useBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_useBtn setBackgroundColor:[UIColor clearColor]];
