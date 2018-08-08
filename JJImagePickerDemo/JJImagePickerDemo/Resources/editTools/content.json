@@ -28,36 +28,29 @@
             "imagePath": "editor_crop",
             "subTools": [
                 {
-                    "name": "美颜",
-                    "imagePath": 2222
+                    "name": "1:1",
+                    "imagePath": "camera_scale_11_black",
+                    "imageSelPath": "camera_scale_11_black"
                 },
                 {
-                    "name": "曝光",
-                    "imagePtah": 2222
+                    "name": "3:4",
+                    "imagePtah": "camera_scale_34_black",
+                    "imageSelPath": "camera_scale_34_black"
                 },
                 {
-                    "name": "色温",
-                    "imagePath": 2222
+                    "name": "16:9",
+                    "imagePath": "camera_scale_169_black",
+                    "imageSelPath": "camera_scale_169_black"
                 },
                 {
-                    "name": "对比度",
-                    "imagePath": 2222
+                    "name": "9:16",
+                    "imagePath": "camera_scale_916_black",
+                    "imageSelPath": "camera_scale_916_black"
                 },
                 {
-                    "name": "饱和度",
-                    "imagePath": 2222
-                },
-                {
-                    "name": "锐化",
-                    "imagePath": 2222
-                },
-                {
-                    "name": "颗粒",
-                    "imagePath": 2222
-                },
-                {
-                    "name": "暗角",
-                    "imagePath": 2222
+                    "name": "旋转",
+                    "imagePath": "in_p_ic_rolate",
+                    "imageSelPath": "in_p_ic_rolate"
                 }
             ]
         },
@@ -67,35 +60,43 @@
             "subTools": [
                  {
                  "name": "美颜",
-                 "imagePath": 2222
+                 "imagePath": "adjust_beautiful",
+                 "imageSelPath": "adjust_my_selected"
                  },
                  {
                  "name": "曝光",
-                 "imagePtah": 2222
+                 "imagePtah": "adjust_bg",
+                 "imageSelPath": "adjust_bg_selected"
                  },
                  {
                  "name": "色温",
-                 "imagePath": 2222
+                 "imagePath": "adjust_sw",
+                 "imageSelPath": "adjust_sw_selected"
                  },
                  {
                  "name": "对比度",
-                 "imagePath": 2222
+                 "imagePath": "adjust_dbd",
+                 "imageSelPath": "adjust_dbd_selected"
                  },
                  {
                  "name": "饱和度",
-                 "imagePath": 2222
+                 "imagePath": "adjust_bhd",
+                 "imageSelPath": "adjust_bhd_selected"
                  },
                  {
                  "name": "锐化",
-                 "imagePath": 2222
+                 "imagePath": "adjust_rh",
+                 "imageSelPath": "adjust_rh_selected"
                  },
                  {
                  "name": "颗粒",
-                 "imagePath": 2222
+                 "imagePath": "adjust_kl",
+                 "imageSelPath": "adjust_kl_selected"
                  },
                  {
                  "name": "暗角",
-                 "imagePath": 2222
+                 "imagePath": "adjust_aj",
+                 "imageSelPath": "adjust_aj_selected"
                  }
             ]
         },

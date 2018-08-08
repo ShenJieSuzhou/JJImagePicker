@@ -13,6 +13,20 @@
 
 - (void)PhotoEditingFinished:(UIImage *)image;
 
+- (void)PhotoEditShowSubEditTool:(UICollectionView *)collectionV Index:(NSInteger)index array:(NSArray *)array;
+
+- (void)PhotoEditSubEditToolDismiss;
+
+- (void)PhotoEditSubEditToolConfirm;
+
+@end
+
+@protocol PhotoSubToolEditingDelegate <NSObject>
+
+- (void)PhotoEditSubEditToolDismiss;
+
+- (void)PhotoEditSubEditToolConfirm;
+
 @end
 
 //编辑工具栏cell
@@ -25,7 +39,10 @@
 //title
 @property (strong, nonatomic) NSString *editTitle;
 //button
-@property (strong, nonatomic) UIButton *editBtn;
+//@property (strong, nonatomic) UIButton *editBtn;
+@property (strong, nonatomic) UILabel *title;
+
+@property (strong, nonatomic) UIImageView *iconV;
 
 @end
 
@@ -38,6 +55,9 @@
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *toolCollectionView;
 
+//delegate
+@property (weak, nonatomic) id<PhotoEditingDelegate> delegate;
+
 @end
 
 //编辑工具栏
@@ -48,18 +68,23 @@
 @property (strong, nonatomic) UIButton *cancel;
 @property (strong, nonatomic) UIButton *confirm;
 @property (strong, nonatomic) UILabel *titleLabel;
+@property (weak, nonatomic) id<PhotoSubToolEditingDelegate> delegate;
 
 @end
 
-@interface PhotoEditingViewController : CustomPhotoViewController
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,PhotoSubToolEditingDelegate>
 
 @property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
+
 //预览图UI
 @property (nonatomic, strong) UIImageView *preViewImage;
 //预览image
 @property (nonatomic, strong) UIImage *preImage;
 //工具烂
 @property (nonatomic, strong) EditingToolView *editToolView;
+
+@property (nonatomic, strong) EditingSubToolView *editSubToolView;
+
 //编辑工具数据
 @property (nonatomic, strong) NSDictionary *editData;
 

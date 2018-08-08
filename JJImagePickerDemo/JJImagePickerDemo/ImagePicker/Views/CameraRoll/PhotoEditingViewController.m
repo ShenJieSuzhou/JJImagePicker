@@ -15,8 +15,9 @@
 @implementation EditingToolCell
 @synthesize editImage = _editImage;
 @synthesize editTitle = _editTitle;
-@synthesize editBtn = _editBtn;
 @synthesize editImageSel = _editImageSel;
+@synthesize title = _title;
+@synthesize iconV = _iconV;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -32,29 +33,29 @@
 }
 
 - (void)commonInitlization{
-    self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.editBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [self.editBtn setImage:_editImage forState:UIControlStateNormal];
-    [self.editBtn setImage:_editImageSel forState:UIControlStateSelected];
-    [self.editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.editBtn.titleLabel setFont:[UIFont systemFontOfSize:10.0f]];
+    self.iconV = [[UIImageView alloc] init];
+    self.editImage = [[UIImage alloc] init];
     
+    [self.contentView addSubview:self.iconV];
     
-    CGFloat fDeltaWidth = (self.bounds.size.width - _editImage.size.width)/2.0f;
-    CGFloat fDeltaHeight = (self.bounds.size.height - _editImage.size.height)/2.0f;
-    fDeltaWidth = (fDeltaWidth >= 2.0f) ? fDeltaWidth/2.0f : 0.0f;
-    fDeltaHeight = (fDeltaHeight >= 2.0f) ? fDeltaHeight/2.0f : 0.0f;
-    
-    [self.editBtn setImageEdgeInsets:UIEdgeInsetsMake(0, fDeltaWidth, 0.0f, 0.0f)];
-    [self.editBtn setTitleEdgeInsets:UIEdgeInsetsMake(_editImage.size.height + fDeltaHeight * 3, -(self.bounds.size.width - self.editBtn.titleLabel.frame.size.width)/2, 0, 0)];
-    
-    
-    [self.contentView addSubview:self.editBtn];
+    self.title = [[UILabel alloc] init];
+    [self.title setFont:[UIFont systemFontOfSize:10.0f]];
+    [self.title setTextAlignment:NSTextAlignmentCenter];
+    [self.contentView addSubview:self.title];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [self.editBtn setFrame:self.bounds];
+
+    CGSize size = self.bounds.size;
+    CGFloat fDeltaWidth = (size.width - _editImage.size.width)/2;
+    CGFloat fDeltaHeight = (size.height - _editImage.size.height)/2;
+    
+    [self.iconV setFrame:CGRectMake(fDeltaWidth, fDeltaHeight, _editImage.size.width, _editImage.size.height)];
+    [self.iconV setImage:self.editImage];
+    [self.title setFrame:CGRectMake(fDeltaWidth, fDeltaHeight + _editImage.size.height, _editImage.size.width, 8)];
+    [self.title setText:self.editTitle];
+
 }
 
 @end
@@ -62,6 +63,7 @@
 @implementation EditingToolView
 @synthesize toolArray = _toolArray;
 @synthesize toolCollectionView = _toolCollectionView;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -123,20 +125,33 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
+    if(collectionView == _toolCollectionView){
+        //回调选择的是哪个子工具
+        NSDictionary *tool = [self.toolArray objectAtIndex:indexPath.row];
+        
+        if(![tool objectForKey:@"subTools"]){
+            return;
+        }
+        
+        NSArray *subTools = [tool objectForKey:@"subTools"];
+        [_delegate PhotoEditShowSubEditTool:collectionView Index:indexPath.row array:subTools];
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     //初始化cell
     NSString *identifier = JJ_PHOTO_EDITING_CELL;
     EditingToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+
     NSDictionary *tool = [self.toolArray objectAtIndex:indexPath.row];
     NSString *asset = [tool objectForKey:@"imagePath"];
     NSString *title = [tool objectForKey:@"name"];
-    [cell.editBtn setImage:[UIImage imageNamed:asset] forState:UIControlStateNormal];
-    [cell.editBtn setTitle:title forState:UIControlStateNormal];
-    
+
+    UIImage *test =  [UIImage imageNamed:asset];
+
+    cell.editTitle = title;
+    cell.editImage = test;
+
     return cell;
 }
 @end
@@ -147,6 +162,7 @@
 @synthesize cancel = _cancel;
 @synthesize confirm = _confirm;
 @synthesize titleLabel = _titleLabel;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -165,11 +181,13 @@
     self.cancel = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.cancel setFrame:CGRectMake(20.0f, 60.0f, 40.0f, 40.0f)];
     [self.cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [self.cancel addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.cancel];
     
     self.confirm = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.confirm setFrame:CGRectMake(self.bounds.size.width - 60.0f, 60.0f, 40.0f, 40.0f)];
     [self.confirm setTitle:@"确认" forState:UIControlStateNormal];
+    [self.confirm addTarget:self action:@selector(clickConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.confirm];
     
     [self.cancel setHidden:YES];
@@ -206,6 +224,20 @@
     return _subToolCollectionView;
 }
 
+- (void)clickCancelBtn:(UIButton *)sender{
+    //取消
+    if([_delegate respondsToSelector:@selector(PhotoEditSubEditToolDismiss)]){
+        [_delegate PhotoEditSubEditToolDismiss];
+    }
+}
+
+- (void)clickConfirmBtn:(UIButton *)sender{
+    //保存图片
+    if([_delegate respondsToSelector:@selector(PhotoEditSubEditToolConfirm)]){
+        [_delegate PhotoEditSubEditToolConfirm];
+    }
+}
+
 #pragma mark - collectionViewDelegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -218,7 +250,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    //对图片做相对应的处理操作
     
 }
 
@@ -229,8 +261,11 @@
     NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
     NSString *asset = [tool objectForKey:@"imagePath"];
     NSString *title = [tool objectForKey:@"name"];
-    [cell.editBtn setImage:[UIImage imageNamed:asset] forState:UIControlStateNormal];
-    [cell.editBtn setTitle:title forState:UIControlStateNormal];
+//    [cell.editBtn setImage:[UIImage imageNamed:asset] forState:UIControlStateNormal];
+//    [cell.editBtn setTitle:title forState:UIControlStateNormal];
+    UIImage *test =  [UIImage imageNamed:asset];
+    cell.editImage = [UIImage imageNamed:asset];
+    cell.editTitle = title;
     
     return cell;
 }
@@ -281,8 +316,12 @@
     }
 
     self.editToolView = [[EditingToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
+    self.editToolView.delegate = self;
     self.editToolView.toolArray = [self.editData objectForKey:@"field"];
     [self.view addSubview:self.editToolView];
+    
+    [self.view addSubview:self.editSubToolView];
+    [self.editSubToolView setHidden:YES];
     
     //预览图
     self.preViewImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.editToolView.frame.size.height)];
@@ -296,6 +335,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
+}
+
+//懒加载
+- (EditingSubToolView *)editSubToolView{
+    if(!_editSubToolView){
+        _editSubToolView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
+    }
+    return _editSubToolView;
 }
 
 #pragma mark - init edit tool
@@ -330,5 +377,23 @@
     
 }
 
+#pragma mark - PhotoEditingDelegate
+- (void)PhotoEditingFinished:(UIImage *)image{
+    
+}
 
+- (void)PhotoEditShowSubEditTool:(UICollectionView *)collectionV Index:(NSInteger)index array:(NSArray *)array{
+    [self.editToolView setHidden:YES];
+    [self.editSubToolView setSubToolArray:[NSMutableArray arrayWithArray:array]];
+    [self.editSubToolView.subToolCollectionView reloadData];
+    [self.editSubToolView setHidden:NO];
+}
+
+- (void)PhotoEditSubEditToolDismiss{
+    [self.editSubToolView setHidden:YES];
+}
+
+- (void)PhotoEditSubEditToolConfirm{
+    
+}
 @end
