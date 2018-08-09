@@ -11,6 +11,10 @@
 #define JJ_PHOTO_EDITING_CELL @"PHOTO_EDITING_CELL"
 #define JJ_PHOTO_EDITING_SUBTOOL_CELL @"JJ_PHOTO_EDITING_SUBTOOL_CELL"
 #define JJ_EDITTOOL_HEIGHT 100
+#define SPACEING_HORIZONTAL 20.0f
+#define SPACE_VERTICAL 10.0f
+#define EDIT_BTN_WIDTH 40.0f
+#define EDIT_BTN_HEIGHT 40.0f
 
 @implementation EditingToolCell
 @synthesize editImage = _editImage;
@@ -53,9 +57,8 @@
     
     [self.iconV setFrame:CGRectMake(fDeltaWidth, fDeltaHeight, _editImage.size.width, _editImage.size.height)];
     [self.iconV setImage:self.editImage];
-    [self.title setFrame:CGRectMake(fDeltaWidth, fDeltaHeight + _editImage.size.height, _editImage.size.width, 8)];
+    [self.title setFrame:CGRectMake(fDeltaWidth, fDeltaHeight + _editImage.size.height, _editImage.size.width, 10)];
     [self.title setText:self.editTitle];
-
 }
 
 @end
@@ -178,38 +181,44 @@
 }
 
 - (void)commonInitlization{
+    [self setBackgroundColor:[UIColor whiteColor]];
     self.cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.cancel setFrame:CGRectMake(20.0f, 60.0f, 40.0f, 40.0f)];
-    [self.cancel setTitle:@"取消" forState:UIControlStateNormal];
     [self.cancel addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.cancel];
     
     self.confirm = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.confirm setFrame:CGRectMake(self.bounds.size.width - 60.0f, 60.0f, 40.0f, 40.0f)];
-    [self.confirm setTitle:@"确认" forState:UIControlStateNormal];
     [self.confirm addTarget:self action:@selector(clickConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.confirm];
-    
-    [self.cancel setHidden:YES];
-    [self.confirm setHidden:YES];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
+    [self addSubview:self.subToolCollectionView];
+    CGFloat height = self.subToolCollectionView.frame.size.height;
+    UIImage *close = [UIImage imageNamed:@"tabbar_close"];
+    UIImage *finish = [UIImage imageNamed:@"tabbar_finish"];
+    
+    [self.cancel setBackgroundImage:close forState:UIControlStateNormal];
+    [self.cancel setFrame:CGRectMake(SPACEING_HORIZONTAL, height, close.size.width, close.size.height)];
+    
+    [self.confirm setBackgroundImage:finish forState:UIControlStateNormal];
+    [self.confirm setFrame:CGRectMake(self.bounds.size.width - finish.size.width - SPACEING_HORIZONTAL, height, finish.size.width, finish.size.width)];
+    
+    [self addSubview:self.cancel];
+    [self addSubview:self.confirm];
 }
 
 //懒加载
 - (UICollectionView *)subToolCollectionView{
     if(!_subToolCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(60, 60);
+        layout.itemSize = CGSizeMake(70, 70);
         layout.collectionView.pagingEnabled = YES;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         //自动网格布局
-        _subToolCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 40) collectionViewLayout:layout];
+        _subToolCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 30) collectionViewLayout:layout];
         //设置数据源代理
         _subToolCollectionView.dataSource = self;
         _subToolCollectionView.delegate = self;
@@ -222,6 +231,15 @@
     }
     
     return _subToolCollectionView;
+}
+
+- (void)setSubToolArray:(NSMutableArray *)subToolArray{
+    if(!subToolArray){
+        return;
+    }
+    _subToolArray = nil;
+    _subToolArray = subToolArray;
+    [_subToolCollectionView reloadData];
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{
@@ -261,12 +279,12 @@
     NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
     NSString *asset = [tool objectForKey:@"imagePath"];
     NSString *title = [tool objectForKey:@"name"];
-//    [cell.editBtn setImage:[UIImage imageNamed:asset] forState:UIControlStateNormal];
-//    [cell.editBtn setTitle:title forState:UIControlStateNormal];
-    UIImage *test =  [UIImage imageNamed:asset];
+
+    cell.editImage = nil;
+    cell.editTitle =nil;
+    
     cell.editImage = [UIImage imageNamed:asset];
     cell.editTitle = title;
-    
     return cell;
 }
 
@@ -320,9 +338,6 @@
     self.editToolView.toolArray = [self.editData objectForKey:@"field"];
     [self.view addSubview:self.editToolView];
     
-    [self.view addSubview:self.editSubToolView];
-    [self.editSubToolView setHidden:YES];
-    
     //预览图
     self.preViewImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.editToolView.frame.size.height)];
     self.preViewImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -341,6 +356,7 @@
 - (EditingSubToolView *)editSubToolView{
     if(!_editSubToolView){
         _editSubToolView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
+        _editSubToolView.delegate = self;
     }
     return _editSubToolView;
 }
@@ -385,12 +401,13 @@
 - (void)PhotoEditShowSubEditTool:(UICollectionView *)collectionV Index:(NSInteger)index array:(NSArray *)array{
     [self.editToolView setHidden:YES];
     [self.editSubToolView setSubToolArray:[NSMutableArray arrayWithArray:array]];
-    [self.editSubToolView.subToolCollectionView reloadData];
-    [self.editSubToolView setHidden:NO];
+    [self.view addSubview:self.editSubToolView];
 }
 
 - (void)PhotoEditSubEditToolDismiss{
-    [self.editSubToolView setHidden:YES];
+    [self.editSubToolView removeFromSuperview];
+    self.editSubToolView = nil;
+    [self.editToolView setHidden:NO];
 }
 
 - (void)PhotoEditSubEditToolConfirm{

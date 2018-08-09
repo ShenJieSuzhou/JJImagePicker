@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "3:4",
-                    "imagePtah": "camera_scale_34_black",
+                    "imagePath": "camera_scale_34_black",
                     "imageSelPath": "camera_scale_34_black"
                 },
                 {
@@ -65,7 +65,7 @@
                  },
                  {
                  "name": "曝光",
-                 "imagePtah": "adjust_bg",
+                 "imagePath": "adjust_bg",
                  "imageSelPath": "adjust_bg_selected"
                  },
                  {

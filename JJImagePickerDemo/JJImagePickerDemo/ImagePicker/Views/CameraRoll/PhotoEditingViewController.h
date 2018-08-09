@@ -62,8 +62,10 @@
 
 //编辑工具栏
 @interface EditingSubToolView : UIView<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
 @property (strong, nonatomic) NSMutableArray *subToolArray;
 @property (strong, nonatomic) UICollectionView *subToolCollectionView;
+
 //UIButton
 @property (strong, nonatomic) UIButton *cancel;
 @property (strong, nonatomic) UIButton *confirm;
