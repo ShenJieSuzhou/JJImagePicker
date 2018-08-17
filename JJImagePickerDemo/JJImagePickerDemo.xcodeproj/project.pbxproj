@@ -79,6 +79,9 @@
 		E547D1B020F89ACE00893D85 /* retakeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E547D18620F89ACD00893D85 /* retakeButton@2x.png */; };
 		E547D1B120F89ACE00893D85 /* flashOffIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E547D18720F89ACD00893D85 /* flashOffIcon.png */; };
 		E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E547D18820F89ACE00893D85 /* libraryButton.png */; };
+		E5506B0A21269B870077E62B /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506B0521269B860077E62B /* TOCropScrollView.m */; };
+		E5506B0B21269B870077E62B /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506B0821269B870077E62B /* TOCropOverlayView.m */; };
+		E5506B0C21269B870077E62B /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506B0921269B870077E62B /* TOCropView.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -210,6 +213,12 @@
 		E547D18620F89ACD00893D85 /* retakeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retakeButton@2x.png"; sourceTree = "<group>"; };
 		E547D18720F89ACD00893D85 /* flashOffIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashOffIcon.png; sourceTree = "<group>"; };
 		E547D18820F89ACE00893D85 /* libraryButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = libraryButton.png; sourceTree = "<group>"; };
+		E5506B0421269B860077E62B /* TOCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropOverlayView.h; sourceTree = "<group>"; };
+		E5506B0521269B860077E62B /* TOCropScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropScrollView.m; sourceTree = "<group>"; };
+		E5506B0621269B870077E62B /* TOCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropView.h; sourceTree = "<group>"; };
+		E5506B0721269B870077E62B /* TOCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropScrollView.h; sourceTree = "<group>"; };
+		E5506B0821269B870077E62B /* TOCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropOverlayView.m; sourceTree = "<group>"; };
+		E5506B0921269B870077E62B /* TOCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropView.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -349,6 +358,7 @@
 		E522785520BFD969003E2F38 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				E5506B022126992F0077E62B /* Edit */,
 				E522785620BFD9B3003E2F38 /* GridView.h */,
 				E522785720BFD9B3003E2F38 /* GridView.m */,
 				E522785920BFDA44003E2F38 /* TabBarView.h */,
@@ -461,6 +471,27 @@
 				E522786820C0E464003E2F38 /* redarrowRighticon.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E5506B022126992F0077E62B /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				E5506B03212699460077E62B /* Crop */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		E5506B03212699460077E62B /* Crop */ = {
+			isa = PBXGroup;
+			children = (
+				E5506B0421269B860077E62B /* TOCropOverlayView.h */,
+				E5506B0821269B870077E62B /* TOCropOverlayView.m */,
+				E5506B0721269B870077E62B /* TOCropScrollView.h */,
+				E5506B0521269B860077E62B /* TOCropScrollView.m */,
+				E5506B0621269B870077E62B /* TOCropView.h */,
+				E5506B0921269B870077E62B /* TOCropView.m */,
+			);
+			path = Crop;
 			sourceTree = "<group>";
 		};
 		E56B9CB620AD2FA700021DF8 = {
@@ -664,7 +695,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E522785B20BFDA44003E2F38 /* TabBarView.m in Sources */,
+				E5506B0C21269B870077E62B /* TOCropView.m in Sources */,
 				E52C538B20EB5161003862F4 /* InterestingViewController.m in Sources */,
+				E5506B0B21269B870077E62B /* TOCropOverlayView.m in Sources */,
 				E522786220BFE4FC003E2F38 /* CustomNaviBarView.m in Sources */,
 				E5CFB55E20D394DE0021EB68 /* JJPhotoPreviewView.m in Sources */,
 				E545F54620C0FB8200E74CA1 /* DropButton.m in Sources */,
@@ -699,6 +732,7 @@
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E52C538E20EB65D5003862F4 /* JJPublishPreviewCell.m in Sources */,
 				E522785820BFD9B3003E2F38 /* GridView.m in Sources */,
+				E5506B0A21269B870077E62B /* TOCropScrollView.m in Sources */,
 				E5CFB56120D395210021EB68 /* JJPreviewViewCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
