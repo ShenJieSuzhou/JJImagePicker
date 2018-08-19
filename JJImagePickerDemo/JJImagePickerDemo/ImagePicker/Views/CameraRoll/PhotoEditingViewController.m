@@ -22,7 +22,6 @@
 @synthesize preImage = _preImage;
 @synthesize editToolView = _editToolView;
 @synthesize editData = _editData;
-@synthesize jjCropView = _jjCropView;
 
 
 
