@@ -80,7 +80,7 @@
 }
 
 - (void)initUI{
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.btnBack = [[self class] createNavBarImageBtn:@"return_icon" Highligthed:@"return_icon" Target:self Action:@selector(btnBack:)];
     self.labelTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     self.labelTitle.backgroundColor = [UIColor clearColor];
