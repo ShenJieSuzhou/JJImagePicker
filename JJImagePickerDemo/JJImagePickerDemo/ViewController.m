@@ -33,10 +33,10 @@
 - (IBAction)start:(id)sender {
 //    [JJImageViewPicker showTheActionsheet:self];
     
-    UIImage *photoImage = [UIImage imageNamed:@"22.jpg"];
-    __weak typeof(self) weakSelf = self;
+    UIImage *photoImage = [UIImage imageNamed:@"11"];
+    [self.photoEditingView setEditImage:photoImage];
     [self presentViewController:self.photoEditingView animated:YES completion:^{
-        [weakSelf.photoEditingView setEditImage:photoImage];
+        
     }];
 }
 

@@ -219,12 +219,29 @@
 
 //每个分组里有多少个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [_subToolArray count];;
+    return [_subToolArray count];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //对图片做相对应的处理操作
+    NSInteger index = indexPath.row;
+    if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:Tools:)]){
+        return;
+    }
     
+    if(index == 0){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPresetSquare];
+    }else if(index == 1){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset4x3];
+    }else if(index == 2){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset5x3];
+    }else if(index == 3){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset5x4];
+    }else if(index == 4){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset16x9];
+    }else if(index == 5){
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -242,7 +259,6 @@
     cell.editTitle = title;
     return cell;
 }
-
 
 @end
 

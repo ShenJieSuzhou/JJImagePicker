@@ -15,8 +15,7 @@
 @property (nonatomic, assign) BOOL firstTime;
 @end
 
-static const CGFloat kTOCropViewControllerTitleTopPadding = 14.0f;
-static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
+static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
 
 @implementation JJCropViewController
 @synthesize editSubToolView = _editSubToolView;
@@ -50,8 +49,6 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     // Do any additional setup after loading the view.
     self.transitioningDelegate = self;
     self.view.backgroundColor = self.cropView.backgroundColor;
-    
-    BOOL circularMode = (self.croppingStyle == TOCropViewCroppingStyleCircular);
     
     // Layout the views initially
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:self.verticalLayout];
@@ -97,19 +94,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     [self.cropView setBackgroundImageViewHidden:NO animated:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark lazyLoading
 //懒加载
 - (EditingSubToolView *)editSubToolView{
     if(!_editSubToolView){
@@ -185,28 +175,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     else {
         self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0f, 0.0f, insets.bottom, 0.0f);
     }
-    
-//    if (!self.titleLabel.text.length) {
-//        if (self.verticalLayout) {
-//            self.cropView.cropRegionInsets = UIEdgeInsetsMake(insets.top, 0.0f, 0.0, 0.0f);
-//        }
-//        else {
-//            self.cropView.cropRegionInsets = UIEdgeInsetsMake(0.0f, 0.0f, insets.bottom, 0.0f);
-//        }
-    
-//        return;
-//    }
-//
-//    // Work out the size of the title label based on the crop view size
-//    CGRect frame = self.titleLabel.frame;
-//    frame.size = [self.titleLabel sizeThatFits:self.cropView.frame.size];
-//    self.titleLabel.frame = frame;
-//
-//    // Set out the appropriate inset for that
-//    CGFloat verticalInset = self.statusBarHeight;
-//    verticalInset += kTOCropViewControllerTitleTopPadding;
-//    verticalInset += self.titleLabel.frame.size.height;
-//    self.cropView.cropRegionInsets = UIEdgeInsetsMake(verticalInset, 0, insets.bottom, 0);
+}
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    [self adjustCropViewInsets];
 }
 
 - (void)viewDidLayoutSubviews
@@ -221,20 +195,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
         [self.cropView performInitialSetup];
         self.firstTime = YES;
     }
-    
-    if (self.title.length) {
-//        self.titleLabel.frame = [self frameForTitleLabelWithSize:self.titleLabel.frame.size verticalLayout:self.verticalLayout];
-        [self.cropView moveCroppedContentToCenterAnimated:NO];
-    }
-    
-//    [UIView performWithoutAnimation:^{
-//        self.toolbar.frame = [self frameForToolbarWithVerticalLayout:self.verticalLayout];
-//        [self adjustToolbarInsets];
-//        [self.toolbar setNeedsLayout];
-//    }];
 }
-
-
 
 - (void)setResetAspectRatioEnabled:(BOOL)resetAspectRatioEnabled
 {
@@ -280,23 +241,23 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     return CGRectGetWidth(self.view.bounds) < CGRectGetHeight(self.view.bounds);
 }
 
-- (BOOL)overrideStatusBar
-{
-    // If we're pushed from a navigation controller, we'll defer
-    // to its handling of the status bar
-    if (self.navigationController) {
-        return NO;
-    }
-    
-    // If the view controller presenting us already hid it, we don't need to
-    // do anything ourselves
-    if (self.presentingViewController.prefersStatusBarHidden) {
-        return NO;
-    }
-    
-    // We'll handle the status bar
-    return YES;
-}
+//- (BOOL)overrideStatusBar
+//{
+//    // If we're pushed from a navigation controller, we'll defer
+//    // to its handling of the status bar
+//    if (self.navigationController) {
+//        return NO;
+//    }
+//
+//    // If the view controller presenting us already hid it, we don't need to
+//    // do anything ourselves
+//    if (self.presentingViewController.prefersStatusBarHidden) {
+//        return NO;
+//    }
+//
+//    // We'll handle the status bar
+//    return YES;
+//}
 
 - (BOOL)statusBarHidden
 {
@@ -310,7 +271,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
 //    if (self.presentingViewController.prefersStatusBarHidden) {
 //        return YES;
 //    }
-    
+
     // Our default behaviour is to always hide the status bar
     return NO;
 }
@@ -545,16 +506,55 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 44.0f;
     [self.cropView resetLayoutToDefaultAnimated:animated];
 }
 
-
-
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
+    [self.cropView removeFromSuperview];
+    self.cropView = nil;
     
+    [self.editSubToolView removeFromSuperview];
+    self.editSubToolView = nil;
     
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
+    CGRect cropFrame = self.cropView.imageCropFrame;
+    NSInteger angle = self.cropView.angle;
     
+    UIImage *cropImage = nil;
+    cropImage = [self.image croppedImageWithFrame:cropFrame angle:angle circularClip:NO];
+    
+    if ([self.delegate respondsToSelector:@selector(cropViewController:didCropToImage:withRect:angle:)]) {
+        [self.delegate cropViewController:self didCropToImage:cropImage withRect:cropFrame angle:angle];
+    }
+}
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool{
+    if (tool == JJAspectRatioPresetSquare) {
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPresetSquare animated:YES];
+    }else if(tool == JJAspectRatioPreset3x2){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset3x2 animated:YES];
+    }else if (tool == JJAspectRatioPreset4x3){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset4x3 animated:YES];
+    }else if(tool == JJAspectRatioPreset5x4){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset5x3 animated:YES];
+    }else if(tool == JJAspectRatioPreset7x5){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset7x5 animated:YES];
+    }else if(tool == JJAspectRatioPreset16x9){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset16x9 animated:YES];
+    }else if(tool == JJRotateViewClockwise){
+        [self rotateCropViewClockwise];
+    }
+}
+
+#pragma mark - TOCropViewDelegate
+- (void)cropViewDidBecomeResettable:(nonnull TOCropView *)cropView{
+    
+}
+
+- (void)cropViewDidBecomeNonResettable:(nonnull TOCropView *)cropView{
     
 }
 

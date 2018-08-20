@@ -22,13 +22,15 @@
 @synthesize preImage = _preImage;
 @synthesize editToolView = _editToolView;
 @synthesize editData = _editData;
-
+@synthesize croppedFrame = _croppedFrame;
+@synthesize angle = _angle;
+@synthesize layerV = _layerV;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor lightGrayColor]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
@@ -60,12 +62,12 @@
     self.editToolView.toolArray = [self.editData objectForKey:@"field"];
     [self.view addSubview:self.editToolView];
     
-    //预览图
-    self.preViewImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.editToolView.frame.size.height)];
-    [self.preViewImage setBackgroundColor:[UIColor clearColor]];
-    self.preViewImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT - self.customNaviBar.frame.size.height)];
+    [self.layerV setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.layerV];
     
-    [self.view addSubview:self.preViewImage];
+    //预览图
+    [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.editToolView];
 }
 
@@ -75,7 +77,42 @@
     
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self layoutImageView];
+}
 
+#pragma mark - Image Layout -
+- (void)layoutImageView
+{
+    if (self.preViewImage.image == nil)
+        return;
+    
+    CGFloat padding = 20.0f;
+    
+    CGRect viewFrame = self.layerV.frame;
+    viewFrame.size.width -= (padding * 2.0f);
+    viewFrame.size.height -= (padding * 2.0f);
+    
+    CGRect imageFrame = CGRectZero;
+    imageFrame.size = self.preViewImage.image.size;
+    
+    if (self.preViewImage.image.size.width > viewFrame.size.width ||
+        self.preViewImage.image.size.height > viewFrame.size.height)
+    {
+        CGFloat scale = MIN(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height);
+        imageFrame.size.width *= (scale - 0.05);
+        imageFrame.size.height *= (scale - 0.05);
+        imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
+        imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
+        self.preViewImage.frame = imageFrame;
+    }
+    else {
+        self.preViewImage.frame = imageFrame;
+        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
+    }
+}
 
 #pragma mark - init edit tool
 - (NSDictionary *)loadEditToolConfigFile{
@@ -94,6 +131,25 @@
     }
     
     [self.preViewImage setImage:image];
+}
+
+- (UIImageView *)preViewImage{
+    if(!_preViewImage){
+        _preViewImage = [[UIImageView alloc] init];
+        _preViewImage.userInteractionEnabled = YES;
+        _preViewImage.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    
+    return _preViewImage;
+}
+
+- (JJCropViewController *)jjCropView{
+    if(!_jjCropView){
+        _jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
+        _jjCropView.delegate = self;
+    }
+    
+    return _jjCropView;
 }
 
 //返回
@@ -118,23 +174,35 @@
     //switch 语句来判断跳转哪一个界面
     
     //加载裁剪
-    [self.editToolView setHidden:YES];
-    JJCropViewController *jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
-    
-    [jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
-    [self presentViewController:jjCropView animated:YES completion:^{
+    [self.jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
+    [self presentViewController:self.jjCropView animated:YES completion:^{
         
     }];
 }
 
 - (void)PhotoEditSubEditToolDismiss{
-//    [self.editSubToolView removeFromSuperview];
-//    self.editSubToolView = nil;
-    [self.editToolView setHidden:NO];
+
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-    
+
+}
+
+#pragma mark - Cropper Delegate -
+- (void)cropViewController:(JJCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
+{
+    self.croppedFrame = cropRect;
+    self.angle = angle;
+    [self updateImageViewWithImage:image fromCropViewController:cropViewController];
+}
+
+- (void)updateImageViewWithImage:(UIImage *)image fromCropViewController:(JJCropViewController *)cropViewController
+{
+    self.preViewImage.image = image;
+    [self layoutImageView];
+    [cropViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 @end

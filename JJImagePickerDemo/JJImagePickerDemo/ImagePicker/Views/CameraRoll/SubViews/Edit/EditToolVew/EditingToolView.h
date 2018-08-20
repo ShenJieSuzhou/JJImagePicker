@@ -7,6 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TOCropViewConstants.h"
+
+typedef enum : NSUInteger {
+    JJAspectRatioPresetSquare,
+    JJAspectRatioPreset3x2,
+    JJAspectRatioPreset5x3,
+    JJAspectRatioPreset4x3,
+    JJAspectRatioPreset5x4,
+    JJAspectRatioPreset7x5,
+    JJAspectRatioPreset16x9,
+    JJRotateViewClockwise
+} PhotoEditSubTools;
 
 @protocol PhotoEditingDelegate <NSObject>
 
@@ -25,6 +37,8 @@
 - (void)PhotoEditSubEditToolDismiss;
 
 - (void)PhotoEditSubEditToolConfirm;
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool;
 
 @end
 

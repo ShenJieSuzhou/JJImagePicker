@@ -12,10 +12,12 @@
 #import "JJCropViewController.h"
 
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate>
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate>
 
 @property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
 
+//预览图底层layer
+@property (nonatomic, strong) UIView *layerV;
 //预览图UI
 @property (nonatomic, strong) UIImageView *preViewImage;
 //预览image
@@ -23,9 +25,14 @@
 //工具烂
 @property (nonatomic, strong) EditingToolView *editToolView;
 
+@property (nonatomic, strong) JJCropViewController *jjCropView;
+
 //编辑工具数据
 @property (nonatomic, strong) NSDictionary *editData;
 
+@property (nonatomic, assign) CGRect croppedFrame;
+
+@property (nonatomic, assign) NSInteger angle;
 
 /*
  * @brief 设置要编辑的图
