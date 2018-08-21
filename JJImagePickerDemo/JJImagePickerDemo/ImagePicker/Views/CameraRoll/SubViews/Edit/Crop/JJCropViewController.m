@@ -11,7 +11,6 @@
 
 @interface JJCropViewController ()
 @property (nonatomic, strong, readwrite) TOCropView *cropView;
-/* Flag to perform initial setup on the first run */
 @property (nonatomic, assign) BOOL firstTime;
 @end
 
@@ -100,7 +99,6 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
 }
 
 #pragma mark lazyLoading
-//懒加载
 - (EditingSubToolView *)editSubToolView{
     if(!_editSubToolView){
         _editSubToolView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
@@ -197,23 +195,10 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     }
 }
 
-- (void)setResetAspectRatioEnabled:(BOOL)resetAspectRatioEnabled
-{
-    self.cropView.resetAspectRatioEnabled = resetAspectRatioEnabled;
-    if (!self.aspectRatioPickerButtonHidden) {
-        self.aspectRatioPickerButtonHidden = (resetAspectRatioEnabled == NO && self.aspectRatioLockEnabled);
-    }
-}
-
 - (void)setCustomAspectRatio:(CGSize)customAspectRatio
 {
     _customAspectRatio = customAspectRatio;
     [self setAspectRatioPreset:TOCropViewControllerAspectRatioPresetCustom animated:NO];
-}
-
-- (BOOL)resetAspectRatioEnabled
-{
-    return self.cropView.resetAspectRatioEnabled;
 }
 
 - (void)setAngle:(NSInteger)angle
@@ -221,58 +206,13 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     self.cropView.angle = angle;
 }
 
-- (NSInteger)angle
-{
-    return self.cropView.angle;
-}
-
-- (void)setImageCropFrame:(CGRect)imageCropFrame
-{
-    self.cropView.imageCropFrame = imageCropFrame;
-}
-
-- (CGRect)imageCropFrame
-{
-    return self.cropView.imageCropFrame;
-}
-
 - (BOOL)verticalLayout
 {
     return CGRectGetWidth(self.view.bounds) < CGRectGetHeight(self.view.bounds);
 }
 
-//- (BOOL)overrideStatusBar
-//{
-//    // If we're pushed from a navigation controller, we'll defer
-//    // to its handling of the status bar
-//    if (self.navigationController) {
-//        return NO;
-//    }
-//
-//    // If the view controller presenting us already hid it, we don't need to
-//    // do anything ourselves
-//    if (self.presentingViewController.prefersStatusBarHidden) {
-//        return NO;
-//    }
-//
-//    // We'll handle the status bar
-//    return YES;
-//}
-
 - (BOOL)statusBarHidden
 {
-    // Defer behavioir to the hosting navigation controller
-//    if (self.navigationController) {
-//        return self.navigationController.prefersStatusBarHidden;
-//    }
-//
-//    //If our presenting controller has already hidden the status bar,
-//    //hide the status bar by default
-//    if (self.presentingViewController.prefersStatusBarHidden) {
-//        return YES;
-//    }
-
-    // Our default behaviour is to always hide the status bar
     return NO;
 }
 
@@ -312,120 +252,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     return insets;
 }
 
-- (void)setMinimumAspectRatio:(CGFloat)minimumAspectRatio
-{
-    self.cropView.minimumAspectRatio = minimumAspectRatio;
-}
-
-- (CGFloat)minimumAspectRatio
-{
-    return self.cropView.minimumAspectRatio;
-}
-
-- (void)setAspectRatioLockEnabled:(BOOL)aspectRatioLockEnabled
-{
-    self.cropView.aspectRatioLockEnabled = aspectRatioLockEnabled;
-    if (!self.aspectRatioPickerButtonHidden) {
-        self.aspectRatioPickerButtonHidden = (aspectRatioLockEnabled && self.resetAspectRatioEnabled == NO);
-    }
-}
-
-- (void)setAspectRatioLockDimensionSwapEnabled:(BOOL)aspectRatioLockDimensionSwapEnabled
-{
-    self.cropView.aspectRatioLockDimensionSwapEnabled = aspectRatioLockDimensionSwapEnabled;
-}
-
 - (BOOL)aspectRatioLockEnabled
 {
     return self.cropView.aspectRatioLockEnabled;
-}
-
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-//    self.toolbarSnapshotView = [self.toolbar snapshotViewAfterScreenUpdates:NO];
-//    self.toolbarSnapshotView.frame = self.toolbar.frame;
-//
-//    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-//        self.toolbarSnapshotView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    }
-//    else {
-//        self.toolbarSnapshotView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
-//    }
-//    [self.view addSubview:self.toolbarSnapshotView];
-//
-//    // Set up the toolbar frame to be just off t
-//    CGRect frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
-//    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-//        frame.origin.x = -frame.size.width;
-//    }
-//    else {
-//        frame.origin.y = self.view.bounds.size.height;
-//    }
-//    self.toolbar.frame = frame;
-//
-//    [self.toolbar layoutIfNeeded];
-//    self.toolbar.alpha = 0.0f;
-    
-    [self.cropView prepareforRotation];
-    self.cropView.frame = [self frameForCropViewWithVerticalLayout:!UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
-    self.cropView.simpleRenderMode = YES;
-    self.cropView.internalLayoutDisabled = YES;
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    //Remove all animations in the toolbar
-//    self.toolbar.frame = [self frameForToolbarWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-//    [self.toolbar.layer removeAllAnimations];
-//    for (CALayer *sublayer in self.toolbar.layer.sublayers) {
-//        [sublayer removeAllAnimations];
-//    }
-    
-    // On iOS 11, since these layout calls are done multiple times, if we don't aggregate from the
-    // current state, the animation breaks.
-    [UIView animateWithDuration:duration
-                          delay:0.0f
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:
-     ^{
-         self.cropView.frame = [self frameForCropViewWithVerticalLayout:!UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-//         self.toolbar.frame = [self frameForToolbarWithVerticalLayout:UIInterfaceOrientationIsPortrait(toInterfaceOrientation)];
-         [self.cropView performRelayoutForRotation];
-     } completion:nil];
-    
-//    self.toolbarSnapshotView.alpha = 0.0f;
-//    self.toolbar.alpha = 1.0f;
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-//    [self.toolbarSnapshotView removeFromSuperview];
-//    self.toolbarSnapshotView = nil;
-    
-    [self.cropView setSimpleRenderMode:NO animated:YES];
-    self.cropView.internalLayoutDisabled = NO;
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    // If the size doesn't change (e.g, we did a 180 degree device rotation), don't bother doing a relayout
-    if (CGSizeEqualToSize(size, self.view.bounds.size)) { return; }
-    
-    UIInterfaceOrientation orientation = UIInterfaceOrientationPortrait;
-    CGSize currentSize = self.view.bounds.size;
-    if (currentSize.width < size.width) {
-        orientation = UIInterfaceOrientationLandscapeLeft;
-    }
-    
-    [self willRotateToInterfaceOrientation:orientation duration:coordinator.transitionDuration];
-    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        [self willAnimateRotationToInterfaceOrientation:orientation duration:coordinator.transitionDuration];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        [self didRotateFromInterfaceOrientation:orientation];
-    }];
 }
 
 #pragma mark - setAspectRatio
@@ -471,21 +300,6 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
             break;
     }
     
-    // If the aspect ratio lock is not enabled, allow a swap
-    // If the aspect ratio lock is on, allow a aspect ratio swap
-    // only if the allowDimensionSwap option is specified.
-    BOOL aspectRatioCanSwapDimensions = !self.aspectRatioLockEnabled ||
-    (self.aspectRatioLockEnabled && self.aspectRatioLockDimensionSwapEnabled);
-    
-    //If the image is a portrait shape, flip the aspect ratio to match
-//    if (self.cropView.cropBoxAspectRatioIsPortrait &&
-//        aspectRatioCanSwapDimensions)
-//    {
-//        CGFloat width = aspectRatio.width;
-//        aspectRatio.width = aspectRatio.height;
-//        aspectRatio.height = width;
-//    }
-    
     [self.cropView setAspectRatio:aspectRatio animated:animated];
 }
 
@@ -500,19 +314,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     [self.cropView rotateImageNinetyDegreesAnimated:YES clockwise:NO];
 }
 
-#pragma mark - Reset -
-- (void)resetCropViewLayout
-{
-    BOOL animated = (self.cropView.angle == 0);
-    
-    if (self.resetAspectRatioEnabled) {
-        self.aspectRatioLockEnabled = NO;
-    }
-    
-    [self.cropView resetLayoutToDefaultAnimated:animated];
-}
-
 #pragma mark - PhotoSubToolEditingDelegate
+//取消裁剪
 - (void)PhotoEditSubEditToolDismiss{
     [self.cropView removeFromSuperview];
     self.cropView = nil;
@@ -525,6 +328,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     }];
 }
 
+//裁剪结果提交
 - (void)PhotoEditSubEditToolConfirm{
     CGRect cropFrame = self.cropView.imageCropFrame;
     NSInteger angle = self.cropView.angle;
@@ -551,15 +355,6 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     }else if(tool == JJRotateViewClockwise){
         [self rotateCropViewClockwise];
     }
-}
-
-#pragma mark - TOCropViewDelegate
-- (void)cropViewDidBecomeResettable:(nonnull TOCropView *)cropView{
-    
-}
-
-- (void)cropViewDidBecomeNonResettable:(nonnull TOCropView *)cropView{
-    
 }
 
 @end
