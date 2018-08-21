@@ -29,23 +29,28 @@
             "subTools": [
                 {
                     "name": "1:1",
-                    "imagePath": "camera_scale_11_black",
-                    "imageSelPath": "camera_scale_11_black"
+                    "imagePath": "clip11",
+                    "imageSelPath": "clip11"
                 },
                 {
                     "name": "3:4",
-                    "imagePath": "camera_scale_34_black",
-                    "imageSelPath": "camera_scale_34_black"
+                    "imagePath": "clip34",
+                    "imageSelPath": "clip34"
                 },
                 {
-                    "name": "16:9",
-                    "imagePath": "camera_scale_169_black",
-                    "imageSelPath": "camera_scale_169_black"
+                    "name": "4:3",
+                    "imagePath": "clip43",
+                    "imageSelPath": "clip43"
                 },
                 {
                     "name": "9:16",
-                    "imagePath": "camera_scale_916_black",
-                    "imageSelPath": "camera_scale_916_black"
+                    "imagePath": "clip916",
+                    "imageSelPath": "clip916"
+                },
+                {
+                    "name": "16:9",
+                    "imagePath": "clip169",
+                    "imageSelPath": "clip169"
                 },
                 {
                     "name": "旋转",

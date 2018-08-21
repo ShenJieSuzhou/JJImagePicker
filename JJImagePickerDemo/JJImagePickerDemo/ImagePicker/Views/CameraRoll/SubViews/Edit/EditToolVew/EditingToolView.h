@@ -14,9 +14,11 @@ typedef enum : NSUInteger {
     JJAspectRatioPreset3x2,
     JJAspectRatioPreset5x3,
     JJAspectRatioPreset4x3,
+    JJAspectRatioPreset3x4,
     JJAspectRatioPreset5x4,
     JJAspectRatioPreset7x5,
     JJAspectRatioPreset16x9,
+    JJAspectRatioPreset9x16,
     JJRotateViewClockwise
 } PhotoEditSubTools;
 

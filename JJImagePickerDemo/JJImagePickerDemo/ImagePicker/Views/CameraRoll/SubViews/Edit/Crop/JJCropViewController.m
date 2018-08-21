@@ -451,6 +451,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
         case TOCropViewControllerAspectRatioPreset4x3:
             aspectRatio = CGSizeMake(4.0f, 3.0f);
             break;
+        case TOCropViewControllerAspectRatioPreset3x4:
+            aspectRatio = CGSizeMake(3.0f, 4.0f);
+            break;
         case TOCropViewControllerAspectRatioPreset5x4:
             aspectRatio = CGSizeMake(5.0f, 4.0f);
             break;
@@ -459,6 +462,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
             break;
         case TOCropViewControllerAspectRatioPreset16x9:
             aspectRatio = CGSizeMake(16.0f, 9.0f);
+            break;
+        case TOCropViewControllerAspectRatioPreset9x16:
+            aspectRatio = CGSizeMake(9.0f, 16.0f);
             break;
         case TOCropViewControllerAspectRatioPresetCustom:
             aspectRatio = self.customAspectRatio;
@@ -472,13 +478,13 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     (self.aspectRatioLockEnabled && self.aspectRatioLockDimensionSwapEnabled);
     
     //If the image is a portrait shape, flip the aspect ratio to match
-    if (self.cropView.cropBoxAspectRatioIsPortrait &&
-        aspectRatioCanSwapDimensions)
-    {
-        CGFloat width = aspectRatio.width;
-        aspectRatio.width = aspectRatio.height;
-        aspectRatio.height = width;
-    }
+//    if (self.cropView.cropBoxAspectRatioIsPortrait &&
+//        aspectRatioCanSwapDimensions)
+//    {
+//        CGFloat width = aspectRatio.width;
+//        aspectRatio.width = aspectRatio.height;
+//        aspectRatio.height = width;
+//    }
     
     [self.cropView setAspectRatio:aspectRatio animated:animated];
 }
@@ -534,14 +540,12 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool{
     if (tool == JJAspectRatioPresetSquare) {
         [self setAspectRatioPreset:TOCropViewControllerAspectRatioPresetSquare animated:YES];
-    }else if(tool == JJAspectRatioPreset3x2){
-        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset3x2 animated:YES];
+    }else if(tool == JJAspectRatioPreset3x4){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset3x4 animated:YES];
     }else if (tool == JJAspectRatioPreset4x3){
         [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset4x3 animated:YES];
-    }else if(tool == JJAspectRatioPreset5x4){
-        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset5x3 animated:YES];
-    }else if(tool == JJAspectRatioPreset7x5){
-        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset7x5 animated:YES];
+    }else if(tool == JJAspectRatioPreset9x16){
+        [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset9x16 animated:YES];
     }else if(tool == JJAspectRatioPreset16x9){
         [self setAspectRatioPreset:TOCropViewControllerAspectRatioPreset16x9 animated:YES];
     }else if(tool == JJRotateViewClockwise){

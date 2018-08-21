@@ -109,8 +109,10 @@
         self.preViewImage.frame = imageFrame;
     }
     else {
+        imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
+        imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;
-        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
+//        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
     }
 }
 
@@ -143,15 +145,6 @@
     return _preViewImage;
 }
 
-- (JJCropViewController *)jjCropView{
-    if(!_jjCropView){
-        _jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
-        _jjCropView.delegate = self;
-    }
-    
-    return _jjCropView;
-}
-
 //返回
 - (void)backBtnClick:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:^{
@@ -173,9 +166,11 @@
 - (void)PhotoEditShowSubEditTool:(UICollectionView *)collectionV Index:(NSInteger)index array:(NSArray *)array{
     //switch 语句来判断跳转哪一个界面
     
+    JJCropViewController *jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
+    jjCropView.delegate = self;
     //加载裁剪
-    [self.jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
-    [self presentViewController:self.jjCropView animated:YES completion:^{
+    [jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
+    [self presentViewController:jjCropView animated:YES completion:^{
         
     }];
 }

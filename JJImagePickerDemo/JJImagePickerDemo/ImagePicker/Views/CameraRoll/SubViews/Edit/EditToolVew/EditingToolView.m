@@ -232,11 +232,11 @@
     if(index == 0){
         [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPresetSquare];
     }else if(index == 1){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset4x3];
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset3x4];
     }else if(index == 2){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset5x3];
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset4x3];
     }else if(index == 3){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset5x4];
+        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset9x16];
     }else if(index == 4){
         [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset16x9];
     }else if(index == 5){

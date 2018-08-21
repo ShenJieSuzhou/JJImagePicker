@@ -25,8 +25,6 @@
 //工具烂
 @property (nonatomic, strong) EditingToolView *editToolView;
 
-@property (nonatomic, strong) JJCropViewController *jjCropView;
-
 //编辑工具数据
 @property (nonatomic, strong) NSDictionary *editData;
 
