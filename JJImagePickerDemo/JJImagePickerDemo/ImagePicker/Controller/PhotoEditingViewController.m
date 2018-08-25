@@ -7,7 +7,8 @@
 //
 
 #import "PhotoEditingViewController.h"
-
+#import "JJEditTool.h"
+#import "JJLoadConfig.h"
 
 #define JJ_DEFAULT_IMAGE_PADDING 50
 #define JJ_EDITTOOL_HEIGHT 100
@@ -51,15 +52,13 @@
     [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];
     
     //底部工具栏
-    self.editData = [self loadEditToolConfigFile];
-    if(![self.editData objectForKey:@"field"]){
-        NSLog(@"配置文件加载失败");
-        return;
+    if(!self.editData){
+        self.editData = [[JJLoadConfig getInstance] getCustomContent];
     }
 
     self.editToolView = [[EditingToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
     self.editToolView.delegate = self;
-    self.editToolView.toolArray = [self.editData objectForKey:@"field"];
+    self.editToolView.toolArray = [self parseDataToObject:self.editData];
     [self.view addSubview:self.editToolView];
     
     self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT - self.customNaviBar.frame.size.height)];
@@ -116,16 +115,6 @@
     }
 }
 
-#pragma mark - init edit tool
-- (NSDictionary *)loadEditToolConfigFile{
-    // 获取文件路径
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"json"];
-    // 将文件数据化
-    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-    // 对数据进行JSON格式化并返回字典形式
-    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-}
-
 #pragma mark - image process business
 - (void)setEditImage:(UIImage *)image{
     if(!image){
@@ -158,6 +147,55 @@
     
 }
 
+- (NSMutableArray *)parseDataToObject:(NSDictionary *)fieldDic{
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    if(![fieldDic objectForKey:@"field"]){
+        NSLog(@" parseDataToObject error");
+        return nil;
+    }
+    
+    NSArray *tArray = [fieldDic objectForKey:@"field"];
+
+    for (int i = 0; i < [tArray count]; i++) {
+        NSDictionary *dic = [tArray objectAtIndex:i];
+        NSString *name = [dic objectForKey:@"name"];
+        NSString *imagePath = [dic objectForKey:@"imagePath"];
+        NSMutableArray *subTools = [dic objectForKey:@"subTools"];
+        
+        JJEditToolType toolType;
+        if([name isEqualToString:@"crop"]){
+            toolType = JJEditToolCrop;
+        }else if([name isEqualToString:@"adjust"]){
+            toolType = JJEditToolAdjust;
+        }else if([name isEqualToString:@"filter"]){
+            toolType = JJEditToolFilter;
+        }else if([name isEqualToString:@"sticker"]){
+            toolType = JJEditToolSticker;
+        }else if([name isEqualToString:@"playWords"]){
+            toolType = JJEditToolWords;
+        }else if([name isEqualToString:@"Brush"]){
+            toolType = JJEditToolBrush;
+        }else if([name isEqualToString:@"tag"]){
+            toolType = JJEditToolTag;
+        }else if([name isEqualToString:@"scrawl"]){
+            toolType = JJEditToolscrawl;
+        }else if([name isEqualToString:@"bigHeader"]){
+            toolType = JJEditToolscrawl;
+        }
+    
+        JJEditTool *model = [[JJEditTool alloc] initWithName:name path:imagePath type:toolType array:subTools];
+        [tempArray addObject:model];
+    }
+    
+    return tempArray;
+}
+
+/*
+ "name": "crop",
+ "imagePath": "editor_crop",
+ "subTools":
+ */
+
 #pragma mark - PhotoEditingDelegate
 - (void)PhotoEditingFinished:(UIImage *)image{
     
@@ -165,14 +203,36 @@
 
 - (void)PhotoEditShowSubEditTool:(UICollectionView *)collectionV Index:(NSInteger)index array:(NSArray *)array{
     //switch 语句来判断跳转哪一个界面
-    
-    JJCropViewController *jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
-    jjCropView.delegate = self;
-    //加载裁剪
-    [jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
-    [self presentViewController:jjCropView animated:YES completion:^{
-        
-    }];
+    JJEditTool *toolModel = [self.editToolView.toolArray objectAtIndex:index];
+    switch (toolModel.jjToolType) {
+        case JJEditToolCrop:{
+            JJCropViewController *jjCropView = [[JJCropViewController alloc] initWithCroppingStyle:TOCropViewCroppingStyleDefault image:self.preViewImage.image];
+            jjCropView.delegate = self;
+            //加载裁剪
+            [jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
+            [self presentViewController:jjCropView animated:YES completion:^{
+                
+            }];
+            
+        }
+            break;
+        case JJEditToolAdjust:
+            break;
+        case JJEditToolFilter:
+            break;
+        case JJEditToolSticker:
+            break;
+        case JJEditToolWords:
+            break;
+        case JJEditToolBrush:
+            break;
+        case JJEditToolTag:
+            break;
+        case JJEditToolscrawl:
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)PhotoEditSubEditToolDismiss{

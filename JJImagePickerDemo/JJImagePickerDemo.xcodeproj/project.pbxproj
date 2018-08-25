@@ -100,6 +100,9 @@
 		E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BD5212FB7D80077E62B /* CustomNaviBarView.m */; };
 		E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BD7212FB7D80077E62B /* CustomNaviViewController.m */; };
 		E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BD9212FB7D80077E62B /* CustomPhotoViewController.m */; };
+		E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF6212FD2010077E62B /* JJEditTool.m */; };
+		E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF9212FD8A00077E62B /* JJLoadConfig.m */; };
+		E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BFD212FF4870077E62B /* FilterViewController.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -264,6 +267,12 @@
 		E5506BD7212FB7D80077E62B /* CustomNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNaviViewController.m; sourceTree = "<group>"; };
 		E5506BD8212FB7D80077E62B /* CustomPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPhotoViewController.h; sourceTree = "<group>"; };
 		E5506BD9212FB7D80077E62B /* CustomPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPhotoViewController.m; sourceTree = "<group>"; };
+		E5506BF5212FD2010077E62B /* JJEditTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJEditTool.h; sourceTree = "<group>"; };
+		E5506BF6212FD2010077E62B /* JJEditTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJEditTool.m; sourceTree = "<group>"; };
+		E5506BF8212FD8A00077E62B /* JJLoadConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLoadConfig.h; sourceTree = "<group>"; };
+		E5506BF9212FD8A00077E62B /* JJLoadConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLoadConfig.m; sourceTree = "<group>"; };
+		E5506BFC212FF4870077E62B /* FilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		E5506BFD212FF4870077E62B /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -374,6 +383,8 @@
 				443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */,
 				E5506B52212FB2BA0077E62B /* JJFilters.h */,
 				E5506B53212FB2BA0077E62B /* JJFilters.m */,
+				E5506BF5212FD2010077E62B /* JJEditTool.h */,
+				E5506BF6212FD2010077E62B /* JJEditTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +461,7 @@
 		E5506B97212FB7D80077E62B /* CameraRoll */ = {
 			isa = PBXGroup;
 			children = (
+				E5506BFB212FF4450077E62B /* Filter */,
 				E5506B98212FB7D80077E62B /* AlbumView */,
 				E5506B9F212FB7D80077E62B /* Edit */,
 				E5506BBA212FB7D80077E62B /* Gallary */,
@@ -596,6 +608,15 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		E5506BFB212FF4450077E62B /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				E5506BFC212FF4870077E62B /* FilterViewController.h */,
+				E5506BFD212FF4870077E62B /* FilterViewController.m */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		E56B9CB620AD2FA700021DF8 = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +683,8 @@
 				44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */,
 				44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */,
 				44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */,
+				E5506BF8212FD8A00077E62B /* JJLoadConfig.h */,
+				E5506BF9212FD8A00077E62B /* JJLoadConfig.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -803,6 +826,7 @@
 				E5506BDA212FB7D80077E62B /* CameraRollView.m in Sources */,
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,
 				E5506B54212FB2BA0077E62B /* JJFilters.m in Sources */,
+				E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */,
 				E5506B61212FB3330077E62B /* InterestingViewController.m in Sources */,
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
@@ -825,6 +849,7 @@
 				E5506BF1212FB7D80077E62B /* SnapshotPreviewView.m in Sources */,
 				E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */,
 				E5506B62212FB3330077E62B /* CameraRollViewController.m in Sources */,
+				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
@@ -841,6 +866,7 @@
 				E5506BE8212FB7D80077E62B /* JJCollectionViewCell.m in Sources */,
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
+				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,

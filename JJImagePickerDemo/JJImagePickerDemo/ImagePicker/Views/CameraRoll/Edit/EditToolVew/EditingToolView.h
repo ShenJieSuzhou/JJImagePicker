@@ -22,6 +22,8 @@ typedef enum : NSUInteger {
     JJRotateViewClockwise
 } PhotoEditSubTools;
 
+
+
 @protocol PhotoEditingDelegate <NSObject>
 
 - (void)PhotoEditingFinished:(UIImage *)image;

@@ -8,6 +8,7 @@
 
 #import "EditingToolView.h"
 #import "EditingToolCell.h"
+#import "JJEditTool.h"
 
 #define JJ_PHOTO_EDITING_CELL @"PHOTO_EDITING_CELL"
 #define JJ_PHOTO_EDITING_SUBTOOL_CELL @"JJ_PHOTO_EDITING_SUBTOOL_CELL"
@@ -84,13 +85,13 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if(collectionView == _toolCollectionView){
         //回调选择的是哪个子工具
-        NSDictionary *tool = [self.toolArray objectAtIndex:indexPath.row];
+        JJEditTool *toolModel = [self.toolArray objectAtIndex:indexPath.row];
         
-        if(![tool objectForKey:@"subTools"]){
+        if(!toolModel.subToolArrays){
             return;
         }
         
-        NSArray *subTools = [tool objectForKey:@"subTools"];
+        NSArray *subTools = toolModel.subToolArrays;
         [_delegate PhotoEditShowSubEditTool:collectionView Index:indexPath.row array:subTools];
     }
 }
@@ -100,9 +101,9 @@
     NSString *identifier = JJ_PHOTO_EDITING_CELL;
     EditingToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    NSDictionary *tool = [self.toolArray objectAtIndex:indexPath.row];
-    NSString *asset = [tool objectForKey:@"imagePath"];
-    NSString *title = [tool objectForKey:@"name"];
+    JJEditTool *toolModel = [self.toolArray objectAtIndex:indexPath.row];
+    NSString *asset = toolModel.imagePath;
+    NSString *title = toolModel.name;
     
     UIImage *test =  [UIImage imageNamed:asset];
     
