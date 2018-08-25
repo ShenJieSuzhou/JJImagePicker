@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditingToolView.h"
 
-@interface FilterViewController : UIViewController
+
+@interface FilterViewController : UIViewController<PhotoSubToolEditingDelegate>
+
+//原始图
+@property (nonnull, nonatomic, readonly) UIImage *image;
+
+//底部工具
+@property (nonatomic, strong) EditingSubToolView *filterView;
 
 @end
