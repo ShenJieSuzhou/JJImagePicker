@@ -21,12 +21,14 @@ typedef enum : NSUInteger{
 
 @interface JJEditTool : NSObject
 
+@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imagePath;
 @property (strong, nonatomic) NSMutableArray *subToolArrays;
 @property (assign) JJEditToolType jjToolType;
 
 - (instancetype)initWithName:(NSString *)name
+                       title:(NSString *)title
                         path:(NSString *)imagePath
                         type:(JJEditToolType)toolType
                        array:(NSMutableArray *)subTools;

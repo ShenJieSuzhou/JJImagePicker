@@ -7,14 +7,14 @@
 //
 
 #import "JJCropViewController.h"
-#define JJ_EDITTOOL_HEIGHT 100
+#define JJ_EDITTOOL_HEIGHT 110.0f
 
 @interface JJCropViewController ()
 @property (nonatomic, strong, readwrite) TOCropView *cropView;
 @property (nonatomic, assign) BOOL firstTime;
 @end
 
-static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
+static const CGFloat kTOCropViewControllerToolbarHeight = 110.0f;
 
 @implementation JJCropViewController
 @synthesize editSubToolView = _editSubToolView;
@@ -101,7 +101,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
 #pragma mark lazyLoading
 - (EditingSubToolView *)editSubToolView{
     if(!_editSubToolView){
-        _editSubToolView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT)];
+        _editSubToolView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT, self.view.bounds.size.width, JJ_EDITTOOL_HEIGHT) ToolType:PhotoEditToolCrop size:CGSizeMake(70, 80)];
         _editSubToolView.delegate = self;
     }
     return _editSubToolView;
@@ -116,7 +116,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 100.0f;
     // don't add it until our parent view controller view has loaded at the right time
     if (!_cropView) {
         _cropView = [[TOCropView alloc] initWithCroppingStyle:self.croppingStyle image:self.image];
-        _cropView.delegate = self;
+//        _cropView.delegate = self;
         _cropView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:_cropView];
     }

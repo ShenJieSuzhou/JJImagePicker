@@ -24,6 +24,7 @@
     ],
     "field": [
         {
+            "title": "裁剪",
             "name": "crop",
             "imagePath": "editor_crop",
             "subTools": [
@@ -60,6 +61,7 @@
             ]
         },
         {
+            "title": "调整",
             "name": "adjust",
             "imagePath": "editor_adjust",
             "subTools": [
@@ -106,6 +108,7 @@
             ]
         },
         {
+          "title": "滤镜",
           "name": "filter",
           "imagePath": "editor_filter",
           "subTools": [
@@ -144,6 +147,7 @@
             ]
         },
         {
+          "title": "贴纸",
           "name": "sticker",
           "imagePath": "editor_sticker",
           "subTools": [
@@ -182,6 +186,7 @@
             ]
         },
         {
+          "title": "玩字",
           "name": "playWords",
           "imagePath": "editor_word",
           "subTools": [
@@ -220,6 +225,7 @@
             ]
        },
        {
+          "title": "笔刷",
           "name": "Brush",
           "imagePath": "editor_tracksticker",
           "subTools": [
@@ -258,6 +264,7 @@
             ]
        },
       {
+      "title": "标签",
       "name": "tag",
       "imagePath": "editor_tag",
       "subTools": [
@@ -296,6 +303,7 @@
         ]
       },
       {
+      "title": "涂抹",
       "name": "scrawl",
       "imagePath": "editor_pain",
       "subTools": [
@@ -334,6 +342,7 @@
         ]
       },
       {
+      "title": "大头",
       "name": "bigHeader",
       "imagePath": "adjust_beautiful",
       "subTools": [

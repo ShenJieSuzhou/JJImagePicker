@@ -158,6 +158,7 @@
 
     for (int i = 0; i < [tArray count]; i++) {
         NSDictionary *dic = [tArray objectAtIndex:i];
+        NSString *title = [dic objectForKey:@"title"];
         NSString *name = [dic objectForKey:@"name"];
         NSString *imagePath = [dic objectForKey:@"imagePath"];
         NSMutableArray *subTools = [dic objectForKey:@"subTools"];
@@ -183,7 +184,7 @@
             toolType = JJEditToolscrawl;
         }
     
-        JJEditTool *model = [[JJEditTool alloc] initWithName:name path:imagePath type:toolType array:subTools];
+        JJEditTool *model = [[JJEditTool alloc] initWithName:name title:title path:imagePath type:toolType array:subTools];
         [tempArray addObject:model];
     }
     
@@ -218,7 +219,13 @@
             break;
         case JJEditToolAdjust:
             break;
-        case JJEditToolFilter:
+        case JJEditToolFilter:{
+            FilterViewController *jjFilterView = [FilterViewController new];
+            [jjFilterView setEditImage:[UIImage imageNamed:@"filter4"]];
+            [self presentViewController:jjFilterView animated:YES completion:^{
+                
+            }];
+        }
             break;
         case JJEditToolSticker:
             break;

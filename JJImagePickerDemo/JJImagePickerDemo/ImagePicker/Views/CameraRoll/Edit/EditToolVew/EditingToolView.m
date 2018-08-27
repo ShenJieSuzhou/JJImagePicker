@@ -48,7 +48,7 @@
 -(UICollectionView *)toolCollectionView{
     if (!_toolCollectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(60, 60);
+        layout.itemSize = CGSizeMake(80, 90);
         layout.collectionView.pagingEnabled = YES;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
@@ -103,7 +103,7 @@
     
     JJEditTool *toolModel = [self.toolArray objectAtIndex:indexPath.row];
     NSString *asset = toolModel.imagePath;
-    NSString *title = toolModel.name;
+    NSString *title = toolModel.title;
     
     UIImage *test =  [UIImage imageNamed:asset];
     
@@ -123,9 +123,11 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize delegate = _delegate;
 
-- (id)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame ToolType:(PhotoEditToolType)type size:(CGSize)size{
     self = [super initWithFrame:frame];
     if(self){
+        _photoEditToolType = type;
+        _itemSize = size;
         [self commonInitlization];
     }
     
@@ -167,7 +169,7 @@
 - (UICollectionView *)subToolCollectionView{
     if(!_subToolCollectionView){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(70, 70);
+        layout.itemSize = _itemSize;
         layout.collectionView.pagingEnabled = YES;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
@@ -250,14 +252,26 @@
     NSString *identifier = JJ_PHOTO_EDITING_SUBTOOL_CELL;
     EditingToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
-    NSString *asset = [tool objectForKey:@"imagePath"];
-    NSString *title = [tool objectForKey:@"name"];
+    if(_photoEditToolType == PhotoEditToolCrop){
+        NSString *asset = [tool objectForKey:@"imagePath"];
+        NSString *title = [tool objectForKey:@"name"];
+        
+        cell.editImage = nil;
+        cell.editTitle =nil;
+        
+        cell.editImage = [UIImage imageNamed:asset];
+        cell.editTitle = title;
+    }else if(_photoEditToolType == PhotoEditToolFilter){
+        NSString *asset = [tool objectForKey:@"imageName"];
+        NSString *title = [tool objectForKey:@"title"];
+        
+        cell.editImage = nil;
+        cell.editTitle =nil;
+        
+        cell.editImage = [UIImage imageNamed:asset];
+        cell.editTitle = title;
+    }
     
-    cell.editImage = nil;
-    cell.editTitle =nil;
-    
-    cell.editImage = [UIImage imageNamed:asset];
-    cell.editTitle = title;
     return cell;
 }
 

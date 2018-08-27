@@ -13,13 +13,16 @@
 @synthesize imagePath = _imagePath;
 @synthesize subToolArrays = _subToolArrays;
 @synthesize jjToolType = _jjToolType;
+@synthesize title = _title;
 
 - (instancetype)initWithName:(NSString *)name
+                       title:(NSString *)title
                         path:(NSString *)imagePath
                         type:(JJEditToolType)toolType
                        array:(NSMutableArray *)subTools{
     
     if(self = [super init]){
+        self.title = title;
         self.name = name;
         self.imagePath = imagePath;
         self.jjToolType = toolType;

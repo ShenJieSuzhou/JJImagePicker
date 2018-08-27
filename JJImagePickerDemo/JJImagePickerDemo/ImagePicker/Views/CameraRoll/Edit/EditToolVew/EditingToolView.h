@@ -22,6 +22,12 @@ typedef enum : NSUInteger {
     JJRotateViewClockwise
 } PhotoEditSubTools;
 
+typedef enum : NSUInteger{
+    PhotoEditToolCrop,
+    PhotoEditToolAdjust,
+    PhotoEditToolFilter
+} PhotoEditToolType;
+
 
 
 @protocol PhotoEditingDelegate <NSObject>
@@ -66,12 +72,17 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSMutableArray *subToolArray;
 @property (strong, nonatomic) UICollectionView *subToolCollectionView;
+@property (assign) CGSize itemSize;
+@property (assign) PhotoEditToolType photoEditToolType;
+
 
 //UIButton
 @property (strong, nonatomic) UIButton *cancel;
 @property (strong, nonatomic) UIButton *confirm;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (weak, nonatomic) id<PhotoSubToolEditingDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame ToolType:(PhotoEditToolType)type size:(CGSize)size;
 
 @end
 

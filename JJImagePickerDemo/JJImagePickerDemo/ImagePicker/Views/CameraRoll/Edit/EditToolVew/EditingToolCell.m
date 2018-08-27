@@ -33,10 +33,11 @@
     self.iconV = [[UIImageView alloc] init];
     self.editImage = [[UIImage alloc] init];
     
+    self.iconV.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.iconV];
     
     self.title = [[UILabel alloc] init];
-    [self.title setFont:[UIFont systemFontOfSize:10.0f]];
+    [self.title setFont:[UIFont fontWithName:@"Verdana" size:10.0f]];
     [self.title setTextAlignment:NSTextAlignmentCenter];
     [self.contentView addSubview:self.title];
 }
@@ -45,12 +46,13 @@
     [super layoutSubviews];
     
     CGSize size = self.bounds.size;
-    CGFloat fDeltaWidth = (size.width - _editImage.size.width)/2;
-    CGFloat fDeltaHeight = (size.height - _editImage.size.height)/2;
+    CGFloat padding = 10.0f;
+    CGFloat fDeltaWidth = size.width - 2*padding;
+    CGFloat fDeltaHeight = fDeltaWidth;
     
-    [self.iconV setFrame:CGRectMake(fDeltaWidth, fDeltaHeight, _editImage.size.width, _editImage.size.height)];
+    [self.iconV setFrame:CGRectMake(padding, padding, fDeltaWidth, fDeltaHeight)];
     [self.iconV setImage:self.editImage];
-    [self.title setFrame:CGRectMake(fDeltaWidth, fDeltaHeight + _editImage.size.height, _editImage.size.width, 10)];
+    [self.title setFrame:CGRectMake(padding, size.height - 2*padding, fDeltaWidth, size.height - 2*padding - fDeltaWidth)];
     [self.title setText:self.editTitle];
 }
 
