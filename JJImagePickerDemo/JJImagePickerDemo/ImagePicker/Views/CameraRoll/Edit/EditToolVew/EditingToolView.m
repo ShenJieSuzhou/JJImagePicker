@@ -9,6 +9,7 @@
 #import "EditingToolView.h"
 #import "EditingToolCell.h"
 #import "JJEditTool.h"
+#import "JJFilterManager.h"
 
 #define JJ_PHOTO_EDITING_CELL @"PHOTO_EDITING_CELL"
 #define JJ_PHOTO_EDITING_SUBTOOL_CELL @"JJ_PHOTO_EDITING_SUBTOOL_CELL"
@@ -122,6 +123,7 @@
 @synthesize confirm = _confirm;
 @synthesize titleLabel = _titleLabel;
 @synthesize delegate = _delegate;
+@synthesize originalImage = _originalImage;
 
 - (instancetype)initWithFrame:(CGRect)frame ToolType:(PhotoEditToolType)type size:(CGSize)size{
     self = [super initWithFrame:frame];
@@ -200,6 +202,10 @@
     [_subToolCollectionView reloadData];
 }
 
+- (void)setBaseFilterImage:(UIImage *)original{
+    _originalImage = original;
+}
+
 - (void)clickCancelBtn:(UIButton *)sender{
     //取消
     if([_delegate respondsToSelector:@selector(PhotoEditSubEditToolDismiss)]){
@@ -232,19 +238,25 @@
         return;
     }
     
-    if(index == 0){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPresetSquare];
-    }else if(index == 1){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset3x4];
-    }else if(index == 2){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset4x3];
-    }else if(index == 3){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset9x16];
-    }else if(index == 4){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset16x9];
-    }else if(index == 5){
-        [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
+    if(_photoEditToolType == PhotoEditToolCrop){
+        if(index == 0){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPresetSquare];
+        }else if(index == 1){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset3x4];
+        }else if(index == 2){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset4x3];
+        }else if(index == 3){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset9x16];
+        }else if(index == 4){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPreset16x9];
+        }else if(index == 5){
+            [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
+        }
+    }else if(_photoEditToolType == PhotoEditToolFilter){
+        
+        
     }
+
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -262,13 +274,21 @@
         cell.editImage = [UIImage imageNamed:asset];
         cell.editTitle = title;
     }else if(_photoEditToolType == PhotoEditToolFilter){
-        NSString *asset = [tool objectForKey:@"imageName"];
-        NSString *title = [tool objectForKey:@"title"];
-        
         cell.editImage = nil;
         cell.editTitle =nil;
         
-        cell.editImage = [UIImage imageNamed:asset];
+        NSString *filterName = [tool objectForKey:@"name"];
+        NSString *title = [tool objectForKey:@"title"];
+        NSString *placeholder = [tool objectForKey:@"placeholder"];
+    
+        //set default image placehold
+        cell.editImage = [UIImage imageNamed:placeholder];
+        
+        //小图添加滤镜处理
+        [[JJFilterManager getInstance] renderImage:filterName image:_originalImage withBlock:^(UIImage *image) {
+            cell.editImage = image;
+        }];
+
         cell.editTitle = title;
     }
     

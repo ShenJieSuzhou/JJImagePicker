@@ -7,6 +7,7 @@
 //
 
 #import "FilterViewController.h"
+#import "JJFilterManager.h"
 
 @interface FilterViewController ()
 
@@ -29,8 +30,8 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     
-    
-    [self setFilters];
+    //获取滤镜数据
+    _filtersArray = [JJFilterManager getInstance].getFiltersArray;
     [self.filterView setSubToolArray:[NSMutableArray arrayWithArray:_filtersArray]];
     [self.view addSubview:self.filterView];
     
@@ -53,25 +54,6 @@
 {
     [super viewDidLayoutSubviews];
     [self layoutImageView];
-}
-
-- (void)setFilters{
-    _filtersArray = @[
-                 @{@"name":@"Original",                 @"title":@"原图", @"imageName":@"filterDemo",    @"version":@(0.0)},
-                 @{@"name":@"CISRGBToneCurveToLinear",  @"title":@"暮光", @"imageName":@"filterDemo",    @"version":@(7.0)},
-                 @{@"name":@"CIVignetteEffect",         @"title":@"LOMO",@"imageName":@"filterDemo",   @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectInstant",     @"title":@"流年", @"imageName":@"filterDemo",   @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectProcess",     @"title":@"雪青", @"imageName":@"filterDemo",   @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectTransfer",    @"title":@"优格", @"imageName":@"filterDemo",  @"version":@(7.0)},
-                 @{@"name":@"CISepiaTone",              @"title":@"晚秋", @"imageName":@"filterDemo",     @"version":@(5.0)},
-                 @{@"name":@"CIPhotoEffectChrome",      @"title":@"淡雅", @"imageName":@"filterDemo",    @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectFade",        @"title":@"拿铁", @"imageName":@"filterDemo",      @"version":@(7.0)},
-                 @{@"name":@"CILinearToSRGBToneCurve",  @"title":@"丽日", @"imageName":@"filterDemo",     @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectTonal",       @"title":@"灰度", @"imageName":@"filterDemo",     @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectNoir",        @"title":@"暗调", @"imageName":@"filterDemo",      @"version":@(7.0)},
-                 @{@"name":@"CIPhotoEffectMono",        @"title":@"黑白", @"imageName":@"filterDemo",      @"version":@(7.0)},
-                 @{@"name":@"CIColorInvert",            @"title":@"负片", @"imageName":@"filterDemo",    @"version":@(6.0)},
-                 ];
 }
 
 #pragma mark lazyLoading
@@ -138,12 +120,10 @@
 
 
 #pragma mark - PhotoSubToolEditingDelegate
-//取消裁剪
 - (void)PhotoEditSubEditToolDismiss{
 
 }
 
-//裁剪结果提交
 - (void)PhotoEditSubEditToolConfirm{
 
 }
@@ -151,6 +131,5 @@
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool{
 
 }
-
 
 @end

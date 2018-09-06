@@ -103,6 +103,7 @@
 		E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF6212FD2010077E62B /* JJEditTool.m */; };
 		E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF9212FD8A00077E62B /* JJLoadConfig.m */; };
 		E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BFD212FF4870077E62B /* FilterViewController.m */; };
+		E5506C0721412B250077E62B /* JJFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506C0621412B250077E62B /* JJFilterManager.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -273,6 +274,8 @@
 		E5506BF9212FD8A00077E62B /* JJLoadConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLoadConfig.m; sourceTree = "<group>"; };
 		E5506BFC212FF4870077E62B /* FilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		E5506BFD212FF4870077E62B /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		E5506C0521412B240077E62B /* JJFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFilterManager.h; sourceTree = "<group>"; };
+		E5506C0621412B250077E62B /* JJFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFilterManager.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 		E5506BFB212FF4450077E62B /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				E5506C0521412B240077E62B /* JJFilterManager.h */,
+				E5506C0621412B250077E62B /* JJFilterManager.m */,
 				E5506BFC212FF4870077E62B /* FilterViewController.h */,
 				E5506BFD212FF4870077E62B /* FilterViewController.m */,
 			);
@@ -872,6 +877,7 @@
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,
 				E5506BEA212FB7D80077E62B /* JJPhotoPreviewView.m in Sources */,
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
+				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,
 				E5506B60212FB3330077E62B /* PhotosViewController.m in Sources */,
 				E5506BE6212FB7D80077E62B /* TOCropViewControllerTransitioning.m in Sources */,
 			);

@@ -74,6 +74,7 @@ typedef enum : NSUInteger{
 @property (strong, nonatomic) UICollectionView *subToolCollectionView;
 @property (assign) CGSize itemSize;
 @property (assign) PhotoEditToolType photoEditToolType;
+@property (strong, nonatomic) UIImage *originalImage;
 
 
 //UIButton
@@ -83,6 +84,8 @@ typedef enum : NSUInteger{
 @property (weak, nonatomic) id<PhotoSubToolEditingDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame ToolType:(PhotoEditToolType)type size:(CGSize)size;
+//设置原图用于初始化滤镜
+- (void)setBaseFilterImage:(UIImage *)original;
 
 @end
 
