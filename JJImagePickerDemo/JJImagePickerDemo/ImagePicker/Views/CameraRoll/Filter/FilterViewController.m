@@ -32,6 +32,7 @@
     
     //获取滤镜数据
     _filtersArray = [JJFilterManager getInstance].getFiltersArray;
+    [self.filterView setBaseFilterImage:_image];
     [self.filterView setSubToolArray:[NSMutableArray arrayWithArray:_filtersArray]];
     [self.view addSubview:self.filterView];
     
@@ -105,6 +106,7 @@
         return;
     }
     
+    _image = image;
     [self.preViewImage setImage:image];
 }
 

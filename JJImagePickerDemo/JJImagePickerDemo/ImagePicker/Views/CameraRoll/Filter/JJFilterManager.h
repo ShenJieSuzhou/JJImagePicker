@@ -16,6 +16,6 @@ typedef void(^jjFilterRenderBlock)(UIImage *image);
 @property (nonatomic, weak) jjFilterRenderBlock renderBlock;
 
 + (JJFilterManager *)getInstance;
-- (void)renderImage:(NSString *)filterName image:(UIImage *)image withBlock:(jjFilterRenderBlock)block;
+- (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image;
 - (NSArray *)getFiltersArray;
 @end

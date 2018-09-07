@@ -106,10 +106,8 @@
     NSString *asset = toolModel.imagePath;
     NSString *title = toolModel.title;
     
-    UIImage *test =  [UIImage imageNamed:asset];
-    
-    cell.editTitle = title;
-    cell.editImage = test;
+    UIImage *image = [UIImage imageNamed:asset];
+    [cell updateCellContent:image title:title];
     
     return cell;
 }
@@ -199,10 +197,21 @@
     }
     _subToolArray = nil;
     _subToolArray = subToolArray;
-    [_subToolCollectionView reloadData];
 }
 
 - (void)setBaseFilterImage:(UIImage *)original{
+    //create thumbnail image
+    UIImage *newImage;
+    if(!original){
+        newImage = nil;
+    }else{
+        CGSize oldSize = original.size;
+        CGSize size = CGSizeMake(oldSize.width/3.0f, oldSize.height/3.0f);
+        UIGraphicsBeginImageContext(size);
+        [original drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
     _originalImage = original;
 }
 
@@ -268,28 +277,15 @@
         NSString *asset = [tool objectForKey:@"imagePath"];
         NSString *title = [tool objectForKey:@"name"];
         
-        cell.editImage = nil;
-        cell.editTitle =nil;
-        
         cell.editImage = [UIImage imageNamed:asset];
         cell.editTitle = title;
     }else if(_photoEditToolType == PhotoEditToolFilter){
-        cell.editImage = nil;
-        cell.editTitle =nil;
-        
         NSString *filterName = [tool objectForKey:@"name"];
         NSString *title = [tool objectForKey:@"title"];
-        NSString *placeholder = [tool objectForKey:@"placeholder"];
     
-        //set default image placehold
-        cell.editImage = [UIImage imageNamed:placeholder];
-        
-        //小图添加滤镜处理
-        [[JJFilterManager getInstance] renderImage:filterName image:_originalImage withBlock:^(UIImage *image) {
-            cell.editImage = image;
-        }];
-
-        cell.editTitle = title;
+        //thumbnail add filters
+        UIImage *result = [[JJFilterManager getInstance] renderImage:filterName image:_originalImage];
+        [cell updateCellContent:result title:title];
     }
     
     return cell;

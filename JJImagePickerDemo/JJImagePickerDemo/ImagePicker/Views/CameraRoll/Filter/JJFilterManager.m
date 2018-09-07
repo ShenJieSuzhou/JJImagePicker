@@ -22,14 +22,13 @@ static JJFilterManager *m_instance = nil;
     return m_instance;
 }
 
-- (void)renderImage:(NSString *)filterName image:(UIImage *)image withBlock:(jjFilterRenderBlock)block{
-    _renderBlock = block;
-    [m_instance addFilterToImage:filterName withImage:image];
+- (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image{
+    return [m_instance addFilterToImage:filterName withImage:image];
 }
 
-- (void)addFilterToImage:(NSString *)filterName withImage:(UIImage *)image{
+- (UIImage *)addFilterToImage:(NSString *)filterName withImage:(UIImage *)image{
     if([filterName isEqualToString:@"CLDefaultEmptyFilter"]){
-        _renderBlock(image);
+        return image;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
@@ -56,7 +55,7 @@ static JJFilterManager *m_instance = nil;
     
     CGImageRelease(cgImage);
     
-    _renderBlock(result);
+    return result;
 }
 
 - (NSArray *)getFiltersArray{

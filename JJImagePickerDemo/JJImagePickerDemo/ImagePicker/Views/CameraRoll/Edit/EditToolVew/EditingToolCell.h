@@ -21,4 +21,6 @@
 
 @property (strong, nonatomic) UIImageView *iconV;
 
+- (void)updateCellContent:(UIImage *)image title:(NSString *)title;
+
 @end
