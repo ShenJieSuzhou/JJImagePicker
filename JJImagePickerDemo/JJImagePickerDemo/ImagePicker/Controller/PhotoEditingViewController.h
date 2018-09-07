@@ -13,7 +13,7 @@
 #import "FilterViewController.h"
 
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate>
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate>
 
 @property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
 

@@ -221,6 +221,7 @@
             break;
         case JJEditToolFilter:{
             FilterViewController *jjFilterView = [FilterViewController new];
+            jjFilterView.delegate = self;
             [jjFilterView setEditImage:[UIImage imageNamed:@"filter4"]];
             [self presentViewController:jjFilterView animated:YES completion:^{
                 
@@ -255,14 +256,19 @@
 {
     self.croppedFrame = cropRect;
     self.angle = angle;
-    [self updateImageViewWithImage:image fromCropViewController:cropViewController];
-}
-
-- (void)updateImageViewWithImage:(UIImage *)image fromCropViewController:(JJCropViewController *)cropViewController
-{
+    
     self.preViewImage.image = image;
     [self layoutImageView];
     [cropViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)filterViewController:(nonnull FilterViewController *)filterViewController didAddFilterToImage:(nonnull UIImage *)image{
+    self.preViewImage.image = image;
+    [self layoutImageView];
+    
+    [filterViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
 }

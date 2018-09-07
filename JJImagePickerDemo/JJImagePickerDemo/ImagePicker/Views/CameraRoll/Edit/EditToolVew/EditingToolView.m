@@ -243,11 +243,12 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //对图片做相对应的处理操作
     NSInteger index = indexPath.row;
-    if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:Tools:)]){
-        return;
-    }
-    
+   
     if(_photoEditToolType == PhotoEditToolCrop){
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:Tools:)]){
+            return;
+        }
+        
         if(index == 0){
             [_delegate PhotoEditSubEditTool:collectionView Tools:JJAspectRatioPresetSquare];
         }else if(index == 1){
@@ -262,10 +263,14 @@
             [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
         }
     }else if(_photoEditToolType == PhotoEditToolFilter){
+        NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
+        NSString *filterName = [tool objectForKey:@"name"];
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:filterName:)]){
+            return;
+        }
         
-        
+        [_delegate PhotoEditSubEditTool:collectionView filterName:filterName];
     }
-
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

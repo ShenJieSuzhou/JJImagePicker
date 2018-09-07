@@ -24,6 +24,7 @@
 @synthesize filterView = _filterView;
 @synthesize layerV = _layerV;
 @synthesize preViewImage = _preViewImage;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -123,15 +124,24 @@
 
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
-
+    _preViewImage = nil;
+    _layerV = nil;
+    _filterView = nil;
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-
+    if([_delegate respondsToSelector:@selector(filterViewController:didAddFilterToImage:)]){
+        [_delegate filterViewController:self didAddFilterToImage:_preViewImage.image];
+    }
 }
 
-- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool{
-
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV filterName:(NSString *)filter{
+    UIImage *result = [[JJFilterManager getInstance] renderImage:filter image:_image];
+    [_preViewImage setImage:result];
 }
 
 @end

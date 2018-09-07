@@ -48,7 +48,10 @@ typedef enum : NSUInteger{
 
 - (void)PhotoEditSubEditToolConfirm;
 
+@optional
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV Tools:(PhotoEditSubTools)tool;
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV filterName:(NSString *)filter;
 
 @end
 
