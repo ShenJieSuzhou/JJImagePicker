@@ -51,17 +51,12 @@
     CGFloat fDeltaHeight = fDeltaWidth;
     
     [self.iconV setFrame:CGRectMake(padding, padding, fDeltaWidth, fDeltaHeight)];
-//    [self.iconV setImage:self.editImage];
     [self.title setFrame:CGRectMake(padding, size.height - 2*padding, fDeltaWidth, size.height - 2*padding - fDeltaWidth)];
-//    [self.title setText:self.editTitle];
 }
 
 - (void)updateCellContent:(UIImage *)image title:(NSString *)title{
     [self.iconV setImage:image];
     [self.title setText:title];
-    
-//    self.editImage = image;
-//    self.editTitle = title;
 }
 
 @end

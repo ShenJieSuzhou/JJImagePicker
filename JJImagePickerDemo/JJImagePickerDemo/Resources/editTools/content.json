@@ -67,22 +67,22 @@
             "subTools": [
                  {
                  "name": "美颜",
-                 "imagePath": "adjust_beautiful",
+                 "imagePath": "adjust_my",
                  "imageSelPath": "adjust_my_selected"
                  },
                  {
                  "name": "曝光",
-                 "imagePath": "adjust_bg",
+                 "imagePath": "adjust_bright",
                  "imageSelPath": "adjust_bg_selected"
                  },
                  {
                  "name": "色温",
-                 "imagePath": "adjust_sw",
+                 "imagePath": "adjust_colorTemperature",
                  "imageSelPath": "adjust_sw_selected"
                  },
                  {
                  "name": "对比度",
-                 "imagePath": "adjust_dbd",
+                 "imagePath": "adjust_contrast",
                  "imageSelPath": "adjust_dbd_selected"
                  },
                  {

@@ -33,7 +33,7 @@
 - (IBAction)start:(id)sender {
 //    [JJImageViewPicker showTheActionsheet:self];
     
-    UIImage *photoImage = [UIImage imageNamed:@"11"];
+    UIImage *photoImage = [UIImage imageNamed:@"suyan"];
     [self.photoEditingView setEditImage:photoImage];
     [self presentViewController:self.photoEditingView animated:YES completion:^{
         

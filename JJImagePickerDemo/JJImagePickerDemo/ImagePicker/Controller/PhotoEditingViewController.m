@@ -217,7 +217,14 @@
             
         }
             break;
-        case JJEditToolAdjust:
+        case JJEditToolAdjust:{
+            AdjustViewController *adjustView = [AdjustViewController new];
+            [adjustView setEditImage:self.preViewImage.image];
+            [adjustView setAdToolArrays:array];
+            [self presentViewController:adjustView animated:YES completion:^{
+                
+            }];
+        }
             break;
         case JJEditToolFilter:{
             FilterViewController *jjFilterView = [FilterViewController new];

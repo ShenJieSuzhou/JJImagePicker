@@ -11,6 +11,7 @@
 #import "EditingToolView.h"
 #import "JJCropViewController.h"
 #import "FilterViewController.h"
+#import "AdjustViewController.h"
 
 
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate>

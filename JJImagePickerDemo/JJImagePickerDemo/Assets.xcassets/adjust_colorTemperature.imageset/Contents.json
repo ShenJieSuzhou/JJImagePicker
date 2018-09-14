@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "adjust_dbd_selected@2x.png",
+      "filename" : "adjust_colorTemperature@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "adjust_dbd_selected@3x.png",
+      "filename" : "adjust_colorTemperature@3x.png",
       "scale" : "3x"
     }
   ],

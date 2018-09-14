@@ -262,6 +262,13 @@
         }else if(index == 5){
             [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
         }
+    }else if(_photoEditToolType == PhotoEditToolAdjust){
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:adjustName:inputAmount:)]){
+            return;
+        }
+        
+        [_delegate PhotoEditSubEditTool:collectionView adjustName:@"" inputAmount:0];
+        
     }else if(_photoEditToolType == PhotoEditToolFilter){
         NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
         NSString *filterName = [tool objectForKey:@"name"];
@@ -291,6 +298,11 @@
         //thumbnail add filters
         UIImage *result = [[JJFilterManager getInstance] renderImage:filterName image:_originalImage];
         [cell updateCellContent:result title:title];
+    }else if(_photoEditToolType == PhotoEditToolAdjust){
+        NSString *title = [tool objectForKey:@"name"];
+        NSString *asset = [tool objectForKey:@"imagePath"];
+        
+        [cell updateCellContent:[UIImage imageNamed:asset] title:title];
     }
     
     return cell;

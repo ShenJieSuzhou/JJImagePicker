@@ -17,5 +17,6 @@ typedef void(^jjFilterRenderBlock)(UIImage *image);
 
 + (JJFilterManager *)getInstance;
 - (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image;
+- (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image inputAmount:(CGFloat *)amount;
 - (NSArray *)getFiltersArray;
 @end

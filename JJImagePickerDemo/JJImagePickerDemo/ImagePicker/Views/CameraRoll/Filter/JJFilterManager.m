@@ -58,6 +58,27 @@ static JJFilterManager *m_instance = nil;
     return result;
 }
 
+- (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image inputAmount:(CGFloat *)amount{
+    if([filterName isEqualToString:@"CLDefaultEmptyFilter"]){
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"YUCIHighPassSkinSmoothing" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:ciImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:0.7] forKey:@"inputAmount"];
+    [filter setValue:[NSNumber numberWithFloat:ciImage.extent.size.width/750.0*7] forKey:kCIInputRadiusKey];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
 - (NSArray *)getFiltersArray{
     return @[
              @{@"name":@"CLDefaultEmptyFilter",     @"title":@"原图", @"placeholder":@"filterDemo",    @"version":@(0.0)},

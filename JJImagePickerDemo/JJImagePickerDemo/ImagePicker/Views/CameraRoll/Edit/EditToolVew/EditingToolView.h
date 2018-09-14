@@ -53,6 +53,8 @@ typedef enum : NSUInteger{
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV filterName:(NSString *)filter;
 
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustName:(NSString *)name inputAmount:(CGFloat *)amount;
+
 @end
 
 
