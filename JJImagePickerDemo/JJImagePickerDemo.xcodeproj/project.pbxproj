@@ -132,10 +132,10 @@
 		E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */; };
 		E5DF2D90214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D8B214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel */; };
 		E5DF2D91214B93320048A80E /* YUCIHighPass.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D8C214B93320048A80E /* YUCIHighPass.cikernel */; };
-		E5DF2D96214B9A2E0048A80E /* YUCIFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D93214B9A2E0048A80E /* YUCIFilterConstructor.m */; };
-		E5DF2D97214B9A2E0048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D95214B9A2E0048A80E /* YUCIRGBToneCurve.m */; };
 		E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D9A214B9E7C0048A80E /* AdjustViewController.m */; };
-		E5DF2D9D214BBFF90048A80E /* YUCIRGBToneCurve.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D9C214BBFF90048A80E /* YUCIRGBToneCurve.cikernel */; };
+		E5DF2E02214CDBF50048A80E /* YUCIRGBToneCurve.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2DFE214CDBF40048A80E /* YUCIRGBToneCurve.cikernel */; };
+		E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */; };
+		E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -322,13 +322,13 @@
 		E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPassSkinSmoothing.m; sourceTree = "<group>"; };
 		E5DF2D8B214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIGreenBlueChannelOverlayBlend.cikernel; sourceTree = "<group>"; };
 		E5DF2D8C214B93320048A80E /* YUCIHighPass.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIHighPass.cikernel; sourceTree = "<group>"; };
-		E5DF2D92214B9A2E0048A80E /* YUCIFilterConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIFilterConstructor.h; sourceTree = "<group>"; };
-		E5DF2D93214B9A2E0048A80E /* YUCIFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIFilterConstructor.m; sourceTree = "<group>"; };
-		E5DF2D94214B9A2E0048A80E /* YUCIRGBToneCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurve.h; sourceTree = "<group>"; };
-		E5DF2D95214B9A2E0048A80E /* YUCIRGBToneCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurve.m; sourceTree = "<group>"; };
 		E5DF2D99214B9E7C0048A80E /* AdjustViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdjustViewController.h; sourceTree = "<group>"; };
 		E5DF2D9A214B9E7C0048A80E /* AdjustViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustViewController.m; sourceTree = "<group>"; };
-		E5DF2D9C214BBFF90048A80E /* YUCIRGBToneCurve.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIRGBToneCurve.cikernel; sourceTree = "<group>"; };
+		E5DF2DFD214CDBF40048A80E /* YUCIFilterConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIFilterConstructor.h; sourceTree = "<group>"; };
+		E5DF2DFE214CDBF40048A80E /* YUCIRGBToneCurve.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIRGBToneCurve.cikernel; sourceTree = "<group>"; };
+		E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIFilterConstructor.m; sourceTree = "<group>"; };
+		E5DF2E00214CDBF40048A80E /* YUCIRGBToneCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurve.h; sourceTree = "<group>"; };
+		E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurve.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,11 +722,11 @@
 		E5DF2D85214B91590048A80E /* BeautySmooth */ = {
 			isa = PBXGroup;
 			children = (
-				E5DF2D9C214BBFF90048A80E /* YUCIRGBToneCurve.cikernel */,
-				E5DF2D92214B9A2E0048A80E /* YUCIFilterConstructor.h */,
-				E5DF2D93214B9A2E0048A80E /* YUCIFilterConstructor.m */,
-				E5DF2D94214B9A2E0048A80E /* YUCIRGBToneCurve.h */,
-				E5DF2D95214B9A2E0048A80E /* YUCIRGBToneCurve.m */,
+				E5DF2DFD214CDBF40048A80E /* YUCIFilterConstructor.h */,
+				E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */,
+				E5DF2DFE214CDBF40048A80E /* YUCIRGBToneCurve.cikernel */,
+				E5DF2E00214CDBF40048A80E /* YUCIRGBToneCurve.h */,
+				E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */,
 				E5DF2D8B214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel */,
 				E5DF2D8C214B93320048A80E /* YUCIHighPass.cikernel */,
 				E5DF2D88214B93310048A80E /* YUCIHighPass.h */,
@@ -827,7 +827,7 @@
 				E547D19020F89ACE00893D85 /* libraryConfirm@2x.png in Resources */,
 				E547D19A20F89ACE00893D85 /* confirmButton@3x.png in Resources */,
 				E547D1B020F89ACE00893D85 /* retakeButton@2x.png in Resources */,
-				E5DF2D9D214BBFF90048A80E /* YUCIRGBToneCurve.cikernel in Resources */,
+				E5DF2E02214CDBF50048A80E /* YUCIRGBToneCurve.cikernel in Resources */,
 				E547D19420F89ACE00893D85 /* cameraButton.png in Resources */,
 				E547D1A920F89ACE00893D85 /* closeButton@3x.png in Resources */,
 				E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */,
@@ -885,6 +885,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */,
 				E5506BDA212FB7D80077E62B /* CameraRollView.m in Sources */,
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,
 				E5506B54212FB2BA0077E62B /* JJFilters.m in Sources */,
@@ -906,7 +907,6 @@
 				E5506BE4212FB7D80077E62B /* TOActivityCroppedImageProvider.m in Sources */,
 				E5506BDF212FB7D80077E62B /* TOCropOverlayView.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
-				E5DF2D97214B9A2E0048A80E /* YUCIRGBToneCurve.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,
 				4462607420CD00BA0004C579 /* JJPhoto.m in Sources */,
 				E5506BEF212FB7D80077E62B /* JJPublishPreviewCell.m in Sources */,
@@ -915,13 +915,13 @@
 				E5506B62212FB3330077E62B /* CameraRollViewController.m in Sources */,
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
-				E5DF2D96214B9A2E0048A80E /* YUCIFilterConstructor.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
+				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
 				E5506B5F212FB3330077E62B /* PhotoPreviewViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
