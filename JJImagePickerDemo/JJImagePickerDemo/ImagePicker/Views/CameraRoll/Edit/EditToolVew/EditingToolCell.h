@@ -8,19 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditingToolCell : UICollectionViewCell
-//icon asset
-@property (strong, nonatomic) UIImage *editImage;
+typedef enum : NSUInteger {
+    FILTER_CELL,
+    COMMON_CELL,
+} JJ_EDITCELL_TYPE;
 
-@property (strong, nonatomic) UIImage *editImageSel;
-//title
-@property (strong, nonatomic) NSString *editTitle;
-//button
-//@property (strong, nonatomic) UIButton *editBtn;
+@interface EditingToolCell : UICollectionViewCell
+
 @property (strong, nonatomic) UILabel *title;
 
 @property (strong, nonatomic) UIImageView *iconV;
 
-- (void)updateCellContent:(UIImage *)image title:(NSString *)title;
+- (void)updateCellContent:(UIImage *)image title:(NSString *)title type:(JJ_EDITCELL_TYPE)type;
 
 @end

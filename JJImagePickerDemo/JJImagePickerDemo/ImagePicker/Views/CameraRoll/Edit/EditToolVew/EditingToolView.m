@@ -107,7 +107,7 @@
     NSString *title = toolModel.title;
     
     UIImage *image = [UIImage imageNamed:asset];
-    [cell updateCellContent:image title:title];
+    [cell updateCellContent:image title:title type:COMMON_CELL];
     
     return cell;
 }
@@ -289,20 +289,19 @@
         NSString *asset = [tool objectForKey:@"imagePath"];
         NSString *title = [tool objectForKey:@"name"];
         
-        cell.editImage = [UIImage imageNamed:asset];
-        cell.editTitle = title;
+        [cell updateCellContent:[UIImage imageNamed:asset] title:title type:COMMON_CELL];
     }else if(_photoEditToolType == PhotoEditToolFilter){
         NSString *filterName = [tool objectForKey:@"name"];
         NSString *title = [tool objectForKey:@"title"];
     
         //thumbnail add filters
         UIImage *result = [[JJFilterManager getInstance] renderImage:filterName image:_originalImage];
-        [cell updateCellContent:result title:title];
+        [cell updateCellContent:result title:title type:FILTER_CELL];
     }else if(_photoEditToolType == PhotoEditToolAdjust){
         NSString *title = [tool objectForKey:@"name"];
         NSString *asset = [tool objectForKey:@"imagePath"];
         
-        [cell updateCellContent:[UIImage imageNamed:asset] title:title];
+        [cell updateCellContent:[UIImage imageNamed:asset] title:title type:COMMON_CELL];
     }
     
     return cell;

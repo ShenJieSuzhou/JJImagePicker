@@ -16,7 +16,7 @@
 
 @end
 
-#define JJ_FILTERTOOL_HEIGHT 150
+#define JJ_FILTERTOOL_HEIGHT 160
 
 @implementation FilterViewController
 @synthesize image = _image;
@@ -61,7 +61,7 @@
 #pragma mark lazyLoading
 - (EditingSubToolView *)filterView{
     if(!_filterView){
-        _filterView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_FILTERTOOL_HEIGHT, self.view.bounds.size.width, JJ_FILTERTOOL_HEIGHT) ToolType:PhotoEditToolFilter size:CGSizeMake(100.0f, 120.0f)];
+        _filterView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_FILTERTOOL_HEIGHT, self.view.bounds.size.width, JJ_FILTERTOOL_HEIGHT) ToolType:PhotoEditToolFilter size:CGSizeMake(80.0f, 120.0f)];
         _filterView.delegate = self;
     }
     return _filterView;

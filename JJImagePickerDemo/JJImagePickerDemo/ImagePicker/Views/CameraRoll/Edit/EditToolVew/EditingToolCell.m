@@ -10,9 +10,6 @@
 
 @implementation EditingToolCell
 
-@synthesize editImage = _editImage;
-@synthesize editTitle = _editTitle;
-@synthesize editImageSel = _editImageSel;
 @synthesize title = _title;
 @synthesize iconV = _iconV;
 
@@ -30,33 +27,44 @@
 }
 
 - (void)commonInitlization{
-    self.iconV = [[UIImageView alloc] init];
-    self.editImage = [[UIImage alloc] init];
+    CGSize size = self.bounds.size;
+    CGFloat fDeltaWidth = 45.0f;
+    CGFloat fDeltaHeight = 45.0f;
+    CGFloat padding = 10.0f;
     
+    self.iconV = [[UIImageView alloc] init];
+    [self.iconV setFrame:CGRectMake((size.width - fDeltaWidth)/2, (size.height - fDeltaHeight)/2 - padding, fDeltaWidth, fDeltaHeight)];
     self.iconV.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.iconV];
     
     self.title = [[UILabel alloc] init];
-    [self.title setFont:[UIFont fontWithName:@"Verdana" size:10.0f]];
+     [self.title setFrame:CGRectMake((size.width - fDeltaWidth)/2, fDeltaHeight + (size.height - fDeltaHeight)/2 - padding, fDeltaWidth, 20.0f)];
+    [self.title setFont:[UIFont fontWithName:@"Verdana" size:11.0f]];
     [self.title setTextAlignment:NSTextAlignmentCenter];
     [self.contentView addSubview:self.title];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-    CGSize size = self.bounds.size;
-    CGFloat padding = 10.0f;
-    CGFloat fDeltaWidth = size.width - 2*padding;
-    CGFloat fDeltaHeight = fDeltaWidth;
-    
-    [self.iconV setFrame:CGRectMake(padding, padding, fDeltaWidth, fDeltaHeight)];
-    [self.title setFrame:CGRectMake(padding, size.height - 2*padding, fDeltaWidth, size.height - 2*padding - fDeltaWidth)];
 }
 
-- (void)updateCellContent:(UIImage *)image title:(NSString *)title{
-    [self.iconV setImage:image];
-    [self.title setText:title];
+- (void)updateCellContent:(UIImage *)image title:(NSString *)title type:(JJ_EDITCELL_TYPE)type{
+    if(type == FILTER_CELL){
+        CGSize size = self.bounds.size;
+        CGFloat padding = 10.0f;
+        CGFloat fDeltaWidth = size.width - 2*padding;
+        CGFloat fDeltaHeight = 3*fDeltaWidth/2;
+        
+        [self.iconV setFrame:CGRectMake((size.width - fDeltaWidth)/2, padding, fDeltaWidth, fDeltaHeight)];
+        [self.title setFrame:CGRectMake((size.width - fDeltaWidth)/2, fDeltaHeight + (size.height - fDeltaHeight)/2, fDeltaWidth, 20.0f)];
+        
+        [self.iconV setImage:image];
+        [self.title setText:title];
+        
+    }else if(type == COMMON_CELL){
+        [self.iconV setImage:image];
+        [self.title setText:title];
+    }
 }
 
 @end
