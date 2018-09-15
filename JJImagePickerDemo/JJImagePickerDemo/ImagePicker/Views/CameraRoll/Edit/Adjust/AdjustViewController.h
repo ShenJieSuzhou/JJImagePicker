@@ -22,6 +22,8 @@
 @property (nonatomic, strong) EditingSubToolView *adjustView;
 //工具
 @property (nonatomic, copy) NSArray *adToolArrays;
+//UISlide
+@property (nonatomic, strong) UISlider *jjSlider;
 
 - (void)setEditImage:(UIImage *)image;
 

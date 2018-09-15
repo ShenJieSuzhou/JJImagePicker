@@ -18,6 +18,7 @@
 @synthesize preViewImage = _preViewImage;
 @synthesize adjustView = _adjustView;
 @synthesize adToolArrays = _adToolArrays;
+@synthesize jjSlider = _jjSlider;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +58,13 @@
     return _adjustView;
 }
 
+- (UISlider *)jjSlider{
+    if(!_jjSlider){
+        _jjSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+    }
+    
+    return _jjSlider;
+}
 
 #pragma mark - Image Layout -
 - (void)layoutImageView

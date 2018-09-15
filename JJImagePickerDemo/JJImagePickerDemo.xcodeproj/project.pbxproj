@@ -136,6 +136,7 @@
 		E5DF2E02214CDBF50048A80E /* YUCIRGBToneCurve.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2DFE214CDBF40048A80E /* YUCIRGBToneCurve.cikernel */; };
 		E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */; };
 		E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */; };
+		E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E06214CF9030048A80E /* CustomSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -329,6 +330,8 @@
 		E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIFilterConstructor.m; sourceTree = "<group>"; };
 		E5DF2E00214CDBF40048A80E /* YUCIRGBToneCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurve.h; sourceTree = "<group>"; };
 		E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurve.m; sourceTree = "<group>"; };
+		E5DF2E05214CF9030048A80E /* CustomSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
+		E5DF2E06214CF9030048A80E /* CustomSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,6 +746,8 @@
 			children = (
 				E5DF2D99214B9E7C0048A80E /* AdjustViewController.h */,
 				E5DF2D9A214B9E7C0048A80E /* AdjustViewController.m */,
+				E5DF2E05214CF9030048A80E /* CustomSlider.h */,
+				E5DF2E06214CF9030048A80E /* CustomSlider.m */,
 			);
 			path = Adjust;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
+				E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
