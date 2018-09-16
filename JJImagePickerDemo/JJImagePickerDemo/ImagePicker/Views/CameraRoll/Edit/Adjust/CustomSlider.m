@@ -32,23 +32,38 @@
     _title = title;
     _jjColor = color;
     self.titleLabel = [[UILabel alloc] init];
-    [self.titleLabel setFont:[UIFont fontWithName:@"Verdana" size:11.0f]];
+    [self.titleLabel setFont:[UIFont fontWithName:@"Verdana" size:14.0f]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.titleLabel setText:_title];
     [self addSubview:self.titleLabel];
     
     self.jjSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+    self.jjSlider.minimumValue = 0.0f;
+    self.jjSlider.maximumValue = 100.0f;
+    self.jjSlider.value = 50.0f;
+    [self.jjSlider setContinuous:YES];
+    self.jjSlider.minimumTrackTintColor = color;
+    self.jjSlider.maximumTrackTintColor = [UIColor whiteColor];
+    self.jjSlider.thumbTintColor = [UIColor whiteColor];
+    [self.jjSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:self.jjSlider];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-
+    CGSize size = self.bounds.size;
+    [self.titleLabel setFrame:CGRectMake(20, 10, 40, 40)];
+    [self.jjSlider setFrame:CGRectMake(70, 10, size.width - 90, 40)];
 }
 
 - (void)setJJSliderValue:(CGFloat *)value{
     
+}
+
+
+-(void)sliderValueChanged:(UISlider *)slider
+{
+    NSLog(@"slider value%f",slider.value);
 }
 
 @end

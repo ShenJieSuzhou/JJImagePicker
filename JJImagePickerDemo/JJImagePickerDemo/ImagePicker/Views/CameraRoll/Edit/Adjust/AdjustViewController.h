@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EditingToolView.h"
+#import "CustomSlider.h"
 #import <UIKit/UIKit.h>
 
 @interface AdjustViewController : UIViewController<PhotoSubToolEditingDelegate>
@@ -23,7 +24,7 @@
 //工具
 @property (nonatomic, copy) NSArray *adToolArrays;
 //UISlide
-@property (nonatomic, strong) UISlider *jjSlider;
+@property (nonatomic, strong) CustomSlider *jjSlider;
 
 - (void)setEditImage:(UIImage *)image;
 

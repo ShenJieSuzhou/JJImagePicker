@@ -35,6 +35,10 @@
     //预览图
     [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.adjustView];
+
+    //test add slider
+    [self.view addSubview:self.jjSlider];
+//    [self.view bringSubviewToFront:self.jjSlider];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,9 +62,9 @@
     return _adjustView;
 }
 
-- (UISlider *)jjSlider{
+- (CustomSlider *)jjSlider{
     if(!_jjSlider){
-        _jjSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+        _jjSlider = [[CustomSlider alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_ADJUSTTOOL_HEIGHT - 60, self.view.bounds.size.width, 60) Title:@"美白" color:[UIColor redColor]];
     }
     
     return _jjSlider;
