@@ -19,11 +19,14 @@
 @synthesize adjustView = _adjustView;
 @synthesize adToolArrays = _adToolArrays;
 @synthesize jjSlider = _jjSlider;
+@synthesize adjustHashMap = _adjustHashMap;
+@synthesize jjAdjustType = _jjAdjustType;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
+    _adjustHashMap = [[NSMutableDictionary alloc] init];
     
     [self.adjustView setSubToolArray:[NSMutableArray arrayWithArray:_adToolArrays]];
     [self.view addSubview:self.adjustView];
@@ -38,7 +41,7 @@
 
     //test add slider
     [self.view addSubview:self.jjSlider];
-//    [self.view bringSubviewToFront:self.jjSlider];
+    [self.jjSlider setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +68,7 @@
 - (CustomSlider *)jjSlider{
     if(!_jjSlider){
         _jjSlider = [[CustomSlider alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_ADJUSTTOOL_HEIGHT - 60, self.view.bounds.size.width, 60) Title:@"美白" color:[UIColor redColor]];
+        _jjSlider.delegate = self;
     }
     
     return _jjSlider;
@@ -146,9 +150,48 @@
     
 }
 
-- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustName:(NSString *)name inputAmount:(CGFloat *)amount{
-    UIImage *result = [[JJFilterManager getInstance] renderImage:@"" image:_image inputAmount:0];
-    [_preViewImage setImage:result];
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType{
+    [self.jjSlider setHidden:NO];
+    if(adjustType == JJSmoothSkinAdjust){
+        //美白默认参数 5
+        _jjAdjustType = JJSmoothSkinAdjust;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:5];
+        [_preViewImage setImage:result];
+    }else if(adjustType == JJExposureAdjust){
+        _jjAdjustType = JJExposureAdjust;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:0.5];
+        [_preViewImage setImage:result];
+    }else if(adjustType == JJTemperatureAdjsut){
+        _jjAdjustType = JJTemperatureAdjsut;
+        
+    }else if(adjustType == JJContrastAdjsut){
+        
+    }else if(adjustType == JJSaturationAdjsut){
+        _jjAdjustType = JJSaturationAdjsut;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:1.0f];
+        [_preViewImage setImage:result];
+    }else if(adjustType == JJShapeAdjust){
+        
+    }else if(adjustType == JJDarkangleAdjust){
+        
+    }
+}
+
+#pragma mark - CustomSliderDelegate
+- (void)customSliderValueChangeCallBacK:(float)value{
+    if(_jjAdjustType == JJSmoothSkinAdjust){
+        CGFloat ff = value / 10.0f;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJExposureAdjust){
+        CGFloat ff = value / 100.0f;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJSaturationAdjsut){
+        CGFloat ff = value / 10.0f;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }
 }
 
 @end

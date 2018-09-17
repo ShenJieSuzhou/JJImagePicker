@@ -22,6 +22,16 @@ typedef enum : NSUInteger {
     JJRotateViewClockwise
 } PhotoEditSubTools;
 
+typedef enum NSUInteger{
+    JJSmoothSkinAdjust,
+    JJExposureAdjust,
+    JJTemperatureAdjsut,
+    JJContrastAdjsut,
+    JJSaturationAdjsut,
+    JJShapeAdjust,
+    JJDarkangleAdjust,
+} PhotoEditAdjustTYPE;
+
 typedef enum : NSUInteger{
     PhotoEditToolCrop,
     PhotoEditToolAdjust,
@@ -53,7 +63,7 @@ typedef enum : NSUInteger{
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV filterName:(NSString *)filter;
 
-- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustName:(NSString *)name inputAmount:(CGFloat *)amount;
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType;
 
 @end
 

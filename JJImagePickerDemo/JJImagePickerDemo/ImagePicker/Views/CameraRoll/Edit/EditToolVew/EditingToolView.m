@@ -263,12 +263,28 @@
             [_delegate PhotoEditSubEditTool:collectionView Tools:JJRotateViewClockwise];
         }
     }else if(_photoEditToolType == PhotoEditToolAdjust){
-        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:adjustName:inputAmount:)]){
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:adjustType:)]){
             return;
         }
         
-        [_delegate PhotoEditSubEditTool:collectionView adjustName:@"" inputAmount:0];
-        
+        if(index == 0){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJSmoothSkinAdjust];
+        }else if(index == 1){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJExposureAdjust];
+        }else if(index == 2){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJTemperatureAdjsut];
+        }else if(index == 3){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJContrastAdjsut];
+        }else if(index == 4){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJSaturationAdjsut];
+        }else if(index == 5){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJShapeAdjust];
+        }else if(index == 6){
+            
+        }else if(index == 7){
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJDarkangleAdjust];
+        }
+    
     }else if(_photoEditToolType == PhotoEditToolFilter){
         NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
         NSString *filterName = [tool objectForKey:@"name"];

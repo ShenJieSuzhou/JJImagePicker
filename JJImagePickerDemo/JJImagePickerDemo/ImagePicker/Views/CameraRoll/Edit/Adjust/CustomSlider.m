@@ -14,6 +14,7 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize jjSlider = _jjSlider;
 @synthesize jjColor = _jjColor;
+@synthesize delegate = _delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame Title:(NSString *)title color:(UIColor *)color{
     self = [super initWithFrame:frame];
@@ -56,14 +57,21 @@
     [self.jjSlider setFrame:CGRectMake(70, 10, size.width - 90, 40)];
 }
 
-- (void)setJJSliderValue:(CGFloat *)value{
-    
+- (void)setJJSliderTitle:(NSString *)title{
+    [self.titleLabel setText:title];
 }
 
+- (void)setJJSliderValue:(float)value{
+    self.jjSlider.value = value;
+}
 
 -(void)sliderValueChanged:(UISlider *)slider
 {
-    NSLog(@"slider value%f",slider.value);
+    if(![_delegate respondsToSelector:@selector(customSliderValueChangeCallBacK:)]){
+        return;
+    }
+
+    [_delegate customSliderValueChangeCallBacK:slider.value];
 }
 
 @end

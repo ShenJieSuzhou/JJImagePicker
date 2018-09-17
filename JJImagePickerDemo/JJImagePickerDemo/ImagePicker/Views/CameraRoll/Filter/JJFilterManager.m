@@ -58,16 +58,77 @@ static JJFilterManager *m_instance = nil;
     return result;
 }
 
-- (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image inputAmount:(CGFloat *)amount{
-    if([filterName isEqualToString:@"CLDefaultEmptyFilter"]){
+- (UIImage *)renderImageWithBeauty:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
         return image;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *filter = [CIFilter filterWithName:@"YUCIHighPassSkinSmoothing" keysAndValues:kCIInputImageKey, ciImage, nil];
     [filter setValue:ciImage forKey:kCIInputImageKey];
-    [filter setValue:[NSNumber numberWithFloat:0.9] forKey:@"inputAmount"];
-    [filter setValue:[NSNumber numberWithFloat:8] forKey:kCIInputRadiusKey];
+    [filter setValue:[NSNumber numberWithFloat:0.75] forKey:@"inputAmount"];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:kCIInputRadiusKey];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+- (UIImage *)renderImageWithExposure:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIExposureAdjust" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputEV"];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+- (UIImage *)renderImageWithTemperature:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIExposureAdjust" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+- (UIImage *)renderImageWithSaturation:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIVibrance" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];

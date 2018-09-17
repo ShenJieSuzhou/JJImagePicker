@@ -11,7 +11,7 @@
 #import "CustomSlider.h"
 #import <UIKit/UIKit.h>
 
-@interface AdjustViewController : UIViewController<PhotoSubToolEditingDelegate>
+@interface AdjustViewController : UIViewController<PhotoSubToolEditingDelegate,CustomSliderDelegate>
 
 //原始图
 @property (nonnull, nonatomic, readonly) UIImage *image;
@@ -25,6 +25,10 @@
 @property (nonatomic, copy) NSArray *adToolArrays;
 //UISlide
 @property (nonatomic, strong) CustomSlider *jjSlider;
+//hash 存放保存的参数值
+@property (nonatomic, strong) NSMutableDictionary *adjustHashMap;
+//调整的类型
+@property (assign) PhotoEditAdjustTYPE jjAdjustType;
 
 - (void)setEditImage:(UIImage *)image;
 

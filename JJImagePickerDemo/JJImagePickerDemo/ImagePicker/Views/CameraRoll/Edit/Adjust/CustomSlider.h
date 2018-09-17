@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CustomSliderDelegate <NSObject>
+
+- (void)customSliderValueChangeCallBacK:(float)value;
+
+@end
+
 @interface CustomSlider : UIView
 
 @property (nonatomic, strong) NSString *title;
@@ -18,8 +24,12 @@
 
 @property (nonatomic, strong) UISlider *jjSlider;
 
+@property (nonatomic, weak) id<CustomSliderDelegate> delegate;
+
 - (instancetype)initWithFrame:(CGRect)frame Title:(NSString *)title color:(UIColor *)color;
 
-- (void)setJJSliderValue:(CGFloat *)value;
+- (void)setJJSliderTitle:(NSString *)title;
+
+- (void)setJJSliderValue:(float)value;
 
 @end
