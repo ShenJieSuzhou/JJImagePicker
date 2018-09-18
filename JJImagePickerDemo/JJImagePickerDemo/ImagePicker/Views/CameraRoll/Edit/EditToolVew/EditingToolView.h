@@ -26,7 +26,7 @@ typedef enum NSUInteger{
     JJSmoothSkinAdjust,
     JJExposureAdjust,
     JJTemperatureAdjsut,
-    JJContrastAdjsut,
+    JJContrastAdjust,
     JJSaturationAdjsut,
     JJShapeAdjust,
     JJDarkangleAdjust,

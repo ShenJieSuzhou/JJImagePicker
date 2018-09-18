@@ -163,17 +163,24 @@
         [_preViewImage setImage:result];
     }else if(adjustType == JJTemperatureAdjsut){
         _jjAdjustType = JJTemperatureAdjsut;
-        
-    }else if(adjustType == JJContrastAdjsut){
-        
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:0.0];
+        [_preViewImage setImage:result];
+    }else if(adjustType == JJContrastAdjust){
+        _jjAdjustType = JJContrastAdjust;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:1.0];
+        [_preViewImage setImage:result];
     }else if(adjustType == JJSaturationAdjsut){
         _jjAdjustType = JJSaturationAdjsut;
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:1.0f];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:0.0f];
         [_preViewImage setImage:result];
     }else if(adjustType == JJShapeAdjust){
-        
+        _jjAdjustType = JJShapeAdjust;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:0.4f];
+        [_preViewImage setImage:result];
     }else if(adjustType == JJDarkangleAdjust){
-        
+        _jjAdjustType = JJDarkangleAdjust;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithDarkangle:_image inputAmount:0.0f];
+        [_preViewImage setImage:result];
     }
 }
 
@@ -187,9 +194,30 @@
         CGFloat ff = value / 100.0f;
         UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:ff];
         [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJTemperatureAdjsut){
+        CGFloat ff = (value - 50.0f)/100;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJContrastAdjust){
+        CGFloat ff = (value - 50.0f);
+        if(ff < 0){
+            ff = (ff + 100) / 200 + 0.5;
+        }else{
+            ff = (ff + 50)/100 + 1;
+        }
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:ff];
+        [_preViewImage setImage:result];
     }else if(_jjAdjustType == JJSaturationAdjsut){
-        CGFloat ff = value / 10.0f;
+        CGFloat ff = value/100 + 1;
         UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJShapeAdjust){
+        CGFloat ff = value/10;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:ff];
+        [_preViewImage setImage:result];
+    }else if(_jjAdjustType == JJDarkangleAdjust){
+        CGFloat ff = value/10;
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithDarkangle:_image inputAmount:ff];
         [_preViewImage setImage:result];
     }
 }

@@ -274,7 +274,7 @@
         }else if(index == 2){
             [_delegate PhotoEditSubEditTool:collectionView adjustType:JJTemperatureAdjsut];
         }else if(index == 3){
-            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJContrastAdjsut];
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJContrastAdjust];
         }else if(index == 4){
             [_delegate PhotoEditSubEditTool:collectionView adjustType:JJSaturationAdjsut];
         }else if(index == 5){

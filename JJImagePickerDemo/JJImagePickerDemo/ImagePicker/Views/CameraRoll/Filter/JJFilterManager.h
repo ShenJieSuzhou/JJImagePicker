@@ -21,6 +21,8 @@ typedef void(^jjFilterRenderBlock)(UIImage *image);
 - (UIImage *)renderImageWithExposure:(UIImage *)image inputAmount:(CGFloat)amount;
 - (UIImage *)renderImageWithTemperature:(UIImage *)image inputAmount:(CGFloat)amount;
 - (UIImage *)renderImageWithSaturation:(UIImage *)image inputAmount:(CGFloat)amount;
-
+- (UIImage *)renderImageWithContrast:(UIImage *)image inputAmount:(CGFloat)amount;
+- (UIImage *)renderImageWithSharpen:(UIImage *)image inputAmount:(CGFloat)amount;
+- (UIImage *)renderImageWithDarkangle:(UIImage *)image inputAmount:(CGFloat)amount;
 - (NSArray *)getFiltersArray;
 @end

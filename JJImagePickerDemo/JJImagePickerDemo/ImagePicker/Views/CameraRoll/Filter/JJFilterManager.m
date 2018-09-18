@@ -107,8 +107,8 @@ static JJFilterManager *m_instance = nil;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CIExposureAdjust" keysAndValues:kCIInputImageKey, ciImage, nil];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
+    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputIntensity"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];
@@ -120,6 +120,27 @@ static JJFilterManager *m_instance = nil;
     return result;
 }
 
+- (UIImage *)renderImageWithContrast:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputContrast"];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+
 - (UIImage *)renderImageWithSaturation:(UIImage *)image inputAmount:(CGFloat)amount{
     if(!image){
         NSLog(@"renderImage nil");
@@ -127,8 +148,49 @@ static JJFilterManager *m_instance = nil;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CIVibrance" keysAndValues:kCIInputImageKey, ciImage, nil];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputSaturation"];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+- (UIImage *)renderImageWithSharpen:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CISharpenLuminance" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputSharpness"];
+    
+    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
+    CIImage *outputImage = [filter outputImage];
+    CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    
+    CGImageRelease(cgImage);
+    return result;
+}
+
+- (UIImage *)renderImageWithDarkangle:(UIImage *)image inputAmount:(CGFloat)amount{
+    if(!image){
+        NSLog(@"renderImage nil");
+        return image;
+    }
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *filter = [CIFilter filterWithName:@"CIVignette" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:1.0f] forKey:@"inputRadius"];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputIntensity"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];
