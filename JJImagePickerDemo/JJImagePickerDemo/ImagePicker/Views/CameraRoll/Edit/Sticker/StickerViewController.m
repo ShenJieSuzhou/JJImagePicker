@@ -7,10 +7,18 @@
 //
 
 #import "StickerViewController.h"
+#import "JJLoadConfig.h"
+#import "StickerCollectionView.h"
+#import "StickerModel.h"
 
 #define JJ_STICKERTOOL_HEIGHT 160
+#define JJ_STICK_COLLECT_HEIGHT self.view.bounds.size.height * 0.5
+#define JJ_STICK_COLLECT_WIDTH  self.view.bounds.size.width
 
 @interface StickerViewController ()
+
+@property (strong, nonatomic) NSMutableDictionary *stickers;
+@property (strong, nonatomic) StickerCollectionView *stickerCollectionView;
 
 @end
 
@@ -20,6 +28,9 @@
 @synthesize preViewImage = _preViewImage;
 @synthesize stickerListView = _stickerListView;
 @synthesize stickerArrays = _stickerArrays;
+@synthesize delegate = _delegate;
+@synthesize stickers = _stickers;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +40,11 @@
     [self.stickerListView setSubToolArray:_stickerArrays];
     [self.view addSubview:self.stickerListView];
     
+    //初始化贴纸
+    [self initializeStickerModels];
+    [self.view addSubview:self.stickerCollectionView];
+    [self.stickerCollectionView setHidden:YES];
+    
     self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - JJ_STICKERTOOL_HEIGHT)];
     [self.layerV setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.layerV];
@@ -36,6 +52,7 @@
     //预览图
     [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.stickerListView];
+    [self.view bringSubviewToFront:self.stickerCollectionView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +66,22 @@
     [self layoutImageView];
 }
 
+/*
+ * @brief 初始化表情列表
+ */
+- (void)initializeStickerModels{
+    NSDictionary *stickerConfig = [[JJLoadConfig getInstance] getStickercontent];
+    NSMutableArray *array = [stickerConfig objectForKey:@"stickers"];
+    for (int i = 0; i < [array count]; i++) {
+        NSDictionary *sticker = [array objectAtIndex:i];
+        NSString *name = [sticker objectForKey:@"name"];
+        NSMutableArray *assets = [sticker objectForKey:@"asstes"];
+        StickerModel *stickerModel = [[StickerModel alloc] init];
+        [stickerModel setStickers:name withArray:assets];
+        [self.stickers setValue:stickerModel forKey:name];
+    }
+}
+
 #pragma mark lazyLoading
 - (EditingSubToolView *)stickerListView{
     if(!_stickerListView){
@@ -56,6 +89,23 @@
         _stickerListView.delegate = self;
     }
     return _stickerListView;
+}
+
+- (StickerCollectionView *)stickerCollectionView{
+    CGFloat stickerListView_y = self.stickerListView.frame.origin.y;
+    if(!_stickerCollectionView){
+        NSLog(@"%@", self.view);
+        _stickerCollectionView = [[StickerCollectionView alloc] initWithFrame:CGRectMake(0, stickerListView_y - JJ_STICK_COLLECT_HEIGHT, JJ_STICK_COLLECT_WIDTH, JJ_STICK_COLLECT_HEIGHT)];
+    }
+    
+    return _stickerCollectionView;
+}
+
+- (NSMutableDictionary *)stickers{
+    if(!_stickers){
+        _stickers = [[NSMutableDictionary alloc] init];
+    }
+    return _stickers;
 }
 
 #pragma mark - Image Layout
@@ -118,6 +168,32 @@
     }
     
     _stickerArrays = arrays;
+}
+
+#pragma mark - PhotoSubToolEditingDelegate
+- (void)PhotoEditSubEditToolDismiss{
+    _preViewImage = nil;
+    _layerV = nil;
+    _stickerListView = nil;
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)PhotoEditSubEditToolConfirm{
+    
+}
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV stickerName:(NSString *)stickerName{
+    StickerModel *model = [self.stickers objectForKey:stickerName];
+
+    [UIView animateWithDuration:0.9f animations:^{
+        NSLog(@"%@", self.stickerCollectionView);
+        [self.stickerCollectionView setHidden:NO];
+        [self.stickerCollectionView setStickers:model.stickArray];
+        [self.stickerCollectionView refreshTheSticker];
+    }];
 }
 
 @end

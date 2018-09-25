@@ -12,9 +12,10 @@
 #import "JJCropViewController.h"
 #import "FilterViewController.h"
 #import "AdjustViewController.h"
+#import "StickerViewController.h"
 
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate>
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate>
 
 @property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
 

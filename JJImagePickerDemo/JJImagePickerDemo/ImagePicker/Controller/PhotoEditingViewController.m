@@ -235,7 +235,15 @@
             }];
         }
             break;
-        case JJEditToolSticker:
+        case JJEditToolSticker:{
+            StickerViewController *jjStickerView = [StickerViewController new];
+            jjStickerView.delegate = self;
+            [jjStickerView setStickerArrays:[NSMutableArray arrayWithArray:array]];
+            [jjStickerView setEditImage:[UIImage imageNamed:@"filter4"]];
+            [self presentViewController:jjStickerView animated:YES completion:^{
+                
+            }];
+        }
             break;
         case JJEditToolWords:
             break;

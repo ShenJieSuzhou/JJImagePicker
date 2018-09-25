@@ -46,7 +46,7 @@
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        _stickerCollection = [[UICollectionView alloc] initWithFrame:self.frame];
+        _stickerCollection = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
         //设置数据源代理
         _stickerCollection.dataSource = self;
         _stickerCollection.delegate = self;
@@ -73,7 +73,7 @@
 }
 
 - (void)refreshTheSticker{
-    
+    [self.stickerCollection reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate

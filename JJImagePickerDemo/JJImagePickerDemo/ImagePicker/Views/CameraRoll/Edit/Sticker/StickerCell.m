@@ -30,7 +30,7 @@
 }
 
 - (void)commonInitlization{
-    CGFloat padding = 5.0f;
+    CGFloat padding = 10.0f;
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, padding, self.frame.size.width - padding*2, self.frame.size.height - padding*2)];
     [self addSubview:self.imgView];
 }

@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "EditingToolView.h"
 
+@class StickerViewController;
+@protocol JJStickDelegate <NSObject>
+- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull UIImage *)image;
+@end
+
 @interface StickerViewController : UIViewController<PhotoSubToolEditingDelegate>
 
 //原始图
@@ -21,6 +26,9 @@
 @property (nonatomic, strong) EditingSubToolView *stickerListView;
 //sticker 数组
 @property (nonatomic, copy) NSMutableArray *stickerArrays;
+//代理
+@property (nonatomic, weak) id<JJStickDelegate> delegate;
+
 
 - (void)setEditImage:(UIImage *)image;
 

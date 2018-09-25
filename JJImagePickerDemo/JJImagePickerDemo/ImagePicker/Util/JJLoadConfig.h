@@ -14,4 +14,6 @@
 
 - (NSDictionary *)getCustomContent;
 
+- (NSDictionary *)getStickercontent;
+
 @end
