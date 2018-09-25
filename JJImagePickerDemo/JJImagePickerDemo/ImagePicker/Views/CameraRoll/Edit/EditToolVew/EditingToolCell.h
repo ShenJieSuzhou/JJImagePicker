@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    FILTER_CELL,
     COMMON_CELL,
+    FILTER_CELL,
+    STICKER_CELL
 } JJ_EDITCELL_TYPE;
 
 @interface EditingToolCell : UICollectionViewCell

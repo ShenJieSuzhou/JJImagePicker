@@ -60,8 +60,18 @@
         
         [self.iconV setImage:image];
         [self.title setText:title];
-        
     }else if(type == COMMON_CELL){
+        [self.iconV setImage:image];
+        [self.title setText:title];
+    }else if(type == STICKER_CELL){
+        CGSize size = self.bounds.size;
+        CGFloat padding = 10.0f;
+        CGFloat fDeltaWidth = size.width - 2*padding;
+        CGFloat fDeltaHeight = fDeltaWidth;
+        
+        [self.iconV setFrame:CGRectMake((size.width - fDeltaWidth)/2, padding, fDeltaWidth, fDeltaHeight)];
+        [self.title setFrame:CGRectMake((size.width - fDeltaWidth)/2, fDeltaHeight + (size.height - fDeltaHeight)/2, fDeltaWidth, 20.0f)];
+        
         [self.iconV setImage:image];
         [self.title setText:title];
     }

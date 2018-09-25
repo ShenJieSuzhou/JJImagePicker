@@ -293,6 +293,14 @@
         }
         
         [_delegate PhotoEditSubEditTool:collectionView filterName:filterName];
+    }else if(_photoEditToolType == PhotoEditToolSticker){
+        NSDictionary *tool = [self.subToolArray objectAtIndex:indexPath.row];
+        NSString *name = [tool objectForKey:@"name"];
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:stickerName:)]){
+            return;
+        }
+        
+        [_delegate PhotoEditSubEditTool:collectionView stickerName:name];
     }
 }
 
@@ -318,6 +326,10 @@
         NSString *asset = [tool objectForKey:@"imagePath"];
         
         [cell updateCellContent:[UIImage imageNamed:asset] title:title type:COMMON_CELL];
+    }else if(_photoEditToolType == PhotoEditToolSticker){
+        NSString *title = [tool objectForKey:@"name"];
+        NSString *asset = [tool objectForKey:@"imagePath"];
+        [cell updateCellContent:[UIImage imageNamed:asset] title:title type:STICKER_CELL];
     }
     
     return cell;

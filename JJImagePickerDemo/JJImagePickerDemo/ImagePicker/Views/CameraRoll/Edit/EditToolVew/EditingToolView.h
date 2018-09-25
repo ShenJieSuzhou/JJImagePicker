@@ -35,7 +35,8 @@ typedef enum NSUInteger{
 typedef enum : NSUInteger{
     PhotoEditToolCrop,
     PhotoEditToolAdjust,
-    PhotoEditToolFilter
+    PhotoEditToolFilter,
+    PhotoEditToolSticker
 } PhotoEditToolType;
 
 
@@ -64,6 +65,8 @@ typedef enum : NSUInteger{
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV filterName:(NSString *)filter;
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType;
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV stickerName:(NSString *)stickerName;
 
 @end
 

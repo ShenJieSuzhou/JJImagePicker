@@ -152,36 +152,36 @@
           "imagePath": "editor_sticker",
           "subTools": [
                        {
-                       "name": "美颜",
-                       "imagePath": 2222
+                       "name": "万圣节",
+                       "imagePath": "pot.png"
                        },
                        {
-                       "name": "曝光",
-                       "imagePtah": 2222
+                       "name": "恐龙",
+                       "imagePtah": "spider.png"
                        },
                        {
-                       "name": "色温",
-                       "imagePath": 2222
+                       "name": "南瓜",
+                       "imagePath": "pumpkin.png"
                        },
                        {
-                       "name": "对比度",
-                       "imagePath": 2222
+                       "name": "帽子",
+                       "imagePath": "hat.png"
                        },
                        {
-                       "name": "饱和度",
-                       "imagePath": 2222
+                       "name": "万圣节",
+                       "imagePath": "pot.png"
                        },
                        {
-                       "name": "锐化",
-                       "imagePath": 2222
+                       "name": "恐龙",
+                       "imagePtah": "spider.png"
                        },
                        {
-                       "name": "颗粒",
-                       "imagePath": 2222
+                       "name": "南瓜",
+                       "imagePath": "pumpkin.png"
                        },
                        {
-                       "name": "暗角",
-                       "imagePath": 2222
+                       "name": "帽子",
+                       "imagePath": "hat.png"
                        }
             ]
         },
