@@ -1,0 +1,64 @@
+﻿{
+    "stickers": [
+        {
+            "name": "万圣节",
+            "imagePath": "pot.png",
+            "asstes": [
+                "candy1.png",
+                "candy2.png",
+                "cat.png",
+                "ghost.png",
+                "ghost2.png",
+                "grave.png",
+                "hand.png",
+                "hat.png",
+                "pot.png",
+                "pumpkin.png",
+                "spider.png",
+                "zombie.png"
+            ]
+        },
+        {
+            "name": "恐龙",
+            "imagePath": "spider.png",
+"asstes": [
+                "candy1.png",
+                "candy2.png",
+                "cat.png",
+                "ghost.png",
+                "ghost2.png",
+                "grave.png",
+                "zombie.png"
+            ]
+        },
+        {
+            "name": "南瓜",
+            "imagePath": "pumpkin.png",
+"asstes": [
+                "candy1.png",
+                "candy2.png",
+                "cat.png",
+                "ghost.png",
+                "ghost2.png",
+                "pumpkin.png",
+                "spider.png",
+                "zombie.png"
+            ]
+        },
+        {
+            "name": "帽子",
+            "imagePath": "hat.png",
+"asstes": [
+                "candy1.png",
+                "candy2.png",
+                "cat.png",
+                "ghost.png",
+                "ghost2.png",
+                "grave.png",
+                "hand.png",
+                "hat.png",
+                "zombie.png"
+            ]
+        }
+    ]
+}

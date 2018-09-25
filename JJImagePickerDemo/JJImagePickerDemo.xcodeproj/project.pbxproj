@@ -15,6 +15,8 @@
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
+		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
+		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
@@ -104,6 +106,19 @@
 		E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF9212FD8A00077E62B /* JJLoadConfig.m */; };
 		E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BFD212FF4870077E62B /* FilterViewController.m */; };
 		E5506C0721412B250077E62B /* JJFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506C0621412B250077E62B /* JJFilterManager.m */; };
+		E551669D2159E7AE001FBFC1 /* stickerConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = E551669C2159E7AE001FBFC1 /* stickerConfig.json */; };
+		E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A02159E7F0001FBFC1 /* candy1.png */; };
+		E55166AD2159E7F0001FBFC1 /* candy2.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A12159E7F0001FBFC1 /* candy2.png */; };
+		E55166AE2159E7F0001FBFC1 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A22159E7F0001FBFC1 /* cat.png */; };
+		E55166AF2159E7F0001FBFC1 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A32159E7F0001FBFC1 /* ghost.png */; };
+		E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A42159E7F0001FBFC1 /* ghost2.png */; };
+		E55166B12159E7F0001FBFC1 /* grave.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A52159E7F0001FBFC1 /* grave.png */; };
+		E55166B22159E7F0001FBFC1 /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A62159E7F0001FBFC1 /* hand.png */; };
+		E55166B32159E7F0001FBFC1 /* hat.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A72159E7F0001FBFC1 /* hat.png */; };
+		E55166B42159E7F0001FBFC1 /* pot.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A82159E7F0001FBFC1 /* pot.png */; };
+		E55166B52159E7F0001FBFC1 /* pumpkin.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A92159E7F0001FBFC1 /* pumpkin.png */; };
+		E55166B62159E7F0001FBFC1 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166AA2159E7F0001FBFC1 /* spider.png */; };
+		E55166B72159E7F0001FBFC1 /* zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166AB2159E7F0001FBFC1 /* zombie.png */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -137,6 +152,8 @@
 		E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2DFF214CDBF40048A80E /* YUCIFilterConstructor.m */; };
 		E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */; };
 		E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E06214CF9030048A80E /* CustomSlider.m */; };
+		E5DF2E312154E6AC0048A80E /* StickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E302154E6AC0048A80E /* StickerView.m */; };
+		E5DF2E372154E7940048A80E /* StickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E362154E7940048A80E /* StickerCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +171,10 @@
 		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
+		E512B1D1215A034B00B06B1B /* StickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerModel.h; sourceTree = "<group>"; };
+		E512B1D2215A034B00B06B1B /* StickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerModel.m; sourceTree = "<group>"; };
+		E512B1D4215A045000B06B1B /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
+		E512B1D5215A045000B06B1B /* TagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -286,6 +307,19 @@
 		E5506BFD212FF4870077E62B /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		E5506C0521412B240077E62B /* JJFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFilterManager.h; sourceTree = "<group>"; };
 		E5506C0621412B250077E62B /* JJFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFilterManager.m; sourceTree = "<group>"; };
+		E551669C2159E7AE001FBFC1 /* stickerConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stickerConfig.json; sourceTree = "<group>"; };
+		E55166A02159E7F0001FBFC1 /* candy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy1.png; sourceTree = "<group>"; };
+		E55166A12159E7F0001FBFC1 /* candy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy2.png; sourceTree = "<group>"; };
+		E55166A22159E7F0001FBFC1 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
+		E55166A32159E7F0001FBFC1 /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
+		E55166A42159E7F0001FBFC1 /* ghost2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost2.png; sourceTree = "<group>"; };
+		E55166A52159E7F0001FBFC1 /* grave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grave.png; sourceTree = "<group>"; };
+		E55166A62159E7F0001FBFC1 /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
+		E55166A72159E7F0001FBFC1 /* hat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hat.png; sourceTree = "<group>"; };
+		E55166A82159E7F0001FBFC1 /* pot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pot.png; sourceTree = "<group>"; };
+		E55166A92159E7F0001FBFC1 /* pumpkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pumpkin.png; sourceTree = "<group>"; };
+		E55166AA2159E7F0001FBFC1 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
+		E55166AB2159E7F0001FBFC1 /* zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie.png; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -332,6 +366,10 @@
 		E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurve.m; sourceTree = "<group>"; };
 		E5DF2E05214CF9030048A80E /* CustomSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
 		E5DF2E06214CF9030048A80E /* CustomSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
+		E5DF2E2F2154E6AC0048A80E /* StickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerView.h; sourceTree = "<group>"; };
+		E5DF2E302154E6AC0048A80E /* StickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerView.m; sourceTree = "<group>"; };
+		E5DF2E352154E7940048A80E /* StickerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerCell.h; sourceTree = "<group>"; };
+		E5DF2E362154E7940048A80E /* StickerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,6 +452,10 @@
 				E5506B53212FB2BA0077E62B /* JJFilters.m */,
 				E5506BF5212FD2010077E62B /* JJEditTool.h */,
 				E5506BF6212FD2010077E62B /* JJEditTool.m */,
+				E512B1D1215A034B00B06B1B /* StickerModel.h */,
+				E512B1D2215A034B00B06B1B /* StickerModel.m */,
+				E512B1D4215A045000B06B1B /* TagModel.h */,
+				E512B1D5215A045000B06B1B /* TagModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -421,6 +463,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E551669B2159E779001FBFC1 /* stickers */,
 				E571BD42210F0044009DD369 /* editTools */,
 				E547D16A20F89AC500893D85 /* cameraButton.png */,
 				E547D17720F89AC800893D85 /* cameraButton@2x.png */,
@@ -516,6 +559,8 @@
 		E5506B9F212FB7D80077E62B /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				E5DF2E2E2154E6710048A80E /* Sticker */,
+				E5DF2E2D2154E66A0048A80E /* New Group */,
 				E5DF2D98214B9E580048A80E /* Adjust */,
 				E5506BA0212FB7D80077E62B /* Categories */,
 				E5506BA3212FB7D80077E62B /* Constants */,
@@ -650,6 +695,42 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
+		E551669B2159E779001FBFC1 /* stickers */ = {
+			isa = PBXGroup;
+			children = (
+				E551669E2159E7F0001FBFC1 /* Dino */,
+				E551669F2159E7F0001FBFC1 /* Halloween */,
+				E551669C2159E7AE001FBFC1 /* stickerConfig.json */,
+			);
+			path = stickers;
+			sourceTree = "<group>";
+		};
+		E551669E2159E7F0001FBFC1 /* Dino */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dino;
+			sourceTree = "<group>";
+		};
+		E551669F2159E7F0001FBFC1 /* Halloween */ = {
+			isa = PBXGroup;
+			children = (
+				E55166A02159E7F0001FBFC1 /* candy1.png */,
+				E55166A12159E7F0001FBFC1 /* candy2.png */,
+				E55166A22159E7F0001FBFC1 /* cat.png */,
+				E55166A32159E7F0001FBFC1 /* ghost.png */,
+				E55166A42159E7F0001FBFC1 /* ghost2.png */,
+				E55166A52159E7F0001FBFC1 /* grave.png */,
+				E55166A62159E7F0001FBFC1 /* hand.png */,
+				E55166A72159E7F0001FBFC1 /* hat.png */,
+				E55166A82159E7F0001FBFC1 /* pot.png */,
+				E55166A92159E7F0001FBFC1 /* pumpkin.png */,
+				E55166AA2159E7F0001FBFC1 /* spider.png */,
+				E55166AB2159E7F0001FBFC1 /* zombie.png */,
+			);
+			path = Halloween;
+			sourceTree = "<group>";
+		};
 		E56B9CB620AD2FA700021DF8 = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +833,24 @@
 			path = Adjust;
 			sourceTree = "<group>";
 		};
+		E5DF2E2D2154E66A0048A80E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E5DF2E2E2154E6710048A80E /* Sticker */ = {
+			isa = PBXGroup;
+			children = (
+				E5DF2E2F2154E6AC0048A80E /* StickerView.h */,
+				E5DF2E302154E6AC0048A80E /* StickerView.m */,
+				E5DF2E352154E7940048A80E /* StickerCell.h */,
+				E5DF2E362154E7940048A80E /* StickerCell.m */,
+			);
+			path = Sticker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -809,7 +908,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */,
 				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
+				E55166B62159E7F0001FBFC1 /* spider.png in Resources */,
 				E5DF2D90214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel in Resources */,
 				E547D18F20F89ACE00893D85 /* flashAutoIcon.png in Resources */,
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
@@ -823,14 +924,18 @@
 				E547D19520F89ACE00893D85 /* cameraButton@3x.png in Resources */,
 				E547D19620F89ACE00893D85 /* libraryConfirm@3x.png in Resources */,
 				E547D1A620F89ACE00893D85 /* flashOffIcon@3x.png in Resources */,
+				E55166B12159E7F0001FBFC1 /* grave.png in Resources */,
 				E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */,
 				E547D1A520F89ACE00893D85 /* flashOffIcon@2x.png in Resources */,
 				E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */,
+				E55166AF2159E7F0001FBFC1 /* ghost.png in Resources */,
 				E547D18B20F89ACE00893D85 /* closeButton@2x.png in Resources */,
 				E547D19D20F89ACE00893D85 /* flashAutoIcon@2x.png in Resources */,
 				E547D15E20F870F000893D85 /* oie_transparent-20.png in Resources */,
 				E547D19020F89ACE00893D85 /* libraryConfirm@2x.png in Resources */,
+				E551669D2159E7AE001FBFC1 /* stickerConfig.json in Resources */,
 				E547D19A20F89ACE00893D85 /* confirmButton@3x.png in Resources */,
+				E55166B72159E7F0001FBFC1 /* zombie.png in Resources */,
 				E547D1B020F89ACE00893D85 /* retakeButton@2x.png in Resources */,
 				E5DF2E02214CDBF50048A80E /* YUCIRGBToneCurve.cikernel in Resources */,
 				E547D19420F89ACE00893D85 /* cameraButton.png in Resources */,
@@ -840,12 +945,16 @@
 				E547D1AD20F89ACE00893D85 /* flashOnIcon.png in Resources */,
 				E547D1A120F89ACE00893D85 /* cameraButton@2x.png in Resources */,
 				E547D1A720F89ACE00893D85 /* libraryCancel@2x.png in Resources */,
+				E55166AD2159E7F0001FBFC1 /* candy2.png in Resources */,
 				E5CFB54420D257D00021EB68 /* chooseInterest_cheaked@3x.png in Resources */,
 				E5CFB55620D37D580021EB68 /* QMUI_previewImage_checkbox@2x.png in Resources */,
 				E547D18A20F89ACE00893D85 /* flashAutoIcon@3x.png in Resources */,
 				E5DF2D91214B93320048A80E /* YUCIHighPass.cikernel in Resources */,
 				E547D19E20F89ACE00893D85 /* retakeButton@3x.png in Resources */,
 				E5CFB54720D25A940021EB68 /* QMUI_pickerImage_video_mark@2x.png in Resources */,
+				E55166B52159E7F0001FBFC1 /* pumpkin.png in Resources */,
+				E55166B42159E7F0001FBFC1 /* pot.png in Resources */,
+				E55166B22159E7F0001FBFC1 /* hand.png in Resources */,
 				E547D18C20F89ACE00893D85 /* confirmButton@2x.png in Resources */,
 				E5CFB55420D37D580021EB68 /* QMUI_previewImage_checkbox_checked@2x.png in Resources */,
 				E5506B1021269D4D0077E62B /* 22.jpg in Resources */,
@@ -858,6 +967,7 @@
 				E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */,
 				E5CFB55B20D3879B0021EB68 /* uls_tb_intro_return_p@3x.png in Resources */,
 				E547D19320F89ACE00893D85 /* flashOnIcon@3x.png in Resources */,
+				E55166B32159E7F0001FBFC1 /* hat.png in Resources */,
 				E547D19F20F89ACE00893D85 /* cameraPermissionsIcon@3x.png in Resources */,
 				E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */,
 				E5CFB55A20D3879B0021EB68 /* uls_tb_intro_return_n@3x.png in Resources */,
@@ -867,6 +977,7 @@
 				E547D18920F89ACE00893D85 /* cameraButtonHighlighted.png in Resources */,
 				44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */,
 				E547D1AC20F89ACE00893D85 /* cameraButtonHighlighted@2x.png in Resources */,
+				E55166AE2159E7F0001FBFC1 /* cat.png in Resources */,
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
 				E5506B0F21269D4D0077E62B /* 11.png in Resources */,
@@ -875,6 +986,7 @@
 				E547D1AA20F89ACE00893D85 /* placeholder@2x.png in Resources */,
 				E547D1AB20F89ACE00893D85 /* placeholder@3x.png in Resources */,
 				E547D19720F89ACE00893D85 /* placeholder.png in Resources */,
+				E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */,
 				E547D1AF20F89ACE00893D85 /* cameraPermissionsIcon@2x.png in Resources */,
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E5CFB55520D37D580021EB68 /* QMUI_previewImage_checkbox@3x.png in Resources */,
@@ -898,12 +1010,16 @@
 				E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */,
 				E5506B61212FB3330077E62B /* InterestingViewController.m in Sources */,
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
+				E512B1D6215A045000B06B1B /* TagModel.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
 				E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
+				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
+				E5DF2E312154E6AC0048A80E /* StickerView.m in Sources */,
+				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				E5506BDB212FB7D80077E62B /* DropButton.m in Sources */,
 				E5506B63212FB3330077E62B /* PhotoEditingViewController.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
