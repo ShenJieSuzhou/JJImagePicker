@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StickerView : UIView<UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface StickerView : UIView
 
-@property (nonatomic, strong) UICollectionView *stickerCollection;
+
 
 
 @end

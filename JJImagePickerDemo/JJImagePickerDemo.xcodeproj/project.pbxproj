@@ -17,6 +17,7 @@
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
 		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
+		E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D8215A061800B06B1B /* StickerCollectionView.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
@@ -175,6 +176,8 @@
 		E512B1D2215A034B00B06B1B /* StickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerModel.m; sourceTree = "<group>"; };
 		E512B1D4215A045000B06B1B /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
 		E512B1D5215A045000B06B1B /* TagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
+		E512B1D7215A061800B06B1B /* StickerCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerCollectionView.h; sourceTree = "<group>"; };
+		E512B1D8215A061800B06B1B /* StickerCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerCollectionView.m; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -560,7 +563,6 @@
 			isa = PBXGroup;
 			children = (
 				E5DF2E2E2154E6710048A80E /* Sticker */,
-				E5DF2E2D2154E66A0048A80E /* New Group */,
 				E5DF2D98214B9E580048A80E /* Adjust */,
 				E5506BA0212FB7D80077E62B /* Categories */,
 				E5506BA3212FB7D80077E62B /* Constants */,
@@ -833,13 +835,6 @@
 			path = Adjust;
 			sourceTree = "<group>";
 		};
-		E5DF2E2D2154E66A0048A80E /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		E5DF2E2E2154E6710048A80E /* Sticker */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +842,8 @@
 				E5DF2E302154E6AC0048A80E /* StickerView.m */,
 				E5DF2E352154E7940048A80E /* StickerCell.h */,
 				E5DF2E362154E7940048A80E /* StickerCell.m */,
+				E512B1D7215A061800B06B1B /* StickerCollectionView.h */,
+				E512B1D8215A061800B06B1B /* StickerCollectionView.m */,
 			);
 			path = Sticker;
 			sourceTree = "<group>";
@@ -1018,6 +1015,7 @@
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
+				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
 				E5DF2E312154E6AC0048A80E /* StickerView.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				E5506BDB212FB7D80077E62B /* DropButton.m in Sources */,

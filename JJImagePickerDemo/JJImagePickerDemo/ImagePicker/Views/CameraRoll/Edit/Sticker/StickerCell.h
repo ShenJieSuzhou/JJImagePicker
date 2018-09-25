@@ -10,4 +10,10 @@
 
 @interface StickerCell : UICollectionViewCell
 
+@property (strong, nonatomic) NSString *stickerName;
+
+@property (strong, nonatomic) UIImageView *imgView;
+
+- (void)updateStickerImage:(NSString *)name;
+
 @end
