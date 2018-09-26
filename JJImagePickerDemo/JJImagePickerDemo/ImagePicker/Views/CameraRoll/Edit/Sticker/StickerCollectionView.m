@@ -15,6 +15,7 @@
 @synthesize stickerArray = _stickerArray;
 @synthesize stickerCollection = _stickerCollection;
 @synthesize delegate = _delegate;
+@synthesize closeBtn = _closeBtn;
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -30,6 +31,14 @@
 }
 
 - (void)commonInitlization{
+    [self setBackgroundColor:[UIColor whiteColor]];
+    _closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 40.0f, 25.0f)];
+    [_closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+    [_closeBtn.titleLabel setFont:[UIFont systemFontOfSize: 12.0]];
+    [_closeBtn setBackgroundColor:[UIColor clearColor]];
+    [_closeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_closeBtn addTarget:self action:@selector(closeTheView:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_closeBtn];
     [self addSubview:self.stickerCollection];
 }
 
@@ -47,7 +56,7 @@
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        _stickerCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
+        _stickerCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, self.frame.size.height - 50.0f) collectionViewLayout:layout];
         //设置数据源代理
         _stickerCollection.dataSource = self;
         _stickerCollection.delegate = self;
@@ -75,6 +84,14 @@
 
 - (void)refreshTheSticker{
     [self.stickerCollection reloadData];
+}
+
+- (void)closeTheView:(UIButton *)sender{
+    if(![_delegate respondsToSelector:@selector(stickerDidClosed)]){
+        return;
+    }
+    
+    [_delegate stickerDidClosed];
 }
 
 #pragma mark - UICollectionViewDelegate

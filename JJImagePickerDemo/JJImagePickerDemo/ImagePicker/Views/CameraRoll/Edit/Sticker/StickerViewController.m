@@ -189,7 +189,6 @@
     StickerModel *model = [self.stickers objectForKey:stickerName];
 
     [UIView animateWithDuration:0.9f animations:^{
-        NSLog(@"%@", self.stickerCollectionView);
         [self.stickerCollectionView setHidden:NO];
         [self.stickerCollectionView setStickers:model.stickArray];
         [self.stickerCollectionView refreshTheSticker];
@@ -200,6 +199,12 @@
 - (void)stickerDidSelected:(nonnull UIImage *)image withStickerTag:(NSInteger)tag{
     StickerParttenView *stickerView = [[StickerParttenView alloc] initWithFrame:CGRectMake(0, 0, 120.0f, 120.0f) sticker:image];
     [self.preViewImage addSubview:stickerView];
+}
+
+- (void)stickerDidClosed{
+    [UIView animateWithDuration:0.9f animations:^{
+        [self.stickerCollectionView setHidden:YES];
+    }];
 }
 
 @end

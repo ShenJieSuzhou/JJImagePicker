@@ -10,11 +10,14 @@
 
 @protocol JJStickSelectedDelegate <NSObject>
 - (void)stickerDidSelected:(nonnull UIImage *)image withStickerTag:(NSInteger)tag;
+- (void)stickerDidClosed;
 @end
 
 @interface StickerCollectionView : UIView<UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *stickerCollection;
+
+@property (nonatomic, strong) UIButton *closeBtn;
 
 @property (nonatomic, strong) NSMutableArray *stickerArray;
 

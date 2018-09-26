@@ -67,7 +67,7 @@
     if(!_stickerImageView){
         _stickerImageView = [[UIImageView alloc] init];
         _stickerImageView.backgroundColor = [UIColor clearColor];
-        _stickerImageView.layer.borderColor = [UIColor redColor].CGColor;
+        _stickerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         _stickerImageView.layer.borderWidth = 0.5f;
         _stickerImageView.userInteractionEnabled = YES;
     }
