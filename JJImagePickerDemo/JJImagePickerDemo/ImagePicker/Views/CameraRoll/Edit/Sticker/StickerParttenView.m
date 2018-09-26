@@ -9,13 +9,25 @@
 #import "StickerParttenView.h"
 
 @implementation StickerParttenView
+@synthesize sticker = _sticker;
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame sticker:(UIImage *)pasterImage{
+    self = [super initWithFrame:frame];
+    self.sticker = pasterImage;
+    return self;
 }
-*/
+
+- (void)deleteTheSticker{
+    
+}
+
+- (void)showDelAndMoveBtn{
+    
+}
+
+- (void)hideDelAndMoveBtn{
+    
+}
+
 
 @end
