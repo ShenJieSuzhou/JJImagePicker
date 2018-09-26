@@ -82,9 +82,11 @@
     NSString *stickerName = [self.stickerArray objectAtIndex:indexPath.row];
     UIImage *sticker = [UIImage imageNamed:stickerName];
     
-    if(![_delegate respondsToSelector:@selector(stickerDidSelected:)]){
-        [_delegate stickerDidSelected:sticker];
+    if(![_delegate respondsToSelector:@selector(stickerDidSelected:withStickerTag:)]){
+        return;
     }
+    
+    [_delegate stickerDidSelected:sticker withStickerTag:0];
 }
 
 #pragma mark - UICollectionViewDataSource

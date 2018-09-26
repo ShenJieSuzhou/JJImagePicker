@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol JJStickSelectedDelegate <NSObject>
-- (void)stickerDidSelected:(nonnull UIImage *)image;
+- (void)stickerDidSelected:(nonnull UIImage *)image withStickerTag:(NSInteger)tag;
 @end
 
 @interface StickerCollectionView : UIView<UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>

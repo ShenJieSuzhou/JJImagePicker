@@ -197,8 +197,9 @@
 }
 
 #pragma mark - JJStickSelectedDelegate
-- (void)stickerDidSelected:(nonnull UIImage *)image{
-    
+- (void)stickerDidSelected:(nonnull UIImage *)image withStickerTag:(NSInteger)tag{
+    StickerParttenView *stickerView = [[StickerParttenView alloc] initWithFrame:CGRectMake(0, 0, 120.0f, 120.0f) sticker:image];
+    [self.preViewImage addSubview:stickerView];
 }
 
 @end
