@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "EditingToolView.h"
+#import "StickerCollectionView.h"
 
 @class StickerViewController;
 @protocol JJStickDelegate <NSObject>
 - (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull UIImage *)image;
 @end
 
-@interface StickerViewController : UIViewController<PhotoSubToolEditingDelegate>
+@interface StickerViewController : UIViewController<PhotoSubToolEditingDelegate,JJStickSelectedDelegate>
 
 //原始图
 @property (nonnull, nonatomic, readonly) UIImage *image;

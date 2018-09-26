@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JJStickSelectedDelegate <NSObject>
+- (void)stickerDidSelected:(nonnull UIImage *)image;
+@end
+
 @interface StickerCollectionView : UIView<UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *stickerCollection;
 
 @property (nonatomic, strong) NSMutableArray *stickerArray;
+
+@property (nonatomic, strong) id<JJStickSelectedDelegate> delegate;
 
 - (void)setStickers:(NSMutableArray *)array;
 

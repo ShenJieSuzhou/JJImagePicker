@@ -14,6 +14,7 @@
 @implementation StickerCollectionView
 @synthesize stickerArray = _stickerArray;
 @synthesize stickerCollection = _stickerCollection;
+@synthesize delegate = _delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -46,7 +47,7 @@
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        _stickerCollection = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
+        _stickerCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
         //设置数据源代理
         _stickerCollection.dataSource = self;
         _stickerCollection.delegate = self;
@@ -78,7 +79,12 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *stickerName = [self.stickerArray objectAtIndex:indexPath.row];
+    UIImage *sticker = [UIImage imageNamed:stickerName];
     
+    if(![_delegate respondsToSelector:@selector(stickerDidSelected:)]){
+        [_delegate stickerDidSelected:sticker];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -10,6 +10,7 @@
 #import "JJLoadConfig.h"
 #import "StickerCollectionView.h"
 #import "StickerModel.h"
+#import "StickerParttenView.h"
 
 #define JJ_STICKERTOOL_HEIGHT 160
 #define JJ_STICK_COLLECT_HEIGHT self.view.bounds.size.height * 0.5
@@ -92,10 +93,9 @@
 }
 
 - (StickerCollectionView *)stickerCollectionView{
-    CGFloat stickerListView_y = self.stickerListView.frame.origin.y;
     if(!_stickerCollectionView){
-        NSLog(@"%@", self.view);
-        _stickerCollectionView = [[StickerCollectionView alloc] initWithFrame:CGRectMake(0, stickerListView_y - JJ_STICK_COLLECT_HEIGHT, JJ_STICK_COLLECT_WIDTH, JJ_STICK_COLLECT_HEIGHT)];
+        _stickerCollectionView = [[StickerCollectionView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_STICKERTOOL_HEIGHT - JJ_STICK_COLLECT_HEIGHT, JJ_STICK_COLLECT_WIDTH, JJ_STICK_COLLECT_HEIGHT)];
+        _stickerCollectionView.delegate = self;
     }
     
     return _stickerCollectionView;
@@ -194,6 +194,11 @@
         [self.stickerCollectionView setStickers:model.stickArray];
         [self.stickerCollectionView refreshTheSticker];
     }];
+}
+
+#pragma mark - JJStickSelectedDelegate
+- (void)stickerDidSelected:(nonnull UIImage *)image{
+    
 }
 
 @end
