@@ -11,6 +11,17 @@
 @implementation TagModel
 @synthesize tagName = _tagName;
 
+- (instancetype)initWithName:(NSString *)name{
+    self = [super init];
+    if(self){
+        self.tagName = name;
+    }
+    
+    return self;
+}
 
+- (void)updateTagName:(NSString *)tagName{
+    self.tagName = tagName;
+}
 
 @end

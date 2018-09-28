@@ -249,7 +249,12 @@
             break;
         case JJEditToolBrush:
             break;
-        case JJEditToolTag:
+        case JJEditToolTag:{
+            TagsViewController *tagsView = [TagsViewController new];
+            [self presentViewController:tagsView animated:YES completion:^{
+
+            }];
+        }
             break;
         case JJEditToolscrawl:
             break;

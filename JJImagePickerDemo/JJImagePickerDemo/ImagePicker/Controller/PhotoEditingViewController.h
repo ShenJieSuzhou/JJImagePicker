@@ -13,6 +13,7 @@
 #import "FilterViewController.h"
 #import "AdjustViewController.h"
 #import "StickerViewController.h"
+#import "TagsViewController.h"
 
 
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate>
