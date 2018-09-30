@@ -15,6 +15,8 @@
     self = [super init];
     if(self){
         self.tagName = name;
+        self.point = CGPointMake(0, 0);
+        self.dircetion = TAG_DIRECTION_LEFT;
     }
     
     return self;

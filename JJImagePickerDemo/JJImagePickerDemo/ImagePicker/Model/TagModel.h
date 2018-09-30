@@ -12,6 +12,8 @@
 typedef enum : NSUInteger {
     TAG_DIRECTION_LEFT,
     TAG_DIRECTION_RIGHT,
+    TAG_DIRECTION_LEFT_DELETE,
+    TAG_DIRECTION_RIGHT_DELETE,
 } TAG_DIRECTION;
 
 @interface TagModel : NSObject
