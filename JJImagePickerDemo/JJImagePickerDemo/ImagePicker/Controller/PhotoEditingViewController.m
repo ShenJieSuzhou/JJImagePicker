@@ -320,23 +320,21 @@
 - (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView didChooseTag:(SubTagModel *)tag{
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
-    NSLog(@"%@", tag.name);
 
     TagModel *model = [[TagModel alloc] init];
     model.tagName = tag.name;
-    model.point = CGPointMake(50, 80);
+    model.point = CGPointZero;
     model.dircetion = TAG_DIRECTION_LEFT;
     
     JJTagView *tagView = [[JJTagView alloc] initWithTagModel:model];
-    [self.view addSubview:tagView];
-
+    [self.preViewImage addSubview:tagView];
 }
 
 - (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView{
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
-//    NSLog(@"%@", tag.name);
 
+    
 }
 
 @end

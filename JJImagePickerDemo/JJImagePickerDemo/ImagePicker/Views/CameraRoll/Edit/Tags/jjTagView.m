@@ -41,8 +41,8 @@
     return self;
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    [super willMoveToSuperview:newSuperview];
     
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.titleLabel.textColor = [UIColor whiteColor];
@@ -57,36 +57,44 @@
         point = self.superview.center;
     }
     
-    // 调整方向
-    if((point.x + self.frame.size.width) < self.superview.frame.size.width){
-        self.direction = TAG_DIRECTION_LEFT;
-    }else {
-        self.direction = TAG_DIRECTION_RIGHT;
-    }
-    
+//    // 调整方向
+//    if (point.x < self.superview.zy_width/2.0) {
+//        self.direction = TAG_DIRECTION_LEFT;
+//    }else{
+//        self.direction = TAG_DIRECTION_RIGHT;
+//    }
+//    if((point.x + self.frame.size.width) < self.superview.frame.size.width){
+//        self.direction = TAG_DIRECTION_LEFT;
+//    }else {
+//        self.direction = TAG_DIRECTION_RIGHT;
+//    }
+    self.direction = self.tagModel.dircetion;
     [self reLayoutWithPoint:point withDirection:self.direction];
     
     //临界点处理
     if(self.direction == TAG_DIRECTION_LEFT){
-        if (self.frame.origin.x < jXPadding) {
-            self.criticalX = jXPadding;
+        if (self.zy_x < jXPadding) {
+            self.zy_x = jXPadding;
         }
     }else {
-        if(self.frame.origin.x > self.superview.frame.size.width - self.frame.size.width - jXPadding){
-            self.criticalX = self.superview.frame.size.width - self.frame.size.width - jXPadding;
+        if(self.zy_x > self.superview.zy_width - self.zy_width - jXPadding){
+            self.zy_x = self.superview.zy_width - self.zy_width - jXPadding;
         }
     }
     
-    if(self.frame.origin.y < jYPadding){
-        self.criticalY = jYPadding;
-    }else if(self.frame.origin.y > self.superview.frame.size.height - self.frame.size.height - jYPadding){
-        self.criticalY = self.superview.frame.size.height - self.frame.size.height - jYPadding;
+    if(self.zy_y < jYPadding){
+        self.zy_y = jYPadding;
+    }else if(self.zy_y > self.superview.zy_height - self.zy_height - jYPadding){
+        self.zy_y = self.superview.zy_height - self.zy_height - jYPadding;
     }
     
     //更新 tag
     [self updateLocationInfoWithSuperview];
-    
     [self showAnimation];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
 }
 
 - (CGPoint)arrowPoint{
@@ -101,6 +109,19 @@
         arrowPoint = CGPointMake(self.zy_right - jPointDiameter / 2.0, self.zy_centerY);
     }
     return arrowPoint;
+}
+
+- (void)setArrowPoint:(CGPoint)arrowPoint{
+    self.zy_centerY = arrowPoint.y;
+    if (self.direction == TAG_DIRECTION_LEFT) {
+        self.zy_x = arrowPoint.x - jPointDiameter / 2.0;
+    }else if (self.direction == TAG_DIRECTION_RIGHT) {
+        self.zy_right = arrowPoint.x + jPointDiameter / 2.0;
+    }else if (self.direction == TAG_DIRECTION_LEFT_DELETE) {
+        self.zy_x = arrowPoint.x - jPointDiameter / 2.0;
+    }else if(self.direction == TAG_DIRECTION_RIGHT_DELETE) {
+        self.zy_right = arrowPoint.x + jPointDiameter / 2.0;
+    }
 }
 
 /*

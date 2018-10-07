@@ -27,6 +27,7 @@
 }
 
 - (void)commonInit{
+    [self setBackgroundColor:[UIColor whiteColor]];
     UIImageView *imageView = [[UIImageView alloc] init];
     [imageView setBackgroundColor:[UIColor clearColor]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;

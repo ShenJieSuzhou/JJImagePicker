@@ -29,7 +29,7 @@
 - (void)setupLayout{
     self.minimumLineSpacing = 10;
     self.minimumInteritemSpacing = 10;
-    self.headerReferenceSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 30);
+    self.headerReferenceSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 40);
     self.footerReferenceSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 10);
     self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     self.scrollDirection = UICollectionViewScrollDirectionVertical;

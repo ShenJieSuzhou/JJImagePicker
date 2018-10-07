@@ -8,7 +8,7 @@
 
 #import "JJCollectionReusableView.h"
 #define IMG_LEFT_MARGIN 20.0f
-#define IMG_TOP_MARGIN 5.0f
+#define IMG_TOP_MARGIN 15.0f
 
 @implementation JJCollectionReusableView
 @synthesize textLabel = _textLabel;
