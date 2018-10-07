@@ -36,9 +36,10 @@
     //取消
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navBarView setLeftBtn:cancel];
-    [self.navBarView setTitle:@"添加标签" textColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f] font:[UIFont systemFontOfSize:15.0f]];
+    [self.navBarView setTitle:@"添加标签" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:20.0f]];
     
     [self addSubview:self.navBarView];
     [self addSubview:self.tagEditView];
@@ -162,10 +163,10 @@
     [view.tagTextField setText:@""];
     [view.tagTextField resignFirstResponder];
     
-    [self.hotTags removeAllObjects];
-    self.hotTags = nil;
-    [self.historyTags removeAllObjects];
-    self.historyTags = nil;
+//    [self.hotTags removeAllObjects];
+//    self.hotTags = nil;
+//    [self.historyTags removeAllObjects];
+//    self.historyTags = nil;
     
     if(![_delegate respondsToSelector:@selector(JJTagCategory:historyTag:)]){
         [self removeFromSuperview];
@@ -207,10 +208,10 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-    [self.hotTags removeAllObjects];
-    self.hotTags = nil;
-    [self.historyTags removeAllObjects];
-    self.historyTags = nil;
+//    [self.hotTags removeAllObjects];
+//    self.hotTags = nil;
+//    [self.historyTags removeAllObjects];
+//    self.historyTags = nil;
     
     if(![_delegate respondsToSelector:@selector(JJTagCategoryDidCancel:)]){
         [self removeFromSuperview];

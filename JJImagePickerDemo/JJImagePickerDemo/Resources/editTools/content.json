@@ -340,45 +340,6 @@
                    "imagePath": 2222
                    }
         ]
-      },
-      {
-      "title": "大头",
-      "name": "bigHeader",
-      "imagePath": "adjust_beautiful",
-      "subTools": [
-                   {
-                   "name": "美颜",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "曝光",
-                   "imagePtah": 2222
-                   },
-                   {
-                   "name": "色温",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "对比度",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "饱和度",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "锐化",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "颗粒",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "暗角",
-                   "imagePath": 2222
-                   }
-        ]
       }
     ]
 }

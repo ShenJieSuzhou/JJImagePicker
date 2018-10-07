@@ -255,10 +255,17 @@
         case JJEditToolBrush:
             break;
         case JJEditToolTag:{
-            NSArray *tags = @[@"篮球",
-                              @"足球",
-                              @"羽毛球",
-                              @"乒乓球"
+            NSArray *tags = @[@"中午吃些啥",
+                              @"玩儿去",
+                              @"口头禅",
+                              @"侧颜大赛",
+                              @"我们爱着呢",
+                              @"我要休假",
+                              @"晴天娃娃",
+                              @"杜嘉班纳",
+                              @"香奈儿",
+                              @"椰子鞋",
+                              @"微胖女人颜值高"
                               ];
             
             NSMutableArray *testTags0 = [[NSMutableArray alloc] init];
@@ -315,6 +322,14 @@
     [self.historys addObject:tag];
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
+    
+    TagModel *model = [[TagModel alloc] init];
+    model.tagName = tag.name;
+    model.point = CGPointZero;
+    model.dircetion = TAG_DIRECTION_LEFT;
+    
+    JJTagView *tagView = [[JJTagView alloc] initWithTagModel:model];
+    [self.preViewImage addSubview:tagView];
 }
 
 - (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView didChooseTag:(SubTagModel *)tag{
@@ -333,8 +348,6 @@
 - (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView{
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
-
-    
 }
 
 @end
