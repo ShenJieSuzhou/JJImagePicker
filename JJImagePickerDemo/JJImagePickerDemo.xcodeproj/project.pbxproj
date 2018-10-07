@@ -18,8 +18,9 @@
 		449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F702169EF9C0007A91A /* TagEditView.m */; };
 		449A1F7E2169EF9D0007A91A /* JJTagCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F722169EF9C0007A91A /* JJTagCategoryView.m */; };
 		449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F742169EF9D0007A91A /* JJResizeFlowLayout.m */; };
-		449A1F802169EF9D0007A91A /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F762169EF9D0007A91A /* TagModel.m */; };
 		449A1F812169EF9D0007A91A /* JJCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F792169EF9D0007A91A /* JJCollectionReusableView.m */; };
+		449A1F842169F74F0007A91A /* JJTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F832169F74F0007A91A /* JJTagView.m */; };
+		449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F862169FB3D0007A91A /* SubTagModel.m */; };
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -27,7 +28,6 @@
 		E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D8215A061800B06B1B /* StickerCollectionView.m */; };
 		E512B1DC215A17C400B06B1B /* StickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1DB215A17C400B06B1B /* StickerViewController.m */; };
 		E512B1DF215B376800B06B1B /* StickerParttenView.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1DE215B376800B06B1B /* StickerParttenView.m */; };
-		E5172613215DBF9C008431A1 /* jjTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5172612215DBF9C008431A1 /* jjTagView.m */; };
 		E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5172615215DBFB8008431A1 /* TagsViewController.m */; };
 		E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5172618215E10B6008431A1 /* TagCategoryView.m */; };
 		E51726472160B66A008431A1 /* UIView+ZYTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = E51726462160B669008431A1 /* UIView+ZYTagView.m */; };
@@ -189,11 +189,13 @@
 		449A1F732169EF9C0007A91A /* UIScrollView+UITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouch.h"; sourceTree = "<group>"; };
 		449A1F742169EF9D0007A91A /* JJResizeFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJResizeFlowLayout.m; sourceTree = "<group>"; };
 		449A1F752169EF9D0007A91A /* TagEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagEditView.h; sourceTree = "<group>"; };
-		449A1F762169EF9D0007A91A /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
 		449A1F772169EF9D0007A91A /* JJCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCollectionReusableView.h; sourceTree = "<group>"; };
 		449A1F782169EF9D0007A91A /* JJResizeFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJResizeFlowLayout.h; sourceTree = "<group>"; };
 		449A1F792169EF9D0007A91A /* JJCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCollectionReusableView.m; sourceTree = "<group>"; };
-		449A1F7A2169EF9D0007A91A /* TagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
+		449A1F822169F74F0007A91A /* JJTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJTagView.h; sourceTree = "<group>"; };
+		449A1F832169F74F0007A91A /* JJTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJTagView.m; sourceTree = "<group>"; };
+		449A1F852169FB3D0007A91A /* SubTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTagModel.h; sourceTree = "<group>"; };
+		449A1F862169FB3D0007A91A /* SubTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTagModel.m; sourceTree = "<group>"; };
 		44BB19BA20E8C88800544001 /* JJImageVideoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageVideoPlayerView.h; sourceTree = "<group>"; };
 		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
@@ -208,8 +210,6 @@
 		E512B1DB215A17C400B06B1B /* StickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerViewController.m; sourceTree = "<group>"; };
 		E512B1DD215B376800B06B1B /* StickerParttenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerParttenView.h; sourceTree = "<group>"; };
 		E512B1DE215B376800B06B1B /* StickerParttenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerParttenView.m; sourceTree = "<group>"; };
-		E5172611215DBF9C008431A1 /* jjTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jjTagView.h; sourceTree = "<group>"; };
-		E5172612215DBF9C008431A1 /* jjTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jjTagView.m; sourceTree = "<group>"; };
 		E5172614215DBFB8008431A1 /* TagsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagsViewController.h; sourceTree = "<group>"; };
 		E5172615215DBFB8008431A1 /* TagsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagsViewController.m; sourceTree = "<group>"; };
 		E5172617215E10B6008431A1 /* TagCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagCategoryView.h; sourceTree = "<group>"; };
@@ -462,6 +462,8 @@
 		E5172610215DBF77008431A1 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				449A1F822169F74F0007A91A /* JJTagView.h */,
+				449A1F832169F74F0007A91A /* JJTagView.m */,
 				449A1F772169EF9D0007A91A /* JJCollectionReusableView.h */,
 				449A1F792169EF9D0007A91A /* JJCollectionReusableView.m */,
 				449A1F782169EF9D0007A91A /* JJResizeFlowLayout.h */,
@@ -472,12 +474,8 @@
 				449A1F6F2169EF9C0007A91A /* JJTagsCollectionViewCell.m */,
 				449A1F752169EF9D0007A91A /* TagEditView.h */,
 				449A1F702169EF9C0007A91A /* TagEditView.m */,
-				449A1F7A2169EF9D0007A91A /* TagModel.h */,
-				449A1F762169EF9D0007A91A /* TagModel.m */,
 				449A1F732169EF9C0007A91A /* UIScrollView+UITouch.h */,
 				449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */,
-				E5172611215DBF9C008431A1 /* jjTagView.h */,
-				E5172612215DBF9C008431A1 /* jjTagView.m */,
 				E5172614215DBFB8008431A1 /* TagsViewController.h */,
 				E5172615215DBFB8008431A1 /* TagsViewController.m */,
 				E5172617215E10B6008431A1 /* TagCategoryView.h */,
@@ -512,6 +510,8 @@
 		E522784A20BFCE38003E2F38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				449A1F852169FB3D0007A91A /* SubTagModel.h */,
+				449A1F862169FB3D0007A91A /* SubTagModel.m */,
 				4462607320CD00BA0004C579 /* JJPhoto.h */,
 				4462607220CD00B90004C579 /* JJPhoto.m */,
 				443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */,
@@ -1067,7 +1067,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				449A1F802169EF9D0007A91A /* TagModel.m in Sources */,
 				E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */,
 				E5506BDA212FB7D80077E62B /* CameraRollView.m in Sources */,
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,
@@ -1114,7 +1113,6 @@
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
-				E5172613215DBF9C008431A1 /* jjTagView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
 				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
 				E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */,
@@ -1130,11 +1128,13 @@
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
+				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */,
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,
+				449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */,
 				E5506BEA212FB7D80077E62B /* JJPhotoPreviewView.m in Sources */,
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
 				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,

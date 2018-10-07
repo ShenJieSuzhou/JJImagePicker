@@ -35,7 +35,7 @@
     _tagText.frame = self.bounds;
 }
 
-- (void)updateCell:(TagModel *)tag{
+- (void)updateCell:(SubTagModel *)tag{
     [_tagText setText:tag.name];
 }
 

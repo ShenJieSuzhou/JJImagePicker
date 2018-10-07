@@ -9,12 +9,14 @@
 #import "PhotoEditingViewController.h"
 #import "JJEditTool.h"
 #import "JJLoadConfig.h"
+#import "TagModel.h"
+#import "JJTagView.h"
 
 #define JJ_DEFAULT_IMAGE_PADDING 50
 #define JJ_EDITTOOL_HEIGHT 100
 
 @interface PhotoEditingViewController ()
-
+@property (nonatomic, strong) NSMutableArray *historys;
 @end
 
 @implementation PhotoEditingViewController
@@ -27,11 +29,14 @@
 @synthesize angle = _angle;
 @synthesize layerV = _layerV;
 
+@synthesize historys = _historys;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
+    
+    self.historys = [[NSMutableArray alloc] init];
     
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
@@ -250,10 +255,22 @@
         case JJEditToolBrush:
             break;
         case JJEditToolTag:{
-            TagsViewController *tagsView = [TagsViewController new];
-            [self presentViewController:tagsView animated:YES completion:^{
-
-            }];
+            NSArray *tags = @[@"篮球",
+                              @"足球",
+                              @"羽毛球",
+                              @"乒乓球"
+                              ];
+            
+            NSMutableArray *testTags0 = [[NSMutableArray alloc] init];
+            for(NSInteger i = 0; i < [tags count]; i++){
+                SubTagModel *model = [[SubTagModel alloc] initWithID:0 Name:[tags objectAtIndex:i]];
+                [testTags0 addObject:model];
+            }
+            
+            JJTagCategoryView *tagCategoryView = [[JJTagCategoryView alloc] initWithFrame:self.view.bounds];
+            tagCategoryView.delegate = self;
+            [tagCategoryView setHotTags:testTags0 withHistory:_historys];
+            [self.view addSubview:tagCategoryView];
         }
             break;
         case JJEditToolscrawl:
@@ -291,6 +308,35 @@
     [filterViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+#pragma mark -JJTagCategoryDelegate
+- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView historyTag:(SubTagModel *)tag{
+    [self.historys addObject:tag];
+    [jjTagCategoryView removeFromSuperview];
+    jjTagCategoryView = nil;
+}
+
+- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView didChooseTag:(SubTagModel *)tag{
+    [jjTagCategoryView removeFromSuperview];
+    jjTagCategoryView = nil;
+    NSLog(@"%@", tag.name);
+
+    TagModel *model = [[TagModel alloc] init];
+    model.tagName = tag.name;
+    model.point = CGPointMake(50, 80);
+    model.dircetion = TAG_DIRECTION_LEFT;
+    
+    JJTagView *tagView = [[JJTagView alloc] initWithTagModel:model];
+    [self.view addSubview:tagView];
+
+}
+
+- (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView{
+    [jjTagCategoryView removeFromSuperview];
+    jjTagCategoryView = nil;
+//    NSLog(@"%@", tag.name);
+
 }
 
 @end

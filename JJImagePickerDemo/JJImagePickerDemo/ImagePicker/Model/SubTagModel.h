@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TagModel : NSObject
+@interface SubTagModel : NSObject
 
 @property (assign) NSInteger tagID;
 @property (strong, nonatomic) NSString *name;

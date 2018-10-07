@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TagModel.h"
+#import "SubTagModel.h"
 
 @interface JJTagsCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UILabel *tagText;
 
-- (void)updateCell:(TagModel *)tag;
+- (void)updateCell:(SubTagModel *)tag;
 
 @end

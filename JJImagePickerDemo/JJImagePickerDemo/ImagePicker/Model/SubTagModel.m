@@ -6,9 +6,9 @@
 //  Copyright © 2018年 shenjie. All rights reserved.
 //
 
-#import "TagModel.h"
+#import "SubTagModel.h"
 
-@implementation TagModel
+@implementation SubTagModel
 @synthesize name = _name;
 @synthesize tagID = _tagID;
 

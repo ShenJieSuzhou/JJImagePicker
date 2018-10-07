@@ -16,7 +16,7 @@
 #define jPointSpace 2.0                          /** 白点和阴影尖角距离 */
 #define jAngleLength (self.zy_height / 2.0 - 2)  /** 黑色阴影尖交宽度 */
 #define jDeleteBtnWidth self.zy_height           /** 删除按钮宽度 */
-#define jBackCornerRadius 2.0                    /** 黑色背景圆角半径 */
+#define jBackCornerRadius 1.0                    /** 黑色背景圆角半径 */
 
 
 @implementation JJTagView
@@ -41,8 +41,8 @@
     return self;
 }
 
-- (void)willMoveToSuperview:(nullable UIView *)newSuperview{
-    [super willMoveToSuperview:newSuperview];
+- (void)layoutSubviews{
+    [super layoutSubviews];
     
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.titleLabel.textColor = [UIColor whiteColor];
@@ -54,11 +54,11 @@
     
     CGPoint point = self.tagModel.point;
     if(CGPointEqualToPoint(point, CGPointZero)){
-        point = newSuperview.center;
+        point = self.superview.center;
     }
     
     // 调整方向
-    if(self.tagModel.dircetion == TAG_DIRECTION_LEFT){
+    if((point.x + self.frame.size.width) < self.superview.frame.size.width){
         self.direction = TAG_DIRECTION_LEFT;
     }else {
         self.direction = TAG_DIRECTION_RIGHT;
@@ -68,29 +68,25 @@
     
     //临界点处理
     if(self.direction == TAG_DIRECTION_LEFT){
-        if (self.zy_x < jXPadding) {
-            self.zy_x = jXPadding;
+        if (self.frame.origin.x < jXPadding) {
+            self.criticalX = jXPadding;
         }
     }else {
-        if(self.zy_x > newSuperview.zy_width - self.zy_width - jXPadding){
-            self.zy_x = newSuperview.zy_width - self.zy_width - jXPadding;
+        if(self.frame.origin.x > self.superview.frame.size.width - self.frame.size.width - jXPadding){
+            self.criticalX = self.superview.frame.size.width - self.frame.size.width - jXPadding;
         }
     }
-
-    if(self.zy_y < jYPadding){
-        self.zy_y = jYPadding;
-    }else if(self.zy_y > newSuperview.zy_height - self.zy_height - jYPadding){
-        self.zy_y = newSuperview.zy_height - self.zy_height - jYPadding;
+    
+    if(self.frame.origin.y < jYPadding){
+        self.criticalY = jYPadding;
+    }else if(self.frame.origin.y > self.superview.frame.size.height - self.frame.size.height - jYPadding){
+        self.criticalY = self.superview.frame.size.height - self.frame.size.height - jYPadding;
     }
     
     //更新 tag
     [self updateLocationInfoWithSuperview];
     
     [self showAnimation];
-}
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
 }
 
 - (CGPoint)arrowPoint{
@@ -105,20 +101,6 @@
         arrowPoint = CGPointMake(self.zy_right - jPointDiameter / 2.0, self.zy_centerY);
     }
     return arrowPoint;
-}
-
-- (void)setArrowPoint:(CGPoint)arrowPoint
-{
-    self.zy_centerY = arrowPoint.y;
-    if (self.direction == TAG_DIRECTION_LEFT) {
-        self.zy_x = arrowPoint.x - jPointDiameter / 2.0;
-    }else if (self.direction == TAG_DIRECTION_RIGHT) {
-        self.zy_right = arrowPoint.x + jPointDiameter / 2.0;
-    }else if (self.direction == TAG_DIRECTION_LEFT_DELETE) {
-        self.zy_x = arrowPoint.x - jPointDiameter / 2.0;
-    }else if(self.direction == TAG_DIRECTION_RIGHT_DELETE) {
-        self.zy_right = arrowPoint.x + jPointDiameter / 2.0;
-    }
 }
 
 /*
@@ -219,9 +201,6 @@
         if(direction == TAG_DIRECTION_LEFT_DELETE){
             [self.deleteBtn setFrame:CGRectMake(self.zy_width - jDeleteBtnWidth, 0, jDeleteBtnWidth, jDeleteBtnWidth)];
             [self.separateLine setFrame:CGRectMake(self.deleteBtn.zy_x - 0.5, 0, 0.5, self.zy_height)];
-            
-            NSLog(@"%@  %@", self.deleteBtn, self);
-            
         }
     }else if(direction == TAG_DIRECTION_RIGHT || direction == TAG_DIRECTION_RIGHT_DELETE){
         self.zy_right = point.x + jPointDiameter / 2;
@@ -328,6 +307,11 @@
 }
 
 - (void)changeLocationWithGestureState:(UIGestureRecognizerState)gestureState locationPoint:(CGPoint)point{
+    
+//    if (self.isEditEnabled == NO) {
+//        return;
+//    }
+    
     CGPoint referencePoint = CGPointMake(0, point.y + self.zy_height / 2.0);
     switch (self.direction) {
         case TAG_DIRECTION_LEFT:

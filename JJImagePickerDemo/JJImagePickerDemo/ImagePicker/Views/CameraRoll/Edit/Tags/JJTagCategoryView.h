@@ -12,15 +12,18 @@
 #import "JJCollectionReusableView.h"
 #import "JJTagsCollectionViewCell.h"
 #import "UIScrollView+UITouch.h"
+#import "CustomNaviBarView.h"
 
 @class JJTagCategoryView;
 @protocol JJTagCategoryDelegate <NSObject>
-- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView historyTag:(TagModel *)tag;
-- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView didChooseTag:(TagModel *)tag;
+- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView historyTag:(SubTagModel *)tag;
+- (void)JJTagCategory:(JJTagCategoryView *)jjTagCategoryView didChooseTag:(SubTagModel *)tag;
+- (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView;
 @end
 
 @interface JJTagCategoryView : UIView<TagEditViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,JJResizeFlowLayoutDelegate>
 
+@property (nonatomic, strong) CustomNaviBarView *navBarView;
 @property (nonatomic, strong) TagEditView *tagEditView;
 @property (nonatomic, strong) UICollectionView *tagsCollectionView;
 @property (nonatomic, strong) NSMutableArray *hotTags;

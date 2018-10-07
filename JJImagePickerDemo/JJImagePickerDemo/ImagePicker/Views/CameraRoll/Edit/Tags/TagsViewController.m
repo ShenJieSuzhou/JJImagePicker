@@ -74,9 +74,6 @@
     }else if(sender == self.locationTagBtn){
         self.tagClassification = TAG_LOCATION;
     }
-    
-    
-    
 }
 
 - (TagCategoryView *)tagsCategoryView{

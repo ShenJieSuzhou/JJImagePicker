@@ -16,6 +16,7 @@
 #define TAGCELLIDENTIFIER @"JJTAGCELLIDENTIFIER"
 
 @implementation JJTagCategoryView
+@synthesize navBarView = _navBarView;
 @synthesize tagEditView = _tagEditView;
 @synthesize tagsCollectionView = _tagsCollectionView;
 @synthesize hotTags = _hotTags;
@@ -31,16 +32,24 @@
 
 - (void)commonInitialization{
     self.userInteractionEnabled = YES;
+
+    //取消
+    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBarView setLeftBtn:cancel];
+    [self.navBarView setTitle:@"添加标签" textColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f] font:[UIFont systemFontOfSize:15.0f]];
     
+    [self addSubview:self.navBarView];
     [self addSubview:self.tagEditView];
     [self addSubview:self.tagsCollectionView];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-    [self.tagEditView setFrame:CGRectMake(0, 40, EDIT_WIDTH, EDIT_HEIGHT)];
-    [self.tagsCollectionView setFrame:CGRectMake(0, EDIT_HEIGHT + 50.f, EDIT_WIDTH, TAG_VIEW_HEIGHT - EDIT_HEIGHT - 10.0f)];
+
+    [self.tagEditView setFrame:CGRectMake(0, [CustomNaviBarView barSize].height, EDIT_WIDTH, EDIT_HEIGHT)];
+    [self.tagsCollectionView setFrame:CGRectMake(0, EDIT_HEIGHT + [CustomNaviBarView barSize].height, EDIT_WIDTH, TAG_VIEW_HEIGHT - EDIT_HEIGHT - 10.0f)];
 }
 
 
@@ -77,6 +86,14 @@
     return _tagEditView;
 }
 
+- (CustomNaviBarView *)navBarView{
+    if(!_navBarView){
+        _navBarView = [[CustomNaviBarView alloc] initWithFrame:CGRectMake(0, 0, [CustomNaviBarView barSize].width, [CustomNaviBarView barSize].height)];
+        [_navBarView  setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _navBarView;
+}
+
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 2;
@@ -95,10 +112,10 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JJTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:TAGCELLIDENTIFIER forIndexPath:indexPath];
     if(indexPath.section == 0){
-        TagModel *tag = [self.hotTags objectAtIndex:indexPath.row];
+        SubTagModel *tag = [self.hotTags objectAtIndex:indexPath.row];
         [cell updateCell:tag];
     }else if(indexPath.section == 1){
-        TagModel *tag = [self.historyTags objectAtIndex:indexPath.row];
+        SubTagModel *tag = [self.historyTags objectAtIndex:indexPath.row];
         [cell updateCell:tag];
     }
     return cell;
@@ -154,7 +171,7 @@
         [self removeFromSuperview];
         return;
     }
-    TagModel *tagObj = [[TagModel alloc] initWithID:0 Name:tag];
+    SubTagModel *tagObj = [[SubTagModel alloc] initWithID:0 Name:tag];
     [_delegate JJTagCategory:self historyTag:tagObj];
 }
 
@@ -162,13 +179,13 @@
 //通过代理获取每个cell的高度
 - (CGFloat)resizeFlowLayout:(JJResizeFlowLayout *)layout withIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
-        TagModel *tag = [self.hotTags objectAtIndex:indexPath.row];
+        SubTagModel *tag = [self.hotTags objectAtIndex:indexPath.row];
         CGSize size = CGSizeMake(EDIT_WIDTH - layout.sectionInset.left - layout.sectionInset.right, CGFLOAT_MAX);
         CGRect textRect = [tag.name boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
         CGFloat width = textRect.size.width + 15.0f;
         return width;
     }else if(indexPath.section == 1){
-        TagModel *tag = [self.historyTags objectAtIndex:indexPath.row];
+        SubTagModel *tag = [self.historyTags objectAtIndex:indexPath.row];
         CGSize size = CGSizeMake(EDIT_WIDTH - layout.sectionInset.left - layout.sectionInset.right, CGFLOAT_MAX);
         CGRect textRect = [tag.name boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
         CGFloat width = textRect.size.width + 15.0f;
@@ -186,7 +203,20 @@
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+}
 
+- (void)OnCancelCLick:(UIButton *)sender{
+    [self.hotTags removeAllObjects];
+    self.hotTags = nil;
+    [self.historyTags removeAllObjects];
+    self.historyTags = nil;
+    
+    if(![_delegate respondsToSelector:@selector(JJTagCategoryDidCancel:)]){
+        [self removeFromSuperview];
+        return;
+    }
+    [_delegate JJTagCategoryDidCancel:self];
 }
 
 @end
