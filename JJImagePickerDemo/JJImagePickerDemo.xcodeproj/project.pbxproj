@@ -23,6 +23,7 @@
 		449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F862169FB3D0007A91A /* SubTagModel.m */; };
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
+		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
 		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
 		E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D8215A061800B06B1B /* StickerCollectionView.m */; };
@@ -200,6 +201,7 @@
 		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
+		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E512B1D1215A034B00B06B1B /* StickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerModel.h; sourceTree = "<group>"; };
 		E512B1D2215A034B00B06B1B /* StickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerModel.m; sourceTree = "<group>"; };
 		E512B1D4215A045000B06B1B /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E50C094E2175C3D80035C3C2 /* Cream */,
 				4462607520CD1A260004C579 /* Category */,
 				E522786720C0E433003E2F38 /* Resources */,
 				E522784120BF8F0F003E2F38 /* ImagePicker */,
@@ -1056,6 +1059,7 @@
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E5CFB55520D37D580021EB68 /* QMUI_previewImage_checkbox@3x.png in Resources */,
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,
+				E50C094F2175C3D90035C3C2 /* Cream in Resources */,
 				E5CFB55720D37D580021EB68 /* QMUI_previewImage_checkbox_checked@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

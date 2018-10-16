@@ -19,5 +19,4 @@ typedef enum : NSUInteger {
 
 - (void)setTagType:(TAGCLASSIFICTION)type;
 
-
 @end

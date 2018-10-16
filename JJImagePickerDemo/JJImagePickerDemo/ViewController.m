@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "JJImageViewPicker.h"
 #import "PhotoEditingViewController.h"
+#import "DemoViewController.h"
 
 @interface ViewController ()
 
@@ -31,14 +32,20 @@
 }
 
 - (IBAction)start:(id)sender {
-//    [JJImageViewPicker showTheActionsheet:self];
-    
     UIImage *photoImage = [UIImage imageNamed:@"p1"];
     [self.photoEditingView setEditImage:photoImage];
     [self presentViewController:self.photoEditingView animated:YES completion:^{
         
     }];
 }
+
+- (IBAction)openWeb:(id)sender {
+    DemoViewController *demoView = [DemoViewController new];
+    [self presentViewController:demoView animated:YES completion:^{
+        
+    }];
+}
+
 
 - (PhotoEditingViewController *)photoEditingView{
     if(!_photoEditingView){
