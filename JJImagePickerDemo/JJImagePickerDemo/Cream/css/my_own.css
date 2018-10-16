@@ -27,8 +27,14 @@ body {
 	margin-right: 10px;
 }
 	
-	
+.my_lunbo {
+	height: 150px;
+	background-color: red;
+}
 
+.my_image_list {
+	background-color: white;
+}
 	
 	.mui-icon-back:before,
 	.mui-icon-left-nav:before,
