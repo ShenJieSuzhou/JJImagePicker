@@ -70,6 +70,13 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     if([message.name isEqualToString:@"collectSendKey"]){
         NSLog(@"%@", message.body);
+        
+        NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",@"测试"];
+        [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            if(error){
+                NSLog(@"++++++ %@ ++++++", error);
+            }
+        }];
     }
 }
 
@@ -77,6 +84,7 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     //开始加载
+//    [webView
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
@@ -90,15 +98,23 @@
 //    //更新标题
 //    NSLog(@"%@", value.toString);
     
-    NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",@"1222222"];
-    [webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        
-    }];
+   
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
 {
     //网络错误
+}
+
+#pragma mark WKUIDelegate
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
