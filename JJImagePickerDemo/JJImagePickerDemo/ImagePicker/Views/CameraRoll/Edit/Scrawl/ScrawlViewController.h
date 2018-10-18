@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UIImageView *preViewImage;
 //底部工具
 @property (nonatomic, strong) ScrawlAdjustView *scrawlAdjustView;
+//撤销
+@property (nonatomic, strong) UIButton *withdrawalBtn;
 
 - (void)setEditImage:(UIImage *)image;
 

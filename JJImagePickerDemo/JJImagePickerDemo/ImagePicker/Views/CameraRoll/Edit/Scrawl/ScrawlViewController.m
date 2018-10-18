@@ -18,7 +18,7 @@
 @synthesize layerV = _layerV;
 @synthesize preViewImage = _preViewImage;
 @synthesize scrawlAdjustView = _scrawlAdjustView;
-
+@synthesize withdrawalBtn = _withdrawalBtn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,12 +31,28 @@
     [self.layerV setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.layerV];
     [self.layerV addSubview:self.preViewImage];
+    
+    self.withdrawalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.withdrawalBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
+    [self.withdrawalBtn setFrame:CGRectMake(20, 20, 40, 20)];
+    [self.withdrawalBtn setTitle:@"撤销" forState:UIControlStateNormal];
+    [self.withdrawalBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.withdrawalBtn addTarget:self action:@selector(clickWithdrawalBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.layerV addSubview:self.withdrawalBtn];
+    [self.layerV bringSubviewToFront:self.withdrawalBtn];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     [self layoutImageView];
+}
+
+/*
+ * @brief 撤销操作
+ */
+- (void)clickWithdrawalBtn:(UIButton *)sender{
+    NSLog(@"撤销");
 }
 
 #pragma mark - lazyLoad
