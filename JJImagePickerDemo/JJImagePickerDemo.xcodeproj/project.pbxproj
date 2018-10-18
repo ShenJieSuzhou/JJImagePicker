@@ -123,6 +123,7 @@
 		E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BF9212FD8A00077E62B /* JJLoadConfig.m */; };
 		E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506BFD212FF4870077E62B /* FilterViewController.m */; };
 		E5506C0721412B250077E62B /* JJFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5506C0621412B250077E62B /* JJFilterManager.m */; };
+		E55159B72178A9EA00ADFDAE /* ScrawlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E55159B62178A9EA00ADFDAE /* ScrawlModel.m */; };
 		E551669D2159E7AE001FBFC1 /* stickerConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = E551669C2159E7AE001FBFC1 /* stickerConfig.json */; };
 		E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A02159E7F0001FBFC1 /* candy1.png */; };
 		E55166AD2159E7F0001FBFC1 /* candy2.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A12159E7F0001FBFC1 /* candy2.png */; };
@@ -356,6 +357,8 @@
 		E5506BFD212FF4870077E62B /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		E5506C0521412B240077E62B /* JJFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFilterManager.h; sourceTree = "<group>"; };
 		E5506C0621412B250077E62B /* JJFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFilterManager.m; sourceTree = "<group>"; };
+		E55159B52178A9EA00ADFDAE /* ScrawlModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrawlModel.h; sourceTree = "<group>"; };
+		E55159B62178A9EA00ADFDAE /* ScrawlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrawlModel.m; sourceTree = "<group>"; };
 		E551669C2159E7AE001FBFC1 /* stickerConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stickerConfig.json; sourceTree = "<group>"; };
 		E55166A02159E7F0001FBFC1 /* candy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy1.png; sourceTree = "<group>"; };
 		E55166A12159E7F0001FBFC1 /* candy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy2.png; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				E512B1D2215A034B00B06B1B /* StickerModel.m */,
 				E512B1D4215A045000B06B1B /* TagModel.h */,
 				E512B1D5215A045000B06B1B /* TagModel.m */,
+				E55159B52178A9EA00ADFDAE /* ScrawlModel.h */,
+				E55159B62178A9EA00ADFDAE /* ScrawlModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1118,6 +1123,7 @@
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */,
+				E55159B72178A9EA00ADFDAE /* ScrawlModel.m in Sources */,
 				449A1F7C2169EF9D0007A91A /* JJTagsCollectionViewCell.m in Sources */,
 				E5506BDB212FB7D80077E62B /* DropButton.m in Sources */,
 				E5506B63212FB3330077E62B /* PhotoEditingViewController.m in Sources */,
