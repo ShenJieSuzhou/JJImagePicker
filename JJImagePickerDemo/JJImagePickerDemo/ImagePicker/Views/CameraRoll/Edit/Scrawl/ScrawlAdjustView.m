@@ -7,7 +7,7 @@
 //
 
 #import "ScrawlAdjustView.h"
-#define SCRAWL_MARGIN 30.0f
+#define SCRAWL_MARGIN 0.0f
 
 
 @implementation ScrawlAdjustView
@@ -64,9 +64,8 @@
  */
 - (CustomSlider *)stoolSlider{
     if(!_stoolSlider){
-        CustomSlider * slider = [[CustomSlider alloc] initWithFrame:CGRectMake(0, SCRAWL_MARGIN, self.bounds.size.width, 60) Title:@"粗细" color:[UIColor redColor]];
-        slider.delegate = self;
-        _stoolSlider = slider;
+        _stoolSlider = [[CustomSlider alloc] initWithFrame:CGRectMake(0, SCRAWL_MARGIN, self.bounds.size.width, 40) Title:@"粗细" color:[UIColor redColor]];
+        _stoolSlider.delegate = self;
     }
     
     return _stoolSlider;

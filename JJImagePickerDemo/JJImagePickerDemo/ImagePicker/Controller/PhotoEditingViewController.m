@@ -281,7 +281,11 @@
         }
             break;
         case JJEditToolscrawl:{
-            
+            ScrawlViewController *scrawlViewController = [ScrawlViewController new];
+            [scrawlViewController setEditImage:self.preViewImage.image];
+            [self presentViewController:scrawlViewController animated:YES completion:^{
+                
+            }];
         }
             break;
         default:

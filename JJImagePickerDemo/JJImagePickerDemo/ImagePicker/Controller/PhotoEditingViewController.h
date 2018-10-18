@@ -14,6 +14,7 @@
 #import "AdjustViewController.h"
 #import "StickerViewController.h"
 #import "JJTagCategoryView.h"
+#import "ScrawlViewController.h"
 
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate>
 

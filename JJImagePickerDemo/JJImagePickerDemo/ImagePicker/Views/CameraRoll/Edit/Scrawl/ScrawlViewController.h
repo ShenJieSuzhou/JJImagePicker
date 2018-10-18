@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScrawlAdjustView.h"
 
 @interface ScrawlViewController : UIViewController
 
@@ -17,7 +18,7 @@
 //预览图UI
 @property (nonatomic, strong) UIImageView *preViewImage;
 //底部工具
-@property (nonatomic, strong) UIView *scrawlAdjustView;
+@property (nonatomic, strong) ScrawlAdjustView *scrawlAdjustView;
 
 - (void)setEditImage:(UIImage *)image;
 

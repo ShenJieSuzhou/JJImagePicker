@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *mTitle;
 @property (nonatomic, weak) UIButton *cancelBtn;
 @property (nonatomic, weak) UIButton *confirmBtn;
-@property (nonatomic, weak) CustomSlider *stoolSlider;
+@property (nonatomic, strong) CustomSlider *stoolSlider;
 
 @end
 
