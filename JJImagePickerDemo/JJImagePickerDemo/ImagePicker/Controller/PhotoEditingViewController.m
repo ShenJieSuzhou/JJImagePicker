@@ -280,7 +280,9 @@
             [self.view addSubview:tagCategoryView];
         }
             break;
-        case JJEditToolscrawl:
+        case JJEditToolscrawl:{
+            
+        }
             break;
         default:
             break;
