@@ -36,8 +36,8 @@
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
 		E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C538520EB4E81003862F4 /* DemoViewController.m */; };
-		E53F2FC52178878200142A38 /* ScrawlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53F2FC42178878200142A38 /* ScrawlView.m */; };
 		E53F2FC82178879D00142A38 /* ScrawlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E53F2FC72178879D00142A38 /* ScrawlViewController.m */; };
+		E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53F2FCA2178891100142A38 /* ScrawlAdjustView.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
 		E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15A20F7304D00893D85 /* CameraSessionManager.m */; };
@@ -228,10 +228,10 @@
 		E52C538420EB4E81003862F4 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		E52C538520EB4E81003862F4 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		E52C538820EB4EE6003862F4 /* JJImagePickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerDelegate.h; sourceTree = "<group>"; };
-		E53F2FC32178878200142A38 /* ScrawlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrawlView.h; sourceTree = "<group>"; };
-		E53F2FC42178878200142A38 /* ScrawlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrawlView.m; sourceTree = "<group>"; };
 		E53F2FC62178879D00142A38 /* ScrawlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrawlViewController.h; sourceTree = "<group>"; };
 		E53F2FC72178879D00142A38 /* ScrawlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrawlViewController.m; sourceTree = "<group>"; };
+		E53F2FC92178891100142A38 /* ScrawlAdjustView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrawlAdjustView.h; sourceTree = "<group>"; };
+		E53F2FCA2178891100142A38 /* ScrawlAdjustView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrawlAdjustView.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
 		E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@3x.png"; sourceTree = "<group>"; };
 		E547D15920F7304D00893D85 /* CameraSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraSessionManager.h; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.h; sourceTree = SOURCE_ROOT; };
@@ -616,10 +616,10 @@
 		E53F2FC22178876000142A38 /* Scrawl */ = {
 			isa = PBXGroup;
 			children = (
-				E53F2FC32178878200142A38 /* ScrawlView.h */,
-				E53F2FC42178878200142A38 /* ScrawlView.m */,
 				E53F2FC62178879D00142A38 /* ScrawlViewController.h */,
 				E53F2FC72178879D00142A38 /* ScrawlViewController.m */,
+				E53F2FC92178891100142A38 /* ScrawlAdjustView.h */,
+				E53F2FCA2178891100142A38 /* ScrawlAdjustView.m */,
 			);
 			path = Scrawl;
 			sourceTree = "<group>";
@@ -1139,7 +1139,6 @@
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
 				E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */,
-				E53F2FC52178878200142A38 /* ScrawlView.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
@@ -1151,6 +1150,7 @@
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
 				E5506B5F212FB3330077E62B /* PhotoPreviewViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
+				E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
 				E5506BEB212FB7D80077E62B /* JJPreviewViewCollectionCell.m in Sources */,
 				E5506BDC212FB7D80077E62B /* JJTableViewCell.m in Sources */,
