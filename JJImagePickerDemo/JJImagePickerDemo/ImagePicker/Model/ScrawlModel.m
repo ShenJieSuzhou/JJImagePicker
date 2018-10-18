@@ -9,21 +9,16 @@
 #import "ScrawlModel.h"
 
 @implementation ScrawlModel
+@synthesize patternName = _patternName;
 
+- (instancetype)initWithName:(NSString *)name{
+    self = [super init];
+    if(self){
+        self.patternName = name;
+    }
+    
+    return self;
+}
 
-//- (instancetype)initWithName:(NSString *)name{
-//    self = [super init];
-//    if(self){
-//        self.pa = name;
-//        self.point = CGPointMake(0, 0);
-//        self.dircetion = TAG_DIRECTION_LEFT;
-//    }
-//    
-//    return self;
-//}
-//
-//- (void)updateTagName:(NSString *)tagName{
-//    self.tagName = tagName;
-//}
 
 @end
