@@ -137,6 +137,12 @@
 		E55166B52159E7F0001FBFC1 /* pumpkin.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166A92159E7F0001FBFC1 /* pumpkin.png */; };
 		E55166B62159E7F0001FBFC1 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166AA2159E7F0001FBFC1 /* spider.png */; };
 		E55166B72159E7F0001FBFC1 /* zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = E55166AB2159E7F0001FBFC1 /* zombie.png */; };
+		E557824C2179CBC5003B20BB /* PKMosaicImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55782462179CBC4003B20BB /* PKMosaicImageView.m */; };
+		E557824D2179CBC5003B20BB /* PKMosaicDrawingboard.m in Sources */ = {isa = PBXBuildFile; fileRef = E55782492179CBC4003B20BB /* PKMosaicDrawingboard.m */; };
+		E557824E2179CBC5003B20BB /* MosaicBitmapData.m in Sources */ = {isa = PBXBuildFile; fileRef = E557824B2179CBC5003B20BB /* MosaicBitmapData.m */; };
+		E55782552179CBD3003B20BB /* UIColor+MosaicExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E557824F2179CBD3003B20BB /* UIColor+MosaicExtension.m */; };
+		E55782562179CBD3003B20BB /* UIImage+Mosaic.m in Sources */ = {isa = PBXBuildFile; fileRef = E55782502179CBD3003B20BB /* UIImage+Mosaic.m */; };
+		E55782572179CBD3003B20BB /* UIView+MosaicExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E55782522179CBD3003B20BB /* UIView+MosaicExtension.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -372,6 +378,18 @@
 		E55166A92159E7F0001FBFC1 /* pumpkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pumpkin.png; sourceTree = "<group>"; };
 		E55166AA2159E7F0001FBFC1 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		E55166AB2159E7F0001FBFC1 /* zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie.png; sourceTree = "<group>"; };
+		E55782462179CBC4003B20BB /* PKMosaicImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMosaicImageView.m; sourceTree = "<group>"; };
+		E55782472179CBC4003B20BB /* PKMosaicDrawingboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMosaicDrawingboard.h; sourceTree = "<group>"; };
+		E55782482179CBC4003B20BB /* MosaicBitmapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicBitmapData.h; sourceTree = "<group>"; };
+		E55782492179CBC4003B20BB /* PKMosaicDrawingboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMosaicDrawingboard.m; sourceTree = "<group>"; };
+		E557824A2179CBC5003B20BB /* PKMosaicImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMosaicImageView.h; sourceTree = "<group>"; };
+		E557824B2179CBC5003B20BB /* MosaicBitmapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicBitmapData.m; sourceTree = "<group>"; };
+		E557824F2179CBD3003B20BB /* UIColor+MosaicExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MosaicExtension.m"; sourceTree = "<group>"; };
+		E55782502179CBD3003B20BB /* UIImage+Mosaic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mosaic.m"; sourceTree = "<group>"; };
+		E55782512179CBD3003B20BB /* UIImage+Mosaic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mosaic.h"; sourceTree = "<group>"; };
+		E55782522179CBD3003B20BB /* UIView+MosaicExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MosaicExtension.m"; sourceTree = "<group>"; };
+		E55782532179CBD3003B20BB /* UIColor+MosaicExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MosaicExtension.h"; sourceTree = "<group>"; };
+		E55782542179CBD3003B20BB /* UIView+MosaicExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MosaicExtension.h"; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -458,6 +476,12 @@
 		4462607520CD1A260004C579 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E55782532179CBD3003B20BB /* UIColor+MosaicExtension.h */,
+				E557824F2179CBD3003B20BB /* UIColor+MosaicExtension.m */,
+				E55782512179CBD3003B20BB /* UIImage+Mosaic.h */,
+				E55782502179CBD3003B20BB /* UIImage+Mosaic.m */,
+				E55782542179CBD3003B20BB /* UIView+MosaicExtension.h */,
+				E55782522179CBD3003B20BB /* UIView+MosaicExtension.m */,
 				E51726452160B669008431A1 /* UIView+ZYTagView.h */,
 				E51726462160B669008431A1 /* UIView+ZYTagView.m */,
 				E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */,
@@ -621,6 +645,12 @@
 		E53F2FC22178876000142A38 /* Scrawl */ = {
 			isa = PBXGroup;
 			children = (
+				E55782482179CBC4003B20BB /* MosaicBitmapData.h */,
+				E557824B2179CBC5003B20BB /* MosaicBitmapData.m */,
+				E55782472179CBC4003B20BB /* PKMosaicDrawingboard.h */,
+				E55782492179CBC4003B20BB /* PKMosaicDrawingboard.m */,
+				E557824A2179CBC5003B20BB /* PKMosaicImageView.h */,
+				E55782462179CBC4003B20BB /* PKMosaicImageView.m */,
 				E53F2FC62178879D00142A38 /* ScrawlViewController.h */,
 				E53F2FC72178879D00142A38 /* ScrawlViewController.m */,
 				E53F2FC92178891100142A38 /* ScrawlAdjustView.h */,
@@ -1102,6 +1132,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E557824E2179CBC5003B20BB /* MosaicBitmapData.m in Sources */,
+				E55782562179CBD3003B20BB /* UIImage+Mosaic.m in Sources */,
 				E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */,
 				E5506BDA212FB7D80077E62B /* CameraRollView.m in Sources */,
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,
@@ -1114,6 +1146,7 @@
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E512B1D6215A045000B06B1B /* TagModel.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
+				E557824D2179CBC5003B20BB /* PKMosaicDrawingboard.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
 				E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */,
@@ -1161,10 +1194,13 @@
 				E5506BEB212FB7D80077E62B /* JJPreviewViewCollectionCell.m in Sources */,
 				E5506BDC212FB7D80077E62B /* JJTableViewCell.m in Sources */,
 				E5506BF0212FB7D80077E62B /* CameraSessionView.m in Sources */,
+				E55782552179CBD3003B20BB /* UIColor+MosaicExtension.m in Sources */,
 				E5506BE8212FB7D80077E62B /* JJCollectionViewCell.m in Sources */,
+				E557824C2179CBC5003B20BB /* PKMosaicImageView.m in Sources */,
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
 				E53F2FC82178879D00142A38 /* ScrawlViewController.m in Sources */,
+				E55782572179CBD3003B20BB /* UIView+MosaicExtension.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
