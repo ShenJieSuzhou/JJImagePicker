@@ -330,6 +330,10 @@
         NSString *title = [tool objectForKey:@"name"];
         NSString *asset = [tool objectForKey:@"imagePath"];
         [cell updateCellContent:[UIImage imageNamed:asset] title:title type:STICKER_CELL];
+    }else if(_photoEditToolType == PhotoEditToolScrawl){
+        NSString *title = [tool objectForKey:@"name"];
+        NSString *asset = [tool objectForKey:@"imagePath"];
+        [cell updateCellContent:[UIImage imageNamed:asset] title:title type:COMMON_CELL];
     }
     
     return cell;

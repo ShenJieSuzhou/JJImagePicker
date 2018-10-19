@@ -303,43 +303,34 @@
         ]
       },
       {
-      "title": "涂抹",
-      "name": "scrawl",
-      "imagePath": "editor_pain",
-      "subTools": [
-                   {
-                   "name": "美颜",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "曝光",
-                   "imagePtah": 2222
-                   },
-                   {
-                   "name": "色温",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "对比度",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "饱和度",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "锐化",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "颗粒",
-                   "imagePath": 2222
-                   },
-                   {
-                   "name": "暗角",
-                   "imagePath": 2222
-                   }
-        ]
+          "title": "涂抹",
+          "name": "scrawl",
+          "imagePath": "editor_pain",
+          "subTools": [{
+              "name": "1x",
+              "imagePath": "mosaic_1x"
+          },
+          {
+              "name": "2x",
+              "imagePtah": "mosaic_2x"
+          },
+          {
+              "name": "3x",
+              "imagePath": "mosaic_3x"
+          },
+          {
+              "name": "4x",
+              "imagePath": "mosaic_4x"
+          },
+          {
+              "name": "上一步",
+              "imagePath": "pain_pre-1"
+          },
+          {
+              "name": "下一步",
+              "imagePath": "pain_next-1"
+          }
+          ]
       }
     ]
 }

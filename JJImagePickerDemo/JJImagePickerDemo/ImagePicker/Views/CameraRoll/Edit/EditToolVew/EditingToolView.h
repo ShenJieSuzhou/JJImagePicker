@@ -36,7 +36,8 @@ typedef enum : NSUInteger{
     PhotoEditToolCrop,
     PhotoEditToolAdjust,
     PhotoEditToolFilter,
-    PhotoEditToolSticker
+    PhotoEditToolSticker,
+    PhotoEditToolScrawl
 } PhotoEditToolType;
 
 

@@ -30,6 +30,7 @@
 }
 
 - (void)commonInitlization{
+    [self setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:self.stoolSlider];
     
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];

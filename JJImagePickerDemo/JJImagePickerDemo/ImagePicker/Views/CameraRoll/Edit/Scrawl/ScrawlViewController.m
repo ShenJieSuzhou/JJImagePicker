@@ -24,11 +24,12 @@
 @synthesize scrawlAdjustView = _scrawlAdjustView;
 @synthesize withdrawalBtn = _withdrawalBtn;
 @synthesize mosaicDrawingboard = _mosaicDrawingboard;
+@synthesize sToolArrays = _sToolArrays;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
+    [self.view setBackgroundColor:[UIColor blackColor]];
     
     [self setupViews];
     [self setupEvents];
@@ -38,29 +39,9 @@
     [self.mosaicDrawingboard beginPaint];
     [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_1.25"]];
     //底部调整视图
+    [self.scrawlAdjustView setSubToolArray:[NSMutableArray arrayWithArray:self.sToolArrays]];
     [self.view addSubview:self.scrawlAdjustView];
-    
-//    //预览层
-//    self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - BUTTOM_VIEW_HEIGHT)];
-//    [self.layerV setBackgroundColor:[UIColor clearColor]];
-//    [self.view addSubview:self.layerV];
-//    [self.layerV addSubview:self.preViewImage];
-//
-    self.withdrawalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.withdrawalBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
-    [self.withdrawalBtn setFrame:CGRectMake(20, 20, 40, 20)];
-    [self.withdrawalBtn setTitle:@"撤销" forState:UIControlStateNormal];
-    [self.withdrawalBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.withdrawalBtn addTarget:self action:@selector(clickWithdrawalBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.withdrawalBtn];
-    [self.view bringSubviewToFront:self.withdrawalBtn];
 }
-
-//- (void)viewDidLayoutSubviews
-//{
-//    [super viewDidLayoutSubviews];
-//    [self layoutImageView];
-//}
 
 /*
  * @brief 撤销操作
@@ -167,14 +148,6 @@
 //}
 
 #pragma mark - lazyLoad
-- (ScrawlAdjustView *)scrawlAdjustView{
-    if(!_scrawlAdjustView){
-        _scrawlAdjustView = [[ScrawlAdjustView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - BUTTOM_VIEW_HEIGHT, self.view.bounds.size.width, BUTTOM_VIEW_HEIGHT)];
-    }
-    
-    return _scrawlAdjustView;
-}
-
 - (PKMosaicDrawingboard *)mosaicDrawingboard {
     if (!_mosaicDrawingboard) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -182,6 +155,14 @@
         _mosaicDrawingboard = [[PKMosaicDrawingboard alloc] initWithFrame:CGRectMake(0, 64, width, height - 64 - BUTTOM_VIEW_HEIGHT)];
     }
     return _mosaicDrawingboard;
+}
+
+- (EditingSubToolView *)scrawlAdjustView{
+    if(!_scrawlAdjustView){
+        _scrawlAdjustView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - BUTTOM_VIEW_HEIGHT, self.view.bounds.size.width, BUTTOM_VIEW_HEIGHT) ToolType:PhotoEditToolScrawl size:CGSizeMake(60.0f, 80.0f)];
+        _scrawlAdjustView.delegate = self;
+    }
+    return _scrawlAdjustView;
 }
 
 #pragma mark - Image Layout -
@@ -222,20 +203,15 @@
     if(!image){
         return;
     }
-    
     _image = image;
-//    [self.preViewImage setImage:image];
 }
 
-//- (UIImageView *)preViewImage{
-//    if(!_preViewImage){
-//        _preViewImage = [[UIImageView alloc] init];
-//        _preViewImage.userInteractionEnabled = YES;
-//        _preViewImage.contentMode = UIViewContentModeScaleAspectFit;
-//    }
-//
-//    return _preViewImage;
-//}
+- (void)setScrawlToolArrays:(NSArray *)tools{
+    if(!tools){
+        return;
+    }
+    _sToolArrays = tools;
+}
 
 //- (void)dealloc {
 //    [self.mosaicDrawingboard removeObserver:self forKeyPath:@"lastAble"];
