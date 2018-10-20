@@ -74,6 +74,17 @@
         
         [self.iconV setImage:image];
         [self.title setText:title];
+    }else if(type == SCRAWL_CELL){
+        CGSize size = self.bounds.size;
+        CGFloat padding = 10.0f;
+        CGFloat fDeltaWidth = size.width - 2*padding;
+        CGFloat fDeltaHeight = fDeltaWidth;
+        [self.iconV setFrame:CGRectMake((size.width - fDeltaWidth)/2, (size.height - fDeltaHeight)/2 - 20.0f, fDeltaWidth, fDeltaHeight)];
+        
+        [self.title setFrame:CGRectMake((size.width - fDeltaWidth)/2, (size.height - fDeltaHeight)/2 + 20.0f, fDeltaWidth, 20.0f)];
+
+        [self.iconV setImage:image];
+        [self.title setText:title];
     }
 }
 

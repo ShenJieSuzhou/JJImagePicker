@@ -10,7 +10,7 @@
 #import "PKMosaicDrawingboard.h"
 #import "UIImage+Mosaic.h"
 
-#define BUTTOM_VIEW_HEIGHT 100.0f
+#define BUTTOM_VIEW_HEIGHT 120.0f
 
 @interface ScrawlViewController ()
 //油画

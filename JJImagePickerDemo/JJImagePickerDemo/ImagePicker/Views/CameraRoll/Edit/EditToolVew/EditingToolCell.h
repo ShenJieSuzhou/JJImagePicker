@@ -11,7 +11,8 @@
 typedef enum : NSUInteger {
     COMMON_CELL,
     FILTER_CELL,
-    STICKER_CELL
+    STICKER_CELL,
+    SCRAWL_CELL
 } JJ_EDITCELL_TYPE;
 
 @interface EditingToolCell : UICollectionViewCell
