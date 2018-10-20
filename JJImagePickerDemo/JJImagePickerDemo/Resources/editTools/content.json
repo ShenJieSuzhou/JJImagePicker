@@ -308,19 +308,19 @@
           "imagePath": "editor_pain",
           "subTools": [{
               "name": "1x",
-              "imagePath": "mosaic_1x"
+              "imagePath": "share_mosaic_brush1_normal"
           },
           {
               "name": "2x",
-              "imagePtah": "mosaic_2x"
+              "imagePath": "share_mosaic_brush2_normal"
           },
           {
               "name": "3x",
-              "imagePath": "mosaic_3x"
+              "imagePath": "share_mosaic_brush3_normal"
           },
           {
               "name": "4x",
-              "imagePath": "mosaic_4x"
+              "imagePath": "share_mosaic_brush4_normal"
           },
           {
               "name": "上一步",
