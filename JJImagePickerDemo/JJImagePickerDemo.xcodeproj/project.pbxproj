@@ -153,6 +153,7 @@
 		E57FDC91217AFC1000D7561A /* WordsBrushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */; };
 		E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC96217AFD9600D7561A /* TextEditView.m */; };
 		E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC99217AFE1C00D7561A /* BrushPaneView.m */; };
+		E57FDCA0217B00B800D7561A /* WordBrushCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC9F217B00B800D7561A /* WordBrushCell.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */; };
 		E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53F20D257D00021EB68 /* chooseInterest_uncheaked@3x.png */; };
@@ -410,6 +411,8 @@
 		E57FDC96217AFD9600D7561A /* TextEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextEditView.m; sourceTree = "<group>"; };
 		E57FDC98217AFE1C00D7561A /* BrushPaneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrushPaneView.h; sourceTree = "<group>"; };
 		E57FDC99217AFE1C00D7561A /* BrushPaneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrushPaneView.m; sourceTree = "<group>"; };
+		E57FDC9E217B00B800D7561A /* WordBrushCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordBrushCell.h; sourceTree = "<group>"; };
+		E57FDC9F217B00B800D7561A /* WordBrushCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordBrushCell.m; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerImage_video_mark@3x.png"; sourceTree = "<group>"; };
@@ -653,6 +656,8 @@
 				E57FDC96217AFD9600D7561A /* TextEditView.m */,
 				E57FDC98217AFE1C00D7561A /* BrushPaneView.h */,
 				E57FDC99217AFE1C00D7561A /* BrushPaneView.m */,
+				E57FDC9E217B00B800D7561A /* WordBrushCell.h */,
+				E57FDC9F217B00B800D7561A /* WordBrushCell.m */,
 			);
 			path = Brush;
 			sourceTree = "<group>";
@@ -1165,6 +1170,7 @@
 				E557824D2179CBC5003B20BB /* PKMosaicDrawingboard.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
+				E57FDCA0217B00B800D7561A /* WordBrushCell.m in Sources */,
 				E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
