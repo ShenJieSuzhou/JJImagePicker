@@ -40,6 +40,14 @@ typedef enum : NSUInteger{
     PhotoEditToolScrawl
 } PhotoEditToolType;
 
+typedef enum : NSUInteger{
+    PhotoEditScrawl_Pen_1X,
+    PhotoEditScrawl_Pen_2X,
+    PhotoEditScrawl_Pen_3X,
+    PhotoEditScrawl_Pen_4X,
+    PhotoEditScrawl_Pre,
+    PhotoEditScrawl_Next
+}PhotoEditScrawlType;
 
 
 @protocol PhotoEditingDelegate <NSObject>
@@ -68,6 +76,8 @@ typedef enum : NSUInteger{
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType;
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV stickerName:(NSString *)stickerName;
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV actionType:(PhotoEditScrawlType)scrawlType;
 
 @end
 

@@ -31,121 +31,17 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
     
-    [self setupViews];
-    [self setupEvents];
-    [self bindData];
+    //添加油画马赛克视图
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view addSubview:self.mosaicDrawingboard];
     
     // 默认开始编辑
     [self.mosaicDrawingboard beginPaint];
-    [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_1.25"]];
+    [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12"]];
     //底部调整视图
     [self.scrawlAdjustView setSubToolArray:[NSMutableArray arrayWithArray:self.sToolArrays]];
     [self.view addSubview:self.scrawlAdjustView];
 }
-
-/*
- * @brief 撤销操作
- */
-- (void)clickWithdrawalBtn:(UIButton *)sender{
-    NSLog(@"撤销");
-}
-
-- (void)setupViews {
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    [self.view addSubview:self.mosaicDrawingboard];
-}
-
-- (void)setupEvents {
-//    UIImage *(^resizeImageBlock)(NSInteger) = ^UIImage *(NSInteger index){
-//        NSString *name = @"";
-//        // 图片1倍大小是50x50
-//        // 从小到大0.5, 0.75, 1.0, 1.25倍. 注意图片像素不要出现.5
-//        switch (index) {
-//            case 0:
-//                name = @"mosaic_asset_12_0.5";
-//                break;
-//            case 1:
-//                name = @"mosaic_asset_12_0.75";
-//                break;
-//            case 2:
-//                name = @"mosaic_asset_12";
-//                break;
-//            case 3:
-//                name = @"mosaic_asset_12_1.25";
-//                break;
-//            default:
-//                break;
-//        }
-//        UIImage *image =  [UIImage imageNamed:name];
-//        NSCAssert(image, @"没有该图片资源");
-//        return image;
-//    };
-//    __weak typeof(self) wself = self;
-    // titleBar
-//    [self.titleBar setLeftActionBlock:^(UIButton *button){
-//        [wself.mosaicDrawingboard cancelPaint];
-//        [wself popback];
-//    }];
-//
-//    [self.titleBar setRihtActionBlock:^(UIButton *button){
-//        UIImage *image = [wself.mosaicDrawingboard compeletePaint];
-//        if (wself.resultImageBlock) wself.resultImageBlock(image);
-//        [wself popback];
-//    }];
-    
-//    [self.bottomToolBar setBrushBlock:^(NSInteger index){
-//        switch (index) {
-//            case 0: {
-//                [wself.mosaicDrawingboard setMosaicBrushImage:resizeImageBlock(0)];
-//            }
-//                break;
-//            case 1: {
-//                [wself.mosaicDrawingboard setMosaicBrushImage:resizeImageBlock(1)];
-//            }
-//                break;
-//            case 2: {
-//                [wself.mosaicDrawingboard setMosaicBrushImage:resizeImageBlock(2)];
-//            }
-//                break;
-//            case 3: {
-//                [wself.mosaicDrawingboard setMosaicBrushImage:resizeImageBlock(3)];
-//            }
-//                break;
-//
-//            default:
-//                break;
-//        }
-//    }];
-    
-//    [self.bottomToolBar setLastOrNextClickBlock:^(BOOL isLast){
-//        if (isLast) {
-//            [wself.mosaicDrawingboard last];
-//        } else {
-//            [wself.mosaicDrawingboard next];
-//        }
-//    }];
-}
-
-- (void)bindData {
-    self.mosaicDrawingboard.image = self.image;
-    
-//    [self.mosaicDrawingboard addObserver:self forKeyPath:@"lastAble" options:NSKeyValueObservingOptionInitial context:NULL];
-//    [self.mosaicDrawingboard addObserver:self forKeyPath:@"nextAble" options:NSKeyValueObservingOptionInitial context:NULL];
-//    [self.mosaicDrawingboard addObserver:self forKeyPath:@"touching" options:NSKeyValueObservingOptionInitial context:NULL];
-//    [self.mosaicDrawingboard addObserver:self forKeyPath:@"painting" options:NSKeyValueObservingOptionInitial context:NULL];
-}
-
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-//    if ([keyPath isEqualToString:@"lastAble"]) {
-//        self.bottomToolBar.lastButton.enabled = self.mosaicDrawingboard.lastAble;
-//    } else if ([keyPath isEqualToString:@"nextAble"]){
-//        self.bottomToolBar.nextButton.enabled = self.mosaicDrawingboard.nextAble;
-//    } else if ([keyPath isEqualToString:@"touching"]){
-//        self.bottomToolBar.brushEnable = !self.mosaicDrawingboard.touching;
-//    } else if ([keyPath isEqualToString:@"painting"]){
-//        self.titleBar.rightButton.hidden = !self.mosaicDrawingboard.painting;
-//    }
-//}
 
 #pragma mark - lazyLoad
 - (PKMosaicDrawingboard *)mosaicDrawingboard {
@@ -204,6 +100,7 @@
         return;
     }
     _image = image;
+    self.mosaicDrawingboard.image = self.image;
 }
 
 - (void)setScrawlToolArrays:(NSArray *)tools{
@@ -211,6 +108,35 @@
         return;
     }
     _sToolArrays = tools;
+}
+
+#pragma mark - PhotoSubToolEditingDelegate
+- (void)PhotoEditSubEditToolDismiss{
+    self.mosaicDrawingboard = nil;
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)PhotoEditSubEditToolConfirm{
+    
+}
+
+- (void)PhotoEditSubEditTool:(UICollectionView *)collectionV actionType:(PhotoEditScrawlType)scrawlType{
+    
+    if(scrawlType == PhotoEditScrawl_Pen_1X){
+        [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_0.5"]];
+    }else if(scrawlType == PhotoEditScrawl_Pen_2X){
+        [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_0.75"]];
+    }else if(scrawlType == PhotoEditScrawl_Pen_3X){
+        [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12"]];
+    }else if(scrawlType == PhotoEditScrawl_Pen_4X){
+        [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_1.25"]];
+    }else if(scrawlType == PhotoEditScrawl_Pre){
+        
+    }else if(scrawlType == PhotoEditScrawl_Next){
+        
+    }
 }
 
 //- (void)dealloc {

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "mosaic_2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "mosaic_asset_12@2x.png",
       "scale" : "2x"
     },
     {
