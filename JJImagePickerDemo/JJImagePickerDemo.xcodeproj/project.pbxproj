@@ -150,6 +150,9 @@
 		E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */; };
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
 		E571BD44210F0045009DD369 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = E571BD43210F0044009DD369 /* content.json */; };
+		E57FDC91217AFC1000D7561A /* WordsBrushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */; };
+		E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC96217AFD9600D7561A /* TextEditView.m */; };
+		E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC99217AFE1C00D7561A /* BrushPaneView.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */; };
 		E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53F20D257D00021EB68 /* chooseInterest_uncheaked@3x.png */; };
@@ -401,6 +404,12 @@
 		E56B9CD020AD2FA800021DF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E56B9CD120AD2FA800021DF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E571BD43210F0044009DD369 /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
+		E57FDC8F217AFC1000D7561A /* WordsBrushViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsBrushViewController.h; sourceTree = "<group>"; };
+		E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsBrushViewController.m; sourceTree = "<group>"; };
+		E57FDC95217AFD9600D7561A /* TextEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextEditView.h; sourceTree = "<group>"; };
+		E57FDC96217AFD9600D7561A /* TextEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextEditView.m; sourceTree = "<group>"; };
+		E57FDC98217AFE1C00D7561A /* BrushPaneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrushPaneView.h; sourceTree = "<group>"; };
+		E57FDC99217AFE1C00D7561A /* BrushPaneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrushPaneView.m; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerImage_video_mark@3x.png"; sourceTree = "<group>"; };
@@ -638,6 +647,12 @@
 		E53F2FC12178875600142A38 /* Brush */ = {
 			isa = PBXGroup;
 			children = (
+				E57FDC8F217AFC1000D7561A /* WordsBrushViewController.h */,
+				E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */,
+				E57FDC95217AFD9600D7561A /* TextEditView.h */,
+				E57FDC96217AFD9600D7561A /* TextEditView.m */,
+				E57FDC98217AFE1C00D7561A /* BrushPaneView.h */,
+				E57FDC99217AFE1C00D7561A /* BrushPaneView.m */,
 			);
 			path = Brush;
 			sourceTree = "<group>";
@@ -1146,6 +1161,7 @@
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E512B1D6215A045000B06B1B /* TagModel.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
+				E57FDC91217AFC1000D7561A /* WordsBrushViewController.m in Sources */,
 				E557824D2179CBC5003B20BB /* PKMosaicDrawingboard.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
@@ -1181,6 +1197,7 @@
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
+				E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
 				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
@@ -1212,6 +1229,7 @@
 				E5506BEA212FB7D80077E62B /* JJPhotoPreviewView.m in Sources */,
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
 				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,
+				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
 				E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */,
 				E512B1DF215B376800B06B1B /* StickerParttenView.m in Sources */,
 				E5506B60212FB3330077E62B /* PhotosViewController.m in Sources */,
