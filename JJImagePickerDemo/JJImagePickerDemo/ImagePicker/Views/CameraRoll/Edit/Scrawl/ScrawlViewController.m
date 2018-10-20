@@ -34,11 +34,10 @@
     //添加油画马赛克视图
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.mosaicDrawingboard];
-    
     // 默认开始编辑
     [self.mosaicDrawingboard beginPaint];
     [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12"]];
-    //底部调整视图
+    //底部视图
     [self.scrawlAdjustView setSubToolArray:[NSMutableArray arrayWithArray:self.sToolArrays]];
     [self.view addSubview:self.scrawlAdjustView];
 }
@@ -112,6 +111,7 @@
 
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
+    [self.mosaicDrawingboard cancelPaint];
     self.mosaicDrawingboard = nil;
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -119,7 +119,10 @@
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-    
+     UIImage *image = [self.mosaicDrawingboard compeletePaint];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV actionType:(PhotoEditScrawlType)scrawlType{
@@ -133,9 +136,9 @@
     }else if(scrawlType == PhotoEditScrawl_Pen_4X){
         [self.mosaicDrawingboard setMosaicBrushImage:[UIImage imageNamed:@"mosaic_asset_12_1.25"]];
     }else if(scrawlType == PhotoEditScrawl_Pre){
-        
+        [self.mosaicDrawingboard last];
     }else if(scrawlType == PhotoEditScrawl_Next){
-        
+        [self.mosaicDrawingboard next];
     }
 }
 

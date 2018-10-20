@@ -301,6 +301,24 @@
         }
         
         [_delegate PhotoEditSubEditTool:collectionView stickerName:name];
+    }else if(_photoEditToolType == PhotoEditToolScrawl){
+        if(![_delegate respondsToSelector:@selector(PhotoEditSubEditTool:actionType:)]){
+            return;
+        }
+        
+        if(index == 0){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Pen_1X];
+        }else if(index == 1){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Pen_2X];
+        }else if(index == 2){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Pen_3X];
+        }else if(index == 3){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Pen_4X];
+        }else if(index == 4){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Pre];
+        }else if(index == 5){
+            [_delegate PhotoEditSubEditTool:collectionView actionType:PhotoEditScrawl_Next];
+        }
     }
 }
 
