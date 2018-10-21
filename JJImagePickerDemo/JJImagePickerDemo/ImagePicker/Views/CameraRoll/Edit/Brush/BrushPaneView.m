@@ -7,6 +7,7 @@
 //
 
 #import "BrushPaneView.h"
+#define COLOR_BTN_TAG 2018
 
 @implementation BrushPaneView
 @synthesize colorCollectionView = _colorCollectionView;
@@ -21,12 +22,32 @@
 }
 
 - (void)commoniInitlization{
-    
+    for (int i = 0; i < [_colorArray count]; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setTag:(i + COLOR_BTN_TAG)];
+        [btn addTarget:self action:@selector(clickColorBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+    }
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
+    for (int i = 0; i < [_colorArray count]; i++) {
+        UIButton *btn = [self viewWithTag:(i+COLOR_BTN_TAG)];
+        CGFloat btnWidth = 40.0f;
+        CGFloat btnHeight = 40.0f;
+        [btn setFrame:CGRectMake(i*btnWidth, 0, btnWidth, btnHeight)];
+        [btn.layer setCornerRadius:btnWidth/2];
+    }
+}
+
+- (void)clickColorBtn:(UIButton *)sender{
+    if(!sender.selected){
+        
+    }else{
+        
+    }
 }
 
 #pragma mark -lazyLoad
