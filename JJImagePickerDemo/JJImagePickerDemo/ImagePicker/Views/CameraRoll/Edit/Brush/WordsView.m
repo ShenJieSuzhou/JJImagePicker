@@ -35,7 +35,7 @@
     }
     
     CGSize textSize = [self.wModel.words sizeWithAttributes:@{NSFontAttributeName:self.wModel.font}];
-    if(textSize.width > self.frame.size.width){
+    if(textSize.width > self.superview.frame.size.width){
         CGSize textSize1 = [self.wModel.words boundingRectWithSize:CGSizeMake(self.frame.size.width - 40, CGFLOAT_MAX)
                                                           options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
                                                        attributes:@{NSFontAttributeName:self.wModel.font}
@@ -50,7 +50,7 @@
     [self.textView setTextColor:self.wModel.color];
     [self.textView setText:self.wModel.words];
     [self.textView setTextAlignment:NSTextAlignmentCenter];
-    
+
     [self.deleteImageView setFrame:CGRectMake(self.frame.size.width - 12.0f, -12.0f, 24.0f, 24.0f)];
     UITapGestureRecognizer *deletetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteBtnClicked:)];
     [self.deleteImageView addGestureRecognizer:deletetTap];
@@ -65,12 +65,12 @@
 }
 
 #pragma mark - UITextViewDelegate
-- (void)textViewDidChange:(UITextView *)textView{
-    float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
-    CGRect frame = textView.frame;
-    frame.size.height = textViewHeight;
-    textView.frame = frame;
-}
+//- (void)textViewDidChange:(UITextView *)textView{
+//    float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
+//    CGRect frame = textView.frame;
+//    frame.size.height = textViewHeight;
+//    textView.frame = frame;
+//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [touches anyObject];

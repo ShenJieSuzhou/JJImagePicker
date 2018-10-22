@@ -147,7 +147,7 @@
 
 #pragma mark - TextEditViewDelegate
 - (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model{
-    WordsView *wordsView = [[WordsView alloc] initWithFrame:CGRectMake(0, 0, textView.frame.size.width, 0)];
+    WordsView *wordsView = [[WordsView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [wordsView setWModel:model];
     
     if([_delegate respondsToSelector:@selector(WordsBrushViewController:didAddWordsToImage:)]){
