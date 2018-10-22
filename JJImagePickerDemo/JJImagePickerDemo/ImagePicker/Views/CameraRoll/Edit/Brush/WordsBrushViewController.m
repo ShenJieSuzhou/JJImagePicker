@@ -137,7 +137,8 @@
 }
 
 #pragma mark - TextEditViewDelegate
-- (void)keyboardCloseView:(TextEditView *)textView{
+- (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model{
+    
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

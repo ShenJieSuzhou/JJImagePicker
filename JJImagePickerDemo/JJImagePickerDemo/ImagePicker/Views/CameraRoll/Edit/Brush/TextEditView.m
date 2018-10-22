@@ -11,6 +11,7 @@
 @implementation TextEditView
 @synthesize textBrushView = _textBrushView;
 @synthesize delegate = _delegate;
+@synthesize wordsModel = _wordsModel;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -20,6 +21,8 @@
 }
 
 - (void)commonInitlization{
+    self.wordsModel = [[WordsModel alloc] init];
+    
     [self setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.textBrushView];
 }
@@ -31,6 +34,7 @@
 
 - (void)setEditTextColor:(UIColor *)color{
     [self.textBrushView setTextColor:color];
+    [_wordsModel setColor:color];
 }
 
 #pragma mark - lazylaod
@@ -43,6 +47,9 @@
         [_textBrushView setFont:[UIFont systemFontOfSize:35.0f]];
         [_textBrushView setTextColor:[UIColor whiteColor]];
         [_textBrushView becomeFirstResponder];
+        
+        [_wordsModel setFont:[UIFont systemFontOfSize:35.0f]];
+        [_wordsModel setColor:[UIColor whiteColor]];
     }
     
     return _textBrushView;
@@ -54,15 +61,17 @@
     CGRect frame = textView.frame;
     frame.size.height = textViewHeight;
     textView.frame = frame;
+    [self.wordsModel setWords:textView.text];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){
-        if(![_delegate respondsToSelector:@selector(keyboardCloseView:)]){
+        if(![_delegate respondsToSelector:@selector(textEditFinished:text:)]){
             return YES;
         }
         [textView resignFirstResponder];
-        [_delegate keyboardCloseView:self];
+        [self.wordsModel setWords:textView.text];
+        [_delegate textEditFinished:self text:self.wordsModel];
         return NO;
     }
     return YES;

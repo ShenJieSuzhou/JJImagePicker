@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WordsModel.h"
+
 @class TextEditView;
 @protocol TextEditViewDelegate <NSObject>
 
-- (void)keyboardCloseView:(TextEditView *)textView;
+- (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model;
 
 @end
 
@@ -18,6 +20,7 @@
 
 @property (nonatomic, strong) UITextView *textBrushView;
 @property (nonatomic, weak) id<TextEditViewDelegate> delegate;
+@property (nonatomic, strong) WordsModel *wordsModel;
 
 -(void)setEditTextColor:(UIColor *)color;
 
