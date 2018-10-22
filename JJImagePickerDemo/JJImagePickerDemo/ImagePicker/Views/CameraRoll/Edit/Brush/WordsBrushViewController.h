@@ -10,7 +10,7 @@
 #import "BrushPaneView.h"
 #import "TextEditView.h"
 #import "CustomNaviBarView.h"
-@interface WordsBrushViewController : UIViewController
+@interface WordsBrushViewController : UIViewController<TextEditViewDelegate,BrushPaneDelegate>
 
 @property (strong, nonatomic) BrushPaneView *brushPaneView;
 @property (strong, nonatomic) TextEditView *textEditView;

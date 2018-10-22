@@ -62,6 +62,7 @@
 - (BrushPaneView *)brushPaneView{
     if(!_brushPaneView){
         _brushPaneView = [[BrushPaneView alloc] initWithFrame:CGRectMake(0, 400, self.view.frame.size.width, 40.0f)];
+        _brushPaneView.delegate = self;
     }
     return _brushPaneView;
 }
@@ -69,6 +70,7 @@
 - (TextEditView *)textEditView{
     if(!_textEditView){
         _textEditView = [[TextEditView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height / 2)];
+        _textEditView.delegate = self;
     }
     return _textEditView;
 }
@@ -117,7 +119,7 @@
     // 键盘的frame
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:duration animations:^{        
+    [UIView animateWithDuration:duration animations:^{
         [weakSelf.brushPaneView setFrame:CGRectMake(0, keyboardF.origin.y - 40.0f, self.view.frame.size.width, 40.0f)];
     }];
 }
@@ -132,6 +134,18 @@
 
 - (void)keyboardChangeFrame:(NSNotification *)notif{
     
+}
+
+#pragma mark - TextEditViewDelegate
+- (void)keyboardCloseView:(TextEditView *)textView{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - BrushPaneDelegate
+- (void)chooseColorCallBack:(BrushPaneView *)view color:(UIColor *)color{
+    [self.textEditView setEditTextColor:color];
 }
 
 @end

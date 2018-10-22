@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class BrushPaneView;
+@protocol BrushPaneDelegate <NSObject>
+- (void)chooseColorCallBack:(BrushPaneView *)view color:(UIColor *)color;
+@end
+
 @interface BrushPaneView : UIView
 
 //颜色数组
@@ -16,6 +21,9 @@
 @property (strong, nonatomic) UIScrollView *colorScrollView;
 //当前选中的按钮
 @property (strong, nonatomic) UIButton *currentButton;
+
+@property (strong, nonatomic) id<BrushPaneDelegate> delegate;
+
 @end
 
 

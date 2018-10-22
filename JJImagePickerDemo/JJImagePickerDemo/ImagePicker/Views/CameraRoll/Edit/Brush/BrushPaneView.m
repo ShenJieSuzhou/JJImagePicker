@@ -14,6 +14,7 @@
 @synthesize colorArray = _colorArray;
 @synthesize colorScrollView = _colorScrollView;
 @synthesize currentButton = _currentButton;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -75,6 +76,11 @@
         [sender.layer setCornerRadius:btnWidth/2];
         [sender.layer setBorderWidth:1.5f];
         [sender.layer setBorderColor:[UIColor whiteColor].CGColor];
+        
+        NSInteger colorIndex = sender.tag - COLOR_BTN_TAG;
+        if([_delegate respondsToSelector:@selector(chooseColorCallBack:color:)]){
+            [_delegate chooseColorCallBack:self color:[self.colorArray objectAtIndex:colorIndex]];
+        }
     }
 }
 

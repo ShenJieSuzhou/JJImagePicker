@@ -7,12 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TextEditView;
+@protocol TextEditViewDelegate <NSObject>
+
+- (void)keyboardCloseView:(TextEditView *)textView;
+
+@end
 
 @interface TextEditView : UIView<UITextViewDelegate>
 
 @property (nonatomic, strong) UITextView *textBrushView;
+@property (nonatomic, weak) id<TextEditViewDelegate> delegate;
 
--(void)setTextColor:(UIColor *)color;
+-(void)setEditTextColor:(UIColor *)color;
 
 @end
 
