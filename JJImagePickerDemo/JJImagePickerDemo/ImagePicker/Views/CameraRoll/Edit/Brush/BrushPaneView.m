@@ -10,68 +10,89 @@
 #define COLOR_BTN_TAG 2018
 
 @implementation BrushPaneView
-@synthesize colorCollectionView = _colorCollectionView;
+//@synthesize colorCollectionView = _colorCollectionView;
 @synthesize colorArray = _colorArray;
+@synthesize colorScrollView = _colorScrollView;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+        _colorArray = @[[UIColor blackColor],
+                        [UIColor darkGrayColor],
+                        [UIColor lightGrayColor],
+                        [UIColor whiteColor],
+                        [UIColor grayColor],
+                        [UIColor redColor],
+                        [UIColor greenColor],
+                        [UIColor blueColor],
+                        [UIColor cyanColor],
+                        [UIColor yellowColor],
+                        [UIColor magentaColor],
+                        [UIColor orangeColor],
+                        [UIColor purpleColor],
+                        [UIColor brownColor]];
         
+        [self commoniInitlization];
     }
-    
     return self;
 }
 
 - (void)commoniInitlization{
+    [self addSubview:self.colorScrollView];
+    
     for (int i = 0; i < [_colorArray count]; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundColor:[UIColor clearColor]];
         [btn setTag:(i + COLOR_BTN_TAG)];
         [btn addTarget:self action:@selector(clickColorBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
+        [self.colorScrollView addSubview:btn];
     }
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
     for (int i = 0; i < [_colorArray count]; i++) {
         UIButton *btn = [self viewWithTag:(i+COLOR_BTN_TAG)];
-        CGFloat btnWidth = 40.0f;
-        CGFloat btnHeight = 40.0f;
-        [btn setFrame:CGRectMake(i*btnWidth, 0, btnWidth, btnHeight)];
+        [btn setBackgroundColor:[_colorArray objectAtIndex:i]];
+        CGFloat btnWidth = 25.0f;
+        CGFloat btnHeight = 25.0f;
+        [btn setFrame:CGRectMake(i*(btnWidth + 15.0f), 0, btnWidth, btnHeight)];
         [btn.layer setCornerRadius:btnWidth/2];
+        [btn.layer setBorderWidth:1.5f];
+        [btn.layer setBorderColor:[UIColor whiteColor].CGColor];
     }
 }
 
 - (void)clickColorBtn:(UIButton *)sender{
     if(!sender.selected){
-        
+        CGFloat btnWidth = 30.0f;
+        CGFloat btnHeight = 30.0f;
+        [sender setFrame:CGRectMake(sender.frame.origin.x, sender.frame.origin.y, btnWidth, btnHeight)];
+        [sender.layer setCornerRadius:btnWidth/2];
+        [sender.layer setBorderWidth:1.5f];
+        [sender.layer setBorderColor:[UIColor whiteColor].CGColor];
     }else{
-        
+        CGFloat btnWidth = 25.0f;
+        CGFloat btnHeight = 25.0f;
+        [sender setFrame:CGRectMake(sender.frame.origin.x, sender.frame.origin.y, btnWidth, btnHeight)];
+        [sender.layer setCornerRadius:btnWidth/2];
+        [sender.layer setBorderWidth:1.5f];
+        [sender.layer setBorderColor:[UIColor whiteColor].CGColor];
     }
 }
 
 #pragma mark -lazyLoad
-- (UICollectionView *)colorCollectionView{
-    if(!_colorCollectionView){
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(50, 50);
-        layout.collectionView.pagingEnabled = YES;
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        
-        //自动网格布局
-        _colorCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10.0f, self.frame.size.width, self.frame.size.height - 30) collectionViewLayout:layout];
-        //设置数据源代理
-        _colorCollectionView.dataSource = self;
-        _colorCollectionView.delegate = self;
-        _colorCollectionView.scrollsToTop = NO;
-        _colorCollectionView.showsVerticalScrollIndicator = NO;
-        _colorCollectionView.showsHorizontalScrollIndicator = NO;
-        _colorCollectionView.alwaysBounceHorizontal = NO;
-        [_colorCollectionView setBackgroundColor:[UIColor whiteColor]];
-        [_colorCollectionView registerClass:[EditingToolCell class] forCellWithReuseIdentifier:JJ_PHOTO_EDITING_SUBTOOL_CELL];
+- (UIScrollView *)colorScrollView{
+    if(!_colorScrollView){
+        _colorScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50.0f)];
+        _colorScrollView.contentSize = CGSizeMake(40 * _colorArray.count, 50.0f);
+        _colorScrollView.backgroundColor = [UIColor clearColor];
+        _colorScrollView.bounces = YES;
+        _colorScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+        _colorScrollView.showsVerticalScrollIndicator = NO;
+        _colorScrollView.showsHorizontalScrollIndicator = NO;
     }
+    return _colorScrollView;
 }
 
 @end

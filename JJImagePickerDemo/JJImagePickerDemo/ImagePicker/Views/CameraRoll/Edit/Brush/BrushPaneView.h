@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BrushPaneView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
-//颜色选择容器
-@property (strong, nonatomic) UICollectionView *colorCollectionView;
+@interface BrushPaneView : UIView
+
 //颜色数组
-@property (strong, nonatomic) NSMutableArray *colorArray;
+@property (strong, nonatomic) NSArray *colorArray;
+//左右滚动
+@property (strong, nonatomic) UIScrollView *colorScrollView;
 
 @end
 

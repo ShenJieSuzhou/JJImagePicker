@@ -13,20 +13,23 @@
 @end
 
 @implementation WordsBrushViewController
+@synthesize brushPaneView = _brushPaneView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:0.5f]];
+    
+    [self.view addSubview:self.brushPaneView];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -lazyload
+- (BrushPaneView *)brushPaneView{
+    if(!_brushPaneView){
+        _brushPaneView = [[BrushPaneView alloc] initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height)];
+    }
+    return _brushPaneView;
 }
-*/
 
 @end

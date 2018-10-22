@@ -15,6 +15,7 @@
 #import "StickerViewController.h"
 #import "JJTagCategoryView.h"
 #import "ScrawlViewController.h"
+#import "WordsBrushViewController.h"
 
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate>
 

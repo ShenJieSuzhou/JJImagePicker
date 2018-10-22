@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
+#import "BrushPaneView.h"
 @interface WordsBrushViewController : UIViewController
+
+@property (strong, nonatomic) BrushPaneView *brushPaneView;
 
 @end
 
-NS_ASSUME_NONNULL_END
+

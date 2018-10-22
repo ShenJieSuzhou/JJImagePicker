@@ -252,7 +252,13 @@
             break;
         case JJEditToolWords:
             break;
-        case JJEditToolBrush:
+        case JJEditToolBrush:{
+            WordsBrushViewController *wordsBrushView = [WordsBrushViewController new];
+            
+            [self presentViewController:wordsBrushView animated:YES completion:^{
+                
+            }];
+        }
             break;
         case JJEditToolTag:{
             NSArray *tags = @[@"中午吃些啥",
