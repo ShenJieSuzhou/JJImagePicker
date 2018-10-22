@@ -14,7 +14,8 @@
 @property (strong, nonatomic) NSArray *colorArray;
 //左右滚动
 @property (strong, nonatomic) UIScrollView *colorScrollView;
-
+//当前选中的按钮
+@property (strong, nonatomic) UIButton *currentButton;
 @end
 
 
