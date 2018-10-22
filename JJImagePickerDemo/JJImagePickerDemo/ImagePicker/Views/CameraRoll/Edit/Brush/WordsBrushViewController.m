@@ -16,6 +16,7 @@
 @synthesize brushPaneView = _brushPaneView;
 @synthesize textEditView = _textEditView;
 @synthesize cusNavbar = _cusNavbar;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -103,6 +104,10 @@
 }
 
 - (void)OnConfirmlCLick:(UIButton *)sender{
+    if([_delegate respondsToSelector:@selector(WordsBrushViewController:didAddWordsToImage:)]){
+        WordsModel *model = [self.textEditView getWordModel];
+        [_delegate WordsBrushViewController:self didAddWordsToImage:model];
+    }
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -138,7 +143,12 @@
 
 #pragma mark - TextEditViewDelegate
 - (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model{
+    WordsView *wordsView = [[WordsView alloc] initWithFrame:CGRectMake(0, 0, textView.frame.size.width, textView.frame.size.width)];
+    [wordsView setWModel:model];
     
+    if([_delegate respondsToSelector:@selector(WordsBrushViewController:didAddWordsToImage:)]){
+        [_delegate WordsBrushViewController:self didAddWordsToImage:wordsView];
+    }
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

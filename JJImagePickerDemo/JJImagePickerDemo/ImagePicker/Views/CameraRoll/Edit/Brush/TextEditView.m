@@ -37,6 +37,10 @@
     [_wordsModel setColor:color];
 }
 
+- (WordsModel *)getWordModel{
+    return _wordsModel;
+}
+
 #pragma mark - lazylaod
 - (UITextView *)textBrushView{
     if(!_textBrushView){

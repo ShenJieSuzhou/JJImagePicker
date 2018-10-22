@@ -10,12 +10,19 @@
 #import "BrushPaneView.h"
 #import "TextEditView.h"
 #import "CustomNaviBarView.h"
-@interface WordsBrushViewController : UIViewController<TextEditViewDelegate,BrushPaneDelegate>
+#import "WordsModel.h"
+#import "WordsView.h"
 
+@class WordsBrushViewController;
+@protocol JJWordsDelegate <NSObject>
+- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsView *)words;
+@end
+
+@interface WordsBrushViewController : UIViewController<TextEditViewDelegate,BrushPaneDelegate>
 @property (strong, nonatomic) BrushPaneView *brushPaneView;
 @property (strong, nonatomic) TextEditView *textEditView;
 @property (strong, nonatomic) CustomNaviBarView *cusNavbar;
-
+@property (strong, nonatomic) id<JJWordsDelegate> delegate;
 @end
 
 

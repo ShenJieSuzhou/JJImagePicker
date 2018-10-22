@@ -11,6 +11,7 @@
 #import "JJLoadConfig.h"
 #import "TagModel.h"
 #import "JJTagView.h"
+#import "WordsView.h"
 
 #define JJ_DEFAULT_IMAGE_PADDING 50
 #define JJ_EDITTOOL_HEIGHT 100
@@ -254,7 +255,7 @@
             break;
         case JJEditToolBrush:{
             WordsBrushViewController *wordsBrushView = [WordsBrushViewController new];
-            
+            wordsBrushView.delegate = self;
             [self presentViewController:wordsBrushView animated:YES completion:^{
                 
             }];
@@ -361,6 +362,11 @@
 - (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView{
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
+}
+
+#pragma mark - JJWordsDelegate
+- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsView *)view{
+    [self.preViewImage addSubview:view];
 }
 
 @end

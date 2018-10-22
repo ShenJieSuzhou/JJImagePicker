@@ -24,6 +24,7 @@
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
+		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
 		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
 		E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D8215A061800B06B1B /* StickerCollectionView.m */; };
@@ -215,6 +216,8 @@
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
+		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
+		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
 		E512B1D1215A034B00B06B1B /* StickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerModel.h; sourceTree = "<group>"; };
 		E512B1D2215A034B00B06B1B /* StickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerModel.m; sourceTree = "<group>"; };
 		E512B1D4215A045000B06B1B /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
@@ -658,6 +661,8 @@
 				E57FDC96217AFD9600D7561A /* TextEditView.m */,
 				E57FDC98217AFE1C00D7561A /* BrushPaneView.h */,
 				E57FDC99217AFE1C00D7561A /* BrushPaneView.m */,
+				E50E97DE217DBC290029E231 /* WordsView.h */,
+				E50E97DF217DBC290029E231 /* WordsView.m */,
 			);
 			path = Brush;
 			sourceTree = "<group>";
@@ -1174,6 +1179,7 @@
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
+				E50E97E0217DBC290029E231 /* WordsView.m in Sources */,
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */,

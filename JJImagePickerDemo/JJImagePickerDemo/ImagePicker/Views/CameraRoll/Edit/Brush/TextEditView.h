@@ -24,6 +24,8 @@
 
 -(void)setEditTextColor:(UIColor *)color;
 
+- (WordsModel *)getWordModel;
+
 @end
 
 

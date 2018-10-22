@@ -17,7 +17,7 @@
 #import "ScrawlViewController.h"
 #import "WordsBrushViewController.h"
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate>
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate>
 
 @property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
 
