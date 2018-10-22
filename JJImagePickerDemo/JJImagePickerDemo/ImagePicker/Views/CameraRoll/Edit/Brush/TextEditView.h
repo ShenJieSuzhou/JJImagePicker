@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TextEditView : UIView
-@property (nonatomic, strong) UITextField *textEditField;
+@interface TextEditView : UIView<UITextViewDelegate>
+
+@property (nonatomic, strong) UITextView *textBrushView;
+
+-(void)setTextColor:(UIColor *)color;
+
 @end
 
 

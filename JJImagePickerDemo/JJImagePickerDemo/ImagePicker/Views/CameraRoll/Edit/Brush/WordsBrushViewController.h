@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BrushPaneView.h"
+#import "TextEditView.h"
+#import "CustomNaviBarView.h"
 @interface WordsBrushViewController : UIViewController
 
 @property (strong, nonatomic) BrushPaneView *brushPaneView;
+@property (strong, nonatomic) TextEditView *textEditView;
+@property (strong, nonatomic) CustomNaviBarView *cusNavbar;
 
 @end
 
