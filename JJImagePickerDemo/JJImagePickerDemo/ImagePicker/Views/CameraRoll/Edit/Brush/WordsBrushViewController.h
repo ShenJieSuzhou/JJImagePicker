@@ -11,11 +11,11 @@
 #import "TextEditView.h"
 #import "CustomNaviBarView.h"
 #import "WordsModel.h"
-#import "WordsView.h"
+
 
 @class WordsBrushViewController;
 @protocol JJWordsDelegate <NSObject>
-- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsView *)words;
+- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsModel *)words;
 @end
 
 @interface WordsBrushViewController : UIViewController<TextEditViewDelegate,BrushPaneDelegate>

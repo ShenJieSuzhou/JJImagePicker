@@ -7,6 +7,7 @@
 //
 
 #import "WordsBrushViewController.h"
+#import "WordsView.h"
 
 @interface WordsBrushViewController ()
 
@@ -104,13 +105,10 @@
 }
 
 - (void)OnConfirmlCLick:(UIButton *)sender{
-
-    WordsView *wordsView = [[WordsView alloc] initWithFrame:CGRectMake(0, 0, self.textEditView.textBrushView.frame.size.width, 0)];
     WordsModel *model = [self.textEditView getWordModel];
-    [wordsView setWModel:model];
     if([_delegate respondsToSelector:@selector(WordsBrushViewController:didAddWordsToImage:)]){
         
-        [_delegate WordsBrushViewController:self didAddWordsToImage:wordsView];
+        [_delegate WordsBrushViewController:self didAddWordsToImage:model];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -146,12 +144,9 @@
 }
 
 #pragma mark - TextEditViewDelegate
-- (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model{
-    WordsView *wordsView = [[WordsView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [wordsView setWModel:model];
-    
+- (void)textEditFinished:(TextEditView *)textView text:(WordsModel *)model{    
     if([_delegate respondsToSelector:@selector(WordsBrushViewController:didAddWordsToImage:)]){
-        [_delegate WordsBrushViewController:self didAddWordsToImage:wordsView];
+        [_delegate WordsBrushViewController:self didAddWordsToImage:model];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         

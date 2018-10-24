@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UITextView *textView;
 @property (strong, nonatomic) UILabel *textLabel;
 @property (assign) CGPoint touchStart;
+@property (assign) BOOL isSelected;
 
 - (void)hideBoardAndCloseImg;
 

@@ -7,6 +7,7 @@
 //
 
 #import "WordsView.h"
+#define WORDS_SPACE 20.0f
 
 @implementation WordsView
 @synthesize wModel = _wModel;
@@ -14,6 +15,7 @@
 @synthesize textView = _textView;
 @synthesize touchStart = _touchStart;
 @synthesize textLabel = _textLabel;
+@synthesize isSelected = _isSelected;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -24,8 +26,15 @@
 
 - (void)commonInitlization{
     [self setBackgroundColor:[UIColor clearColor]];
+    self.isSelected = YES;
     [self addSubview:self.textView];
     [self addSubview:self.deleteImageView];
+    
+    UITapGestureRecognizer *deletetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteBtnClicked:)];
+    [self.deleteImageView addGestureRecognizer:deletetTap];
+    
+    UITapGestureRecognizer *selfTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewSelfClicked:)];
+    [self.textView addGestureRecognizer:selfTap];
 }
 
 - (void)layoutSubviews{
@@ -36,41 +45,45 @@
     
     CGSize textSize = [self.wModel.words sizeWithAttributes:@{NSFontAttributeName:self.wModel.font}];
     if(textSize.width > self.superview.frame.size.width){
-        CGSize textSize1 = [self.wModel.words boundingRectWithSize:CGSizeMake(self.frame.size.width - 40, CGFLOAT_MAX)
+        CGSize textSize1 = [self.wModel.words boundingRectWithSize:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)
                                                           options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
                                                        attributes:@{NSFontAttributeName:self.wModel.font}
                                                           context:nil].size;
-        [self setFrame:CGRectMake(0, 0, textSize1.width, textSize1.height + 15.0f)];
+        [self setFrame:CGRectMake(0, 0, textSize1.width + WORDS_SPACE, textSize1.height + WORDS_SPACE)];
     }else{
-         [self setFrame:CGRectMake(0, 0, textSize.width, textSize.height + 15.0f)];
+         [self setFrame:CGRectMake(0, 0, textSize.width + WORDS_SPACE, textSize.height + WORDS_SPACE)];
     }
     
     [self.textView setFrame:self.frame];
     [self.textView setFont:self.wModel.font];
     [self.textView setTextColor:self.wModel.color];
     [self.textView setText:self.wModel.words];
-    [self.textView setTextAlignment:NSTextAlignmentCenter];
+    [self.textView setTextAlignment:NSTextAlignmentLeft];
 
     [self.deleteImageView setFrame:CGRectMake(self.frame.size.width - 12.0f, -12.0f, 24.0f, 24.0f)];
-    UITapGestureRecognizer *deletetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteBtnClicked:)];
-    [self.deleteImageView addGestureRecognizer:deletetTap];
 }
 
 - (void)deleteBtnClicked:(UITapGestureRecognizer *)recognizer{
     [self removeFromSuperview];
 }
 
-- (void)hideBoardAndCloseImg{
-    [self.deleteImageView setHidden:YES];
+- (void)viewSelfClicked:(UITapGestureRecognizer *)recognizer{
+    if(!self.isSelected){
+        [self.textView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.deleteImageView setHidden:NO];
+        self.isSelected = YES;
+    }else{
+        [self.textView.layer setBorderColor:[UIColor clearColor].CGColor];
+        [self.deleteImageView setHidden:YES];
+        self.isSelected = NO;
+    }
 }
 
-#pragma mark - UITextViewDelegate
-//- (void)textViewDidChange:(UITextView *)textView{
-//    float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
-//    CGRect frame = textView.frame;
-//    frame.size.height = textViewHeight;
-//    textView.frame = frame;
-//}
+- (void)hideBoardAndCloseImg{
+    self.isSelected = NO;
+    [self.textView.layer setBorderColor:[UIColor clearColor].CGColor];
+    [self.deleteImageView setHidden:YES];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *touch = [touches anyObject];
