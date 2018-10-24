@@ -110,6 +110,7 @@
         _textView.delegate = self;
         [_textView setBackgroundColor:[UIColor clearColor]];
         _textView.editable = NO;
+        _textView.selectable = NO;
         _textView.scrollEnabled = NO;
         [_textView.layer setBorderColor:[UIColor whiteColor].CGColor];
         [_textView.layer setBorderWidth:1.5f];
