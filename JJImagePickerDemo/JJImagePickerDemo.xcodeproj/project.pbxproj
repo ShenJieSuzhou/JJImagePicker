@@ -155,6 +155,7 @@
 		E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC96217AFD9600D7561A /* TextEditView.m */; };
 		E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC99217AFE1C00D7561A /* BrushPaneView.m */; };
 		E57FDCA3217DB65D00D7561A /* WordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDCA2217DB65D00D7561A /* WordsModel.m */; };
+		E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */; };
 		E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53F20D257D00021EB68 /* chooseInterest_uncheaked@3x.png */; };
@@ -182,6 +183,7 @@
 		E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */; };
 		E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E06214CF9030048A80E /* CustomSlider.m */; };
 		E5DF2E372154E7940048A80E /* StickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E362154E7940048A80E /* StickerCell.m */; };
+		E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +217,8 @@
 		44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageVideoPlayerView.m; sourceTree = "<group>"; };
 		44BB19BD20E8C8E100544001 /* JJZoomImageViewImageGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZoomImageViewImageGenerator.h; sourceTree = "<group>"; };
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
+		63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JJImagePickerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 		E57FDC99217AFE1C00D7561A /* BrushPaneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrushPaneView.m; sourceTree = "<group>"; };
 		E57FDCA1217DB65D00D7561A /* WordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsModel.h; sourceTree = "<group>"; };
 		E57FDCA2217DB65D00D7561A /* WordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsModel.m; sourceTree = "<group>"; };
+		E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQiniuSDK_iOS.a; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerImage_video_mark@3x.png"; sourceTree = "<group>"; };
@@ -435,6 +440,7 @@
 		E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerHelper.h; sourceTree = "<group>"; };
 		E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImagePickerHelper.m; sourceTree = "<group>"; };
 		E5CFB56820E2169F0021EB68 /* wb_style_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wb_style_orange.png; sourceTree = "<group>"; };
+		E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E5DF2D86214B93310048A80E /* YUCIHighPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPass.m; sourceTree = "<group>"; };
 		E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIHighPassSkinSmoothingMaskBoost.cikernel; sourceTree = "<group>"; };
 		E5DF2D88214B93310048A80E /* YUCIHighPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIHighPass.h; sourceTree = "<group>"; };
@@ -461,6 +467,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */,
+				E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */,
+				E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +515,15 @@
 				E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		D51DE0957788FB41CB8A4F4D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */,
+				63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E5172610215DBF77008431A1 /* Tags */ = {
@@ -895,6 +912,7 @@
 				E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */,
 				E56B9CC020AD2FA700021DF8 /* Products */,
 				E56B9CDE20AD7D2100021DF8 /* Frameworks */,
+				D51DE0957788FB41CB8A4F4D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -909,6 +927,8 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E597BDD321831AE3000B5A34 /* NetWork */,
+				E597BDD02181B698000B5A34 /* Libs */,
 				E50C094E2175C3D80035C3C2 /* Cream */,
 				4462607520CD1A260004C579 /* Category */,
 				E522786720C0E433003E2F38 /* Resources */,
@@ -932,6 +952,7 @@
 			isa = PBXGroup;
 			children = (
 				E522784520BF8F7A003E2F38 /* Photos.framework */,
+				DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -942,6 +963,21 @@
 				E571BD43210F0044009DD369 /* content.json */,
 			);
 			path = editTools;
+			sourceTree = "<group>";
+		};
+		E597BDD02181B698000B5A34 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		E597BDD321831AE3000B5A34 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
@@ -1012,6 +1048,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E56B9CD520AD2FA800021DF8 /* Build configuration list for PBXNativeTarget "JJImagePickerDemo" */;
 			buildPhases = (
+				065FCD0E55B999E361648023 /* [CP] Check Pods Manifest.lock */,
 				E56B9CBB20AD2FA700021DF8 /* Sources */,
 				E56B9CBC20AD2FA700021DF8 /* Frameworks */,
 				E56B9CBD20AD2FA700021DF8 /* Resources */,
@@ -1151,6 +1188,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		065FCD0E55B999E361648023 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JJImagePickerDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E56B9CBB20AD2FA700021DF8 /* Sources */ = {
@@ -1383,6 +1441,7 @@
 		};
 		E56B9CD620AD2FA800021DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1392,6 +1451,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1403,6 +1466,7 @@
 		};
 		E56B9CD720AD2FA800021DF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1412,6 +1476,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

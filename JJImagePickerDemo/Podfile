@@ -1,0 +1,5 @@
+target 'JJImagePickerDemo' do
+
+	pod 'AFNetwork'
+
+end
