@@ -365,8 +365,9 @@
 }
 
 #pragma mark - JJWordsDelegate
-- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsView *)view{
-    view.center = self.preViewImage.center;
+- (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsModel *)words{
+    WordsView *view = [[WordsView alloc] initWithFrame:self.preViewImage.frame];
+    [view setWModel:words];
     [self.preViewImage addSubview:view];
 }
 
