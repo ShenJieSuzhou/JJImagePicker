@@ -11,6 +11,10 @@
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
 		4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */; };
+		4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7F621841739001E7849 /* HttpRequestUtil.m */; };
+		4487D7FD21841A93001E7849 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7FB21841A93001E7849 /* JSONKit.m */; };
+		4487D803218534D4001E7849 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D802218534D4001E7849 /* HomeViewController.m */; };
+		4487D806218534FA001E7849 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D805218534FA001E7849 /* MeViewController.m */; };
 		44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */; };
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
 		449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */; };
@@ -195,6 +199,14 @@
 		4462607320CD00BA0004C579 /* JJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhoto.h; sourceTree = "<group>"; };
 		4462607920CD1B4A0004C579 /* PHPhotoLibrary+JJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHPhotoLibrary+JJ.h"; sourceTree = "<group>"; };
 		4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHPhotoLibrary+JJ.m"; sourceTree = "<group>"; };
+		4487D7F521841739001E7849 /* HttpRequestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpRequestUtil.h; sourceTree = "<group>"; };
+		4487D7F621841739001E7849 /* HttpRequestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpRequestUtil.m; sourceTree = "<group>"; };
+		4487D7FB21841A93001E7849 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		4487D7FC21841A93001E7849 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		4487D801218534D4001E7849 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4487D802218534D4001E7849 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		4487D804218534FA001E7849 /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		4487D805218534FA001E7849 /* MeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@3x.png"; sourceTree = "<group>"; };
 		44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow_up@2x.png"; sourceTree = "<group>"; };
 		449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UITouch.m"; sourceTree = "<group>"; };
@@ -517,6 +529,42 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		4487D7F421841704001E7849 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				4487D7F521841739001E7849 /* HttpRequestUtil.h */,
+				4487D7F621841739001E7849 /* HttpRequestUtil.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		4487D7FA21841A93001E7849 /* JSONKIT */ = {
+			isa = PBXGroup;
+			children = (
+				4487D7FB21841A93001E7849 /* JSONKit.m */,
+				4487D7FC21841A93001E7849 /* JSONKit.h */,
+			);
+			path = JSONKIT;
+			sourceTree = "<group>";
+		};
+		4487D7FE218534A7001E7849 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4487D801218534D4001E7849 /* HomeViewController.h */,
+				4487D802218534D4001E7849 /* HomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4487D800218534B6001E7849 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				4487D804218534FA001E7849 /* MeViewController.h */,
+				4487D805218534FA001E7849 /* MeViewController.m */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
 		D51DE0957788FB41CB8A4F4D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +616,8 @@
 		E522784720BFC921003E2F38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4487D800218534B6001E7849 /* Me */,
+				4487D7FE218534A7001E7849 /* Home */,
 				E5506B97212FB7D80077E62B /* CameraRoll */,
 				E5506BD3212FB7D80077E62B /* Custom */,
 			);
@@ -927,7 +977,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E597BDD321831AE3000B5A34 /* NetWork */,
+				4487D7F421841704001E7849 /* NetWork */,
 				E597BDD02181B698000B5A34 /* Libs */,
 				E50C094E2175C3D80035C3C2 /* Cream */,
 				4462607520CD1A260004C579 /* Category */,
@@ -973,16 +1023,10 @@
 			path = Libs;
 			sourceTree = "<group>";
 		};
-		E597BDD321831AE3000B5A34 /* NetWork */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetWork;
-			sourceTree = "<group>";
-		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				4487D7FA21841A93001E7849 /* JSONKIT */,
 				E522786320BFE7E6003E2F38 /* GlobalDefine.h */,
 				E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */,
 				E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */,
@@ -1215,6 +1259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4487D806218534FA001E7849 /* MeViewController.m in Sources */,
 				E557824E2179CBC5003B20BB /* MosaicBitmapData.m in Sources */,
 				E55782562179CBD3003B20BB /* UIImage+Mosaic.m in Sources */,
 				E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */,
@@ -1234,6 +1279,7 @@
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
 				E52C538620EB4E81003862F4 /* DemoViewController.m in Sources */,
+				4487D7FD21841A93001E7849 /* JSONKit.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
@@ -1262,12 +1308,14 @@
 				E5506B62212FB3330077E62B /* CameraRollViewController.m in Sources */,
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
+				4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
 				E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
 				E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */,
+				4487D803218534D4001E7849 /* HomeViewController.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
 				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
