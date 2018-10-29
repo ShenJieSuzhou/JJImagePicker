@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "JJImageViewPicker.h"
 #import "PhotoEditingViewController.h"
-#import "DemoViewController.h"
 #import "HomeViewController.h"
 #import "MeViewController.h"
 #import "CameraRollViewController.h"
@@ -54,10 +53,10 @@
 }
 
 - (IBAction)openWeb:(id)sender {
-    DemoViewController *demoView = [DemoViewController new];
-    [self presentViewController:demoView animated:YES completion:^{
-        
-    }];
+//    DemoViewController *demoView = [DemoViewController new];
+//    [self presentViewController:demoView animated:YES completion:^{
+//        
+//    }];
 }
 
 

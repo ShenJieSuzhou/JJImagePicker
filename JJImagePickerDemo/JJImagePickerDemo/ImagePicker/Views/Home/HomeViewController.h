@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
+
+@property (strong, nonatomic) WKWebView *kkWebView;
 
 @end

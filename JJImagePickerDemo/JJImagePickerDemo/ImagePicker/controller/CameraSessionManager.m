@@ -16,9 +16,9 @@
 @synthesize session = _session;
 @synthesize stillImageOutput = _stillImageOutput;
 
+static CameraSessionManager *m_instance = nil;
 
 + (CameraSessionManager *)getInstance{
-    static CameraSessionManager *m_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         m_instance = [[CameraSessionManager alloc] init];

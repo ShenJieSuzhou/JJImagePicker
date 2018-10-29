@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "HttpRequestUtil.h"
+#import "HomeContentmManager.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //去服务器请求数据
+    [HttpRequestUtil JJ_RequestTHeData:@"http://172.30.1.135:8080/hot/api/findAll" callback:^(NSDictionary *data) {
+        [[HomeContentmManager shareInstance] setHomeContent:data];
+    }];
+    
     return YES;
 }
 

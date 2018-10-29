@@ -7,15 +7,120 @@
 //
 
 #import "HomeViewController.h"
+#import "HomeContentmManager.h"
+#import "JSONKit.h"
 
 @implementation HomeViewController
+@synthesize kkWebView = _kkWebView;
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    [config.userContentController addScriptMessageHandler:self name:@"getHomeData"];
+    
+    self.kkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) configuration:config];
+    self.kkWebView.UIDelegate = self;
+    self.kkWebView.navigationDelegate = self;
+    [self.view addSubview:self.kkWebView];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"Cream"];
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+    [self.kkWebView loadRequest:request];
 }
-*/
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+}
+
+#pragma mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    //获取该UIWebView的javascript上下文
+    
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
+}
+
+
+#pragma mark - WKScriptMessageHandler
+//实现js注入方法的协议方法
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    if([message.name isEqualToString:@"getHomeData"]){
+        NSLog(@"%@", message.body);
+        NSMutableArray *array = [[HomeContentmManager shareInstance] getHomeContent];
+//        NSString *json = [[array objectAtIndex:0] JSONString];
+        NSData *data = [self toJSONData:[array objectAtIndex:0]];
+        NSString *jsonString = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
+        NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",jsonString];
+        [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            if(error){
+                NSLog(@"++++++ %@ ++++++", error);
+            }
+        }];
+    }
+}
+
+-(NSData *)toJSONData:(id)theData{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theData
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if ([jsonData length] > 0 && error == nil){
+        return jsonData;
+    }else{
+        return nil;
+    }
+}
+
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
+{
+    //开始加载
+    //    [webView
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    //    //加载完成
+    //    //获取该UIWebView的javascript上下文
+    //    JSContext *jsContext = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    //
+    //    //这也是一种获取标题的方法。
+    //    JSValue *value = [jsContext evaluateScript:@"document.title"];
+    //    //更新标题
+    //    NSLog(@"%@", value.toString);
+    
+    
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
+    //网络错误
+}
+
+#pragma mark WKUIDelegate
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 @end

@@ -17,9 +17,9 @@
 
 
 @implementation JJImageManager
+static JJImageManager *m_instance = nil;
 
 + (JJImageManager *)getInstance{
-    static JJImageManager *m_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         m_instance = [[JJImageManager alloc] init];
