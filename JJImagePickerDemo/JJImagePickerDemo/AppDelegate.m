@@ -20,9 +20,9 @@
     // Override point for customization after application launch.
     
     //去服务器请求数据
-    [HttpRequestUtil JJ_RequestTHeData:@"http://172.30.1.135:8080/hot/api/findAll" callback:^(NSDictionary *data) {
-        [[HomeContentmManager shareInstance] setHomeContent:data];
-    }];
+//    [HttpRequestUtil JJ_RequestTHeData:@"http://172.30.1.135:8080/hot/api/findAll" callback:^(NSDictionary *data) {
+//        [[HomeContentmManager shareInstance] setHomeContent:data];
+//    }];
     
     return YES;
 }

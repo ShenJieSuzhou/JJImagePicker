@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "HomeContentmManager.h"
 #import "JSONKit.h"
-#define JJDEBUG NO
+#define JJDEBUG YES
 
 @implementation HomeViewController
 @synthesize kkWebView = _kkWebView;
@@ -62,20 +62,28 @@
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     if([message.name isEqualToString:@"getHomeData"]){
         NSLog(@"%@", message.body);
-        
-        NSMutableArray *array = [[HomeContentmManager shareInstance] getHomeContent];
-        if([array count] == 0){
-            return;
-        }
-        
-        NSData *data = [self toJSONData:[array objectAtIndex:0]];
-        NSString *jsonString = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
-        NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",jsonString];
-        [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-            if(error){
-                NSLog(@"++++++error: %@++++++", error);
+    
+        if(JJDEBUG){
+            NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",@""];
+            [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                if(error){
+                    NSLog(@"++++++error: %@++++++", error);
+                }
+            }];
+        }else{
+            NSMutableArray *array = [[HomeContentmManager shareInstance] getHomeContent];
+            if([array count] == 0){
+                return;
             }
-        }];
+            NSData *data = [self toJSONData:[array objectAtIndex:0]];
+            NSString *jsonString = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
+            NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",jsonString];
+            [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                if(error){
+                    NSLog(@"++++++error: %@++++++", error);
+                }
+            }];
+        }
     }
 }
 

@@ -11,14 +11,16 @@
 #import "PhotoEditingViewController.h"
 #import "HomeViewController.h"
 #import "MeViewController.h"
-#import "CameraRollViewController.h"
+#import "CameraPhotoViewController.h"
+#import "CustomTabbar.h"
 
-@interface ViewController ()
+@interface ViewController ()<JJTabBarDelegate>
 
 @property (strong, nonatomic) PhotoEditingViewController *photoEditingView;
 @property (strong, nonatomic) HomeViewController *homeViewController;
 @property (strong, nonatomic) MeViewController *meViewController;
-@property (strong, nonatomic) CameraRollViewController *cameraViewController;
+@property (strong, nonatomic) CameraPhotoViewController *cpViewController;
+
 
 @end
 
@@ -28,13 +30,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
- 
+    CustomTabbar *cusTabbar = [[CustomTabbar alloc] init];
+    cusTabbar.mdelegate = self;
+    [self setValue:cusTabbar forKeyPath:@"tabBar"];
+    
     _homeViewController = [HomeViewController new];
     _meViewController = [MeViewController new];
-    _cameraViewController = [CameraRollViewController new];
-    
-    [self setupChildViewController:@"探索" viewController:_homeViewController image:@"" selectedImage:@""];
-    [self setupChildViewController:@"相机" viewController:_cameraViewController image:@"" selectedImage:@""];
+
+    [self setupChildViewController:@"首页" viewController:_homeViewController image:@"" selectedImage:@""];
     [self setupChildViewController:@"个人中心" viewController:_meViewController image:@"" selectedImage:@""];
 }
 
@@ -44,21 +47,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)start:(id)sender {
-    UIImage *photoImage = [UIImage imageNamed:@"p1"];
-    [self.photoEditingView setEditImage:photoImage];
-    [self presentViewController:self.photoEditingView animated:YES completion:^{
-        
-    }];
-}
+//- (IBAction)start:(id)sender {
+//    UIImage *photoImage = [UIImage imageNamed:@"p1"];
+//    [self.photoEditingView setEditImage:photoImage];
+//    [self presentViewController:self.photoEditingView animated:YES completion:^{
+//
+//    }];
+//}
 
-- (IBAction)openWeb:(id)sender {
+//- (IBAction)openWeb:(id)sender {
 //    DemoViewController *demoView = [DemoViewController new];
 //    [self presentViewController:demoView animated:YES completion:^{
-//        
+//
 //    }];
-}
-
+//}
 
 - (PhotoEditingViewController *)photoEditingView{
     if(!_photoEditingView){
@@ -76,6 +78,13 @@
     controller.tabBarItem = item;
     controller.title = title;
     [self addChildViewController:controller];
+}
+
+-(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
+    self.cpViewController = [CameraPhotoViewController new];
+    [self presentViewController:self.cpViewController animated:YES completion:^{
+        
+    }];
 }
 
 @end
