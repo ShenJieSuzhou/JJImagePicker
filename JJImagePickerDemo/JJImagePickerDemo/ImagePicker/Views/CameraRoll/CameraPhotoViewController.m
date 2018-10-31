@@ -65,7 +65,7 @@
         PhotosViewController *photosView = [[PhotosViewController alloc] init];
         //获取相机胶卷的图片
         [self presentViewController:photosView animated:YES completion:^{
-            
+
         }];
     }
 }
@@ -74,7 +74,7 @@
     //弹出相机 📷
     CameraRollViewController *cameraView = [[CameraRollViewController alloc] init];
     [self presentViewController:cameraView animated:YES completion:^{
-        
+
     }];
 }
 

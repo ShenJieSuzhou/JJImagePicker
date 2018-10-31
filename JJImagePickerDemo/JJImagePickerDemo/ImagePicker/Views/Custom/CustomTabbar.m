@@ -66,7 +66,6 @@
 - (void)clickCameraBtn:(UIButton *)sender{
     sender.selected = !sender.selected;
     self.centerBtn = sender;
-    
     if([_mdelegate respondsToSelector:@selector(tabBar:clickCenterButton:)]){
         [_mdelegate tabBar:self clickCenterButton:sender];
     }
