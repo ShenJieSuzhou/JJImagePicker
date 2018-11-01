@@ -67,8 +67,8 @@ static JJFilterManager *m_instance = nil;
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *filter = [CIFilter filterWithName:@"YUCIHighPassSkinSmoothing" keysAndValues:kCIInputImageKey, ciImage, nil];
     [filter setValue:ciImage forKey:kCIInputImageKey];
-    [filter setValue:[NSNumber numberWithFloat:0.75] forKey:@"inputAmount"];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:kCIInputRadiusKey];
+    [filter setValue:[NSNumber numberWithFloat:8.0f] forKey:kCIInputRadiusKey];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];

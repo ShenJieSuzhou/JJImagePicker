@@ -67,12 +67,10 @@
     self.jjSlider.value = value;
 }
 
--(void)sliderValueChanged:(UISlider *)slider
-{
+-(void)sliderValueChanged:(UISlider *)slider{
     if(![_delegate respondsToSelector:@selector(customSliderValueChangeCallBacK:)]){
         return;
     }
-
     [_delegate customSliderValueChangeCallBacK:slider.value];
 }
 
