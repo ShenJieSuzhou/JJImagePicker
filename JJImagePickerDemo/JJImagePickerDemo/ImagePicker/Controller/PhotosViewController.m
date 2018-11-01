@@ -73,10 +73,11 @@
     [self setTitlebtn:_cameraRoll];
     
     //取消
-    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
-    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
-    [self setNaviBarRightBtn:cancel];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
+    [backBtn setBackgroundColor:[UIColor clearColor]];
+    [backBtn addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 29.0f, 16.0f, 16.0f)];
     
     //相簿
     _cameraRollView = [[CameraRollView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
@@ -174,7 +175,7 @@
         //初始化相薄界面
         [_cameraRollView refreshAlbumAseets:self.albumsArray];
     }else{
-        NSLog(@"没有照片");
+        NSLog(@"+++++没有照片++++++");
     }
 }
 
@@ -235,6 +236,7 @@
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
     if([previewViewController.selectedImageAssetArray count] > 0){
+        
         [self.jjTabBarView.previewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.previewBtn setEnabled:YES];
         [self.jjTabBarView setSelectedLabelHidden:NO];
@@ -243,7 +245,6 @@
     }
     
     [self.photoGridView.photoCollectionView reloadData];
-    
 }
 
 
@@ -256,7 +257,5 @@
     }
     [self.photoGridView.photoCollectionView reloadData];
 }
-
-
 
 @end

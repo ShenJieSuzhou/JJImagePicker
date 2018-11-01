@@ -7,6 +7,7 @@
 //
 
 #import "PhotoPreviewViewController.h"
+#import "PhotoEditingViewController.h"
 #import "GlobalDefine.h"
 
 @interface PhotoPreviewViewController ()
@@ -43,9 +44,6 @@
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 22.0f, 14.0f, 23.0f)];
     
-    //标题
-//    [self.customNaviBar setTitle:@"123/1000" textColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15.0f]];
-    
     //CheckBox
     self.checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.checkBox setBackgroundImage:[UIImage imageNamed:@"chooseInterest_uncheaked"] forState:UIControlStateNormal];
@@ -72,7 +70,8 @@
     }
     
     [self.jjTabBarView setPreViewBtnHidden:YES];
-    [self.jjTabBarView setEditBtnHidden:NO];
+    [self.jjTabBarView setEditBtnHidden:YES];
+    [self.jjTabBarView.finishBtn setEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,12 +126,12 @@
     sender.selected = !sender.selected;
     if(sender.selected){
         //添加
-        if([self.selectedImageAssetArray count] >= self.maxSelectedNum){
+        if([self.selectedImageAssetArray count] == self.maxSelectedNum){
             if(!self.alertTitleWhenPhotoExceedMaxCount){
                 self.alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(self.maxSelectedNum)];
+                NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
             }
-            
-            NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
+            return;
         }
         
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
@@ -158,19 +157,40 @@
             [self.jjTabBarView.finishBtn setEnabled:NO];
             [self.jjTabBarView setSelectedLabelHidden:YES];
         }
-        
     }
 }
 
 - (void)editPhotoBtnClicked:(UIButton *)sender{
-    
+//    PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
+//    //获得一个照片对象
+//    JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+//
+//    [self presentViewController:photoEditView animated:YES completion:^{
+//
+//    }];
 }
 
 - (void)finishBtnClicked:(UIButton *)sender{
-    //跳转到 demo 编辑文本照片界面
-    [self presentViewController:self.interestingViewController animated:YES completion:^{
-        
-    }];
+    if([self.imagesAssetArray count] == 1){
+        //获得一个照片对象
+        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
+         __weak typeof(self) weakSelf = self;        
+        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            //在主线程上更新UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
+                [weakSelf presentViewController:photoEditView animated:YES completion:^{
+                    [photoEditView setEditImage:result];
+                }];
+            });
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+        }];
+    }else{
+        //跳转到 demo 编辑文本照片界面
+        [self presentViewController:self.interestingViewController animated:YES completion:^{
+            
+        }];
+    }
 }
 
 #pragma -mark JJPhotoPreviewDelegate

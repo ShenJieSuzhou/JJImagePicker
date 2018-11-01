@@ -32,20 +32,20 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     [self.editBtn setTitle:@"编辑" forState:UIControlStateNormal];
     [self.editBtn setBackgroundColor:[UIColor clearColor]];
     self.editBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    [self.editBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self addSubview:self.editBtn];
     
     self.previewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.previewBtn setTitle:@"预览" forState:UIControlStateNormal];
     self.previewBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    [self.previewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.previewBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.previewBtn setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.previewBtn];
     
     self.finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.finishBtn.layer.cornerRadius = 4.0;
     self.finishBtn.layer.masksToBounds = YES;
-    [self.finishBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [self.finishBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [self.finishBtn setBackgroundImage:[UIImage imageNamed:@"wb_style_orange"] forState:UIControlStateNormal];
     self.finishBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     [self.finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -71,20 +71,15 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        
-    }else{
-        [self.previewBtn setFrame:CGRectMake(previewBtnMargins.left, previewBtnMargins.top, 50, 30)];
-        [self.editBtn setFrame:CGRectMake(editBtnMargins.left, editBtnMargins.top, 50, 30)];
-        [self.finishBtn setFrame:CGRectMake(width - 60 - finishBtnMargins.right, finishBtnMargins.top, 60, 30)];
-        [self.selectedNum setFrame:CGRectMake(width - 30 - finishBtnMargins.right - 65, finishBtnMargins.top, 30, 30)];
-        self.selectedNum.layer.cornerRadius = self.selectedNum.bounds.size.width / 2;
-        self.selectedNum.layer.masksToBounds = YES;
-    }
-    
+    [self.previewBtn setFrame:CGRectMake(previewBtnMargins.left, previewBtnMargins.top, 50, 30)];
+    [self.editBtn setFrame:CGRectMake(editBtnMargins.left, editBtnMargins.top, 50, 30)];
+    [self.finishBtn setFrame:CGRectMake(width - 60 - finishBtnMargins.right, finishBtnMargins.top, 60, 30)];
+    [self.selectedNum setFrame:CGRectMake(width - 30 - finishBtnMargins.right - 65, finishBtnMargins.top, 30, 30)];
+    self.selectedNum.layer.cornerRadius = self.selectedNum.bounds.size.width / 2;
+    self.selectedNum.layer.masksToBounds = YES;
 }
 
-- (void)setEditBtnHidden:(BOOL) hidden{
+- (void) setEditBtnHidden:(BOOL) hidden{
     [self.editBtn setHidden:hidden];
 }
 

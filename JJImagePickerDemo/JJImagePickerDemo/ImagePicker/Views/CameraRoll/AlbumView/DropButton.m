@@ -15,6 +15,7 @@
 + (id)buttonWithType:(UIButtonType)buttonType withSpace:(CGFloat)space {
     DropButton *button = [super buttonWithType:buttonType];
     button.space = space;
+    button.padding = 10.0f;
     return button;
 }
 

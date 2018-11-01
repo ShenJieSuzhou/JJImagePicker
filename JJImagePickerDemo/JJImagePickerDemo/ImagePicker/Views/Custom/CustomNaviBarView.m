@@ -44,7 +44,7 @@
 //}
 
 + (CGRect)titleBtnFrame{
-    return Rect(65.0f, 22.0F, ScreenWidth - 130, 40.0f);
+    return Rect(65.0f, 20.0F, ScreenWidth - 130, 40.0f);
 }
 
 + (UIButton *)createNavBarImageBtn:(NSString *)imgStr
