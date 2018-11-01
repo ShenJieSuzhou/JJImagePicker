@@ -30,9 +30,11 @@
 }
 
 - (void)commonInitlizationTitle:(NSString *)title color:(UIColor *)color{
+    [self setBackgroundColor:[UIColor colorWithRed:1/255.0f green:1/255.0f blue:1/255.0f alpha:0.5f]];
     _title = title;
     _jjColor = color;
     self.titleLabel = [[UILabel alloc] init];
+    [self.titleLabel setTextColor:[UIColor whiteColor]];
     [self.titleLabel setFont:[UIFont fontWithName:@"Verdana" size:14.0f]];
     [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.titleLabel setText:_title];
@@ -53,8 +55,8 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     CGSize size = self.bounds.size;
-    [self.titleLabel setFrame:CGRectMake(20, 10, 40, 40)];
-    [self.jjSlider setFrame:CGRectMake(70, 10, size.width - 90, 40)];
+    [self.titleLabel setFrame:CGRectMake(10, 10, 60, 40)];
+    [self.jjSlider setFrame:CGRectMake(80, 10, size.width - 100, 40)];
 }
 
 - (void)setJJSliderTitle:(NSString *)title{

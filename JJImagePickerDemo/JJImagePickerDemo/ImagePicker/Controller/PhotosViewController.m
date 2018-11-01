@@ -257,7 +257,6 @@
     }
 }
 
-
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
     if([previewViewController.selectedImageAssetArray count] > 0){

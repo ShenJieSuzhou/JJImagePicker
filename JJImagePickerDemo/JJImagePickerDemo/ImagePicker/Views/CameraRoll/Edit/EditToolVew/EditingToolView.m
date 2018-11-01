@@ -176,7 +176,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         //自动网格布局
-        _subToolCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10.0f, self.frame.size.width, self.frame.size.height - 30) collectionViewLayout:layout];
+        _subToolCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 30) collectionViewLayout:layout];
         //设置数据源代理
         _subToolCollectionView.dataSource = self;
         _subToolCollectionView.delegate = self;

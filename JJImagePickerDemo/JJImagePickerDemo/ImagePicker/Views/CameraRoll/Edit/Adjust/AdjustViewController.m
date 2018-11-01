@@ -39,7 +39,7 @@
     [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.adjustView];
 
-    //test add slider
+    //Add slider
     [self.view addSubview:self.jjSlider];
     [self.jjSlider setHidden:YES];
 }
@@ -47,7 +47,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
 }
 
 - (void)viewDidLayoutSubviews
@@ -59,7 +58,7 @@
 #pragma mark lazyLoading
 - (EditingSubToolView *)adjustView{
     if(!_adjustView){
-        _adjustView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_ADJUSTTOOL_HEIGHT, self.view.bounds.size.width, JJ_ADJUSTTOOL_HEIGHT) ToolType:PhotoEditToolAdjust size:CGSizeMake(80.0f, 100.0f)];
+        _adjustView = [[EditingSubToolView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - JJ_ADJUSTTOOL_HEIGHT, self.view.bounds.size.width, JJ_ADJUSTTOOL_HEIGHT) ToolType:PhotoEditToolAdjust size:CGSizeMake(80.0f, 120.0f)];
         _adjustView.delegate = self;
     }
     return _adjustView;
@@ -93,8 +92,8 @@
         self.preViewImage.image.size.height > viewFrame.size.height)
     {
         CGFloat scale = MIN(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height);
-        imageFrame.size.width *= (scale - 0.05);
-        imageFrame.size.height *= (scale - 0.05);
+        imageFrame.size.width *= scale;
+        imageFrame.size.height *= scale;
         imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
         imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;
@@ -155,30 +154,43 @@
     if(adjustType == JJSmoothSkinAdjust){
         //美白默认参数 5
         _jjAdjustType = JJSmoothSkinAdjust;
+        [self.jjSlider setJJSliderTitle:@"美白"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:5];
         [_preViewImage setImage:result];
     }else if(adjustType == JJExposureAdjust){
+        //曝光
         _jjAdjustType = JJExposureAdjust;
+        [self.jjSlider setJJSliderTitle:@"曝光"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:0.5];
         [_preViewImage setImage:result];
     }else if(adjustType == JJTemperatureAdjsut){
+        //色温
+        [self.jjSlider setJJSliderTitle:@"色温"];
         _jjAdjustType = JJTemperatureAdjsut;
         UIImage *result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:0.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJContrastAdjust){
+        //对比度
+        [self.jjSlider setJJSliderTitle:@"对比度"];
         _jjAdjustType = JJContrastAdjust;
         UIImage *result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:1.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJSaturationAdjsut){
+        //饱和度
         _jjAdjustType = JJSaturationAdjsut;
+        [self.jjSlider setJJSliderTitle:@"饱和度"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:0.0f];
         [_preViewImage setImage:result];
     }else if(adjustType == JJShapeAdjust){
+        //锐化
         _jjAdjustType = JJShapeAdjust;
+        [self.jjSlider setJJSliderTitle:@"锐化"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:0.4f];
         [_preViewImage setImage:result];
     }else if(adjustType == JJDarkangleAdjust){
+        //暗角
         _jjAdjustType = JJDarkangleAdjust;
+        [self.jjSlider setJJSliderTitle:@"暗角"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithDarkangle:_image inputAmount:0.0f];
         [_preViewImage setImage:result];
     }
