@@ -13,6 +13,7 @@
 #import "JJImageManager.h"
 #import "PhotoPreviewViewController.h"
 #import "InterestingViewController.h"
+#import "PhotoEditingViewController.h"
 
 @interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
@@ -232,19 +233,34 @@
 }
 
 - (void)imagePickViewFinishBtnClick:(UIButton *)sender{
+    if([self.photoGridView.selectedImageAssetArray count] == 1){
+        //获得一个照片对象
+        JJPhoto *imageAsset = [self.photoGridView.selectedImageAssetArray objectAtIndex:0];
+        __weak typeof(self) weakSelf = self;
+        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            //在主线程上更新UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
+                [weakSelf presentViewController:photoEditView animated:YES completion:^{
+                    [photoEditView setEditImage:result];
+                }];
+            });
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+        }];
+    }else{
+        //跳转到 demo 编辑文本照片界面
+        [self.interestingViewController setSelectedImages:[self.photoGridView.selectedImageAssetArray copy]];
+        //跳转到 demo 编辑文本照片界面
+        [self presentViewController:self.interestingViewController animated:YES completion:^{
     
-    [self.interestingViewController setSelectedImages:[self.photoGridView.selectedImageAssetArray copy]];
-    //跳转到 demo 编辑文本照片界面
-    [self presentViewController:self.interestingViewController animated:YES completion:^{
-
-    }];
+        }];
+    }
 }
 
 
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
     if([previewViewController.selectedImageAssetArray count] > 0){
-        
         [self.jjTabBarView.previewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.previewBtn setEnabled:YES];
         [self.jjTabBarView setSelectedLabelHidden:NO];
