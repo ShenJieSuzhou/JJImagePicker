@@ -11,6 +11,7 @@
 #import "UIImage+Mosaic.h"
 
 #define BUTTOM_VIEW_HEIGHT 120.0f
+#define MOSAIC_PADDING 20.0f
 
 @interface ScrawlViewController ()
 //油画
@@ -47,7 +48,7 @@
     if (!_mosaicDrawingboard) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         CGFloat height = [UIScreen mainScreen].bounds.size.height;
-        _mosaicDrawingboard = [[PKMosaicDrawingboard alloc] initWithFrame:CGRectMake(0, 64, width, height - 64 - BUTTOM_VIEW_HEIGHT)];
+        _mosaicDrawingboard = [[PKMosaicDrawingboard alloc] initWithFrame:CGRectMake(0, MOSAIC_PADDING, width , height -  BUTTOM_VIEW_HEIGHT - MOSAIC_PADDING)];
     }
     return _mosaicDrawingboard;
 }
@@ -58,39 +59,6 @@
         _scrawlAdjustView.delegate = self;
     }
     return _scrawlAdjustView;
-}
-
-#pragma mark - Image Layout -
-- (void)layoutImageView
-{
-    if (self.preViewImage.image == nil)
-        return;
-    
-    CGFloat padding = 20.0f;
-    
-    CGRect viewFrame = self.layerV.frame;
-    viewFrame.size.width -= (padding * 2.0f);
-    viewFrame.size.height -= (padding * 2.0f);
-    
-    CGRect imageFrame = CGRectZero;
-    imageFrame.size = self.preViewImage.image.size;
-    
-    if (self.preViewImage.image.size.width > viewFrame.size.width ||
-        self.preViewImage.image.size.height > viewFrame.size.height)
-    {
-        CGFloat scale = MIN(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height);
-        imageFrame.size.width *= (scale - 0.05);
-        imageFrame.size.height *= (scale - 0.05);
-        imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
-        imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
-        self.preViewImage.frame = imageFrame;
-    }
-    else {
-        imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
-        imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
-        self.preViewImage.frame = imageFrame;
-        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
-    }
 }
 
 #pragma mark - image process business

@@ -77,8 +77,8 @@
     CGFloat padding = 20.0f;
     
     CGRect viewFrame = self.layerV.frame;
-    viewFrame.size.width -= (padding * 2.0f);
-    viewFrame.size.height -= (padding * 2.0f);
+    viewFrame.size.width -= padding;
+    viewFrame.size.height -= padding;
     
     CGRect imageFrame = CGRectZero;
     imageFrame.size = self.preViewImage.image.size;
@@ -87,8 +87,8 @@
         self.preViewImage.image.size.height > viewFrame.size.height)
     {
         CGFloat scale = MIN(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height);
-        imageFrame.size.width *= (scale - 0.05);
-        imageFrame.size.height *= (scale - 0.05);
+        imageFrame.size.width *= scale;
+        imageFrame.size.height *= scale;
         imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
         imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;

@@ -231,7 +231,7 @@
         case JJEditToolFilter:{
             FilterViewController *jjFilterView = [FilterViewController new];
             jjFilterView.delegate = self;
-            [jjFilterView setEditImage:[UIImage imageNamed:@"filter4"]];
+            [jjFilterView setEditImage:self.preViewImage.image];
             [self presentViewController:jjFilterView animated:YES completion:^{
                 
             }];
@@ -241,7 +241,7 @@
             StickerViewController *jjStickerView = [StickerViewController new];
             jjStickerView.delegate = self;
             [jjStickerView setStickerArrays:[NSMutableArray arrayWithArray:array]];
-            [jjStickerView setEditImage:[UIImage imageNamed:@"filter4"]];
+            [jjStickerView setEditImage:self.preViewImage.image];
             [self presentViewController:jjStickerView animated:YES completion:^{
                 
             }];
