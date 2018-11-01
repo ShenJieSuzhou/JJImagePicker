@@ -38,7 +38,7 @@
     
     _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_editBtn setBackgroundColor:[UIColor clearColor]];
-    [_editBtn setImage:[UIImage imageNamed:@"confirmButton"] forState:UIControlStateNormal];
+    [_editBtn setImage:[UIImage imageNamed:@"beauty"] forState:UIControlStateNormal];
     
     _useBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_useBtn setBackgroundColor:[UIColor clearColor]];
@@ -54,13 +54,10 @@
     [super layoutSubviews];
     
     [self.snapshotView setFrame:self.frame];
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-        
-    }else{
-        [self.cancelBtn setFrame:CGRectMake(80, self.frame.size.height - 100, 60, 60)];
-        [self.editBtn setFrame:CGRectMake(150, self.frame.size.height - 100, 60, 60)];
-        [self.useBtn setFrame:CGRectMake(self.frame.size.width - 80 - 60, self.frame.size.height - 100, 60, 60)];
-    }
+
+    [self.cancelBtn setFrame:CGRectMake(80, self.frame.size.height - 100, 60, 60)];
+    [self.editBtn setFrame:CGRectMake((self.frame.size.width - 60)/2, self.frame.size.height - 100, 60, 60)];
+    [self.useBtn setFrame:CGRectMake(self.frame.size.width - 80 - 60, self.frame.size.height - 100, 60, 60)];
 }
 
 - (void)setImage:(UIImage *)image{

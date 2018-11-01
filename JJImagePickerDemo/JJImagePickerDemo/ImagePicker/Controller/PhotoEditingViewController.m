@@ -44,17 +44,19 @@
     
     //返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"uls_tb_intro_return_n"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
     [backBtn setBackgroundColor:[UIColor clearColor]];
     [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 22.0f, 14.0f, 23.0f)];
+    [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 29.0f, 16.0f, 16.0f)];
     
     //完成
     UIButton *finishedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [finishedBtn setBackgroundImage:[UIImage imageNamed:@"chooseInterest_cheaked"] forState:UIControlStateSelected];
+    [finishedBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [finishedBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [finishedBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     [finishedBtn setBackgroundColor:[UIColor clearColor]];
     [finishedBtn addTarget:self action:@selector(finishedBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];
+    [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 60.0f, 25.0f, 40.0f, 20.0f)];
     
     //底部工具栏
     if(!self.editData){
