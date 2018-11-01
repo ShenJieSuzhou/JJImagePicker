@@ -15,6 +15,8 @@
 
 - (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts;
 
+- (void)JJImagePickerViewController:(GridView *)gridView exceedMaxCount:(NSString *)alert;
+
 @end
 
 

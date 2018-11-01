@@ -212,7 +212,15 @@
     }
 }
 
+- (void)JJImagePickerViewController:(GridView *)gridView exceedMaxCount:(NSString *)alert{
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message:alert preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertView animated:YES completion:nil];
+    [self performSelector:@selector(dismiss:) withObject:alertView afterDelay:1.0];
+}
 
+- (void)dismiss:(UIAlertController *)alert{
+    [alert dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma -mark 底部按钮点击事件
 - (void)previewBtnClick:(UIButton *)sender{
     //初始化预览相册，当前显示的照片索引

@@ -188,11 +188,12 @@
     
     if(!cell.checked){
         //照片被选中，加入到队列中
-        if([self.selectedImageAssetArray count] > self.maxSelectedNum){
+        if([self.selectedImageAssetArray count] >= self.maxSelectedNum){
             if(!_alertTitleWhenPhotoExceedMaxCount){
                 _alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(_maxSelectedNum)];
             }
-            NSLog(@"提示:已选达到最大数量");
+            
+            [_mDelegate JJImagePickerViewController:self exceedMaxCount:_alertTitleWhenPhotoExceedMaxCount];
             return;
         }
         
@@ -200,7 +201,6 @@
         [self.selectedImageAssetArray addObject:imageAsset];
         //回调更新底部预览，发送按钮的状态，以及图片的数量
         [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];
-        //更新UI
         
     }else{
         //取消选中状态，从队列中移除
