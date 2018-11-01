@@ -29,7 +29,6 @@
 @synthesize croppedFrame = _croppedFrame;
 @synthesize angle = _angle;
 @synthesize layerV = _layerV;
-
 @synthesize historys = _historys;
 
 - (void)viewDidLoad {
@@ -82,11 +81,11 @@
     
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    [self layoutImageView];
-}
+//- (void)viewDidLayoutSubviews
+//{
+//    [super viewDidLayoutSubviews];
+//
+//}
 
 #pragma mark - Image Layout -
 - (void)layoutImageView
@@ -97,8 +96,8 @@
     CGFloat padding = 20.0f;
     
     CGRect viewFrame = self.layerV.frame;
-    viewFrame.size.width -= (padding * 2.0f);
-    viewFrame.size.height -= (padding * 2.0f);
+    viewFrame.size.width -= padding;
+    viewFrame.size.height -= padding;
     
     CGRect imageFrame = CGRectZero;
     imageFrame.size = self.preViewImage.image.size;
@@ -107,8 +106,8 @@
         self.preViewImage.image.size.height > viewFrame.size.height)
     {
         CGFloat scale = MIN(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height);
-        imageFrame.size.width *= (scale - 0.05);
-        imageFrame.size.height *= (scale - 0.05);
+        imageFrame.size.width *= scale;
+        imageFrame.size.height *= scale;
         imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
         imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;
@@ -128,6 +127,7 @@
     }
     
     [self.preViewImage setImage:image];
+    [self layoutImageView];
 }
 
 - (UIImageView *)preViewImage{
@@ -196,12 +196,6 @@
     
     return tempArray;
 }
-
-/*
- "name": "crop",
- "imagePath": "editor_crop",
- "subTools":
- */
 
 #pragma mark - PhotoEditingDelegate
 - (void)PhotoEditingFinished:(UIImage *)image{

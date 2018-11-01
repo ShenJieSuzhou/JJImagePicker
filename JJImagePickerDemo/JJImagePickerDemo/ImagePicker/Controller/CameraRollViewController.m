@@ -41,10 +41,8 @@
 }
 
 #pragma mark - JJCameraSessionDelegate
-
 //取消拍照
 - (void)captureImageCancel{
-    
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
