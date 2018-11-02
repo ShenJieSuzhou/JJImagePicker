@@ -32,4 +32,6 @@
 
 - (void)setJJSliderValue:(float)value;
 
+- (void)setMaxAndMini:(float)max min:(float)min;
+
 @end

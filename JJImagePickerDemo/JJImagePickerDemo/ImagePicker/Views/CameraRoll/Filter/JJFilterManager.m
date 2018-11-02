@@ -107,16 +107,18 @@ static JJFilterManager *m_instance = nil;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey, ciImage, nil];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputIntensity"];
-    
+    CIFilter *filter = [CIFilter filterWithName:@"CITemperatureAndTint" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[CIVector vectorWithX:6500 Y:0] forKey:@"inputTargetNeutral"];
+    [filter setValue:[CIVector vectorWithX:amount Y:0] forKey:@"inputNeutral"];
+
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];
     CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
-    
+
     UIImage *result = [UIImage imageWithCGImage:cgImage];
-    
+
     CGImageRelease(cgImage);
+    
     return result;
 }
 
@@ -128,7 +130,9 @@ static JJFilterManager *m_instance = nil;
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *filter = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, ciImage, nil];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputContrast"];
+    [filter setValue:[NSNumber numberWithFloat:1.0] forKey:@"inputSaturation"];
+    [filter setValue:[NSNumber numberWithFloat:1.0] forKey:@"inputContrast"];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputBrightness"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];
@@ -148,8 +152,8 @@ static JJFilterManager *m_instance = nil;
     }
     
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, ciImage, nil];
-    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputSaturation"];
+    CIFilter *filter = [CIFilter filterWithName:@"CIVibrance" keysAndValues:kCIInputImageKey, ciImage, nil];
+    [filter setValue:[NSNumber numberWithFloat:amount] forKey:@"inputAmount"];
     
     CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
     CIImage *outputImage = [filter outputImage];

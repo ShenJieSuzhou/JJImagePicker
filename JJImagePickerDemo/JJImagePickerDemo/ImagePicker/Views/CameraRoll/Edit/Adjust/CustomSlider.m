@@ -41,9 +41,9 @@
     [self addSubview:self.titleLabel];
     
     self.jjSlider = [[UISlider alloc] initWithFrame:CGRectZero];
-    self.jjSlider.minimumValue = 0.0f;
-    self.jjSlider.maximumValue = 100.0f;
-    self.jjSlider.value = 50.0f;
+    self.jjSlider.minimumValue = -50.0f;
+    self.jjSlider.maximumValue = 50.0f;
+    self.jjSlider.value = 0.0f;
     [self.jjSlider setContinuous:YES];
     self.jjSlider.minimumTrackTintColor = color;
     self.jjSlider.maximumTrackTintColor = [UIColor whiteColor];
@@ -57,6 +57,11 @@
     CGSize size = self.bounds.size;
     [self.titleLabel setFrame:CGRectMake(10, 10, 60, 40)];
     [self.jjSlider setFrame:CGRectMake(80, 10, size.width - 100, 40)];
+}
+
+- (void)setMaxAndMini:(float)max min:(float)min{
+    self.jjSlider.maximumValue = max;
+    self.jjSlider.minimumValue = min;
 }
 
 - (void)setJJSliderTitle:(NSString *)title{

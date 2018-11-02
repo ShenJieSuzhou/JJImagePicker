@@ -150,44 +150,60 @@
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType{
     [self.jjSlider setHidden:NO];
+    _image = _preViewImage.image;
     if(adjustType == JJSmoothSkinAdjust){
         //美白默认参数 5
         _jjAdjustType = JJSmoothSkinAdjust;
+        [self.jjSlider setMaxAndMini:100.0f min:0.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
         [self.jjSlider setJJSliderTitle:@"美白"];
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:0];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:0.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJExposureAdjust){
         //曝光
         _jjAdjustType = JJExposureAdjust;
+        [self.jjSlider setMaxAndMini:50.0f min:-50.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
         [self.jjSlider setJJSliderTitle:@"曝光"];
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:0.5];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:0.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJTemperatureAdjsut){
         //色温
-        [self.jjSlider setJJSliderTitle:@"色温"];
         _jjAdjustType = JJTemperatureAdjsut;
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:0.0];
+        [self.jjSlider setMaxAndMini:10000.0f min:2000.0f];
+        [self.jjSlider setJJSliderValue:6500.0f];
+        [self.jjSlider setJJSliderTitle:@"色温"];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:6500.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJContrastAdjust){
         //对比度
+        [self.jjSlider setMaxAndMini:50.0f min:-50.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
         [self.jjSlider setJJSliderTitle:@"对比度"];
         _jjAdjustType = JJContrastAdjust;
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:1.0];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:0.0];
         [_preViewImage setImage:result];
     }else if(adjustType == JJSaturationAdjsut){
         //饱和度
+        [self.jjSlider setMaxAndMini:50.0f min:-50.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
         _jjAdjustType = JJSaturationAdjsut;
         [self.jjSlider setJJSliderTitle:@"饱和度"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:0.0f];
         [_preViewImage setImage:result];
     }else if(adjustType == JJShapeAdjust){
         //锐化
+        [self.jjSlider setMaxAndMini:100.0f min:0.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
         _jjAdjustType = JJShapeAdjust;
         [self.jjSlider setJJSliderTitle:@"锐化"];
-        UIImage *result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:0.4f];
+        UIImage *result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:0.0f];
         [_preViewImage setImage:result];
     }else if(adjustType == JJDarkangleAdjust){
         //暗角
+        [self.jjSlider setMaxAndMini:100.0f min:0.0f];
+        [self.jjSlider setJJSliderValue:0.0f];
+
         _jjAdjustType = JJDarkangleAdjust;
         [self.jjSlider setJJSliderTitle:@"暗角"];
         UIImage *result = [[JJFilterManager getInstance] renderImageWithDarkangle:_image inputAmount:0.0f];
@@ -197,36 +213,35 @@
 
 #pragma mark - CustomSliderDelegate
 - (void)customSliderValueChangeCallBacK:(float)value{
+    NSLog(@"%f", value);
     UIImage *result = nil;
     if(_jjAdjustType == JJSmoothSkinAdjust){
         CGFloat ff = value / 100.0f;
         result = [[JJFilterManager getInstance] renderImageWithBeauty:_image inputAmount:ff];
     }else if(_jjAdjustType == JJExposureAdjust){
-        CGFloat ff = value / 100.0f;
+        CGFloat ff = value / 50.0f;
         result = [[JJFilterManager getInstance] renderImageWithExposure:_image inputAmount:ff];
     }else if(_jjAdjustType == JJTemperatureAdjsut){
-        CGFloat ff = (value - 50.0f)/100;
+        CGFloat ff = value;
         result = [[JJFilterManager getInstance] renderImageWithTemperature:_image inputAmount:ff];
     }else if(_jjAdjustType == JJContrastAdjust){
-        CGFloat ff = (value - 50.0f);
-        if(ff < 0){
-            ff = (ff + 100) / 200 + 0.5;
-        }else{
-            ff = (ff + 50)/100 + 1;
-        }
+        CGFloat ff = value / 100;
         result = [[JJFilterManager getInstance] renderImageWithContrast:_image inputAmount:ff];
     }else if(_jjAdjustType == JJSaturationAdjsut){
-        CGFloat ff = value/100 + 1;
+        CGFloat ff = value / 50.0f;
         result = [[JJFilterManager getInstance] renderImageWithSaturation:_image inputAmount:ff];
     }else if(_jjAdjustType == JJShapeAdjust){
-        CGFloat ff = value/10;
+        CGFloat ff = value/100;
         result = [[JJFilterManager getInstance] renderImageWithSharpen:_image inputAmount:ff];
     }else if(_jjAdjustType == JJDarkangleAdjust){
         CGFloat ff = value/10;
         result = [[JJFilterManager getInstance] renderImageWithDarkangle:_image inputAmount:ff];
     }
-    
-    [_preViewImage setImage:result];
+
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.preViewImage setImage:result];
+    });
 }
 
 @end
