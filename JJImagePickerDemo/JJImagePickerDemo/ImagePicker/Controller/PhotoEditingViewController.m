@@ -30,6 +30,7 @@
 @synthesize angle = _angle;
 @synthesize layerV = _layerV;
 @synthesize historys = _historys;
+@synthesize pAdjustModel = _pAdjustModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +76,9 @@
     //预览图
     [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.editToolView];
+    
+    //调整图片的参数数值
+    self.pAdjustModel = [[AdjustModel alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -221,6 +225,7 @@
             break;
         case JJEditToolAdjust:{
             AdjustViewController *adjustView = [AdjustViewController new];
+            [adjustView setSlideValue:self.pAdjustModel];
             [adjustView setEditImage:self.preViewImage.image];
             [adjustView setAdToolArrays:array];
             [self presentViewController:adjustView animated:YES completion:^{

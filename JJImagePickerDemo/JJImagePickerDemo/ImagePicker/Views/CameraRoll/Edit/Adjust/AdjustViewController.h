@@ -5,11 +5,11 @@
 //  Created by shenjie on 2018/9/14.
 //  Copyright © 2018年 shenjie. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "EditingToolView.h"
 #import "CustomSlider.h"
-#import <UIKit/UIKit.h>
+#import "AdjustModel.h"
 
 @interface AdjustViewController : UIViewController<PhotoSubToolEditingDelegate,CustomSliderDelegate>
 
@@ -29,8 +29,12 @@
 @property (nonatomic, strong) NSMutableDictionary *adjustHashMap;
 //调整的类型
 @property (assign) PhotoEditAdjustTYPE jjAdjustType;
+//图片调整数值
+@property (strong, nonatomic) AdjustModel *adjustModel;
 
 - (void)setEditImage:(UIImage *)image;
+
+- (void)setSlideValue:(AdjustModel *)model;
 
 - (void)setAdjustToolArrays:(NSArray *)tools;
 

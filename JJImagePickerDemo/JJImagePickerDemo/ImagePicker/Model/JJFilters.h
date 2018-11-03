@@ -10,4 +10,5 @@
 
 @interface JJFilters : NSObject
 
+
 @end

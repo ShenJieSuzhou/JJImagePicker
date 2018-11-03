@@ -29,9 +29,10 @@
 @property (nonatomic, strong) UIImage *preImage;
 //工具烂
 @property (nonatomic, strong) EditingToolView *editToolView;
-
 //编辑工具数据
 @property (nonatomic, strong) NSDictionary *editData;
+//调整数据
+@property (nonatomic, strong) AdjustModel *pAdjustModel;
 
 @property (nonatomic, assign) CGRect croppedFrame;
 
