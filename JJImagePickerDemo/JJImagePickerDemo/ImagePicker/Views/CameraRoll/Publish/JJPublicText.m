@@ -26,12 +26,14 @@
 
 - (void)commonInitlization{
     //添加图片视图
-    
+    _publishText = [[UITextView alloc] init];
+    _publishText.placeholder = @"这一刻的想法...";
+    _publishText.placeholderColor = [UIColor lightGrayColor];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-
+    [_publishText setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 }
 
 @end

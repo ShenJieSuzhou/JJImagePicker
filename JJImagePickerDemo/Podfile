@@ -1,5 +1,6 @@
 target 'JJImagePickerDemo' do
 
 	pod 'AFNetwork'
+	pod 'UITextView+Placeholder'
 
 end
