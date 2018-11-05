@@ -45,6 +45,7 @@
 		E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */ = {isa = PBXBuildFile; fileRef = E53F2FCA2178891100142A38 /* ScrawlAdjustView.m */; };
 		E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6C621897B42002A7E1E /* CustomTabbar.m */; };
 		E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6C92189820F002A7E1E /* CameraPhotoViewController.m */; };
+		E542B6CD218FEF43002A7E1E /* JJPublicText.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6CC218FEF43002A7E1E /* JJPublicText.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
 		E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15A20F7304D00893D85 /* CameraSessionManager.m */; };
@@ -267,6 +268,8 @@
 		E542B6C621897B42002A7E1E /* CustomTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTabbar.m; sourceTree = "<group>"; };
 		E542B6C82189820F002A7E1E /* CameraPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraPhotoViewController.h; sourceTree = "<group>"; };
 		E542B6C92189820F002A7E1E /* CameraPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraPhotoViewController.m; sourceTree = "<group>"; };
+		E542B6CB218FEF43002A7E1E /* JJPublicText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPublicText.h; sourceTree = "<group>"; };
+		E542B6CC218FEF43002A7E1E /* JJPublicText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublicText.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
 		E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@3x.png"; sourceTree = "<group>"; };
 		E547D15920F7304D00893D85 /* CameraSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraSessionManager.h; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.h; sourceTree = SOURCE_ROOT; };
@@ -889,6 +892,8 @@
 			children = (
 				E5506BCC212FB7D80077E62B /* JJPublishPreviewCell.h */,
 				E5506BCD212FB7D80077E62B /* JJPublishPreviewCell.m */,
+				E542B6CB218FEF43002A7E1E /* JJPublicText.h */,
+				E542B6CC218FEF43002A7E1E /* JJPublicText.m */,
 			);
 			path = Publish;
 			sourceTree = "<group>";
@@ -1269,6 +1274,7 @@
 				4487D806218534FA001E7849 /* MeViewController.m in Sources */,
 				E557824E2179CBC5003B20BB /* MosaicBitmapData.m in Sources */,
 				E55782562179CBD3003B20BB /* UIImage+Mosaic.m in Sources */,
+				E542B6CD218FEF43002A7E1E /* JJPublicText.m in Sources */,
 				E5DF2E03214CDBF50048A80E /* YUCIFilterConstructor.m in Sources */,
 				E5506BDA212FB7D80077E62B /* CameraRollView.m in Sources */,
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,

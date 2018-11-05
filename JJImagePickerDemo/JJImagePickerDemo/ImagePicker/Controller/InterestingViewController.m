@@ -13,13 +13,15 @@
 @interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, copy) NSArray *selectedImages;
-
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *previewCollection;
 
 @end
 
 @implementation InterestingViewController
+@synthesize selectedImages = _selectedImages;
+@synthesize previewCollection = _previewCollection;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

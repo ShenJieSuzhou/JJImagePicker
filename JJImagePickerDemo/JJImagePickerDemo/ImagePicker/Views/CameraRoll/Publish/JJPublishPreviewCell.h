@@ -10,7 +10,9 @@
 
 @interface JJPublishPreviewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIButton *editBtn;
+@property (nonatomic, strong) UILabel *editLabel;
+
+@property (nonatomic, strong) UIButton *deleteBtn;
 
 @property (nonatomic, strong) UIImageView *contentImageView;
 
