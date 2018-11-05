@@ -372,4 +372,15 @@
     [self.preViewImage addSubview:view];
 }
 
+#pragma mark - AdjustmentDelegate
+- (void)AdjustView:(AdjustViewController *)view didFinished:(UIImage *)result model:(AdjustModel *)model{
+    self.pAdjustModel = model;
+    self.preViewImage.image = result;
+    [self layoutImageView];
+}
+
+- (void)AdjustView:(AdjustViewController *)view didCancel:(BOOL) isCancel{
+    
+}
+
 @end

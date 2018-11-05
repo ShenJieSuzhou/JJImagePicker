@@ -19,7 +19,6 @@
 @synthesize adjustView = _adjustView;
 @synthesize adToolArrays = _adToolArrays;
 @synthesize jjSlider = _jjSlider;
-@synthesize adjustHashMap = _adjustHashMap;
 @synthesize jjAdjustType = _jjAdjustType;
 @synthesize adjustModel = _adjustModel;
 
@@ -27,7 +26,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
-    _adjustHashMap = [[NSMutableDictionary alloc] init];
     
     [self.adjustView setSubToolArray:[NSMutableArray arrayWithArray:_adToolArrays]];
     [self.view addSubview:self.adjustView];
@@ -149,7 +147,16 @@
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-    
+    if(![_mDelegate respondsToSelector:@selector(AdjustView:didFinished:model:)]){
+        return;
+    }
+    [_mDelegate AdjustView:self didFinished:_preViewImage.image model:_adjustModel];
+    _preViewImage = nil;
+    _layerV = nil;
+    _adjustView = nil;
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType{
