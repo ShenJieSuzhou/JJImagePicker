@@ -17,6 +17,8 @@
 @synthesize contentImageView = _contentImageView;
 @synthesize editLabel = _editLabel;
 @synthesize deleteBtn = _deleteBtn;
+@synthesize indexPath = _indexPath;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -47,6 +49,7 @@
     //添加 删除按钮
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
+    [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentImageView addSubview:_deleteBtn];
 }
 
@@ -56,6 +59,12 @@
     CGRect size = self.contentImageView.frame;
     [_editLabel setFrame:CGRectMake(0, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
+}
+
+- (void)deleteThePhoto:(UIButton *)sender{
+    if([_delegate respondsToSelector:@selector(JJPublishCallBack:)]){
+        [_delegate JJPublishCallBack:self];
+    }
 }
 
 @end

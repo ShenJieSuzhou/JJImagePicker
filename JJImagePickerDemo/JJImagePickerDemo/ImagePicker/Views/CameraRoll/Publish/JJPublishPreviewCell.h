@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JJPublishPreviewCell;
+@protocol JJPublishCellDelegate <NSObject>
+
+- (void)JJPublishCallBack:(JJPublishPreviewCell *)cell;
+
+@end
 
 @interface JJPublishPreviewCell : UICollectionViewCell
 
@@ -15,5 +21,9 @@
 @property (nonatomic, strong) UIButton *deleteBtn;
 
 @property (nonatomic, strong) UIImageView *contentImageView;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+@property (nonatomic, weak) id<JJPublishCellDelegate> delegate;
 
 @end
