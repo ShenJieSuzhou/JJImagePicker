@@ -26,4 +26,8 @@
 
 @property (nonatomic, weak) id<JJPublishCellDelegate> delegate;
 
+@property (assign) BOOL isAddCell;
+
+- (void)updatePublishImgCell:(BOOL)flag img:(UIImage *)image;
+
 @end

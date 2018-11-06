@@ -47,6 +47,9 @@
 		E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6C621897B42002A7E1E /* CustomTabbar.m */; };
 		E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6C92189820F002A7E1E /* CameraPhotoViewController.m */; };
 		E542B6CD218FEF43002A7E1E /* JJPublicText.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6CC218FEF43002A7E1E /* JJPublicText.m */; };
+		E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6D221913603002A7E1E /* JJBottomMenu.m */; };
+		E542B6D5219142B4002A7E1E /* addImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E542B6D4219142B4002A7E1E /* addImg.jpg */; };
+		E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6D721915EA5002A7E1E /* JJPublishViewFlowLayout.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
 		E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E547D15A20F7304D00893D85 /* CameraSessionManager.m */; };
@@ -273,6 +276,11 @@
 		E542B6C92189820F002A7E1E /* CameraPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraPhotoViewController.m; sourceTree = "<group>"; };
 		E542B6CB218FEF43002A7E1E /* JJPublicText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPublicText.h; sourceTree = "<group>"; };
 		E542B6CC218FEF43002A7E1E /* JJPublicText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublicText.m; sourceTree = "<group>"; };
+		E542B6D121913603002A7E1E /* JJBottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJBottomMenu.h; sourceTree = "<group>"; };
+		E542B6D221913603002A7E1E /* JJBottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJBottomMenu.m; sourceTree = "<group>"; };
+		E542B6D4219142B4002A7E1E /* addImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addImg.jpg; sourceTree = "<group>"; };
+		E542B6D621915EA5002A7E1E /* JJPublishViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPublishViewFlowLayout.h; sourceTree = "<group>"; };
+		E542B6D721915EA5002A7E1E /* JJPublishViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublishViewFlowLayout.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
 		E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@3x.png"; sourceTree = "<group>"; };
 		E547D15920F7304D00893D85 /* CameraSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraSessionManager.h; path = JJImagePickerDemo/ImagePicker/Controller/CameraSessionManager.h; sourceTree = SOURCE_ROOT; };
@@ -895,10 +903,14 @@
 		E5506BCB212FB7D80077E62B /* Publish */ = {
 			isa = PBXGroup;
 			children = (
+				E542B6D121913603002A7E1E /* JJBottomMenu.h */,
+				E542B6D221913603002A7E1E /* JJBottomMenu.m */,
 				E5506BCC212FB7D80077E62B /* JJPublishPreviewCell.h */,
 				E5506BCD212FB7D80077E62B /* JJPublishPreviewCell.m */,
 				E542B6CB218FEF43002A7E1E /* JJPublicText.h */,
 				E542B6CC218FEF43002A7E1E /* JJPublicText.m */,
+				E542B6D621915EA5002A7E1E /* JJPublishViewFlowLayout.h */,
+				E542B6D721915EA5002A7E1E /* JJPublishViewFlowLayout.m */,
 			);
 			path = Publish;
 			sourceTree = "<group>";
@@ -980,6 +992,7 @@
 		E56B9CB620AD2FA700021DF8 = {
 			isa = PBXGroup;
 			children = (
+				E542B6D4219142B4002A7E1E /* addImg.jpg */,
 				E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */,
 				E56B9CC020AD2FA700021DF8 /* Products */,
 				E56B9CDE20AD7D2100021DF8 /* Frameworks */,
@@ -1185,6 +1198,7 @@
 				E55166AF2159E7F0001FBFC1 /* ghost.png in Resources */,
 				E547D18B20F89ACE00893D85 /* closeButton@2x.png in Resources */,
 				E547D19D20F89ACE00893D85 /* flashAutoIcon@2x.png in Resources */,
+				E542B6D5219142B4002A7E1E /* addImg.jpg in Resources */,
 				E547D15E20F870F000893D85 /* oie_transparent-20.png in Resources */,
 				E547D19020F89ACE00893D85 /* libraryConfirm@2x.png in Resources */,
 				E551669D2159E7AE001FBFC1 /* stickerConfig.json in Resources */,
@@ -1300,8 +1314,10 @@
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
+				E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */,
 				E50E97E0217DBC290029E231 /* WordsView.m in Sources */,
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
+				E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */,
 				E55159B72178A9EA00ADFDAE /* ScrawlModel.m in Sources */,

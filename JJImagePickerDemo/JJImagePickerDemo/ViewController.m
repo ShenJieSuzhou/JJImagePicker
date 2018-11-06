@@ -14,6 +14,8 @@
 #import "CameraPhotoViewController.h"
 #import "CustomTabbar.h"
 
+#import "InterestingViewController.h"
+
 @interface ViewController ()<JJTabBarDelegate>
 
 @property (strong, nonatomic) PhotoEditingViewController *photoEditingView;
@@ -81,8 +83,14 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    self.cpViewController = [CameraPhotoViewController new];
-    [self presentViewController:self.cpViewController animated:YES completion:^{
+//    self.cpViewController = [CameraPhotoViewController new];
+//    [self presentViewController:self.cpViewController animated:YES completion:^{
+//
+//    }];
+    
+    InterestingViewController *publishView = [InterestingViewController new];
+    [publishView setSelectedImages:[NSArray array]];
+    [self presentViewController:publishView animated:YES completion:^{
         
     }];
 }

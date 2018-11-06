@@ -19,6 +19,7 @@
 @synthesize deleteBtn = _deleteBtn;
 @synthesize indexPath = _indexPath;
 @synthesize delegate = _delegate;
+@synthesize isAddCell = _isAddCell;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -34,10 +35,12 @@
 }
 
 - (void)commonInitlization{
+    _isAddCell = YES;
     //添加图片视图
     _contentImageView = [[UIImageView alloc] init];
     _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
     _contentImageView.clipsToBounds = YES;
+    _contentImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.contentImageView];
     
     //添加 editbutton
@@ -51,6 +54,18 @@
     [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentImageView addSubview:_deleteBtn];
+    
+    [self isDefaultImage:_isAddCell];
+}
+
+- (void)isDefaultImage:(BOOL)flag{
+    if(flag){
+        [_deleteBtn setHidden:YES];
+        [_editLabel setHidden:YES];
+    }else{
+        [_deleteBtn setHidden:NO];
+        [_editLabel setHidden:NO];
+    }
 }
 
 - (void)layoutSubviews{
@@ -59,6 +74,11 @@
     CGRect size = self.contentImageView.frame;
     [_editLabel setFrame:CGRectMake(0, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
+}
+
+- (void)updatePublishImgCell:(BOOL)flag img:(UIImage *)image{
+    [self isDefaultImage:flag];
+    [self.contentImageView setImage:image];
 }
 
 - (void)deleteThePhoto:(UIButton *)sender{

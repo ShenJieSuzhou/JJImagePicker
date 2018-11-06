@@ -7,20 +7,37 @@
 //
 
 #import "InterestingViewController.h"
+#import "JJPublishViewFlowLayout.h"
 #import "JJPublishPreviewCell.h"
 #import "JJPhoto.h"
+#import "JJPublicText.h"
+#import "JJBottomMenu.h"
+
+#define PUBLISH_VIEW_WIDTH self.view.frame.size.width
+#define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
+#define MENU_BUTTOM_HEIGHT 80.0f
+#define PUBLISH_TEXT_HEIGHT 80.0f
+
+#define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
 @interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, copy) NSArray *selectedImages;
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *previewCollection;
+//text
+@property (strong, nonatomic) JJPublicText *publicText;
+//bottomMenu
+@property (strong, nonatomic) JJBottomMenu *buttomMenu;
+
 
 @end
 
 @implementation InterestingViewController
 @synthesize selectedImages = _selectedImages;
 @synthesize previewCollection = _previewCollection;
+@synthesize publicText = _publicText;
+@synthesize buttomMenu = _buttomMenu;
 
 
 - (void)viewDidLoad {
@@ -45,7 +62,9 @@
     //不显示
     [self.jjTabBarView setHidden:YES];
     
+    [self.view addSubview:self.publicText];
     [self.view addSubview:self.previewCollection];
+    [self.view addSubview:self.buttomMenu];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,11 +73,25 @@
 }
 
 //懒加载
+- (JJPublicText *)publicText{
+    if(!_publicText){
+        _publicText = [[JJPublicText alloc] initWithFrame:CGRectMake(10, self.customNaviBar.bounds.size.height, PUBLISH_VIEW_WIDTH - 20.0f, PUBLISH_TEXT_HEIGHT)];
+    }
+    return _publicText;
+}
+
+- (JJBottomMenu *)buttomMenu{
+    if(!_buttomMenu){
+        _buttomMenu = [[JJBottomMenu alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - MENU_BUTTOM_HEIGHT , PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+    }
+    return _buttomMenu;
+}
+
 -(UICollectionView *)previewCollection{
     if (!_previewCollection) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        JJPublishViewFlowLayout *layout = [[JJPublishViewFlowLayout alloc] init];
         //自动网格布局
-        _previewCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
+        _previewCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(10, self.publicText.frame.origin.y + PUBLISH_TEXT_HEIGHT + 10.0f, self.view.frame.size.width - 20.0f, self.view.frame.size.height) collectionViewLayout:layout];
         //设置数据源代理
         _previewCollection.dataSource = self;
         _previewCollection.delegate = self;
@@ -66,7 +99,7 @@
         _previewCollection.showsVerticalScrollIndicator = NO;
         _previewCollection.alwaysBounceHorizontal = NO;
         [_previewCollection setBackgroundColor:[UIColor whiteColor]];
-        [_previewCollection registerClass:[JJPublishPreviewCell class] forCellWithReuseIdentifier:@"JJPublishPreviewCell"];
+        [_previewCollection registerClass:[JJPublishPreviewCell class] forCellWithReuseIdentifier:PUBLISH_IDENTIFIER];
     }
     
     return _previewCollection;
@@ -101,33 +134,29 @@
 
 //每个分组里有多少个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return [self.selectedImages count];
+    return [self.selectedImages count] + 1;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //调整图片
+    
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    //获得一个照片对象
-    JJPhoto *imageAsset = [self.selectedImages objectAtIndex:indexPath.row];
-    
-    //初始化cell
-    NSString *identifier = nil;
-    if(imageAsset.assetType == JJAssetTypeVideo){
-        identifier = @"JJPublishPreviewCell1";
+    JJPublishPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PUBLISH_IDENTIFIER forIndexPath:indexPath];
+    if(indexPath.row == (self.selectedImages.count + 1)){
+        [cell updatePublishImgCell:YES img:[UIImage imageNamed:@"addImg"]];
     }else{
-        identifier = @"JJPublishPreviewCell";
+        //获得一个照片对象
+        JJPhoto *imageAsset = [self.selectedImages objectAtIndex:indexPath.row];
+        //异步请求资源对应的缩略图
+        [imageAsset requestThumbnailImageWithSize:[self referenceImageSize] completion:^(UIImage *result, NSDictionary *info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell updatePublishImgCell:NO img:result];
+            });
+        }];
     }
-    JJPublishPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    //异步请求资源对应的缩略图
-    [imageAsset requestThumbnailImageWithSize:[self referenceImageSize] completion:^(UIImage *result, NSDictionary *info) {
-        [cell.contentImageView setImage:result];
-    }];
-    
-    [cell setNeedsLayout];
     return cell;
 }
 
@@ -136,13 +165,8 @@
     CGFloat collectionWidth = CGRectGetWidth(self.previewCollection.bounds);
     CGFloat collectionSpace = self.previewCollection.contentInset.left + self.previewCollection.contentInset.right;
     CGFloat referenceWidth = 0.0f;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        
-    }else{
-        //如果是iPhone设备，默认显示的照片为4列
-        referenceWidth = (collectionWidth - 4 * collectionSpace) / 4;
-    }
     
+    referenceWidth = (collectionWidth - 4 * collectionSpace) / 3;
     return CGSizeMake(referenceWidth, referenceWidth);
 }
 
