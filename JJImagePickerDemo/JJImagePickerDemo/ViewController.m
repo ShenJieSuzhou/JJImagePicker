@@ -49,21 +49,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (IBAction)start:(id)sender {
-//    UIImage *photoImage = [UIImage imageNamed:@"p1"];
-//    [self.photoEditingView setEditImage:photoImage];
-//    [self presentViewController:self.photoEditingView animated:YES completion:^{
-//
-//    }];
-//}
-
-//- (IBAction)openWeb:(id)sender {
-//    DemoViewController *demoView = [DemoViewController new];
-//    [self presentViewController:demoView animated:YES completion:^{
-//
-//    }];
-//}
-
 - (PhotoEditingViewController *)photoEditingView{
     if(!_photoEditingView){
         _photoEditingView = [[PhotoEditingViewController alloc] init];
@@ -89,7 +74,7 @@
 //    }];
     
     InterestingViewController *publishView = [InterestingViewController new];
-    [publishView setSelectedImages:[NSArray arrayWithObject:[UIImage imageNamed:@"addImg"]]];
+    [publishView setSelectedImages:[[NSMutableArray alloc] init]];
     [self presentViewController:publishView animated:YES completion:^{
         
     }];

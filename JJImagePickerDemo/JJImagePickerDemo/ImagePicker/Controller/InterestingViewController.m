@@ -22,7 +22,7 @@
 
 @interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, copy) NSArray *selectedImages;
+@property (nonatomic, copy) NSMutableArray *selectedImages;
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *previewCollection;
 //text
@@ -65,11 +65,42 @@
     [self.view addSubview:self.publicText];
     [self.view addSubview:self.previewCollection];
     [self.view addSubview:self.buttomMenu];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self addKeyBoardNotification];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//添加消息中心监听
+- (void)addKeyBoardNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardChangeFrame:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
 }
 
 //懒加载
@@ -105,11 +136,14 @@
     return _previewCollection;
 }
 
-- (void)setSelectedImages:(NSArray *)selectedImages{
+- (void)setSelectedImages:(NSMutableArray *)selectedImages{
     if(!selectedImages){
         return;
     }
     _selectedImages = selectedImages;
+    if([_selectedImages count] < 9){
+        [_selectedImages addObject:[UIImage imageNamed:@"addImg"]];
+    }
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
@@ -169,5 +203,35 @@
     referenceWidth = (collectionWidth - 4 * collectionSpace) / 3;
     return CGSizeMake(referenceWidth, referenceWidth);
 }
+
+#pragma mark - keyborad notification
+- (void)keyboardWillShow:(NSNotification *)notif {
+    
+}
+
+- (void)keyboardShow:(NSNotification *)notif {
+    NSDictionary *userInfo = notif.userInfo;
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 键盘的frame
+    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    __weak typeof(self) weakself = self;
+    [UIView animateWithDuration:duration animations:^{
+        [weakself.buttomMenu setFrame:CGRectMake(0, keyboardF.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notif {
+
+}
+
+- (void)keyboardHide:(NSNotification *)notif {
+
+}
+
+- (void)keyboardChangeFrame:(NSNotification *)notif{
+    
+}
+
 
 @end
