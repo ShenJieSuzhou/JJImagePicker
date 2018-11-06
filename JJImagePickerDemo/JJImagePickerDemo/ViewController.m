@@ -89,7 +89,7 @@
 //    }];
     
     InterestingViewController *publishView = [InterestingViewController new];
-    [publishView setSelectedImages:[NSArray array]];
+    [publishView setSelectedImages:[NSArray arrayWithObject:[UIImage imageNamed:@"addImg"]]];
     [self presentViewController:publishView animated:YES completion:^{
         
     }];

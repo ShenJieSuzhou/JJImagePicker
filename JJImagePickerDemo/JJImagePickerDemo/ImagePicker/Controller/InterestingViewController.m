@@ -91,7 +91,7 @@
     if (!_previewCollection) {
         JJPublishViewFlowLayout *layout = [[JJPublishViewFlowLayout alloc] init];
         //自动网格布局
-        _previewCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(10, self.publicText.frame.origin.y + PUBLISH_TEXT_HEIGHT + 10.0f, self.view.frame.size.width - 20.0f, self.view.frame.size.height) collectionViewLayout:layout];
+        _previewCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(20, self.publicText.frame.origin.y + PUBLISH_TEXT_HEIGHT + 10.0f, self.view.frame.size.width - 40.0f, self.view.frame.size.height) collectionViewLayout:layout];
         //设置数据源代理
         _previewCollection.dataSource = self;
         _previewCollection.delegate = self;
@@ -134,7 +134,7 @@
 
 //每个分组里有多少个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.selectedImages count] + 1;
+    return [self.selectedImages count];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -144,8 +144,8 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JJPublishPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PUBLISH_IDENTIFIER forIndexPath:indexPath];
-    if(indexPath.row == (self.selectedImages.count + 1)){
-        [cell updatePublishImgCell:YES img:[UIImage imageNamed:@"addImg"]];
+    if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
+        [cell updatePublishImgCell:YES img:[self.selectedImages objectAtIndex:indexPath.row]];
     }else{
         //获得一个照片对象
         JJPhoto *imageAsset = [self.selectedImages objectAtIndex:indexPath.row];

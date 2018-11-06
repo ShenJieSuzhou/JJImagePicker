@@ -48,7 +48,6 @@
 		E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6C92189820F002A7E1E /* CameraPhotoViewController.m */; };
 		E542B6CD218FEF43002A7E1E /* JJPublicText.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6CC218FEF43002A7E1E /* JJPublicText.m */; };
 		E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6D221913603002A7E1E /* JJBottomMenu.m */; };
-		E542B6D5219142B4002A7E1E /* addImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E542B6D4219142B4002A7E1E /* addImg.jpg */; };
 		E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E542B6D721915EA5002A7E1E /* JJPublishViewFlowLayout.m */; };
 		E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */; };
 		E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E545F54820C12F2700E74CA1 /* gallery_title_arrow@3x.png */; };
@@ -278,7 +277,6 @@
 		E542B6CC218FEF43002A7E1E /* JJPublicText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublicText.m; sourceTree = "<group>"; };
 		E542B6D121913603002A7E1E /* JJBottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJBottomMenu.h; sourceTree = "<group>"; };
 		E542B6D221913603002A7E1E /* JJBottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJBottomMenu.m; sourceTree = "<group>"; };
-		E542B6D4219142B4002A7E1E /* addImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addImg.jpg; sourceTree = "<group>"; };
 		E542B6D621915EA5002A7E1E /* JJPublishViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPublishViewFlowLayout.h; sourceTree = "<group>"; };
 		E542B6D721915EA5002A7E1E /* JJPublishViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPublishViewFlowLayout.m; sourceTree = "<group>"; };
 		E545F54720C12F2700E74CA1 /* gallery_title_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_title_arrow@2x.png"; sourceTree = "<group>"; };
@@ -992,7 +990,6 @@
 		E56B9CB620AD2FA700021DF8 = {
 			isa = PBXGroup;
 			children = (
-				E542B6D4219142B4002A7E1E /* addImg.jpg */,
 				E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */,
 				E56B9CC020AD2FA700021DF8 /* Products */,
 				E56B9CDE20AD7D2100021DF8 /* Frameworks */,
@@ -1198,7 +1195,6 @@
 				E55166AF2159E7F0001FBFC1 /* ghost.png in Resources */,
 				E547D18B20F89ACE00893D85 /* closeButton@2x.png in Resources */,
 				E547D19D20F89ACE00893D85 /* flashAutoIcon@2x.png in Resources */,
-				E542B6D5219142B4002A7E1E /* addImg.jpg in Resources */,
 				E547D15E20F870F000893D85 /* oie_transparent-20.png in Resources */,
 				E547D19020F89ACE00893D85 /* libraryConfirm@2x.png in Resources */,
 				E551669D2159E7AE001FBFC1 /* stickerConfig.json in Resources */,
