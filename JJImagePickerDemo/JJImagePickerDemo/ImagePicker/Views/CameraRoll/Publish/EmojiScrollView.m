@@ -7,11 +7,13 @@
 //
 
 #import "EmojiScrollView.h"
-#import "Header.h"
+//#import "Header.h"
 #import "NaturalData.h"
 #define COUNTFORLINE  7
 #define LINEFORVIEW   3
 #define IMAGEWIDTH    30
+#define  MAXWIDTH  [UIScreen mainScreen].bounds.size.width
+#define  MAXHIGHT  [UIScreen mainScreen].bounds.size.height
 @interface EmojiScrollView ()<UIScrollViewDelegate>
 
 
@@ -67,7 +69,7 @@
 {
     if (imageArray.count ==0) {
         
-        DLog(@"数组出错，内无值");
+        NSLog(@"数组出错，内无值");
         
         return;
     }

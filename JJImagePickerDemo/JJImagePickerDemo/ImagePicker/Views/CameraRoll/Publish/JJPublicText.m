@@ -38,4 +38,9 @@
     [_publishText setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 }
 
+- (void)faceClick:(NSString*)faceName andFaceNumber:(NSInteger)number{
+    
+    
+}
+
 @end

@@ -29,7 +29,8 @@
 @property (strong, nonatomic) JJPublicText *publicText;
 //bottomMenu
 @property (strong, nonatomic) JJBottomMenu *buttomMenu;
-
+//emoj
+@property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
 
 @end
 
@@ -117,6 +118,15 @@
         _buttomMenu.delegate = self;
     }
     return _buttomMenu;
+}
+
+- (JJEmojKeyboard *)emojKeyboard{
+    if(!_emojKeyboard){
+        _emojKeyboard = [[JJEmojKeyboard alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT, PUBLISH_VIEW_WIDTH, 200.0f)];
+        _emojKeyboard.delegate = self.publicText;
+    }
+    
+    return _emojKeyboard;
 }
 
 -(UICollectionView *)previewCollection{

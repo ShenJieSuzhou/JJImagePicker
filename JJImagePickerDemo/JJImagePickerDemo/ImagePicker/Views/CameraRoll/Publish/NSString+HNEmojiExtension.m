@@ -9,8 +9,9 @@
 #import "NSString+HNEmojiExtension.h"
 #import "NaturalData.h"
 #import <CoreText/CoreText.h>
-#import "Header.h"
-
+//#import "Header.h"
+#define  MAXWIDTH  [UIScreen mainScreen].bounds.size.width
+#define  MAXHIGHT  [UIScreen mainScreen].bounds.size.height
 
 @implementation NSString (HNEmojiExtension)
 

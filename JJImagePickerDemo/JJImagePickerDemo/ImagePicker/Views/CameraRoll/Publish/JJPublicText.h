@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UITextView+Placeholder.h"
+#import "JJEmojKeyboard.h"
 
-@interface JJPublicText : UIView
+@interface JJPublicText : UIView<JJEmojDelegate>
 
 @property (nonatomic, strong) UITextView *publishText;
 
