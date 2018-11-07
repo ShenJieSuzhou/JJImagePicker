@@ -31,7 +31,7 @@
     _publishText = [[UITextView alloc] init];
     _publishText.delegate = self;
     _publishText.placeholder = @"这一刻的想法...";
-    [_publishText setFont:[UIFont systemFontOfSize:15.0f]];
+    [_publishText setFont:[UIFont systemFontOfSize:18.0f]];
     _publishText.placeholderColor = [UIColor lightGrayColor];
     [self addSubview:_publishText];
 }
