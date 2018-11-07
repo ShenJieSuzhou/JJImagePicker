@@ -20,7 +20,7 @@
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate>
 
 @property (nonatomic, copy) NSMutableArray *selectedImages;
 //UICollectionView
@@ -108,6 +108,7 @@
 - (JJPublicText *)publicText{
     if(!_publicText){
         _publicText = [[JJPublicText alloc] initWithFrame:CGRectMake(10, self.customNaviBar.bounds.size.height, PUBLISH_VIEW_WIDTH - 20.0f, PUBLISH_TEXT_HEIGHT)];
+        _publicText.delegate = self;
     }
     return _publicText;
 }
@@ -258,6 +259,11 @@
         [self.publicText.publishText becomeFirstResponder];
         [self.emojKeyboard removeFromSuperview];
     }
+}
+
+#pragma mark - JJPublicTextDelegate
+- (void)textViewShouldBeginEditing:(UITextView *)publishView{
+    self.buttomMenu.emojBtn.selected = NO;
 }
 
 @end

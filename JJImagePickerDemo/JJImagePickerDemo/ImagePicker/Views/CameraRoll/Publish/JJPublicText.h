@@ -10,10 +10,16 @@
 #import "UITextView+Placeholder.h"
 #import "JJEmojKeyboard.h"
 
-@interface JJPublicText : UIView<JJEmojDelegate>
+@class JJPublicText;
+@protocol JJPublicTextDelegate<NSObject>
 
+- (void)textViewShouldBeginEditing:(UITextView *)publishView;
+
+@end
+
+@interface JJPublicText : UIView<JJEmojDelegate,UITextViewDelegate>
 @property (nonatomic, strong) UITextView *publishText;
-
-
+@property (nonatomic, weak) id<JJPublicTextDelegate> delegate;
+@property  (nonatomic, assign) BOOL  isFaceDel;
 @end
 
