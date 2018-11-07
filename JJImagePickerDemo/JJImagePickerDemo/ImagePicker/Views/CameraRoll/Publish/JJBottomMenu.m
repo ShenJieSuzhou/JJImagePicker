@@ -17,6 +17,7 @@
 @synthesize menuView = _menuView;
 @synthesize emojBtn = _emojBtn;
 @synthesize topicBtn = _topicBtn;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -42,8 +43,10 @@
     
     _emojBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_emojBtn setImage:[UIImage imageNamed:@"emoj"] forState:UIControlStateNormal];
+    [_emojBtn setImage:[UIImage imageNamed:@"keyboard_press"] forState:UIControlStateSelected];
     [_emojBtn setFrame:CGRectMake(10.0f, 10.0f, 20.0f, 20.0f)];
     [_emojBtn addTarget:self action:@selector(popEmojSelectView:) forControlEvents:UIControlEventTouchUpInside];
+    _emojBtn.tag = ChatFunctionViewShowFace;
     
     _menuView = [[UIView alloc] initWithFrame:CGRectZero];
     [_menuView setBackgroundColor:[UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1]];
@@ -54,14 +57,22 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     CGFloat width = self.frame.size.width;
-    CGFloat height = self.frame.size.height;
+//    CGFloat height = self.frame.size.height;
     [_locationBtn setFrame:CGRectMake(MENU_PADDING, 5, LOCATION_WIDTH, LOCATION_HEIGHT)];
     [_locationBtn.layer setCornerRadius:15];
     [_menuView setFrame:CGRectMake(0, LOCATION_HEIGHT + MENU_PADDING, width, MENU_HEIGHT)];
 }
 
 - (void)popEmojSelectView:(UIButton *)sender{
-    NSLog(@"emoj 。。。。");
+    ChatFunctionViewShowType showType = sender.tag;
+    self.emojBtn.selected = !self.emojBtn.selected;
+    
+    if(!sender.selected){
+        showType = ChatFunctionViewShowKeyboard;
+        self.emojBtn.tag = showType;
+    }
+    
+    [_delegate showViewWithType:showType];
 }
 
 @end

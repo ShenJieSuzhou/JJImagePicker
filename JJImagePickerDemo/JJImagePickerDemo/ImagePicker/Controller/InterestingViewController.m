@@ -20,7 +20,7 @@
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate>
 
 @property (nonatomic, copy) NSMutableArray *selectedImages;
 //UICollectionView
@@ -114,6 +114,7 @@
 - (JJBottomMenu *)buttomMenu{
     if(!_buttomMenu){
         _buttomMenu = [[JJBottomMenu alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - MENU_BUTTOM_HEIGHT , PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+        _buttomMenu.delegate = self;
     }
     return _buttomMenu;
 }
@@ -233,5 +234,13 @@
     
 }
 
+#pragma mark - JJBottomMenuDelegate
+- (void)showViewWithType:(ChatFunctionViewShowType)showType{
+    if(showType == ChatFunctionViewShowFace){
+        
+    }else{
+        [self.publicText.publishText becomeFirstResponder];
+    }
+}
 
 @end
