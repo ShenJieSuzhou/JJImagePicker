@@ -247,9 +247,16 @@
 #pragma mark - JJBottomMenuDelegate
 - (void)showViewWithType:(ChatFunctionViewShowType)showType{
     if(showType == ChatFunctionViewShowFace){
+        [self.publicText.publishText resignFirstResponder];
         
+        [self.view addSubview:self.emojKeyboard];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.emojKeyboard setFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - 200.0f, PUBLISH_VIEW_WIDTH, 200.0f)];
+            [self.buttomMenu setFrame:CGRectMake(0, self.emojKeyboard.frame.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+        } completion:nil];
     }else{
         [self.publicText.publishText becomeFirstResponder];
+        [self.emojKeyboard removeFromSuperview];
     }
 }
 

@@ -69,7 +69,6 @@
     
     if(!sender.selected){
         showType = ChatFunctionViewShowKeyboard;
-        self.emojBtn.tag = showType;
     }
     
     [_delegate showViewWithType:showType];
