@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JJPhoto.h"
+
 @class JJPublishPreviewCell;
 @protocol JJPublishCellDelegate <NSObject>
 
@@ -26,8 +28,12 @@
 
 @property (nonatomic, weak) id<JJPublishCellDelegate> delegate;
 
+@property (nonatomic, strong) JJPhoto *obj;
+
 @property (assign) BOOL isAddCell;
 
-- (void)updatePublishImgCell:(BOOL)flag img:(UIImage *)image;
+- (void)updatePublishImgCell:(BOOL)flag img:(JJPhoto*)imageObj;
+
+- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image;
 
 @end

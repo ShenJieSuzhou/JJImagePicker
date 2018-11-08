@@ -20,6 +20,8 @@
 @synthesize indexPath = _indexPath;
 @synthesize delegate = _delegate;
 @synthesize isAddCell = _isAddCell;
+@synthesize obj = _obj;
+
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -75,7 +77,18 @@
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
 }
 
-- (void)updatePublishImgCell:(BOOL)flag img:(UIImage *)image{
+- (void)updatePublishImgCell:(BOOL)flag img:(JJPhoto*)imageObj{
+    _obj = imageObj;
+    [self isDefaultImage:flag];
+    //异步请求资源对应的缩略图
+    [imageObj requestThumbnailImageWithSize:CGSizeMake(100, 100) completion:^(UIImage *result, NSDictionary *info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.contentImageView setImage:result];
+        });
+    }];
+}
+
+- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image{
     [self isDefaultImage:flag];
     [self.contentImageView setImage:image];
 }

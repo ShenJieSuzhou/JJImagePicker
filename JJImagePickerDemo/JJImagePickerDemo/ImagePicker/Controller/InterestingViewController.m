@@ -20,7 +20,7 @@
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedImages;
 //UICollectionView
@@ -184,33 +184,18 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JJPublishPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PUBLISH_IDENTIFIER forIndexPath:indexPath];
+    cell.delegate = self;
+    
     if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
-        [cell updatePublishImgCell:YES img:[self.selectedImages objectAtIndex:indexPath.row]];
+        [cell addDefaultImg:YES img:[self.selectedImages objectAtIndex:indexPath.row]];
     }else{
         //获得一个照片对象
         JJPhoto *imageAsset = [self.selectedImages objectAtIndex:indexPath.row];
-        //异步请求资源对应的缩略图
-        [imageAsset requestThumbnailImageWithSize:[self referenceImageSize] completion:^(UIImage *result, NSDictionary *info) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [cell updatePublishImgCell:NO img:result];
-            });
-        }];
+        [cell updatePublishImgCell:NO img:imageAsset];
     }
-    
     return cell;
 }
 
-//获取缩略图尺寸
-- (CGSize)referenceImageSize{
-    CGFloat collectionWidth = CGRectGetWidth(self.previewCollection.bounds);
-    CGFloat collectionSpace = self.previewCollection.contentInset.left + self.previewCollection.contentInset.right;
-    CGFloat referenceWidth = 0.0f;
-    
-    //如果是iPhone设备，默认显示的照片为4列
-    referenceWidth = (collectionWidth - 3 * collectionSpace) / 3;
-    
-    return CGSizeMake(referenceWidth, referenceWidth);
-}
 
 #pragma mark - keyborad notification
 - (void)keyboardWillShow:(NSNotification *)notif {
@@ -259,6 +244,12 @@
 #pragma mark - JJPublicTextDelegate
 - (void)textViewShouldBeginEditing:(UITextView *)publishView{
     self.buttomMenu.emojBtn.selected = NO;
+}
+
+#pragma mark - JJPublishCellDelegate
+- (void)JJPublishCallBack:(JJPublishPreviewCell *)cell{
+    [self.selectedImages removeObject:cell.obj];
+    [self.previewCollection reloadData];
 }
 
 @end
