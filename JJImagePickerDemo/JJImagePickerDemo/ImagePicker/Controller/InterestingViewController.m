@@ -14,6 +14,7 @@
 #import "JJBottomMenu.h"
 #import "ViewController.h"
 #import "UICollectionView+JJ.h"
+#import "PhotoEditingViewController.h"
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
@@ -185,7 +186,22 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //调整图片
-    NSLog(@"111111111111");
+    if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
+        
+    }else{
+        JJPhoto *asset = (JJPhoto*)[self.selectedImages objectAtIndex:indexPath.row];
+        PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
+        
+        [asset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [editViewController setEditImage:result];
+                [self presentViewController:editViewController animated:YES completion:^{
+                }];
+            });
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+        }];
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
