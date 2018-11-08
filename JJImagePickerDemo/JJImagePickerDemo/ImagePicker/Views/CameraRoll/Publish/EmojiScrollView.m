@@ -23,12 +23,9 @@
 @end
 @implementation EmojiScrollView
 
--(id)initWithFrame:(CGRect)frame AndImageArray:(NSArray*)souceArray;
-{
+-(id)initWithFrame:(CGRect)frame AndImageArray:(NSArray*)souceArray;{
     self = [super initWithFrame:frame];
-    
     if (self) {
-//      self.backgroundColor =[UIColor redColor];
         self.scrollEnabled=YES;
         self.pagingEnabled=YES;
         self.bounces=NO;
@@ -40,49 +37,35 @@
         self.maximumZoomScale=1;
         self.decelerationRate=0.4f;
         self.backgroundColor = [UIColor clearColor];
-        [self creatViewForFace:souceArray];
         
-        }
-    
+        [self creatViewForFace:souceArray];
+    }
     return self;
-    
-    
-    
-    
 }
 
 
--  (void)emjiScrollBack
-{
-     NSLog(@"_slideBlock：%@",self.emojiDelegate);
-    
+-  (void)emjiScrollBack{
     if (self.emojiDelegate &&[self.emojiDelegate respondsToSelector:@selector(emojiBackPageNumber: andIndex:)]) {
         [self.emojiDelegate emojiBackPageNumber:self.pageNum andIndex:0];
-        
     }
-    
 }
 
-
-
-- (void)creatViewForFace:(NSArray*)imageArray;
-{
+- (void)creatViewForFace:(NSArray*)imageArray;{
     if (imageArray.count ==0) {
-        
         NSLog(@"数组出错，内无值");
-        
         return;
     }
    
-    float  lineSpace = (self.frame.size.height -20-IMAGEWIDTH *LINEFORVIEW)/4;
-    float  columnSpace =  (self.frame.size.width -IMAGEWIDTH *COUNTFORLINE)/8;
-    NSInteger   onePageCount =COUNTFORLINE *LINEFORVIEW;
+    float  lineSpace = (self.frame.size.height -20-IMAGEWIDTH * LINEFORVIEW)/4;
+    float  columnSpace =  (self.frame.size.width -IMAGEWIDTH * COUNTFORLINE)/8;
     
-    NSInteger  page  =0;
+    NSInteger onePageCount = COUNTFORLINE *LINEFORVIEW;
+    NSInteger page = 0;
+    
     if (0 == imageArray.count % onePageCount) {
-        page = (NSInteger) imageArray.count/onePageCount;
+        page = (NSInteger) imageArray.count / onePageCount;
     }else{
-        page =(NSInteger) imageArray.count/onePageCount +1;
+        page =(NSInteger) imageArray.count / onePageCount +1;
     }
     
     self.pageNum = page;
@@ -96,10 +79,10 @@
     
     NSInteger  n = 0;
     NSString   *imageName = nil;
-    for (int i = 0; i<page; i++) {
+    for (int i = 0; i < page; i++) {
         NSInteger  pageNum = self.frame.size.width *i;
         for (int j = 0; j < onePageCount ; j++) {
-            UIImageView  *image = [[UIImageView alloc]init];
+            UIImageView  *image = [[UIImageView alloc] init];
             image.userInteractionEnabled = YES;
             image.frame = CGRectMake(pageNum +columnSpace +(columnSpace+IMAGEWIDTH)*(j%COUNTFORLINE) ,lineSpace+(lineSpace +IMAGEWIDTH)*(j/COUNTFORLINE) , IMAGEWIDTH, IMAGEWIDTH);
 
@@ -110,21 +93,18 @@
                 UITapGestureRecognizer  *delTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deleteTap:)];
                 [image addGestureRecognizer:delTap];
             }else{
-                imageName =[imageArray objectAtIndex:n];                
+                imageName =[imageArray objectAtIndex:n];
+                image.image = [UIImage imageNamed:imageName];
                 UITapGestureRecognizer  *clickTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickTap:)];
                 [image addGestureRecognizer:clickTap];
                 n++;
             }
-            image.image = [UIImage imageNamed:imageName];
             [self addSubview:image];
         }
     }
-    
 }
 
-- (void)addPageControl;
-{
-    
+- (void)addPageControl;{
     self.page = [[UIPageControl alloc]initWithFrame:CGRectMake((MAXWIDTH -150)/2, self.frame.size.height-20, 150, 20)];
     
     NSLog(@"=================================%@",NSStringFromCGRect(self.superview.frame));
@@ -133,44 +113,32 @@
     self.page.pageIndicatorTintColor=[UIColor colorWithRed:100/255.0 green:100/255.0 blue:100/255.0 alpha:1.0];
     self.page.currentPageIndicatorTintColor=[UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1.0];
     [self.superview addSubview:self.page];
- 
-    
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 //    if (scrollView == self) {
-        NSInteger   index = scrollView.contentOffset.x/self.frame.size.width;
-        self.page.currentPage = index;
+    NSInteger   index = scrollView.contentOffset.x/self.frame.size.width;
+    self.page.currentPage = index;
     
     if (self.emojiDelegate &&[self.emojiDelegate respondsToSelector:@selector(emojiBackPageNumber:andIndex:)]) {
         [self.emojiDelegate emojiBackPageNumber:self.pageNum andIndex:index];
-        
-    }}
+    }
+}
 
 
 
 - (void)deleteTap:(UITapGestureRecognizer*)tap
 {
-    
-    NSLog(@"删除");
     if (self.emojiDelegate &&[self.emojiDelegate respondsToSelector:@selector(deleteString)]) {
         
         [self.emojiDelegate deleteString];
     }
 }
 
--(void)clickTap:(UITapGestureRecognizer*)tap
-{
- 
-    NSLog(@"点击表情");
-    NSInteger    numberFace = tap.view.tag -1000;
-    NSLog(@"----------------%@",[[NaturalData shareInStance].imageFaceArray objectAtIndex:numberFace]);
-    
-    if (self.emojiDelegate &&[self.emojiDelegate respondsToSelector:@selector(emojiSelcet:)]) {
-        
+-(void)clickTap:(UITapGestureRecognizer*)tap{
+    NSInteger numberFace = tap.view.tag - 1000;
+    if(self.emojiDelegate &&[self.emojiDelegate respondsToSelector:@selector(emojiSelcet:)]) {
         [self.emojiDelegate emojiSelcet:numberFace];
-        
     }
 }
 

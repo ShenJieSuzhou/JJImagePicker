@@ -100,8 +100,6 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
-//    NSAttributedString *labelAttributed = [textView.text emotionStringWithEmojiHeight:15];
-//    self.publishText.attributedText = labelAttributed;
      [self.publishText scrollRangeToVisible:NSMakeRange(self.publishText.text.length, 1)];
 }
 

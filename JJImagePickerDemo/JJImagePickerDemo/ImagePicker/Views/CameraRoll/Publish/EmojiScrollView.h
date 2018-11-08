@@ -11,14 +11,11 @@ typedef void  (^scrollViewSlide) (NSInteger totle ,NSInteger  index);
 
 @protocol emojiScrollViewDelegate <NSObject>
 
-
 - (void)emojiSelcet:(NSInteger)numface;
 
 - (void)deleteString ;
 
-
 - (void)emojiBackPageNumber:(NSInteger)number andIndex:(NSInteger)index;
-
 
 @end
 
@@ -28,9 +25,9 @@ typedef void  (^scrollViewSlide) (NSInteger totle ,NSInteger  index);
 
 -(id)initWithFrame:(CGRect)frame AndImageArray:(NSArray*)souceArray;
 
-@property(nonatomic,weak)id<emojiScrollViewDelegate> emojiDelegate;
+@property(nonatomic,weak) id<emojiScrollViewDelegate> emojiDelegate;
 
-@property (nonatomic,copy)scrollViewSlide       slideBlock;
+@property (nonatomic,copy) scrollViewSlide slideBlock;
 
 -  (void)emjiScrollBack;
 

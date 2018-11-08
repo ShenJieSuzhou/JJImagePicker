@@ -26,7 +26,7 @@
 //底部工具
 @property (nonatomic, strong) EditingSubToolView *stickerListView;
 //sticker 数组
-@property (nonatomic, copy) NSMutableArray *stickerArrays;
+@property (nonatomic, strong) NSMutableArray *stickerArrays;
 //代理
 @property (nonatomic, weak) id<JJStickDelegate> delegate;
 

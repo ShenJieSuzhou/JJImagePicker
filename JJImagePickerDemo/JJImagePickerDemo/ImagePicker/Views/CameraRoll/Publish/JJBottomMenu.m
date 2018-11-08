@@ -9,8 +9,11 @@
 #import "JJBottomMenu.h"
 #define LOCATION_WIDTH 120.0f
 #define LOCATION_HEIGHT 30.0f
-#define MENU_HEIGHT 40.0f
+#define MENU_HEIGHT 50.0f
 #define MENU_PADDING 10.0f
+#define MENU_VIEW_WIDTH self.view.frame.size.width
+#define MENU_VIEW_HEIGHT self.view.frame.size.height
+
 
 @implementation JJBottomMenu
 @synthesize locationBtn = _locationBtn;
@@ -42,9 +45,9 @@
     [self addSubview:_locationBtn];
     
     _emojBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_emojBtn setImage:[UIImage imageNamed:@"emoj"] forState:UIControlStateNormal];
-    [_emojBtn setImage:[UIImage imageNamed:@"keyboard_press"] forState:UIControlStateSelected];
-    [_emojBtn setFrame:CGRectMake(10.0f, 10.0f, 20.0f, 20.0f)];
+    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_message_face"] forState:UIControlStateNormal];
+    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_keywoad"] forState:UIControlStateSelected];
+    [_emojBtn setFrame:CGRectMake(10.0f, 10.0f, 30.0f, 30.0f)];
     [_emojBtn addTarget:self action:@selector(popEmojSelectView:) forControlEvents:UIControlEventTouchUpInside];
     _emojBtn.tag = ChatFunctionViewShowFace;
     
@@ -57,10 +60,9 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     CGFloat width = self.frame.size.width;
-//    CGFloat height = self.frame.size.height;
-    [_locationBtn setFrame:CGRectMake(MENU_PADDING, 5, LOCATION_WIDTH, LOCATION_HEIGHT)];
+    [_locationBtn setFrame:CGRectMake(MENU_PADDING, 10.0f, LOCATION_WIDTH, LOCATION_HEIGHT)];
     [_locationBtn.layer setCornerRadius:15];
-    [_menuView setFrame:CGRectMake(0, LOCATION_HEIGHT + MENU_PADDING, width, MENU_HEIGHT)];
+    [_menuView setFrame:CGRectMake(0, MENU_HEIGHT, width, MENU_HEIGHT)];
 }
 
 - (void)popEmojSelectView:(UIButton *)sender{

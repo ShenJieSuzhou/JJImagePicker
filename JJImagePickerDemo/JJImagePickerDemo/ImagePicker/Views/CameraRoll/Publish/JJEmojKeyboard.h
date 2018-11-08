@@ -14,7 +14,6 @@
 
 - (void)faceClick:(NSString*)faceName andFaceNumber:(NSInteger)number;
 
-
 @end
 
 @interface JJEmojKeyboard : UIView<emojiScrollViewDelegate>

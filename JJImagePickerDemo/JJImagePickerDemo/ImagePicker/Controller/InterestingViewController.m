@@ -15,7 +15,7 @@
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
-#define MENU_BUTTOM_HEIGHT 80.0f
+#define MENU_BUTTOM_HEIGHT 100.0f
 #define PUBLISH_TEXT_HEIGHT 80.0f
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
@@ -69,6 +69,9 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self addKeyBoardNotification];
+    
+    self.emojKeyboard = [[JJEmojKeyboard alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT, PUBLISH_VIEW_WIDTH, 200.0f)];
+    self.emojKeyboard.delegate = self.publicText;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,15 +122,6 @@
         _buttomMenu.delegate = self;
     }
     return _buttomMenu;
-}
-
-- (JJEmojKeyboard *)emojKeyboard{
-    if(!_emojKeyboard){
-        _emojKeyboard = [[JJEmojKeyboard alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT, PUBLISH_VIEW_WIDTH, 200.0f)];
-        _emojKeyboard.delegate = self.publicText;
-    }
-    
-    return _emojKeyboard;
 }
 
 -(UICollectionView *)previewCollection{
@@ -249,7 +243,6 @@
 - (void)showViewWithType:(ChatFunctionViewShowType)showType{
     if(showType == ChatFunctionViewShowFace){
         [self.publicText.publishText resignFirstResponder];
-        
         [self.view addSubview:self.emojKeyboard];
         [UIView animateWithDuration:0.25 animations:^{
             [self.emojKeyboard setFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - 200.0f, PUBLISH_VIEW_WIDTH, 200.0f)];
