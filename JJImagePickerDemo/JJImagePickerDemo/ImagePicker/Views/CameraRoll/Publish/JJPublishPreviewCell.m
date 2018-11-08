@@ -9,8 +9,8 @@
 #import "JJPublishPreviewCell.h"
 #define PIC_EDIT_WIDTH 40.0f
 #define PIC_EDIT_HEIGHT 20.0f
-#define PIC_DEL_WIDTH 40.0f
-#define PIC_DEL_HEIGHT 40.0f
+#define PIC_DEL_WIDTH 20.0f
+#define PIC_DEL_HEIGHT 20.0f
 
 @implementation JJPublishPreviewCell
 
@@ -47,6 +47,7 @@
     //添加 editbutton
     _editLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_editLabel setText:@"编辑"];
+    [_editLabel setFont:[UIFont systemFontOfSize:12.0f]];
     [_editLabel setTextColor:[UIColor whiteColor]];
     [self.contentImageView addSubview:_editLabel];
     
@@ -54,7 +55,7 @@
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
-    [_deleteBtn setBackgroundColor:[UIColor whiteColor]];
+    [_deleteBtn setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f]];
     [self.contentView addSubview:_deleteBtn];
     
     [self isDefaultImage:_isAddCell];
@@ -74,7 +75,7 @@
     [super layoutSubviews];
     self.contentImageView.frame = self.contentView.bounds;
     CGRect size = self.contentImageView.frame;
-    [_editLabel setFrame:CGRectMake(0, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
+    [_editLabel setFrame:CGRectMake(5.0f, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
 }
 
