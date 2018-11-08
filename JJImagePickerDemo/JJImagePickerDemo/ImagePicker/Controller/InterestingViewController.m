@@ -13,6 +13,7 @@
 #import "JJPublicText.h"
 #import "JJBottomMenu.h"
 #import "ViewController.h"
+#import "UICollectionView+JJ.h"
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
@@ -154,18 +155,8 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-//    UIViewController * presentingViewController = self.presentingViewController;
-//    while (presentingViewController.presentingViewController) {
-//        presentingViewController = presentingViewController.presentingViewController;
-//    }
-//    [presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//
-////    [self dismissViewControllerAnimated:<#(BOOL)#> completion:<#^(void)completion#>]
-    
     UIViewController *vc =self.presentingViewController;
-    
-    //ReadBookController要跳转的界面
-    
+    //要跳转的界面
     while (![vc isKindOfClass:[ViewController class]]) {
         vc = vc.presentingViewController;
     }
@@ -194,7 +185,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //调整图片
-    
+    NSLog(@"111111111111");
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -261,9 +252,17 @@
     self.buttomMenu.emojBtn.selected = NO;
 }
 
+
 #pragma mark - JJPublishCellDelegate
 - (void)JJPublishCallBack:(JJPublishPreviewCell *)cell{
-    [self.selectedImages removeObject:cell.obj];
+    if(!cell.obj){
+        return;
+    }
+    JJPhoto *asset = cell.obj;
+    if([self.selectedImages containsObject:asset]){
+        [self.selectedImages removeObject:asset];
+    }
+    
     [self.previewCollection reloadData];
 }
 

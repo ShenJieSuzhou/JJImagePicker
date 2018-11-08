@@ -9,8 +9,8 @@
 #import "JJPublishPreviewCell.h"
 #define PIC_EDIT_WIDTH 40.0f
 #define PIC_EDIT_HEIGHT 20.0f
-#define PIC_DEL_WIDTH 20.0f
-#define PIC_DEL_HEIGHT 20.0f
+#define PIC_DEL_WIDTH 40.0f
+#define PIC_DEL_HEIGHT 40.0f
 
 @implementation JJPublishPreviewCell
 
@@ -54,7 +54,8 @@
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentImageView addSubview:_deleteBtn];
+    [_deleteBtn setBackgroundColor:[UIColor whiteColor]];
+    [self.contentView addSubview:_deleteBtn];
     
     [self isDefaultImage:_isAddCell];
 }
@@ -98,5 +99,6 @@
         [_delegate JJPublishCallBack:self];
     }
 }
+
 
 @end
