@@ -261,6 +261,9 @@
     JJPhoto *asset = cell.obj;
     if([self.selectedImages containsObject:asset]){
         [self.selectedImages removeObject:asset];
+        if([self.selectedImages count] == 1 && [[self.selectedImages lastObject] isKindOfClass:[UIImage class]]){
+            [self.selectedImages removeAllObjects];
+        }
     }
     
     [self.previewCollection reloadData];
