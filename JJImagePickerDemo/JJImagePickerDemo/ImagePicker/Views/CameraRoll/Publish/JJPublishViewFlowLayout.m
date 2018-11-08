@@ -20,19 +20,19 @@
 - (void)prepareLayout{
     [super prepareLayout];
     //设置item尺寸
-    CGFloat itemWH = self.collectionView.frame.size.width/3;
+    CGFloat itemWH = (self.collectionView.frame.size.width - 20.0f)/3;
     self.itemSize = CGSizeMake(itemWH, itemWH);
     self.collectionView.pagingEnabled = YES;
-//    self.minimumLineSpacing = 5.0f;
+    self.minimumLineSpacing = 5.0f;
     self.minimumInteritemSpacing = 0;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 10.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 10.0f;
-}
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+//    return 10.0f;
+//}
+//
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+//    return 10.0f;
+//}
 
 @end

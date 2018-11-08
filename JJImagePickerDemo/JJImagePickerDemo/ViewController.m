@@ -68,16 +68,16 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-//    self.cpViewController = [CameraPhotoViewController new];
-//    [self presentViewController:self.cpViewController animated:YES completion:^{
+    self.cpViewController = [CameraPhotoViewController new];
+    [self presentViewController:self.cpViewController animated:YES completion:^{
+
+    }];
+    
+//    InterestingViewController *publishView = [InterestingViewController new];
+//    [publishView setSelectedImages:[[NSMutableArray alloc] init]];
+//    [self presentViewController:publishView animated:YES completion:^{
 //
 //    }];
-    
-    InterestingViewController *publishView = [InterestingViewController new];
-    [publishView setSelectedImages:[[NSMutableArray alloc] init]];
-    [self presentViewController:publishView animated:YES completion:^{
-        
-    }];
 }
 
 @end

@@ -303,11 +303,13 @@
 }
 
 - (void)PhotoEditSubEditToolDismiss{
-
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-
+    
 }
 
 #pragma mark - Cropper Delegate -

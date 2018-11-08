@@ -248,8 +248,16 @@
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
         }];
     }else{
+//        for (int i = 0; i < [self.photoGridView.selectedImageAssetArray count]; i++) {
+//            JJPhoto *pObj = [self.photoGridView.selectedImageAssetArray objectAtIndex:i];
+//            [pObj requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+//
+//            } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+//
+//            }];
+//        }
         //跳转到 demo 编辑文本照片界面
-        [self.interestingViewController setSelectedImages:[self.photoGridView.selectedImageAssetArray copy]];
+        [self.interestingViewController setSelectedImages:self.photoGridView.selectedImageAssetArray];
         //跳转到 demo 编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
     

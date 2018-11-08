@@ -40,7 +40,6 @@
     _contentImageView = [[UIImageView alloc] init];
     _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
     _contentImageView.clipsToBounds = YES;
-    _contentImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:self.contentImageView];
     
     //添加 editbutton

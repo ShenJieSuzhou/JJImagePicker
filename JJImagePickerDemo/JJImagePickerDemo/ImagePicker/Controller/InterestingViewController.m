@@ -22,7 +22,7 @@
 
 @interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate>
 
-@property (nonatomic, copy) NSMutableArray *selectedImages;
+@property (nonatomic, strong) NSMutableArray *selectedImages;
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *previewCollection;
 //text
@@ -206,7 +206,9 @@
     CGFloat collectionSpace = self.previewCollection.contentInset.left + self.previewCollection.contentInset.right;
     CGFloat referenceWidth = 0.0f;
     
-    referenceWidth = (collectionWidth - 4 * collectionSpace) / 3;
+    //如果是iPhone设备，默认显示的照片为4列
+    referenceWidth = (collectionWidth - 3 * collectionSpace) / 3;
+    
     return CGSizeMake(referenceWidth, referenceWidth);
 }
 
