@@ -12,6 +12,7 @@
 #import "JJPhoto.h"
 #import "JJPublicText.h"
 #import "JJBottomMenu.h"
+#import "ViewController.h"
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
@@ -153,9 +154,23 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+//    UIViewController * presentingViewController = self.presentingViewController;
+//    while (presentingViewController.presentingViewController) {
+//        presentingViewController = presentingViewController.presentingViewController;
+//    }
+//    [presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//
+////    [self dismissViewControllerAnimated:<#(BOOL)#> completion:<#^(void)completion#>]
+    
+    UIViewController *vc =self.presentingViewController;
+    
+    //ReadBookController要跳转的界面
+    
+    while (![vc isKindOfClass:[ViewController class]]) {
+        vc = vc.presentingViewController;
+    }
+    
+    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 //发表
