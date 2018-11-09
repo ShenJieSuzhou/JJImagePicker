@@ -27,6 +27,9 @@
 
 @interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate>
 
+//jjphoto array
+@property (nonatomic, strong) NSMutableArray *selectedJJPhotos;
+//uiimage array
 @property (nonatomic, strong) NSMutableArray *selectedImages;
 //UICollectionView
 @property (strong, nonatomic) UICollectionView *previewCollection;
@@ -38,6 +41,8 @@
 @property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
 //选择调整图片的索引
 @property (assign) NSInteger currentIndex;
+
+
 @end
 
 @implementation InterestingViewController
@@ -152,7 +157,8 @@
     if(!images){
         return;
     }
-
+    //jjphoto 数组
+    self.selectedJJPhotos = images;
     //所选图片数组
     self.selectedImages = [[NSMutableArray alloc] init];
     

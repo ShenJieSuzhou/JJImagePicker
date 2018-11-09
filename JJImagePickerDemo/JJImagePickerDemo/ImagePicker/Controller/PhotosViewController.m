@@ -222,6 +222,7 @@
 - (void)dismiss:(UIAlertController *)alert{
     [alert dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma -mark 底部按钮点击事件
 - (void)previewBtnClick:(UIButton *)sender{
     //初始化预览相册，当前显示的照片索引
