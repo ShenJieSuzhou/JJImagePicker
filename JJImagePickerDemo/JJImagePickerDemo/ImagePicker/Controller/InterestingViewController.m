@@ -15,6 +15,8 @@
 #import "ViewController.h"
 #import "UICollectionView+JJ.h"
 #import "PhotoEditingViewController.h"
+#import "PhotosViewController.h"
+
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
@@ -199,7 +201,10 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if([self.selectedImages count] < 9 && (indexPath.row + 1) == [self.selectedImages count]){
         //添加图片
-        
+        PhotosViewController *photoViewControl = [PhotosViewController new];
+        [self presentViewController:photoViewControl animated:YES completion:^{
+            
+        }];
     }else {
         _currentIndex = indexPath.row;
         //调整图片
