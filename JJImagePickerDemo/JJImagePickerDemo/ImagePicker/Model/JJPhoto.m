@@ -120,6 +120,7 @@
     PHImageRequestOptions *imageRequestOptions = [[PHImageRequestOptions alloc] init];
     imageRequestOptions.networkAccessAllowed = YES; // 允许访问网络
     imageRequestOptions.progressHandler = phProgressHandler;
+    imageRequestOptions.synchronous = YES;
     
     return [[JJImageManager getInstance].phCachingImageManager requestImageForAsset:_jjAsset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:imageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         if(completion){

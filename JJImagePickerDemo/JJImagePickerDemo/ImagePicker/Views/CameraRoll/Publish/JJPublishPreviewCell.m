@@ -21,6 +21,8 @@
 @synthesize delegate = _delegate;
 @synthesize isAddCell = _isAddCell;
 @synthesize obj = _obj;
+@synthesize imageData = _imageData;
+@synthesize isAdjust = _isAdjust;
 
 
 - (id)initWithFrame:(CGRect)frame{
@@ -38,6 +40,8 @@
 
 - (void)commonInitlization{
     _isAddCell = YES;
+    _isAdjust = NO;
+    
     //添加图片视图
     _contentImageView = [[UIImageView alloc] init];
     _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -79,21 +83,28 @@
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
 }
 
-- (void)updatePublishImgCell:(BOOL)flag img:(JJPhoto*)imageObj{
-    _obj = imageObj;
+- (void)updatePublishImgCell:(BOOL)flag asset:(NSObject *)imageObj{
     [self isDefaultImage:flag];
-    //异步请求资源对应的缩略图
-    [imageObj requestThumbnailImageWithSize:CGSizeMake(100, 100) completion:^(UIImage *result, NSDictionary *info) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.contentImageView setImage:result];
-        });
-    }];
+    if([imageObj isKindOfClass:[JJPhoto class]]){
+        _obj = (JJPhoto *)imageObj;
+        //异步请求资源对应的缩略图
+        [_obj requestThumbnailImageWithSize:CGSizeMake(100, 100) completion:^(UIImage *result, NSDictionary *info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageData = result;
+                [self.contentImageView setImage:result];
+            });
+        }];
+    }else if([imageObj isKindOfClass:[UIImage class]]){
+        self.imageData = (UIImage *)imageObj;
+        [self.contentImageView setImage:self.imageData];
+    }
+    
 }
 
-- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image{
-    [self isDefaultImage:flag];
-    [self.contentImageView setImage:image];
-}
+//- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image{
+//    [self isDefaultImage:flag];
+//    [self.contentImageView setImage:image];
+//}
 
 - (void)deleteThePhoto:(UIButton *)sender{
     if([_delegate respondsToSelector:@selector(JJPublishCallBack:)]){

@@ -31,8 +31,12 @@
 
 @property (assign) BOOL isAddCell;
 
-- (void)updatePublishImgCell:(BOOL)flag img:(JJPhoto*)imageObj;
+@property (assign) BOOL isAdjust;
 
-- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image;
+@property (nonatomic, strong) UIImage *imageData;
+
+- (void)updatePublishImgCell:(BOOL)flag asset:(NSObject *)imageObj;
+
+- (void)isDefaultImage:(BOOL)flag;
 
 @end

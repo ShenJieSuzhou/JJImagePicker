@@ -145,13 +145,25 @@
     return _previewCollection;
 }
 
-- (void)setSelectedImages:(NSMutableArray *)selectedImages{
-    if(!selectedImages){
+- (void)setSeleImages:(NSMutableArray *)images{
+    if(!images){
         return;
     }
-    _selectedImages = selectedImages;
-    if([_selectedImages count] < 9){
-        [_selectedImages addObject:[UIImage imageNamed:@"addImg"]];
+
+    //所选图片数组
+    self.selectedImages = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [images count]; i++) {
+        JJPhoto *pObj = [images objectAtIndex:i];
+        [pObj requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            [self.selectedImages addObject:result];
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+        }];
+    }
+
+    if([self.selectedImages count] < 9){
+        [self.selectedImages addObject:[UIImage imageNamed:@"addImg"]];
     }
 }
 
@@ -184,21 +196,16 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //调整图片
-    if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
+    if([self.selectedImages count] < 9 && (indexPath.row + 1) == [self.selectedImages count]){
+        //添加图片
         
-    }else{
-        JJPhoto *asset = (JJPhoto*)[self.selectedImages objectAtIndex:indexPath.row];
+    }else {
+        //调整图片
         PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
-        
-        [asset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [editViewController setEditImage:result];
-                [self presentViewController:editViewController animated:YES completion:^{
-                }];
-            });
-        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-            
+        UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
+
+        [self presentViewController:editViewController animated:YES completion:^{
+            [editViewController setEditImage:origanial];
         }];
     }
 }
@@ -208,12 +215,14 @@
     cell.delegate = self;
     
     if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
-        [cell addDefaultImg:YES img:[self.selectedImages objectAtIndex:indexPath.row]];
-    }else{
-        //获得一个照片对象
-        JJPhoto *imageAsset = [self.selectedImages objectAtIndex:indexPath.row];
-        [cell updatePublishImgCell:NO img:imageAsset];
+        UIImage *image = [self.selectedImages objectAtIndex:indexPath.row];
+        [cell updatePublishImgCell:NO asset:image];
     }
+
+    if((indexPath.row + 1) == [self.selectedImages count]){
+        [cell isDefaultImage:YES];
+    }
+    
     return cell;
 }
 
