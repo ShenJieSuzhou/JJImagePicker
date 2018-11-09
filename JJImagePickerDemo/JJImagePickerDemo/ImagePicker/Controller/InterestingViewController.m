@@ -34,7 +34,8 @@
 @property (strong, nonatomic) JJBottomMenu *buttomMenu;
 //emoj
 @property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
-
+//选择调整图片的索引
+@property (assign) NSInteger currentIndex;
 @end
 
 @implementation InterestingViewController
@@ -42,7 +43,7 @@
 @synthesize previewCollection = _previewCollection;
 @synthesize publicText = _publicText;
 @synthesize buttomMenu = _buttomMenu;
-
+@synthesize currentIndex = _currentIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -200,8 +201,10 @@
         //添加图片
         
     }else {
+        _currentIndex = indexPath.row;
         //调整图片
         PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
+        [editViewController setParentPage:PAGE_PUBLISH];
         editViewController.delegate = self;
         UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
 
@@ -294,8 +297,13 @@
     [self.previewCollection reloadData];
 }
 
+#pragma mark - AdjustImageFinishedDelegate
 - (void)AdjustImageFinished:(UIViewController *)viewController image:(UIImage *)image{
+    [viewController dismissViewControllerAnimated:YES completion:^{
+    }];
     
+    [self.selectedImages replaceObjectAtIndex:_currentIndex withObject:image];
+    [self.previewCollection reloadData];
 }
 
 @end
