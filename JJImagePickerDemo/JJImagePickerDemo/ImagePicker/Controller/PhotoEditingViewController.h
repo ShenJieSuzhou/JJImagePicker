@@ -17,9 +17,23 @@
 #import "ScrawlViewController.h"
 #import "WordsBrushViewController.h"
 
+typedef enum : NSUInteger {
+    PAGE_GALLARY,
+    PAGE_PUBLISH,
+} PARENT_PAGE;
+
+@class PhotoEditingViewController;
+@protocol AdjustImageFinishedDelegate <NSObject>
+
+- (void)AdjustImageFinished:(UIViewController *)viewController image:(UIImage *)image;
+
+@end
+
+//typedef void(^AdjustViewFinishCallBack)(UIImage *adjustImage, UIViewController *viewController);
+
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate>
 
-@property (nonatomic, weak) id<PhotoEditingDelegate> delegate;
+@property (nonatomic, weak) id<AdjustImageFinishedDelegate> delegate;
 
 //预览图底层layer
 @property (nonatomic, strong) UIView *layerV;
@@ -38,11 +52,16 @@
 
 @property (nonatomic, assign) NSInteger angle;
 
+@property (assign) PARENT_PAGE parentPage;
+
+//@property (nonatomic, weak) AdjustViewFinishCallBack adjustViewBlock;
+
 /*
  * @brief 设置要编辑的图
  * @param image 初始化图
  */
 - (void)setEditImage:(UIImage *)image;
 
+- (void)setPageJumpFrom:(PARENT_PAGE)page;
 
 @end

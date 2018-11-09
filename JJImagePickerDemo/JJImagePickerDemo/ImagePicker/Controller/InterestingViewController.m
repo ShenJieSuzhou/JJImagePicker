@@ -23,7 +23,7 @@
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedImages;
 //UICollectionView
@@ -202,6 +202,7 @@
     }else {
         //调整图片
         PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
+        editViewController.delegate = self;
         UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
 
         [self presentViewController:editViewController animated:YES completion:^{
@@ -291,6 +292,10 @@
     }
     
     [self.previewCollection reloadData];
+}
+
+- (void)AdjustImageFinished:(UIViewController *)viewController image:(UIImage *)image{
+    
 }
 
 @end

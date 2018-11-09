@@ -31,6 +31,7 @@
 @synthesize layerV = _layerV;
 @synthesize historys = _historys;
 @synthesize pAdjustModel = _pAdjustModel;
+@synthesize parentPage = _parentPage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,11 +88,9 @@
     
 }
 
-//- (void)viewDidLayoutSubviews
-//{
-//    [super viewDidLayoutSubviews];
-//
-//}
+- (void)setPageJumpFrom:(PARENT_PAGE)page{
+    _parentPage = page;
+}
 
 #pragma mark - Image Layout -
 - (void)layoutImageView
@@ -148,15 +147,38 @@
 
 //返回
 - (void)backBtnClick:(UIButton *)sender{
+    _delegate = nil;
+    _preViewImage = nil;
+    _preImage = nil;
+    _editToolView = nil;
+    _editData = nil;
+    _layerV = nil;
+    _historys = nil;
+    _pAdjustModel = nil;
+    
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 
-//finished 完成
+//完成
 - (void)finishedBtnClick:(UIButton *)sender{
     //跳转到发布页面
+//    _preViewImage = nil;
+    _preImage = nil;
+    _editToolView = nil;
+    _editData = nil;
+    _layerV = nil;
+    _historys = nil;
+    _pAdjustModel = nil;
     
+    if(_parentPage == PAGE_GALLARY){
+        
+    }else if(_parentPage == PAGE_PUBLISH){
+        if([_delegate respondsToSelector:@selector(AdjustImageFinished:image:)]){
+            [_delegate AdjustImageFinished:self image:_preViewImage.image];
+        }
+    }
 }
 
 - (NSMutableArray *)parseDataToObject:(NSDictionary *)fieldDic{
@@ -309,7 +331,7 @@
 }
 
 - (void)PhotoEditSubEditToolConfirm{
-    
+    NSLog(@"hshhshshshsh");
 }
 
 #pragma mark - Cropper Delegate -
@@ -383,6 +405,11 @@
 
 - (void)AdjustView:(AdjustViewController *)view didCancel:(BOOL) isCancel{
     
+}
+
+#pragma mark - JJStickDelegate
+- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull UIImage *)image{
+    NSLog(@"贴纸");
 }
 
 @end
