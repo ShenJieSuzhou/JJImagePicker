@@ -11,10 +11,9 @@
 
 @class JJPublishPreviewCell;
 @protocol JJPublishCellDelegate <NSObject>
-
 - (void)JJPublishCallBack:(JJPublishPreviewCell *)cell;
-
 @end
+
 
 @interface JJPublishPreviewCell : UICollectionViewCell
 

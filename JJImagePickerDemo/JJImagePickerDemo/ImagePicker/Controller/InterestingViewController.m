@@ -13,6 +13,8 @@
 #import "JJPublicText.h"
 #import "JJBottomMenu.h"
 #import "ViewController.h"
+#import "UICollectionView+JJ.h"
+#import "PhotoEditingViewController.h"
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
@@ -154,18 +156,8 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-//    UIViewController * presentingViewController = self.presentingViewController;
-//    while (presentingViewController.presentingViewController) {
-//        presentingViewController = presentingViewController.presentingViewController;
-//    }
-//    [presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//
-////    [self dismissViewControllerAnimated:<#(BOOL)#> completion:<#^(void)completion#>]
-    
     UIViewController *vc =self.presentingViewController;
-    
-    //ReadBookController要跳转的界面
-    
+    //要跳转的界面
     while (![vc isKindOfClass:[ViewController class]]) {
         vc = vc.presentingViewController;
     }
@@ -193,7 +185,22 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //调整图片
-    
+    if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
+        
+    }else{
+        JJPhoto *asset = (JJPhoto*)[self.selectedImages objectAtIndex:indexPath.row];
+        PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
+        
+        [asset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [editViewController setEditImage:result];
+                [self presentViewController:editViewController animated:YES completion:^{
+                }];
+            });
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+        }];
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -260,9 +267,20 @@
     self.buttomMenu.emojBtn.selected = NO;
 }
 
+
 #pragma mark - JJPublishCellDelegate
 - (void)JJPublishCallBack:(JJPublishPreviewCell *)cell{
-    [self.selectedImages removeObject:cell.obj];
+    if(!cell.obj){
+        return;
+    }
+    JJPhoto *asset = cell.obj;
+    if([self.selectedImages containsObject:asset]){
+        [self.selectedImages removeObject:asset];
+        if([self.selectedImages count] == 1 && [[self.selectedImages lastObject] isKindOfClass:[UIImage class]]){
+            [self.selectedImages removeAllObjects];
+        }
+    }
+    
     [self.previewCollection reloadData];
 }
 
