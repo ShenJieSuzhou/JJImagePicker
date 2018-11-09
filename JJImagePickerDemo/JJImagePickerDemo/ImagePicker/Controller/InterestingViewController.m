@@ -181,7 +181,6 @@
 }
 
 #pragma mark - collectionViewDelegate
-
 //有多少的分组
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
