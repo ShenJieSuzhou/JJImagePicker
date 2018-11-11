@@ -11,6 +11,6 @@
 
 @interface PhotosViewController : CustomPhotoViewController
 
-
+- (void)setSelectedPhotos:(NSMutableArray *)selectedImages;
 
 @end

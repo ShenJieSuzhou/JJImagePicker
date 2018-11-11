@@ -119,6 +119,15 @@
     return CGSizeMake(referenceWidth, referenceWidth);
 }
 
+- (void)updateSelectedImageArray:(NSMutableArray *)selectedArray{
+    if(!selectedArray){
+        return;
+    }
+    [self.selectedImageAssetArray removeAllObjects];
+    self.selectedImageAssetArray = selectedArray;
+    [self.photoCollectionView reloadData];
+}
+
 
 #pragma mark - collectionViewDelegate
 

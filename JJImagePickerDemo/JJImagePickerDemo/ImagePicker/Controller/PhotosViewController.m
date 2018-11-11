@@ -112,6 +112,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
+    if(!self.photoGridView){
+        [self.photoGridView updateSelectedImageArray:selectedImages];
+    }
+}
+
 - (void)OnCameraRollClick:(id)sender{
     DropButton *cameraRollBtn = (DropButton *)sender;
     

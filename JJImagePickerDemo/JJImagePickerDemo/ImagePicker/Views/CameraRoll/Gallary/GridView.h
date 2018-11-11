@@ -53,4 +53,6 @@
  */
 - (void)refreshPhotoAsset:(JJPhotoAlbum *)album;
 
+- (void)updateSelectedImageArray:(NSMutableArray *)selectedArray;
+
 @end
