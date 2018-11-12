@@ -177,7 +177,7 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-    UIViewController *vc =self.presentingViewController;
+    UIViewController *vc = self.presentingViewController;
     //要跳转的界面
     while (![vc isKindOfClass:[ViewController class]]) {
         vc = vc.presentingViewController;
@@ -208,9 +208,8 @@
     if([self.selectedImages count] < 9 && (indexPath.row + 1) == [self.selectedImages count]){
         //添加图片
         PhotosViewController *photoViewControl = [PhotosViewController new];
-//        __weak typedef(self) weakself = self;
         [self presentViewController:photoViewControl animated:YES completion:^{
-            [photoViewControl setSelectedPhotos:self.selectedJJPhotos];
+            
         }];
     }else {
         _currentIndex = indexPath.row;

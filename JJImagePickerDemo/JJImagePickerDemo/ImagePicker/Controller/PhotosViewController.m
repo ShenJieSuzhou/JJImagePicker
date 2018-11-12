@@ -15,6 +15,12 @@
 #import "InterestingViewController.h"
 #import "PhotoEditingViewController.h"
 
+@protocol PhotosViewPublishDelegate <NSObject>
+
+- (void)photoViewToPublishCallback:(NSMutableArray *)images;
+
+@end
+
 @interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
@@ -29,6 +35,12 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
+@property (nonatomic, weak) id<PhotosViewPublishDelegate> delegate;
+
+@property (assign) BOOL isPublishViewAsk;
+
+- (void)setJumpViewFlag:(BOOL)isPublish;
+
 @end
 
 @implementation PhotosViewController
@@ -38,7 +50,8 @@
 @synthesize cameraRoll = _cameraRoll;
 @synthesize photoPreviewViewController = _photoPreviewViewController;
 @synthesize interestingViewController = _interestingViewController;
-
+@synthesize delegate = _delegate;
+@synthesize isPublishViewAsk = _isPublishViewAsk;
 
 
 - (void)viewDidLoad {
@@ -110,6 +123,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setJumpViewFlag:(BOOL)isPublish{
+    _isPublishViewAsk = isPublish;
 }
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
@@ -255,9 +272,9 @@
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
         }];
     }else{
-        //跳转到 demo 编辑文本照片界面
+        //跳转到编辑文本照片界面
         [self.interestingViewController setSeleImages:self.photoGridView.selectedImageAssetArray];
-        //跳转到 demo 编辑文本照片界面
+        //跳转到编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
     
         }];
