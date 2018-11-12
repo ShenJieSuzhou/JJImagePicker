@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
-@property (assign) BOOL isPublishViewAsk;
+//@property (assign) BOOL isPublishViewAsk;
 
 @end
 
@@ -41,7 +41,7 @@
 @synthesize photoPreviewViewController = _photoPreviewViewController;
 @synthesize interestingViewController = _interestingViewController;
 @synthesize delegate = _delegate;
-@synthesize isPublishViewAsk = _isPublishViewAsk;
+//@synthesize isPublishViewAsk = _isPublishViewAsk;
 
 
 - (void)viewDidLoad {
@@ -115,9 +115,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setJumpViewFlag:(BOOL)isPublish{
-    _isPublishViewAsk = isPublish;
-}
+//- (void)setJumpViewFlag:(BOOL)isPublish{
+//    _isPublishViewAsk = isPublish;
+//}
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
     if(!self.photoGridView){
@@ -247,7 +247,7 @@
 }
 
 - (void)imagePickViewFinishBtnClick:(UIButton *)sender{
-    if(_isPublishViewAsk){
+    if(self.isPublishViewAsk){
         //添加新选择好的图片
         if([_delegate respondsToSelector:@selector(photoViewToPublishCallback:viewCtrl:)]){
             [_delegate photoViewToPublishCallback:self.photoGridView.selectedImageAssetArray viewCtrl:self];

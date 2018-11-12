@@ -18,7 +18,7 @@
 @property (nonatomic, weak) id<PhotosViewPublishDelegate> delegate;
 
 //是否是从publishview加载的
-- (void)setJumpViewFlag:(BOOL)isPublish;
+//- (void)setJumpViewFlag:(BOOL)isPublish;
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages;
 

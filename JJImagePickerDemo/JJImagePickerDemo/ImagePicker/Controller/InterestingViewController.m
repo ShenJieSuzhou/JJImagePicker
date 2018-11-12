@@ -209,7 +209,7 @@
         //添加图片
         PhotosViewController *photoViewControl = [PhotosViewController new];
         photoViewControl.delegate = self;
-        [photoViewControl setJumpViewFlag:YES];
+        photoViewControl.isPublishViewAsk = YES;
         
         [self presentViewController:photoViewControl animated:YES completion:^{
             

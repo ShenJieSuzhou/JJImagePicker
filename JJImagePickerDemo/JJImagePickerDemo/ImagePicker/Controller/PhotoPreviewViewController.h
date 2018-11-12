@@ -47,6 +47,7 @@
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
 
+
 /**
  *  初始化展示数据并刷新 UI
  *
@@ -67,7 +68,9 @@
  */
 //- (void)initImagePickerPreviewWithSelectedImages:(NSMutableArray<JJPhoto *> *)selectedImageAssetArray
 //                               currentImageIndex:(NSInteger)currentImageIndex;
-
 - (void)refreshImagePreview;
+
+//是否是从publishview加载的
+- (void)setJumpViewFlag:(BOOL)isPublish;
 
 @end

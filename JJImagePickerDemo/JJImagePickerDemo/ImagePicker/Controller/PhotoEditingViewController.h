@@ -54,7 +54,6 @@ typedef enum : NSUInteger {
 
 @property (assign) PARENT_PAGE parentPage;
 
-//@property (nonatomic, weak) AdjustViewFinishCallBack adjustViewBlock;
 
 /*
  * @brief 设置要编辑的图

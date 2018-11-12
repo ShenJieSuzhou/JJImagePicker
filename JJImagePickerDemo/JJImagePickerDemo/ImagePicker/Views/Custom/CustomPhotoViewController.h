@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) CustomNaviBarView *customNaviBar;
 @property (nonatomic, strong) TabBarView *jjTabBarView;
-
+@property (assign) BOOL isPublishViewAsk;
 - (void)bringNaviBarToTopmost;
 
 - (void)setNaviBarTitle:(NSString *)strTitle color:(UIColor *)color font:(UIFont *)font;

@@ -16,6 +16,7 @@
 
 @synthesize customNaviBar = _customNaviBar;
 @synthesize jjTabBarView = _jjTabBarView;
+@synthesize isPublishViewAsk = _isPublishViewAsk;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
