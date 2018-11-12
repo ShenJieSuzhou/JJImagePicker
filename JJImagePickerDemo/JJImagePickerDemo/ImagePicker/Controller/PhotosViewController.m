@@ -15,12 +15,6 @@
 #import "InterestingViewController.h"
 #import "PhotoEditingViewController.h"
 
-@protocol PhotosViewPublishDelegate <NSObject>
-
-- (void)photoViewToPublishCallback:(NSMutableArray *)images;
-
-@end
-
 @interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
@@ -35,11 +29,7 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
-@property (nonatomic, weak) id<PhotosViewPublishDelegate> delegate;
-
 @property (assign) BOOL isPublishViewAsk;
-
-- (void)setJumpViewFlag:(BOOL)isPublish;
 
 @end
 
@@ -257,28 +247,37 @@
 }
 
 - (void)imagePickViewFinishBtnClick:(UIButton *)sender{
-    if([self.photoGridView.selectedImageAssetArray count] == 1){
-        //获得一个照片对象
-        JJPhoto *imageAsset = [self.photoGridView.selectedImageAssetArray objectAtIndex:0];
-        __weak typeof(self) weakSelf = self;
-        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-            //在主线程上更新UI
-            dispatch_async(dispatch_get_main_queue(), ^{
-                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
-                [weakSelf presentViewController:photoEditView animated:YES completion:^{
-                    [photoEditView setEditImage:result];
-                }];
-            });
-        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-        }];
+    if(_isPublishViewAsk){
+        //添加新选择好的图片
+        if([_delegate respondsToSelector:@selector(photoViewToPublishCallback:viewCtrl:)]){
+            [_delegate photoViewToPublishCallback:self.photoGridView.selectedImageAssetArray viewCtrl:self];
+        }
     }else{
         //跳转到编辑文本照片界面
         [self.interestingViewController setSeleImages:self.photoGridView.selectedImageAssetArray];
         //跳转到编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
-    
+            
         }];
     }
+    
+//    if([self.photoGridView.selectedImageAssetArray count] == 1){
+//        //获得一个照片对象
+//        JJPhoto *imageAsset = [self.photoGridView.selectedImageAssetArray objectAtIndex:0];
+//        __weak typeof(self) weakSelf = self;
+//        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+//            //在主线程上更新UI
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
+//                [weakSelf presentViewController:photoEditView animated:YES completion:^{
+//                    [photoEditView setEditImage:result];
+//                }];
+//            });
+//        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+//        }];
+//    }else{
+//
+//    }
 }
 
 #pragma -mark PhotoPreviewViewControllerDelegate

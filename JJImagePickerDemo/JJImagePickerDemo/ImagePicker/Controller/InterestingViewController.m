@@ -25,7 +25,7 @@
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate,PhotosViewPublishDelegate>
 
 //jjphoto array
 @property (nonatomic, strong) NSMutableArray *selectedJJPhotos;
@@ -208,6 +208,9 @@
     if([self.selectedImages count] < 9 && (indexPath.row + 1) == [self.selectedImages count]){
         //添加图片
         PhotosViewController *photoViewControl = [PhotosViewController new];
+        photoViewControl.delegate = self;
+        [photoViewControl setJumpViewFlag:YES];
+        
         [self presentViewController:photoViewControl animated:YES completion:^{
             
         }];
@@ -315,6 +318,32 @@
     
     [self.selectedImages replaceObjectAtIndex:_currentIndex withObject:image];
     [self.previewCollection reloadData];
+}
+
+#pragma mark - PhotosViewPublishDelegate
+- (void)photoViewToPublishCallback:(NSMutableArray *)imagesAsset viewCtrl:(UIViewController *)viewControl{
+    if(!imagesAsset){
+        return;
+    }
+    
+    [self.selectedImages removeLastObject];
+    
+    for (int i = 0; i < [imagesAsset count]; i++) {
+        JJPhoto *pObj = [imagesAsset objectAtIndex:i];
+        [pObj requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
+            [self.selectedImages addObject:result];
+        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+        }];
+    }
+    
+    if([self.selectedImages count] < 9){
+        [self.selectedImages addObject:[UIImage imageNamed:@"addImg"]];
+    }
+    
+    [viewControl dismissViewControllerAnimated:YES completion:^{
+        [self.previewCollection reloadData];
+    }];
 }
 
 @end
