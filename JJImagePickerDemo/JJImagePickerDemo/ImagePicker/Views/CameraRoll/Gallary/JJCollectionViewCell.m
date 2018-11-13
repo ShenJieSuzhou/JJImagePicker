@@ -127,4 +127,22 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     }
 }
 
+- (void)updateAssetCell:(JJPhoto *)asset{
+    //异步请求资源对应的缩略图
+    [asset requestThumbnailImageWithSize:CGSizeMake(80.0f, 80.0f) completion:^(UIImage *result, NSDictionary *info) {
+        if([self.assetIdentifier isEqualToString:asset.identifier]){
+            self.contentImageView.image = result;
+        }else{
+            self.contentImageView.image = nil;
+        }
+    }];
+    
+    //为视频加上时间跟类型标记
+    if(asset.assetType == JJAssetTypeVideo){
+        self.videoDuration.text = [NSString jj_timeStringWithMinsAndSecsFromSecs:asset.duration];
+        [self.videoView setHidden:NO];
+        [self.videoDuration setHidden:NO];
+    }
+}
+
 @end

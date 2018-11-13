@@ -16,6 +16,7 @@
 #import "UICollectionView+JJ.h"
 #import "PhotoEditingViewController.h"
 #import "PhotosViewController.h"
+#import "GlobalDefine.h"
 
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
@@ -177,7 +178,9 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
+    self.isPublishViewAsk = NO;
     UIViewController *vc = self.presentingViewController;
+    
     //要跳转的界面
     while (![vc isKindOfClass:[ViewController class]]) {
         vc = vc.presentingViewController;
@@ -210,6 +213,8 @@
         PhotosViewController *photoViewControl = [PhotosViewController new];
         photoViewControl.delegate = self;
         photoViewControl.isPublishViewAsk = YES;
+        int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count]);
+        [photoViewControl setUpGridView:leftNum min:0];
         
         [self presentViewController:photoViewControl animated:YES completion:^{
             

@@ -31,9 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
-    self.maxSelectedNum = JJ_MAX_PHOTO_NUM;
-    self.minSelectedNum = 0;
-    
+   
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor clearColor]];
     
@@ -77,6 +75,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setUpSelectMaxnum:(int)maxnum{
+    self.maxSelectedNum = maxnum;
+    self.minSelectedNum = 0;
 }
 
 - (void)initImagePickerPreviewViewWithImagesAssetArray:(NSMutableArray<JJPhoto *> *)imageAssetArray
@@ -171,41 +174,23 @@
 }
 
 - (void)finishBtnClicked:(UIButton *)sender{
-//    if(self.isPublishViewAsk){
-//        //添加新选择好的图片
-//        if([_delegate respondsToSelector:@selector(photoViewToPublishCallback:viewCtrl:)]){
-//            [_delegate photoViewToPublishCallback:self.imagesAssetArray viewCtrl:self];
-//        }
-//    }else{
+    if(self.isPublishViewAsk){
+        //添加新选择好的图片
+        if([_mDelegate respondsToSelector:@selector(imagePickerPreviewDidFinish:)]){
+            [_mDelegate imagePickerPreviewDidFinish:self ];
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }else{
         //跳转到编辑文本照片界面
         [self.interestingViewController setSeleImages:self.imagesAssetArray];
         //跳转到编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
             
         }];
-//    }
-    
-    
-//    if([self.imagesAssetArray count] == 1){
-//        //获得一个照片对象
-//        JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:self.currentIndex];
-//         __weak typeof(self) weakSelf = self;        
-//        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-//            //在主线程上更新UI
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
-//                [weakSelf presentViewController:photoEditView animated:YES completion:^{
-//                    [photoEditView setEditImage:result];
-//                }];
-//            });
-//        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-//        }];
-//    }else{
-//        //跳转到 demo 编辑文本照片界面
-//        [self presentViewController:self.interestingViewController animated:YES completion:^{
-//            
-//        }];
-//    }
+    }
 }
 
 #pragma -mark JJPhotoPreviewDelegate

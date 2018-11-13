@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
-//@property (assign) BOOL isPublishViewAsk;
+@property (assign) int maxImgNum;
 
 @end
 
@@ -41,7 +41,7 @@
 @synthesize photoPreviewViewController = _photoPreviewViewController;
 @synthesize interestingViewController = _interestingViewController;
 @synthesize delegate = _delegate;
-//@synthesize isPublishViewAsk = _isPublishViewAsk;
+@synthesize maxImgNum = _maxImgNum;
 
 
 - (void)viewDidLoad {
@@ -87,10 +87,8 @@
     _cameraRollView = [[CameraRollView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
     _cameraRollView.delegate = self;
     
-    _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
-    _photoGridView.mDelegate = self;
-    _photoGridView.isAllowedMutipleSelect = YES;
-    [self.view addSubview:_photoGridView];
+    //网格照片
+    [self.view addSubview:self.photoGridView];
     
     //底部tabBarView按钮添加事件
     [self.jjTabBarView.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -110,14 +108,26 @@
     [self.jjTabBarView setEditBtnHidden:YES];
 }
 
+- (GridView *)photoGridView{
+    if(!_photoGridView){
+        _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
+        _photoGridView.mDelegate = self;
+        
+    }
+    return _photoGridView;
+}
+
+- (void)setUpGridView:(int)maxNum min:(int)minNum{
+    _maxImgNum = maxNum;
+    self.photoGridView.maxSelectedNum = maxNum;
+    self.photoGridView.minSelectedNum = minNum;
+    self.photoGridView.isAllowedMutipleSelect = YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)setJumpViewFlag:(BOOL)isPublish{
-//    _isPublishViewAsk = isPublish;
-//}
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
     if(!self.photoGridView){
@@ -160,6 +170,7 @@
     if(!_photoPreviewViewController){
         _photoPreviewViewController = [[PhotoPreviewViewController alloc] init];
         _photoPreviewViewController.mDelegate = self;
+        [_photoPreviewViewController setUpSelectMaxnum:_maxImgNum];
     }
     
     return _photoPreviewViewController;
@@ -170,7 +181,6 @@
     if(!_interestingViewController){
         _interestingViewController = [[InterestingViewController alloc] init];
     }
-    
     return _interestingViewController;
 }
 
@@ -260,24 +270,6 @@
             
         }];
     }
-    
-//    if([self.photoGridView.selectedImageAssetArray count] == 1){
-//        //获得一个照片对象
-//        JJPhoto *imageAsset = [self.photoGridView.selectedImageAssetArray objectAtIndex:0];
-//        __weak typeof(self) weakSelf = self;
-//        [imageAsset requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
-//            //在主线程上更新UI
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
-//                [weakSelf presentViewController:photoEditView animated:YES completion:^{
-//                    [photoEditView setEditImage:result];
-//                }];
-//            });
-//        } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-//        }];
-//    }else{
-//
-//    }
 }
 
 #pragma -mark PhotoPreviewViewControllerDelegate
@@ -302,6 +294,15 @@
         [self.jjTabBarView setSelectedLabelHidden:YES];
     }
     [self.photoGridView.photoCollectionView reloadData];
+}
+
+- (void)imagePickerPreviewDidFinish:(PhotoPreviewViewController *)previewViewController{
+    if([_delegate respondsToSelector:@selector(photoViewToPublishCallback:viewCtrl:)]){
+        [_delegate photoViewToPublishCallback:self.photoGridView.selectedImageAssetArray viewCtrl:self];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 @end

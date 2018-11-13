@@ -9,7 +9,6 @@
 #import "GridView.h"
 #import "JJCollectionViewCell.h"
 #import "JJCollectionViewFlowLayout.h"
-#import "NSString+JJUI.h"
 #import "UICollectionView+JJ.h"
 #import "GlobalDefine.h"
 #import "JJImagePickerHelper.h"
@@ -41,8 +40,7 @@
 - (void)commonInitlization{
     self.imagesAssetArray = [[NSMutableArray alloc] init];
     self.selectedImageAssetArray = [[NSMutableArray alloc] init];
-    
-    self.maxSelectedNum = JJ_MAX_PHOTO_NUM;
+
     self.minSelectedNum = 0;
     self.background = [[UIView alloc] init];
     [self addSubview:self.background];
@@ -162,21 +160,7 @@
     JJCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.assetIdentifier = imageAsset.identifier;
     
-    //异步请求资源对应的缩略图
-    [imageAsset requestThumbnailImageWithSize:[self referenceImageSize] completion:^(UIImage *result, NSDictionary *info) {
-        if([cell.assetIdentifier isEqualToString:imageAsset.identifier]){
-            cell.contentImageView.image = result;
-        }else{
-            cell.contentImageView.image = nil;
-        }
-    }];
-    
-    //为视频加上时间跟类型标记
-    if(imageAsset.assetType == JJAssetTypeVideo){
-        cell.videoDuration.text = [NSString jj_timeStringWithMinsAndSecsFromSecs:imageAsset.duration];
-        [cell.videoView setHidden:NO];
-        [cell.videoDuration setHidden:NO];
-    }
+    [cell updateAssetCell:imageAsset];
     
     if(_isAllowedMutipleSelect){
         [cell.checkBox addTarget:self action:@selector(handleCheckBoxClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -207,6 +191,7 @@
         }
         
         cell.checked = YES;
+        
         [self.selectedImageAssetArray addObject:imageAsset];
         //回调更新底部预览，发送按钮的状态，以及图片的数量
         [_mDelegate JJImagePickerViewController:self selectedNum:[self.selectedImageAssetArray count]];

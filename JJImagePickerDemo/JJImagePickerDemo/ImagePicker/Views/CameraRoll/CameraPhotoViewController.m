@@ -10,6 +10,7 @@
 #import "PhotosViewController.h"
 #import "JJImageManager.h"
 #import "CameraRollViewController.h"
+#import "GlobalDefine.h"
 
 #define CP_BTN_HEIGHT 80.0f
 #define CP_BTN_WIDTH self.view.frame.size.width / 2
@@ -63,6 +64,7 @@
     }else{
         //弹出相册选择器
         PhotosViewController *photosView = [[PhotosViewController alloc] init];
+        [photosView setUpGridView:JJ_MAX_PHOTO_NUM min:0];
         //获取相机胶卷的图片
         [self presentViewController:photosView animated:YES completion:^{
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JJPhotoAlbum.h"
+
 @class GridView;
 @protocol JJImagePickerViewControllerDelegate <NSObject>
 

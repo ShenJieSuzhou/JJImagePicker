@@ -21,6 +21,9 @@
 /// 已经取消选中图片
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index;
 
+/// 完成选择
+- (void)imagePickerPreviewDidFinish:(PhotoPreviewViewController *)previewViewController;
+
 @end
 
 @interface PhotoPreviewViewController : CustomPhotoViewController<JJPhotoPreviewDelegate>
@@ -46,7 +49,7 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
-
+- (void)setUpSelectMaxnum:(int)maxnum;
 
 /**
  *  初始化展示数据并刷新 UI
@@ -70,7 +73,5 @@
 //                               currentImageIndex:(NSInteger)currentImageIndex;
 - (void)refreshImagePreview;
 
-//是否是从publishview加载的
-- (void)setJumpViewFlag:(BOOL)isPublish;
 
 @end

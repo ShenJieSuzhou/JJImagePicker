@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JJPhoto.h"
+#import "NSString+JJUI.h"
 
 @protocol JJCollectionViewCellDelegate<NSObject>
 
@@ -39,5 +41,6 @@
 
 @property (nonatomic, assign) BOOL checked;
 
+- (void)updateAssetCell:(JJPhoto *)asset;
 
 @end
