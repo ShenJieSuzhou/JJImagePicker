@@ -61,25 +61,23 @@
     
     //加载照片比较耗时，所以start loading
     [JJImagePickerHelper startLoadingAnimation:self];
-    
+    __weak typeof(self) weakSelf = self;
     //遍历相册的事情，就交由子线程去完成吧
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [album getAlbumAssetWithOptions:^(JJPhoto *result) {
-            //这里需要对UI进行操作，交由主线程去处理
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if(result){
-                    [self.imagesAssetArray addObject:result];
-                }else{
-                    //当result为nil时，遍历照片完毕
-                    [self.photoCollectionView reloadData];
-                    //加载结束 stop loading
-                    [JJImagePickerHelper stopLoadingAnimation:self];
-                }
-            });
+            if(result){
+                [weakSelf.imagesAssetArray addObject:result];
+            }else{
+                //需要对界面进行操作，放入主线程执行
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    [strongSelf.photoCollectionView reloadData];
+                });
+                //加载结束 stop loading
+                [JJImagePickerHelper stopLoadingAnimation:weakSelf];
+            }
         }];
     });
-    
-    [_photoCollectionView reloadData];
 }
 
 
@@ -102,20 +100,20 @@
     return _photoCollectionView;
 }
 
-//获取缩略图尺寸
-- (CGSize)referenceImageSize{
-    CGFloat collectionWidth = CGRectGetWidth(self.photoCollectionView.bounds);
-    CGFloat collectionSpace = self.photoCollectionView.contentInset.left + self.photoCollectionView.contentInset.right;
-    CGFloat referenceWidth = 0.0f;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        
-    }else{
-        //如果是iPhone设备，默认显示的照片为4列
-        referenceWidth = (collectionWidth - 4 * collectionSpace) / 4;
-    }
-    
-    return CGSizeMake(referenceWidth, referenceWidth);
-}
+////获取缩略图尺寸
+//- (CGSize)referenceImageSize{
+//    CGFloat collectionWidth = CGRectGetWidth(self.photoCollectionView.bounds);
+//    CGFloat collectionSpace = self.photoCollectionView.contentInset.left + self.photoCollectionView.contentInset.right;
+//    CGFloat referenceWidth = 0.0f;
+//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+//
+//    }else{
+//        //如果是iPhone设备，默认显示的照片为4列
+//        referenceWidth = (collectionWidth - 4 * collectionSpace) / 4;
+//    }
+//
+//    return CGSizeMake(referenceWidth, referenceWidth);
+//}
 
 - (void)updateSelectedImageArray:(NSMutableArray *)selectedArray{
     if(!selectedArray){

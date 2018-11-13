@@ -47,25 +47,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupUI];
+    [self loadAlbumAsset];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //网格照片
+    [self.view addSubview:self.photoGridView];
     
-    self.albumsArray = [[NSMutableArray alloc] init];
-    //获取相册的耗时操作，交由子线程去处理 ,开启loading效果
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        __weak typeof(self)weakSelf = self;
-        [[JJImageManager getInstance] getAllAlbumsWithAlbumContentType:JJAlbumContentTypeAll showEmptyAlbum:NO showSmartAlbum:YES usingBlock:^(JJPhotoAlbum *resultAlbum) {
-            //需要对界面进行操作，放入主线程执行
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __strong typeof(weakSelf)strongSelf = weakSelf;
-                if(resultAlbum){
-                    [strongSelf.albumsArray addObject:resultAlbum];
-                }else{
-                    [strongSelf refreshAlbumAndShow];
-                }
-            });
-        }];
-    });
-    
+    [self.jjTabBarView setPreViewBtnHidden:NO];
+    [self.jjTabBarView setEditBtnHidden:YES];
+}
+
+- (void)setupUI{
     //设置标题
     _cameraRoll = [DropButton buttonWithType:UIButtonTypeCustom withSpace:12.0f];
     _cameraRoll.buttonStyle = JJSButtonImageRight;
@@ -87,9 +82,6 @@
     _cameraRollView = [[CameraRollView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
     _cameraRollView.delegate = self;
     
-    //网格照片
-    [self.view addSubview:self.photoGridView];
-    
     //底部tabBarView按钮添加事件
     [self.jjTabBarView.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.jjTabBarView.finishBtn addTarget:self action:@selector(imagePickViewFinishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -101,18 +93,29 @@
     [self.jjTabBarView.previewBtn setEnabled:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self.jjTabBarView setPreViewBtnHidden:NO];
-    [self.jjTabBarView setEditBtnHidden:YES];
+- (void)loadAlbumAsset{
+    self.albumsArray = [[NSMutableArray alloc] init];
+    //获取相册的耗时操作，交由子线程去处理 ,开启loading效果
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        __weak typeof(self)weakSelf = self;
+        [[JJImageManager getInstance] getAllAlbumsWithAlbumContentType:JJAlbumContentTypeAll showEmptyAlbum:NO showSmartAlbum:YES usingBlock:^(JJPhotoAlbum *resultAlbum) {
+            //需要对界面进行操作，放入主线程执行
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+                if(resultAlbum){
+                    [strongSelf.albumsArray addObject:resultAlbum];
+                }else{
+                    [strongSelf refreshAlbumAndShow];
+                }
+            });
+        }];
+    });
 }
 
 - (GridView *)photoGridView{
     if(!_photoGridView){
-        _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height)];
+        _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height - 50.0f)];
         _photoGridView.mDelegate = self;
-        
     }
     return _photoGridView;
 }

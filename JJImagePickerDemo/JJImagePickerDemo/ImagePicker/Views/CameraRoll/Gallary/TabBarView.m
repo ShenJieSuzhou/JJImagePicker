@@ -28,6 +28,7 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
 }
 
 - (void)commonInitlization{
+    [self setBackgroundColor:[UIColor whiteColor]];
     self.editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.editBtn setTitle:@"编辑" forState:UIControlStateNormal];
     [self.editBtn setBackgroundColor:[UIColor clearColor]];

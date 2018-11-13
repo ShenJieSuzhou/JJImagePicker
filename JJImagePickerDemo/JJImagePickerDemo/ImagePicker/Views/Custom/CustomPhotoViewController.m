@@ -22,14 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    [self.view setBackgroundColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0]];
     _customNaviBar = [[CustomNaviBarView alloc] initWithFrame:Rect(0, 0, [CustomNaviBarView barSize].width, [CustomNaviBarView barSize].height)];
     [_customNaviBar setBackgroundColor:[UIColor whiteColor]];
     _customNaviBar.m_viewCtrlParent = self;
     
     [self.view addSubview:_customNaviBar];
-    [self.view setBackgroundColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0]];
-    
+
     [self.view addSubview:self.jjTabBarView];
 }
 
@@ -84,8 +83,10 @@
 //底部视图
 - (TabBarView *)jjTabBarView{
     if(!_jjTabBarView){
+        CGFloat h = self.view.bounds.size.height;
+        CGFloat w = self.view.bounds.size.width;
+        
         _jjTabBarView = [[TabBarView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 50, self.view.bounds.size.width, 50)];
-        [_jjTabBarView setBackgroundColor:[UIColor whiteColor]];
     }
     
     return _jjTabBarView;
