@@ -55,9 +55,6 @@
     [super viewWillAppear:animated];
     //网格照片
     [self.view addSubview:self.photoGridView];
-    
-    [self.jjTabBarView setPreViewBtnHidden:NO];
-    [self.jjTabBarView setEditBtnHidden:YES];
 }
 
 - (void)setupUI{
@@ -86,11 +83,13 @@
     [self.jjTabBarView.previewBtn addTarget:self action:@selector(previewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.jjTabBarView.finishBtn addTarget:self action:@selector(imagePickViewFinishBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    if(!_photoGridView.isAllowedMutipleSelect){
+    if(!self.photoGridView.isAllowedMutipleSelect){
         [self.jjTabBarView setHidden:YES];
     }
     
     [self.jjTabBarView.previewBtn setEnabled:NO];
+    [self.jjTabBarView setPreViewBtnHidden:NO];
+    [self.jjTabBarView setEditBtnHidden:YES];
 }
 
 - (void)loadAlbumAsset{
@@ -101,7 +100,7 @@
         [[JJImageManager getInstance] getAllAlbumsWithAlbumContentType:JJAlbumContentTypeAll showEmptyAlbum:NO showSmartAlbum:YES usingBlock:^(JJPhotoAlbum *resultAlbum) {
             //需要对界面进行操作，放入主线程执行
             dispatch_async(dispatch_get_main_queue(), ^{
-                __strong typeof(weakSelf)strongSelf = weakSelf;
+                __strong typeof(weakSelf) strongSelf = weakSelf;
                 if(resultAlbum){
                     [strongSelf.albumsArray addObject:resultAlbum];
                 }else{
@@ -116,6 +115,7 @@
     if(!_photoGridView){
         _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height - 50.0f)];
         _photoGridView.mDelegate = self;
+        _photoGridView.isAllowedMutipleSelect = YES;
     }
     return _photoGridView;
 }
@@ -124,7 +124,6 @@
     _maxImgNum = maxNum;
     self.photoGridView.maxSelectedNum = maxNum;
     self.photoGridView.minSelectedNum = minNum;
-    self.photoGridView.isAllowedMutipleSelect = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,7 +133,7 @@
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
     if(!self.photoGridView){
-        [self.photoGridView updateSelectedImageArray:selectedImages];
+//        [self.photoGridView updateSelectedImageArray:selectedImages];
     }
 }
 
@@ -197,7 +196,7 @@
         //初始化网格照片界面
         JJPhotoAlbum *album = [self.albumsArray objectAtIndex:0];
         [_cameraRoll setTitle:[album albumName] forState:UIControlStateNormal];
-        [_photoGridView refreshPhotoAsset:album];
+        [self.photoGridView refreshPhotoAsset:album];
         
         //初始化相薄界面
         [_cameraRollView refreshAlbumAseets:self.albumsArray];
@@ -216,6 +215,9 @@
 
 #pragma -mark JJImagePickerViewControllerDelegate
 - (void)JJImagePickerViewController:(GridView *)gridView selectAtIndex:(NSIndexPath *)indexath{
+    if(self.isPublishViewAsk){
+        self.photoPreviewViewController.isPublishViewAsk = YES;
+    }
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:gridView.imagesAssetArray selectedImageAssetArray:gridView.selectedImageAssetArray currentImageIndex:indexath.row singleCheckMode:NO];
 
@@ -251,6 +253,9 @@
 
 #pragma -mark 底部按钮点击事件
 - (void)previewBtnClick:(UIButton *)sender{
+    if(self.isPublishViewAsk){
+        self.photoPreviewViewController.isPublishViewAsk = YES;
+    }
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.photoGridView.selectedImageAssetArray selectedImageAssetArray:self.photoGridView.selectedImageAssetArray currentImageIndex:0 singleCheckMode:NO];
     

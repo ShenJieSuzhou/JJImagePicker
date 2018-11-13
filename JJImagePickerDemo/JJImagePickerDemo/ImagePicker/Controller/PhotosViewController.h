@@ -16,6 +16,7 @@
 @interface PhotosViewController : CustomPhotoViewController
 
 @property (nonatomic, weak) id<PhotosViewPublishDelegate> delegate;
+@property (assign) BOOL isPublishViewAsk;
 
 //初始化网格图
 - (void)setUpGridView:(int)maxNum min:(int)minNum;

@@ -16,7 +16,7 @@
 
 @synthesize customNaviBar = _customNaviBar;
 @synthesize jjTabBarView = _jjTabBarView;
-@synthesize isPublishViewAsk = _isPublishViewAsk;
+//@synthesize isPublishViewAsk = _isPublishViewAsk;
 @synthesize currentPhotoNum = _currentPhotoNum;
 
 - (void)viewDidLoad {
@@ -82,10 +82,7 @@
 
 //底部视图
 - (TabBarView *)jjTabBarView{
-    if(!_jjTabBarView){
-        CGFloat h = self.view.bounds.size.height;
-        CGFloat w = self.view.bounds.size.width;
-        
+    if(!_jjTabBarView){        
         _jjTabBarView = [[TabBarView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 50, self.view.bounds.size.width, 50)];
     }
     

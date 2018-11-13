@@ -178,7 +178,6 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-    self.isPublishViewAsk = NO;
     UIViewController *vc = self.presentingViewController;
     
     //要跳转的界面
@@ -213,7 +212,7 @@
         PhotosViewController *photoViewControl = [PhotosViewController new];
         photoViewControl.delegate = self;
         photoViewControl.isPublishViewAsk = YES;
-        int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count]);
+        int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count] + 1);
         [photoViewControl setUpGridView:leftNum min:0];
         
         [self presentViewController:photoViewControl animated:YES completion:^{
@@ -242,8 +241,10 @@
         [cell updatePublishImgCell:NO asset:image];
     }
 
-    if((indexPath.row + 1) == [self.selectedImages count]){
-        [cell isDefaultImage:YES];
+    if([self.selectedImages count] < 9){
+        if((indexPath.row + 1) == [self.selectedImages count]){
+            [cell isDefaultImage:YES];
+        }
     }
     
     return cell;

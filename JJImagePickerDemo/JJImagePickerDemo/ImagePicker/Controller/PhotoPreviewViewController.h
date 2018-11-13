@@ -49,6 +49,8 @@
 
 @property (nonatomic, strong) InterestingViewController *interestingViewController;
 
+@property (assign) BOOL isPublishViewAsk;
+
 - (void)setUpSelectMaxnum:(int)maxnum;
 
 /**

@@ -108,14 +108,14 @@
     return _photoPreviewView;
 }
 
-//新鲜事发表界面
-- (InterestingViewController *)interestingViewController{
-    if(!_interestingViewController){
-        _interestingViewController = [[InterestingViewController alloc] init];
-    }
-    
-    return _interestingViewController;
-}
+////新鲜事发表界面
+//- (InterestingViewController *)interestingViewController{
+//    if(!_interestingViewController){
+//        _interestingViewController = [[InterestingViewController alloc] init];
+//    }
+//
+//    return _interestingViewController;
+//}
 
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{
@@ -185,9 +185,10 @@
         }];
     }else{
         //跳转到编辑文本照片界面
-        [self.interestingViewController setSeleImages:self.imagesAssetArray];
+        InterestingViewController *interestingView = [InterestingViewController new];
+        [interestingView setSeleImages:self.selectedImageAssetArray];
         //跳转到编辑文本照片界面
-        [self presentViewController:self.interestingViewController animated:YES completion:^{
+        [self presentViewController:interestingView animated:YES completion:^{
             
         }];
     }

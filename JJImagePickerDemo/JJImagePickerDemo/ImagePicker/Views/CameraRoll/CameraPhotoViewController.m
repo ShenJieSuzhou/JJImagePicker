@@ -63,7 +63,7 @@
         NSLog(@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册");
     }else{
         //弹出相册选择器
-        PhotosViewController *photosView = [[PhotosViewController alloc] init];
+        PhotosViewController *photosView = [PhotosViewController new];
         [photosView setUpGridView:JJ_MAX_PHOTO_NUM min:0];
         //获取相机胶卷的图片
         [self presentViewController:photosView animated:YES completion:^{
