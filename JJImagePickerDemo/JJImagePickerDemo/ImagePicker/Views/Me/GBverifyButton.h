@@ -22,6 +22,7 @@
 @property(assign) id target;
 @property (nonatomic, assign) SEL action;
 -(id)initWithFrame:(CGRect)frame delegate:(UIViewController*)Delegate Target:(id)target Action:(SEL)action;
+-(id)initWithFrame:(CGRect)frame;
 
 /**
  *  自定义背景图片

@@ -26,6 +26,17 @@ alpha:1.0]
 @property(nonatomic,retain)UILabel*tipLabel;
 @end
 @implementation GBverifyButton
+
+-(id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if(self){
+        
+    }
+    
+    return self;
+}
+
+
 -(id)initWithFrame:(CGRect)frame delegate:(UIViewController*)Delegate Target:(id)target Action:(SEL)action{
     
     self = [super initWithFrame:frame];
