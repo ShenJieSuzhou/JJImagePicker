@@ -101,11 +101,6 @@
     
 }
 
-//- (void)addDefaultImg:(BOOL)flag img:(UIImage*)image{
-//    [self isDefaultImage:flag];
-//    [self.contentImageView setImage:image];
-//}
-
 - (void)deleteThePhoto:(UIButton *)sender{
     if([_delegate respondsToSelector:@selector(JJPublishCallBack:)]){
         [_delegate JJPublishCallBack:self];

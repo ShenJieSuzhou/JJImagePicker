@@ -303,10 +303,10 @@
 
 #pragma mark - JJPublishCellDelegate
 - (void)JJPublishCallBack:(JJPublishPreviewCell *)cell{
-    if(!cell.obj){
+    if(!cell.imageData){
         return;
     }
-    JJPhoto *asset = cell.obj;
+    UIImage *asset = cell.imageData;
     if([self.selectedImages containsObject:asset]){
         [self.selectedImages removeObject:asset];
         if([self.selectedImages count] == 1 && [[self.selectedImages lastObject] isKindOfClass:[UIImage class]]){
