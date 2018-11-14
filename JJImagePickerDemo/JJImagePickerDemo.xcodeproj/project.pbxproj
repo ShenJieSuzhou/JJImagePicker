@@ -160,6 +160,8 @@
 		E55782572179CBD3003B20BB /* UIView+MosaicExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E55782522179CBD3003B20BB /* UIView+MosaicExtension.m */; };
 		E55BA987219BF34D0078472D /* LoginSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA986219BF34D0078472D /* LoginSessionManager.m */; };
 		E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA989219BF4390078472D /* JJLoginViewController.m */; };
+		E55BA98D219C0EC70078472D /* LoginSpaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA98C219C0EC70078472D /* LoginSpaceView.m */; };
+		E55BA990219C16E70078472D /* GBverifyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA98F219C16E70078472D /* GBverifyButton.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -450,6 +452,10 @@
 		E55BA986219BF34D0078472D /* LoginSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LoginSessionManager.m; path = JJImagePickerDemo/ImagePicker/Controller/LoginSessionManager.m; sourceTree = SOURCE_ROOT; };
 		E55BA988219BF4390078472D /* JJLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJLoginViewController.h; sourceTree = "<group>"; };
 		E55BA989219BF4390078472D /* JJLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJLoginViewController.m; sourceTree = "<group>"; };
+		E55BA98B219C0EC70078472D /* LoginSpaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginSpaceView.h; sourceTree = "<group>"; };
+		E55BA98C219C0EC70078472D /* LoginSpaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginSpaceView.m; sourceTree = "<group>"; };
+		E55BA98E219C16E70078472D /* GBverifyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBverifyButton.h; sourceTree = "<group>"; };
+		E55BA98F219C16E70078472D /* GBverifyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBverifyButton.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -604,10 +610,14 @@
 		4487D800218534B6001E7849 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				E55BA98E219C16E70078472D /* GBverifyButton.h */,
+				E55BA98F219C16E70078472D /* GBverifyButton.m */,
 				E55BA988219BF4390078472D /* JJLoginViewController.h */,
 				E55BA989219BF4390078472D /* JJLoginViewController.m */,
 				4487D804218534FA001E7849 /* MeViewController.h */,
 				4487D805218534FA001E7849 /* MeViewController.m */,
+				E55BA98B219C0EC70078472D /* LoginSpaceView.h */,
+				E55BA98C219C0EC70078472D /* LoginSpaceView.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1400,6 +1410,7 @@
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
 				E5506B5F212FB3330077E62B /* PhotoPreviewViewController.m in Sources */,
+				E55BA98D219C0EC70078472D /* LoginSpaceView.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
 				E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */,
 				E55BA987219BF34D0078472D /* LoginSessionManager.m in Sources */,
@@ -1408,6 +1419,7 @@
 				E5506BEB212FB7D80077E62B /* JJPreviewViewCollectionCell.m in Sources */,
 				E5506BDC212FB7D80077E62B /* JJTableViewCell.m in Sources */,
 				44B91480218D44F5003C1620 /* AdjustModel.m in Sources */,
+				E55BA990219C16E70078472D /* GBverifyButton.m in Sources */,
 				E5506BF0212FB7D80077E62B /* CameraSessionView.m in Sources */,
 				E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */,
 				E55782552179CBD3003B20BB /* UIColor+MosaicExtension.m in Sources */,
