@@ -21,9 +21,9 @@
 @property(assign) UIViewController* delegate;
 @property(assign) id target;
 @property (nonatomic, assign) SEL action;
--(id)initWithFrame:(CGRect)frame delegate:(UIViewController*)Delegate Target:(id)target Action:(SEL)action;
--(id)initWithFrame:(CGRect)frame;
+-(id)initWithFrame:(CGRect)frame root:(UIViewController*)rootView Target:(id)target Action:(SEL)action;
 
+-(void)setupUI:(UIView *)view;
 /**
  *  自定义背景图片
  */

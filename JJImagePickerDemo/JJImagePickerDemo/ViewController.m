@@ -13,8 +13,9 @@
 #import "MeViewController.h"
 #import "CameraPhotoViewController.h"
 #import "CustomTabbar.h"
-
 #import "InterestingViewController.h"
+#import "JJLoginViewController.h"
+
 
 @interface ViewController ()<JJTabBarDelegate>
 
@@ -68,10 +69,15 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    self.cpViewController = [CameraPhotoViewController new];
-    [self presentViewController:self.cpViewController animated:YES completion:^{
-
+    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+    [self presentViewController:jjLoginView animated:YES completion:^{
+        
     }];
+    
+//    self.cpViewController = [CameraPhotoViewController new];
+//    [self presentViewController:self.cpViewController animated:YES completion:^{
+//
+//    }];
     
 //    InterestingViewController *publishView = [InterestingViewController new];
 //    [publishView setSelectedImages:[[NSMutableArray alloc] init]];

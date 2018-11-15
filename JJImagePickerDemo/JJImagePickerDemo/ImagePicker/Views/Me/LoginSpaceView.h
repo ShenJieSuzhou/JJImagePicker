@@ -36,6 +36,10 @@
 
 @property (weak, nonatomic) id<JJLoginDelegate> delegate;
 
+@property (strong, nonatomic) UIViewController *baseView;
+
+- (id)initWithFrame:(CGRect)frame rootView:(UIViewController *)root;
+
 - (void)setLogo:(UIImage *)logo;
 
 @end

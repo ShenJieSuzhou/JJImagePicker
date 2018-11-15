@@ -22,36 +22,24 @@ alpha:1.0]
     
 }
 
-@property(nonatomic,retain)UIButton*get_verifyButton;
-@property(nonatomic,retain)UILabel*tipLabel;
+@property(nonatomic,retain) UIButton*get_verifyButton;
+@property(nonatomic,retain) UILabel*tipLabel;
 @end
 @implementation GBverifyButton
 
--(id)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if(self){
-        
-    }
-    
-    return self;
-}
-
-
--(id)initWithFrame:(CGRect)frame delegate:(UIViewController*)Delegate Target:(id)target Action:(SEL)action{
+-(id)initWithFrame:(CGRect)frame root:(UIViewController*)rootView Target:(id)target Action:(SEL)action{
     
     self = [super initWithFrame:frame];
     if(self){
-         self.delegate=Delegate;
+         self.delegate=rootView;
          self.frame=frame;
          self.target=target;
          self.action=action;
-         [self createUI];
-        
     }
     return self;
-    
 }
--(void)createUI{
+
+-(void)setupUI:(UIView *)view{
     
     timeCount=60;
     
@@ -64,7 +52,7 @@ alpha:1.0]
     _get_verifyButton.clipsToBounds=YES;
     [_get_verifyButton setBackgroundColor:R_G_B_16(0x4edb69)];
     
-    [self.delegate.view addSubview:_get_verifyButton];
+    [view addSubview:_get_verifyButton];
     
     //验证提交之后的跑秒提示防止用户的重复提交数据有效时间60秒
     _tipLabel=[[UILabel alloc ]initWithFrame:self.frame];
@@ -75,7 +63,7 @@ alpha:1.0]
     _tipLabel.clipsToBounds=YES;
     _tipLabel.backgroundColor=[UIColor lightGrayColor];
     _tipLabel.hidden=YES;
-    [self.delegate.view addSubview:_tipLabel];
+    [view addSubview:_tipLabel];
     
     
 }
