@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPhotoViewController.h"
 
-@interface JJZMLoginViewController : UIViewController
+@interface JJZMLoginViewController : CustomPhotoViewController
 
 @end

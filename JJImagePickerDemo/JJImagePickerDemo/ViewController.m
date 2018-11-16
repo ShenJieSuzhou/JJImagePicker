@@ -15,6 +15,7 @@
 #import "CustomTabbar.h"
 #import "InterestingViewController.h"
 #import "JJLoginViewController.h"
+#import "JJZMLoginViewController.h"
 
 
 @interface ViewController ()<JJTabBarDelegate>
@@ -69,10 +70,15 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    JJLoginViewController *jjLoginView = [JJLoginViewController new];
-    [self presentViewController:jjLoginView animated:YES completion:^{
+    JJZMLoginViewController *loginView = [JJZMLoginViewController new];
+    [self presentViewController:loginView animated:YES completion:^{
         
     }];
+    
+//    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+//    [self presentViewController:jjLoginView animated:YES completion:^{
+//
+//    }];
     
 //    self.cpViewController = [CameraPhotoViewController new];
 //    [self presentViewController:self.cpViewController animated:YES completion:^{

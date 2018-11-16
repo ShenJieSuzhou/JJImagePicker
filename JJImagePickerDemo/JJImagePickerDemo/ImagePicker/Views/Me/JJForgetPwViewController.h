@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPhotoViewController.h"
 
-@interface JJForgetPwViewController : UIViewController
+@interface JJForgetPwViewController : CustomPhotoViewController
+
+
 
 @end
