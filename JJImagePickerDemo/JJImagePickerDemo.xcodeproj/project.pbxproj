@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44208E11219E96910090D983 /* JJZMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E10219E96910090D983 /* JJZMLoginViewController.m */; };
+		44208E14219E96A80090D983 /* JJForgetPwViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E13219E96A80090D983 /* JJForgetPwViewController.m */; };
 		443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */; };
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
@@ -206,6 +208,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44208E0F219E96910090D983 /* JJZMLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZMLoginViewController.h; sourceTree = "<group>"; };
+		44208E10219E96910090D983 /* JJZMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZMLoginViewController.m; sourceTree = "<group>"; };
+		44208E12219E96A80090D983 /* JJForgetPwViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJForgetPwViewController.h; sourceTree = "<group>"; };
+		44208E13219E96A80090D983 /* JJForgetPwViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJForgetPwViewController.m; sourceTree = "<group>"; };
 		443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 		443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
 		4462606F20CD00B10004C579 /* JJImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJImageManager.m; sourceTree = "<group>"; };
@@ -618,6 +624,10 @@
 				4487D805218534FA001E7849 /* MeViewController.m */,
 				E55BA98B219C0EC70078472D /* LoginSpaceView.h */,
 				E55BA98C219C0EC70078472D /* LoginSpaceView.m */,
+				44208E0F219E96910090D983 /* JJZMLoginViewController.h */,
+				44208E10219E96910090D983 /* JJZMLoginViewController.m */,
+				44208E12219E96A80090D983 /* JJForgetPwViewController.h */,
+				44208E13219E96A80090D983 /* JJForgetPwViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1402,6 +1412,8 @@
 				E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
 				E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */,
+				44208E14219E96A80090D983 /* JJForgetPwViewController.m in Sources */,
+				44208E11219E96910090D983 /* JJZMLoginViewController.m in Sources */,
 				4487D803218534D4001E7849 /* HomeViewController.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
