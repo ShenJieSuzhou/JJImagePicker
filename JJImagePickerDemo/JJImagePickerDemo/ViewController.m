@@ -70,15 +70,10 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    JJZMLoginViewController *loginView = [JJZMLoginViewController new];
-    [self presentViewController:loginView animated:YES completion:^{
-        
+    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+    [self presentViewController:jjLoginView animated:YES completion:^{
+
     }];
-    
-//    JJLoginViewController *jjLoginView = [JJLoginViewController new];
-//    [self presentViewController:jjLoginView animated:YES completion:^{
-//
-//    }];
     
 //    self.cpViewController = [CameraPhotoViewController new];
 //    [self presentViewController:self.cpViewController animated:YES completion:^{
