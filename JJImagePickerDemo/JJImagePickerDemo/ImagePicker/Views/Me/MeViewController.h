@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "CustomPhotoViewController.h"
 
-@interface MeViewController : UIViewController
+@interface MeViewController : CustomPhotoViewController
 
 @end

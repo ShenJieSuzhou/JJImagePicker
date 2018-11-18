@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		44208E11219E96910090D983 /* JJZMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E10219E96910090D983 /* JJZMLoginViewController.m */; };
 		44208E14219E96A80090D983 /* JJForgetPwViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E13219E96A80090D983 /* JJForgetPwViewController.m */; };
+		44208E1821A1640E0090D983 /* WorksView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E1721A1640E0090D983 /* WorksView.m */; };
+		44208E1B21A164790090D983 /* DetailInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E1A21A164790090D983 /* DetailInfoView.m */; };
+		44208E1E21A1648A0090D983 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E1D21A1648A0090D983 /* SettingViewController.m */; };
+		44208E2121A164BE0090D983 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E2021A164BE0090D983 /* SecurityViewController.m */; };
+		44208E2421A164F50090D983 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E2321A164F50090D983 /* CacheImageViewController.m */; };
 		443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */; };
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
@@ -212,6 +217,16 @@
 		44208E10219E96910090D983 /* JJZMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZMLoginViewController.m; sourceTree = "<group>"; };
 		44208E12219E96A80090D983 /* JJForgetPwViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJForgetPwViewController.h; sourceTree = "<group>"; };
 		44208E13219E96A80090D983 /* JJForgetPwViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJForgetPwViewController.m; sourceTree = "<group>"; };
+		44208E1621A1640E0090D983 /* WorksView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorksView.h; sourceTree = "<group>"; };
+		44208E1721A1640E0090D983 /* WorksView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorksView.m; sourceTree = "<group>"; };
+		44208E1921A164790090D983 /* DetailInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailInfoView.h; sourceTree = "<group>"; };
+		44208E1A21A164790090D983 /* DetailInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailInfoView.m; sourceTree = "<group>"; };
+		44208E1C21A1648A0090D983 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		44208E1D21A1648A0090D983 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		44208E1F21A164BE0090D983 /* SecurityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityViewController.h; sourceTree = "<group>"; };
+		44208E2021A164BE0090D983 /* SecurityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityViewController.m; sourceTree = "<group>"; };
+		44208E2221A164F50090D983 /* CacheImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheImageViewController.h; sourceTree = "<group>"; };
+		44208E2321A164F50090D983 /* CacheImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheImageViewController.m; sourceTree = "<group>"; };
 		443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 		443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
 		4462606F20CD00B10004C579 /* JJImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJImageManager.m; sourceTree = "<group>"; };
@@ -538,6 +553,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44208E1521A163790090D983 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E55BA98E219C16E70078472D /* GBverifyButton.h */,
+				E55BA98F219C16E70078472D /* GBverifyButton.m */,
+				E55BA988219BF4390078472D /* JJLoginViewController.h */,
+				E55BA989219BF4390078472D /* JJLoginViewController.m */,
+				E55BA98B219C0EC70078472D /* LoginSpaceView.h */,
+				E55BA98C219C0EC70078472D /* LoginSpaceView.m */,
+				44208E0F219E96910090D983 /* JJZMLoginViewController.h */,
+				44208E10219E96910090D983 /* JJZMLoginViewController.m */,
+				44208E12219E96A80090D983 /* JJForgetPwViewController.h */,
+				44208E13219E96A80090D983 /* JJForgetPwViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		443D3C4A20CD002800E0C255 /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,18 +648,18 @@
 		4487D800218534B6001E7849 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				E55BA98E219C16E70078472D /* GBverifyButton.h */,
-				E55BA98F219C16E70078472D /* GBverifyButton.m */,
-				E55BA988219BF4390078472D /* JJLoginViewController.h */,
-				E55BA989219BF4390078472D /* JJLoginViewController.m */,
 				4487D804218534FA001E7849 /* MeViewController.h */,
 				4487D805218534FA001E7849 /* MeViewController.m */,
-				E55BA98B219C0EC70078472D /* LoginSpaceView.h */,
-				E55BA98C219C0EC70078472D /* LoginSpaceView.m */,
-				44208E0F219E96910090D983 /* JJZMLoginViewController.h */,
-				44208E10219E96910090D983 /* JJZMLoginViewController.m */,
-				44208E12219E96A80090D983 /* JJForgetPwViewController.h */,
-				44208E13219E96A80090D983 /* JJForgetPwViewController.m */,
+				44208E1621A1640E0090D983 /* WorksView.h */,
+				44208E1721A1640E0090D983 /* WorksView.m */,
+				44208E1921A164790090D983 /* DetailInfoView.h */,
+				44208E1A21A164790090D983 /* DetailInfoView.m */,
+				44208E1C21A1648A0090D983 /* SettingViewController.h */,
+				44208E1D21A1648A0090D983 /* SettingViewController.m */,
+				44208E1F21A164BE0090D983 /* SecurityViewController.h */,
+				44208E2021A164BE0090D983 /* SecurityViewController.m */,
+				44208E2221A164F50090D983 /* CacheImageViewController.h */,
+				44208E2321A164F50090D983 /* CacheImageViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -683,6 +715,7 @@
 		E522784720BFC921003E2F38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				44208E1521A163790090D983 /* Login */,
 				4487D800218534B6001E7849 /* Me */,
 				4487D7FE218534A7001E7849 /* Home */,
 				E5506B97212FB7D80077E62B /* CameraRoll */,
@@ -1369,6 +1402,7 @@
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E512B1D6215A045000B06B1B /* TagModel.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
+				44208E2421A164F50090D983 /* CacheImageViewController.m in Sources */,
 				E57FDC91217AFC1000D7561A /* WordsBrushViewController.m in Sources */,
 				E557824D2179CBC5003B20BB /* PKMosaicDrawingboard.m in Sources */,
 				E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */,
@@ -1421,8 +1455,10 @@
 				E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */,
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
+				44208E1B21A164790090D983 /* DetailInfoView.m in Sources */,
 				E5506B5F212FB3330077E62B /* PhotoPreviewViewController.m in Sources */,
 				E55BA98D219C0EC70078472D /* LoginSpaceView.m in Sources */,
+				44208E2121A164BE0090D983 /* SecurityViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
 				E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */,
 				E55BA987219BF34D0078472D /* LoginSessionManager.m in Sources */,
@@ -1438,6 +1474,7 @@
 				E5506BE8212FB7D80077E62B /* JJCollectionViewCell.m in Sources */,
 				E557824C2179CBC5003B20BB /* PKMosaicImageView.m in Sources */,
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
+				44208E1821A1640E0090D983 /* WorksView.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
 				E53F2FC82178879D00142A38 /* ScrawlViewController.m in Sources */,
 				E542B8082192BD9D002A7E1E /* HNEmojiContact.m in Sources */,
@@ -1459,6 +1496,7 @@
 				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
 				E542B8062192BD9D002A7E1E /* EmojiScrollView.m in Sources */,
 				E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */,
+				44208E1E21A1648A0090D983 /* SettingViewController.m in Sources */,
 				E512B1DF215B376800B06B1B /* StickerParttenView.m in Sources */,
 				E5506B60212FB3330077E62B /* PhotosViewController.m in Sources */,
 				E5506BE6212FB7D80077E62B /* TOCropViewControllerTransitioning.m in Sources */,
