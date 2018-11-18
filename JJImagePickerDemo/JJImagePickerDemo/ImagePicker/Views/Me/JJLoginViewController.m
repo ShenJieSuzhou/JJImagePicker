@@ -40,6 +40,14 @@
     [switchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [switchBtn addTarget:self action:@selector(clickAccountPwdBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.customNaviBar setRightBtn:switchBtn withFrame:CGRectMake(self.view.frame.size.width - 100, 30, 80, 30)];
+    
+    CGFloat w = self.view.frame.size.width;
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
+    [title setText:@"登录"];
+    [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [title setTextColor:[UIColor blackColor]];
+    [self.customNaviBar addSubview:title];
 
     [self.view addSubview:self.loginSpaceView];
     
