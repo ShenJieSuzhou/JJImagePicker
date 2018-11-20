@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WorksView : UIView
+
+
+@interface WorksView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (strong, nonatomic) UIButton *publishBtn;
+
+@property (strong, nonatomic) UILabel *tips;
+
+@property (strong, nonatomic) UICollectionView *worksCollection;
 
 @end

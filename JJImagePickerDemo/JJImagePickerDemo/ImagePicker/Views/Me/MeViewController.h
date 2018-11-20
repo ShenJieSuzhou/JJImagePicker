@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import "CustomPhotoViewController.h"
+#import "DetailInfoView.h"
+#import "WorksView.h"
+#import "SettingViewController.h"
+#import "SecurityViewController.h"
 
 @interface MeViewController : CustomPhotoViewController
 

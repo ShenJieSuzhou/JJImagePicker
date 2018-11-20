@@ -169,6 +169,7 @@
 		E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA989219BF4390078472D /* JJLoginViewController.m */; };
 		E55BA98D219C0EC70078472D /* LoginSpaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA98C219C0EC70078472D /* LoginSpaceView.m */; };
 		E55BA990219C16E70078472D /* GBverifyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA98F219C16E70078472D /* GBverifyButton.m */; };
+		E55BA99321A3E16D0078472D /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E55BA99221A3E16D0078472D /* WorkCell.m */; };
 		E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC320AD2FA700021DF8 /* AppDelegate.m */; };
 		E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CC620AD2FA700021DF8 /* ViewController.m */; };
 		E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56B9CC820AD2FA700021DF8 /* Main.storyboard */; };
@@ -477,6 +478,8 @@
 		E55BA98C219C0EC70078472D /* LoginSpaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginSpaceView.m; sourceTree = "<group>"; };
 		E55BA98E219C16E70078472D /* GBverifyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBverifyButton.h; sourceTree = "<group>"; };
 		E55BA98F219C16E70078472D /* GBverifyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBverifyButton.m; sourceTree = "<group>"; };
+		E55BA99121A3E16D0078472D /* WorkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkCell.h; sourceTree = "<group>"; };
+		E55BA99221A3E16D0078472D /* WorkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkCell.m; sourceTree = "<group>"; };
 		E56B9CBF20AD2FA700021DF8 /* JJImagePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJImagePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56B9CC220AD2FA700021DF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E56B9CC320AD2FA700021DF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -660,6 +663,8 @@
 				44208E2021A164BE0090D983 /* SecurityViewController.m */,
 				44208E2221A164F50090D983 /* CacheImageViewController.h */,
 				44208E2321A164F50090D983 /* CacheImageViewController.m */,
+				E55BA99121A3E16D0078472D /* WorkCell.h */,
+				E55BA99221A3E16D0078472D /* WorkCell.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1493,6 +1498,7 @@
 				E5506BEA212FB7D80077E62B /* JJPhotoPreviewView.m in Sources */,
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
 				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,
+				E55BA99321A3E16D0078472D /* WorkCell.m in Sources */,
 				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
 				E542B8062192BD9D002A7E1E /* EmojiScrollView.m in Sources */,
 				E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */,
