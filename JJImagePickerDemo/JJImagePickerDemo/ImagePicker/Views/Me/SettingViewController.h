@@ -11,4 +11,5 @@
 
 @interface SettingViewController : CustomPhotoViewController
 
+
 @end

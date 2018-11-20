@@ -18,4 +18,6 @@
 
 @property (strong, nonatomic) UICollectionView *worksCollection;
 
+@property (strong, nonatomic) NSMutableArray *worksArray;
+
 @end

@@ -15,6 +15,7 @@
 @synthesize publishBtn = _publishBtn;
 @synthesize worksCollection = _worksCollection;
 @synthesize tips = _tips;
+@synthesize worksArray = _worksArray;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
