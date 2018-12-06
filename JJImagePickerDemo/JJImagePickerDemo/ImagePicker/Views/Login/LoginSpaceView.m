@@ -118,15 +118,17 @@
 }
 
 - (void)login:(UIButton *)sender{
-    if([_delegate respondsToSelector:@selector(LoginDataCallBack:pwd:)]){
-        [_delegate LoginDataCallBack:_accountField.text pwd:_yzmField.text];
+    if([_delegate respondsToSelector:@selector(LoginDataCallBack:code:)]){
+        [_delegate LoginDataCallBack:_accountField.text code:_yzmField.text];
     }
 }
 
 - (void)clickYZMBtn:(UIButton *)sender{
-    NSLog(@"123123");
-//    [_yzmBtn setEnabled:NO];
     [_yzmBtn startGetMessage];
+    
+    if([_delegate respondsToSelector:@selector(LoginRequestCode:)]){
+        [_delegate LoginRequestCode:_accountField.text];
+    }
 }
 
 @end

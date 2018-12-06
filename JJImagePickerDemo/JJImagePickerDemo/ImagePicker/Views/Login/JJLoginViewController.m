@@ -9,9 +9,10 @@
 #import "JJLoginViewController.h"
 #import "LoginSpaceView.h"
 #import "JJZMLoginViewController.h"
+#import "HttpRequestUtil.h"
 
 
-@interface JJLoginViewController ()
+@interface JJLoginViewController ()<JJLoginDelegate>
 @property (strong, nonatomic) LoginSpaceView *loginSpaceView;
 
 
@@ -50,18 +51,47 @@
     [self.customNaviBar addSubview:title];
 
     [self.view addSubview:self.loginSpaceView];
-    
 }
 
 - (LoginSpaceView *)loginSpaceView{
     if(!_loginSpaceView){
         _loginSpaceView = [[LoginSpaceView alloc] initWithFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, 400.0f) rootView:self];
+        _loginSpaceView.delegate = self;
         [_loginSpaceView setLogo:[UIImage imageNamed:@"filter2"]];
     }
     
     return _loginSpaceView;
 }
 
+- (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code{
+    //验证电话号码跟短信验证码格式
+    
+    //请求登录
+    [HttpRequestUtil JJ_LoginByPhoneAndCode:@"" phone:telephone code:code callback:^(NSDictionary *data, NSError *error) {
+        if(!error){
+            
+        }else{
+            
+        }
+    }];
+}
+
+/*
+ * @brief 请求验证码
+ * @param telephone 电话号码
+ */
+- (void)LoginRequestCode:(NSString *)telephone{
+    //验证电话号吗是否合法
+    
+    //请求发送验证码
+    [HttpRequestUtil JJ_RequestSMSCode:@"" phone:telephone callback:^(NSDictionary *data, NSError *error) {
+        if(!error){
+            
+        }else{
+            
+        }
+    }];
+}
 
 /*
  * 取消登陆

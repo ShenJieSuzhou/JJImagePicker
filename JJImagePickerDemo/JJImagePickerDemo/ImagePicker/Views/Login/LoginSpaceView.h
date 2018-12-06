@@ -12,7 +12,9 @@
 
 @protocol JJLoginDelegate <NSObject>
 
-- (void)LoginDataCallBack:(NSString *)account pwd:(NSString *)password;
+- (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code;
+
+- (void)LoginRequestCode:(NSString *)telephone;
 
 @end
 
