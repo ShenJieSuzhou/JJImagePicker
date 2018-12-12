@@ -8,6 +8,7 @@
 
 #import "JJZMLoginViewController.h"
 #import "JJForgetPwViewController.h"
+#import "HttpRequestUtil.h"
 
 #define AP_MARGIN 20.0f
 #define AP_HEIGHT 102.0f
@@ -117,6 +118,16 @@
 
 - (void)login:(UIButton *)sender{
 
+    NSString *account = _accountF.text;
+    NSString *pwd = _pwdF.text;
+    
+    [HttpRequestUtil JJ_LoginByAccountPwd:@"" account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
+        if(!error){
+            
+        }else{
+            
+        }
+    }];
 }
 
 - (void)forgetPwd:(UIButton *)sender{
