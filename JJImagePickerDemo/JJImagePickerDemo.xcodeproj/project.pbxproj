@@ -183,6 +183,8 @@
 		E57FDCA3217DB65D00D7561A /* WordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDCA2217DB65D00D7561A /* WordsModel.m */; };
 		E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */; };
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
+		E5AE62F621C0FF1000639CF8 /* TokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* TokenManager.m */; };
+		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */; };
 		E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB53F20D257D00021EB68 /* chooseInterest_uncheaked@3x.png */; };
@@ -502,6 +504,10 @@
 		E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQiniuSDK_iOS.a; sourceTree = "<group>"; };
 		E597BDD42186A9F2000B5A34 /* HomeContentmManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeContentmManager.h; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.h; sourceTree = SOURCE_ROOT; };
 		E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeContentmManager.m; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.m; sourceTree = SOURCE_ROOT; };
+		E5AE62F421C0FF1000639CF8 /* TokenManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokenManager.h; sourceTree = "<group>"; };
+		E5AE62F521C0FF1000639CF8 /* TokenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokenManager.m; sourceTree = "<group>"; };
+		E5AE62F721C10F2200639CF8 /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		E5AE62F821C10F2200639CF8 /* LoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB53E20D257D00021EB68 /* pickerImage_video_mark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerImage_video_mark@3x.png"; sourceTree = "<group>"; };
@@ -752,6 +758,8 @@
 				E55159B62178A9EA00ADFDAE /* ScrawlModel.m */,
 				E57FDCA1217DB65D00D7561A /* WordsModel.h */,
 				E57FDCA2217DB65D00D7561A /* WordsModel.m */,
+				E5AE62F721C10F2200639CF8 /* LoginModel.h */,
+				E5AE62F821C10F2200639CF8 /* LoginModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1110,6 +1118,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E5AE62F321C0FEE500639CF8 /* TokenManager */,
 				4487D7F421841704001E7849 /* NetWork */,
 				E597BDD02181B698000B5A34 /* Libs */,
 				E50C094E2175C3D80035C3C2 /* Cream */,
@@ -1152,6 +1161,15 @@
 				E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */,
 			);
 			path = Libs;
+			sourceTree = "<group>";
+		};
+		E5AE62F321C0FEE500639CF8 /* TokenManager */ = {
+			isa = PBXGroup;
+			children = (
+				E5AE62F421C0FF1000639CF8 /* TokenManager.h */,
+				E5AE62F521C0FF1000639CF8 /* TokenManager.m */,
+			);
+			path = TokenManager;
 			sourceTree = "<group>";
 		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
@@ -1445,6 +1463,7 @@
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
 				4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */,
+				E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
 				E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */,
 				E5506BF4212FB7D80077E62B /* CustomPhotoViewController.m in Sources */,
@@ -1468,6 +1487,7 @@
 				E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */,
 				E55BA987219BF34D0078472D /* LoginSessionManager.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
+				E5AE62F621C0FF1000639CF8 /* TokenManager.m in Sources */,
 				E542B8052192BD9D002A7E1E /* NaturalData.m in Sources */,
 				E5506BEB212FB7D80077E62B /* JJPreviewViewCollectionCell.m in Sources */,
 				E5506BDC212FB7D80077E62B /* JJTableViewCell.m in Sources */,
