@@ -9,6 +9,8 @@
 #import "JJZMLoginViewController.h"
 #import "JJForgetPwViewController.h"
 #import "HttpRequestUtil.h"
+#import "JJToast.h"
+#import "JJTokenManager.h"
 
 #define AP_MARGIN 20.0f
 #define AP_HEIGHT 102.0f
@@ -123,9 +125,12 @@
     
     [HttpRequestUtil JJ_LoginByAccountPwd:@"" account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
         if(!error){
-            
+            //取出token与user_id
+            LoginModel *userModel = [LoginModel new];
+            [JJTokenManager saveToken:userModel];
         }else{
-            
+            //错误原因
+            [JJToast showWithText:@"" gravity:kWTGravityMiddle];
         }
     }];
 }
