@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "LoginModel.h"
 
-@interface TokenManager : NSObject
+@interface JJTokenManager : NSObject
+// 存储token
++(void)saveToken:(LoginModel *)token;
 
-+ (TokenManager *)getInstance;
+// 读取token
++(LoginModel *)getToken;
 
-- (void)saveLoginInfo:(LoginModel *)loginModel;
+// 清空token
++(void)cleanToken;
 
-- (LoginModel *)getLoginInfo;
+// 跟新token
++(LoginModel *)refreshToken;
 
 
 @end
