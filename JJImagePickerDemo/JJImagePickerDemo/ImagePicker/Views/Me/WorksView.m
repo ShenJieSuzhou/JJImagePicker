@@ -9,7 +9,8 @@
 #import "WorkCell.h"
 #import "WorksView.h"
 #define WORKS_CELL_IDENTIFIER @"WORKS_CELL_IDENTIFIER"
-#define PUBLISH_BTN_HEIGHT 80.0f
+#define PUBLISH_BTN_HEIGHT 60.0f
+#define PUBLISH_BTN_WIDTH 100.0f
 
 @implementation WorksView
 @synthesize publishBtn = _publishBtn;
@@ -28,13 +29,12 @@
     _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
     [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_publishBtn setBackgroundColor:[UIColor purpleColor]];
+    [_publishBtn setBackgroundColor:[UIColor redColor]];
     [self addSubview:_publishBtn];
     
     _tips = [[UILabel alloc] init];
     [_tips setText:@"你还没有内容，快去发布吧！"];
-    [_tips setTextColor:[UIColor blackColor]];
-    [self addSubview:_tips];
+    [_tips setTextColor:[UIColor grayColor]];
     [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -59,7 +59,7 @@
 
 - (void)layoutSubviews{
     CGFloat h = self.frame.size.height;
-    [_publishBtn setFrame:CGRectMake(0, 0, self.frame.size.width, PUBLISH_BTN_HEIGHT)];
+    [_publishBtn setFrame:CGRectMake((self.frame.size.width - PUBLISH_BTN_WIDTH)/2, 20.0f, PUBLISH_BTN_WIDTH, PUBLISH_BTN_HEIGHT)];
     [_tips setFrame:CGRectMake(0, (h - PUBLISH_BTN_HEIGHT - 60.0f)/2, self.frame.size.width, 60.0f)];
     [_worksCollection setFrame:CGRectMake(0, PUBLISH_BTN_HEIGHT, self.frame.size.width, h - PUBLISH_BTN_HEIGHT)];
 }

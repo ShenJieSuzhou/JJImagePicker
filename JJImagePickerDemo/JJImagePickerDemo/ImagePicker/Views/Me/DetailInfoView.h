@@ -14,6 +14,8 @@
 
 - (void)appSettingClickCallback;
 
+- (void)clickToLoginCallback;
+
 @end
 
 @interface DetailInfoView : UIView
@@ -21,7 +23,13 @@
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) UIButton *iconView;
 @property (nonatomic, strong) UIButton *settingBtn;
+@property (nonatomic, strong) UILabel  *userName;
+@property (nonatomic, strong) UIButton *loginBtn;
+@property (nonatomic, strong) UIButton *foucsBtn;
+@property (nonatomic, strong) UIButton *fansBtn;
 
 @property (weak, nonatomic) id<DetailInfoViewDelegate> delegate;
+
+- (void)setLoginState:(BOOL)isLogin;
 
 @end

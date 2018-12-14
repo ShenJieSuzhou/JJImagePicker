@@ -148,6 +148,8 @@
             NSString *uid = [data objectForKey:@"user_id"];
             NSString *userName = [data objectForKey:@"userName"];
             NSString *token = [data objectForKey:@"token"];
+            NSString *result = [data objectForKey:@"result"];
+            
             //取出token user_id username
             LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName token:token];
             [JJTokenManager saveToken:userModel];
