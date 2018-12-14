@@ -12,7 +12,11 @@
 
 @property (nonatomic, strong) NSString *userId;
 
+@property (nonatomic, strong) NSString *userName;
+
 @property (nonatomic, strong) NSString *token;
+
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName token:(NSString *)token;
 
 @end
 

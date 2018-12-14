@@ -16,19 +16,27 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - SVProgressHUD (2.2.1)
+  - "UITextView+Placeholder (1.2.0)"
 
 DEPENDENCIES:
   - AFNetwork
+  - SVProgressHUD
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetwork
     - AFNetworking
+    - SVProgressHUD
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   AFNetwork: 0dbdb2ffb4a7770b3d1802dc85b50ab31263f2c2
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  "UITextView+Placeholder": 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: d2c40791bb04d3b857acfbff4d04ff8db404533e
+PODFILE CHECKSUM: 2ba524bab6932e4213de5e3d96fc5037166a85bc
 
 COCOAPODS: 1.5.3

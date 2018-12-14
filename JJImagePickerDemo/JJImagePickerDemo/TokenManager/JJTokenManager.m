@@ -14,8 +14,16 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 // 存储token
 +(void)saveToken:(LoginModel *)token
 {
+    NSError *error;
     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-    NSData *tokenData = [NSKeyedArchiver archivedDataWithRootObject:token];
+    NSData *tokenData;
+    if (@available(iOS 11.0, *)) {
+        tokenData = [NSKeyedArchiver archivedDataWithRootObject:token requiringSecureCoding:YES error:nil];
+    } else {
+        // Fallback on earlier versions
+        tokenData = [NSKeyedArchiver archivedDataWithRootObject:token];
+    }
+    
     [userDefaults setObject:tokenData forKey:TOKEN_KEY];
     [userDefaults synchronize];
 }

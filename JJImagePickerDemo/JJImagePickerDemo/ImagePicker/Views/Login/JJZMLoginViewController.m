@@ -11,6 +11,9 @@
 #import "HttpRequestUtil.h"
 #import "JJToast.h"
 #import "JJTokenManager.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "HttpRequestUrlDefine.h"
+#import "ViewController.h"
 
 #define AP_MARGIN 20.0f
 #define AP_HEIGHT 102.0f
@@ -119,18 +122,43 @@
 }
 
 - (void)login:(UIButton *)sender{
-
+    [SVProgressHUD show];
     NSString *account = _accountF.text;
     NSString *pwd = _pwdF.text;
     
-    [HttpRequestUtil JJ_LoginByAccountPwd:@"" account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
-        if(!error){
-            //取出token与user_id
-            LoginModel *userModel = [LoginModel new];
+    [HttpRequestUtil JJ_LoginByAccountPwd:[NSString stringWithFormat:@"%@%@", SERVER_IP, AC_LOGIN_REQUEST] account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            if (error.code == -1001) {
+                //网络异常
+                [SVProgressHUD showErrorWithStatus:@"登录失败,请检查您的网络"];
+                [SVProgressHUD dismissWithDelay:2.0f];
+            }
+            return;
+        }
+        
+        if(!data){
+            //登录失败
+            [SVProgressHUD showErrorWithStatus:@"登录失败,网络异常"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }
+
+        if([[data objectForKey:@"errorCode"] isEqualToString:@"0"]){
+            NSString *uid = [data objectForKey:@"user_id"];
+            NSString *userName = [data objectForKey:@"userName"];
+            NSString *token = [data objectForKey:@"token"];
+            //取出token user_id username
+            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName token:token];
             [JJTokenManager saveToken:userModel];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            [self dismiss];
         }else{
-            //错误原因
-            [JJToast showWithText:@"" gravity:kWTGravityMiddle];
+//            NSString *errorCode = [data objectForKey:@"errorCode"];
+            NSString *errorMsg = [data objectForKey:@"errorMsg"];
+            [SVProgressHUD showErrorWithStatus:errorMsg];
+            [SVProgressHUD dismissWithDelay:2.0f];
         }
     }];
 }
@@ -151,6 +179,14 @@
     }];
 }
 
+- (void)dismiss{
+    UIViewController *vc = self.presentingViewController;
+    //ReadBookController要跳转的界面
+    while (![vc isKindOfClass:[ViewController class]]) {
+        vc = vc.presentingViewController;
+    }
+    [vc dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 @end

@@ -10,5 +10,15 @@
 
 @implementation LoginModel
 
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName token:(NSString *)token{
+    self = [super init];
+    if(self){
+        self.userId = uid;
+        self.userName = userName;
+        self.token = token;
+    }
+    
+    return self;
+}
 
 @end
