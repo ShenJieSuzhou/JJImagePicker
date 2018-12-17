@@ -7,6 +7,8 @@
 //
 
 #import "DetailInfoView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #define DETAIL_HEIGTH 180.0f
 
 
@@ -92,6 +94,15 @@
         [_loginBtn setHidden:NO];
     }
 }
+
+- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
+    
+    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]] forState:UIControlStateNormal];
+    [_userName setText:name];
+    [_foucsBtn setTitle:[NSString stringWithFormat:@"关注 %@", focusNum] forState:UIControlStateNormal];
+    [_fansBtn setTitle:[NSString stringWithFormat:@"粉丝 %@", fansNum] forState:UIControlStateNormal];
+}
+
 
 - (void)pickUpHeaderImg:(UIButton *)sender{
     [_delegate pickUpHeaderImgCallback];

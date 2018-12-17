@@ -41,6 +41,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refreshViewInfo{
+    
+}
+
 
 /**
  用户信息view

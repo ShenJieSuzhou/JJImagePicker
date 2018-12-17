@@ -3,5 +3,6 @@ target 'JJImagePickerDemo' do
 	pod 'AFNetwork'
 	pod 'UITextView+Placeholder'
 	pod 'SVProgressHUD'
+    pod 'SDWebImage'
 
 end

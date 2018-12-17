@@ -20,4 +20,6 @@
 
 @property (strong, nonatomic) NSMutableArray *worksArray;
 
+- (void)updateWorksArray:(NSMutableArray *)works;
+
 @end

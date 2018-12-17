@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface WorkCell : UICollectionViewCell
+
+@property (strong, nonatomic) UIImageView *workImageV;
+
+@property (strong, nonatomic) UIButton *likeBtn;
+
+- (void)updateCell:(NSString *)workUrl like:(NSString *)likeNum;
 
 @end
 

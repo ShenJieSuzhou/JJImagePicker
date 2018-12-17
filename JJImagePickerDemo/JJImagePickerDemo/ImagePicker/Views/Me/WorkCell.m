@@ -8,7 +8,67 @@
 
 #import "WorkCell.h"
 
-@implementation WorkCell
 
+@implementation WorkCell
+@synthesize workImageV = _workImageV;
+@synthesize likeBtn = _likeBtn;
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        
+    }
+    return self;
+}
+
+- (void)commonInit{
+    self.workImageV = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.workImageV.userInteractionEnabled = YES;
+    self.workImageV.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview:self.workImageV];
+    
+    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:self.likeBtn];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    CGFloat w = self.frame.size.width;
+    CGFloat h = self.frame.size.height;
+    
+    [self.workImageV setFrame:CGRectMake(0, 0, w, h - 40.0f)];
+    [self.likeBtn setFrame:CGRectMake(w, h - 40, 40.0f, 40.0f)];
+}
+
+
+/**
+ 下载缓存自己发布的作品
+
+ @param workUrl <#workUrl description#>
+ @param likeNum <#likeNum description#>
+ */
+- (void)updateCell:(NSString *)workUrl like:(NSString *)likeNum{
+    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
+    __weak typeof(self) weakself = self;
+    [[SDImageCache sharedImageCache] diskImageExistsWithKey:workUrl completion:^(BOOL isInCache) {
+        if(isInCache){
+            UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:workUrl];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.workImageV setImage:image];
+            });
+        }else{
+            [weakself.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if(!error){
+                    [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString completion:^{
+                        NSLog(@"图片缓存成功");
+                    }];
+                }else{
+                    NSLog(@"图片异步加载出错 %@", error);
+                }
+            }];
+        }
+    }];
+    
+}
 
 @end

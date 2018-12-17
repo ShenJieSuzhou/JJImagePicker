@@ -64,6 +64,12 @@
     [_worksCollection setFrame:CGRectMake(0, PUBLISH_BTN_HEIGHT, self.frame.size.width, h - PUBLISH_BTN_HEIGHT)];
 }
 
+- (void)updateWorksArray:(NSMutableArray *)works{
+    self.worksArray = works;
+    [self.worksCollection reloadData];
+}
+
+
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -72,13 +78,16 @@
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 0;
+    return 4;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    WorkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER forIndexPath:indexPath];
     
-    return nil;
+    [cell updateCell:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" like:@"111"];
+    
+    return cell;
 }
 
 @end

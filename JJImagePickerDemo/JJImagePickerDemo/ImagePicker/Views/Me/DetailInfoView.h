@@ -32,4 +32,6 @@
 
 - (void)setLoginState:(BOOL)isLogin;
 
+- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum;
+
 @end
