@@ -38,13 +38,14 @@
     [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(self.frame.size.width / 4, self.frame.size.width / 4);
+    layout.itemSize = CGSizeMake(self.frame.size.width / 3, self.frame.size.width / 3 + 60.0f);
     layout.collectionView.pagingEnabled = YES;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     _worksCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, self.frame.size.height - 50.0f) collectionViewLayout:layout];
+    [_worksCollection setBackgroundColor:[UIColor clearColor]];
     //设置数据源代理
     _worksCollection.dataSource = self;
     _worksCollection.delegate = self;
@@ -52,7 +53,6 @@
     _worksCollection.showsVerticalScrollIndicator = NO;
     _worksCollection.showsHorizontalScrollIndicator = NO;
     _worksCollection.alwaysBounceHorizontal = NO;
-    [_worksCollection setBackgroundColor:[UIColor whiteColor]];
     [_worksCollection registerClass:[WorkCell class] forCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER];
     [self addSubview:_worksCollection];
 }

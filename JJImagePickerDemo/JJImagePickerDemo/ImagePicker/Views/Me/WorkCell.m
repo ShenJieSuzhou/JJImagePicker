@@ -15,7 +15,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        
+        [self commonInit];
     }
     return self;
 }
@@ -23,7 +23,8 @@
 - (void)commonInit{
     self.workImageV = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.workImageV.userInteractionEnabled = YES;
-    self.workImageV.contentMode = UIViewContentModeScaleAspectFit;
+    self.workImageV.contentMode = UIViewContentModeScaleAspectFill;
+    [self.workImageV setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.workImageV];
     
     self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,7 +69,9 @@
             }];
         }
     }];
-    
+    [self.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [weakself.workImageV setImage:image];
+    }];
 }
 
 @end
