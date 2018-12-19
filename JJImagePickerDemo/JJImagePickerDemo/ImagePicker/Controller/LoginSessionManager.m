@@ -7,6 +7,24 @@
 //
 
 #import "LoginSessionManager.h"
+#import "JJTokenManager.h"
+
+
 @implementation LoginSessionManager
+
++ (BOOL)isUserLogin{
+    
+    if(![JJTokenManager getToken]){
+        return NO;
+    }
+    
+    return YES;
+}
+
++ (void)verifyUserToken{
+    
+    
+}
+
 
 @end

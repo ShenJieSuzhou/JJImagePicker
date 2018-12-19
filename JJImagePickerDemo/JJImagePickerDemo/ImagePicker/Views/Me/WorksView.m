@@ -32,9 +32,8 @@
     [_publishBtn setBackgroundColor:[UIColor redColor]];
     [self addSubview:_publishBtn];
     
+    //没有作品时 显示
     _tips = [[UILabel alloc] init];
-    [_tips setText:@"你还没有内容，快去发布吧！"];
-    [_tips setTextColor:[UIColor grayColor]];
     [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -77,8 +76,12 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if([self.worksArray count] == 0){
+        [_tips setText:@"你还没有内容，快去发布吧！"];
+        [_tips setTextColor:[UIColor grayColor]];
+    }
     
-    return 4;
+    return [self.worksArray count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:

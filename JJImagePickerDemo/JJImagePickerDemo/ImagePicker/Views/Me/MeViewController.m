@@ -13,6 +13,9 @@
 #import "SecurityViewController.h"
 #import "JJLoginViewController.h"
 #import "SettingViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "LoginSessionManager.h"
+
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -27,10 +30,22 @@
 
 @implementation MeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    //判断用户是否登录
+    [SVProgressHUD show];
+    if(![LoginSessionManager isUserLogin]){
+        [SVProgressHUD dismiss];
+    }else{
+        [LoginSessionManager verifyUserToken];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
