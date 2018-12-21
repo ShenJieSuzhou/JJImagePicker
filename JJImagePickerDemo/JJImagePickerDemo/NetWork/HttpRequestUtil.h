@@ -25,4 +25,12 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 //账号密码登录
 + (void)JJ_LoginByAccountPwd:(NSString *)url account:(NSString *)account pwd:(NSString *)pwd callback:(requestCallBack) block;
 
+/**
+ 验证token有效性
+
+ @param token token
+ @param block 回调
+ */
++ (void)JJ_VerifyLoginToken:(NSString *)url token:(NSString *)token callback:(requestCallBack) block;
+
 @end

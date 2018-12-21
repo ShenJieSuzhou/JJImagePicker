@@ -54,4 +54,13 @@
     }];
 }
 
++ (void)JJ_VerifyLoginToken:(NSString *)url token:(NSString *)token callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", nil];
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
 @end

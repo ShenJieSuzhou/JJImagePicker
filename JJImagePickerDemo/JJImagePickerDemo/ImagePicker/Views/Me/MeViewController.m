@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) DetailInfoView *detailView;
 @property (strong, nonatomic) WorksView *workView;
+@property (assign) BOOL isLogin;
 
 @end
 
@@ -34,6 +35,7 @@
     //判断用户是否登录
     [SVProgressHUD show];
     if(![LoginSessionManager isUserLogin]){
+        _isLogin = NO;
         [SVProgressHUD dismiss];
     }else{
         [LoginSessionManager verifyUserToken];
@@ -45,10 +47,11 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    
-    
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
+
+    
+    [self.detailView setLoginState:_isLogin];
 }
 
 - (void)didReceiveMemoryWarning {
