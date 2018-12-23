@@ -21,7 +21,7 @@
 #define USERVIEW_HEIGHT self.view.frame.size.height
 #define DETAIL_INFO_VIEW_HEIGHT 180.0f
 
-@interface MeViewController ()<DetailInfoViewDelegate>
+@interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate>
 
 @property (strong, nonatomic) DetailInfoView *detailView;
 @property (strong, nonatomic) WorksView *workView;
@@ -32,20 +32,24 @@
 @implementation MeViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    //判断用户是否登录
-    [SVProgressHUD show];
-    if(![LoginSessionManager isUserLogin]){
-        _isLogin = NO;
-        [SVProgressHUD dismiss];
-    }else{
-        [LoginSessionManager verifyUserToken];
-    }
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    //判断用户是否登录
+    [SVProgressHUD show];
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        _isLogin = NO;
+        [SVProgressHUD dismiss];
+        [self popLoginViewController];
+    }else{
+        [[LoginSessionManager getInstance] verifyUserToken];
+    }
+    
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
@@ -59,10 +63,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/**
+ 刷新用户界面
+ */
 - (void)refreshViewInfo{
+//    [self.detailView updateViewInfo:<#(NSString *)#> name:<#(NSString *)#> focus:<#(NSString *)#> fans:<#(NSString *)#>]
+//    [self.workView updateWorksArray:<#(NSMutableArray *)#>]
+    
     
 }
-
 
 /**
  用户信息view
@@ -90,6 +100,17 @@
     return _workView;
 }
 
+
+/**
+ 弹出登录界面
+ */
+- (void)popLoginViewController{
+    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+    [self presentViewController:jjLoginView animated:YES completion:^{
+        
+    }];
+}
+
 #pragma - mark DetailInfoViewDelegate
 - (void)pickUpHeaderImgCallback{
     
@@ -107,6 +128,20 @@
     [self presentViewController:loginView animated:YES completion:^{
         
     }];
+}
+
+#pragma - mark LoginSessionDelegate
+- (void)tokenVerifySuccessful{
+    //刷新数据
+    [self refreshViewInfo];
+}
+
+- (void)tokenVerifyError{
+    [self popLoginViewController];
+}
+
+- (void)networkError{
+    //网络出错了 请刷新界面
 }
 
 @end

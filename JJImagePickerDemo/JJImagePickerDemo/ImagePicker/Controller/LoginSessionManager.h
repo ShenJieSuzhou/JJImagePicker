@@ -9,7 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "LoginModel.h"
 
+@protocol LoginSessionDelegate <NSObject>
+
+- (void)tokenVerifySuccessful;
+
+- (void)tokenVerifyError;
+
+- (void)networkError;
+
+@end
+
 @interface LoginSessionManager : NSObject
+@property (weak, nonatomic) id<LoginSessionDelegate> delegate;
 
 + (LoginSessionManager *)getInstance;
 
@@ -18,7 +29,7 @@
 
  @return 结果
  */
-+ (BOOL)isUserLogin;
+- (BOOL)isUserLogin;
 
 
 
@@ -27,7 +38,7 @@
 
  @param userModel 用户信息
  */
-+ (void)verifyUserToken;
+- (void)verifyUserToken;
 
 
 
