@@ -10,12 +10,16 @@
 
 @implementation LoginModel
 
-- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName token:(NSString *)token{
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans token:(NSString *)token works:(NSArray *)works{
     self = [super init];
     if(self){
         self.userId = uid;
         self.userName = userName;
         self.token = token;
+        self.worksArray = works;
+        self.iconUrl = iconUrl;
+        self.focus = focus;
+        self.fans = fans;
     }
     
     return self;

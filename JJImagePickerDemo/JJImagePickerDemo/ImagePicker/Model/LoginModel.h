@@ -16,7 +16,15 @@
 
 @property (nonatomic, strong) NSString *token;
 
-- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName token:(NSString *)token;
+@property (nonatomic, strong) NSArray *worksArray;
+
+@property (nonatomic, strong) NSString *iconUrl;
+
+@property (nonatomic, strong) NSString *focus;
+
+@property (nonatomic, strong) NSString *fans;
+
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans token:(NSString *)token works:(NSArray *)works;
 
 @end
 

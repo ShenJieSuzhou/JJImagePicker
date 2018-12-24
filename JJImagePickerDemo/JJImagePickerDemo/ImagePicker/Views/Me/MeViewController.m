@@ -15,6 +15,7 @@
 #import "SettingViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "LoginSessionManager.h"
+#import "HttpRequestUrlDefine.h"
 
 
 #define USERVIEW_WIDTH self.view.frame.size.width
@@ -38,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //判断用户是否登录
@@ -61,17 +63,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-/**
- 刷新用户界面
- */
-- (void)refreshViewInfo{
-//    [self.detailView updateViewInfo:<#(NSString *)#> name:<#(NSString *)#> focus:<#(NSString *)#> fans:<#(NSString *)#>]
-//    [self.workView updateWorksArray:<#(NSMutableArray *)#>]
-    
-    
 }
 
 /**
@@ -111,6 +102,16 @@
     }];
 }
 
+/**
+ 刷新用户界面
+ */
+- (void)refreshViewInfo{
+    LoginModel *userModel = [LoginSessionManager getInstance].getUserModel;
+    [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans]
+    
+    [self.workView updateWorksArray:[[NSMutableArray alloc] initWithArray:userModel.worksArray]];
+}
+
 #pragma - mark DetailInfoViewDelegate
 - (void)pickUpHeaderImgCallback{
     
@@ -130,18 +131,33 @@
     }];
 }
 
+#pragma mark - notification
+- (void)receiveLoginSuccess:(NSNotification *)notify{
+    //刷新数据
+    [self refreshViewInfo];
+}
+
 #pragma - mark LoginSessionDelegate
 - (void)tokenVerifySuccessful{
     //刷新数据
     [self refreshViewInfo];
 }
 
-- (void)tokenVerifyError{
+- (void)tokenVerifyError:(NSString *)errorDesc{
     [self popLoginViewController];
 }
 
-- (void)networkError{
+- (void)networkError:(NSError *)error{
     //网络出错了 请刷新界面
+    [SVProgressHUD showErrorWithStatus:@"网络连接错误，请检查网络"];
+    [SVProgressHUD dismissWithDelay:2.0f];
+}
+
+- (void)dealloc{
+    [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_detailView release];
+    [_workView release];
 }
 
 @end

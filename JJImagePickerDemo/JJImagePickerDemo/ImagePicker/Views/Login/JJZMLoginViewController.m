@@ -14,13 +14,14 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "HttpRequestUrlDefine.h"
 #import "ViewController.h"
+#import "LoginSessionManager.h"
 
 #define AP_MARGIN 20.0f
 #define AP_HEIGHT 102.0f
 #define AP_LOGINBTN_HEIGHT 50.0f
 
 
-@interface JJZMLoginViewController ()
+@interface JJZMLoginViewController ()<LoginSessionDelegate>
 
 @property (strong, nonatomic) UIView *loginView;
 
@@ -62,6 +63,9 @@
     [title setTextAlignment:NSTextAlignmentCenter];
     [title setTextColor:[UIColor blackColor]];
     [self.customNaviBar addSubview:title];
+    
+    //设置代理
+    [LoginSessionManager getInstance].delegate = self;
     
     //UI 构建
     [self setupUI];
@@ -126,43 +130,13 @@
     NSString *account = _accountF.text;
     NSString *pwd = _pwdF.text;
     
-    [HttpRequestUtil JJ_LoginByAccountPwd:[NSString stringWithFormat:@"%@%@", SERVER_IP, AC_LOGIN_REQUEST] account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
-        [SVProgressHUD dismiss];
-        if(error){
-            if (error.code == -1001) {
-                //网络异常
-                [SVProgressHUD showErrorWithStatus:@"登录失败,请检查您的网络"];
-                [SVProgressHUD dismissWithDelay:2.0f];
-            }
-            return;
-        }
-        
-        if(!data){
-            //登录失败
-            [SVProgressHUD showErrorWithStatus:@"登录失败,网络异常"];
-            [SVProgressHUD dismissWithDelay:2.0f];
-            return;
-        }
-
-        if([[data objectForKey:@"errorCode"] isEqualToString:@"0"]){
-            NSString *uid = [data objectForKey:@"user_id"];
-            NSString *userName = [data objectForKey:@"userName"];
-            NSString *token = [data objectForKey:@"token"];
-            NSString *result = [data objectForKey:@"result"];
-            
-            //取出token user_id username
-            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName token:token];
-            [JJTokenManager saveToken:userModel];
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-            [SVProgressHUD dismissWithDelay:2.0f];
-            [self dismiss];
-        }else{
-//            NSString *errorCode = [data objectForKey:@"errorCode"];
-            NSString *errorMsg = [data objectForKey:@"errorMsg"];
-            [SVProgressHUD showErrorWithStatus:errorMsg];
-            [SVProgressHUD dismissWithDelay:2.0f];
-        }
-    }];
+    if([account isEqualToString:@""] || [pwd isEqualToString:@""]){
+        [SVProgressHUD showErrorWithStatus:@"账号密码不能为空"];
+        [SVProgressHUD dismissWithDelay:2.0f];
+        return;
+    }
+    
+    [[LoginSessionManager getInstance] loginByAccountPwd:AC_LOGIN_REQUEST account:account pwd:pwd];
 }
 
 - (void)forgetPwd:(UIButton *)sender{
@@ -190,5 +164,39 @@
     [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - LoginSessionDelegate
+- (void)networkError:(NSError *)error{
+    NSLog(@"%@", error);
+    [SVProgressHUD showErrorWithStatus:@"连接失败, 请检查您的网络"];
+    [SVProgressHUD dismissWithDelay:2.0f];
+}
+
+- (void)dataOccurError:(NSString *)errorMsg{
+    [SVProgressHUD showErrorWithStatus:@"登录失败,网络异常"];
+    [SVProgressHUD dismissWithDelay:2.0f];
+}
+
+- (void)loginByAccountPwdSuccessful:(LoginModel *)model{
+    [[LoginSessionManager getInstance] setUserInfo:model];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LOGINSUCCESS_NOTIFICATION object:nil];
+    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+    [SVProgressHUD dismissWithDelay:2.0f];
+    [self dismiss];
+}
+
+- (void)loginByAccountPwdFailed:(NSString *)errorMsg{
+    [SVProgressHUD showErrorWithStatus:errorMsg];
+    [SVProgressHUD dismissWithDelay:2.0f];
+}
+
+- (void)dealloc{
+    [super dealloc];
+    
+    [_loginView release];
+    [_accountF release];
+    [_pwdF release];
+    [_forgetPwdBtn release];
+    [_loginBtn release];
+}
 
 @end
