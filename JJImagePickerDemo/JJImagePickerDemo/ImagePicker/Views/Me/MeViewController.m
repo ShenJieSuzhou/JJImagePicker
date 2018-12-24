@@ -107,9 +107,10 @@
  */
 - (void)refreshViewInfo{
     LoginModel *userModel = [LoginSessionManager getInstance].getUserModel;
-    [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans]
+    [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans];
     
     [self.workView updateWorksArray:[[NSMutableArray alloc] initWithArray:userModel.worksArray]];
+    
 }
 
 #pragma - mark DetailInfoViewDelegate
