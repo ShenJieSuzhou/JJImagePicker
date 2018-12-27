@@ -15,4 +15,7 @@
  */
 + (NSString *)jj_timeStringWithMinsAndSecsFromSecs:(double)seconds;
 
++ (NSArray *)stringToJSON:(NSString *)jsonStr;
+
+
 @end

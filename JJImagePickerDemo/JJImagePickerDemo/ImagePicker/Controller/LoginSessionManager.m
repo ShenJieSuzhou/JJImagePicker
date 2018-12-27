@@ -7,9 +7,11 @@
 //
 
 #import "LoginSessionManager.h"
+#import "HttpRequestUrlDefine.h"
 #import "JJTokenManager.h"
 #import "HttpRequestUtil.h"
 #import "JSONKit.h"
+#import "NSString+JJUI.h"
 
 static LoginSessionManager *mInstance = nil;
 
@@ -39,19 +41,19 @@ static LoginSessionManager *mInstance = nil;
             return;
         }
         
-        if([[data objectForKey:@"errorCode"] isEqualToString:@"0"]){
+        if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
             NSString *uid = [data objectForKey:@"user_id"];
             NSString *userName = [data objectForKey:@"userName"];
             NSString *token = [data objectForKey:@"token"];
-            NSString *result = [data objectForKey:@"result"];
-            NSString *works = [data objectForKey:@"works"];
-            
+            NSArray *works = [data objectForKey:@"works"];
+            NSString *fans = [data objectForKey:@"fans"];
+            NSString *foucs = [data objectForKey:@"focus"];
+            NSString *iconUrl = [data objectForKey:@"iconUrl"];
             //字符串解析成数组
-            NSArray *workList = [[works substringWithRange:NSMakeRange(1, works.length - 1)] componentsSeparatedByString:@","];
+//            NSArray *workList = [NSString stringToJSON:works];
             
             //取出token user_id username
-            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:@"" focus:@"" fans:@"" token:token works:workList];
-            [JJTokenManager saveToken:userModel];
+            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans token:token works:works];
             [weakSelf.delegate loginByAccountPwdSuccessful:userModel];
         }else{
             NSString *errorMsg = [data objectForKey:@"errorMsg"];
@@ -60,9 +62,8 @@ static LoginSessionManager *mInstance = nil;
     }];
 }
 
-
 - (BOOL)isUserLogin{
-    if(![JJTokenManager getToken]){
+    if([[JJTokenManager shareInstance] getUserToken].length == 0){
         return NO;
     }
     
@@ -70,11 +71,11 @@ static LoginSessionManager *mInstance = nil;
 }
 
 - (void)verifyUserToken{
-    LoginModel *userModel = [JJTokenManager getToken];
-    NSString *token = userModel.token;
+    NSString *token = [[JJTokenManager shareInstance] getUserToken];
+    NSString *userID = [[JJTokenManager shareInstance] getUserID];
     
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_VerifyLoginToken:@"" token:token callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_VerifyLoginToken:VERIFY_TOKEN_REQUEST token:token userid:userID callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [weakSelf.delegate networkError:error];
         }else{
@@ -82,6 +83,8 @@ static LoginSessionManager *mInstance = nil;
             if([result isEqualToString:@"1"]){
                 [weakSelf.delegate tokenVerifySuccessful];
             }else if([result isEqualToString:@"0"]){
+                //清除token
+                [[JJTokenManager shareInstance] removeAllUserInfo];
                 NSString *errorMsg = [data objectForKey:@"errorMsg"];
                 [weakSelf.delegate tokenVerifyError:errorMsg];
             }

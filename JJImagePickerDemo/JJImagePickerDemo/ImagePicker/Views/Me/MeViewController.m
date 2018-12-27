@@ -16,6 +16,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "LoginSessionManager.h"
 #import "HttpRequestUrlDefine.h"
+#import "Works.h"
 
 
 #define USERVIEW_WIDTH self.view.frame.size.width
@@ -44,6 +45,8 @@
     
     //判断用户是否登录
     [SVProgressHUD show];
+    [LoginSessionManager getInstance].delegate = self;
+    
     if(![[LoginSessionManager getInstance] isUserLogin]){
         _isLogin = NO;
         [SVProgressHUD dismiss];
@@ -108,9 +111,25 @@
 - (void)refreshViewInfo{
     LoginModel *userModel = [LoginSessionManager getInstance].getUserModel;
     [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans];
+    [self.detailView setLoginState:YES];
     
-    [self.workView updateWorksArray:[[NSMutableArray alloc] initWithArray:userModel.worksArray]];
+    if(!userModel.worksArray){
+        return;
+    }
     
+    NSMutableArray *workArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [userModel.worksArray count]; i++) {
+        NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
+        NSString *path = [workInfo objectForKey:@"path"];
+        NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
+        NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
+        NSString *work = [workInfo objectForKey:@"work"];
+        
+        Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
+        [workArray addObject:obj];
+    }
+    
+    [self.workView updateWorksArray:workArray];
 }
 
 #pragma - mark DetailInfoViewDelegate
@@ -140,11 +159,15 @@
 
 #pragma - mark LoginSessionDelegate
 - (void)tokenVerifySuccessful{
+    [SVProgressHUD dismiss];
     //刷新数据
     [self refreshViewInfo];
 }
 
 - (void)tokenVerifyError:(NSString *)errorDesc{
+    [SVProgressHUD showErrorWithStatus:errorDesc];
+    [SVProgressHUD dismissWithDelay:2.0f];
+
     [self popLoginViewController];
 }
 

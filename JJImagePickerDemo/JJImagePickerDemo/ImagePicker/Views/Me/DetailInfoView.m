@@ -91,7 +91,7 @@
         [_userName setHidden:YES];
     }else{
         [_loginBtn setHidden:YES];
-        [_loginBtn setHidden:NO];
+        [_userName setHidden:NO];
     }
 }
 

@@ -31,6 +31,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param token token
  @param block 回调
  */
-+ (void)JJ_VerifyLoginToken:(NSString *)url token:(NSString *)token callback:(requestCallBack) block;
++ (void)JJ_VerifyLoginToken:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
 
 @end
