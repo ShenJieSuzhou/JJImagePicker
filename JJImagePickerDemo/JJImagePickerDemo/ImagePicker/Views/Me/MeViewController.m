@@ -44,16 +44,16 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //判断用户是否登录
-    [SVProgressHUD show];
-    [LoginSessionManager getInstance].delegate = self;
-    
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        _isLogin = NO;
-        [SVProgressHUD dismiss];
-        [self popLoginViewController];
-    }else{
-        [[LoginSessionManager getInstance] verifyUserToken];
-    }
+//    [SVProgressHUD show];
+//    [LoginSessionManager getInstance].delegate = self;
+//
+//    if(![[LoginSessionManager getInstance] isUserLogin]){
+//        _isLogin = NO;
+//        [SVProgressHUD dismiss];
+//        [self popLoginViewController];
+//    }else{
+//        [[LoginSessionManager getInstance] verifyUserToken];
+//    }
     
     
     [self.view addSubview:self.detailView];
