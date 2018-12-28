@@ -7,11 +7,11 @@
 //
 
 #import "SecurityViewController.h"
+#import "JJTokenManager.h"
 
 @interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *securityTable;
-@property (strong, nonatomic) NSMutableArray *securityArray;
 
 @end
 
@@ -28,11 +28,15 @@
     
     CGFloat w = self.view.frame.size.width;
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
-    [title setText:@"我的帐号"];
+    [title setText:@"帐号安全"];
     [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
     [title setTextAlignment:NSTextAlignmentCenter];
     [title setTextColor:[UIColor blackColor]];
     [self.customNaviBar addSubview:title];
+    
+    [self.jjTabBarView setHidden:YES];
+    
+    [self.view addSubview:self.securityTable];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,8 +53,10 @@
 //懒加载
 - (UITableView *)securityTable{
     if(!_securityTable){
-        _securityTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.customNaviBar.frame.size.height) style:UITableViewStylePlain];
+        _securityTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.customNaviBar.frame.size.height) style:UITableViewStyleGrouped];
         _securityTable.delegate = self;
+        _securityTable.dataSource = self;
+        _securityTable.tableFooterView = [UIView new];
     }
     return _securityTable;
 }
@@ -61,12 +67,60 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.securityArray count];
+    switch (section) {
+        case 0:
+            return 1;
+        case 1:
+            return 1;
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    
+    static NSString *CellIdentifier = @"SECURTY_Cell";
+    UITableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"登录密码";
+                if([JJTokenManager shareInstance].getPassword.length == 0){
+                    cell.detailTextLabel.text = @"未设置";
+                }else{
+                    cell.detailTextLabel.text = @"更改";
+                }
+                break;
+        }
+    }else if (indexPath.section == 1) {
+        cell.textLabel.text = @"绑定手机号";
+        if([JJTokenManager shareInstance].getUserMobile.length == 0){
+            cell.detailTextLabel.text = @"未绑定";
+        }else{
+            cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserMobile;
+        }
+    }
+    
+    return cell;
 }
 
 @end

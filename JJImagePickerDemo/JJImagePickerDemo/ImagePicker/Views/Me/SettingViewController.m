@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "SettingViewCell.h"
+#import "SecurityViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -64,7 +65,41 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                break;
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            default:
+                break;
+        }
+    }else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            SecurityViewController *securityView = [SecurityViewController new];
+            [self presentViewController:securityView animated:YES completion:^{
+                
+            }];
+        }
+    }else if(indexPath.section == 2){
+        
+    }else if(indexPath.section == 3){
+        
+    }else if(indexPath.section == 4){
+        
+    }else if(indexPath.section == 5){
+        
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

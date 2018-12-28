@@ -37,12 +37,17 @@
 //  保存用户的mobile
 - (void)saveUserMobile:(NSString *)mobile;
 - (NSString *)getUserMobile;
-- (void)canceelUserMobile;
+- (void)cancelUserMobile;
 
 //  保存用户的username
 - (void)saveUserName:(NSString *)name;
 - (NSString *)getUserName;
-- (void)canceelUserName;
+- (void)cancelUserName;
+
+//  保存用户的密码
+- (void)saveUserPassword:(NSString *)pwd;
+- (NSString *)getPassword;
+- (void)cancelPassword;
 
 //  保存用户的sign个人简介
 - (void)saveUserSign:(NSString *)sign;

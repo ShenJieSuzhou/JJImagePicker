@@ -39,6 +39,23 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)saveUserPassword:(NSString *)pwd{
+    [[NSUserDefaults standardUserDefaults] setObject:pwd forKey:@"UserPwd"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (NSString *)getPassword{
+    NSString *pwd = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserPwd"];
+    if (!pwd) {
+        return @"";
+    }
+    return pwd;
+}
+
+-(void)cancelPassword{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserPwd"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 //  保存用户的id
 - (void)saveUserID:(NSNumber *)userID {
     [[NSUserDefaults standardUserDefaults] setObject:userID.stringValue forKey:@"UserID"];
@@ -47,7 +64,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)getUserID {
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserID"];
     if (!userID) {
-        return @" ";
+        return @"";
     }
     return userID;
 }
@@ -64,7 +81,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)gettUserAvatar {
     NSString *avatar = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserAvatar"];
     if (!avatar) {
-        return @" ";
+        return @"";
     }
     return avatar;
 }
@@ -81,7 +98,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)getUserGender {
     NSString *gender = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserGender"];
     if (!gender) {
-        return @" ";
+        return @"";
     }
     return gender;
 }
@@ -98,48 +115,15 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)getUserMobile {
     NSString *mobile = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserMobile"];
     if (!mobile) {
-        return @" ";
+        return @"";
     }
     return mobile;
 }
-- (void)canceelUserMobile {
+- (void)cancelUserMobile {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserMobile"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//  保存用户的height
-- (void)saveUserHeight:(NSString *)height {
-    [[NSUserDefaults standardUserDefaults] setObject:height forKey:@"UserHeight"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserHeight {
-    NSString *height = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserHeight"];
-    if (!height) {
-        return @" ";
-    }
-    return height;
-}
-- (void)cancelUserHeight {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserHeight"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-//  保存用户的weight
-- (void)saveUserWeight:(NSString *)weight {
-    [[NSUserDefaults standardUserDefaults] setObject:weight forKey:@"UserWeight"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserWeight {
-    NSString *weight = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserWeight"];
-    if (!weight) {
-        return @" ";
-    }
-    return weight;
-}
-- (void)cancelUserWeight {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserWeight"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 //  保存用户的sign个人简介
 - (void)saveUserSign:(NSString *)sign {
@@ -149,7 +133,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)getUserSign {
     NSString *sign = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserSign"];
     if (!sign) {
-        return @" ";
+        return @"";
     }
     return sign;
 }
@@ -158,73 +142,6 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//  保存用户的createTime
-- (void)saveUserCreateTime:(NSNumber *)createTime {
-    [[NSUserDefaults standardUserDefaults] setObject:createTime.stringValue forKey:@"UserCreateTime"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserCreateTime {
-    NSString *createTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserCreateTime"];
-    if (!createTime) {
-        return @" ";
-    }
-    return createTime;
-}
-- (void)cancelUserCreateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserCreateTime"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-//  保存用户的trainGoal训练目的
-- (void)saveUserTrainGoal:(NSString *)trainGoal {
-    [[NSUserDefaults standardUserDefaults] setObject:trainGoal forKey:@"UserTrainGoal"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserTrainGoal {
-    NSString *trainGoal = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserTrainGoal"];
-    if (!trainGoal) {
-        return @" ";
-    }
-    return trainGoal;
-}
-- (void)cancelUserTrainGoal {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserTrainGoal"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-//  训练基础
-- (void)saveUserTrainBase:(NSString *)trainBase {
-    [[NSUserDefaults standardUserDefaults] setObject:trainBase forKey:@"UserTrainBase"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserTrainBase {
-    NSString *trainBase = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserTrainBase"];
-    if (!trainBase) {
-        return @" ";
-    }
-    return trainBase;
-}
-- (void)cancelUserTrainBase {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserTrainBase"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-//  训练频率
-- (void)saveUserTrainFrequency:(NSString *)trainFrequency {
-    [[NSUserDefaults standardUserDefaults] setObject:trainFrequency forKey:@"UserTrainFrequency"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (NSString *)getUserTrainFrequency {
-    NSString *trainFrequency = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserTrainFrequency"];
-    if (!trainFrequency) {
-        return @" ";
-    }
-    return trainFrequency;
-}
-- (void)cancelUserTrainFrequency {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserTrainFrequency"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 //  用户token
 - (void)saveUserToken:(NSString *)token {
@@ -247,17 +164,12 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (void)removeAllUserInfo {
     [self cancelUserID];
     [self cancelUserSign];
-    [self canceelUserName];
+    [self cancelUserName];
     [self cancelUserAvatar];
     [self cancelUserGender];
-//    [self cancelUserHeight];
-//    [self cancelUserWeight];
-    [self canceelUserMobile];
-//    [self cancelUserCreateTime];
-//    [self cancelUserTrainBase];
-//    [self cancelUserTrainGoal];
-//    [self cancelUserTrainFrequency];
+    [self cancelUserMobile];
     [self cancelUserToken];
+    [self cancelPassword];
 }
 
 //  添加用户信息
