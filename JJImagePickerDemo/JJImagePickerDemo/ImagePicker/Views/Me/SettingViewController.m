@@ -181,7 +181,18 @@
     }else if (indexPath.section == 1) {
         cell.textLabel.text = @"账号与安全";
     }else if(indexPath.section == 2){
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.text = @"消息通知";
+//        CGFloat height = cell.frame.size.height;
+//        CGFloat width = self.view.frame.size.width;
+//        UISwitch * _switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - 50 - 20.0f, 2.0f,  50,  40)];
+//        [_switchFunc setBackgroundColor:[UIColor whiteColor]];
+//        [_switchFunc setOnTintColor:[UIColor blueColor]];
+//        [_switchFunc setThumbTintColor:[UIColor whiteColor]];
+//        _switchFunc.layer.cornerRadius = 15.5f;
+//        _switchFunc.layer.masksToBounds = YES;
+//        [_switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+//        [cell addSubview:_switchFunc];
     }else if(indexPath.section == 3){
         cell.textLabel.text = @"清除缓存";
     }else if(indexPath.section == 4){
