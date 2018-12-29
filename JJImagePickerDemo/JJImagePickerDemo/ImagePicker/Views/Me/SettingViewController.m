@@ -9,6 +9,8 @@
 #import "SettingViewController.h"
 #import "SettingViewCell.h"
 #import "SecurityViewController.h"
+#import "EditNameViewController.h"
+#import "EditAgendViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -69,10 +71,19 @@
         switch (indexPath.row) {
             case 0:
                 break;
-            case 1:
-                
+            case 1:{
+                EditNameViewController *editNameView = [EditNameViewController new];
+                [self presentViewController:editNameView animated:YES completion:^{
+                    
+                }];
+            }
                 break;
-            case 2:
+            case 2:{
+                EditAgendViewController *agendaView = [EditAgendViewController new];
+                [self presentViewController:agendaView animated:YES completion:^{
+                    
+                }];
+            }
                 
                 break;
             case 3:
@@ -183,16 +194,15 @@
     }else if(indexPath.section == 2){
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.text = @"消息通知";
-//        CGFloat height = cell.frame.size.height;
-//        CGFloat width = self.view.frame.size.width;
-//        UISwitch * _switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - 50 - 20.0f, 2.0f,  50,  40)];
-//        [_switchFunc setBackgroundColor:[UIColor whiteColor]];
-//        [_switchFunc setOnTintColor:[UIColor blueColor]];
-//        [_switchFunc setThumbTintColor:[UIColor whiteColor]];
-//        _switchFunc.layer.cornerRadius = 15.5f;
-//        _switchFunc.layer.masksToBounds = YES;
-//        [_switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-//        [cell addSubview:_switchFunc];
+        CGFloat height = cell.frame.size.height;
+        CGFloat width = self.view.frame.size.width;
+        CGFloat swiBtnHeight = 40.0f;
+        CGFloat swiBtnWidth = 50.0f;
+        UISwitch *switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 5.0f,  swiBtnWidth,  swiBtnHeight)];
+        [switchFunc setOnTintColor:[UIColor blueColor]];
+        [switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        [switchFunc setOn:YES];
+        [cell addSubview:switchFunc];
     }else if(indexPath.section == 3){
         cell.textLabel.text = @"清除缓存";
     }else if(indexPath.section == 4){
@@ -209,6 +219,19 @@
     }
     
     return cell;
+}
+
+/**
+ switch 开关
+
+ @param sender 控件
+ */
+- (void)switchAction:(UISwitch *)sender{
+    if(!sender.on){
+        NSLog(@"关闭");
+        return;
+    }
+    NSLog(@"打开");
 }
 
 @end

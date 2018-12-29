@@ -19,6 +19,10 @@
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
 		4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */; };
 		446CFDD521C2AAF300E4D979 /* JJToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 446CFDD421C2AAF300E4D979 /* JJToast.m */; };
+		4477BC9821D7C447009128F5 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9721D7C447009128F5 /* EditNameViewController.m */; };
+		4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9A21D7C462009128F5 /* EditSignViewController.m */; };
+		4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */; };
+		4477BCA121D7C497009128F5 /* EditAgendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BCA021D7C497009128F5 /* EditAgendViewController.m */; };
 		4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7F621841739001E7849 /* HttpRequestUtil.m */; };
 		4487D7FD21841A93001E7849 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7FB21841A93001E7849 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4487D803218534D4001E7849 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D802218534D4001E7849 /* HomeViewController.m */; };
@@ -243,6 +247,14 @@
 		4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHPhotoLibrary+JJ.m"; sourceTree = "<group>"; };
 		446CFDD321C2AAF300E4D979 /* JJToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJToast.h; sourceTree = "<group>"; };
 		446CFDD421C2AAF300E4D979 /* JJToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJToast.m; sourceTree = "<group>"; };
+		4477BC9621D7C447009128F5 /* EditNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditNameViewController.h; sourceTree = "<group>"; };
+		4477BC9721D7C447009128F5 /* EditNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
+		4477BC9921D7C462009128F5 /* EditSignViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditSignViewController.h; sourceTree = "<group>"; };
+		4477BC9A21D7C462009128F5 /* EditSignViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditSignViewController.m; sourceTree = "<group>"; };
+		4477BC9C21D7C47E009128F5 /* AboutAppViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutAppViewController.h; sourceTree = "<group>"; };
+		4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutAppViewController.m; sourceTree = "<group>"; };
+		4477BC9F21D7C497009128F5 /* EditAgendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAgendViewController.h; sourceTree = "<group>"; };
+		4477BCA021D7C497009128F5 /* EditAgendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAgendViewController.m; sourceTree = "<group>"; };
 		4487D7F521841739001E7849 /* HttpRequestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpRequestUtil.h; sourceTree = "<group>"; };
 		4487D7F621841739001E7849 /* HttpRequestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpRequestUtil.m; sourceTree = "<group>"; };
 		4487D7FB21841A93001E7849 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -683,6 +695,14 @@
 				E55BA99221A3E16D0078472D /* WorkCell.m */,
 				E58C251921D5CD7D001C4D8F /* SettingViewCell.h */,
 				E58C251A21D5CD7D001C4D8F /* SettingViewCell.m */,
+				4477BC9621D7C447009128F5 /* EditNameViewController.h */,
+				4477BC9721D7C447009128F5 /* EditNameViewController.m */,
+				4477BC9921D7C462009128F5 /* EditSignViewController.h */,
+				4477BC9A21D7C462009128F5 /* EditSignViewController.m */,
+				4477BC9C21D7C47E009128F5 /* AboutAppViewController.h */,
+				4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */,
+				4477BC9F21D7C497009128F5 /* EditAgendViewController.h */,
+				4477BCA021D7C497009128F5 /* EditAgendViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1468,12 +1488,14 @@
 				E5506BE5212FB7D80077E62B /* TOCroppedImageAttributes.m in Sources */,
 				4487D7FD21841A93001E7849 /* JSONKit.m in Sources */,
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
+				4477BCA121D7C497009128F5 /* EditAgendViewController.m in Sources */,
 				E58C251821D4B2ED001C4D8F /* Works.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
 				E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */,
 				E50E97E0217DBC290029E231 /* WordsView.m in Sources */,
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
+				4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */,
 				E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
 				449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */,
@@ -1541,8 +1563,10 @@
 				44208E1821A1640E0090D983 /* WorksView.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
 				E53F2FC82178879D00142A38 /* ScrawlViewController.m in Sources */,
+				4477BC9821D7C447009128F5 /* EditNameViewController.m in Sources */,
 				E542B8082192BD9D002A7E1E /* HNEmojiContact.m in Sources */,
 				E55782572179CBD3003B20BB /* UIView+MosaicExtension.m in Sources */,
+				4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */,
