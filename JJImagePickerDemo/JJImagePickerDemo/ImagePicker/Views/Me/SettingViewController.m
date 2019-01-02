@@ -74,9 +74,11 @@
             case 0:
                 break;
             case 1:{
+                UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                NSString *name = cell.detailTextLabel.text;
                 EditNameViewController *editNameView = [EditNameViewController new];
                 [self presentViewController:editNameView animated:YES completion:^{
-                    
+                    [editNameView setNickName:name];
                 }];
             }
                 break;
@@ -91,6 +93,7 @@
                 JJDatePicker *datePicker = [[JJDatePicker alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
                 datePicker.delegate = self;
                 [datePicker setCenter:self.view.center];
+                [self.settingTable setUserInteractionEnabled:NO];
                 [self.view addSubview:datePicker];
             }
                 break;
@@ -124,10 +127,12 @@
 
 #pragma mark JJDatePickerDelegate
 - (void)cancelBtnClickCallBack:(JJDatePicker *)picker{
+     [self.settingTable setUserInteractionEnabled:YES];
     [picker removeFromSuperview];
 }
 
 - (void)saveBtnClickCallBack:(JJDatePicker *)picker date:(NSString *)date{
+     [self.settingTable setUserInteractionEnabled:YES];
     [picker removeFromSuperview];
 }
 
@@ -243,5 +248,14 @@
     }
     NSLog(@"打开");
 }
+
+
+/**
+ 更新用户信息
+ */
+- (void)updateUserInfo{
+    
+}
+
 
 @end
