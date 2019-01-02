@@ -11,14 +11,16 @@
 #import "SecurityViewController.h"
 #import "EditNameViewController.h"
 #import "EditAgendViewController.h"
+#import "JJDatePicker.h"
 
-@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate>
 
 @property (strong, nonatomic) UITableView *settingTable;
 
 @end
 
 @implementation SettingViewController
+//@synthesize datePicker = _datePicker;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,10 +86,13 @@
                     
                 }];
             }
-                
                 break;
-            case 3:
-                
+            case 3:{
+                JJDatePicker *datePicker = [[JJDatePicker alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+                datePicker.delegate = self;
+                [datePicker setCenter:self.view.center];
+                [self.view addSubview:datePicker];
+            }
                 break;
             case 4:
                 
@@ -115,6 +120,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 6;
+}
+
+#pragma mark JJDatePickerDelegate
+- (void)cancelBtnClickCallBack:(JJDatePicker *)picker{
+    [picker removeFromSuperview];
+}
+
+- (void)saveBtnClickCallBack:(JJDatePicker *)picker date:(NSString *)date{
+    [picker removeFromSuperview];
 }
 
 #pragma mark - UITableViewDataSource

@@ -12,6 +12,7 @@
 
 
 @property (strong, nonatomic) UITableView *agendTable;
+@property (assign) NSInteger currentRow;
 @end
 
 @implementation EditAgendViewController
@@ -62,7 +63,10 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    self.currentRow = indexPath.row;
+    [tableView reloadData];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
 }
 
 
@@ -81,7 +85,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    cell.accessoryType  = UITableViewCellAccessoryNone;
     
     if (indexPath.section == 0) {
         switch (indexPath.row) {
@@ -100,7 +104,6 @@
     }
     return cell;
 }
-
 
 - (void)clickCancelBtn:(UIButton *)sender{
     [self dismissViewControllerAnimated:YES completion:^{

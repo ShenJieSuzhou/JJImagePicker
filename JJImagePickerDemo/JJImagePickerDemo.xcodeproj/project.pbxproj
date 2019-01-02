@@ -23,6 +23,7 @@
 		4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9A21D7C462009128F5 /* EditSignViewController.m */; };
 		4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */; };
 		4477BCA121D7C497009128F5 /* EditAgendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BCA021D7C497009128F5 /* EditAgendViewController.m */; };
+		4477BCA421D9F952009128F5 /* JJDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BCA321D9F952009128F5 /* JJDatePicker.m */; };
 		4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7F621841739001E7849 /* HttpRequestUtil.m */; };
 		4487D7FD21841A93001E7849 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7FB21841A93001E7849 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4487D803218534D4001E7849 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D802218534D4001E7849 /* HomeViewController.m */; };
@@ -255,6 +256,8 @@
 		4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutAppViewController.m; sourceTree = "<group>"; };
 		4477BC9F21D7C497009128F5 /* EditAgendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAgendViewController.h; sourceTree = "<group>"; };
 		4477BCA021D7C497009128F5 /* EditAgendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAgendViewController.m; sourceTree = "<group>"; };
+		4477BCA221D9F952009128F5 /* JJDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDatePicker.h; sourceTree = "<group>"; };
+		4477BCA321D9F952009128F5 /* JJDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDatePicker.m; sourceTree = "<group>"; };
 		4487D7F521841739001E7849 /* HttpRequestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpRequestUtil.h; sourceTree = "<group>"; };
 		4487D7F621841739001E7849 /* HttpRequestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpRequestUtil.m; sourceTree = "<group>"; };
 		4487D7FB21841A93001E7849 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -703,6 +706,8 @@
 				4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */,
 				4477BC9F21D7C497009128F5 /* EditAgendViewController.h */,
 				4477BCA021D7C497009128F5 /* EditAgendViewController.m */,
+				4477BCA221D9F952009128F5 /* JJDatePicker.h */,
+				4477BCA321D9F952009128F5 /* JJDatePicker.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1473,6 +1478,7 @@
 				E5506BF3212FB7D80077E62B /* CustomNaviViewController.m in Sources */,
 				E5506B54212FB2BA0077E62B /* JJFilters.m in Sources */,
 				E542B7FC2192BA98002A7E1E /* JJEmojKeyboard.m in Sources */,
+				4477BCA421D9F952009128F5 /* JJDatePicker.m in Sources */,
 				E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */,
 				E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */,
 				E512B1DC215A17C400B06B1B /* StickerViewController.m in Sources */,
