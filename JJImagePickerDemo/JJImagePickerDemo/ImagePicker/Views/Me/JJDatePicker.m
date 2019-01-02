@@ -30,15 +30,13 @@
     _datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     [_datePicker addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
     
-    _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cancelBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [_cancelBtn setBackgroundColor:[UIColor whiteColor]];
-    [_cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelBtn addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
     
-    _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [_saveBtn setBackgroundColor:[UIColor whiteColor]];
-    [_saveBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_saveBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_saveBtn addTarget:self action:@selector(clickSaveBtn:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -48,6 +46,9 @@
 }
 
 - (void)layoutSubviews{
+    self.layer.cornerRadius = 8.0f;
+    self.layer.masksToBounds = YES;
+    
     CGFloat height = self.frame.size.height;
     CGFloat width = self.frame.size.width;
     CGFloat btnHeight = 50.0f;

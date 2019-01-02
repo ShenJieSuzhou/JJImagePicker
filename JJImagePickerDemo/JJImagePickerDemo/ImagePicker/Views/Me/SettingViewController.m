@@ -135,7 +135,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return 5;
+            return 4;
         case 1:
             return 1;
         case 2:
@@ -195,10 +195,6 @@
             case 3:
                 cell.textLabel.text = @"出生年月";
                 cell.detailTextLabel.text = @"1991-01-17";
-                break;
-            case 4:
-                cell.textLabel.text = @"个性签名";
-                cell.detailTextLabel.text = @"哈哈哈哈哈哈啊哈";
                 break;
             default:
                 break;
