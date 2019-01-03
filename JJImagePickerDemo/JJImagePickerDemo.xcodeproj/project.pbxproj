@@ -189,6 +189,10 @@
 		E57FDCA3217DB65D00D7561A /* WordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDCA2217DB65D00D7561A /* WordsModel.m */; };
 		E58C251821D4B2ED001C4D8F /* Works.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C251721D4B2ED001C4D8F /* Works.m */; };
 		E58C251B21D5CD7D001C4D8F /* SettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C251A21D5CD7D001C4D8F /* SettingViewCell.m */; };
+		E58C251F21DE2C95001C4D8F /* LoginPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C251D21DE2C95001C4D8F /* LoginPWDViewController.m */; };
+		E58C252021DE2C95001C4D8F /* LoginPWDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C251E21DE2C95001C4D8F /* LoginPWDViewController.xib */; };
+		E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */; };
+		E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */; };
 		E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */; };
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
@@ -526,6 +530,12 @@
 		E58C251721D4B2ED001C4D8F /* Works.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Works.m; sourceTree = "<group>"; };
 		E58C251921D5CD7D001C4D8F /* SettingViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewCell.h; sourceTree = "<group>"; };
 		E58C251A21D5CD7D001C4D8F /* SettingViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewCell.m; sourceTree = "<group>"; };
+		E58C251C21DE2C95001C4D8F /* LoginPWDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPWDViewController.h; sourceTree = "<group>"; };
+		E58C251D21DE2C95001C4D8F /* LoginPWDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPWDViewController.m; sourceTree = "<group>"; };
+		E58C251E21DE2C95001C4D8F /* LoginPWDViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginPWDViewController.xib; sourceTree = "<group>"; };
+		E58C252221DE2CBA001C4D8F /* BindPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
+		E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
+		E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
 		E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQiniuSDK_iOS.a; sourceTree = "<group>"; };
 		E597BDD42186A9F2000B5A34 /* HomeContentmManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeContentmManager.h; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.h; sourceTree = SOURCE_ROOT; };
 		E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeContentmManager.m; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.m; sourceTree = SOURCE_ROOT; };
@@ -682,6 +692,7 @@
 		4487D800218534B6001E7849 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				E58C252121DE2C9D001C4D8F /* security */,
 				4487D804218534FA001E7849 /* MeViewController.h */,
 				4487D805218534FA001E7849 /* MeViewController.m */,
 				44208E1621A1640E0090D983 /* WorksView.h */,
@@ -1194,6 +1205,19 @@
 			path = editTools;
 			sourceTree = "<group>";
 		};
+		E58C252121DE2C9D001C4D8F /* security */ = {
+			isa = PBXGroup;
+			children = (
+				E58C251C21DE2C95001C4D8F /* LoginPWDViewController.h */,
+				E58C251D21DE2C95001C4D8F /* LoginPWDViewController.m */,
+				E58C251E21DE2C95001C4D8F /* LoginPWDViewController.xib */,
+				E58C252221DE2CBA001C4D8F /* BindPhoneViewController.h */,
+				E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */,
+				E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */,
+			);
+			path = security;
+			sourceTree = "<group>";
+		};
 		E597BDD02181B698000B5A34 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,6 +1371,7 @@
 				E547D19B20F89ACE00893D85 /* libraryConfirm.png in Resources */,
 				E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */,
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,
+				E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */,
 				E547D1A420F89ACE00893D85 /* confirmButton.png in Resources */,
 				E547D19520F89ACE00893D85 /* cameraButton@3x.png in Resources */,
 				E547D19620F89ACE00893D85 /* libraryConfirm@3x.png in Resources */,
@@ -1399,6 +1424,7 @@
 				E547D19F20F89ACE00893D85 /* cameraPermissionsIcon@3x.png in Resources */,
 				E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */,
 				E5CFB55A20D3879B0021EB68 /* uls_tb_intro_return_n@3x.png in Resources */,
+				E58C252021DE2C95001C4D8F /* LoginPWDViewController.xib in Resources */,
 				E547D19220F89ACE00893D85 /* swapButton.png in Resources */,
 				E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */,
 				E547D19120F89ACE00893D85 /* cameraButtonHighlighted@3x.png in Resources */,
@@ -1575,6 +1601,7 @@
 				4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
+				E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */,
 				E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */,
@@ -1584,6 +1611,7 @@
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,
 				449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */,
+				E58C251F21DE2C95001C4D8F /* LoginPWDViewController.m in Sources */,
 				E5506BEA212FB7D80077E62B /* JJPhotoPreviewView.m in Sources */,
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
 				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,

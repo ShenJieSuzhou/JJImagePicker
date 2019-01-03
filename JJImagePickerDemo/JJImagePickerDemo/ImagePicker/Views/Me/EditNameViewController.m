@@ -8,7 +8,7 @@
 
 #import "EditNameViewController.h"
 
-#define TEXTFIELD_HEIGHT 50.0f
+#define TEXTFIELD_HEIGHT 40.0f
 #define TEXTFIELD_PADDING 20.0f
 
 @interface EditNameViewController ()
@@ -51,15 +51,19 @@
     [self.jjTabBarView setHidden:YES];
     
     [self.view addSubview:self.nickNameField];
+    [self.nickNameField becomeFirstResponder];
     [self.view addSubview:self.descLabel];
 }
 
 - (UITextField *)nickNameField{
     if(!_nickNameField){
-        _nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height + TEXTFIELD_PADDING, self.view.frame.size.width, TEXTFIELD_HEIGHT)];
+        _nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, self.customNaviBar.frame.size.height + TEXTFIELD_PADDING, self.view.frame.size.width - 20.0f, TEXTFIELD_HEIGHT)];
+        UIView *letfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, 20.0f)];
+        _nickNameField.leftView = letfView;
+        _nickNameField.leftViewMode = UITextFieldViewModeAlways;
         _nickNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [_nickNameField setTextColor:[UIColor blackColor]];
-        _nickNameField.borderStyle = UITextBorderStyleLine;
+        _nickNameField.borderStyle = UITextBorderStyleRoundedRect;
         _nickNameField.layer.borderWidth = 1.0f;
 //        [_nickNameField.layer setCornerRadius:8.0f];
         _nickNameField.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -69,7 +73,7 @@
 
 - (UILabel *)descLabel{
     if(!_descLabel){
-        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.customNaviBar.frame.size.height + TEXTFIELD_PADDING + TEXTFIELD_HEIGHT, self.view.frame.size.width - 20.0f, 100.0f)];
+        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.customNaviBar.frame.size.height + TEXTFIELD_HEIGHT, self.view.frame.size.width - 20.0f, 100.0f)];
         [_descLabel setText:@"最多包含12个中文或24个英文,不支持<>/等特殊符号。"];
         [_descLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [_descLabel setNumberOfLines:0];
@@ -84,14 +88,15 @@
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{
+    [self.nickNameField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 
 - (void)clickSaveBtn:(UIButton *)sender{
-//    [self.nickNameField resignFirstResponder];
-    //保存
+    [self.nickNameField resignFirstResponder];
+    
 }
 
 @end
