@@ -93,7 +93,6 @@
 
 + (void)JJ_BindUserPhone:(NSString *)url phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block{
     
-    
 }
 
 @end
