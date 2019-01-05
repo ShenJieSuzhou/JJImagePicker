@@ -9,6 +9,7 @@
 #import "SecurityViewController.h"
 #import "JJTokenManager.h"
 #import "LoginPWDViewController.h"
+#import "BindPhoneViewController.h"
 
 @interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -64,7 +65,6 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if(indexPath.section == 0){
         LoginPWDViewController *loginPWDCtrl = [[LoginPWDViewController alloc] initWithNibName:@"LoginPWDViewController" bundle:nil];
         loginPWDCtrl.isFreshMan = NO;
@@ -72,9 +72,11 @@
             
         }];
     }else if(indexPath.section == 1){
-        
+        BindPhoneViewController *bindViewCtrl = [[BindPhoneViewController alloc] initWithNibName:@"BindPhoneViewController" bundle:nil];
+        [self presentViewController:bindViewCtrl animated:YES completion:^{
+            
+        }];
     }
-    
 }
 
 #pragma mark - UITableViewDataSource

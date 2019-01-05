@@ -7,11 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GBverifyButton.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface BindPhoneViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *navBar;
+
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *myTitle;
+
+@property (weak, nonatomic) IBOutlet UIView *bindView;
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *codeTF;
+
+@property (weak, nonatomic) IBOutlet UIButton *bindBtn;
+
+@property (strong, nonatomic) GBverifyButton *yzmBtn;
+
+- (IBAction)clickBindBtn:(id)sender;
+
+
+- (IBAction)clickCloseBtn:(id)sender;
+
 @end
 
-NS_ASSUME_NONNULL_END

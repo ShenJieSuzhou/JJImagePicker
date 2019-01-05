@@ -64,8 +64,6 @@ alpha:1.0]
     _tipLabel.backgroundColor=[UIColor lightGrayColor];
     _tipLabel.hidden=YES;
     [view addSubview:_tipLabel];
-    
-    
 }
 
 #pragma mark-->读秒开始

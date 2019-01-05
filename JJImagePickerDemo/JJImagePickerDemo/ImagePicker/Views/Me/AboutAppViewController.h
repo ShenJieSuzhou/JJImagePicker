@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPhotoViewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface AboutAppViewController : UIViewController
+@interface AboutAppViewController : CustomPhotoViewController
 
 @end
 
-NS_ASSUME_NONNULL_END

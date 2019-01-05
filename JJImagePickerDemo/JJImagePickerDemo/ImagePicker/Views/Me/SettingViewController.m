@@ -12,6 +12,7 @@
 #import "EditNameViewController.h"
 #import "EditAgendViewController.h"
 #import "JJDatePicker.h"
+#import "AboutAppViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate>
 
@@ -115,7 +116,10 @@
     }else if(indexPath.section == 3){
         
     }else if(indexPath.section == 4){
-        
+        AboutAppViewController *aboutView = [AboutAppViewController new];
+        [self presentViewController:aboutView animated:YES completion:^{
+            
+        }];
     }else if(indexPath.section == 5){
         
     }
