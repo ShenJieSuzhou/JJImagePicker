@@ -63,4 +63,37 @@
     }];
 }
 
++ (void)JJ_UpdateUserNickName:(NSString *)url name:(NSString *)name userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_UpdateUserGender:(NSString *)url gender:(int)gender userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_UpdateUserBirth:(NSString *)url birth:(NSString *)birth userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_UpdateUserAvatar:(NSString *)url avatar:(NSString *)avatar userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_NewUserSetPassword:(NSString *)url pwd:(NSString *)pwd userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_SetUserNewPassword:(NSString *)url oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_ReqBindPhoneCode:(NSString *)url phone:(NSString *)phone userid:(NSString *)userid callback:(requestCallBack) block{
+    
+}
+
++ (void)JJ_BindUserPhone:(NSString *)url phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block{
+    
+    
+}
+
 @end

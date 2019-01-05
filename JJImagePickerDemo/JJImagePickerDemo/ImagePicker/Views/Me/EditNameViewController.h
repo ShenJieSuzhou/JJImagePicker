@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
 
+@protocol EditNameDelegate <NSObject>
+
+- (void)EditNameSuccessCallBack:(NSString *)name;
+
+@end
+
 @interface EditNameViewController : CustomPhotoViewController
 
+@property (weak, nonatomic) id<EditNameDelegate> delegate;
+
 - (void)setNickName:(NSString *)name;
+
 
 @end

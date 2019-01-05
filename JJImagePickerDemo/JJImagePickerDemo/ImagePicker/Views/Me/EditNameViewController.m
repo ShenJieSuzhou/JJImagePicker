@@ -21,6 +21,7 @@
 @implementation EditNameViewController
 @synthesize nickNameField = _nickNameField;
 @synthesize descLabel = _descLabel;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,15 +59,14 @@
 - (UITextField *)nickNameField{
     if(!_nickNameField){
         _nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, self.customNaviBar.frame.size.height + TEXTFIELD_PADDING, self.view.frame.size.width - 20.0f, TEXTFIELD_HEIGHT)];
+        [_nickNameField setBackgroundColor:[UIColor whiteColor]];
         UIView *letfView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, 20.0f)];
         _nickNameField.leftView = letfView;
         _nickNameField.leftViewMode = UITextFieldViewModeAlways;
         _nickNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [_nickNameField setTextColor:[UIColor blackColor]];
-        _nickNameField.borderStyle = UITextBorderStyleRoundedRect;
-        _nickNameField.layer.borderWidth = 1.0f;
-//        [_nickNameField.layer setCornerRadius:8.0f];
-        _nickNameField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [_nickNameField.layer setCornerRadius:8.0f];
+        [_nickNameField.layer setMasksToBounds:YES];
     }
     return _nickNameField;
 }
