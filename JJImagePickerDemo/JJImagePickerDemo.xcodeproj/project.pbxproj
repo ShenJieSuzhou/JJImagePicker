@@ -193,6 +193,7 @@
 		E58C252021DE2C95001C4D8F /* LoginPWDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C251E21DE2C95001C4D8F /* LoginPWDViewController.xib */; };
 		E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */; };
 		E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */; };
+		E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252821DF3C1A001C4D8F /* DeviceType.m */; };
 		E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */; };
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
@@ -536,6 +537,8 @@
 		E58C252221DE2CBA001C4D8F /* BindPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindPhoneViewController.h; sourceTree = "<group>"; };
 		E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindPhoneViewController.m; sourceTree = "<group>"; };
 		E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
+		E58C252721DF3C1A001C4D8F /* DeviceType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceType.h; sourceTree = "<group>"; };
+		E58C252821DF3C1A001C4D8F /* DeviceType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceType.m; sourceTree = "<group>"; };
 		E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQiniuSDK_iOS.a; sourceTree = "<group>"; };
 		E597BDD42186A9F2000B5A34 /* HomeContentmManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeContentmManager.h; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.h; sourceTree = SOURCE_ROOT; };
 		E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeContentmManager.m; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.m; sourceTree = SOURCE_ROOT; };
@@ -1251,6 +1254,8 @@
 				446CFDD321C2AAF300E4D979 /* JJToast.h */,
 				446CFDD421C2AAF300E4D979 /* JJToast.m */,
 				E58C251521C36E49001C4D8F /* HttpRequestUrlDefine.h */,
+				E58C252721DF3C1A001C4D8F /* DeviceType.h */,
+				E58C252821DF3C1A001C4D8F /* DeviceType.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1608,6 +1613,7 @@
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */,
 				449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */,
+				E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */,
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,
 				449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */,

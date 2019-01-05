@@ -16,6 +16,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
@@ -24,6 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetwork
+  - Masonry
   - SDWebImage
   - SVProgressHUD
   - "UITextView+Placeholder"
@@ -32,6 +34,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetwork
     - AFNetworking
+    - Masonry
     - SDWebImage
     - SVProgressHUD
     - "UITextView+Placeholder"
@@ -39,10 +42,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetwork: 0dbdb2ffb4a7770b3d1802dc85b50ab31263f2c2
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   "UITextView+Placeholder": 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 70d3b7ba9a6b823f713f9b26bb7ea45b0fd5f66b
+PODFILE CHECKSUM: e6d3288a936a657f1c7787dfd743b176317b1047
 
 COCOAPODS: 1.5.3

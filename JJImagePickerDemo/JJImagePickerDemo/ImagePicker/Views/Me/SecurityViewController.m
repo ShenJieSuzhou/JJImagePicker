@@ -8,6 +8,7 @@
 
 #import "SecurityViewController.h"
 #import "JJTokenManager.h"
+#import "LoginPWDViewController.h"
 
 @interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -63,6 +64,16 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(indexPath.section == 0){
+        LoginPWDViewController *loginPWDCtrl = [[LoginPWDViewController alloc] initWithNibName:@"LoginPWDViewController" bundle:nil];
+        loginPWDCtrl.isFreshMan = NO;
+        [self presentViewController:loginPWDCtrl animated:YES completion:^{
+            
+        }];
+    }else if(indexPath.section == 1){
+        
+    }
     
 }
 

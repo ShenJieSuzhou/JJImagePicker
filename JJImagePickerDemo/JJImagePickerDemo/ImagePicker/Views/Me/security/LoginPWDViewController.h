@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPhotoViewController.h"
 
 @interface LoginPWDViewController : UIViewController
 
@@ -16,8 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
-@property (weak, nonatomic) IBOutlet UIImageView *nlineView;
-
 @property (weak, nonatomic) IBOutlet UIView *oUserView;
 
 @property (weak, nonatomic) IBOutlet UITextField *oldPwdField;
@@ -26,6 +25,15 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *checkMPwdField;
 
+@property (weak, nonatomic) IBOutlet UIButton *nSaveBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *navBar;
+
+@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *myTitle;
+
+@property (assign) BOOL isFreshMan;
 
 - (IBAction)nclickSaveBtn:(id)sender;
 
