@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
+@protocol EditAgendDelegate <NSObject>
 
+- (void)EditAgendSucceedCallBack:(int)agend;
+
+@end
 
 @interface EditAgendViewController : CustomPhotoViewController
-
+@property (weak, nonatomic) id<EditAgendDelegate> delegate;
 @end
