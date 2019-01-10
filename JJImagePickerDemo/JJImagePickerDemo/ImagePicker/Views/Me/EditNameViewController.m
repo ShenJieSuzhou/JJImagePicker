@@ -7,6 +7,10 @@
 //
 
 #import "EditNameViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+#import "JJTokenManager.h"
 
 #define TEXTFIELD_HEIGHT 40.0f
 #define TEXTFIELD_PADDING 20.0f
@@ -97,6 +101,23 @@
 - (void)clickSaveBtn:(UIButton *)sender{
     [self.nickNameField resignFirstResponder];
     
+    if(self.nickNameField.text.length == 0){
+        [SVProgressHUD showErrorWithStatus:@"昵称不能为空"];
+        [SVProgressHUD dismissWithDelay:2.0f];
+    }else if(self.nickNameField.text.length >= 10){
+        [SVProgressHUD showErrorWithStatus:@"昵称不能超过10个字符"];
+        [SVProgressHUD dismissWithDelay:2.0f];
+    }else{
+        [SVProgressHUD show];
+        NSString *nickName = self.nickNameField.text;
+        [HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(!error && [[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD dismiss];
+            }else{
+                NSLog(@"%@", error);
+            }
+        }];
+    }
 }
 
 @end

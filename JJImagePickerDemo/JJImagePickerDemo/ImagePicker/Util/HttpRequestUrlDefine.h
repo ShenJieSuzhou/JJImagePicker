@@ -16,4 +16,20 @@
 
 #define VERIFY_TOKEN_REQUEST                            @"http://172.16.10.38:8080/admin/api/tokenVerify"
 
+#define UPDATE_NICKNAME_REQUEST                         @"http://172.16.10.38:8080/setting/api/updateNickName"
+
+#define UPDATE_GENDER_REQUEST                           @"http://172.16.10.38:8080/setting/api/updateGender"
+
+#define UPDATE_BIRTH_REQUEST                            @"http://172.16.10.38:8080/setting/api/updateUserBirth"
+
+#define UPDATE_AVATAR_REQUEST                           @"http://172.16.10.38:8080/setting/api/updateUserAvatar"
+
+#define SET_NEWUSERPWD_REQUEST                          @"http://172.16.10.38:8080/setting/api/setNewUserPwd"
+
+#define SET_NEWPWD_REQUEST                              @"http://172.16.10.38:8080/setting/api/setNewPwd"
+
+#define BIND_PHONECODE_REQUEST                          @"http://172.16.10.38:8080/setting/api/reqBindPhoneCode"
+
+#define BIND_PHONE_REQUEST                              @"http://172.16.10.38:8080/setting/api/bindUserPhone"
+
 #endif /* HttpRequestUrlDefine_h */

@@ -213,7 +213,7 @@
     }else if(indexPath.section == 2){
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.text = @"消息通知";
-        CGFloat height = cell.frame.size.height;
+
         CGFloat width = self.view.frame.size.width;
         CGFloat swiBtnHeight = 40.0f;
         CGFloat swiBtnWidth = 50.0f;
