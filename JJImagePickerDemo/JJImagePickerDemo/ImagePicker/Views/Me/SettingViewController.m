@@ -14,7 +14,7 @@
 #import "JJDatePicker.h"
 #import "AboutAppViewController.h"
 
-@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate>
+@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate>
 
 @property (strong, nonatomic) UITableView *settingTable;
 
@@ -78,6 +78,7 @@
                 UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                 NSString *name = cell.detailTextLabel.text;
                 EditNameViewController *editNameView = [EditNameViewController new];
+                editNameView.delegate = self;
                 [self presentViewController:editNameView animated:YES completion:^{
                     [editNameView setNickName:name];
                 }];
@@ -85,6 +86,7 @@
                 break;
             case 2:{
                 EditAgendViewController *agendaView = [EditAgendViewController new];
+                agendaView.delegate = self;
                 [self presentViewController:agendaView animated:YES completion:^{
                     
                 }];
@@ -138,6 +140,30 @@
 - (void)saveBtnClickCallBack:(JJDatePicker *)picker date:(NSString *)date{
      [self.settingTable setUserInteractionEnabled:YES];
     [picker removeFromSuperview];
+    
+    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    cell.detailTextLabel.text = date;
+}
+
+#pragma mark EditAgendDelegate
+- (void)EditAgendSucceedCallBack:(int)agend{
+    NSString *value = @"";
+    if(agend == 1){
+        value = @"男";
+    }else if(agend == 2){
+        value = @"女";
+    }else if(agend == 3){
+        value = @"蒙面侠";
+    }
+    
+    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    cell.detailTextLabel.text = value;
+}
+
+#pragma mark EditNameDelegate
+- (void)EditNameSuccessCallBack:(NSString *)name{
+    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    cell.detailTextLabel.text = name;
 }
 
 #pragma mark - UITableViewDataSource

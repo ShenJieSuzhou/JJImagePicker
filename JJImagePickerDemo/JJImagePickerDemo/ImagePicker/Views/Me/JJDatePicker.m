@@ -7,6 +7,11 @@
 //
 
 #import "JJDatePicker.h"
+#import "JJTokenManager.h"
+#import "HttpRequestUrlDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "HttpRequestUtil.h"
+
 
 @implementation JJDatePicker
 @synthesize datePicker = _datePicker;
@@ -73,7 +78,23 @@
 }
 
 - (void)clickSaveBtn:(UIButton *)sender{
-    [_delegate saveBtnClickCallBack:self date:self.currentDate];
+    [SVProgressHUD show];
+    __weak typeof(self)weakSelf = self;
+    [HttpRequestUtil JJ_UpdateUserBirth:@"" birth:self.currentDate userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }else if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:@"保存失败"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }else{
+            [[JJTokenManager shareInstance] saveUserGender:[NSNumber numberWithInt:1]];
+            [weakSelf.delegate saveBtnClickCallBack:weakSelf date:weakSelf.currentDate];
+        }
+    }];
 }
 
 @end

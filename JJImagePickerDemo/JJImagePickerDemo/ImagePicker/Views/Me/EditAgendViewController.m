@@ -7,16 +7,22 @@
 //
 
 #import "EditAgendViewController.h"
+#import "JJTokenManager.h"
+#import "HttpRequestUrlDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "HttpRequestUtil.h"
 
 @interface EditAgendViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 
 @property (strong, nonatomic) UITableView *agendTable;
 @property (assign) NSInteger currentRow;
+
 @end
 
 @implementation EditAgendViewController
 @synthesize agendTable = _agendTable;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -112,8 +118,23 @@
 }
 
 - (void)clickSaveBtn:(UIButton *)sender{
-    //    [self.nickNameField resignFirstResponder];
-    //保存
+    [SVProgressHUD show];
+    __weak typeof(self)weakSelf = self;
+    [HttpRequestUtil JJ_UpdateUserGender:@"" gender:1 userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }else if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:@"保存失败"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }else{
+            [[JJTokenManager shareInstance] saveUserGender:[NSNumber numberWithInt:1]];
+            [weakSelf.delegate EditAgendSucceedCallBack:1];
+        }
+    }];
 }
 
 @end
