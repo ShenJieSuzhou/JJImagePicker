@@ -11,6 +11,7 @@
 #import "HttpRequestUtil.h"
 #import "HttpRequestUrlDefine.h"
 #import "JJTokenManager.h"
+#import "GlobalDefine.h"
 
 #define TEXTFIELD_HEIGHT 40.0f
 #define TEXTFIELD_PADDING 20.0f
@@ -110,11 +111,19 @@
     }else{
         [SVProgressHUD show];
         NSString *nickName = self.nickNameField.text;
+        __weak typeof(self) weakself = self;
         [HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
-            if(!error && [[data objectForKey:@"result"] isEqualToString:@"1"]){
-                [SVProgressHUD dismiss];
+            [SVProgressHUD dismiss];
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:2.0f];
+                return ;
+            }
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [weakself.delegate EditNameSuccessCallBack:nickName viewController:weakself];
             }else{
-                NSLog(@"%@", error);
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:2.0f];
             }
         }];
     }

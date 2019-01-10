@@ -11,6 +11,7 @@
 #import "HttpRequestUrlDefine.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "HttpRequestUtil.h"
+#import "GlobalDefine.h"
 
 @interface EditAgendViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -120,19 +121,18 @@
 - (void)clickSaveBtn:(UIButton *)sender{
     [SVProgressHUD show];
     __weak typeof(self)weakSelf = self;
-    [HttpRequestUtil JJ_UpdateUserGender:@"" gender:1 userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_UpdateUserGender:UPDATE_GENDER_REQUEST gender:1 userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];
         if(error){
-            [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
             return ;
         }else if([[data objectForKey:@"result"] isEqualToString:@"0"]){
-            [SVProgressHUD showErrorWithStatus:@"保存失败"];
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
             [SVProgressHUD dismissWithDelay:2.0f];
             return;
         }else{
-            [[JJTokenManager shareInstance] saveUserGender:[NSNumber numberWithInt:1]];
-            [weakSelf.delegate EditAgendSucceedCallBack:1];
+            [weakSelf.delegate EditAgendSucceedCallBack:1 viewController:weakSelf];
         }
     }];
 }

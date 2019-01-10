@@ -11,7 +11,7 @@
 #import "HttpRequestUrlDefine.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "HttpRequestUtil.h"
-
+#import "GlobalDefine.h"
 
 @implementation JJDatePicker
 @synthesize datePicker = _datePicker;
@@ -83,15 +83,14 @@
     [HttpRequestUtil JJ_UpdateUserBirth:@"" birth:self.currentDate userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];
         if(error){
-            [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
             return ;
         }else if([[data objectForKey:@"result"] isEqualToString:@"0"]){
-            [SVProgressHUD showErrorWithStatus:@"保存失败"];
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
             [SVProgressHUD dismissWithDelay:2.0f];
             return;
         }else{
-            [[JJTokenManager shareInstance] saveUserGender:[NSNumber numberWithInt:1]];
             [weakSelf.delegate saveBtnClickCallBack:weakSelf date:weakSelf.currentDate];
         }
     }];

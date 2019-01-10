@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
+
+@class EditAgendViewController;
 @protocol EditAgendDelegate <NSObject>
 
-- (void)EditAgendSucceedCallBack:(int)agend;
+- (void)EditAgendSucceedCallBack:(int)agend viewController:(EditAgendViewController *)viewCtrl;
 
 @end
 

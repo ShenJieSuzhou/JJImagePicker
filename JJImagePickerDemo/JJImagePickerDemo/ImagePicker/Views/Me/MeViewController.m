@@ -41,6 +41,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginOut:) name:LOGINOUT_NOTIFICATION object:nil];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //判断用户是否登录
@@ -110,26 +113,30 @@
  */
 - (void)refreshViewInfo{
     LoginModel *userModel = [LoginSessionManager getInstance].getUserModel;
-    [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans];
-    [self.detailView setLoginState:YES];
-    
-    if(!userModel.worksArray){
-        return;
-    }
-    
-    NSMutableArray *workArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [userModel.worksArray count]; i++) {
-        NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
-        NSString *path = [workInfo objectForKey:@"path"];
-        NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
-        NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
-        NSString *work = [workInfo objectForKey:@"work"];
+    [self.detailView setLoginState:_isLogin];
+    if(!_isLogin){
+        [self.detailView updateViewInfo:@"" name:@"" focus:@"" fans:@""];
+        [self.workView updateWorksArray:nil];
+    }else{
+        [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans];
+        if(!userModel.worksArray){
+            return;
+        }
         
-        Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
-        [workArray addObject:obj];
+        NSMutableArray *workArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [userModel.worksArray count]; i++) {
+            NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
+            NSString *path = [workInfo objectForKey:@"path"];
+            NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
+            NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
+            NSString *work = [workInfo objectForKey:@"work"];
+            
+            Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
+            [workArray addObject:obj];
+        }
+        
+        [self.workView updateWorksArray:workArray];
     }
-    
-    [self.workView updateWorksArray:workArray];
 }
 
 #pragma - mark DetailInfoViewDelegate
@@ -155,6 +162,12 @@
 - (void)receiveLoginSuccess:(NSNotification *)notify{
     //刷新数据
     [self refreshViewInfo];
+}
+
+- (void)userLoginOut:(NSNotification *)notify{
+    _isLogin = NO;
+    //跳转到首页
+//    [self refreshViewInfo];
 }
 
 #pragma - mark LoginSessionDelegate

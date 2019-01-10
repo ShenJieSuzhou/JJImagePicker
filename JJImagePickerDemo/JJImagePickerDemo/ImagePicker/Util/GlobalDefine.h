@@ -37,4 +37,12 @@
 #define JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO @"jj_previewcell_identifer_live"
 #define JJ_PREVIEWCELL_IDENTIFIER_VIDEO @"jj_previewcell_identifer_video"
 
+
+/*
+ * Tips
+ */
+#define JJ_NETWORK_ERROR @"网络失败，请重试"
+#define JJ_NO_PHOTOS @"你还没有内容，快去发布吧"
+
+
 #endif /* GlobalDefine_h */

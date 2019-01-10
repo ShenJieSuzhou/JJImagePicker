@@ -98,12 +98,30 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 - (NSString *)getUserGender {
     NSString *gender = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserGender"];
     if (!gender) {
-        return @"";
+        return @"蒙面侠";
     }
     return gender;
 }
 - (void)cancelUserGender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserGender"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)saveUserBirth:(NSString *)birth{
+    [[NSUserDefaults standardUserDefaults] setObject:birth forKey:@"UserBirth"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getUserBirth{
+    NSString *birth = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserBirth"];
+    if (!birth) {
+        return @"1970-01-01";
+    }
+    return birth;
+}
+
+- (void)cancelUserBirth{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserBirth"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -170,6 +188,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [self cancelUserMobile];
     [self cancelUserToken];
     [self cancelPassword];
+    [self cancelUserBirth];
 }
 
 //  添加用户信息
@@ -187,49 +206,5 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 //    [self saveUserHeight:userDic[@"height"]];
     [self saveUserToken:info.token];
 }
-
-//// 存储token
-//+(void)saveToken:(LoginModel *)token
-//{
-//    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-//    NSData *tokenData;
-//    if (@available(iOS 11.0, *)) {
-//        NSString *value = [NSString stringWithFormat:@"%@,%@", token.token, token.userId];
-//        tokenData = [NSKeyedArchiver archivedDataWithRootObject:value requiringSecureCoding:YES error:nil];
-//    } else {
-//        // Fallback on earlier versions
-//        NSString *value = [NSString stringWithFormat:@"%@,%@", token.token, token.userId];
-//        tokenData = [NSKeyedArchiver archivedDataWithRootObject:value];
-//    }
-//
-//    [userDefaults setObject:tokenData forKey:TOKEN_KEY];
-//    [userDefaults synchronize];
-//}
-//
-//// 读取token
-//+(NSString *)getToken
-//{
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSData *tokenData = [userDefaults objectForKey:TOKEN_KEY];
-//    NSString *token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-//    [userDefaults synchronize];
-//    return token;
-//}
-//
-//// 清空token
-//+(void)cleanToken
-//{
-//    NSUserDefaults *UserLoginState = [NSUserDefaults standardUserDefaults];
-//    [UserLoginState removeObjectForKey:TOKEN_KEY];
-//    [UserLoginState synchronize];
-//}
-//
-//
-//// 跟新token
-//+(LoginModel *)refreshToken
-//{
-//    return nil;
-//}
-
 
 @end

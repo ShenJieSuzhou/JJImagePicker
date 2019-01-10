@@ -8,6 +8,8 @@
 
 #import "WorkCell.h"
 #import "WorksView.h"
+#import "GlobalDefine.h"
+
 #define WORKS_CELL_IDENTIFIER @"WORKS_CELL_IDENTIFIER"
 #define PUBLISH_BTN_HEIGHT 60.0f
 #define PUBLISH_BTN_WIDTH 100.0f
@@ -76,9 +78,10 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if([self.worksArray count] == 0){
-        [_tips setText:@"你还没有内容，快去发布吧！"];
+    if([self.worksArray count] == 0 || !self.worksArray){
+        [_tips setText:JJ_NO_PHOTOS];
         [_tips setTextColor:[UIColor grayColor]];
+        return 0;
     }
     
     return [self.worksArray count];

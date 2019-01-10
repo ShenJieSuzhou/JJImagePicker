@@ -12,6 +12,8 @@
 
 #define LOGINSUCCESS_NOTIFICATION                       @"LOGINSUCCESS_NOTIFICATION"
 
+#define LOGINOUT_NOTIFICATION                           @"LOGINOUT_NOTIFICATION"
+
 #define AC_LOGIN_REQUEST                                @"http://172.16.10.38:8080/admin/api/accountLogin"
 
 #define VERIFY_TOKEN_REQUEST                            @"http://172.16.10.38:8080/admin/api/tokenVerify"

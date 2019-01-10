@@ -12,8 +12,8 @@
 @interface JJTokenManager : NSObject
 + (JJTokenManager *)shareInstance;
 
-//  添加用户信息
-- (void)setUserLoginInfo:(LoginModel *)info;
+////  添加用户信息
+//- (void)setUserLoginInfo:(LoginModel *)info;
 //  移除所有用户信息
 - (void)removeAllUserInfo;
 
@@ -54,10 +54,10 @@
 - (NSString *)getUserSign;
 - (void)cancelUserSign;
 
-//// 保存用户的作品
-//- (void)saveUserWorks:(NSArray *)works;
-//- (NSString *)getUserWorks;
-//- (void)cancelUserWorks;
+//// 保存用户的生日
+- (void)saveUserBirth:(NSString *)birth;
+- (NSString *)getUserBirth;
+- (void)cancelUserBirth;
 
 //  用户token
 - (void)saveUserToken:(NSString *)token;

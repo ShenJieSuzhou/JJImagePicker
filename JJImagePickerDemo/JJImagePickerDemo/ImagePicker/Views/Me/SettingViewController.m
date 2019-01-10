@@ -13,6 +13,9 @@
 #import "EditAgendViewController.h"
 #import "JJDatePicker.h"
 #import "AboutAppViewController.h"
+#import "JJTokenManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "HttpRequestUrlDefine.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate>
 
@@ -101,7 +104,6 @@
             }
                 break;
             case 4:
-                
                 break;
             default:
                 break;
@@ -123,7 +125,9 @@
             
         }];
     }else if(indexPath.section == 5){
-        
+        //通知服务器下线
+        [[JJTokenManager shareInstance] removeAllUserInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LOGINOUT_NOTIFICATION object:nil];
     }
 }
 
@@ -142,11 +146,19 @@
     [picker removeFromSuperview];
     
     UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    if(!cell){
+        return;
+    }
     cell.detailTextLabel.text = date;
+    [[JJTokenManager shareInstance] saveUserBirth:date];
 }
 
 #pragma mark EditAgendDelegate
-- (void)EditAgendSucceedCallBack:(int)agend{
+- (void)EditAgendSucceedCallBack:(int)agend viewController:(EditAgendViewController *)viewCtrl{
+    [viewCtrl dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
     NSString *value = @"";
     if(agend == 1){
         value = @"男";
@@ -157,13 +169,25 @@
     }
     
     UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    if(!cell){
+        return;
+    }
     cell.detailTextLabel.text = value;
+    [[JJTokenManager shareInstance] saveUserGender:[NSNumber numberWithInt:agend]];
 }
 
 #pragma mark EditNameDelegate
-- (void)EditNameSuccessCallBack:(NSString *)name{
+- (void)EditNameSuccessCallBack:(NSString *)name viewController:(EditNameViewController *)viewCtl{
+    [viewCtl dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
     UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    if(!cell){
+        return;
+    }
     cell.detailTextLabel.text = name;
+    [[JJTokenManager shareInstance] saveUserName:name];
 }
 
 #pragma mark - UITableViewDataSource
@@ -213,7 +237,8 @@
                 CGFloat height = cell.frame.size.height;
                 CGFloat width = self.view.frame.size.width;
                 UIImageView *avater = [[UIImageView alloc] initWithFrame:CGRectMake(width - height - 10.0f, 5.0f,  height-10,  height-10)];
-                [avater setImage:[UIImage imageNamed:@"filterDemo"]];
+                NSString *iconUrl = [JJTokenManager shareInstance].gettUserAvatar;
+                [avater sd_setImageWithURL:[NSURL URLWithString:iconUrl] placeholderImage:[UIImage imageNamed:@""]];
                 [avater.layer setCornerRadius:(height-10)/2.0];
                 avater.layer.masksToBounds = YES;
                 [cell addSubview:avater];
@@ -221,15 +246,15 @@
                 break;
             case 1:
                 cell.textLabel.text = @"昵称";
-                cell.detailTextLabel.text = @"张三";
+                cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserName;
                 break;
             case 2:
                 cell.textLabel.text = @"性别";
-                cell.detailTextLabel.text = @"男";
+                cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserGender;
                 break;
             case 3:
                 cell.textLabel.text = @"出生年月";
-                cell.detailTextLabel.text = @"1991-01-17";
+                cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserBirth;
                 break;
             default:
                 break;

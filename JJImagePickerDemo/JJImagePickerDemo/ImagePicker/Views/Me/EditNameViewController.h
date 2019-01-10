@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
-
+@class EditNameViewController;
 @protocol EditNameDelegate <NSObject>
 
-- (void)EditNameSuccessCallBack:(NSString *)name;
+- (void)EditNameSuccessCallBack:(NSString *)name viewController:(EditNameViewController *)viewCtl;
 
 @end
 
