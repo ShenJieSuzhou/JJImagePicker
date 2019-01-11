@@ -167,18 +167,12 @@
         
     }];
     
-    [self.parentViewController.tabBarController setSelectedIndex:0];
-}
-
-//- (void)userLoginOut:(NSNotification *)notify{
-//    _isLogin = NO;
-//    //跳转到首页
-//    NSLog(@"%@", self.parentViewController);
+//    UITabBarController *tabVC = (UITabBarController *)self.window.rootViewController;
 //
-//    [self.parentViewController.tabBarController setSelectedIndex:0];
-//    [self.parentViewController ]
-//    [parent setSelectedIndex:0];
-//}
+//    if(tabVC) {
+//        tabVC.selectedIndex = index;
+//    }
+}
 
 #pragma - mark LoginSessionDelegate
 - (void)tokenVerifySuccessful{
