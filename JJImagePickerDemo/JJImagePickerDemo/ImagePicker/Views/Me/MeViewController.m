@@ -36,20 +36,10 @@
 @implementation MeViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
-    
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     //判断用户是否登录
     [SVProgressHUD show];
     [LoginSessionManager getInstance].delegate = self;
-    
+
     if(![[LoginSessionManager getInstance] isUserLogin]){
         _isLogin = NO;
         [SVProgressHUD dismiss];
@@ -57,6 +47,13 @@
     }else{
         [[LoginSessionManager getInstance] verifyUserToken];
     }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -163,15 +160,16 @@
 
 #pragma mark - loginoutCallback
 - (void)userLoginOutCallBack:(SettingViewController *)viewController{
+    //回到首页
+    UIWindow *windowW = [UIApplication sharedApplication].keyWindow;
+    UITabBarController *tabBarVC = (UITabBarController *)windowW.rootViewController;
+    if(tabBarVC) {
+        [tabBarVC setSelectedIndex:0];
+    }
+    
     [viewController dismissViewControllerAnimated:YES completion:^{
         
     }];
-    
-//    UITabBarController *tabVC = (UITabBarController *)self.window.rootViewController;
-//
-//    if(tabVC) {
-//        tabVC.selectedIndex = index;
-//    }
 }
 
 #pragma - mark LoginSessionDelegate
