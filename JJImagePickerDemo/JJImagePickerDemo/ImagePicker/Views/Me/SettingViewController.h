@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
+@class SettingViewController;
+@protocol LoginOutDelegate <NSObject>
+- (void)userLoginOutCallBack:(SettingViewController *)viewController;
+@end
 
 @interface SettingViewController : CustomPhotoViewController
 
+@property (weak, nonatomic) id<LoginOutDelegate> delegate;
 
 @end

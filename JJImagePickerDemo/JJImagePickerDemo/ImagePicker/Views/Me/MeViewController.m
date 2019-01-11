@@ -17,13 +17,15 @@
 #import "LoginSessionManager.h"
 #import "HttpRequestUrlDefine.h"
 #import "Works.h"
+#import "JJTokenManager.h"
+#import "ViewController.h"
 
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
 #define DETAIL_INFO_VIEW_HEIGHT 180.0f
 
-@interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate>
+@interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate>
 
 @property (strong, nonatomic) DetailInfoView *detailView;
 @property (strong, nonatomic) WorksView *workView;
@@ -42,28 +44,19 @@
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoginOut:) name:LOGINOUT_NOTIFICATION object:nil];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     //判断用户是否登录
-//    [SVProgressHUD show];
-//    [LoginSessionManager getInstance].delegate = self;
-//
-//    if(![[LoginSessionManager getInstance] isUserLogin]){
-//        _isLogin = NO;
-//        [SVProgressHUD dismiss];
-//        [self popLoginViewController];
-//    }else{
-//        [[LoginSessionManager getInstance] verifyUserToken];
-//    }
+    [SVProgressHUD show];
+    [LoginSessionManager getInstance].delegate = self;
     
-    
-    [self.view addSubview:self.detailView];
-    [self.view addSubview:self.workView];
-
-    
-    [self.detailView setLoginState:_isLogin];
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        _isLogin = NO;
+        [SVProgressHUD dismiss];
+        [self popLoginViewController];
+    }else{
+        [[LoginSessionManager getInstance] verifyUserToken];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,31 +105,30 @@
  刷新用户界面
  */
 - (void)refreshViewInfo{
-    LoginModel *userModel = [LoginSessionManager getInstance].getUserModel;
-    [self.detailView setLoginState:_isLogin];
-    if(!_isLogin){
-        [self.detailView updateViewInfo:@"" name:@"" focus:@"" fans:@""];
-        [self.workView updateWorksArray:nil];
-    }else{
-        [self.detailView updateViewInfo:userModel.iconUrl name:userModel.userName focus:userModel.focus fans:userModel.fans];
-        if(!userModel.worksArray){
-            return;
-        }
+
+    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
         
-        NSMutableArray *workArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [userModel.worksArray count]; i++) {
-            NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
-            NSString *path = [workInfo objectForKey:@"path"];
-            NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
-            NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
-            NSString *work = [workInfo objectForKey:@"work"];
-            
-            Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
-            [workArray addObject:obj];
-        }
+        //异步去请求自己的作品
         
-        [self.workView updateWorksArray:workArray];
-    }
+        
+        
+//        if(!userModel.worksArray){
+//            return;
+//        }
+//
+//        NSMutableArray *workArray = [[NSMutableArray alloc] init];
+//        for (int i = 0; i < [userModel.worksArray count]; i++) {
+//            NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
+//            NSString *path = [workInfo objectForKey:@"path"];
+//            NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
+//            NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
+//            NSString *work = [workInfo objectForKey:@"work"];
+//
+//            Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
+//            [workArray addObject:obj];
+//        }
+//
+//        [self.workView updateWorksArray:workArray];
 }
 
 #pragma - mark DetailInfoViewDelegate
@@ -146,6 +138,7 @@
 
 - (void)appSettingClickCallback{
     SettingViewController *settingView = [SettingViewController new];
+    settingView.delegate = self;
     [self presentViewController:settingView animated:YES completion:^{
         
     }];
@@ -160,19 +153,40 @@
 
 #pragma mark - notification
 - (void)receiveLoginSuccess:(NSNotification *)notify{
+    _isLogin = YES;
+    [self.view addSubview:self.detailView];
+    [self.view addSubview:self.workView];
+    [self.detailView setLoginState:_isLogin];
     //刷新数据
     [self refreshViewInfo];
 }
 
-- (void)userLoginOut:(NSNotification *)notify{
-    _isLogin = NO;
-    //跳转到首页
-//    [self refreshViewInfo];
+#pragma mark - loginoutCallback
+- (void)userLoginOutCallBack:(SettingViewController *)viewController{
+    [viewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+    [self.parentViewController.tabBarController setSelectedIndex:0];
 }
+
+//- (void)userLoginOut:(NSNotification *)notify{
+//    _isLogin = NO;
+//    //跳转到首页
+//    NSLog(@"%@", self.parentViewController);
+//
+//    [self.parentViewController.tabBarController setSelectedIndex:0];
+//    [self.parentViewController ]
+//    [parent setSelectedIndex:0];
+//}
 
 #pragma - mark LoginSessionDelegate
 - (void)tokenVerifySuccessful{
     [SVProgressHUD dismiss];
+    _isLogin = YES;
+    [self.view addSubview:self.detailView];
+    [self.view addSubview:self.workView];
+    [self.detailView setLoginState:_isLogin];
     //刷新数据
     [self refreshViewInfo];
 }

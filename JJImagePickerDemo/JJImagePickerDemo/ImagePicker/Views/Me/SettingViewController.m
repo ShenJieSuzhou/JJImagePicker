@@ -25,6 +25,7 @@
 
 @implementation SettingViewController
 //@synthesize datePicker = _datePicker;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,7 +128,9 @@
     }else if(indexPath.section == 5){
         //通知服务器下线
         [[JJTokenManager shareInstance] removeAllUserInfo];
-        [[NSNotificationCenter defaultCenter] postNotificationName:LOGINOUT_NOTIFICATION object:nil];
+        if([_delegate respondsToSelector:@selector(userLoginOutCallBack:)]){
+            [_delegate userLoginOutCallBack:self];
+        }        
     }
 }
 
@@ -160,11 +163,11 @@
     }];
     
     NSString *value = @"";
-    if(agend == 1){
-        value = @"男";
+    if(agend == 0){
+        value = @"男生";
+    }else if(agend == 1){
+        value = @"女生";
     }else if(agend == 2){
-        value = @"女";
-    }else if(agend == 3){
         value = @"蒙面侠";
     }
     
@@ -237,8 +240,8 @@
                 CGFloat height = cell.frame.size.height;
                 CGFloat width = self.view.frame.size.width;
                 UIImageView *avater = [[UIImageView alloc] initWithFrame:CGRectMake(width - height - 10.0f, 5.0f,  height-10,  height-10)];
-                NSString *iconUrl = [JJTokenManager shareInstance].gettUserAvatar;
-                [avater sd_setImageWithURL:[NSURL URLWithString:iconUrl] placeholderImage:[UIImage imageNamed:@""]];
+                NSString *iconUrl = [JJTokenManager shareInstance].getUserAvatar;
+                [avater sd_setImageWithURL:[NSURL URLWithString:iconUrl] placeholderImage:[UIImage imageNamed:@"userPlaceHold"]];
                 [avater.layer setCornerRadius:(height-10)/2.0];
                 avater.layer.masksToBounds = YES;
                 [cell addSubview:avater];
@@ -248,9 +251,19 @@
                 cell.textLabel.text = @"昵称";
                 cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserName;
                 break;
-            case 2:
+            case 2:{
                 cell.textLabel.text = @"性别";
-                cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserGender;
+                NSString *value = @"";
+                if([[JJTokenManager shareInstance].getUserGender isEqualToString:@"0"]){
+                    value = @"男生";
+                }else if([[JJTokenManager shareInstance].getUserGender isEqualToString:@"1"]){
+                    value = @"女生";
+                }else if([[JJTokenManager shareInstance].getUserGender isEqualToString:@"2"]){
+                    value = @"蒙面侠";
+                }
+                cell.detailTextLabel.text = value;
+                
+            }
                 break;
             case 3:
                 cell.textLabel.text = @"出生年月";

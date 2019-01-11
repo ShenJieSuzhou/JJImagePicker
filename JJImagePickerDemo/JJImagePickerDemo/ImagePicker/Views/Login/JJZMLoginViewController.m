@@ -177,7 +177,6 @@
 }
 
 - (void)loginByAccountPwdSuccessful:(LoginModel *)model{
-    [[LoginSessionManager getInstance] setUserInfo:model];
     [[JJTokenManager shareInstance] setUserLoginInfo:model];
     [[NSNotificationCenter defaultCenter] postNotificationName:LOGINSUCCESS_NOTIFICATION object:nil];
     [SVProgressHUD showSuccessWithStatus:@"登录成功"];

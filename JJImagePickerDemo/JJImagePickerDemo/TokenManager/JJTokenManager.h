@@ -13,7 +13,7 @@
 + (JJTokenManager *)shareInstance;
 
 ////  添加用户信息
-//- (void)setUserLoginInfo:(LoginModel *)info;
+- (void)setUserLoginInfo:(LoginModel *)info;
 //  移除所有用户信息
 - (void)removeAllUserInfo;
 
@@ -26,7 +26,7 @@
 
 //  保存用户avatar头像
 - (void)saveUserAvatar:(NSString *)avatar;
-- (NSString *)gettUserAvatar;
+- (NSString *)getUserAvatar;
 - (void)cancelUserAvatar;
 
 //  保存用户的gender
@@ -63,6 +63,16 @@
 - (void)saveUserToken:(NSString *)token;
 - (NSString *)getUserToken;
 - (void)cancelUserToken;
+
+//  用户关注
+- (void)saveFocusPlayerNum:(NSString *)focus;
+- (NSString *)getFocusPlayerNum;
+- (void)cancelFocusPlayerNum;
+
+////  用户粉丝
+- (void)saveUserFans:(NSString *)fans;
+- (NSString *)getUserFans;
+- (void)cancelUserFans;
 
 @end
 

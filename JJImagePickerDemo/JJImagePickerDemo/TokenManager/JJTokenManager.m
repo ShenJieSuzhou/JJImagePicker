@@ -78,7 +78,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] setObject:avatar forKey:@"UserAvatar"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-- (NSString *)gettUserAvatar {
+- (NSString *)getUserAvatar {
     NSString *avatar = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserAvatar"];
     if (!avatar) {
         return @"";
@@ -178,6 +178,45 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//  用户关注
+- (void)saveFocusPlayerNum:(NSString *)focus{
+    [[NSUserDefaults standardUserDefaults] setObject:focus forKey:@"Focus"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getFocusPlayerNum{
+    NSString *focus = [[NSUserDefaults standardUserDefaults] objectForKey:@"Focus"];
+    if (!focus) {
+        return @"";
+    }
+    return focus;
+}
+
+- (void)cancelFocusPlayerNum{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Focus"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+////  用户粉丝
+- (void)saveUserFans:(NSString *)fans{
+    [[NSUserDefaults standardUserDefaults] setObject:fans forKey:@"Fans"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getUserFans{
+    NSString *focus = [[NSUserDefaults standardUserDefaults] objectForKey:@"Fans"];
+    if (!focus) {
+        return @"";
+    }
+    return focus;
+}
+
+- (void)cancelUserFans{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Fans"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 //  移除所有用户信息
 - (void)removeAllUserInfo {
     [self cancelUserID];
@@ -192,19 +231,15 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 }
 
 //  添加用户信息
-- (void)setUserInfoWithDic:(LoginModel *)info {
+- (void)setUserLoginInfo:(LoginModel *)info{
     [self saveUserName:info.userName];
     [self saveUserAvatar:info.iconUrl];
     [self saveUserID:info.userId];
-//    [self saveUserGender:1];
-    [self saveUserMobile:@""];
-//    [self saveUserSign:userDic[@"sign"]];
-//    [self saveUserTrainBase:userDic[@"trainBase"]];
-//    [self saveUserTrainGoal:userDic[@"trainGoal"]];
-//    [self saveUserTrainFrequency:userDic[@"trainFrequency"]];
-//    [self saveUserWeight:userDic[@"weight"]];
-//    [self saveUserHeight:userDic[@"height"]];
+    [self saveUserGender:[NSNumber numberWithInt:info.gender]];
+    [self saveUserMobile:info.telephone];
     [self saveUserToken:info.token];
+    [self saveUserFans:info.fans];
+    [self saveFocusPlayerNum:info.focus];
 }
 
 @end

@@ -112,9 +112,10 @@
         [SVProgressHUD show];
         NSString *nickName = self.nickNameField.text;
         __weak typeof(self) weakself = self;
-        [HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST token:[JJTokenManager shareInstance].getUserToken name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
             [SVProgressHUD dismiss];
             if(error){
+                NSLog(@"%@", error);
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:2.0f];
                 return ;

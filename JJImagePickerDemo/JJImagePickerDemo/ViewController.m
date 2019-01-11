@@ -70,15 +70,10 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    JJLoginViewController *jjLoginView = [JJLoginViewController new];
-    [self presentViewController:jjLoginView animated:YES completion:^{
+    self.cpViewController = [CameraPhotoViewController new];
+    [self presentViewController:self.cpViewController animated:YES completion:^{
 
     }];
-    
-//    self.cpViewController = [CameraPhotoViewController new];
-//    [self presentViewController:self.cpViewController animated:YES completion:^{
-//
-//    }];
     
 //    InterestingViewController *publishView = [InterestingViewController new];
 //    [publishView setSelectedImages:[[NSMutableArray alloc] init]];

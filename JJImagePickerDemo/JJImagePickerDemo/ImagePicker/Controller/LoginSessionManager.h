@@ -58,20 +58,20 @@
 - (void)verifyUserToken;
 
 
-/**
- 设置用户模型
-
- @param model 用户模型
- */
-- (void)setUserInfo:(LoginModel *)model;
-
-
-/**
- 得到用户模型
-
- @return 用户模型
- */
-- (LoginModel *)getUserModel;
+///**
+// 设置用户模型
+//
+// @param model 用户模型
+// */
+//- (void)setUserInfo:(LoginModel *)model;
+//
+//
+///**
+// 得到用户模型
+//
+// @return 用户模型
+// */
+//- (LoginModel *)getUserModel;
 
 
 

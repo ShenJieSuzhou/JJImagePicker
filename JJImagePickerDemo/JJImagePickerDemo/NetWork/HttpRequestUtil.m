@@ -63,8 +63,8 @@
     }];
 }
 
-+ (void)JJ_UpdateUserNickName:(NSString *)url name:(NSString *)name userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:name, @"nikeName", userid, @"user_id", nil];
++ (void)JJ_UpdateUserNickName:(NSString *)url token:(NSString *)token name:(NSString *)name userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",name, @"nickName", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -72,8 +72,8 @@
     }];
 }
 
-+ (void)JJ_UpdateUserGender:(NSString *)url gender:(int)gender userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:gender], @"gender", userid, @"user_id", nil];
++ (void)JJ_UpdateUserGender:(NSString *)url token:(NSString *)token gender:(int)gender userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", [NSNumber numberWithInt:gender], @"gender", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -81,8 +81,8 @@
     }];
 }
 
-+ (void)JJ_UpdateUserBirth:(NSString *)url birth:(NSString *)birth userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:birth, @"birth", userid, @"user_id", nil];
++ (void)JJ_UpdateUserBirth:(NSString *)url token:(NSString *)token birth:(NSString *)birth userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", birth, @"birth", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -90,8 +90,8 @@
     }];
 }
 
-+ (void)JJ_UpdateUserAvatar:(NSString *)url avatar:(NSString *)avatar userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:avatar, @"avatar", userid, @"user_id", nil];
++ (void)JJ_UpdateUserAvatar:(NSString *)url token:(NSString *)token avatar:(NSString *)avatar userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", avatar, @"avatar", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -99,8 +99,8 @@
     }];
 }
 
-+ (void)JJ_NewUserSetPassword:(NSString *)url pwd:(NSString *)pwd userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:pwd, @"pwd", userid, @"user_id", nil];
++ (void)JJ_NewUserSetPassword:(NSString *)url token:(NSString *)token pwd:(NSString *)pwd userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", pwd, @"pwd", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -108,8 +108,8 @@
     }];
 }
 
-+ (void)JJ_SetUserNewPassword:(NSString *)url oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:oldpwd, @"oldpwd", newPwd, @"newPwd",userid, @"user_id", nil];
++ (void)JJ_SetUserNewPassword:(NSString *)url token:(NSString *)token oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", oldpwd, @"oldpwd", newPwd, @"newPwd",userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -117,8 +117,8 @@
     }];
 }
 
-+ (void)JJ_ReqBindPhoneCode:(NSString *)url phone:(NSString *)phone userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:phone, @"phone", userid, @"user_id", nil];
++ (void)JJ_ReqBindPhoneCode:(NSString *)url token:(NSString *)token phone:(NSString *)phone userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", phone, @"phone", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -126,8 +126,8 @@
     }];
 }
 
-+ (void)JJ_BindUserPhone:(NSString *)url phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:phone, @"phone", code, @"code", userid, @"user_id", nil];
++ (void)JJ_BindUserPhone:(NSString *)url token:(NSString *)token phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", phone, @"phone", code, @"code", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

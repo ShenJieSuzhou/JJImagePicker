@@ -18,12 +18,13 @@
 
 @property (strong, nonatomic) UITableView *agendTable;
 @property (assign) NSInteger currentRow;
-
+@property (strong, nonatomic) NSString *gender;
 @end
 
 @implementation EditAgendViewController
 @synthesize agendTable = _agendTable;
 @synthesize delegate = _delegate;
+@synthesize gender = _gender;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -121,7 +122,7 @@
 - (void)clickSaveBtn:(UIButton *)sender{
     [SVProgressHUD show];
     __weak typeof(self)weakSelf = self;
-    [HttpRequestUtil JJ_UpdateUserGender:UPDATE_GENDER_REQUEST gender:1 userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_UpdateUserGender:UPDATE_GENDER_REQUEST token:[JJTokenManager shareInstance].getUserToken gender:(int)self.currentRow userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
@@ -132,7 +133,7 @@
             [SVProgressHUD dismissWithDelay:2.0f];
             return;
         }else{
-            [weakSelf.delegate EditAgendSucceedCallBack:1 viewController:weakSelf];
+            [weakSelf.delegate EditAgendSucceedCallBack:(int)self.currentRow viewController:weakSelf];
         }
     }];
 }

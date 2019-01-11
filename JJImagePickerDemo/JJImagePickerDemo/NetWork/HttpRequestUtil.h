@@ -41,7 +41,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_UpdateUserNickName:(NSString *)url name:(NSString *)name userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_UpdateUserNickName:(NSString *)url token:(NSString *)token name:(NSString *)name userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 /**
@@ -52,7 +52,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_UpdateUserGender:(NSString *)url gender:(int)gender userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_UpdateUserGender:(NSString *)url token:(NSString *)token gender:(int)gender userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 /**
@@ -63,7 +63,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_UpdateUserBirth:(NSString *)url birth:(NSString *)birth userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_UpdateUserBirth:(NSString *)url token:(NSString *)token birth:(NSString *)birth userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 /**
@@ -74,7 +74,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_UpdateUserAvatar:(NSString *)url avatar:(NSString *)avatar userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_UpdateUserAvatar:(NSString *)url token:(NSString *)token avatar:(NSString *)avatar userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 /**
@@ -85,7 +85,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_NewUserSetPassword:(NSString *)url pwd:(NSString *)pwd userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_NewUserSetPassword:(NSString *)url token:(NSString *)token pwd:(NSString *)pwd userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 /**
@@ -97,7 +97,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_SetUserNewPassword:(NSString *)url oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_SetUserNewPassword:(NSString *)url token:(NSString *)token oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block;
 
 
 
@@ -109,7 +109,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_ReqBindPhoneCode:(NSString *)url phone:(NSString *)phone userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_ReqBindPhoneCode:(NSString *)url token:(NSString *)token phone:(NSString *)phone userid:(NSString *)userid callback:(requestCallBack) block;
 
 /**
  绑定手机
@@ -120,6 +120,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_BindUserPhone:(NSString *)url phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_BindUserPhone:(NSString *)url token:(NSString *)token phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block;
 
 @end

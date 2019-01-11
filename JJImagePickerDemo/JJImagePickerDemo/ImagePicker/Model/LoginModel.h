@@ -24,7 +24,14 @@
 
 @property (nonatomic, strong) NSString *fans;
 
-- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans token:(NSString *)token works:(NSArray *)works;
+@property (assign) int gender;
+
+@property (nonatomic, strong) NSString *birth;
+
+@property (nonatomic, strong) NSString *telephone;
+
+
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans gender:(int)gender birth:(NSString *)birth phone:(NSString *)telephone token:(NSString *)token works:(NSArray *)works;
 
 @end
 
