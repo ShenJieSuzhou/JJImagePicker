@@ -1117,18 +1117,10 @@
 		E551669B2159E779001FBFC1 /* stickers */ = {
 			isa = PBXGroup;
 			children = (
-				E551669E2159E7F0001FBFC1 /* Dino */,
 				E551669F2159E7F0001FBFC1 /* Halloween */,
 				E551669C2159E7AE001FBFC1 /* stickerConfig.json */,
 			);
 			path = stickers;
-			sourceTree = "<group>";
-		};
-		E551669E2159E7F0001FBFC1 /* Dino */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dino;
 			sourceTree = "<group>";
 		};
 		E551669F2159E7F0001FBFC1 /* Halloween */ = {
@@ -1769,8 +1761,9 @@
 			baseConfigurationReference = E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WSSN499SLU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7FLG9F2622;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1781,10 +1774,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jack.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "92111631-3f21-4216-b1c3-d616949e35d8";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalSnailDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1794,8 +1787,9 @@
 			baseConfigurationReference = 63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WSSN499SLU;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7FLG9F2622;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1806,10 +1800,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.JJImagePickerDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jack.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "92111631-3f21-4216-b1c3-d616949e35d8";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalSnailDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
