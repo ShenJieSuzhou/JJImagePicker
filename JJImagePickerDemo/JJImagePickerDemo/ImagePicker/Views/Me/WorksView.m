@@ -74,14 +74,15 @@
 //    [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((self.frame.size.width - 40) / 3, (self.frame.size.width - 40) / 3);
+    CGFloat itemWidth = self.frame.size.width  / 3;
+    layout.itemSize = CGSizeMake(itemWidth, itemWidth);
     layout.collectionView.pagingEnabled = YES;
-    layout.minimumLineSpacing = 10;
-    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     _worksCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
-    [_worksCollection setBackgroundColor:[UIColor clearColor]];
+    [_worksCollection setBackgroundColor:[UIColor whiteColor]];
     //设置数据源代理
     _worksCollection.dataSource = self;
     _worksCollection.delegate = self;
@@ -96,10 +97,8 @@
 }
 
 - (void)layoutSubviews{
-//    CGFloat h = self.frame.size.height;
-//    [_publishBtn setFrame:CGRectMake((self.frame.size.width - PUBLISH_BTN_WIDTH)/2, 20.0f, PUBLISH_BTN_WIDTH, PUBLISH_BTN_HEIGHT)];
-//    [_tips setFrame:CGRectMake(0, (h - PUBLISH_BTN_HEIGHT - 60.0f)/2, self.frame.size.width, 60.0f)];
-//    [_worksCollection setFrame:self.frame];
+    [super layoutSubviews];
+    
 }
 
 - (void)updateWorksArray:(NSMutableArray *)works{
@@ -135,7 +134,9 @@
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     WorkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER forIndexPath:indexPath];
+    
     [cell updateCell:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" like:@"111"];
     return cell;
 }

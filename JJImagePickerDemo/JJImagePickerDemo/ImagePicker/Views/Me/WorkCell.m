@@ -7,7 +7,7 @@
 //
 
 #import "WorkCell.h"
-
+#import <Masonry/Masonry.h>
 
 @implementation WorkCell
 @synthesize workImageV = _workImageV;
@@ -21,24 +21,22 @@
 }
 
 - (void)commonInit{
-    self.workImageV = [[UIImageView alloc] initWithFrame:CGRectZero];
+    CGFloat w = self.frame.size.width;
+    CGFloat h = self.frame.size.height;
+    self.workImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, w - 10.0f, h - 10.0f)];
     self.workImageV.userInteractionEnabled = YES;
     self.workImageV.contentMode = UIViewContentModeScaleAspectFill;
     [self.workImageV setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.workImageV];
     
-    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:self.likeBtn];
+//    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
+//    [self addSubview:self.likeBtn];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat w = self.frame.size.width;
-    CGFloat h = self.frame.size.height;
-    
-    [self.workImageV setFrame:CGRectMake(0, 0, w, h - 40.0f)];
-    [self.likeBtn setFrame:CGRectMake(w, h - 40, 40.0f, 40.0f)];
+
 }
 
 
