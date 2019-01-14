@@ -9,10 +9,45 @@
 #import "WorkCell.h"
 #import "WorksView.h"
 #import "GlobalDefine.h"
+#import <Masonry/Masonry.h>
 
 #define WORKS_CELL_IDENTIFIER @"WORKS_CELL_IDENTIFIER"
+#define WORKS_HEADER_CELL_IDENTIFIER @"WORKS_HEADER_CELL_IDENTIFIER"
 #define PUBLISH_BTN_HEIGHT 60.0f
 #define PUBLISH_BTN_WIDTH 100.0f
+
+
+@implementation WorksCollectionReusableView
+@synthesize titleLabel = _titleLabel;
+
+- (id)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        [self commonInitlization];
+    }
+    return self;
+}
+
+- (void)commonInitlization{
+    [self setBackgroundColor:[UIColor whiteColor]];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [_titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [_titleLabel setText:@"作品"];
+    [_titleLabel setTextColor:[UIColor blackColor]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [self addSubview:_titleLabel];
+}
+
+- (void)layoutSubviews{
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(200.0f, 30.0f));
+        make.centerY.equalTo(self);
+        make.left.equalTo(self).offset(20.0f);
+    }];
+}
+
+@end
+
 
 @implementation WorksView
 @synthesize publishBtn = _publishBtn;
@@ -28,24 +63,24 @@
 }
 
 - (void)commonInitlization{
-    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
-    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_publishBtn setBackgroundColor:[UIColor redColor]];
-    [self addSubview:_publishBtn];
-    
-    //没有作品时 显示
-    _tips = [[UILabel alloc] init];
-    [self addSubview:_tips];
+//    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
+//    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
+//    [_publishBtn setBackgroundColor:[UIColor redColor]];
+//    [self addSubview:_publishBtn];
+//
+//    //没有作品时 显示
+//    _tips = [[UILabel alloc] init];
+//    [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(self.frame.size.width / 3, self.frame.size.width / 3 + 60.0f);
+    layout.itemSize = CGSizeMake((self.frame.size.width - 40) / 3, (self.frame.size.width - 40) / 3);
     layout.collectionView.pagingEnabled = YES;
-    layout.minimumLineSpacing = 0;
-    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 10;
+    layout.minimumInteritemSpacing = 10;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    _worksCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, self.frame.size.height - 50.0f) collectionViewLayout:layout];
+    _worksCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
     [_worksCollection setBackgroundColor:[UIColor clearColor]];
     //设置数据源代理
     _worksCollection.dataSource = self;
@@ -55,14 +90,16 @@
     _worksCollection.showsHorizontalScrollIndicator = NO;
     _worksCollection.alwaysBounceHorizontal = NO;
     [_worksCollection registerClass:[WorkCell class] forCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER];
+    [_worksCollection registerClass:[WorksCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER];
+    
     [self addSubview:_worksCollection];
 }
 
 - (void)layoutSubviews{
-    CGFloat h = self.frame.size.height;
-    [_publishBtn setFrame:CGRectMake((self.frame.size.width - PUBLISH_BTN_WIDTH)/2, 20.0f, PUBLISH_BTN_WIDTH, PUBLISH_BTN_HEIGHT)];
-    [_tips setFrame:CGRectMake(0, (h - PUBLISH_BTN_HEIGHT - 60.0f)/2, self.frame.size.width, 60.0f)];
-    [_worksCollection setFrame:CGRectMake(0, PUBLISH_BTN_HEIGHT, self.frame.size.width, h - PUBLISH_BTN_HEIGHT)];
+//    CGFloat h = self.frame.size.height;
+//    [_publishBtn setFrame:CGRectMake((self.frame.size.width - PUBLISH_BTN_WIDTH)/2, 20.0f, PUBLISH_BTN_WIDTH, PUBLISH_BTN_HEIGHT)];
+//    [_tips setFrame:CGRectMake(0, (h - PUBLISH_BTN_HEIGHT - 60.0f)/2, self.frame.size.width, 60.0f)];
+//    [_worksCollection setFrame:self.frame];
 }
 
 - (void)updateWorksArray:(NSMutableArray *)works{
@@ -72,28 +109,42 @@
 
 
 #pragma mark - UICollectionViewDelegate
+/*
+ * @brief 设置 HeadCollectionViewCell frame 大小
+ */
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(self.frame.size.width, 45); // 设置headerView的宽高
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if([self.worksArray count] == 0 || !self.worksArray){
-        [_tips setText:JJ_NO_PHOTOS];
-        [_tips setTextColor:[UIColor grayColor]];
-        return 0;
-    }
+//    if([self.worksArray count] == 0 || !self.worksArray){
+//        [_tips setText:JJ_NO_PHOTOS];
+//        [_tips setTextColor:[UIColor grayColor]];
+//        return 0;
+//    }
+//
+//    return [self.worksArray count];
     
-    return [self.worksArray count];
+    return 10;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WorkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER forIndexPath:indexPath];
-    
     [cell updateCell:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" like:@"111"];
-    
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    WorksCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER forIndexPath:indexPath];
+    
+    return header;
 }
 
 @end

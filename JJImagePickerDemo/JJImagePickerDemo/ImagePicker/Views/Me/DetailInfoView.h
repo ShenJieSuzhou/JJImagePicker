@@ -24,7 +24,6 @@
 @property (nonatomic, strong) UIButton *iconView;
 @property (nonatomic, strong) UIButton *settingBtn;
 @property (nonatomic, strong) UILabel  *userName;
-@property (nonatomic, strong) UIButton *loginBtn;
 @property (nonatomic, strong) UIButton *foucsBtn;
 @property (nonatomic, strong) UIButton *fansBtn;
 

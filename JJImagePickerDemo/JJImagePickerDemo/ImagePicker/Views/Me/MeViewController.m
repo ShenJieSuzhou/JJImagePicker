@@ -19,11 +19,12 @@
 #import "Works.h"
 #import "JJTokenManager.h"
 #import "ViewController.h"
+#import <Masonry/Masonry.h>
 
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
-#define DETAIL_INFO_VIEW_HEIGHT 180.0f
+#define DETAIL_INFO_VIEW_HEIGHT 150.0f
 
 @interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate>
 
@@ -37,23 +38,30 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     //判断用户是否登录
-    [SVProgressHUD show];
-    [LoginSessionManager getInstance].delegate = self;
+//    [SVProgressHUD show];
+//    [LoginSessionManager getInstance].delegate = self;
+//
+//    if(![[LoginSessionManager getInstance] isUserLogin]){
+//        _isLogin = NO;
+//        [SVProgressHUD dismiss];
+//        [self popLoginViewController];
+//    }else{
+//        [[LoginSessionManager getInstance] verifyUserToken];
+//    }
+}
 
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        _isLogin = NO;
-        [SVProgressHUD dismiss];
-        [self popLoginViewController];
-    }else{
-        [[LoginSessionManager getInstance] verifyUserToken];
-    }
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    [self.view addSubview:self.detailView];
+    [self.view addSubview:self.workView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,7 +76,7 @@
  */
 -(DetailInfoView *)detailView{
     if(!_detailView){
-        _detailView = [[DetailInfoView alloc] initWithFrame:CGRectMake(0, 0, USERVIEW_WIDTH, DETAIL_INFO_VIEW_HEIGHT)];
+        _detailView = [[DetailInfoView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, DETAIL_INFO_VIEW_HEIGHT)];
         _detailView.delegate = self;
     }
     
@@ -82,8 +90,9 @@
  */
 - (WorksView *)workView{
     if(!_workView){
-        _workView = [[WorksView alloc] initWithFrame:CGRectMake(0, DETAIL_INFO_VIEW_HEIGHT, USERVIEW_WIDTH, USERVIEW_HEIGHT - DETAIL_INFO_VIEW_HEIGHT)];
+        _workView = [[WorksView alloc] initWithFrame:CGRectMake(0, DETAIL_INFO_VIEW_HEIGHT + 10.0f, self.view.frame.size.width, self.view.frame.size.height - DETAIL_INFO_VIEW_HEIGHT - 10.0f)];
     }
+
     return _workView;
 }
 
@@ -106,9 +115,7 @@
     [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
         
         //异步去请求自己的作品
-        
-        
-        
+    
 //        if(!userModel.worksArray){
 //            return;
 //        }

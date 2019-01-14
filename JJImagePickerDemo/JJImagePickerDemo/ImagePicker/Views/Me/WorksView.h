@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@interface WorksCollectionReusableView : UICollectionReusableView
+
+@property (strong, nonatomic) UILabel *titleLabel;
+
+@end
 
 
 @interface WorksView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
@@ -23,3 +28,5 @@
 - (void)updateWorksArray:(NSMutableArray *)works;
 
 @end
+
+
