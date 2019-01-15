@@ -40,6 +40,8 @@
     
     self.timeLine = [[UILabel alloc] init];
     [self.worksInfoView addSubview:self.timeLine];
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -68,7 +70,7 @@
     }];
 }
 
-- (void)setWorksInfo:(NSDictionary *)workInfo{
+- (void)setWorksInfo:(Works *)workModel{
     
 }
 

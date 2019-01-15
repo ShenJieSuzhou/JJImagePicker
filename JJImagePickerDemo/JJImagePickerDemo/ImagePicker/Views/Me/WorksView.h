@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Works.h"
+
+@protocol WorksViewDelegate <NSObject>
+
+- (void)publishWorksCallback;
+
+- (void)goToWorksDetailViewCallback:(Works *)work;
+
+@end
 
 @interface WorksCollectionReusableView : UICollectionReusableView
 
@@ -15,7 +24,6 @@
 @property (strong, nonatomic) UIImageView *sepearateL;
 
 @end
-
 
 @interface WorksView : UIView<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -26,6 +34,8 @@
 @property (strong, nonatomic) UICollectionView *worksCollection;
 
 @property (strong, nonatomic) NSMutableArray *worksArray;
+
+@property (weak, nonatomic) id<WorksViewDelegate> delegate;
 
 - (void)updateWorksArray:(NSMutableArray *)works;
 

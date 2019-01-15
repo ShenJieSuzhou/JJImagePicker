@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
+#import "Works.h"
 
 @interface OriginalWorksViewController : CustomPhotoViewController
 
-- (void)setWorksInfo:(NSDictionary *)workInfo;
+- (void)setWorksInfo:(Works *)workModel;
 
 @end
 

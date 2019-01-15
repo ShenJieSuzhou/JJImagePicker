@@ -20,13 +20,13 @@
 #import "JJTokenManager.h"
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
-
+#import "OriginalWorksViewController.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
 #define DETAIL_INFO_VIEW_HEIGHT 150.0f
 
-@interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate>
+@interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate,WorksViewDelegate>
 
 @property (strong, nonatomic) DetailInfoView *detailView;
 @property (strong, nonatomic) WorksView *workView;
@@ -91,6 +91,7 @@
 - (WorksView *)workView{
     if(!_workView){
         _workView = [[WorksView alloc] initWithFrame:CGRectMake(0, DETAIL_INFO_VIEW_HEIGHT + 10.0f, self.view.frame.size.width, self.view.frame.size.height - DETAIL_INFO_VIEW_HEIGHT - 10.0f)];
+        _workView.delegate = self;
     }
     return _workView;
 }
@@ -187,6 +188,19 @@
     [self.detailView setLoginState:_isLogin];
     //刷新数据
     [self refreshViewInfo];
+}
+
+#pragma - mark WorksViewDelegate
+- (void)publishWorksCallback{
+    NSLog(@"跳转到拍照 选择相片界面");
+}
+
+- (void)goToWorksDetailViewCallback:(Works *)work{
+    OriginalWorksViewController *origialWorksView = [OriginalWorksViewController new];
+    [origialWorksView setWorksInfo:work];
+    [self presentViewController:origialWorksView animated:YES completion:^{
+        
+    }];
 }
 
 - (void)tokenVerifyError:(NSString *)errorDesc{

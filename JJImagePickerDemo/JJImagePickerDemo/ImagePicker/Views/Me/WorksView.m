@@ -66,6 +66,7 @@
 @synthesize worksCollection = _worksCollection;
 @synthesize tips = _tips;
 @synthesize worksArray = _worksArray;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -75,19 +76,6 @@
 }
 
 - (void)commonInitlization{
-    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
-    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_publishBtn setBackgroundColor:[UIColor redColor]];
-    [self addSubview:_publishBtn];
-
-    //没有作品时 显示
-    _tips = [[UILabel alloc] init];
-    [_tips setTextAlignment:NSTextAlignmentCenter];
-    [_tips setText:JJ_NO_PHOTOS];
-    [_tips setTextColor:[UIColor grayColor]];
-    [self addSubview:_tips];
-    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat itemWidth = self.frame.size.width/3;
     layout.itemSize = CGSizeMake(itemWidth, itemWidth);
@@ -109,19 +97,33 @@
     [_worksCollection registerClass:[WorksCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER];
     [_worksCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:WORKS_FOOTER_CELL_IDENTIFIER];
     [self addSubview:_worksCollection];
+    
+    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
+    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    [_publishBtn setBackgroundColor:[UIColor redColor]];
+    [_publishBtn addTarget:self action:@selector(clickPublishBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_worksCollection addSubview:_publishBtn];
+    
+    //没有作品时 显示
+    _tips = [[UILabel alloc] init];
+    [_tips setTextAlignment:NSTextAlignmentCenter];
+    [_tips setText:JJ_NO_PHOTOS];
+    [_tips setTextColor:[UIColor grayColor]];
+    [_worksCollection addSubview:_tips];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
 
     [self.publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(100.0f, 45.0f));
-        make.centerY.mas_equalTo(self).offset(-20.0f);
+        make.size.mas_equalTo(CGSizeMake(120.0f, 40.0f));
+        make.center.mas_equalTo(self);
     }];
     
     [self.tips mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(self.frame.size.width, 30.0f));
-        make.centerY.mas_equalTo(self).offset(20.0f);
+        make.centerY.mas_equalTo(self).offset(-50.0f);
     }];
     
     [self.publishBtn setHidden:YES];
@@ -141,6 +143,15 @@
     [self.worksCollection reloadData];
 }
 
+/**
+ 发布作品
+ */
+- (void)clickPublishBtn:(UIButton *)sender{
+    if([_delegate respondsToSelector:@selector(publishWorksCallback)]){
+        [_delegate publishWorksCallback];
+    }
+}
+
 
 #pragma mark - UICollectionViewDelegate
 /*
@@ -156,7 +167,12 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    Works *work = [self.worksArray objectAtIndex:indexPath.row];
+    if(work){
+        if([_delegate respondsToSelector:@selector(goToWorksDetailViewCallback:)]){
+            [_delegate goToWorksDetailViewCallback:work];
+        }
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -185,17 +201,20 @@
             footerView = [[UICollectionReusableView alloc] init];
         }
         footerView.backgroundColor = [UIColor whiteColor];
-        UILabel *endText = [[UILabel alloc] init];
-        [endText setText:@"我是有底线的 -_-||"];
-        [endText setFont:[UIFont systemFontOfSize:16.0f]];
-        [endText setTextColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1]];
-        [endText setTextAlignment:NSTextAlignmentCenter];
-        [footerView addSubview:endText];
         
-        [endText mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(300.0f, 100.0f));
-            make.center.mas_equalTo(footerView);
-        }];
+        if([self.worksArray count] != 0 && self.worksArray){
+            UILabel *endText = [[UILabel alloc] init];
+            [endText setText:@"我是有底线的 -_-||"];
+            [endText setFont:[UIFont systemFontOfSize:16.0f]];
+            [endText setTextColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1]];
+            [endText setTextAlignment:NSTextAlignmentCenter];
+            [footerView addSubview:endText];
+            
+            [endText mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(300.0f, 100.0f));
+                make.center.mas_equalTo(footerView);
+            }];
+        }
         
         return footerView;
     }
