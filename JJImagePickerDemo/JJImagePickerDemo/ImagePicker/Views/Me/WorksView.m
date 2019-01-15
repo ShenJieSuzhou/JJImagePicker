@@ -13,6 +13,7 @@
 
 #define WORKS_CELL_IDENTIFIER @"WORKS_CELL_IDENTIFIER"
 #define WORKS_HEADER_CELL_IDENTIFIER @"WORKS_HEADER_CELL_IDENTIFIER"
+#define WORKS_FOOTER_CELL_IDENTIFIER @"WORKS_FOOTER_CELL_IDENTIFIER"
 #define PUBLISH_BTN_HEIGHT 60.0f
 #define PUBLISH_BTN_WIDTH 100.0f
 
@@ -74,7 +75,7 @@
 //    [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat itemWidth = self.frame.size.width  / 3;
+    CGFloat itemWidth = self.frame.size.width/3;
     layout.itemSize = CGSizeMake(itemWidth, itemWidth);
     layout.collectionView.pagingEnabled = YES;
     layout.minimumLineSpacing = 0;
@@ -92,13 +93,14 @@
     _worksCollection.alwaysBounceHorizontal = NO;
     [_worksCollection registerClass:[WorkCell class] forCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER];
     [_worksCollection registerClass:[WorksCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER];
+    [_worksCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:WORKS_FOOTER_CELL_IDENTIFIER];
     
     [self addSubview:_worksCollection];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
+
 }
 
 - (void)updateWorksArray:(NSMutableArray *)works{
@@ -113,6 +115,11 @@
  */
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(self.frame.size.width, 45); // 设置headerView的宽高
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    
+    return CGSizeMake(self.frame.size.width, 100);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -142,10 +149,33 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    if([kind isEqualToString:UICollectionElementKindSectionHeader]){
+        WorksCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER forIndexPath:indexPath];
+        
+        return header;
+    }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
+        UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:WORKS_FOOTER_CELL_IDENTIFIER forIndexPath:indexPath];
+        if(footerView == nil)
+        {
+            footerView = [[UICollectionReusableView alloc] init];
+        }
+        footerView.backgroundColor = [UIColor whiteColor];
+        UILabel *endText = [[UILabel alloc] init];
+        [endText setText:@"我是有底线的 -_-||"];
+        [endText setFont:[UIFont systemFontOfSize:16.0f]];
+        [endText setTextColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1]];
+        [endText setTextAlignment:NSTextAlignmentCenter];
+        [footerView addSubview:endText];
+        
+        [endText mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(300.0f, 100.0f));
+            make.center.mas_equalTo(footerView);
+        }];
+        
+        return footerView;
+    }
     
-    WorksCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER forIndexPath:indexPath];
-    
-    return header;
+    return nil;
 }
 
 @end

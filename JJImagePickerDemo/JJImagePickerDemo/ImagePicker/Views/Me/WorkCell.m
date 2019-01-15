@@ -21,11 +21,10 @@
 }
 
 - (void)commonInit{
-    CGFloat w = self.frame.size.width;
-    CGFloat h = self.frame.size.height;
-    self.workImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, w - 10.0f, h - 10.0f)];
+    self.workImageV = [[UIImageView alloc] init];
     self.workImageV.userInteractionEnabled = YES;
     self.workImageV.contentMode = UIViewContentModeScaleAspectFill;
+    self.workImageV.clipsToBounds = YES;
     [self.workImageV setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.workImageV];
     
@@ -37,6 +36,16 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
 
+    [self.workImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width - 5.0f, self.frame.size.height - 5.0f));
+        make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5));
+    }];
+    
+//    [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(75.0f, 25.0f));
+//        make.bottom.equalTo(self).offset(-10.0f);
+//        make.right.equalTo(self).offset(-10.0f);
+//    }];
 }
 
 
@@ -47,7 +56,7 @@
  @param likeNum <#likeNum description#>
  */
 - (void)updateCell:(NSString *)workUrl like:(NSString *)likeNum{
-    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
+//    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
     __weak typeof(self) weakself = self;
     [[SDImageCache sharedImageCache] diskImageExistsWithKey:workUrl completion:^(BOOL isInCache) {
         if(isInCache){

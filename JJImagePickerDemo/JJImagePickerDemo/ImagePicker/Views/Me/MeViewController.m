@@ -79,7 +79,6 @@
         _detailView = [[DetailInfoView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, DETAIL_INFO_VIEW_HEIGHT)];
         _detailView.delegate = self;
     }
-    
     return _detailView;
 }
 
@@ -92,7 +91,6 @@
     if(!_workView){
         _workView = [[WorksView alloc] initWithFrame:CGRectMake(0, DETAIL_INFO_VIEW_HEIGHT + 10.0f, self.view.frame.size.width, self.view.frame.size.height - DETAIL_INFO_VIEW_HEIGHT - 10.0f)];
     }
-
     return _workView;
 }
 
