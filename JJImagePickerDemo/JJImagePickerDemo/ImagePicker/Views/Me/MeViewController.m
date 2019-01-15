@@ -55,6 +55,7 @@
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
+    [self.workView updateWorksArray:nil];
 }
 
 - (void)viewDidLoad {

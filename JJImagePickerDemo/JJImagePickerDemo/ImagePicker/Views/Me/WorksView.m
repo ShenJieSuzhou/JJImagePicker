@@ -20,6 +20,7 @@
 
 @implementation WorksCollectionReusableView
 @synthesize titleLabel = _titleLabel;
+@synthesize sepearateL = _sepearateL;
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -37,6 +38,10 @@
     [_titleLabel setTextColor:[UIColor blackColor]];
     [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [self addSubview:_titleLabel];
+    
+    _sepearateL = [[UIImageView alloc] init];
+    [_sepearateL setBackgroundColor:[UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1]];
+    [self addSubview:_sepearateL];
 }
 
 - (void)layoutSubviews{
@@ -44,6 +49,12 @@
         make.size.mas_equalTo(CGSizeMake(200.0f, 30.0f));
         make.centerY.equalTo(self);
         make.left.equalTo(self).offset(20.0f);
+    }];
+    
+    [_sepearateL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width - 10, 1));
+        make.left.equalTo(self).offset(10.0f);
+        make.bottom.equalTo(self).offset(-1.0f);
     }];
 }
 
@@ -64,15 +75,18 @@
 }
 
 - (void)commonInitlization{
-//    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
-//    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
-//    [_publishBtn setBackgroundColor:[UIColor redColor]];
-//    [self addSubview:_publishBtn];
-//
-//    //没有作品时 显示
-//    _tips = [[UILabel alloc] init];
-//    [self addSubview:_tips];
+    _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_publishBtn setTitle:@"去发布" forState:UIControlStateNormal];
+    [_publishBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    [_publishBtn setBackgroundColor:[UIColor redColor]];
+    [self addSubview:_publishBtn];
+
+    //没有作品时 显示
+    _tips = [[UILabel alloc] init];
+    [_tips setTextAlignment:NSTextAlignmentCenter];
+    [_tips setText:JJ_NO_PHOTOS];
+    [_tips setTextColor:[UIColor grayColor]];
+    [self addSubview:_tips];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat itemWidth = self.frame.size.width/3;
@@ -94,17 +108,36 @@
     [_worksCollection registerClass:[WorkCell class] forCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER];
     [_worksCollection registerClass:[WorksCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WORKS_HEADER_CELL_IDENTIFIER];
     [_worksCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:WORKS_FOOTER_CELL_IDENTIFIER];
-    
     [self addSubview:_worksCollection];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
 
+    [self.publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 45.0f));
+        make.centerY.mas_equalTo(self).offset(-20.0f);
+    }];
+    
+    [self.tips mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width, 30.0f));
+        make.centerY.mas_equalTo(self).offset(20.0f);
+    }];
+    
+    [self.publishBtn setHidden:YES];
+    [self.tips setHidden:YES];
 }
 
 - (void)updateWorksArray:(NSMutableArray *)works{
     self.worksArray = works;
+    if([self.worksArray count] == 0 || !self.worksArray){
+        [self.publishBtn setHidden:NO];
+        [self.tips setHidden:NO];
+        return ;
+    }
+    
+    [self.publishBtn setHidden:YES];
+    [self.tips setHidden:YES];
     [self.worksCollection reloadData];
 }
 
@@ -114,7 +147,7 @@
  * @brief 设置 HeadCollectionViewCell frame 大小
  */
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(self.frame.size.width, 45); // 设置headerView的宽高
+    return CGSizeMake(self.frame.size.width, 45);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -128,15 +161,7 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    if([self.worksArray count] == 0 || !self.worksArray){
-//        [_tips setText:JJ_NO_PHOTOS];
-//        [_tips setTextColor:[UIColor grayColor]];
-//        return 0;
-//    }
-//
-//    return [self.worksArray count];
-    
-    return 10;
+    return [self.worksArray count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:

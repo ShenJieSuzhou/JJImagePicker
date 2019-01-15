@@ -225,6 +225,7 @@
 		E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E01214CDBF50048A80E /* YUCIRGBToneCurve.m */; };
 		E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E06214CF9030048A80E /* CustomSlider.m */; };
 		E5DF2E372154E7940048A80E /* StickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E362154E7940048A80E /* StickerCell.m */; };
+		E5FBADEA21EDD2E100A91A65 /* OriginalWorksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */; };
 		E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -584,6 +585,8 @@
 		E5DF2E06214CF9030048A80E /* CustomSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
 		E5DF2E352154E7940048A80E /* StickerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerCell.h; sourceTree = "<group>"; };
 		E5DF2E362154E7940048A80E /* StickerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerCell.m; sourceTree = "<group>"; };
+		E5FBADE821EDD2E100A91A65 /* OriginalWorksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OriginalWorksViewController.h; sourceTree = "<group>"; };
+		E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OriginalWorksViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,6 +725,8 @@
 				4477BCA021D7C497009128F5 /* EditAgendViewController.m */,
 				4477BCA221D9F952009128F5 /* JJDatePicker.h */,
 				4477BCA321D9F952009128F5 /* JJDatePicker.m */,
+				E5FBADE821EDD2E100A91A65 /* OriginalWorksViewController.h */,
+				E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1522,6 +1527,7 @@
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
 				E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */,
+				E5FBADEA21EDD2E100A91A65 /* OriginalWorksViewController.m in Sources */,
 				E50E97E0217DBC290029E231 /* WordsView.m in Sources */,
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
 				4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */,

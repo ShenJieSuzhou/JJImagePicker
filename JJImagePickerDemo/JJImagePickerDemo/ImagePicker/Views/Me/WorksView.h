@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UILabel *titleLabel;
 
+@property (strong, nonatomic) UIImageView *sepearateL;
+
 @end
 
 
