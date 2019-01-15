@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UIButton *likeBtn;
 
-- (void)updateCell:(NSString *)workUrl like:(NSString *)likeNum;
+- (void)updateCell:(NSString *)workUrl;
 
 @end
 

@@ -177,6 +177,9 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(!self.worksArray){
+        return 0;
+    }
     return [self.worksArray count];
 }
 
@@ -185,7 +188,9 @@
     
     WorkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER forIndexPath:indexPath];
     
-    [cell updateCell:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" like:@"111"];
+    Works *work = [self.worksArray objectAtIndex:indexPath.row];
+    
+    [cell updateCell:work.path];
     return cell;
 }
 

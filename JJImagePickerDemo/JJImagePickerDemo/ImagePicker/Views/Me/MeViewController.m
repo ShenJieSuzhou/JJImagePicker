@@ -55,7 +55,9 @@
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
-    [self.workView updateWorksArray:nil];
+    
+    //刷新数据
+    [self refreshViewInfo];
 }
 
 - (void)viewDidLoad {
@@ -114,7 +116,7 @@
 
     [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
         
-        //异步去请求自己的作品
+    //异步去请求自己的作品
     
 //        if(!userModel.worksArray){
 //            return;
@@ -132,7 +134,8 @@
 //            [workArray addObject:obj];
 //        }
 //
-//        [self.workView updateWorksArray:workArray];
+    Works *w = [[Works alloc] initWithPath:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" photoID:@"" userid:@"" work:@""];
+    [self.workView updateWorksArray:[NSMutableArray arrayWithObjects:w, nil]];
 }
 
 #pragma - mark DetailInfoViewDelegate

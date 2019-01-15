@@ -52,10 +52,9 @@
 /**
  下载缓存自己发布的作品
 
- @param workUrl <#workUrl description#>
- @param likeNum <#likeNum description#>
+ @param workUrl 地址
  */
-- (void)updateCell:(NSString *)workUrl like:(NSString *)likeNum{
+- (void)updateCell:(NSString *)workUrl{
 //    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
     __weak typeof(self) weakself = self;
     [[SDImageCache sharedImageCache] diskImageExistsWithKey:workUrl completion:^(BOOL isInCache) {

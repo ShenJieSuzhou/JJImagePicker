@@ -34,6 +34,16 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_VerifyLoginToken:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
 
 /**
+ 获取自己的作品
+
+ @param url 请求地址
+ @param token token
+ @param userid 用户ID
+ @param block 回调
+ */
++ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
+
+/**
  跟新用户昵称
 
  @param url 请求地址
