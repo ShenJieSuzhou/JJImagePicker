@@ -22,6 +22,7 @@ PODS:
   - SDWebImage/Core (4.1.0)
   - SVProgressHUD (2.2.1)
   - "UITextView+Placeholder (1.2.0)"
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetwork
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - "UITextView+Placeholder"
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -38,6 +40,7 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - "UITextView+Placeholder"
+    - YYText
 
 SPEC CHECKSUMS:
   AFNetwork: 0dbdb2ffb4a7770b3d1802dc85b50ab31263f2c2
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   "UITextView+Placeholder": 77680995fcdd07c3f52ec92fe1150874a2ac89ff
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e6d3288a936a657f1c7787dfd743b176317b1047
+PODFILE CHECKSUM: 088cd8a20a64f337818177c36b63d471ddac66fc
 
 COCOAPODS: 1.5.3
