@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UITextView+Placeholder.h"
-#import "JJEmojKeyboard.h"
+//#import "JJEmojKeyboard.h"
+#import <YYText/YYTextView.h>
 
 @class JJPublicText;
 @protocol JJPublicTextDelegate<NSObject>
@@ -17,8 +18,8 @@
 
 @end
 
-@interface JJPublicText : UIView<JJEmojDelegate,UITextViewDelegate>
-@property (nonatomic, strong) UITextView *publishText;
+@interface JJPublicText : UIView<YYTextViewDelegate>
+@property (nonatomic, strong) YYTextView *publishText;
 @property (nonatomic, weak) id<JJPublicTextDelegate> delegate;
 @property  (nonatomic, assign) BOOL  isFaceDel;
 @end

@@ -107,7 +107,7 @@
     [self.worksInfoView addSubview:self.workView];
     
     //描述
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text. PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to .PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text. PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.Powerful text framework for iOS to display and edit rich text.PI 兼容 UILabel 和 UITextView 支持高性能的异步排版和渲染Powerful text framework for iOS to ."];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"今天的天气这心好！\r\n 我是天才"];
     
     text.yy_font = [UIFont systemFontOfSize:15.0f];
     text.yy_color = [UIColor blackColor];
@@ -184,13 +184,13 @@
     [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(25.0f, 23.0f));
         make.centerY.mas_equalTo(self.timeLine);
-        make.right.mas_equalTo(self.worksDesc).offset(-50.0f);
+        make.right.mas_equalTo(self.workView).offset(-50.0f);
         make.bottom.equalTo(self.worksInfoView).offset(-50.0f);
     }];
     
     [self.likeNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 20.0f));
-        make.right.equalTo(self.worksDesc);
+        make.right.equalTo(self.workView);
         make.centerY.equalTo(self.likeBtn);
     }];
 }

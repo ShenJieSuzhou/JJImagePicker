@@ -18,7 +18,7 @@
 @implementation JJBottomMenu
 @synthesize locationBtn = _locationBtn;
 @synthesize menuView = _menuView;
-@synthesize emojBtn = _emojBtn;
+//@synthesize emojBtn = _emojBtn;
 @synthesize topicBtn = _topicBtn;
 @synthesize delegate = _delegate;
 
@@ -44,16 +44,16 @@
     [_locationBtn setBackgroundColor:[UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1]];
     [self addSubview:_locationBtn];
     
-    _emojBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_message_face"] forState:UIControlStateNormal];
-    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_keywoad"] forState:UIControlStateSelected];
-    [_emojBtn setFrame:CGRectMake(10.0f, 10.0f, 30.0f, 30.0f)];
-    [_emojBtn addTarget:self action:@selector(popEmojSelectView:) forControlEvents:UIControlEventTouchUpInside];
-    _emojBtn.tag = ChatFunctionViewShowFace;
+//    _emojBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_message_face"] forState:UIControlStateNormal];
+//    [_emojBtn setImage:[UIImage imageNamed:@"chat_input_keywoad"] forState:UIControlStateSelected];
+//    [_emojBtn setFrame:CGRectMake(10.0f, 10.0f, 30.0f, 30.0f)];
+//    [_emojBtn addTarget:self action:@selector(popEmojSelectView:) forControlEvents:UIControlEventTouchUpInside];
+//    _emojBtn.tag = ChatFunctionViewShowFace;
     
     _menuView = [[UIView alloc] initWithFrame:CGRectZero];
-    [_menuView setBackgroundColor:[UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1]];
-    [_menuView addSubview:_emojBtn];
+    [_menuView setBackgroundColor:[UIColor whiteColor]];
+    [_menuView addSubview:_locationBtn];
     [self addSubview:_menuView];
 }
 
@@ -65,15 +65,15 @@
     [_menuView setFrame:CGRectMake(0, MENU_HEIGHT, width, MENU_HEIGHT)];
 }
 
-- (void)popEmojSelectView:(UIButton *)sender{
-    ChatFunctionViewShowType showType = sender.tag;
-    self.emojBtn.selected = !self.emojBtn.selected;
-    
-    if(!sender.selected){
-        showType = ChatFunctionViewShowKeyboard;
-    }
-    
-    [_delegate showViewWithType:showType];
-}
+//- (void)popEmojSelectView:(UIButton *)sender{
+//    ChatFunctionViewShowType showType = sender.tag;
+////    self.emojBtn.selected = !self.emojBtn.selected;
+//    
+//    if(!sender.selected){
+//        showType = ChatFunctionViewShowKeyboard;
+//    }
+//    
+//    [_delegate showViewWithType:showType];
+//}
 
 @end

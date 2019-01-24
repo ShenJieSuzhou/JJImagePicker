@@ -39,7 +39,7 @@
 //bottomMenu
 @property (strong, nonatomic) JJBottomMenu *buttomMenu;
 //emoj
-@property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
+//@property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
 //选择调整图片的索引
 @property (assign) NSInteger currentIndex;
 
@@ -82,8 +82,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self addKeyBoardNotification];
     
-    self.emojKeyboard = [[JJEmojKeyboard alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT, PUBLISH_VIEW_WIDTH, 200.0f)];
-    self.emojKeyboard.delegate = self.publicText;
+//    self.emojKeyboard = [[JJEmojKeyboard alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT, PUBLISH_VIEW_WIDTH, 200.0f)];
+//    self.emojKeyboard.delegate = self.publicText;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -261,7 +261,7 @@
     double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     // 键盘的frame
     CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
+
     __weak typeof(self) weakself = self;
     [UIView animateWithDuration:duration animations:^{
         [weakself.buttomMenu setFrame:CGRectMake(0, keyboardF.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
@@ -282,22 +282,22 @@
 
 #pragma mark - JJBottomMenuDelegate
 - (void)showViewWithType:(ChatFunctionViewShowType)showType{
-    if(showType == ChatFunctionViewShowFace){
-        [self.publicText.publishText resignFirstResponder];
-        [self.view addSubview:self.emojKeyboard];
-        [UIView animateWithDuration:0.25 animations:^{
-            [self.emojKeyboard setFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - 200.0f, PUBLISH_VIEW_WIDTH, 200.0f)];
-            [self.buttomMenu setFrame:CGRectMake(0, self.emojKeyboard.frame.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
-        } completion:nil];
-    }else{
-        [self.publicText.publishText becomeFirstResponder];
-        [self.emojKeyboard removeFromSuperview];
-    }
+//    if(showType == ChatFunctionViewShowFace){
+//        [self.publicText.publishText resignFirstResponder];
+////        [self.view addSubview:self.emojKeyboard];
+//        [UIView animateWithDuration:0.25 animations:^{
+//            //[self.emojKeyboard setFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - 200.0f, PUBLISH_VIEW_WIDTH, 200.0f)];
+//            [self.buttomMenu setFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+//        } completion:nil];
+//    }else{
+//        [self.publicText.publishText becomeFirstResponder];
+//        [self.emojKeyboard removeFromSuperview];
+//    }
 }
 
 #pragma mark - JJPublicTextDelegate
 - (void)textViewShouldBeginEditing:(UITextView *)publishView{
-    self.buttomMenu.emojBtn.selected = NO;
+//    self.buttomMenu.emojBtn.selected = NO;
 }
 
 

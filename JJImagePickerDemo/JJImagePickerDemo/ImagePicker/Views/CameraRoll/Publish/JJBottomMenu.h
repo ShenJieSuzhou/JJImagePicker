@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, ChatFunctionViewShowType){
 
 @property (strong, nonatomic) UIView *menuView;
 
-@property (strong, nonatomic) UIButton *emojBtn;
+//@property (strong, nonatomic) UIButton *emojBtn;
 
 @property (strong, nonatomic) UIButton *topicBtn;
 
