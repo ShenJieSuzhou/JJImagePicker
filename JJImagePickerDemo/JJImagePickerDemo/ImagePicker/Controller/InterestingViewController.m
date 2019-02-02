@@ -4,6 +4,8 @@
 //
 //  Created by shenjie on 2018/7/3.
 //  Copyright © 2018年 shenjie. All rights reserved.
+
+// 注释掉了emoj表情相关代码
 //
 
 #import "InterestingViewController.h"
@@ -22,11 +24,13 @@
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
 #define PUBLISH_VIEW_HEIGHT self.view.frame.size.height
 #define MENU_BUTTOM_HEIGHT 100.0f
-#define PUBLISH_TEXT_HEIGHT 80.0f
+#define PUBLISH_TEXT_HEIGHT 120.0f
 
 #define PUBLISH_IDENTIFIER @"JJPublishPreviewCell"
 
-@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate,PhotosViewPublishDelegate>
+@interface InterestingViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,JJBottomMenuDelegate,JJPublicTextDelegate,JJPublishCellDelegate,AdjustImageFinishedDelegate,PhotosViewPublishDelegate,UIScrollViewDelegate>
+
+@property (strong, nonatomic) UIScrollView *pScrollView;
 
 //jjphoto array
 @property (nonatomic, strong) NSMutableArray *selectedJJPhotos;
@@ -37,7 +41,7 @@
 //text
 @property (strong, nonatomic) JJPublicText *publicText;
 //bottomMenu
-@property (strong, nonatomic) JJBottomMenu *buttomMenu;
+//@property (strong, nonatomic) JJBottomMenu *buttomMenu;
 //emoj
 //@property (strong, nonatomic) JJEmojKeyboard *emojKeyboard;
 //选择调整图片的索引
@@ -50,8 +54,9 @@
 @synthesize selectedImages = _selectedImages;
 @synthesize previewCollection = _previewCollection;
 @synthesize publicText = _publicText;
-@synthesize buttomMenu = _buttomMenu;
+//@synthesize buttomMenu = _buttomMenu;
 @synthesize currentIndex = _currentIndex;
+@synthesize pScrollView = _pScrollView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,9 +80,9 @@
     //不显示
     [self.jjTabBarView setHidden:YES];
     
-    [self.view addSubview:self.publicText];
-    [self.view addSubview:self.previewCollection];
-    [self.view addSubview:self.buttomMenu];
+    [self.view addSubview:self.pScrollView];
+    [self.pScrollView addSubview:self.publicText];
+    [self.pScrollView addSubview:self.previewCollection];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self addKeyBoardNotification];
@@ -120,6 +125,18 @@
 }
 
 //懒加载
+
+- (UIScrollView *)pScrollView{
+    if(!_pScrollView){
+        _pScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+        _pScrollView.delegate = self;
+        _pScrollView.showsHorizontalScrollIndicator = NO;
+        _pScrollView.alwaysBounceVertical = YES;
+        [_pScrollView setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _pScrollView;
+}
+
 - (JJPublicText *)publicText{
     if(!_publicText){
         _publicText = [[JJPublicText alloc] initWithFrame:CGRectMake(10, self.customNaviBar.bounds.size.height, PUBLISH_VIEW_WIDTH - 20.0f, PUBLISH_TEXT_HEIGHT)];
@@ -128,13 +145,13 @@
     return _publicText;
 }
 
-- (JJBottomMenu *)buttomMenu{
-    if(!_buttomMenu){
-        _buttomMenu = [[JJBottomMenu alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - MENU_BUTTOM_HEIGHT , PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
-        _buttomMenu.delegate = self;
-    }
-    return _buttomMenu;
-}
+//- (JJBottomMenu *)buttomMenu{
+//    if(!_buttomMenu){
+//        _buttomMenu = [[JJBottomMenu alloc] initWithFrame:CGRectMake(0, PUBLISH_VIEW_HEIGHT - MENU_BUTTOM_HEIGHT , PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+//        _buttomMenu.delegate = self;
+//    }
+//    return _buttomMenu;
+//}
 
 -(UICollectionView *)previewCollection{
     if (!_previewCollection) {
@@ -257,15 +274,15 @@
 }
 
 - (void)keyboardShow:(NSNotification *)notif {
-    NSDictionary *userInfo = notif.userInfo;
-    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    // 键盘的frame
-    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-
-    __weak typeof(self) weakself = self;
-    [UIView animateWithDuration:duration animations:^{
-        [weakself.buttomMenu setFrame:CGRectMake(0, keyboardF.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
-    }];
+//    NSDictionary *userInfo = notif.userInfo;
+//    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//    // 键盘的frame
+//    CGRect keyboardF = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//
+//    __weak typeof(self) weakself = self;
+//    [UIView animateWithDuration:duration animations:^{
+//        [weakself.buttomMenu setFrame:CGRectMake(0, keyboardF.origin.y - MENU_BUTTOM_HEIGHT, PUBLISH_VIEW_WIDTH, MENU_BUTTOM_HEIGHT)];
+//    }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notif {
@@ -352,4 +369,13 @@
     }];
 }
 
+#pragma mark - UIScrollViewDelegate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"111111");
+//}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    //滑动就收起键盘
+    [self.publicText.publishText resignFirstResponder];
+}
 @end
