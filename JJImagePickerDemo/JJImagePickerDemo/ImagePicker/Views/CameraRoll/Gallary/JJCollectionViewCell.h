@@ -41,6 +41,6 @@
 
 @property (nonatomic, assign) BOOL checked;
 
-- (void)updateAssetCell:(JJPhoto *)asset;
+- (void)updateAssetCell:(JJPhoto *)asset isVideo:(BOOL) isVideo;
 
 @end

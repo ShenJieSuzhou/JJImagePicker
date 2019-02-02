@@ -32,6 +32,7 @@
 #define JJ_MAX_PHOTO_NUM 9
 #define JJ_CELL_VIDEO_IDENTIFIER @"video"
 #define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"
+#define JJ_PHOTO_ASSERT_CELL @"JJ_PHOTO_ASSERT_CELL"
 
 #define JJ_PREVIEWCELL_IDENTIFIER_DEFAULT @"jj_previewcell_identifer"
 #define JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO @"jj_previewcell_identifer_live"

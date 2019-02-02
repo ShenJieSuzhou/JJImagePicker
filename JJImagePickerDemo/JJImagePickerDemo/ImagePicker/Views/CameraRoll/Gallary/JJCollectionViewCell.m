@@ -98,9 +98,9 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     [self.contentView addSubview:self.videoDuration];
     [self.videoDuration setHidden:YES];
     
-//    self.maskView = [[UIImageView alloc] initWithFrame:self.frame];
-//    [self.maskView setBackgroundColor:[UIColor colorWithRed:254/255.f green:254/255.f blue:254/255.f alpha:0.5f]];
-//    [self.contentView addSubview:self.maskView];
+    self.maskView = [[UIImageView alloc] initWithFrame:self.frame];
+    [self.maskView setBackgroundColor:[UIColor colorWithRed:254/255.f green:254/255.f blue:254/255.f alpha:0.5f]];
+    [self.contentView addSubview:self.maskView];
 }
 
 - (void)layoutSubviews{
@@ -132,7 +132,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     }
 }
 
-- (void)updateAssetCell:(JJPhoto *)asset{
+- (void)updateAssetCell:(JJPhoto *)asset isVideo:(BOOL) isVideo{
     //异步请求资源对应的缩略图
     [asset requestThumbnailImageWithSize:CGSizeMake(80.0f, 80.0f) completion:^(UIImage *result, NSDictionary *info) {
         if([self.assetIdentifier isEqualToString:asset.identifier]){
@@ -143,17 +143,17 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     }];
     
     //为视频加上时间跟类型标记
-    if(asset.assetType == JJAssetTypeVideo){
+    if(isVideo){
         self.userInteractionEnabled = NO;
         [self.checkBox setHidden:YES];
-//        [self.maskView setHidden:NO];
         self.videoDuration.text = [NSString jj_timeStringWithMinsAndSecsFromSecs:asset.duration];
         [self.videoView setHidden:NO];
         [self.videoDuration setHidden:NO];
+        [self.maskView setHidden:NO];
     }else{
         self.userInteractionEnabled = YES;
         [self.checkBox setHidden:NO];
-//        [self.maskView setHidden:YES];
+        [self.maskView setHidden:YES];
     }
 }
 

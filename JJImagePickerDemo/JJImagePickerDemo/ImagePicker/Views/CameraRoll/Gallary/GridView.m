@@ -155,7 +155,9 @@
     }else{
         identifier = JJ_CELL_IMAGE_UNKNOWNTYPE;
     }
+    
     JJCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
     cell.assetIdentifier = imageAsset.identifier;
     
     if(_isAllowedMutipleSelect){
@@ -165,7 +167,8 @@
         [cell.checkBox setHidden:YES];
     }
     
-    [cell updateAssetCell:imageAsset];
+    BOOL isVideo = imageAsset.assetType == JJAssetTypeVideo?YES:NO;
+    [cell updateAssetCell:imageAsset isVideo:isVideo];
     
     return cell;
 }
