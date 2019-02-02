@@ -12,12 +12,10 @@
 
 @protocol JJCollectionViewCellDelegate<NSObject>
 
-
 @end
 
 
 @interface SelectButton: UIButton
-
 
 @end
 
@@ -38,6 +36,8 @@
 @property (nonatomic, strong) UIImageView *videoView;
 
 @property (nonatomic, strong) UILabel *videoDuration;
+
+@property (nonatomic, strong) UIImageView *maskView;
 
 @property (nonatomic, assign) BOOL checked;
 

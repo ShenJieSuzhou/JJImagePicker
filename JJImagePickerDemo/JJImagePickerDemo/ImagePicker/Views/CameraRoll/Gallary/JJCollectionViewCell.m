@@ -34,7 +34,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
 @synthesize unselectedImage = _unselectedImage;
 @synthesize videoDuration = _videoDuration;
 @synthesize checked = _checked;
-
+@synthesize maskView = _maskView;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -97,6 +97,10 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     
     [self.contentView addSubview:self.videoDuration];
     [self.videoDuration setHidden:YES];
+    
+//    self.maskView = [[UIImageView alloc] initWithFrame:self.frame];
+//    [self.maskView setBackgroundColor:[UIColor colorWithRed:254/255.f green:254/255.f blue:254/255.f alpha:0.5f]];
+//    [self.contentView addSubview:self.maskView];
 }
 
 - (void)layoutSubviews{
@@ -113,13 +117,14 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
         [self.videoView setFrame:CGRectMake(videoMarkMargins.left, cellHeight - self.videoView.frame.size.height - videoMarkMargins.bottom, self.videoView.frame.size.width, self.videoView.frame.size.height)];
         
         CGSize textSize = [_videoDuration.text sizeWithAttributes:@{NSFontAttributeName:_videoDuration.font}];
-        [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - textSize.height - durationMargins.bottom, textSize.width, textSize.height)];
+        [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - textSize.height - durationMargins.bottom, textSize.width+10.0f, textSize.height)];
     }
 }
 
 - (void)setChecked:(BOOL)checked{
     _checked = checked;
     self.checkBox.selected = checked;
+    
     //动画效果
     [JJImagePickerHelper removeactionSpringAnimationForView:self.checkBox];
     if(checked){
@@ -139,9 +144,16 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     
     //为视频加上时间跟类型标记
     if(asset.assetType == JJAssetTypeVideo){
+        self.userInteractionEnabled = NO;
+        [self.checkBox setHidden:YES];
+//        [self.maskView setHidden:NO];
         self.videoDuration.text = [NSString jj_timeStringWithMinsAndSecsFromSecs:asset.duration];
         [self.videoView setHidden:NO];
         [self.videoDuration setHidden:NO];
+    }else{
+        self.userInteractionEnabled = YES;
+        [self.checkBox setHidden:NO];
+//        [self.maskView setHidden:YES];
     }
 }
 

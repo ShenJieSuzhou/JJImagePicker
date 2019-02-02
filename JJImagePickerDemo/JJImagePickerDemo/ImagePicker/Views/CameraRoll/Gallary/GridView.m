@@ -158,8 +158,6 @@
     JJCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     cell.assetIdentifier = imageAsset.identifier;
     
-    [cell updateAssetCell:imageAsset];
-    
     if(_isAllowedMutipleSelect){
         [cell.checkBox addTarget:self action:@selector(handleCheckBoxClicked:) forControlEvents:UIControlEventTouchUpInside];
         cell.checked = [self.selectedImageAssetArray containsObject:imageAsset];
@@ -167,7 +165,8 @@
         [cell.checkBox setHidden:YES];
     }
     
-    [cell setNeedsLayout];
+    [cell updateAssetCell:imageAsset];
+    
     return cell;
 }
 
