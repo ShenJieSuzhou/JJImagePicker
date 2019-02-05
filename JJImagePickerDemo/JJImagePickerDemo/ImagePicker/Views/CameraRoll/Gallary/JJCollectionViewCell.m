@@ -98,7 +98,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     [self.contentView addSubview:self.videoDuration];
     [self.videoDuration setHidden:YES];
     
-    self.maskView = [[UIImageView alloc] initWithFrame:self.frame];
+    self.maskView = [[UIImageView alloc] init];
     [self.maskView setBackgroundColor:[UIColor colorWithRed:254/255.f green:254/255.f blue:254/255.f alpha:0.5f]];
     [self.contentView addSubview:self.maskView];
 }
@@ -118,6 +118,8 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
         
         CGSize textSize = [_videoDuration.text sizeWithAttributes:@{NSFontAttributeName:_videoDuration.font}];
         [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - textSize.height - durationMargins.bottom, textSize.width+10.0f, textSize.height)];
+        
+        [self.maskView setFrame:self.contentView.bounds];
     }
 }
 
