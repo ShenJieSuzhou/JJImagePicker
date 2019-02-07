@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0]];
     _customNaviBar = [[CustomNaviBarView alloc] initWithFrame:Rect(0, 0, [CustomNaviBarView barSize].width, [CustomNaviBarView barSize].height)];
     [_customNaviBar setBackgroundColor:[UIColor whiteColor]];
     _customNaviBar.m_viewCtrlParent = self;

@@ -59,7 +59,7 @@
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
-    [_deleteBtn setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f]];
+    [_deleteBtn setBackgroundColor:[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.5f]];
     [self.contentView addSubview:_deleteBtn];
     
     [self isDefaultImage:_isAddCell];

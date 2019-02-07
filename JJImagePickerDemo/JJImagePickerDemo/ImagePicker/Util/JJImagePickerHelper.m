@@ -31,7 +31,7 @@ NSString *const JJSpringAnimationKey = @"JJSpringAnimationKey";
     [view setBackgroundColor:[UIColor clearColor]];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectZero];
-    indicator.color = [UIColor colorWithRed:248.0f green:201.0f blue:65.0f alpha:1.0f];
+    indicator.color = [UIColor colorWithRed:248/255.f green:201/255.f blue:65/255.f alpha:1.0f];
     [indicator setTag:8091];
     [indicator setFrame:CGRectMake((baseView.frame.size.width - 100) / 2, (baseView.frame.size.height - 100) / 2, 100, 100)];
     [view addSubview:indicator];
@@ -40,11 +40,13 @@ NSString *const JJSpringAnimationKey = @"JJSpringAnimationKey";
 }
 
 + (void)stopLoadingAnimation:(UIView *)baseView{
-    UIView *view = [baseView viewWithTag:8090];
-    UIActivityIndicatorView *indicator = [view viewWithTag:8091];
-    [indicator stopAnimating];
-    [indicator removeFromSuperview];
-    [view removeFromSuperview];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        UIView *view = [baseView viewWithTag:8090];
+        UIActivityIndicatorView *indicator = [view viewWithTag:8091];
+        [indicator stopAnimating];
+        [indicator removeFromSuperview];
+        [view removeFromSuperview];
+//    });
 }
 
 

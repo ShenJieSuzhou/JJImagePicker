@@ -72,9 +72,10 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(weakSelf) strongSelf = weakSelf;
                     [strongSelf.photoCollectionView reloadData];
+                    //加载结束 stop loading
+                    [JJImagePickerHelper stopLoadingAnimation:weakSelf];
                 });
-                //加载结束 stop loading
-                [JJImagePickerHelper stopLoadingAnimation:weakSelf];
+                
             }
         }];
     });
