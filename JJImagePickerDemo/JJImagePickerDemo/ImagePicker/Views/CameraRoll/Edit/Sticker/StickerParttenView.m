@@ -47,6 +47,10 @@
     _minH = self.bounds.size.height / 2;
     _deltaAngle = atan2(self.frame.origin.y+self.frame.size.height - self.center.y, self.frame.origin.x+self.frame.size.width - self.center.x);
     
+    [self.stickerImageView setImage:self.sticker];
+    [self.stickerImageView setFrame:CGRectMake(PADDING, PADDING, STICKER_DEFAULT_WIDTH, STICKER_DEFAULT_HEIGHT)];
+    [self addSubview:self.stickerImageView];
+    
     [self.deleteImageView setFrame:CGRectMake(0, 0, STICKER_BTN_WIDTH, STICKER_BTN_HEIGHT)];
     UITapGestureRecognizer *deletetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteBtnClicked:)];
     [self.deleteImageView addGestureRecognizer:deletetTap];
@@ -56,10 +60,6 @@
     UIPanGestureRecognizer *resizePan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(resizeTranslate:)];
     [self.scaleImageView addGestureRecognizer:resizePan];
     [self addSubview:self.scaleImageView];
-    
-    [self.stickerImageView setImage:self.sticker];
-    [self.stickerImageView setFrame:CGRectMake(PADDING, PADDING, STICKER_DEFAULT_WIDTH, STICKER_DEFAULT_HEIGHT)];
-    [self addSubview:self.stickerImageView];
 }
 
 #pragma mark - lazyload
@@ -68,7 +68,7 @@
         _stickerImageView = [[UIImageView alloc] init];
         _stickerImageView.backgroundColor = [UIColor clearColor];
         _stickerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-        _stickerImageView.layer.borderWidth = 0.5f;
+        _stickerImageView.layer.borderWidth = 2.f;
         _stickerImageView.userInteractionEnabled = YES;
     }
     return _stickerImageView;
