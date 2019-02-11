@@ -69,7 +69,11 @@
     
     [self.jjTabBarView setPreViewBtnHidden:YES];
     [self.jjTabBarView setEditBtnHidden:YES];
-    [self.jjTabBarView.finishBtn setEnabled:YES];
+    if([self.selectedImageAssetArray count] > 0){
+        [self.jjTabBarView.finishBtn setEnabled:YES];
+    }else{
+        [self.jjTabBarView.finishBtn setEnabled:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
