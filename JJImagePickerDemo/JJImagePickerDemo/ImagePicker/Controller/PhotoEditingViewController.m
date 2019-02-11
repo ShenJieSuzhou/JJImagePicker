@@ -208,8 +208,8 @@
             toolType = JJEditToolFilter;
         }else if([name isEqualToString:@"sticker"]){
             toolType = JJEditToolSticker;
-        }else if([name isEqualToString:@"playWords"]){
-            toolType = JJEditToolWords;
+//        }else if([name isEqualToString:@"playWords"]){
+//            toolType = JJEditToolWords;
         }else if([name isEqualToString:@"Brush"]){
             toolType = JJEditToolBrush;
         }else if([name isEqualToString:@"tag"]){
@@ -293,8 +293,8 @@
             }];
         }
             break;
-        case JJEditToolWords:
-            break;
+//        case JJEditToolWords:
+//            break;
         case JJEditToolBrush:{
             WordsBrushViewController *wordsBrushView = [WordsBrushViewController new];
             wordsBrushView.delegate = self;

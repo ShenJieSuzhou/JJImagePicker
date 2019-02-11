@@ -186,45 +186,6 @@
             ]
         },
         {
-          "title": "玩字",
-          "name": "playWords",
-          "imagePath": "editor_word",
-          "subTools": [
-                       {
-                       "name": "美颜",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "曝光",
-                       "imagePtah": 2222
-                       },
-                       {
-                       "name": "色温",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "对比度",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "饱和度",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "锐化",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "颗粒",
-                       "imagePath": 2222
-                       },
-                       {
-                       "name": "暗角",
-                       "imagePath": 2222
-                       }
-            ]
-       },
-       {
           "title": "笔刷",
           "name": "Brush",
           "imagePath": "editor_tracksticker",
