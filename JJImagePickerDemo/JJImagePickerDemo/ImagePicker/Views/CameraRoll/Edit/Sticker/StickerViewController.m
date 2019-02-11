@@ -10,7 +10,7 @@
 #import "JJLoadConfig.h"
 #import "StickerCollectionView.h"
 #import "StickerModel.h"
-#import "StickerParttenView.h"
+
 
 #define JJ_STICKERTOOL_HEIGHT 160
 #define JJ_STICK_COLLECT_HEIGHT self.view.bounds.size.height * 0.5
@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *stickers;
 @property (strong, nonatomic) StickerCollectionView *stickerCollectionView;
+@property (strong, nonatomic) NSMutableArray *selectedSticks;
 
 @end
 
@@ -31,6 +32,7 @@
 @synthesize stickerArrays = _stickerArrays;
 @synthesize delegate = _delegate;
 @synthesize stickers = _stickers;
+@synthesize selectedSticks = _selectedSticks;
 
 
 - (void)viewDidLoad {
@@ -42,6 +44,7 @@
     [self.view addSubview:self.stickerListView];
     
     //初始化贴纸
+    self.selectedSticks = [[NSMutableArray alloc] init];
     [self initializeStickerModels];
     [self.view addSubview:self.stickerCollectionView];
     [self.stickerCollectionView setHidden:YES];
@@ -170,6 +173,32 @@
     _stickerArrays = arrays;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if(!self.stickerCollectionView.hidden){
+        [self.stickerCollectionView setHidden:YES];
+    }
+    
+    if([self.selectedSticks count] > 0){
+        for (int i = 0; i < [self.selectedSticks count]; i++) {
+            StickerParttenView *stickerView = [self.selectedSticks objectAtIndex:i];
+            [stickerView hideDelAndMoveBtn];
+        }
+    }
+}
+
+#pragma mark - StickerParttenDelegate
+- (void)stickerDidTapped:(nonnull StickerParttenView *)stick{
+    if([self.selectedSticks count] > 0){
+        for (int i = 0; i < [self.selectedSticks count]; i++) {
+            StickerParttenView *stickerView = [self.selectedSticks objectAtIndex:i];
+            [stickerView hideDelAndMoveBtn];
+        }
+    }
+    
+    [stick showDelAndMoveBtn];
+}
+
+
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
     _preViewImage = nil;
@@ -198,6 +227,9 @@
 #pragma mark - JJStickSelectedDelegate
 - (void)stickerDidSelected:(nonnull UIImage *)image withStickerTag:(NSInteger)tag{
     StickerParttenView *stickerView = [[StickerParttenView alloc] initWithFrame:CGRectMake(0, 0, 120.0f, 120.0f) sticker:image];
+    stickerView.stickPtDelgate = self;
+    //添加到贴纸队列中
+    [self.selectedSticks addObject:stickerView];
     [self.preViewImage addSubview:stickerView];
 }
 

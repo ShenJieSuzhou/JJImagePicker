@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class StickerParttenView;
+@protocol StickerParttenDelegate <NSObject>
+- (void)stickerDidTapped:(nonnull StickerParttenView *)stick;
+@end
 
 @interface StickerParttenView : UIView
 
@@ -14,6 +18,8 @@
 @property (strong, nonatomic) UIImageView *deleteImageView;
 @property (strong, nonatomic) UIImageView *scaleImageView;
 @property (strong, nonatomic) UIImageView *stickerImageView;
+@property (weak, nonatomic) id<StickerParttenDelegate> stickPtDelgate;
+
 
 @property (assign) CGPoint prevMovePoint;
 @property (assign) CGFloat deltaAngle;
@@ -21,6 +27,8 @@
 @property (assign) CGRect bgRect;
 @property (assign) CGFloat minW;
 @property (assign) CGFloat minH;
+
+@property (assign) BOOL isHide;
 
 
 /*

@@ -24,6 +24,7 @@
 @synthesize deleteImageView = _deleteImageView;
 @synthesize scaleImageView = _scaleImageView;
 @synthesize stickerImageView = _stickerImageView;
+@synthesize stickPtDelgate = _stickPtDelgate;
 
 @synthesize prevMovePoint = _prevMovePoint;
 @synthesize deltaAngle = _deltaAngle;
@@ -32,10 +33,13 @@
 @synthesize minH = _minH;
 @synthesize minW = _minW;
 
+@synthesize isHide = _isHide;
+
 - (instancetype)initWithFrame:(CGRect)frame sticker:(UIImage *)pasterImage{
     self = [super initWithFrame:frame];
     if(self){
         self.sticker = pasterImage;
+        self.isHide = NO;
         [self setupUI];
     }
     
@@ -49,6 +53,9 @@
     
     [self.stickerImageView setImage:self.sticker];
     [self.stickerImageView setFrame:CGRectMake(PADDING, PADDING, STICKER_DEFAULT_WIDTH, STICKER_DEFAULT_HEIGHT)];
+    [self addSubview:self.stickerImageView];
+    UITapGestureRecognizer *choseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choseClicked:)];
+    [self.stickerImageView addGestureRecognizer:choseTap];
     [self addSubview:self.stickerImageView];
     
     [self.deleteImageView setFrame:CGRectMake(0, 0, STICKER_BTN_WIDTH, STICKER_BTN_HEIGHT)];
@@ -99,6 +106,25 @@
 {
     [self removeFromSuperview];
 }
+
+
+
+/**
+ 选中贴纸
+ */
+- (void)choseClicked:(UITapGestureRecognizer *)recognizer
+{
+    if(![_stickPtDelgate respondsToSelector:@selector(stickerDidTapped:)]){
+        return;
+    }
+    
+    [_stickPtDelgate stickerDidTapped:self];
+    
+//    if (self.isHide) {
+//        [self showDelAndMoveBtn];
+//    }
+}
+
 
 /**
  *  缩放和旋转手势
@@ -251,19 +277,23 @@
 
 - (void)showDelAndMoveBtn{
     [UIView animateWithDuration:0.5f animations:^{
-        self.deleteImageView.alpha = 0.0f;
-        self.deleteImageView.hidden = YES;
-        self.scaleImageView.alpha = 0.0f;
-        self.scaleImageView.hidden = YES;
+//        self.deleteImageView.alpha = 0.0f;
+        self.deleteImageView.hidden = NO;
+//        self.scaleImageView.alpha = 0.0f;
+        self.scaleImageView.hidden = NO;
+        [self.stickerImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        self.isHide = NO;
     }];
 }
 
 - (void)hideDelAndMoveBtn{
     [UIView animateWithDuration:0.5f animations:^{
-        self.deleteImageView.alpha = 1.0f;
-        self.deleteImageView.hidden = NO;
-        self.scaleImageView.alpha = 1.0f;
-        self.scaleImageView.hidden = NO;
+//        self.deleteImageView.alpha = 1.0f;
+        self.deleteImageView.hidden = YES;
+//        self.scaleImageView.alpha = 1.0f;
+        self.scaleImageView.hidden = YES;
+        [self.stickerImageView.layer setBorderColor:[UIColor clearColor].CGColor];
+        self.isHide = YES;
     }];
 }
 
