@@ -54,8 +54,8 @@
     [self.stickerImageView setImage:self.sticker];
     [self.stickerImageView setFrame:CGRectMake(PADDING, PADDING, STICKER_DEFAULT_WIDTH, STICKER_DEFAULT_HEIGHT)];
     [self addSubview:self.stickerImageView];
-    UITapGestureRecognizer *choseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choseClicked:)];
-    [self.stickerImageView addGestureRecognizer:choseTap];
+    UITapGestureRecognizer *chooseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseClicked:)];
+    [self.stickerImageView addGestureRecognizer:chooseTap];
     [self addSubview:self.stickerImageView];
     
     [self.deleteImageView setFrame:CGRectMake(0, 0, STICKER_BTN_WIDTH, STICKER_BTN_HEIGHT)];
@@ -104,7 +104,11 @@
  */
 - (void)deleteBtnClicked:(UITapGestureRecognizer *)recognizer
 {
-    [self removeFromSuperview];
+    if(![_stickPtDelgate respondsToSelector:@selector(stickerDidDelete:)]){
+        return;
+    }
+    
+    [_stickPtDelgate stickerDidDelete:self];
 }
 
 
@@ -112,17 +116,13 @@
 /**
  选中贴纸
  */
-- (void)choseClicked:(UITapGestureRecognizer *)recognizer
+- (void)chooseClicked:(UITapGestureRecognizer *)recognizer
 {
     if(![_stickPtDelgate respondsToSelector:@selector(stickerDidTapped:)]){
         return;
     }
     
     [_stickPtDelgate stickerDidTapped:self];
-    
-//    if (self.isHide) {
-//        [self showDelAndMoveBtn];
-//    }
 }
 
 

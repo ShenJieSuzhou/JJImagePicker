@@ -20,7 +20,6 @@
 
 @property (strong, nonatomic) NSMutableDictionary *stickers;
 @property (strong, nonatomic) StickerCollectionView *stickerCollectionView;
-@property (strong, nonatomic) NSMutableArray *selectedSticks;
 
 @end
 
@@ -32,7 +31,7 @@
 @synthesize stickerArrays = _stickerArrays;
 @synthesize delegate = _delegate;
 @synthesize stickers = _stickers;
-@synthesize selectedSticks = _selectedSticks;
+@synthesize selStickers = _selStickers;
 
 
 - (void)viewDidLoad {
@@ -44,7 +43,6 @@
     [self.view addSubview:self.stickerListView];
     
     //初始化贴纸
-    self.selectedSticks = [[NSMutableArray alloc] init];
     [self initializeStickerModels];
     [self.view addSubview:self.stickerCollectionView];
     [self.stickerCollectionView setHidden:YES];
@@ -57,6 +55,13 @@
     [self.layerV addSubview:self.preViewImage];
     [self.view bringSubviewToFront:self.stickerListView];
     [self.view bringSubviewToFront:self.stickerCollectionView];
+    
+    if(self.selStickers && [self.selStickers count] > 0){
+        for (int i = 0; i < [self.selStickers count]; i++) {
+            StickerParttenView *stick = [self.selStickers objectAtIndex:i];
+            [self.preViewImage addSubview:stick];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +73,10 @@
 {
     [super viewDidLayoutSubviews];
     [self layoutImageView];
+}
+
+- (void)setSelectedStickers:(NSMutableArray *)stickers{
+    self.selStickers = stickers;
 }
 
 /*
@@ -178,9 +187,9 @@
         [self.stickerCollectionView setHidden:YES];
     }
     
-    if([self.selectedSticks count] > 0){
-        for (int i = 0; i < [self.selectedSticks count]; i++) {
-            StickerParttenView *stickerView = [self.selectedSticks objectAtIndex:i];
+    if([self.selStickers count] > 0){
+        for (int i = 0; i < [self.selStickers count]; i++) {
+            StickerParttenView *stickerView = [self.selStickers objectAtIndex:i];
             [stickerView hideDelAndMoveBtn];
         }
     }
@@ -188,9 +197,9 @@
 
 #pragma mark - StickerParttenDelegate
 - (void)stickerDidTapped:(nonnull StickerParttenView *)stick{
-    if([self.selectedSticks count] > 0){
-        for (int i = 0; i < [self.selectedSticks count]; i++) {
-            StickerParttenView *stickerView = [self.selectedSticks objectAtIndex:i];
+    if([self.selStickers count] > 0){
+        for (int i = 0; i < [self.selStickers count]; i++) {
+            StickerParttenView *stickerView = [self.selStickers objectAtIndex:i];
             [stickerView hideDelAndMoveBtn];
         }
     }
@@ -198,20 +207,50 @@
     [stick showDelAndMoveBtn];
 }
 
+- (void)stickerDidDelete:(StickerParttenView *)stick{
+    if(![self.selStickers containsObject:stick]){
+        return;
+    }
+    [self.selStickers removeObject:stick];
+    [stick removeFromSuperview];
+}
+
 
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
-    _preViewImage = nil;
-    _layerV = nil;
-    _stickerListView = nil;
+    UIAlertView *cancelAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"确定要执行此操作吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
+    [cancelAlert show];
+}
+
+- (void)PhotoEditSubEditToolConfirm{
+    if(![self.delegate respondsToSelector:@selector(stickerViewController:didAddStickerToImage:)]){
+        return;
+    }
+    
+    if([self.selStickers count] > 0){
+        for (int i = 0; i < [self.selStickers count]; i++) {
+            StickerParttenView *stickerView = [self.selStickers objectAtIndex:i];
+            [stickerView hideDelAndMoveBtn];
+        }
+    }
+    
+    [self.delegate stickerViewController:self didAddStickerToImage:self.selStickers];
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 
-- (void)PhotoEditSubEditToolConfirm{
-    
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        
+        
+    }else if(buttonIndex == 1){
+        _preViewImage = nil;
+        _layerV = nil;
+        _stickerListView = nil;
+        
+    }
 }
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV stickerName:(NSString *)stickerName{
@@ -229,7 +268,7 @@
     StickerParttenView *stickerView = [[StickerParttenView alloc] initWithFrame:CGRectMake(0, 0, 120.0f, 120.0f) sticker:image];
     stickerView.stickPtDelgate = self;
     //添加到贴纸队列中
-    [self.selectedSticks addObject:stickerView];
+    [self.selStickers addObject:stickerView];
     [self.preViewImage addSubview:stickerView];
 }
 

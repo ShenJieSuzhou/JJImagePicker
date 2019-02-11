@@ -18,6 +18,7 @@
 
 @interface PhotoEditingViewController ()
 @property (nonatomic, strong) NSMutableArray *historys;
+@property (nonatomic, strong) NSMutableArray *selectedStickers;
 @end
 
 @implementation PhotoEditingViewController
@@ -39,6 +40,7 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     
     self.historys = [[NSMutableArray alloc] init];
+    self.selectedStickers = [[NSMutableArray alloc] init];
     
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
@@ -225,6 +227,22 @@
     return tempArray;
 }
 
+
+/**
+ 屏幕触摸
+
+ @param touches
+ @param event 
+ */
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if([self.selectedStickers count] > 0){
+        for (int i = 0; i < [self.selectedStickers count]; i++) {
+            StickerParttenView *stickerView = [self.selectedStickers objectAtIndex:i];
+            [stickerView hideDelAndMoveBtn];
+        }
+    }
+}
+
 #pragma mark - PhotoEditingDelegate
 - (void)PhotoEditingFinished:(UIImage *)image{
     
@@ -268,6 +286,7 @@
             StickerViewController *jjStickerView = [StickerViewController new];
             jjStickerView.delegate = self;
             [jjStickerView setStickerArrays:[NSMutableArray arrayWithArray:array]];
+            [jjStickerView setSelectedStickers:self.selectedStickers];
             [jjStickerView setEditImage:self.preViewImage.image];
             [self presentViewController:jjStickerView animated:YES completion:^{
                 
@@ -408,8 +427,17 @@
 }
 
 #pragma mark - JJStickDelegate
-- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull UIImage *)image{
-    NSLog(@"贴纸");
+- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull NSMutableArray *)stickers{
+    if([stickers count] == 0 || !stickers){
+        return;
+    }
+
+//    [self.selectedStickers removeAllObjects];
+//    self.selectedStickers = stickers;
+    for (int i = 0; i < [stickers count]; i++) {
+        StickerParttenView *sticker = [stickers objectAtIndex:i];
+        [self.preViewImage addSubview:sticker];
+    }
 }
 
 @end

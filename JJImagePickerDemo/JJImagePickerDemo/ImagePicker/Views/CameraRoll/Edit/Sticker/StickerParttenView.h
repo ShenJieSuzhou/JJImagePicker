@@ -10,6 +10,7 @@
 @class StickerParttenView;
 @protocol StickerParttenDelegate <NSObject>
 - (void)stickerDidTapped:(nonnull StickerParttenView *)stick;
+- (void)stickerDidDelete:(nonnull StickerParttenView *)stick;
 @end
 
 @interface StickerParttenView : UIView

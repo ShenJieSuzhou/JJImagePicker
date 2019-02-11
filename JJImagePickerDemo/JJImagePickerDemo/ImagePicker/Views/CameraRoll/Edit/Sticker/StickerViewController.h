@@ -13,10 +13,10 @@
 
 @class StickerViewController;
 @protocol JJStickDelegate <NSObject>
-- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull UIImage *)image;
+- (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull NSMutableArray *)stickers;
 @end
 
-@interface StickerViewController : UIViewController<PhotoSubToolEditingDelegate,JJStickSelectedDelegate,StickerParttenDelegate>
+@interface StickerViewController : UIViewController<PhotoSubToolEditingDelegate,JJStickSelectedDelegate,StickerParttenDelegate,UIAlertViewDelegate>
 
 //原始图
 @property (nonnull, nonatomic, readonly) UIImage *image;
@@ -28,9 +28,13 @@
 @property (nonatomic, strong) EditingSubToolView *stickerListView;
 //sticker 数组
 @property (nonatomic, strong) NSMutableArray *stickerArrays;
+//已选贴纸 数组
+@property (strong, nonatomic) NSMutableArray *selStickers;
+
 //代理
 @property (nonatomic, weak) id<JJStickDelegate> delegate;
 
+- (void)setSelectedStickers:(NSMutableArray *)stickers;
 
 - (void)setEditImage:(UIImage *)image;
 
