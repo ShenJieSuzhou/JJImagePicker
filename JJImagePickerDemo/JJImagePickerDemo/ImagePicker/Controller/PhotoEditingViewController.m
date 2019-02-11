@@ -331,6 +331,7 @@
             break;
         case JJEditToolscrawl:{
             ScrawlViewController *scrawlViewController = [ScrawlViewController new];
+            scrawlViewController.delegate = self;
             [scrawlViewController setSToolArrays:array];
             [scrawlViewController setEditImage:self.preViewImage.image];
             [self presentViewController:scrawlViewController animated:YES completion:^{
@@ -406,6 +407,14 @@
 - (void)JJTagCategoryDidCancel:(JJTagCategoryView *)jjTagCategoryView{
     [jjTagCategoryView removeFromSuperview];
     jjTagCategoryView = nil;
+}
+
+#pragma mark - ScrawlDelegate
+-(void)ScrawlDidFinished:(UIImage *)scrawlImage{
+    if(!scrawlImage){
+        return;
+    }
+    [self.preViewImage setImage:scrawlImage];
 }
 
 #pragma mark - JJWordsDelegate

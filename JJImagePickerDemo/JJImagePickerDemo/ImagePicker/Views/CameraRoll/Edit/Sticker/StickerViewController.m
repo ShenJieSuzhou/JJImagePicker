@@ -219,7 +219,7 @@
 #pragma mark - PhotoSubToolEditingDelegate
 - (void)PhotoEditSubEditToolDismiss{
     UIAlertView *cancelAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"确定要执行此操作吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    
+    cancelAlert.delegate = self;
     [cancelAlert show];
 }
 
@@ -246,10 +246,13 @@
         
         
     }else if(buttonIndex == 1){
+        [self.selStickers removeAllObjects];
         _preViewImage = nil;
         _layerV = nil;
         _stickerListView = nil;
-        
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
     }
 }
 
