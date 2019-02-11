@@ -26,6 +26,7 @@
 @synthesize withdrawalBtn = _withdrawalBtn;
 @synthesize mosaicDrawingboard = _mosaicDrawingboard;
 @synthesize sToolArrays = _sToolArrays;
+@synthesize delegate = _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,6 +89,9 @@
 
 - (void)PhotoEditSubEditToolConfirm{
      UIImage *image = [self.mosaicDrawingboard compeletePaint];
+    if([_delegate respondsToSelector:@selector(ScrawlDidFinished:)]){
+        [_delegate ScrawlDidFinished:image];
+    }
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];

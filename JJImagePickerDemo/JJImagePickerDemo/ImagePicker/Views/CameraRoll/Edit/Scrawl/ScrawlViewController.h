@@ -10,6 +10,12 @@
 #import "ScrawlAdjustView.h"
 #import "EditingToolView.h"
 
+@protocol ScrawlDelegate <NSObject>
+
+-(void)ScrawlDidFinished:(UIImage *)scrawlImage;
+
+@end
+
 @interface ScrawlViewController : UIViewController<PhotoSubToolEditingDelegate>
 
 //原始图
@@ -24,6 +30,8 @@
 @property (nonatomic, copy) NSArray *sToolArrays;
 //撤销
 @property (nonatomic, strong) UIButton *withdrawalBtn;
+
+@property (nonatomic, weak) id<ScrawlDelegate> delegate;
 
 - (void)setEditImage:(UIImage *)image;
 
