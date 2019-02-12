@@ -135,10 +135,13 @@
     if(sender.selected){
         //添加
         if([self.selectedImageAssetArray count] == self.maxSelectedNum){
-            if(!self.alertTitleWhenPhotoExceedMaxCount){
-                self.alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(self.maxSelectedNum)];
-                NSLog(@"%@", self.alertTitleWhenPhotoExceedMaxCount);
-            }
+            sender.selected = NO;
+            self.alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(self.maxSelectedNum)];
+            
+            UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message:self.alertTitleWhenPhotoExceedMaxCount preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alertView animated:YES completion:nil];
+            [self performSelector:@selector(dismiss:) withObject:alertView afterDelay:1.0];
+            
             return;
         }
         
@@ -166,6 +169,10 @@
             [self.jjTabBarView setSelectedLabelHidden:YES];
         }
     }
+}
+
+- (void)dismiss:(UIAlertController *)alert{
+    [alert dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)editPhotoBtnClicked:(UIButton *)sender{
