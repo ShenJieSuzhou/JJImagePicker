@@ -171,12 +171,13 @@
     return _previewCollection;
 }
 
-- (void)setSeleImages:(NSMutableArray *)images{
+- (void)setPublishSelectedImages:(NSMutableArray *)images{
     if(!images){
         return;
     }
     //jjphoto 数组
     self.selectedJJPhotos = images;
+
     //所选图片数组
     self.selectedImages = [[NSMutableArray alloc] init];
     
@@ -185,12 +186,8 @@
         [pObj requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
             [self.selectedImages addObject:result];
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
-            
-        }];
-    }
 
-    if([self.selectedImages count] < 9){
-        [self.selectedImages addObject:[UIImage imageNamed:@"addImg"]];
+        }];
     }
 }
 
@@ -220,32 +217,50 @@
 
 //每个分组里有多少个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.selectedImages count];
+    if([self.selectedImages count] < 9){
+        return [self.selectedImages count] + 1;
+    }else if([self.selectedImages count] == 9){
+        return [self.selectedImages count];
+    }
+    return 1;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if([self.selectedImages count] < 9 && (indexPath.row + 1) == [self.selectedImages count]){
-        //添加图片
-        PhotosViewController *photoViewControl = [PhotosViewController new];
-        photoViewControl.delegate = self;
-        photoViewControl.isPublishViewAsk = YES;
-        int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count] + 1);
-        [photoViewControl setUpGridView:leftNum min:0];
-        
-        [self presentViewController:photoViewControl animated:YES completion:^{
-            
-        }];
-    }else {
+    if(indexPath.row < [self.selectedImages count]){
         _currentIndex = indexPath.row;
         //调整图片
         PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
         [editViewController setParentPage:PAGE_PUBLISH];
         editViewController.delegate = self;
         UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
-
+        
         [self presentViewController:editViewController animated:YES completion:^{
             [editViewController setEditImage:origanial];
         }];
+    }else if(indexPath.row == [self.selectedImages count]){
+        if([self.selectedImages count] == 9){
+            _currentIndex = indexPath.row;
+            //调整图片
+            PhotoEditingViewController *editViewController = [PhotoEditingViewController new];
+            [editViewController setParentPage:PAGE_PUBLISH];
+            editViewController.delegate = self;
+            UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
+            
+            [self presentViewController:editViewController animated:YES completion:^{
+                [editViewController setEditImage:origanial];
+            }];
+        }else{
+            //添加图片
+            PhotosViewController *photoViewControl = [PhotosViewController new];
+            photoViewControl.delegate = self;
+            photoViewControl.isPublishViewAsk = YES;
+            int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count]);
+            [photoViewControl setUpGridView:leftNum min:0];
+            
+            [self presentViewController:photoViewControl animated:YES completion:^{
+                
+            }];
+        }
     }
 }
 
@@ -253,14 +268,13 @@
     JJPublishPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PUBLISH_IDENTIFIER forIndexPath:indexPath];
     cell.delegate = self;
     
-    if([[self.selectedImages objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]]){
-        UIImage *image = [self.selectedImages objectAtIndex:indexPath.row];
-        [cell updatePublishImgCell:NO asset:image];
-    }
-
-    if([self.selectedImages count] < 9){
-        if((indexPath.row + 1) == [self.selectedImages count]){
-            [cell isDefaultImage:YES];
+    if([self.selectedImages count] == 9){
+        [cell updatePublishImgCell:NO asset:[self.selectedImages objectAtIndex:indexPath.row]];
+    }else if([self.selectedImages count] < 9){
+        if(indexPath.row == [self.selectedImages count]){
+            [cell setAddImgBtn:[UIImage imageNamed:@"addImg"]];
+        }else{
+            [cell updatePublishImgCell:NO asset:[self.selectedImages objectAtIndex:indexPath.row]];
         }
     }
     
@@ -320,15 +334,8 @@
 
 #pragma mark - JJPublishCellDelegate
 - (void)JJPublishCallBack:(JJPublishPreviewCell *)cell{
-    if(!cell.imageData){
-        return;
-    }
-    UIImage *asset = cell.imageData;
-    if([self.selectedImages containsObject:asset]){
-        [self.selectedImages removeObject:asset];
-//        if([self.selectedImages count] == 1 && [[self.selectedImages lastObject] isKindOfClass:[UIImage class]]){
-////            [self.selectedImages removeAllObjects];
-//        }
+    if([self.selectedImages containsObject:cell.imageData]){
+        [self.selectedImages removeObject:cell.imageData];
     }
     
     [self.previewCollection reloadData];
@@ -349,8 +356,6 @@
         return;
     }
     
-    [self.selectedImages removeLastObject];
-    
     for (int i = 0; i < [imagesAsset count]; i++) {
         JJPhoto *pObj = [imagesAsset objectAtIndex:i];
         [pObj requestOriginImageWithCompletion:^(UIImage *result, NSDictionary<NSString *,id> *info) {
@@ -360,20 +365,12 @@
         }];
     }
     
-    if([self.selectedImages count] < 9){
-        [self.selectedImages addObject:[UIImage imageNamed:@"addImg"]];
-    }
-    
     [viewControl dismissViewControllerAnimated:YES completion:^{
         [self.previewCollection reloadData];
     }];
 }
 
 #pragma mark - UIScrollViewDelegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"111111");
-//}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     //滑动就收起键盘
     [self.publicText.publishText resignFirstResponder];

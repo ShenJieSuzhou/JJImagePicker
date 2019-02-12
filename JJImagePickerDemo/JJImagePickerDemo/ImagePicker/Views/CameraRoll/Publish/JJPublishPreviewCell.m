@@ -83,22 +83,25 @@
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
 }
 
-- (void)updatePublishImgCell:(BOOL)flag asset:(NSObject *)imageObj{
+- (void)updatePublishImgCell:(BOOL)flag asset:(UIImage *)image{
     [self isDefaultImage:flag];
-    if([imageObj isKindOfClass:[JJPhoto class]]){
-        _obj = (JJPhoto *)imageObj;
-        //异步请求资源对应的缩略图
-        [_obj requestThumbnailImageWithSize:CGSizeMake(100, 100) completion:^(UIImage *result, NSDictionary *info) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.imageData = result;
-                [self.contentImageView setImage:result];
-            });
-        }];
-    }else if([imageObj isKindOfClass:[UIImage class]]){
-        self.imageData = (UIImage *)imageObj;
-        [self.contentImageView setImage:self.imageData];
-    }
-    
+    self.imageData = image;
+    [self.contentImageView setImage:image];
+//    if([imageObj isKindOfClass:[JJPhoto class]]){
+//        _obj = (JJPhoto *)imageObj;
+//        //异步请求资源对应的缩略图
+//        [_obj requestThumbnailImageWithSize:CGSizeMake(100, 100) completion:^(UIImage *result, NSDictionary *info) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                self.imageData = result;
+//                [self.contentImageView setImage:image];
+//            });
+//        }];
+//    }
+}
+
+- (void)setAddImgBtn:(UIImage *)img{
+    [self isDefaultImage:YES];
+    [self.contentImageView setImage:img];
 }
 
 - (void)deleteThePhoto:(UIButton *)sender{
@@ -106,6 +109,5 @@
         [_delegate JJPublishCallBack:self];
     }
 }
-
 
 @end

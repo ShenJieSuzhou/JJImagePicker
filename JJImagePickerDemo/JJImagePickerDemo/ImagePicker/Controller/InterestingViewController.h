@@ -11,6 +11,6 @@
 
 @interface InterestingViewController : CustomPhotoViewController
 
-- (void)setSeleImages:(NSMutableArray *)images;
+- (void)setPublishSelectedImages:(NSMutableArray *)images;
 
 @end

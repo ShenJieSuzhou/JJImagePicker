@@ -47,7 +47,7 @@
 
 @property (strong, nonatomic) UIButton *checkBox;
 
-@property (nonatomic, strong) InterestingViewController *interestingViewController;
+@property (nonatomic, strong) InterestingViewController *interestingView;
 
 @property (assign) BOOL isPublishViewAsk;
 

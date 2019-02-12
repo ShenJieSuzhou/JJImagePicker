@@ -37,6 +37,8 @@
 
 - (void)updatePublishImgCell:(BOOL)flag asset:(NSObject *)imageObj;
 
+- (void)setAddImgBtn:(UIImage *)img;
+
 - (void)isDefaultImage:(BOOL)flag;
 
 @end

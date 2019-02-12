@@ -282,7 +282,7 @@
         }
     }else{
         //跳转到编辑文本照片界面
-        [self.interestingViewController setSeleImages:self.selectedAssetsArray];
+        [self.interestingViewController setPublishSelectedImages:self.selectedAssetsArray];
         //跳转到编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
             
