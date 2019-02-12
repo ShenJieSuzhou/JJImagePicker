@@ -70,6 +70,7 @@
     [self.jjTabBarView setPreViewBtnHidden:YES];
     [self.jjTabBarView setEditBtnHidden:YES];
     if([self.selectedImageAssetArray count] > 0){
+         [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedImageAssetArray count]]];
         [self.jjTabBarView.finishBtn setEnabled:YES];
     }else{
         [self.jjTabBarView.finishBtn setEnabled:NO];
@@ -220,6 +221,11 @@
         JJPhoto *imageAsset = [self.imagesAssetArray objectAtIndex:index];
         self.checkBox.selected = [self.selectedImageAssetArray containsObject:imageAsset];
         self.currentIndex = index;
+        if(imageAsset.assetType == JJAssetTypeVideo){
+            [self.checkBox setHidden:YES];
+        }else{
+            [self.checkBox setHidden:NO];
+        }
     }
 }
 
@@ -242,6 +248,7 @@
                             });
             
         } withProgressHandler:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
         }];
     }else if(imageAsset.assetType == JJAssetTypeImage){
         if(imageAsset.assetSubType == JJAssetSubTypeLivePhoto){

@@ -38,8 +38,7 @@
 }
 
 - (void)commonInitlization{
-    self.imagesAssetArray = [[NSMutableArray alloc] init];
-    self.selectedImageAssetArray = [[NSMutableArray alloc] init];
+    
 
     self.minSelectedNum = 0;
     self.background = [[UIView alloc] init];
@@ -47,18 +46,25 @@
     [self addSubview:self.photoCollectionView];
 }
 
+- (void)setGridImagesAsset:(NSMutableArray *)array{
+    self.imagesAssetArray = array;
+}
+
+- (void)setGridselectedImagesAsset:(NSMutableArray *)selArray{
+    self.selectedImageAssetArray = selArray;
+}
+
 - (void)refreshPhotoAsset:(JJPhotoAlbum *)album{
     if(!album){
         return;
     }
-    
+
     if(!self.imagesAssetArray){
-        self.imagesAssetArray = [[NSMutableArray alloc] init];
-        self.selectedImageAssetArray = [[NSMutableArray alloc] init];
-    }else{
-        [self.imagesAssetArray removeAllObjects];
+        return;
     }
     
+    [self.imagesAssetArray removeAllObjects];
+
     //加载照片比较耗时，所以start loading
     [JJImagePickerHelper startLoadingAnimation:self];
     __weak typeof(self) weakSelf = self;
@@ -75,7 +81,7 @@
                     //加载结束 stop loading
                     [JJImagePickerHelper stopLoadingAnimation:weakSelf];
                 });
-                
+
             }
         }];
     });

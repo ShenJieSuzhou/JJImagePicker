@@ -48,6 +48,10 @@
 //预览图回调
 @property (strong, nonatomic) id<JJImagePickerViewControllerDelegate> mDelegate;
 
+- (void)setGridImagesAsset:(NSMutableArray *)array;
+
+- (void)setGridselectedImagesAsset:(NSMutableArray *)selArray;
+
 /*
  * 刷新照片
  * @param album 相簿

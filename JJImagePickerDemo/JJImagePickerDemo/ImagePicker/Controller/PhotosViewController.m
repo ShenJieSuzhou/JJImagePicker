@@ -31,6 +31,10 @@
 
 @property (assign) int maxImgNum;
 
+@property (nonatomic, strong) NSMutableArray *imageAssetsArray;
+
+@property (nonatomic, strong) NSMutableArray *selectedAssetsArray;
+
 @end
 
 @implementation PhotosViewController
@@ -47,6 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imageAssetsArray = [[NSMutableArray alloc] init];
+    self.selectedAssetsArray = [[NSMutableArray alloc] init];
+    
     [self setupUI];
     [self loadAlbumAsset];
 }
@@ -114,6 +121,9 @@
 - (GridView *)photoGridView{
     if(!_photoGridView){
         _photoGridView = [[GridView alloc] initWithFrame:CGRectMake(0, [CustomNaviBarView barSize].height, self.view.frame.size.width, self.view.frame.size.height - [CustomNaviBarView barSize].height - 50.0f)];
+        [_photoGridView setGridImagesAsset:self.imageAssetsArray];
+        [_photoGridView setGridselectedImagesAsset:self.selectedAssetsArray];
+        
         _photoGridView.mDelegate = self;
         _photoGridView.isAllowedMutipleSelect = YES;
     }
@@ -192,12 +202,12 @@
 - (void)refreshAlbumAndShow{
     if([self.albumsArray count] > 0){
         //hide loading
-        
+
         //初始化网格照片界面
         JJPhotoAlbum *album = [self.albumsArray objectAtIndex:0];
         [_cameraRoll setTitle:[album albumName] forState:UIControlStateNormal];
         [self.photoGridView refreshPhotoAsset:album];
-        
+
         //初始化相薄界面
         [_cameraRollView refreshAlbumAseets:self.albumsArray];
     }else{
@@ -219,7 +229,7 @@
         self.photoPreviewViewController.isPublishViewAsk = YES;
     }
     //初始化预览相册，当前显示的照片索引
-    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:gridView.imagesAssetArray selectedImageAssetArray:gridView.selectedImageAssetArray currentImageIndex:indexath.row singleCheckMode:NO];
+    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.imageAssetsArray selectedImageAssetArray:self.selectedAssetsArray currentImageIndex:indexath.row singleCheckMode:NO];
 
     [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
 
@@ -257,7 +267,7 @@
         self.photoPreviewViewController.isPublishViewAsk = YES;
     }
     //初始化预览相册，当前显示的照片索引
-    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.photoGridView.selectedImageAssetArray selectedImageAssetArray:self.photoGridView.selectedImageAssetArray currentImageIndex:0 singleCheckMode:NO];
+    [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.imageAssetsArray selectedImageAssetArray:self.selectedAssetsArray currentImageIndex:0 singleCheckMode:NO];
     
     [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
         
@@ -272,7 +282,7 @@
         }
     }else{
         //跳转到编辑文本照片界面
-        [self.interestingViewController setSeleImages:self.photoGridView.selectedImageAssetArray];
+        [self.interestingViewController setSeleImages:self.selectedAssetsArray];
         //跳转到编辑文本照片界面
         [self presentViewController:self.interestingViewController animated:YES completion:^{
             
@@ -282,12 +292,12 @@
 
 #pragma -mark PhotoPreviewViewControllerDelegate
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didCheckImageAtIndex:(NSInteger)index{
-    if([previewViewController.selectedImageAssetArray count] > 0){
+    if([self.selectedAssetsArray count] > 0){
         [self.jjTabBarView.previewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.previewBtn setEnabled:YES];
         [self.jjTabBarView setSelectedLabelHidden:NO];
         [self.jjTabBarView.finishBtn setEnabled:YES];
-        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[previewViewController.selectedImageAssetArray count]]];
+        [self.jjTabBarView.selectedNum setText:[NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedAssetsArray count]]];
     }
     
     [self.photoGridView.photoCollectionView reloadData];
@@ -295,7 +305,7 @@
 
 
 - (void)imagePickerPreviewViewController:(PhotoPreviewViewController *)previewViewController didUncheckImageAtIndex:(NSInteger)index{
-    if([previewViewController.selectedImageAssetArray count] == 0){
+    if([self.selectedAssetsArray count] == 0){
         [self.jjTabBarView.previewBtn setEnabled:NO];
         [self.jjTabBarView.previewBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [self.jjTabBarView.finishBtn setEnabled:NO];
