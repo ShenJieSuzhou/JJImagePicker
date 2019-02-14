@@ -194,7 +194,6 @@
 		E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252321DE2CBA001C4D8F /* BindPhoneViewController.m */; };
 		E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */; };
 		E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252821DF3C1A001C4D8F /* DeviceType.m */; };
-		E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */; };
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
@@ -214,6 +213,7 @@
 		E5CFB55B20D3879B0021EB68 /* uls_tb_intro_return_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB55920D3879B0021EB68 /* uls_tb_intro_return_p@3x.png */; };
 		E5CFB56720E1E7B50021EB68 /* JJImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */; };
 		E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB56820E2169F0021EB68 /* wb_style_orange.png */; };
+		E5DB333D22154BD1008D7818 /* JJImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */; };
 		E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D86214B93310048A80E /* YUCIHighPass.m */; };
 		E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */; };
 		E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */; };
@@ -541,7 +541,6 @@
 		E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BindPhoneViewController.xib; sourceTree = "<group>"; };
 		E58C252721DF3C1A001C4D8F /* DeviceType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceType.h; sourceTree = "<group>"; };
 		E58C252821DF3C1A001C4D8F /* DeviceType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceType.m; sourceTree = "<group>"; };
-		E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQiniuSDK_iOS.a; sourceTree = "<group>"; };
 		E597BDD42186A9F2000B5A34 /* HomeContentmManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeContentmManager.h; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.h; sourceTree = SOURCE_ROOT; };
 		E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeContentmManager.m; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.m; sourceTree = SOURCE_ROOT; };
 		E5AE62F421C0FF1000639CF8 /* JJTokenManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTokenManager.h; sourceTree = "<group>"; };
@@ -567,6 +566,8 @@
 		E5CFB56520E1E7B50021EB68 /* JJImagePickerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImagePickerHelper.h; sourceTree = "<group>"; };
 		E5CFB56620E1E7B50021EB68 /* JJImagePickerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImagePickerHelper.m; sourceTree = "<group>"; };
 		E5CFB56820E2169F0021EB68 /* wb_style_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wb_style_orange.png; sourceTree = "<group>"; };
+		E5DB333B22154BD1008D7818 /* JJImageUploadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageUploadManager.h; sourceTree = "<group>"; };
+		E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageUploadManager.m; sourceTree = "<group>"; };
 		E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E5DF2D86214B93310048A80E /* YUCIHighPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPass.m; sourceTree = "<group>"; };
 		E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIHighPassSkinSmoothingMaskBoost.cikernel; sourceTree = "<group>"; };
@@ -598,7 +599,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */,
-				E597BDD22181B6AF000B5A34 /* libQiniuSDK_iOS.a in Frameworks */,
 				E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1173,9 +1173,9 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E5DB333722154B78008D7818 /* Upload */,
 				E5AE62F321C0FEE500639CF8 /* TokenManager */,
 				4487D7F421841704001E7849 /* NetWork */,
-				E597BDD02181B698000B5A34 /* Libs */,
 				E50C094E2175C3D80035C3C2 /* Cream */,
 				4462607520CD1A260004C579 /* Category */,
 				E522786720C0E433003E2F38 /* Resources */,
@@ -1223,14 +1223,6 @@
 			path = security;
 			sourceTree = "<group>";
 		};
-		E597BDD02181B698000B5A34 /* Libs */ = {
-			isa = PBXGroup;
-			children = (
-				E597BDD12181B6AF000B5A34 /* libQiniuSDK_iOS.a */,
-			);
-			path = Libs;
-			sourceTree = "<group>";
-		};
 		E5AE62F321C0FEE500639CF8 /* TokenManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,6 +1252,15 @@
 				E58C252821DF3C1A001C4D8F /* DeviceType.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		E5DB333722154B78008D7818 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				E5DB333B22154BD1008D7818 /* JJImageUploadManager.h */,
+				E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */,
+			);
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		E5DF2D85214B91590048A80E /* BeautySmooth */ = {
@@ -1514,6 +1515,7 @@
 				4477BCA421D9F952009128F5 /* JJDatePicker.m in Sources */,
 				E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */,
 				E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */,
+				E5DB333D22154BD1008D7818 /* JJImageUploadManager.m in Sources */,
 				E512B1DC215A17C400B06B1B /* StickerViewController.m in Sources */,
 				E51726472160B66A008431A1 /* UIView+ZYTagView.m in Sources */,
 				E5506B61212FB3330077E62B /* InterestingViewController.m in Sources */,

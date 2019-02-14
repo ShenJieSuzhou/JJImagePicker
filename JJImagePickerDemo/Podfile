@@ -6,5 +6,6 @@ target 'JJImagePickerDemo' do
     pod 'SDWebImage'
     pod 'Masonry'
     pod 'YYText'
+    pod 'Qiniu', "~> 7.1"
 
 end

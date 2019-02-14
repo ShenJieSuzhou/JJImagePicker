@@ -16,7 +16,11 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - HappyDNS (0.3.12)
   - Masonry (1.1.0)
+  - Qiniu (7.1.8):
+    - AFNetworking (~> 3)
+    - HappyDNS (~> 0.3)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
@@ -27,6 +31,7 @@ PODS:
 DEPENDENCIES:
   - AFNetwork
   - Masonry
+  - Qiniu (~> 7.1)
   - SDWebImage
   - SVProgressHUD
   - "UITextView+Placeholder"
@@ -36,7 +41,9 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetwork
     - AFNetworking
+    - HappyDNS
     - Masonry
+    - Qiniu
     - SDWebImage
     - SVProgressHUD
     - "UITextView+Placeholder"
@@ -45,12 +52,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetwork: 0dbdb2ffb4a7770b3d1802dc85b50ab31263f2c2
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  Qiniu: 2f1b9d13904b6a7608a66a2d02c5b7b24575622a
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   "UITextView+Placeholder": 77680995fcdd07c3f52ec92fe1150874a2ac89ff
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 088cd8a20a64f337818177c36b63d471ddac66fc
+PODFILE CHECKSUM: 494e8044910c6e2b3d27c3c909f05662de465547
 
 COCOAPODS: 1.5.3
