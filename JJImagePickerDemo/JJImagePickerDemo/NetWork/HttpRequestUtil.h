@@ -43,6 +43,19 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
 
+
+/**
+ 发布自己的作品
+
+ @param url 请求地址
+ @param token token
+ @param photoInfo 新鲜事
+ @param userid 用户ID
+ @param block 回调
+ */
++ (void)JJ_PublishMyPhotoWorks:(NSString *)url token:(NSString *)token photoInfo:(NSString *)photoInfo userid:(NSString *)userid callback:(requestCallBack) block;
+
+
 /**
  跟新用户昵称
 

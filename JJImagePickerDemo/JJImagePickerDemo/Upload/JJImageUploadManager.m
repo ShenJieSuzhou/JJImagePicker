@@ -32,25 +32,27 @@
         instance = [[JJImageUploadManager alloc] init];
         instance.accessKey = @"DdEttx2bOBYCjubF-hhZhclOzE6iEW9xm24L7G8I";
         instance.secretKey = @"ib5YZR-YhwuavoRxpgg6tWSXeERHQ6tzPt_5EY9o";
-        instance.scope = @"beautyImage";
+        instance.scope = @"beautyimage";
         instance.liveTime = 100;
+        [instance createToken];
     });
     
     return instance;
 }
 
-- (void)uploadImageToQN:(NSString *)imageUrl image:(UIImage *)image{
-//    NSString *token = @"从服务端SDK获取";
-//    QNUploadManager *upManager = [[QNUploadManager alloc] init];
-//    NSData *data = [@"Hello, World!" dataUsingEncoding : NSUTF8StringEncoding];
-//    [upManager putData:data key:@"hello" token:token
-//              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//                  NSLog(@"%@", info);
-//                  NSLog(@"%@", resp);
-//              } option:nil];
-    
-    
-    
+- (void)uploadImageToQN:(UIImage *)image uploadResult:(uploadToQnCallBack)jjResult{
+    QNUploadManager *uploadManager = [[QNUploadManager alloc] init];
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    [uploadManager putData:imageData key:nil token:self.uploadToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        if(info.ok){
+            NSString *hash = [resp objectForKey:@"hash"];
+            NSString *key = [resp objectForKey:@"key"];
+            jjResult(YES, key);
+        }else{
+            jjResult(NO, nil);
+        }
+        
+    } option:nil];
 }
 
 

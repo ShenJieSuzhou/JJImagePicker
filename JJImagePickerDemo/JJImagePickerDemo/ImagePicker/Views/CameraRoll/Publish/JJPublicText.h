@@ -22,5 +22,8 @@
 @property (nonatomic, strong) YYTextView *publishText;
 @property (nonatomic, weak) id<JJPublicTextDelegate> delegate;
 @property  (nonatomic, assign) BOOL  isFaceDel;
+
+- (NSString *)getInterestInfo;
+
 @end
 

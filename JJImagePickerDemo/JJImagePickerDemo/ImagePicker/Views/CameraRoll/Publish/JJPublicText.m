@@ -58,6 +58,11 @@
 //    }
 }
 
+- (NSString *)getInterestInfo{
+    NSString *text = self.publishText.text;
+    return text;
+}
+
 #pragma mark - UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
 //    [_delegate textViewShouldBeginEditing:_publishText];

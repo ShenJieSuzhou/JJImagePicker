@@ -19,6 +19,11 @@
 #import "PhotoEditingViewController.h"
 #import "PhotosViewController.h"
 #import "GlobalDefine.h"
+#import "JJImageUploadManager.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "HttpRequestUtil.h"
+#import "JSONKit.h"
+#import "JJTokenManager.h"
 
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
@@ -47,6 +52,7 @@
 //选择调整图片的索引
 @property (assign) NSInteger currentIndex;
 
+@property (strong, nonatomic) NSMutableArray *tuchuagArray;
 
 @end
 
@@ -57,6 +63,7 @@
 //@synthesize buttomMenu = _buttomMenu;
 @synthesize currentIndex = _currentIndex;
 @synthesize pScrollView = _pScrollView;
+@synthesize tuchuagArray = _tuchuagArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,6 +87,7 @@
     //不显示
     [self.jjTabBarView setHidden:YES];
     
+    self.tuchuagArray = [[NSMutableArray alloc] init];
     [self.view addSubview:self.pScrollView];
     [self.pScrollView addSubview:self.publicText];
     [self.pScrollView addSubview:self.previewCollection];
@@ -205,8 +213,62 @@
 //发表
 - (void)OnPublishCLick:(UIButton *)sender{
     //http 请求发送到服务器
-    NSLog(@"send .... ");
+    [self.tuchuagArray removeAllObjects];
+    [SVProgressHUD show];
     
+    //将所选的图片上传至云
+    __weak typeof(self) weakSelf = self;
+    for (int i = 0; i < [self.selectedImages count]; i++) {
+        UIImage *selectImg = [self.selectedImages objectAtIndex:i];
+        [[JJImageUploadManager shareInstance] uploadImageToQN:selectImg uploadResult:^(BOOL isSuccess, NSString *file) {
+            if(isSuccess){
+                [weakSelf.tuchuagArray addObject:file];
+                if([weakSelf.tuchuagArray count] == [weakSelf.selectedImages count]){
+                    [SVProgressHUD showInfoWithStatus:JJ_PUBLISH_UPLOAD_SUCCESS];
+                    NSString *publishText = [weakSelf.publicText getInterestInfo];
+                    [weakSelf postMyPhotosToPublic:publishText photos:weakSelf.tuchuagArray];
+                }
+            }else{
+                [SVProgressHUD showErrorWithStatus:JJ_PUBLISH_ERROR];
+                [SVProgressHUD dismiss];
+                return;
+            }
+        }];
+    }
+}
+
+
+/**
+ 发布我的信息
+
+ @param content 新鲜事
+ @param photos 照片
+ */
+- (void)postMyPhotosToPublic:(NSString *)content photos:(NSMutableArray *)photos{
+    NSDictionary *publishDic = [[NSDictionary alloc] init];
+    [publishDic setValue:content forKey:@"content"];
+    [publishDic setValue:photos forKey:@"photos"];
+    
+    NSString *jsonStr = [publishDic JSONString];
+    
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_PublishMyPhotoWorks:@"" token:[JJTokenManager shareInstance].getUserToken photoInfo:jsonStr userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            //发布成功
+            [SVProgressHUD showSuccessWithStatus:JJ_PUBLISH_SUCCESS];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            [weakSelf OnCancelCLick:nil];
+        }else{
+            //发布失败
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:2.0f];
+        }
+    }];
 }
 
 #pragma mark - collectionViewDelegate

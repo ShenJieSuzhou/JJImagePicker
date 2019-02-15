@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+typedef void(^uploadToQnCallBack)(BOOL isSuccess, NSString *file);
+
 @interface JJImageUploadManager : NSObject
 
 + (JJImageUploadManager *)shareInstance;
 
-- (void)uploadImageToQN:(NSString *)imageUrl image:(UIImage *)image;
+- (void)uploadImageToQN:(UIImage *)image uploadResult:(uploadToQnCallBack)jjResult;
 
 
 @end

@@ -44,6 +44,8 @@
  */
 #define JJ_NETWORK_ERROR @"网络失败，请重试"
 #define JJ_NO_PHOTOS @"你还没有内容，快去发布吧"
-
+#define JJ_PUBLISH_ERROR @"发布失败"
+#define JJ_PUBLISH_SUCCESS @"发布成功"
+#define JJ_PUBLISH_UPLOAD_SUCCESS @"上传成功，正在发布"
 
 #endif /* GlobalDefine_h */
