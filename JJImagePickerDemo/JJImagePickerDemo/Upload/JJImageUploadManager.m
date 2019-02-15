@@ -48,6 +48,9 @@
 //                  NSLog(@"%@", info);
 //                  NSLog(@"%@", resp);
 //              } option:nil];
+    
+    
+    
 }
 
 
@@ -100,8 +103,8 @@
     return hash;
 }
 
-+(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
-    
+//+(void)uploadImageToQNFilePath:(NSArray *)photos success:(QNSuccessBlock)success failure:(QNFailureBlock)failure{
+
 //    NSMutableArray *imageAry =[NSMutableArray new];
 //    NSMutableArray *imageAdd = [NSMutableArray new];
 //    for (ZLPhotoAssets *status in photos) {
@@ -135,6 +138,6 @@
 //                    success([imageAdd componentsJoinedByString:@";"]);}}}
 //                    option:uploadOption];}];
     
-}
+//}
 
 @end
