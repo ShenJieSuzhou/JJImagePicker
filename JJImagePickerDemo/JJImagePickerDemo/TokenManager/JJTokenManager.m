@@ -56,11 +56,31 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)saveUserWorks:(NSMutableArray *)works{
+    [[NSUserDefaults standardUserDefaults] setObject:works forKey:@"works"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSMutableArray *)getUserWorks{
+    NSMutableArray *works = [[NSUserDefaults standardUserDefaults] objectForKey:@"works"];
+    if (!works) {
+        return nil;
+    }
+    return works;
+}
+
+- (void)cancelUserWorks{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"works"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 //  保存用户的id
 - (void)saveUserID:(NSNumber *)userID {
     [[NSUserDefaults standardUserDefaults] setObject:userID.stringValue forKey:@"UserID"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 - (NSString *)getUserID {
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserID"];
     if (!userID) {
@@ -68,6 +88,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     }
     return userID;
 }
+
 - (void)cancelUserID {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserID"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -228,6 +249,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [self cancelUserToken];
     [self cancelPassword];
     [self cancelUserBirth];
+    [self cancelUserWorks];
 }
 
 //  添加用户信息
@@ -240,6 +262,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [self saveUserToken:info.token];
     [self saveUserFans:info.fans];
     [self saveFocusPlayerNum:info.focus];
+    [self saveUserWorks:info.worksArray];
 }
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation LoginModel
 
-- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans gender:(int)gender birth:(NSString *)birth phone:(NSString *)telephone token:(NSString *)token works:(NSArray *)works{
+- (instancetype)initWithName:(NSString *)uid name:(NSString *)userName icon:(NSString *)iconUrl focus:(NSString *)focus fans:(NSString *)fans gender:(int)gender birth:(NSString *)birth phone:(NSString *)telephone token:(NSString *)token works:(NSMutableArray *)works{
     self = [super init];
     if(self){
         self.userId = uid;

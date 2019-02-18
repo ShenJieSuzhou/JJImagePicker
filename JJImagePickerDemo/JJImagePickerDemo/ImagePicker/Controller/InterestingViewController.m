@@ -24,6 +24,7 @@
 #import "HttpRequestUtil.h"
 #import "JSONKit.h"
 #import "JJTokenManager.h"
+#import "HttpRequestUrlDefine.h"
 
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
@@ -252,7 +253,7 @@
     NSString *jsonStr = [publishDic JSONString];
     
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_PublishMyPhotoWorks:@"" token:[JJTokenManager shareInstance].getUserToken photoInfo:jsonStr userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_PublishMyPhotoWorks:POST_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken photoInfo:jsonStr userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];

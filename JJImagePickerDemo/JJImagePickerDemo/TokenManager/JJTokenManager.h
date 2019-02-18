@@ -29,6 +29,12 @@
 - (NSString *)getUserAvatar;
 - (void)cancelUserAvatar;
 
+//  保存用户作品
+- (void)saveUserWorks:(NSMutableArray *)works;
+- (NSMutableArray *)getUserWorks;
+- (void)cancelUserWorks;
+
+
 //  保存用户的gender
 - (void)saveUserGender:(NSNumber *)gender;
 - (NSString *)getUserGender;

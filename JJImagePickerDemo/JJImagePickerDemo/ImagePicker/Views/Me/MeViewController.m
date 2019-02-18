@@ -21,6 +21,7 @@
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
 #import "OriginalWorksViewController.h"
+#import "HttpRequestUtil.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -38,16 +39,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     //判断用户是否登录
-//    [SVProgressHUD show];
-//    [LoginSessionManager getInstance].delegate = self;
-//
-//    if(![[LoginSessionManager getInstance] isUserLogin]){
-//        _isLogin = NO;
-//        [SVProgressHUD dismiss];
-//        [self popLoginViewController];
-//    }else{
-//        [[LoginSessionManager getInstance] verifyUserToken];
-//    }
+    [SVProgressHUD show];
+    [LoginSessionManager getInstance].delegate = self;
+
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        _isLogin = NO;
+        [SVProgressHUD dismiss];
+        [self popLoginViewController];
+    }else{
+        [[LoginSessionManager getInstance] verifyUserToken];
+    }
 }
 
 - (void)viewWillLayoutSubviews{
@@ -56,8 +57,8 @@
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
     
-    //刷新数据
-    [self refreshViewInfo];
+//    //刷新数据
+//    [self refreshViewInfo];
 }
 
 - (void)viewDidLoad {
@@ -113,29 +114,16 @@
  刷新用户界面
  */
 - (void)refreshViewInfo{
-
     [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
-        
-    //异步去请求自己的作品
     
-//        if(!userModel.worksArray){
-//            return;
-//        }
-//
-//        NSMutableArray *workArray = [[NSMutableArray alloc] init];
-//        for (int i = 0; i < [userModel.worksArray count]; i++) {
-//            NSDictionary *workInfo = [userModel.worksArray objectAtIndex:i];
-//            NSString *path = [workInfo objectForKey:@"path"];
-//            NSString *photoid = [NSString stringWithFormat:@"%@", [workInfo objectForKey:@"photoid"]];
-//            NSString *userid = [NSString stringWithFormat:@"%@",[workInfo objectForKey:@"userid"]];
-//            NSString *work = [workInfo objectForKey:@"work"];
-//
-//            Works *obj = [[Works alloc] initWithPath:path photoID:photoid userid:userid work:work];
-//            [workArray addObject:obj];
-//        }
-//
-    Works *w = [[Works alloc] initWithPath:@"https://pic1.zhimg.com/80/v2-ad32d1a90216857cb0b03658d748d368_hd.png" photoID:@"" userid:@"" work:@""];
-    [self.workView updateWorksArray:[NSMutableArray arrayWithObjects:w, nil]];
+    [HttpRequestUtil JJ_GetMyWorksArray:@"" token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+       
+        NSArray *works = (NSArray *)data;
+        
+        
+        
+        
+    }];
 }
 
 #pragma - mark DetailInfoViewDelegate

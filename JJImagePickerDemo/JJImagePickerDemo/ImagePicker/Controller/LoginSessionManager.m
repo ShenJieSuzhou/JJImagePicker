@@ -54,7 +54,7 @@ static LoginSessionManager *mInstance = nil;
             NSString *phone = [data objectForKey:@"telephone"];
             
             //取出token user_id username
-            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:works];
+            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:[NSMutableArray arrayWithArray:works]];
             [weakSelf.delegate loginByAccountPwdSuccessful:userModel];
         }else{
             NSString *errorMsg = [data objectForKey:@"errorMsg"];
