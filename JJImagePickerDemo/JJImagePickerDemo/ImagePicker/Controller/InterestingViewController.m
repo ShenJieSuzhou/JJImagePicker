@@ -246,12 +246,12 @@
  @param photos 照片
  */
 - (void)postMyPhotosToPublic:(NSString *)content photos:(NSMutableArray *)photos{
-    NSDictionary *publishDic = [[NSDictionary alloc] init];
+    NSMutableDictionary *publishDic = [[NSMutableDictionary alloc] init];
     [publishDic setValue:content forKey:@"content"];
     [publishDic setValue:photos forKey:@"photos"];
     
     NSString *jsonStr = [publishDic JSONString];
-    
+    NSLog(@"%@", jsonStr);
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_PublishMyPhotoWorks:POST_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken photoInfo:jsonStr userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         if(error){

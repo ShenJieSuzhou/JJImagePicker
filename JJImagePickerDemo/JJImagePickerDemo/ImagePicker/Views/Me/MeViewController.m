@@ -56,9 +56,6 @@
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
-    
-//    //刷新数据
-//    [self refreshViewInfo];
 }
 
 - (void)viewDidLoad {
@@ -66,6 +63,9 @@
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
+    
+    //刷新数据
+    [self refreshViewInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,13 +116,23 @@
 - (void)refreshViewInfo{
     [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
     
-    [HttpRequestUtil JJ_GetMyWorksArray:@"" token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
-       
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        //用户作品
         NSArray *works = (NSArray *)data;
+        NSMutableArray *photoList = [[NSMutableArray alloc] init];
+        for(int i = 0; i < [works count]; i++){
+            NSDictionary *dic = [works objectAtIndex:i];
+            NSString *userId = [dic objectForKey:@"userid"];
+            NSString *photoId = [dic objectForKey:@"photoid"];
+            NSString *path = [dic objectForKey:@"path"];
+            NSString *work = [dic objectForKey:@"work"];
+            
+            Works *postWork = [[Works alloc] initWithPath:path photoID:photoId userid:userId work:work];
+            [photoList addObject:postWork];
+        }
         
-        
-        
-        
+        [weakSelf.workView updateWorksArray:photoList];
     }];
 }
 
@@ -178,7 +188,7 @@
     [self.view addSubview:self.workView];
     [self.detailView setLoginState:_isLogin];
     //刷新数据
-    [self refreshViewInfo];
+//    [self refreshViewInfo];
 }
 
 #pragma - mark WorksViewDelegate
