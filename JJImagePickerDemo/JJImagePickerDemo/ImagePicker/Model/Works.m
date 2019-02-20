@@ -10,10 +10,10 @@
 
 @implementation Works
 
-- (instancetype)initWithPath:(NSString *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work{
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work{
     self = [super init];
     if(self){
-        self.path = path;
+        self.path = [path copy];
         self.photoid = photoID;
         self.userid = userid;
         self.work = work;

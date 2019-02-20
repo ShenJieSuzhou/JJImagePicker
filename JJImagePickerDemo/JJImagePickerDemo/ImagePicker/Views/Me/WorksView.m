@@ -185,12 +185,12 @@
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     WorkCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WORKS_CELL_IDENTIFIER forIndexPath:indexPath];
     
-    Works *work = [self.worksArray objectAtIndex:indexPath.row];
+    Works *myWorks = [self.worksArray objectAtIndex:indexPath.row];
+    BOOL isMult = [myWorks.path count] > 1?YES:NO;
+    [cell updateCell:[myWorks.path objectAtIndex:0] isMult:isMult];
     
-    [cell updateCell:work.path];
     return cell;
 }
 

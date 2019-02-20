@@ -13,6 +13,8 @@
 #include <CommonCrypto/CommonHMAC.h>
 #import<QNConfiguration.h>
 
+#define QNDNS @"http://pmuz5wt3t.bkt.clouddn.com"
+
 @interface JJImageUploadManager()
 
 @property (nonatomic, copy) NSString *accessKey;
@@ -47,7 +49,8 @@
         if(info.ok){
             NSString *hash = [resp objectForKey:@"hash"];
             NSString *key = [resp objectForKey:@"key"];
-            jjResult(YES, key);
+            NSString *photoUrl = [NSString stringWithFormat:@"%@/%@", QNDNS, key];
+            jjResult(YES, photoUrl);
         }else{
             jjResult(NO, nil);
         }

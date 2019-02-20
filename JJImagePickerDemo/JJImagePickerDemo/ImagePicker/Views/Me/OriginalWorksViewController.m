@@ -12,12 +12,14 @@
 #import <YYText/YYLabel.h>
 #import <YYText/NSAttributedString+YYText.h>
 #import "UIScrollView+UITouch.h"
+#import "KYTilePhotoLayout.h"
+#import "JJThumbPhotoCell.h"
 
-@interface OriginalWorksViewController ()
+@interface OriginalWorksViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 //@property (strong, nonatomic) UIView *backView;
 @property (strong, nonatomic) UIImageView *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UIImageView *workView;
+@property (strong, nonatomic) UICollectionView *workView;
 @property (strong, nonatomic) UIScrollView *worksInfoView;
 @property (strong, nonatomic) YYLabel *worksDesc;
 @property (strong, nonatomic) UILabel *timeLine;
@@ -95,15 +97,13 @@
     [self.worksInfoView addSubview:self.shareBtn];
     
     //图片
-    NSString *imageUrl = self.photoWork.path;
-    UIImage *workImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
-    CGFloat width = workImage.size.width;
-    CGFloat height = workImage.size.height;
-    CGFloat screenWidth = self.view.frame.size.width;
-    CGFloat workVHeight = (screenWidth - 10) * (height/width);
-    self.workView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenWidth - 10, workVHeight)];
-    [self.workView setImage:workImage];
-    self.workView.contentMode = UIViewContentModeScaleAspectFit;
+    NSMutableArray *imageUrls = [[NSMutableArray alloc] initWithArray:_photoWork.path];
+//    CGFloat width = workImage.size.width;
+//    CGFloat height = workImage.size.height;
+//    CGFloat screenWidth = self.view.frame.size.width;
+//    CGFloat workVHeight = (screenWidth - 10) * (height/width);
+//    self.workView = [[CustomNewsBanner alloc] initWithFrame:CGRectMake(0, 0, screenWidth - 10, workVHeight)];
+
     [self.worksInfoView addSubview:self.workView];
     
     //描述
@@ -218,6 +218,47 @@
     }
     
     self.photoWork = workModel;
+}
+
+-(UICollectionView *)workView{
+    if (!_workView) {
+        KYTilePhotoLayout *layout = [[KYTilePhotoLayout alloc] init];
+        layout.ColOfPortrait = 3;
+        layout.DoubleColumnThreshold = 40;
+
+        //自动网格布局
+        _workView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width , self.view.frame.size.height) collectionViewLayout:layout];
+        
+        //设置数据源代理
+        _workView.dataSource = self;
+        _workView.delegate = self;
+        
+        _workView.showsVerticalScrollIndicator = NO;
+        _workView.alwaysBounceHorizontal = NO;
+        [_workView setBackgroundColor:[UIColor whiteColor]];
+        [_workView registerClass:[JJThumbPhotoCell class] forCellWithReuseIdentifier:@"JJThumbPhotoCell"];
+    }
+    
+    return _workView;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+ 
+    return [self.photoWork.path count];
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    JJThumbPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JJThumbPhotoCell" forIndexPath:indexPath];
+    
+    NSString *photoUrl = [self.photoWork.path objectAtIndex:indexPath.row];
+    [cell updateCell:photoUrl];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 @end

@@ -31,6 +31,12 @@
 //    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
 //    [self addSubview:self.likeBtn];
+    
+    _multImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"albumCover"]];
+    _multImg.contentMode = UIViewContentModeScaleAspectFill;
+    _multImg.clipsToBounds = YES;
+    [_multImg setBackgroundColor:[UIColor clearColor]];
+    [_workImageV addSubview:_multImg];
 }
 
 - (void)layoutSubviews{
@@ -46,6 +52,12 @@
 //        make.bottom.equalTo(self).offset(-10.0f);
 //        make.right.equalTo(self).offset(-10.0f);
 //    }];
+    
+    [_multImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
+        make.bottom.equalTo(self.workImageV).offset(10.0f);
+        make.right.equalTo(self.workImageV).offset(10.0f);
+    }];
 }
 
 
@@ -54,7 +66,11 @@
 
  @param workUrl 地址
  */
-- (void)updateCell:(NSString *)workUrl{
+- (void)updateCell:(NSString *)workUrl isMult:(BOOL)isMuti{
+    if(!isMuti){
+        [_multImg setHidden:YES];
+    }
+    
 //    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
     __weak typeof(self) weakself = self;
     [[SDImageCache sharedImageCache] diskImageExistsWithKey:workUrl completion:^(BOOL isInCache) {

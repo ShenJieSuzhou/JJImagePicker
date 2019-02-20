@@ -126,10 +126,11 @@
             NSDictionary *dic = [works objectAtIndex:i];
             NSString *userId = [dic objectForKey:@"userid"];
             NSString *photoId = [dic objectForKey:@"photoid"];
-            NSString *path = [dic objectForKey:@"path"];
+            NSString *pathStr = [dic objectForKey:@"path"];
             NSString *work = [dic objectForKey:@"work"];
+            NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-            Works *postWork = [[Works alloc] initWithPath:path photoID:photoId userid:userId work:work];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work];
             [photoList addObject:postWork];
         }
         

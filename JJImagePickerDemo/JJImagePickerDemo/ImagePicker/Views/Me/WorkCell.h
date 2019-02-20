@@ -15,7 +15,9 @@
 
 @property (strong, nonatomic) UIButton *likeBtn;
 
-- (void)updateCell:(NSString *)workUrl;
+@property (strong, nonatomic) UIImageView *multImg;
+
+- (void)updateCell:(NSString *)workUrl isMult:(BOOL)isMuti;
 
 @end
 

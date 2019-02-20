@@ -10,15 +10,15 @@
 
 @interface Works : NSObject
 
-@property (nonatomic, strong) NSString *path;
+@property (nonatomic, copy) NSArray *path;
 
-@property (nonatomic, strong) NSString *photoid;
+@property (nonatomic, copy) NSString *photoid;
 
-@property (nonatomic, strong) NSString *userid;
+@property (nonatomic, copy) NSString *userid;
 
-@property (nonatomic, strong) NSString *work;
+@property (nonatomic, copy) NSString *work;
 
-- (instancetype)initWithPath:(NSString *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work;
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work;
 
 @end
 
