@@ -40,6 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     //判断用户是否登录
     [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [LoginSessionManager getInstance].delegate = self;
 
     if(![[LoginSessionManager getInstance] isUserLogin]){

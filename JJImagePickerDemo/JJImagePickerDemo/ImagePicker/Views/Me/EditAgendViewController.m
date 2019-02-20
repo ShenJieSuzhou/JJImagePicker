@@ -121,6 +121,7 @@
 
 - (void)clickSaveBtn:(UIButton *)sender{
     [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     __weak typeof(self)weakSelf = self;
     [HttpRequestUtil JJ_UpdateUserGender:UPDATE_GENDER_REQUEST token:[JJTokenManager shareInstance].getUserToken gender:(int)self.currentRow userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];

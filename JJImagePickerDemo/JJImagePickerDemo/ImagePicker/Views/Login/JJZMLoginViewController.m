@@ -127,6 +127,7 @@
 
 - (void)login:(UIButton *)sender{
     [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     NSString *account = _accountF.text;
     NSString *pwd = _pwdF.text;
     

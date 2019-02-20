@@ -110,6 +110,7 @@
         [SVProgressHUD dismissWithDelay:2.0f];
     }else{
         [SVProgressHUD show];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         NSString *nickName = self.nickNameField.text;
         __weak typeof(self) weakself = self;
         [HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST token:[JJTokenManager shareInstance].getUserToken name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {

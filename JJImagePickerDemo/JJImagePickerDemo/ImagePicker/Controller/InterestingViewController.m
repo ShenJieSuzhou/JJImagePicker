@@ -216,7 +216,7 @@
     //http 请求发送到服务器
     [self.tuchuagArray removeAllObjects];
     [SVProgressHUD show];
-    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     //将所选的图片上传至云
     __weak typeof(self) weakSelf = self;
     for (int i = 0; i < [self.selectedImages count]; i++) {
