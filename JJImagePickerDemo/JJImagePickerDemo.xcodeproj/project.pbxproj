@@ -30,7 +30,6 @@
 		4487D806218534FA001E7849 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D805218534FA001E7849 /* MeViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A1F20C2948600156BCA /* gallery_title_arrow_up@3x.png */; };
 		44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44966A2020C2948600156BCA /* gallery_title_arrow_up@2x.png */; };
-		449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */; };
 		449A1F7C2169EF9D0007A91A /* JJTagsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F6F2169EF9C0007A91A /* JJTagsCollectionViewCell.m */; };
 		449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F702169EF9C0007A91A /* TagEditView.m */; };
 		449A1F7E2169EF9D0007A91A /* JJTagCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F722169EF9C0007A91A /* JJTagCategoryView.m */; };
@@ -215,8 +214,8 @@
 		E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB56820E2169F0021EB68 /* wb_style_orange.png */; };
 		E5DB333D22154BD1008D7818 /* JJImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */; };
 		E5DB3340221D637F008D7818 /* CustomNewsBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333E221D637E008D7818 /* CustomNewsBanner.m */; };
-		E5DB3343221D80A6008D7818 /* KYTilePhotoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB3342221D80A6008D7818 /* KYTilePhotoLayout.m */; };
 		E5DB3349221D82EF008D7818 /* JJThumbPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */; };
+		E5DB334D221EC76C008D7818 /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */; };
 		E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D86214B93310048A80E /* YUCIHighPass.m */; };
 		E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */; };
 		E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */; };
@@ -573,8 +572,6 @@
 		E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageUploadManager.m; sourceTree = "<group>"; };
 		E5DB333E221D637E008D7818 /* CustomNewsBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNewsBanner.m; sourceTree = "<group>"; };
 		E5DB333F221D637F008D7818 /* CustomNewsBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNewsBanner.h; sourceTree = "<group>"; };
-		E5DB3341221D80A6008D7818 /* KYTilePhotoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYTilePhotoLayout.h; sourceTree = "<group>"; };
-		E5DB3342221D80A6008D7818 /* KYTilePhotoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYTilePhotoLayout.m; sourceTree = "<group>"; };
 		E5DB3347221D82EF008D7818 /* JJThumbPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJThumbPhotoCell.h; sourceTree = "<group>"; };
 		E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJThumbPhotoCell.m; sourceTree = "<group>"; };
 		E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -743,8 +740,6 @@
 				E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */,
 				E5DB333F221D637F008D7818 /* CustomNewsBanner.h */,
 				E5DB333E221D637E008D7818 /* CustomNewsBanner.m */,
-				E5DB3341221D80A6008D7818 /* KYTilePhotoLayout.h */,
-				E5DB3342221D80A6008D7818 /* KYTilePhotoLayout.m */,
 				E5DB3347221D82EF008D7818 /* JJThumbPhotoCell.h */,
 				E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */,
 			);
@@ -1556,7 +1551,6 @@
 				4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */,
 				E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
-				449A1F7B2169EF9D0007A91A /* UIScrollView+UITouch.m in Sources */,
 				E55159B72178A9EA00ADFDAE /* ScrawlModel.m in Sources */,
 				449A1F7C2169EF9D0007A91A /* JJTagsCollectionViewCell.m in Sources */,
 				E58C251B21D5CD7D001C4D8F /* SettingViewCell.m in Sources */,
@@ -1580,7 +1574,6 @@
 				E5506B62212FB3330077E62B /* CameraRollViewController.m in Sources */,
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
-				E5DB3343221D80A6008D7818 /* KYTilePhotoLayout.m in Sources */,
 				4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */,
 				E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
@@ -1597,6 +1590,7 @@
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
 				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
+				E5DB334D221EC76C008D7818 /* UIScrollView+UITouch.m in Sources */,
 				E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */,
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,

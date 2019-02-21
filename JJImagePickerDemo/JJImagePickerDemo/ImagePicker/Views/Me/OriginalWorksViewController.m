@@ -12,8 +12,8 @@
 #import <YYText/YYLabel.h>
 #import <YYText/NSAttributedString+YYText.h>
 #import "UIScrollView+UITouch.h"
-#import "KYTilePhotoLayout.h"
 #import "JJThumbPhotoCell.h"
+
 
 @interface OriginalWorksViewController ()
 @property (strong, nonatomic) UIImageView *iconView;
@@ -30,6 +30,9 @@
 @property (assign) NSInteger albumRows;
 @property (assign) NSInteger albumColums;
 @property (assign) BOOL isEven;
+
+// 大图模式
+@property (strong, nonatomic) CustomNewsBanner *completeWorkView;
 @end
 
 @implementation OriginalWorksViewController
@@ -158,8 +161,9 @@
     //图片
     [self.worksInfoView addSubview:self.workView];
     
+    NSString *work = self.photoWork.work;
     //描述
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"今天的天气这心好！\r\n 我是天才"];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:work];
     
     text.yy_font = [UIFont systemFontOfSize:15.0f];
     text.yy_color = [UIColor blackColor];
@@ -318,7 +322,11 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //跳转预览图
     
+    _completeWorkView = [[CustomNewsBanner alloc] initWithFrame:self.view.frame];
+    _completeWorkView.delegate = self;
+    [_completeWorkView setProductsArray:[[NSMutableArray alloc] initWithArray:_photoWork.path]];
     
+    [self.view addSubview:_completeWorkView];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -341,6 +349,10 @@
     }
     
     return CGSizeMake(cellWidth, cellHeight);
+}
+
+- (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
+    [newsbanner removeFromSuperview];
 }
 
 @end

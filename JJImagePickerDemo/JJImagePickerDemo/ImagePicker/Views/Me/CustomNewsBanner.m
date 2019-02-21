@@ -9,6 +9,7 @@
 #import "CustomNewsBanner.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+
 @implementation CustomNewsBanner
 
 @synthesize productsArray = _productsArray;
@@ -19,6 +20,7 @@
 @synthesize imgVRight = _imgVRight;
 @synthesize imgVCenter = _imgVCenter;
 @synthesize delegate = _delegate;
+@synthesize downloadBtn = _downloadBtn;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,22 +30,22 @@
         //1.创建 UIScrollView
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.delegate = self;
-        _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.backgroundColor = [UIColor blackColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
         
         //图片视图；左边
         _imgVLeft = [[UIImageView alloc] init];
-        _imgVLeft.contentMode = UIViewContentModeScaleAspectFill;
+        _imgVLeft.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:_imgVLeft];
         
         //图片视图；中间
         _imgVCenter = [[UIImageView alloc] init];
-        _imgVCenter.contentMode = UIViewContentModeScaleAspectFill;
+        _imgVCenter.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:_imgVCenter];
         
         //图片视图；右边
         _imgVRight = [[UIImageView alloc] init];
-        _imgVRight.contentMode = UIViewContentModeScaleAspectFill;
+        _imgVRight.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:_imgVRight];
         
         //2.创建 UIPageControl
@@ -57,10 +59,9 @@
         [self addSubview:_scrollView];
         [self addSubview:_pageControl];
         
-        //4.添加点击响应
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
-        [_scrollView addGestureRecognizer:tap];
-        [_scrollView setUserInteractionEnabled:YES];
+        //4.下载按钮
+        _downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_scrollView addSubview:_downloadBtn];
 
     }
     return self;
@@ -88,6 +89,9 @@
     _pageControl.bounds = CGRectMake(0.0, 0.0, size.width, size.height);
     _pageControl.center = CGPointMake(rect.size.width / 2.0, rect.size.height - 20.0);
     _pageControl.numberOfPages = [_productsArray count];
+    
+    //3.下载按钮
+//    [_downloadBtn setFrame:<#(CGRect)#>]
 }
 
 - (void)setProductsArray:(NSMutableArray *)productsArray{
@@ -155,8 +159,7 @@
     _pageControl.currentPage = _currentIndex;
 }
 
-#pragma mark - UITapGestureRecognizer
--(void)handleTap:(id)sender{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if([[self delegate] respondsToSelector:@selector(newsbanner:didSelectItemAtIndex:)]){
         [_delegate newsbanner:self didSelectItemAtIndex:_currentIndex];
     }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIScrollView+UITouch.h"
 @protocol CustomNewsBannerDelegate;
 @interface CustomNewsBanner : UIView<UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
@@ -28,6 +28,9 @@
 @property (strong, nonatomic) UIImageView *imgVLeft;
 @property (strong, nonatomic) UIImageView *imgVCenter;
 @property (strong, nonatomic) UIImageView *imgVRight;
+
+//下载按钮
+@property (strong, nonatomic) UIButton *downloadBtn;
 
 @end
 
