@@ -15,7 +15,7 @@ typedef enum : NSUInteger {
 } KYTilePhotoLayoutDirection;
 
 IB_DESIGNABLE
-@interface KYTilePhotoLayout : UICollectionViewLayout
+@interface KYTilePhotoLayout : UICollectionViewFlowLayout
 
 //** The number of column when device orientation is portrait
 //** 设备竖直时候的列数

@@ -10,7 +10,7 @@
 #import "CustomPhotoViewController.h"
 #import "Works.h"
 
-@interface OriginalWorksViewController : CustomPhotoViewController
+@interface OriginalWorksViewController : CustomPhotoViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 - (void)setWorksInfo:(Works *)workModel;
 

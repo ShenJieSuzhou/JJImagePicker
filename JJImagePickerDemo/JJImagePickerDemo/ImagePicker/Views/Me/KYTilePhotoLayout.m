@@ -152,8 +152,7 @@
 }
 
 
--(CGSize)collectionViewContentSize{
-
+- (CGSize)collectionViewContentSize{
     CGSize size = self.collectionView.bounds.size;
     NSUInteger longstIndex = [self findLongestColumn];
     float columnMax = [self.COLUMNSHEIGHTS[longstIndex] floatValue];

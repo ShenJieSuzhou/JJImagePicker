@@ -15,8 +15,7 @@
 #import "KYTilePhotoLayout.h"
 #import "JJThumbPhotoCell.h"
 
-@interface OriginalWorksViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
-//@property (strong, nonatomic) UIView *backView;
+@interface OriginalWorksViewController ()
 @property (strong, nonatomic) UIImageView *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UICollectionView *workView;
@@ -27,6 +26,10 @@
 @property (strong, nonatomic) Works *photoWork;
 @property (strong, nonatomic) UIButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
+@property (strong, nonatomic) NSMutableArray *photosArray;
+@property (assign) NSInteger albumRows;
+@property (assign) NSInteger albumColums;
+@property (assign) BOOL isEven;
 @end
 
 @implementation OriginalWorksViewController
@@ -38,8 +41,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self initPhotoUrl];
     [self setupUI];
+}
+
+- (void)initPhotoUrl{
+    _photosArray = [[NSMutableArray alloc] initWithArray:_photoWork.path];
+    //计算几行几列
+    NSInteger photoCount = [_photosArray count];
+    
+    switch (photoCount) {
+        case 1:
+            _albumRows = 1;
+            _albumColums = 1;
+            _isEven = NO;
+            break;
+        case 2:
+            _albumRows = 1;
+            _albumColums = 2;
+            _isEven = YES;
+            break;
+        case 3:
+            _albumRows = 1;
+            _albumColums = 2;
+            _isEven = NO;
+            break;
+        case 4:
+            _albumRows = 2;
+            _albumColums = 2;
+            _isEven = YES;
+            break;
+        case 5:
+            _albumRows = 2;
+            _albumColums = 2;
+            _isEven = NO;
+            break;
+        case 6:
+            _albumRows = 2;
+            _albumColums = 3;
+            _isEven = YES;
+            break;
+        case 7:
+            _albumRows = 2;
+            _albumColums = 3;
+            _isEven = NO;
+            break;
+        case 8:
+            _albumRows = 2;
+            _albumColums = 4;
+            _isEven = YES;
+            break;
+        case 9:
+            _albumRows = 2;
+            _albumColums = 4;
+            _isEven = NO;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)setupUI{
@@ -97,13 +156,6 @@
     [self.worksInfoView addSubview:self.shareBtn];
     
     //图片
-    NSMutableArray *imageUrls = [[NSMutableArray alloc] initWithArray:_photoWork.path];
-//    CGFloat width = workImage.size.width;
-//    CGFloat height = workImage.size.height;
-//    CGFloat screenWidth = self.view.frame.size.width;
-//    CGFloat workVHeight = (screenWidth - 10) * (height/width);
-//    self.workView = [[CustomNewsBanner alloc] initWithFrame:CGRectMake(0, 0, screenWidth - 10, workVHeight)];
-
     [self.worksInfoView addSubview:self.workView];
     
     //描述
@@ -113,6 +165,7 @@
     text.yy_color = [UIColor blackColor];
     text.yy_lineSpacing = 2;
     
+    CGFloat screenWidth = self.view.frame.size.width;
     CGSize size = CGSizeMake(screenWidth - 30, CGFLOAT_MAX);
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
     self.worksDesc = [YYLabel new];
@@ -163,8 +216,17 @@
     }];
     
     [self.workView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(screenWidth - 10, workVHeight));
+        CGFloat workViewHeight = 0.0f;
+        if(self.isEven){
+            workViewHeight = (screenWidth - 10.0f) / self.albumColums * self.albumRows;
+        }else{
+            CGFloat firstCellHeight = (screenWidth - 10.0f)*9/16;
+            workViewHeight = (screenWidth - 10.0f) / self.albumColums * self.albumRows + firstCellHeight;
+        }
+        
+        make.size.mas_equalTo(CGSizeMake(screenWidth - 10.0f, workViewHeight));
         make.left.equalTo(self.worksInfoView).offset(5.0f);
+        make.right.equalTo(self.worksInfoView).offset(-5.0f);
         make.top.equalTo(self.iconView.mas_bottom).offset(10.0f);
     }];
     
@@ -222,12 +284,10 @@
 
 -(UICollectionView *)workView{
     if (!_workView) {
-        KYTilePhotoLayout *layout = [[KYTilePhotoLayout alloc] init];
-        layout.ColOfPortrait = 3;
-        layout.DoubleColumnThreshold = 40;
-
-        //自动网格布局
-        _workView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width , self.view.frame.size.height) collectionViewLayout:layout];
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumLineSpacing = 0;
+        layout.minimumInteritemSpacing = 0;
+        _workView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         
         //设置数据源代理
         _workView.dataSource = self;
@@ -235,7 +295,7 @@
         
         _workView.showsVerticalScrollIndicator = NO;
         _workView.alwaysBounceHorizontal = NO;
-        [_workView setBackgroundColor:[UIColor whiteColor]];
+        [_workView setBackgroundColor:[UIColor clearColor]];
         [_workView registerClass:[JJThumbPhotoCell class] forCellWithReuseIdentifier:@"JJThumbPhotoCell"];
     }
     
@@ -243,11 +303,9 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
- 
     return [self.photoWork.path count];
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     JJThumbPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JJThumbPhotoCell" forIndexPath:indexPath];
     
@@ -258,7 +316,31 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    //跳转预览图
     
+    
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat cellWidth = 0.0f;
+    CGFloat cellHeight = 0.0f;
+    
+    if(_isEven){
+        CGFloat width = collectionView.frame.size.width;
+        cellWidth = width/_albumColums;
+        cellHeight = cellWidth;
+    }else{
+        if(indexPath.row == 0){
+            cellWidth = collectionView.frame.size.width;
+            cellHeight = cellWidth*9/16;
+        }else{
+            CGFloat width = collectionView.frame.size.width;
+            cellWidth = width/_albumColums;
+            cellHeight = cellWidth;
+        }
+    }
+    
+    return CGSizeMake(cellWidth, cellHeight);
 }
 
 @end
