@@ -51,9 +51,9 @@
         //2.创建 UIPageControl
         _pageControl = [[UIPageControl alloc] init];
         //设置当前页指示器的颜色
-        _pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
         //设置指示器的颜色
-        _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+        _pageControl.pageIndicatorTintColor = [UIColor grayColor];
         
         //3.添加到视图
         [self addSubview:_scrollView];
@@ -61,6 +61,8 @@
         
         //4.下载按钮
         _downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_downloadBtn setImage:[UIImage imageNamed:@"ic_download"] forState:UIControlStateNormal];
+        [_downloadBtn addTarget:self action:@selector(saveImgToAlbum:) forControlEvents:UIControlEventTouchUpInside];
         [_scrollView addSubview:_downloadBtn];
 
     }
@@ -91,7 +93,7 @@
     _pageControl.numberOfPages = [_productsArray count];
     
     //3.下载按钮
-//    [_downloadBtn setFrame:<#(CGRect)#>]
+    [_downloadBtn setFrame:CGRectMake(rect.size.width - 80.0f, rect.size.height - 80.0f, 40.0f, 40.0f)];
 }
 
 - (void)setProductsArray:(NSMutableArray *)productsArray{
@@ -145,6 +147,10 @@
     
     _currentIndex = 0;
     _pageControl.currentPage = _currentIndex;
+}
+
+- (void)saveImgToAlbum:(id)sender{
+    NSLog(@"保存图片到");
 }
 
 #pragma mark - UIScrollViewDelegate
