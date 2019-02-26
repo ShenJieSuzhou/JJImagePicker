@@ -8,6 +8,7 @@
 
 #import "CustomNewsBanner.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
 @implementation CustomNewsBanner
@@ -63,7 +64,9 @@
         _downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_downloadBtn setImage:[UIImage imageNamed:@"ic_download"] forState:UIControlStateNormal];
         [_downloadBtn addTarget:self action:@selector(saveImgToAlbum:) forControlEvents:UIControlEventTouchUpInside];
-        [_scrollView addSubview:_downloadBtn];
+        [self addSubview:_downloadBtn];
+        
+        [_downloadBtn bringSubviewToFront:_scrollView];
 
     }
     return self;
@@ -93,7 +96,7 @@
     _pageControl.numberOfPages = [_productsArray count];
     
     //3.下载按钮
-    [_downloadBtn setFrame:CGRectMake(rect.size.width - 80.0f, rect.size.height - 80.0f, 40.0f, 40.0f)];
+    [_downloadBtn setFrame:CGRectMake(rect.size.width - 120.0f, rect.size.height - 120.0f, 60.0f, 60.0f)];
 }
 
 - (void)setProductsArray:(NSMutableArray *)productsArray{
@@ -150,7 +153,17 @@
 }
 
 - (void)saveImgToAlbum:(id)sender{
-    NSLog(@"保存图片到");
+    NSString *url = [_productsArray objectAtIndex:_currentIndex];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:@"图片保存失败"];
+    }else{
+        [SVProgressHUD showSuccessWithStatus:@"图片保存成功"];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
