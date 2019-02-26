@@ -18,7 +18,12 @@
 
 @property (nonatomic, copy) NSString *work;
 
-- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work;
+@property (nonatomic, copy) NSString *postTime;
+
+@property (nonatomic, copy) NSString *likeNum;
+
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes;
+
 
 @end
 

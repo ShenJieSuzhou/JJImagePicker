@@ -124,13 +124,15 @@
         NSMutableArray *photoList = [[NSMutableArray alloc] init];
         for(int i = 0; i < [works count]; i++){
             NSDictionary *dic = [works objectAtIndex:i];
-            NSString *userId = [dic objectForKey:@"userid"];
-            NSString *photoId = [dic objectForKey:@"photoid"];
+            NSString *userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userid"]];
+            NSString *photoId = [NSString stringWithFormat:@"%@", [dic objectForKey:@"photoid"]];
             NSString *pathStr = [dic objectForKey:@"path"];
+            NSString *postTime = [dic objectForKey:@"postTime"];
             NSString *work = [dic objectForKey:@"work"];
+            NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
             [photoList addObject:postWork];
         }
         

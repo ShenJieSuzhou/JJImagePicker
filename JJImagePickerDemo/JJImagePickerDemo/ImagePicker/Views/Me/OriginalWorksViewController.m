@@ -13,6 +13,7 @@
 #import <YYText/NSAttributedString+YYText.h>
 #import "UIScrollView+UITouch.h"
 #import "JJThumbPhotoCell.h"
+#import "JJTokenManager.h"
 
 
 @interface OriginalWorksViewController ()
@@ -134,7 +135,8 @@
     [self.iconView setBackgroundColor:[UIColor clearColor]];
     [self.iconView.layer setCornerRadius:self.iconView.frame.size.width/2];
     [self.iconView.layer setMasksToBounds:YES];
-    [self.iconView setImage:[UIImage imageNamed:@"filter2"]];
+    NSString *avatar = [JJTokenManager shareInstance].getUserAvatar;
+    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
     [self.worksInfoView addSubview:self.iconView];
     
     //名字
@@ -142,7 +144,7 @@
     [self.nameLabel setTextAlignment:NSTextAlignmentLeft];
     [self.nameLabel setTextColor:[UIColor blackColor]];
     [self.nameLabel setFont:[UIFont systemFontOfSize:16.0f]];
-    [self.nameLabel setText:@"刘德华"];
+    [self.nameLabel setText:[JJTokenManager shareInstance].getUserName];
     [self.worksInfoView addSubview:self.nameLabel];
     
     //关注
@@ -157,11 +159,12 @@
     [self.shareBtn.layer setMasksToBounds:YES];
     [self.shareBtn addTarget:self action:@selector(clickConcernBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.shareBtn];
+    [self.shareBtn setHidden:YES];
     
     //图片
     [self.worksInfoView addSubview:self.workView];
     
-    NSString *work = self.photoWork.work;
+    NSString *work = [self.photoWork.work stringByRemovingPercentEncoding];
     //描述
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:work];
     
@@ -183,7 +186,7 @@
     [self.timeLine setTextAlignment:NSTextAlignmentLeft];
     [self.timeLine setTextColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1]];
     [self.timeLine setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.timeLine setText:@"2019-01-01"];
+    [self.timeLine setText:self.photoWork.postTime];
     [self.worksInfoView addSubview:self.timeLine];
     
     //点赞
@@ -199,7 +202,7 @@
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
     [self.likeNum setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.likeNum setText:@"9999"];
+    [self.likeNum setText:self.photoWork.likeNum];
     [self.worksInfoView addSubview:self.likeNum];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {

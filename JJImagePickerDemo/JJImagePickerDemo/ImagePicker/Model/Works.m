@@ -10,13 +10,15 @@
 
 @implementation Works
 
-- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work{
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes{
     self = [super init];
     if(self){
         self.path = [path copy];
-        self.photoid = photoID;
-        self.userid = userid;
-        self.work = work;
+        self.photoid = [photoID copy];
+        self.userid = [userid copy];
+        self.work = [work copy];
+        self.postTime = [postTime copy];
+        self.likeNum = [likes copy];
     }
     return self;
 }

@@ -52,9 +52,9 @@
         //2.创建 UIPageControl
         _pageControl = [[UIPageControl alloc] init];
         //设置当前页指示器的颜色
-        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
         //设置指示器的颜色
-        _pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         
         //3.添加到视图
         [self addSubview:_scrollView];
@@ -62,7 +62,7 @@
         
         //4.下载按钮
         _downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_downloadBtn setImage:[UIImage imageNamed:@"ic_download"] forState:UIControlStateNormal];
+        [_downloadBtn setBackgroundImage:[UIImage imageNamed:@"ic_download"] forState:UIControlStateNormal];
         [_downloadBtn addTarget:self action:@selector(saveImgToAlbum:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_downloadBtn];
         
@@ -81,13 +81,13 @@
     [_scrollView setContentOffset:CGPointMake(rect.size.width, 0) animated:NO];
     
     //图片视图；左边
-    [_imgVLeft setFrame:CGRectMake(0.0, 0.0, rect.size.width, rect.size.height)];
+    [_imgVLeft setFrame:CGRectMake(0.0, 60.0, rect.size.width, rect.size.height - 120)];
     
     //图片视图；中间
-    [_imgVCenter setFrame:CGRectMake(rect.size.width, 0.0, rect.size.width, rect.size.height)];
+    [_imgVCenter setFrame:CGRectMake(rect.size.width, 60.0, rect.size.width, rect.size.height - 120)];
     
     //图片视图；右边
-     [_imgVRight setFrame:CGRectMake(rect.size.width * 2, 0.0, rect.size.width, rect.size.height)];
+     [_imgVRight setFrame:CGRectMake(rect.size.width * 2, 60.0, rect.size.width, rect.size.height - 120)];
     
     //2.创建 UIPageControl
     CGSize size= [_pageControl sizeForNumberOfPages:[_productsArray count]];
@@ -96,7 +96,7 @@
     _pageControl.numberOfPages = [_productsArray count];
     
     //3.下载按钮
-    [_downloadBtn setFrame:CGRectMake(rect.size.width - 120.0f, rect.size.height - 120.0f, 60.0f, 60.0f)];
+    [_downloadBtn setFrame:CGRectMake(rect.size.width - 80.0f, rect.size.height - 40.0f, 30.0f, 30.0f)];
 }
 
 - (void)setProductsArray:(NSMutableArray *)productsArray{

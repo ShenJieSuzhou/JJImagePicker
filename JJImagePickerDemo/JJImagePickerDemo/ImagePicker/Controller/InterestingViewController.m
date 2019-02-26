@@ -226,7 +226,7 @@
                 [weakSelf.tuchuagArray addObject:file];
                 if([weakSelf.tuchuagArray count] == [weakSelf.selectedImages count]){
                     [SVProgressHUD showInfoWithStatus:JJ_PUBLISH_UPLOAD_SUCCESS];
-                    NSString *publishText = [weakSelf.publicText getInterestInfo];
+                    NSString *publishText= [[weakSelf.publicText getInterestInfo] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                     [weakSelf postMyPhotosToPublic:publishText photos:weakSelf.tuchuagArray];
                 }
             }else{
