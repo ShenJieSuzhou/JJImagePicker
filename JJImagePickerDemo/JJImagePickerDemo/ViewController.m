@@ -41,8 +41,8 @@
     _homeViewController = [HomeViewController new];
     _meViewController = [MeViewController new];
 
-    [self setupChildViewController:@"首页" viewController:_homeViewController image:@"" selectedImage:@""];
-    [self setupChildViewController:@"个人中心" viewController:_meViewController image:@"" selectedImage:@""];
+    [self setupChildViewController:@"精选" viewController:_homeViewController image:@"hot" selectedImage:@"hot_sel"];
+    [self setupChildViewController:@"我" viewController:_meViewController image:@"me" selectedImage:@"me_sel"];
 }
 
 
@@ -64,6 +64,13 @@
                    selectedImage:(NSString *)selectedImage {
     
     UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:title image:[UIImage imageNamed:image] selectedImage:[UIImage imageNamed:selectedImage]];
+    item.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    item.imageInsets = UIEdgeInsetsMake(10, 10, -10, -10);
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+
     controller.tabBarItem = item;
     controller.title = title;
     [self addChildViewController:controller];
@@ -74,12 +81,6 @@
     [self presentViewController:self.cpViewController animated:YES completion:^{
 
     }];
-    
-//    InterestingViewController *publishView = [InterestingViewController new];
-//    [publishView setSelectedImages:[[NSMutableArray alloc] init]];
-//    [self presentViewController:publishView animated:YES completion:^{
-//
-//    }];
 }
 
 @end

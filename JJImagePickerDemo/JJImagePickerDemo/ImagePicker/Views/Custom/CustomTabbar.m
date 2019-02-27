@@ -22,8 +22,9 @@
 - (void)commonInitlization{
     // 设置tabbar的子控件
     self.centerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.centerBtn setImage:[UIImage imageNamed:@"blur-circle"] forState:UIControlStateNormal];
-    [self.centerBtn setImage:[UIImage imageNamed:@"blur-circle-selected"] forState:UIControlStateSelected];
+    [self.centerBtn setImage:[UIImage imageNamed:@"camera_sel"] forState:UIControlStateNormal];
+    [self.centerBtn setImage:[UIImage imageNamed:@"camera_sel"] forState:UIControlStateSelected];
+
     [self.centerBtn sizeToFit];
     [self.centerBtn addTarget:self action:@selector(clickCameraBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.centerBtn];
