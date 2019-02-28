@@ -214,11 +214,11 @@
 		E5DB3340221D637F008D7818 /* CustomNewsBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333E221D637E008D7818 /* CustomNewsBanner.m */; };
 		E5DB3349221D82EF008D7818 /* JJThumbPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */; };
 		E5DB334D221EC76C008D7818 /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 449A1F6D2169EF9C0007A91A /* UIScrollView+UITouch.m */; };
-		E5DB335422278F7F008D7818 /* yellow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB334F22278F7F008D7818 /* yellow.jpg */; };
-		E5DB335522278F7F008D7818 /* night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335022278F7F008D7818 /* night.jpg */; };
-		E5DB335622278F7F008D7818 /* pengke.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335122278F7F008D7818 /* pengke.jpg */; };
-		E5DB335722278F7F008D7818 /* bwgirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335222278F7F008D7818 /* bwgirl.jpg */; };
-		E5DB335822278F7F008D7818 /* ballon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335322278F7F008D7818 /* ballon.jpg */; };
+		E5DB335E2227C904008D7818 /* night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB33592227C903008D7818 /* night.jpg */; };
+		E5DB335F2227C904008D7818 /* pengke.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335A2227C903008D7818 /* pengke.jpg */; };
+		E5DB33602227C904008D7818 /* bwgirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335B2227C904008D7818 /* bwgirl.jpg */; };
+		E5DB33612227C904008D7818 /* yellow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335C2227C904008D7818 /* yellow.jpg */; };
+		E5DB33622227C904008D7818 /* ballon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335D2227C904008D7818 /* ballon.jpg */; };
 		E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D86214B93310048A80E /* YUCIHighPass.m */; };
 		E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */; };
 		E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */; };
@@ -575,11 +575,11 @@
 		E5DB333F221D637F008D7818 /* CustomNewsBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNewsBanner.h; sourceTree = "<group>"; };
 		E5DB3347221D82EF008D7818 /* JJThumbPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJThumbPhotoCell.h; sourceTree = "<group>"; };
 		E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJThumbPhotoCell.m; sourceTree = "<group>"; };
-		E5DB334F22278F7F008D7818 /* yellow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yellow.jpg; path = ../../../../../../../../Desktop/yellow.jpg; sourceTree = "<group>"; };
-		E5DB335022278F7F008D7818 /* night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = night.jpg; path = ../../../../../../../../Desktop/night.jpg; sourceTree = "<group>"; };
-		E5DB335122278F7F008D7818 /* pengke.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pengke.jpg; path = ../../../../../../../../Desktop/pengke.jpg; sourceTree = "<group>"; };
-		E5DB335222278F7F008D7818 /* bwgirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bwgirl.jpg; path = ../../../../../../../../Desktop/bwgirl.jpg; sourceTree = "<group>"; };
-		E5DB335322278F7F008D7818 /* ballon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ballon.jpg; path = ../../../../../../../../Desktop/ballon.jpg; sourceTree = "<group>"; };
+		E5DB33592227C903008D7818 /* night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = night.jpg; sourceTree = "<group>"; };
+		E5DB335A2227C903008D7818 /* pengke.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pengke.jpg; sourceTree = "<group>"; };
+		E5DB335B2227C904008D7818 /* bwgirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bwgirl.jpg; sourceTree = "<group>"; };
+		E5DB335C2227C904008D7818 /* yellow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yellow.jpg; sourceTree = "<group>"; };
+		E5DB335D2227C904008D7818 /* ballon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ballon.jpg; sourceTree = "<group>"; };
 		E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E5DF2D86214B93310048A80E /* YUCIHighPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPass.m; sourceTree = "<group>"; };
 		E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIHighPassSkinSmoothingMaskBoost.cikernel; sourceTree = "<group>"; };
@@ -1273,11 +1273,11 @@
 		E5DB334E22278F6C008D7818 /* mt */ = {
 			isa = PBXGroup;
 			children = (
-				E5DB335322278F7F008D7818 /* ballon.jpg */,
-				E5DB335222278F7F008D7818 /* bwgirl.jpg */,
-				E5DB335022278F7F008D7818 /* night.jpg */,
-				E5DB335122278F7F008D7818 /* pengke.jpg */,
-				E5DB334F22278F7F008D7818 /* yellow.jpg */,
+				E5DB335D2227C904008D7818 /* ballon.jpg */,
+				E5DB335B2227C904008D7818 /* bwgirl.jpg */,
+				E5DB33592227C903008D7818 /* night.jpg */,
+				E5DB335A2227C903008D7818 /* pengke.jpg */,
+				E5DB335C2227C904008D7818 /* yellow.jpg */,
 			);
 			path = mt;
 			sourceTree = "<group>";
@@ -1397,6 +1397,7 @@
 				E547D1A220F89ACE00893D85 /* swapButton@2x.png in Resources */,
 				E547D19B20F89ACE00893D85 /* libraryConfirm.png in Resources */,
 				E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */,
+				E5DB335F2227C904008D7818 /* pengke.jpg in Resources */,
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,
 				E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */,
 				E547D1A420F89ACE00893D85 /* confirmButton.png in Resources */,
@@ -1419,7 +1420,6 @@
 				E5DF2E02214CDBF50048A80E /* YUCIRGBToneCurve.cikernel in Resources */,
 				E547D19420F89ACE00893D85 /* cameraButton.png in Resources */,
 				E547D1A920F89ACE00893D85 /* closeButton@3x.png in Resources */,
-				E5DB335722278F7F008D7818 /* bwgirl.jpg in Resources */,
 				E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */,
 				E547D19820F89ACE00893D85 /* swapButton@3x.png in Resources */,
 				E547D1AD20F89ACE00893D85 /* flashOnIcon.png in Resources */,
@@ -1435,7 +1435,7 @@
 				E55166B52159E7F0001FBFC1 /* pumpkin.png in Resources */,
 				E55166B42159E7F0001FBFC1 /* pot.png in Resources */,
 				E55166B22159E7F0001FBFC1 /* hand.png in Resources */,
-				E5DB335822278F7F008D7818 /* ballon.jpg in Resources */,
+				E5DB33622227C904008D7818 /* ballon.jpg in Resources */,
 				E547D18C20F89ACE00893D85 /* confirmButton@2x.png in Resources */,
 				E5CFB55420D37D580021EB68 /* QMUI_previewImage_checkbox_checked@2x.png in Resources */,
 				E547D1A320F89ACE00893D85 /* flashOnIcon@2x.png in Resources */,
@@ -1443,6 +1443,7 @@
 				E547D18D20F89ACE00893D85 /* libraryButton@2x.png in Resources */,
 				E547D19920F89ACE00893D85 /* retakeButton.png in Resources */,
 				E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */,
+				E5DB33602227C904008D7818 /* bwgirl.jpg in Resources */,
 				E547D18E20F89ACE00893D85 /* libraryCancel@3x.png in Resources */,
 				E5CFB54320D257D00021EB68 /* chooseInterest_uncheaked@3x.png in Resources */,
 				E5CFB55B20D3879B0021EB68 /* uls_tb_intro_return_p@3x.png in Resources */,
@@ -1452,8 +1453,8 @@
 				E5CFB54220D257D00021EB68 /* pickerImage_video_mark@3x.png in Resources */,
 				E5CFB55A20D3879B0021EB68 /* uls_tb_intro_return_n@3x.png in Resources */,
 				E58C252021DE2C95001C4D8F /* LoginPWDViewController.xib in Resources */,
+				E5DB335E2227C904008D7818 /* night.jpg in Resources */,
 				E547D19220F89ACE00893D85 /* swapButton.png in Resources */,
-				E5DB335422278F7F008D7818 /* yellow.jpg in Resources */,
 				E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */,
 				E547D19120F89ACE00893D85 /* cameraButtonHighlighted@3x.png in Resources */,
 				E547D18920F89ACE00893D85 /* cameraButtonHighlighted.png in Resources */,
@@ -1463,14 +1464,13 @@
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
 				E571BD44210F0045009DD369 /* content.json in Resources */,
-				E5DB335622278F7F008D7818 /* pengke.jpg in Resources */,
 				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
 				E547D1AA20F89ACE00893D85 /* placeholder@2x.png in Resources */,
 				E547D1AB20F89ACE00893D85 /* placeholder@3x.png in Resources */,
-				E5DB335522278F7F008D7818 /* night.jpg in Resources */,
 				E547D19720F89ACE00893D85 /* placeholder.png in Resources */,
 				E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */,
 				E547D1AF20F89ACE00893D85 /* cameraPermissionsIcon@2x.png in Resources */,
+				E5DB33612227C904008D7818 /* yellow.jpg in Resources */,
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E5CFB55520D37D580021EB68 /* QMUI_previewImage_checkbox@3x.png in Resources */,
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,

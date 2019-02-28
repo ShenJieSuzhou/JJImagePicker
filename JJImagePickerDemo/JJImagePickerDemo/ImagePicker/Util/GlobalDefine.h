@@ -28,6 +28,7 @@
 #define UIColorMake(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define UIColorMakeWithRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/1.0]
 
+#define JJCHECKBOX  [UIColor colorWithRed:255/255.f green:34/255.f blue:29/255.f alpha:1.0f];
 
 #define JJ_MAX_PHOTO_NUM 9
 #define JJ_CELL_VIDEO_IDENTIFIER @"video"
@@ -47,5 +48,6 @@
 #define JJ_PUBLISH_ERROR @"发布失败"
 #define JJ_PUBLISH_SUCCESS @"发布成功"
 #define JJ_PUBLISH_UPLOAD_SUCCESS @"上传成功，正在发布"
+
 
 #endif /* GlobalDefine_h */
