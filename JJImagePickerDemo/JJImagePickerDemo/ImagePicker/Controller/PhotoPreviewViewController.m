@@ -44,8 +44,8 @@
     
     //CheckBox
     self.checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"chooseInterest_uncheaked"] forState:UIControlStateNormal];
-    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"chooseInterest_cheaked"] forState:UIControlStateSelected];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"checkbox"] forState:UIControlStateNormal];
+    [self.checkBox setBackgroundImage:[UIImage imageNamed:@"checkbox_on"] forState:UIControlStateSelected];
     [self.checkBox setBackgroundColor:[UIColor clearColor]];
     [self.checkBox addTarget:self action:@selector(checkBoxBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.customNaviBar setRightBtn:self.checkBox withFrame:CGRectMake(self.view.bounds.size.width - 45.0f, 22.0f, 25.0f, 25.0f)];

@@ -7,7 +7,7 @@
 //
 
 #import "JJPublishPreviewCell.h"
-#define PIC_EDIT_WIDTH 40.0f
+#define PIC_EDIT_WIDTH 20.0f
 #define PIC_EDIT_HEIGHT 20.0f
 #define PIC_DEL_WIDTH 20.0f
 #define PIC_DEL_HEIGHT 20.0f
@@ -23,6 +23,7 @@
 @synthesize obj = _obj;
 @synthesize imageData = _imageData;
 @synthesize isAdjust = _isAdjust;
+@synthesize editImgV = _editImgV;
 
 
 - (id)initWithFrame:(CGRect)frame{
@@ -49,15 +50,19 @@
     [self.contentView addSubview:self.contentImageView];
     
     //添加 editbutton
-    _editLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    [_editLabel setText:@"编辑"];
-    [_editLabel setFont:[UIFont systemFontOfSize:12.0f]];
-    [_editLabel setTextColor:[UIColor whiteColor]];
-    [self.contentImageView addSubview:_editLabel];
+//    _editLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    [_editLabel setText:@"编辑"];
+//    [_editLabel setFont:[UIFont systemFontOfSize:12.0f]];
+//    [_editLabel setTextColor:[UIColor whiteColor]];
+//    [self.contentImageView addSubview:_editLabel];
+    
+    _editImgV = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [_editImgV setImage:[UIImage imageNamed:@"edit"]];
+    [self.contentImageView addSubview:_editImgV];
     
     //添加 删除按钮
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_deleteBtn setImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
+    [_deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
     [_deleteBtn addTarget:self action:@selector(deleteThePhoto:) forControlEvents:UIControlEventTouchUpInside];
     [_deleteBtn setBackgroundColor:[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.5f]];
     [self.contentView addSubview:_deleteBtn];
@@ -68,10 +73,10 @@
 - (void)isDefaultImage:(BOOL)flag{
     if(flag){
         [_deleteBtn setHidden:YES];
-        [_editLabel setHidden:YES];
+        [_editImgV setHidden:YES];
     }else{
         [_deleteBtn setHidden:NO];
-        [_editLabel setHidden:NO];
+        [_editImgV setHidden:NO];
     }
 }
 
@@ -79,7 +84,7 @@
     [super layoutSubviews];
     self.contentImageView.frame = self.contentView.bounds;
     CGRect size = self.contentImageView.frame;
-    [_editLabel setFrame:CGRectMake(5.0f, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
+    [_editImgV setFrame:CGRectMake(5.0f, size.size.height - PIC_EDIT_HEIGHT, PIC_EDIT_WIDTH, PIC_EDIT_HEIGHT)];
     [_deleteBtn setFrame:CGRectMake(size.size.width - PIC_DEL_WIDTH, 0, PIC_DEL_WIDTH, PIC_DEL_HEIGHT)];
 }
 
@@ -100,8 +105,8 @@
 }
 
 - (void)setAddImgBtn:(UIImage *)img{
-    [self isDefaultImage:YES];
     [self.contentImageView setImage:img];
+    [self isDefaultImage:YES];
 }
 
 - (void)deleteThePhoto:(UIButton *)sender{

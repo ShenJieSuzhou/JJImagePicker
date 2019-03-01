@@ -47,14 +47,14 @@ const UIEdgeInsets editBtnMargins = {10, 10, 10, 0};
     self.finishBtn.layer.cornerRadius = 4.0;
     self.finishBtn.layer.masksToBounds = YES;
     [self.finishBtn setTitle:@"下一步" forState:UIControlStateNormal];
-    [self.finishBtn setBackgroundImage:[UIImage imageNamed:@"wb_style_orange"] forState:UIControlStateNormal];
+    [self.finishBtn setBackgroundColor:[UIColor colorWithRed:255/255.0f green:32/255.0f blue:69/255.0f alpha:1.0f]];
     self.finishBtn.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     [self.finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.finishBtn setEnabled:NO];
     [self addSubview:self.finishBtn];
     
     self.selectedNum = [[UILabel alloc] init];
-    [self.selectedNum setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wb_style_orange"]]];
+    [self.selectedNum setBackgroundColor:[UIColor colorWithRed:255/255.0f green:32/255.0f blue:69/255.0f alpha:1.0f]];
     [self.selectedNum setFont:[UIFont systemFontOfSize:18.0]];
     [self.selectedNum setTextColor:[UIColor whiteColor]];
     [self.selectedNum setTextAlignment:NSTextAlignmentCenter];

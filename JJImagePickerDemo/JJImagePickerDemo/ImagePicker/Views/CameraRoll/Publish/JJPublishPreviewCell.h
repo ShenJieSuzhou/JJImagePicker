@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UIButton *deleteBtn;
 
+@property (nonatomic, strong) UIImageView *editImgV;
+
 @property (nonatomic, strong) UIImageView *contentImageView;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;

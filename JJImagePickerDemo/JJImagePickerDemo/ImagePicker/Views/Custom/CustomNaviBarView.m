@@ -115,6 +115,8 @@
 
     CGSize textSize = [titleStr sizeWithAttributes:@{NSFontAttributeName: font}];
     [_labelTitle setFrame:Rect((ScreenWidth - textSize.width - 40)/2, 22.0F, textSize.width, 40.0f)];
+    CGPoint jjTitle = CGPointMake(self.center.x, self.center.y + 8.0f);
+    _labelTitle.center = jjTitle;
 }
 
 //- (void)setTitleImg:(NSString *)imgStr{

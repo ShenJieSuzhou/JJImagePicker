@@ -71,19 +71,26 @@
     // Do any additional setup after loading the view.
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.customNaviBar setBackgroundColor:[UIColor lightGrayColor]];
+    [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
+    //标题
+    [self.customNaviBar setTitle:@"新鲜事" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:18.0f]];
     
     //取消
-    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancel setFrame:CGRectMake(10.0f, 22.0f, 40.0f, 40.0f)];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancel.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
     [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
-    [self setNaviBarLeftBtn:cancel];
+    [self.customNaviBar addSubview:cancel];
     
     //发表
-    UIButton *publish = [UIButton buttonWithType:UIButtonTypeSystem];
-    [publish setTitle:@"发表" forState:UIControlStateNormal];
+    UIButton *publish = [UIButton buttonWithType:UIButtonTypeCustom];
+    [publish setFrame:CGRectMake(self.customNaviBar.frame.size.width - 50.f, 22.0f, 40.0f, 40.0f)];
+    [publish setBackgroundColor:[UIColor clearColor]];
+    [publish setImage:[UIImage imageNamed:@"publish"] forState:UIControlStateNormal];
     [publish addTarget:self action:@selector(OnPublishCLick:) forControlEvents:UIControlEventTouchUpInside];
-    [self setNaviBarRightBtn:publish];
+    [self.customNaviBar addSubview:publish];
     
     //不显示
     [self.jjTabBarView setHidden:YES];
@@ -335,7 +342,7 @@
         [cell updatePublishImgCell:NO asset:[self.selectedImages objectAtIndex:indexPath.row]];
     }else if([self.selectedImages count] < 9){
         if(indexPath.row == [self.selectedImages count]){
-            [cell setAddImgBtn:[UIImage imageNamed:@"addImg"]];
+            [cell setAddImgBtn:[UIImage imageNamed:@"add_image"]];
         }else{
             [cell updatePublishImgCell:NO asset:[self.selectedImages objectAtIndex:indexPath.row]];
         }

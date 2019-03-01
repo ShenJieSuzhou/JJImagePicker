@@ -64,8 +64,8 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
         [self.checkBox setFrame:CGRectMake(0, 0, 23, 23)];
     }
     //设置CheckBox背景
-    self.unselectedImage = [UIImage imageNamed:@"chooseInterest_uncheaked"];
-    self.selectedImage = [UIImage imageNamed:@"chooseInterest_cheaked"];
+    self.unselectedImage = [UIImage imageNamed:@"checkbox"];
+    self.selectedImage = [UIImage imageNamed:@"checkbox_on"];
     [self.checkBox setBackgroundColor:[UIColor clearColor]];
     [self.checkBox setBackgroundImage:self.unselectedImage forState:UIControlStateNormal];
     [self.checkBox setBackgroundImage:self.selectedImage forState:UIControlStateSelected];
@@ -73,11 +73,11 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
     
     //添加视频标记图片
     _videoView = [[UIImageView alloc] init];
-    [_videoView setImage:[UIImage imageNamed:@"pickerImage_video_mark"]];
+    [_videoView setImage:[UIImage imageNamed:@"video"]];
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         [_videoView setFrame:CGRectMake(0, 0, 40, 24)];
     }else{
-        [_videoView setFrame:CGRectMake(0, 0, 20, 12)];
+        [_videoView setFrame:CGRectMake(0, 0, 20, 20)];
     }
     _videoView.contentMode = UIViewContentModeScaleAspectFill;
     _videoView.clipsToBounds = YES;
@@ -117,7 +117,7 @@ const UIEdgeInsets durationMargins = {0, 0, 8, 8};
         [self.videoView setFrame:CGRectMake(videoMarkMargins.left, cellHeight - self.videoView.frame.size.height - videoMarkMargins.bottom, self.videoView.frame.size.width, self.videoView.frame.size.height)];
         
         CGSize textSize = [_videoDuration.text sizeWithAttributes:@{NSFontAttributeName:_videoDuration.font}];
-        [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - textSize.height - durationMargins.bottom, textSize.width+10.0f, textSize.height)];
+        [self.videoDuration setFrame:CGRectMake(cellWidth - durationMargins.right - textSize.width, cellHeight - 20.0f - durationMargins.bottom, textSize.width+10.0f, 20.0f)];
         
         [self.maskView setFrame:self.contentView.bounds];
     }
