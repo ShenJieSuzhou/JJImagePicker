@@ -19,6 +19,10 @@
 @synthesize foucsBtn = _foucsBtn;
 @synthesize fansBtn = _fansBtn;
 
+@synthesize loginBox = _loginBox;
+@synthesize loginIcon = _loginIcon;
+@synthesize loginBtn = _loginBtn;
+
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         [self commonInitlization];
@@ -27,6 +31,7 @@
 }
 
 - (void)commonInitlization{
+    // 登录成功后显示的控件
     _backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
     [_backgroundView setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
     [self addSubview:_backgroundView];
@@ -65,8 +70,26 @@
     [_fansBtn addTarget:self action:@selector(clickToFansV:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_fansBtn];
     
+    //未登录显示的控件
+    _loginBox = [UIView new];
+    [_loginBox setFrame:self.frame];
+    [_loginBox setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
+    [self addSubview:_loginBox];
     
-    [self setLoginState:NO];
+    _loginIcon = [UIImageView new];
+    [_loginIcon setImage:[UIImage imageNamed:@"userPlaceHold"]];
+    [_loginIcon.layer setCornerRadius:8.0f];
+    [_loginIcon.layer setMasksToBounds:YES];
+    [_loginBox addSubview:_loginIcon];
+    
+    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_loginBtn setTitle:@"登录查看个人主页" forState:UIControlStateNormal];
+    [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [_loginBtn.titleLabel setTextColor:[UIColor whiteColor]];
+    [_loginBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [_loginBtn addTarget:self action:@selector(clickToLogin:) forControlEvents:UIControlEventTouchUpInside];
+    [_loginBox addSubview:_loginBtn];
+    
 }
 
 - (void)layoutSubviews{
@@ -102,6 +125,22 @@
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-20.0f);
     }];
+    
+    [_loginBox mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.size.mas_equalTo(self);
+    }];
+    
+    [_loginIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
+        make.centerY.equalTo(self.loginBox);
+        make.left.equalTo(self.loginBox).offset(40.0f);
+    }];
+    
+    [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(150.0f, 80.0f));
+        make.centerY.equalTo(self.loginBox);
+        make.left.equalTo(self.loginIcon.mas_right).offset(20.0f);
+    }];
 }
 
 - (void)setLoginState:(BOOL)isLogin{
@@ -114,7 +153,13 @@
 //    }
 }
 
+- (void)showLoginView{
+    [_loginBox setHidden:NO];
+}
+
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
+    
+    [_loginBox setHidden:YES];
     
     [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]] forState:UIControlStateNormal];
     [_userName setText:name];
@@ -141,6 +186,10 @@
 
 - (void)clickToFansV:(UIButton *)sender{
     
+}
+
+- (void)clickToLogin:(UIButton *)sender{
+    [_delegate callLoginViewController];
 }
 
 @end

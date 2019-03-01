@@ -211,6 +211,7 @@
 		E5DB33602227C904008D7818 /* bwgirl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335B2227C904008D7818 /* bwgirl.jpg */; };
 		E5DB33612227C904008D7818 /* yellow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335C2227C904008D7818 /* yellow.jpg */; };
 		E5DB33622227C904008D7818 /* ballon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5DB335D2227C904008D7818 /* ballon.jpg */; };
+		E5DB336422290886008D7818 /* myApp.png in Resources */ = {isa = PBXBuildFile; fileRef = E5DB336322290885008D7818 /* myApp.png */; };
 		E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D86214B93310048A80E /* YUCIHighPass.m */; };
 		E5DF2D8E214B93320048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */; };
 		E5DF2D8F214B93320048A80E /* YUCIHighPassSkinSmoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D8A214B93320048A80E /* YUCIHighPassSkinSmoothing.m */; };
@@ -564,6 +565,7 @@
 		E5DB335B2227C904008D7818 /* bwgirl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bwgirl.jpg; sourceTree = "<group>"; };
 		E5DB335C2227C904008D7818 /* yellow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yellow.jpg; sourceTree = "<group>"; };
 		E5DB335D2227C904008D7818 /* ballon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ballon.jpg; sourceTree = "<group>"; };
+		E5DB336322290885008D7818 /* myApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myApp.png; sourceTree = "<group>"; };
 		E5DD01292ECF16BCBA3E3DD6 /* Pods-JJImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E5DF2D86214B93310048A80E /* YUCIHighPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIHighPass.m; sourceTree = "<group>"; };
 		E5DF2D87214B93310048A80E /* YUCIHighPassSkinSmoothingMaskBoost.cikernel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YUCIHighPassSkinSmoothingMaskBoost.cikernel; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5DB336322290885008D7818 /* myApp.png */,
 				E5DB334E22278F6C008D7818 /* mt */,
 				E551669B2159E779001FBFC1 /* stickers */,
 				E571BD42210F0044009DD369 /* editTools */,
@@ -1408,6 +1411,7 @@
 				E55166B52159E7F0001FBFC1 /* pumpkin.png in Resources */,
 				E55166B42159E7F0001FBFC1 /* pot.png in Resources */,
 				E55166B22159E7F0001FBFC1 /* hand.png in Resources */,
+				E5DB336422290886008D7818 /* myApp.png in Resources */,
 				E5DB33622227C904008D7818 /* ballon.jpg in Resources */,
 				E547D18C20F89ACE00893D85 /* confirmButton@2x.png in Resources */,
 				E547D1A320F89ACE00893D85 /* flashOnIcon@2x.png in Resources */,

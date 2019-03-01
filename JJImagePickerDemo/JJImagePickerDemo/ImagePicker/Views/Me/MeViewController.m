@@ -42,11 +42,11 @@
     [SVProgressHUD show];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [LoginSessionManager getInstance].delegate = self;
-
+    
     if(![[LoginSessionManager getInstance] isUserLogin]){
         _isLogin = NO;
         [SVProgressHUD dismiss];
-        [self popLoginViewController];
+//        [self popLoginViewController];
     }else{
         [[LoginSessionManager getInstance] verifyUserToken];
     }
@@ -55,8 +55,6 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
-    [self.view addSubview:self.detailView];
-    [self.view addSubview:self.workView];
 }
 
 - (void)viewDidLoad {
@@ -65,8 +63,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     
-    //刷新数据
-    [self refreshViewInfo];
+    [self.view addSubview:self.detailView];
+    [self.view addSubview:self.workView];
+//    //刷新数据
+//    [self refreshViewInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,29 +115,35 @@
  刷新用户界面
  */
 - (void)refreshViewInfo{
-    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
-    
-    __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
-        //用户作品
-        NSArray *works = (NSArray *)data;
-        NSMutableArray *photoList = [[NSMutableArray alloc] init];
-        for(int i = 0; i < [works count]; i++){
-            NSDictionary *dic = [works objectAtIndex:i];
-            NSString *userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userid"]];
-            NSString *photoId = [NSString stringWithFormat:@"%@", [dic objectForKey:@"photoid"]];
-            NSString *pathStr = [dic objectForKey:@"path"];
-            NSString *postTime = [dic objectForKey:@"postTime"];
-            NSString *work = [dic objectForKey:@"work"];
-            NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
-            NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
-            
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
-            [photoList addObject:postWork];
-        }
+    if(!_isLogin){
+        //登录按钮
         
-        [weakSelf.workView updateWorksArray:photoList];
-    }];
+        
+    }else{
+        [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
+        
+        __weak typeof(self) weakSelf = self;
+        [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            //用户作品
+            NSArray *works = (NSArray *)data;
+            NSMutableArray *photoList = [[NSMutableArray alloc] init];
+            for(int i = 0; i < [works count]; i++){
+                NSDictionary *dic = [works objectAtIndex:i];
+                NSString *userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userid"]];
+                NSString *photoId = [NSString stringWithFormat:@"%@", [dic objectForKey:@"photoid"]];
+                NSString *pathStr = [dic objectForKey:@"path"];
+                NSString *postTime = [dic objectForKey:@"postTime"];
+                NSString *work = [dic objectForKey:@"work"];
+                NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
+                NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
+                
+                Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
+                [photoList addObject:postWork];
+            }
+            
+            [weakSelf.workView updateWorksArray:photoList];
+        }];
+    }
 }
 
 #pragma - mark DetailInfoViewDelegate
@@ -160,12 +166,12 @@
     }];
 }
 
+- (void)callLoginViewController{
+    [self popLoginViewController];
+}
+
 #pragma mark - notification
 - (void)receiveLoginSuccess:(NSNotification *)notify{
-    _isLogin = YES;
-    [self.view addSubview:self.detailView];
-    [self.view addSubview:self.workView];
-    [self.detailView setLoginState:_isLogin];
     //刷新数据
     [self refreshViewInfo];
 }
@@ -188,11 +194,11 @@
 - (void)tokenVerifySuccessful{
     [SVProgressHUD dismiss];
     _isLogin = YES;
-    [self.view addSubview:self.detailView];
-    [self.view addSubview:self.workView];
-    [self.detailView setLoginState:_isLogin];
+//    [self.view addSubview:self.detailView];
+//    [self.view addSubview:self.workView];
+//    [self.detailView setLoginState:_isLogin];
     //刷新数据
-//    [self refreshViewInfo];
+    [self refreshViewInfo];
 }
 
 #pragma - mark WorksViewDelegate

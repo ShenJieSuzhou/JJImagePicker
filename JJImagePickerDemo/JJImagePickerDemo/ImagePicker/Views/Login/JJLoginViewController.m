@@ -10,6 +10,7 @@
 #import "LoginSpaceView.h"
 #import "JJZMLoginViewController.h"
 #import "HttpRequestUtil.h"
+#import "ViewController.h"
 
 
 @interface JJLoginViewController ()<JJLoginDelegate>
@@ -57,7 +58,7 @@
     if(!_loginSpaceView){
         _loginSpaceView = [[LoginSpaceView alloc] initWithFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, 400.0f) rootView:self];
         _loginSpaceView.delegate = self;
-        [_loginSpaceView setLogo:[UIImage imageNamed:@"filter2"]];
+        [_loginSpaceView setLogo:[UIImage imageNamed:@"myApp"]];
     }
     
     return _loginSpaceView;
@@ -97,9 +98,14 @@
  * 取消登陆
  */
 - (void)clickCancelBtn:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    UIViewController *vc = self.presentingViewController;
+    
+    //要跳转的界面
+    while (![vc isKindOfClass:[ViewController class]]) {
+        vc = vc.presentingViewController;
+    }
+    
+    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

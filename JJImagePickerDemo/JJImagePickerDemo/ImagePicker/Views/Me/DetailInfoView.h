@@ -16,6 +16,8 @@
 
 - (void)clickToLoginCallback;
 
+- (void)callLoginViewController;
+
 @end
 
 @interface DetailInfoView : UIView
@@ -27,9 +29,13 @@
 @property (nonatomic, strong) UIButton *foucsBtn;
 @property (nonatomic, strong) UIButton *fansBtn;
 
+@property (nonatomic, strong) UIView *loginBox;
+@property (nonatomic, strong) UIImageView *loginIcon;
+@property (nonatomic, strong) UIButton *loginBtn;
+
 @property (weak, nonatomic) id<DetailInfoViewDelegate> delegate;
 
-- (void)setLoginState:(BOOL)isLogin;
+- (void)showLoginView;
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum;
 

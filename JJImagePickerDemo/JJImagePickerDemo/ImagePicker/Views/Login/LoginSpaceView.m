@@ -83,7 +83,11 @@
     CGFloat w = self.frame.size.width;
     CGFloat h = self.frame.size.height;
     //logo
-    [_logoView setFrame:CGRectMake((w - 80)/2 , 50.0f, 100.0f, 100.0f)];
+    [_logoView setFrame:CGRectMake((w - 100)/2 , 50.0f, 100.0f, 100.0f)];
+    [_logoView.layer setCornerRadius:50.0f];
+    [_logoView.layer setBorderColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f].CGColor];
+    [_logoView.layer setBorderWidth:1.0f];
+    [_logoView.layer setMasksToBounds:YES];
     
     [_APView setFrame:CGRectMake(LOGIN_MARGIN, 200.0f, w - 40.0f, 102.0f)];
     //电话输入框
