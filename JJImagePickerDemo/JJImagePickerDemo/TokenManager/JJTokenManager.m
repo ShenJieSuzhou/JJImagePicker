@@ -237,6 +237,63 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+// 微信登录Token
+- (void)saveWechatToken:(NSString *)token{
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"WX_ACCESS_TOKEN"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getWechatToken{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ACCESS_TOKEN"];
+    if (!token) {
+        return @"";
+    }
+    return token;
+}
+
+- (void)cancelWechatToken{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WX_ACCESS_TOKEN"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+//微信登录openid
+- (void)saveWechatOpenID:(NSString *)openid{
+    [[NSUserDefaults standardUserDefaults] setObject:openid forKey:@"WX_OPEN_ID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getWechatOpenID{
+    NSString *openId = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_OPEN_ID"];
+    if (!openId) {
+        return @"";
+    }
+    return openId;
+}
+
+- (void)cancelWechatOpenID{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WX_OPEN_ID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// 微信登录 refresh_Token
+- (void)saveWechatRefreshtoken:(NSString *)refreshToken{
+    [[NSUserDefaults standardUserDefaults] setObject:refreshToken forKey:@"WX_REFRESH_TOKEN"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getWechatRefreshtoken{
+    NSString *refreshToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_REFRESH_TOKEN"];
+    if (!refreshToken) {
+        return @"";
+    }
+    return refreshToken;
+}
+
+- (void)cancelWechatRefreshtoken{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WX_REFRESH_TOKEN"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 //  移除所有用户信息
 - (void)removeAllUserInfo {

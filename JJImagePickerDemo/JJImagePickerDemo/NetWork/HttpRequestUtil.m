@@ -153,4 +153,19 @@
     }];
 }
 
++ (void)JJ_WechatLogin:(NSString *)url access_token:(NSString *)token appid:(NSString *)appid secret:(NSString *)secret code:(NSString *)code callback:(requestCallBack) block{
+    
+    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?appid=%@&secret=%@&code=%@&grant_type=authorization_code", url, appid, secret, code];
+    
+    [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+    
+}
+
+
+//https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+
 @end

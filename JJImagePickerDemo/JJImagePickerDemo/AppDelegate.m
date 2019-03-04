@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "HttpRequestUtil.h"
 #import "HomeContentmManager.h"
+
+#import "WXApi.h"
+#import "JJWechatManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -23,6 +27,9 @@
 //    [HttpRequestUtil JJ_RequestTHeData:@"http://172.30.1.135:8080/hot/api/findAll" callback:^(NSDictionary *data) {
 //        [[HomeContentmManager shareInstance] setHomeContent:data];
 //    }];
+    
+    //微信注册
+    [WXApi registerApp:@""];
     
     return YES;
     }
@@ -54,5 +61,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WXApi handleOpenURL:url delegate:[JJWechatManager shareInstance]];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:[JJWechatManager shareInstance]];
+}
 
 @end

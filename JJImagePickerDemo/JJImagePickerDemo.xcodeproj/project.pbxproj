@@ -51,6 +51,9 @@
 		E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5172615215DBFB8008431A1 /* TagsViewController.m */; };
 		E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5172618215E10B6008431A1 /* TagCategoryView.m */; };
 		E51726472160B66A008431A1 /* UIView+ZYTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = E51726462160B669008431A1 /* UIView+ZYTagView.m */; };
+		E51EE7CA222D194F005088F6 /* JJWechatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7C9222D194F005088F6 /* JJWechatManager.m */; };
+		E51EE7D1222D1989005088F6 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7CD222D1989005088F6 /* libWeChatSDK.a */; };
+		E51EE7D2222D1989005088F6 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7CF222D1989005088F6 /* README.txt */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
@@ -318,6 +321,13 @@
 		E5172618215E10B6008431A1 /* TagCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagCategoryView.m; sourceTree = "<group>"; };
 		E51726452160B669008431A1 /* UIView+ZYTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZYTagView.h"; sourceTree = "<group>"; };
 		E51726462160B669008431A1 /* UIView+ZYTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZYTagView.m"; sourceTree = "<group>"; };
+		E51EE7C8222D194F005088F6 /* JJWechatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWechatManager.h; sourceTree = "<group>"; };
+		E51EE7C9222D194F005088F6 /* JJWechatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWechatManager.m; sourceTree = "<group>"; };
+		E51EE7CC222D1989005088F6 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		E51EE7CD222D1989005088F6 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E51EE7CE222D1989005088F6 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		E51EE7CF222D1989005088F6 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		E51EE7D0222D1989005088F6 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -598,6 +608,7 @@
 			files = (
 				E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */,
 				E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */,
+				E51EE7D1222D1989005088F6 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +781,27 @@
 				E5172618215E10B6008431A1 /* TagCategoryView.m */,
 			);
 			path = Tags;
+			sourceTree = "<group>";
+		};
+		E51EE7C7222D1932005088F6 /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				E51EE7C8222D194F005088F6 /* JJWechatManager.h */,
+				E51EE7C9222D194F005088F6 /* JJWechatManager.m */,
+			);
+			path = Wechat;
+			sourceTree = "<group>";
+		};
+		E51EE7CB222D195A005088F6 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				E51EE7CD222D1989005088F6 /* libWeChatSDK.a */,
+				E51EE7CF222D1989005088F6 /* README.txt */,
+				E51EE7CC222D1989005088F6 /* WechatAuthSDK.h */,
+				E51EE7CE222D1989005088F6 /* WXApi.h */,
+				E51EE7D0222D1989005088F6 /* WXApiObject.h */,
+			);
+			path = framework;
 			sourceTree = "<group>";
 		};
 		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
@@ -1159,6 +1191,8 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E51EE7CB222D195A005088F6 /* framework */,
+				E51EE7C7222D1932005088F6 /* Wechat */,
 				E5DB333722154B78008D7818 /* Upload */,
 				E5AE62F321C0FEE500639CF8 /* TokenManager */,
 				4487D7F421841704001E7849 /* NetWork */,
@@ -1447,6 +1481,7 @@
 				E5DB33612227C904008D7818 /* yellow.jpg in Resources */,
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,
+				E51EE7D2222D1989005088F6 /* README.txt in Resources */,
 				E50C094F2175C3D90035C3C2 /* Cream in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1540,6 +1575,7 @@
 				E58C251B21D5CD7D001C4D8F /* SettingViewCell.m in Sources */,
 				E5506BDB212FB7D80077E62B /* DropButton.m in Sources */,
 				E5506B63212FB3330077E62B /* PhotoEditingViewController.m in Sources */,
+				E51EE7CA222D194F005088F6 /* JJWechatManager.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
 				E5506BDD212FB7D80077E62B /* UIImage+CropRotate.m in Sources */,
 				E5506BEC212FB7D80077E62B /* JJPreviewViewCollectionLayout.m in Sources */,
@@ -1783,6 +1819,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
+					"$(PROJECT_DIR)/JJImagePickerDemo/framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1809,6 +1846,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
+					"$(PROJECT_DIR)/JJImagePickerDemo/framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

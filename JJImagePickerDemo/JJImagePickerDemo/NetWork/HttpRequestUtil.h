@@ -145,4 +145,16 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_BindUserPhone:(NSString *)url token:(NSString *)token phone:(NSString *)phone code:(NSString *)code userid:(NSString *)userid callback:(requestCallBack) block;
 
+
+/**
+ 微信登录 获取access_token
+
+ @param url  https://api.weixin.qq.com/sns/oauth2/access_token?
+ @param appid 应用的appid
+ @param secret 应用的secret
+ @param code 获取的code参数
+ @param block 回调
+ */
++ (void)JJ_WechatLogin:(NSString *)url appid:(NSString *)appid secret:(NSString *)secret code:(NSString *)code callback:(requestCallBack) block;
+
 @end

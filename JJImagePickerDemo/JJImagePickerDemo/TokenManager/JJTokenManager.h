@@ -80,5 +80,19 @@
 - (NSString *)getUserFans;
 - (void)cancelUserFans;
 
+// 微信登录Token
+- (void)saveWechatToken:(NSString *)token;
+- (NSString *)getWechatToken;
+- (void)cancelWechatToken;
+
+//微信登录openid
+- (void)saveWechatOpenID:(NSString *)openid;
+- (NSString *)getWechatOpenID;
+- (void)cancelWechatOpenID;
+
+// 微信登录 refresh_Token
+- (void)saveWechatRefreshtoken:(NSString *)refreshToken;
+- (NSString *)getWechatRefreshtoken;
+- (void)cancelWechatRefreshtoken;
 @end
 
