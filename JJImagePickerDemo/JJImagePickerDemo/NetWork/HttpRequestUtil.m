@@ -166,6 +166,25 @@
 }
 
 
-//https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
++ (void)JJ_WechatRefreshToken:(NSString *)url appid:(NSString *)appid grantType:(NSString *)type refreshToken:(NSString *)refreshToken callback:(requestCallBack) block{
+    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?appid=%@&grant_type=%@&refresh_token=%@", url, appid, type, refreshToken];
+    
+    [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+    
+}
+
++ (void)JJ_WechatUserInfo:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block{
+    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?access_token=%@&openid=%@", url, openID, token];
+    
+    [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
 
 @end

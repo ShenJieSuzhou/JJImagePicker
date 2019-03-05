@@ -157,4 +157,27 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_WechatLogin:(NSString *)url appid:(NSString *)appid secret:(NSString *)secret code:(NSString *)code callback:(requestCallBack) block;
 
+
+/**
+ 微信登录 刷新或续期access_token
+
+ @param url https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+ @param appid appid 应用的appid
+ @param type 填refresh_token
+ @param refreshToken 填写通过access_token获取到的refresh_token参数
+ @param block 回调
+ */
++ (void)JJ_WechatRefreshToken:(NSString *)url appid:(NSString *)appid grantType:(NSString *)type refreshToken:(NSString *)refreshToken callback:(requestCallBack) block;
+
+
+/**
+ 微信登录 获取用户信息
+
+ @param url https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
+ @param openID 获取到的openID
+ @param token 获取到的token
+ @param block 回调
+ */
++ (void)JJ_WechatUserInfo:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block;
+
 @end
