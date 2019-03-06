@@ -29,10 +29,10 @@
 //    }];
     
     //微信注册
-    [WXApi registerApp:@""];
+    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
     
     return YES;
-    }
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

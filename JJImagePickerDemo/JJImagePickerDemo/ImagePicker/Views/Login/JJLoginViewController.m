@@ -11,17 +11,21 @@
 #import "JJZMLoginViewController.h"
 #import "HttpRequestUtil.h"
 #import "ViewController.h"
+#import <Masonry/Masonry.h>
+#import "JJWechatManager.h"
 
 
-@interface JJLoginViewController ()<JJLoginDelegate>
+@interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
 @property (strong, nonatomic) LoginSpaceView *loginSpaceView;
-
+@property (strong, nonatomic) UIButton *wechatBtn;
+@property (strong, nonatomic) UILabel *tipLabel;
 
 @end
 
 @implementation JJLoginViewController
 @synthesize loginSpaceView = _loginSpaceView;
-
+@synthesize wechatBtn = _wechatBtn;
+@synthesize tipLabel = _tipLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,6 +56,21 @@
     [self.customNaviBar addSubview:title];
 
     [self.view addSubview:self.loginSpaceView];
+    
+    
+    // 第三方登录
+    _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 160.0f, self.view.frame.size.width, 40.0f)];
+    [_tipLabel setText:@"-第三方登录-"];
+    [_tipLabel setTextAlignment:NSTextAlignmentCenter];
+    [_tipLabel setTextColor:[UIColor lightGrayColor]];
+    [_tipLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    [self.view addSubview:_tipLabel];
+    
+    _wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_wechatBtn setFrame:CGRectMake((self.view.frame.size.width - 156.0f)/2, self.view.frame.size.height - 100.0f, 156.f, 32.f)];
+    [_wechatBtn setBackgroundImage:[UIImage imageNamed:@"icon48_wx_button"] forState:UIControlStateNormal];
+    [_wechatBtn addTarget:self action:@selector(clickWechatBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_wechatBtn];
 }
 
 - (LoginSpaceView *)loginSpaceView{
@@ -116,6 +135,30 @@
     [self presentViewController:loginView animated:YES completion:^{
 
     }];
+}
+
+
+/**
+ 微信登录
+ */
+- (void)clickWechatBtn:(UIButton *)sender{
+    [JJWechatManager shareInstance].delegate = self;
+    [[JJWechatManager shareInstance] clickWechatLogin:self];
+}
+
+#pragma mark wechatLoginDelegate
+- (void)wechatLoginSuccess{
+    NSLog(@"%s", __func__);
+    // 将登录信息上传保存在服务器中
+    
+}
+
+- (void)wechatLoginDenied{
+    NSLog(@"%s", __func__);
+}
+
+- (void)wechatLoginCancel{
+    NSLog(@"%s", __func__);
 }
 
 @end

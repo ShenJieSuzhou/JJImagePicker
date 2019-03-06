@@ -54,6 +54,11 @@
 		E51EE7CA222D194F005088F6 /* JJWechatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7C9222D194F005088F6 /* JJWechatManager.m */; };
 		E51EE7D1222D1989005088F6 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7CD222D1989005088F6 /* libWeChatSDK.a */; };
 		E51EE7D2222D1989005088F6 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7CF222D1989005088F6 /* README.txt */; };
+		E51EE7D4222FC968005088F6 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D3222FC968005088F6 /* libsqlite3.0.tbd */; };
+		E51EE7D6222FC971005088F6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D5222FC970005088F6 /* libz.tbd */; };
+		E51EE7D8222FC979005088F6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D7222FC979005088F6 /* libc++.tbd */; };
+		E51EE7DA222FC990005088F6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D9222FC990005088F6 /* CoreTelephony.framework */; };
+		E51EE7DC222FC995005088F6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7DB222FC995005088F6 /* SystemConfiguration.framework */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
@@ -328,6 +333,11 @@
 		E51EE7CE222D1989005088F6 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E51EE7CF222D1989005088F6 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		E51EE7D0222D1989005088F6 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		E51EE7D3222FC968005088F6 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E51EE7D5222FC970005088F6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E51EE7D7222FC979005088F6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		E51EE7D9222FC990005088F6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E51EE7DB222FC995005088F6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -606,6 +616,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51EE7DC222FC995005088F6 /* SystemConfiguration.framework in Frameworks */,
+				E51EE7DA222FC990005088F6 /* CoreTelephony.framework in Frameworks */,
+				E51EE7D8222FC979005088F6 /* libc++.tbd in Frameworks */,
+				E51EE7D6222FC971005088F6 /* libz.tbd in Frameworks */,
+				E51EE7D4222FC968005088F6 /* libsqlite3.0.tbd in Frameworks */,
 				E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */,
 				E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */,
 				E51EE7D1222D1989005088F6 /* libWeChatSDK.a in Frameworks */,
@@ -1216,6 +1231,11 @@
 		E56B9CDE20AD7D2100021DF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E51EE7DB222FC995005088F6 /* SystemConfiguration.framework */,
+				E51EE7D9222FC990005088F6 /* CoreTelephony.framework */,
+				E51EE7D7222FC979005088F6 /* libc++.tbd */,
+				E51EE7D5222FC970005088F6 /* libz.tbd */,
+				E51EE7D3222FC968005088F6 /* libsqlite3.0.tbd */,
 				E522784520BF8F7A003E2F38 /* Photos.framework */,
 				DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */,
 			);
