@@ -151,6 +151,8 @@
     NSLog(@"%s", __func__);
     // 将登录信息上传保存在服务器中
     
+    
+    
 }
 
 - (void)wechatLoginDenied{

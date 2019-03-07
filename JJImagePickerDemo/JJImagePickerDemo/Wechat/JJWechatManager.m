@@ -10,6 +10,7 @@
 #import <AFNetwork/AFNetwork.h>
 #import "HttpRequestUtil.h"
 #import "JJTokenManager.h"
+#import "HttpRequestUrlDefine.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -120,10 +121,20 @@
         [[JJTokenManager shareInstance] saveUserAvatar:headImgUrl];
         [[JJTokenManager shareInstance] saveUserName:nickName];
         
-        // 登录成功
-        [weakSelf.delegate wechatLoginSuccess];
+        // 向服务端请求注册新用户
+        [weakSelf registerWechatUserInfo:nickName avatar:headImgUrl];
     }];
 }
+
+- (void)registerWechatUserInfo:(NSString *)nikename avatar:(NSString *)headimgurl{
+    [HttpRequestUtil JJ_WechatRegisterUserInfo:WECHAT_REGISTER_NEWUSER nickName:nikename headImgUrl:headimgurl callback:^(NSDictionary *data, NSError *error) {
+        
+        
+        
+        
+    }];
+}
+
 
 #pragma mark - WXApiDelegate
 /*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
@@ -151,16 +162,15 @@
             
             __weak typeof(self) weakSelf = self;
             // 请求access_token
-            NSString *wxUrl = @"https://api.weixin.qq.com/sns/oauth2/access_token?";
-            [HttpRequestUtil JJ_WechatLogin:wxUrl appid:@"" secret:@"" code:aresp.code callback:^(NSDictionary *data, NSError *error) {
+            [HttpRequestUtil JJ_WechatGetAccessToken:WECHAT_AUTHORIZATION code:aresp.code callback:^(NSDictionary *data, NSError *error) {
                 if(error){
                     [SVProgressHUD showErrorWithStatus:@"网络错误请重试"];
                     [SVProgressHUD dismissWithDelay:2.0];
                     return ;
                 }
-
-                if([data objectForKey:@"errcode"]){
-                    [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errmsg"]];
+                
+                if([data objectForKey:@"errorCode"]){
+                    [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
                     [SVProgressHUD dismissWithDelay:2.0];
                     return;
                 }
@@ -168,17 +178,34 @@
                 NSString *accessToken = [data objectForKey:@"access_token"];
                 NSString *openID = [data objectForKey:@"openid"];
                 NSString *refreshToken = [data objectForKey:@"refresh_token"];
+                
                 // 本地持久化，自动登录
                 if (accessToken && [accessToken length] != 0 && openID && [openID length] != 0) {
                     [[JJTokenManager shareInstance] saveWechatToken:accessToken];
                     [[JJTokenManager shareInstance] saveWechatRefreshtoken:refreshToken];
                     [[JJTokenManager shareInstance] saveWechatOpenID:openID];
                     
-                    // 获取用户信息
-                    [weakSelf wechatLoginByRequestForUserInfo];
+                    // 微信服务登录成功
+                    [weakSelf.delegate wechatLoginSuccess];
                 }
-                
             }];
+//            [HttpRequestUtil JJ_WechatLogin:wxUrl appid:@"" secret:@"" code:aresp.code callback:^(NSDictionary *data, NSError *error) {
+//                if(error){
+//                    [SVProgressHUD showErrorWithStatus:@"网络错误请重试"];
+//                    [SVProgressHUD dismissWithDelay:2.0];
+//                    return ;
+//                }
+//
+//                if([data objectForKey:@"errcode"]){
+//                    [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errmsg"]];
+//                    [SVProgressHUD dismissWithDelay:2.0];
+//                    return;
+//                }
+//
+//
+//
+//
+//            }];
         }else if(aresp.errCode == -4){
             // 拒绝
             [SVProgressHUD showErrorWithStatus:@"用户拒绝"];

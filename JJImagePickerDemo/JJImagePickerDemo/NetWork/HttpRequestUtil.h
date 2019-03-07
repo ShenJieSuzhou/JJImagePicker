@@ -150,13 +150,22 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  微信登录 获取access_token
 
  @param url  https://api.weixin.qq.com/sns/oauth2/access_token?
- @param appid 应用的appid
- @param secret 应用的secret
  @param code 获取的code参数
  @param block 回调
  */
-+ (void)JJ_WechatLogin:(NSString *)url appid:(NSString *)appid secret:(NSString *)secret code:(NSString *)code callback:(requestCallBack) block;
++ (void)JJ_WechatGetAccessToken:(NSString *)url code:(NSString *)code callback:(requestCallBack) block;
 
+
+
+/**
+ 微信登录 注册用户
+
+ @param url
+ @param nickName 昵称
+ @param headImgUrl 头像地址
+ @param block 回调
+ */
++ (void)JJ_WechatRegisterUserInfo:(NSString *)url nickName:(NSString *)nickName headImgUrl:(NSString *)headImgUrl callback:(requestCallBack) block;
 
 /**
  微信登录 刷新或续期access_token

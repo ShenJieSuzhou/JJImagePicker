@@ -153,16 +153,14 @@
     }];
 }
 
-+ (void)JJ_WechatLogin:(NSString *)url access_token:(NSString *)token appid:(NSString *)appid secret:(NSString *)secret code:(NSString *)code callback:(requestCallBack) block{
++ (void)JJ_WechatGetAccessToken:(NSString *)url code:(NSString *)code callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:code, @"code", nil];
     
-    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?appid=%@&secret=%@&code=%@&grant_type=authorization_code", url, appid, secret, code];
-    
-    [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         block(nil, error);
     }];
-    
 }
 
 
@@ -181,6 +179,16 @@
     NSString *accessUrlStr = [NSString stringWithFormat:@"%@?access_token=%@&openid=%@", url, openID, token];
     
     [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)JJ_WechatRegisterUserInfo:(NSString *)url nickName:(NSString *)nickName headImgUrl:(NSString *)headImgUrl callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nickName, @"nickName", headImgUrl, @"headImgUrl", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         block(nil, error);
