@@ -156,6 +156,10 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_WechatGetAccessToken:(NSString *)url code:(NSString *)code callback:(requestCallBack) block;
 
 
++ (void)JJ_WechatRequestLogin:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block;
+
+
+//+++ 以下接口废弃 +++//
 
 /**
  微信登录 注册用户

@@ -13,6 +13,8 @@
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
 #import "JJWechatManager.h"
+#import "JJTokenManager.h"
+#import "HttpRequestUrlDefine.h"
 
 
 @interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
@@ -149,10 +151,12 @@
 #pragma mark wechatLoginDelegate
 - (void)wechatLoginSuccess{
     NSLog(@"%s", __func__);
-    // 将登录信息上传保存在服务器中
-    
-    
-    
+    // 获取用户信息
+    [HttpRequestUtil JJ_WechatUserInfo:GET_WECHAT_USERINFO openId:[JJTokenManager shareInstance].getWechatOpenID accessToken:[JJTokenManager shareInstance].getWechatToken callback:^(NSDictionary *data, NSError *error) {
+        
+        
+        
+    }];
 }
 
 - (void)wechatLoginDenied{

@@ -94,37 +94,37 @@
     }
 }
 
-//获取用户信息
-- (void)wechatLoginByRequestForUserInfo{
-    NSString *accessToken = [JJTokenManager shareInstance].getWechatToken;
-    NSString *openId = [JJTokenManager shareInstance].getWechatOpenID;
-    
-    __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_WechatUserInfo:@"https://api.weixin.qq.com/sns/userinfo" openId:openId accessToken:accessToken callback:^(NSDictionary *data, NSError *error) {
-        if(error){
-            [SVProgressHUD showWithStatus:@"网络出错了!"];
-            [SVProgressHUD dismissWithDelay:2.0f];
-            return ;
-        }
-        
-        if([data objectForKey:@"errcode"]){
-            [SVProgressHUD showWithStatus:[data objectForKey:@"errmsg"]];
-            [SVProgressHUD dismissWithDelay:2.0f];
-            return;
-        }
-        
-        [SVProgressHUD dismiss];
-        
-        NSString *nickName = [data objectForKey:@"nickname"];
-        NSString *headImgUrl = [data objectForKey:@"headimgurl"];
-        
-        [[JJTokenManager shareInstance] saveUserAvatar:headImgUrl];
-        [[JJTokenManager shareInstance] saveUserName:nickName];
-        
-        // 向服务端请求注册新用户
-        [weakSelf registerWechatUserInfo:nickName avatar:headImgUrl];
-    }];
-}
+////获取用户信息
+//- (void)wechatLoginByRequestForUserInfo{
+//    NSString *accessToken = [JJTokenManager shareInstance].getWechatToken;
+//    NSString *openId = [JJTokenManager shareInstance].getWechatOpenID;
+//
+//    __weak typeof(self) weakSelf = self;
+//    [HttpRequestUtil JJ_WechatUserInfo:@"https://api.weixin.qq.com/sns/userinfo" openId:openId accessToken:accessToken callback:^(NSDictionary *data, NSError *error) {
+//        if(error){
+//            [SVProgressHUD showWithStatus:@"网络出错了!"];
+//            [SVProgressHUD dismissWithDelay:2.0f];
+//            return ;
+//        }
+//
+//        if([data objectForKey:@"errcode"]){
+//            [SVProgressHUD showWithStatus:[data objectForKey:@"errmsg"]];
+//            [SVProgressHUD dismissWithDelay:2.0f];
+//            return;
+//        }
+//
+//        [SVProgressHUD dismiss];
+//
+//        NSString *nickName = [data objectForKey:@"nickname"];
+//        NSString *headImgUrl = [data objectForKey:@"headimgurl"];
+//
+//        [[JJTokenManager shareInstance] saveUserAvatar:headImgUrl];
+//        [[JJTokenManager shareInstance] saveUserName:nickName];
+//
+//        // 向服务端请求注册新用户
+//        [weakSelf registerWechatUserInfo:nickName avatar:headImgUrl];
+//    }];
+//}
 
 - (void)registerWechatUserInfo:(NSString *)nikename avatar:(NSString *)headimgurl{
     [HttpRequestUtil JJ_WechatRegisterUserInfo:WECHAT_REGISTER_NEWUSER nickName:nikename headImgUrl:headimgurl callback:^(NSDictionary *data, NSError *error) {
@@ -179,33 +179,18 @@
                 NSString *openID = [data objectForKey:@"openid"];
                 NSString *refreshToken = [data objectForKey:@"refresh_token"];
                 
-                // 本地持久化，自动登录
+                // 本地持久化, 自动登录
                 if (accessToken && [accessToken length] != 0 && openID && [openID length] != 0) {
                     [[JJTokenManager shareInstance] saveWechatToken:accessToken];
                     [[JJTokenManager shareInstance] saveWechatRefreshtoken:refreshToken];
                     [[JJTokenManager shareInstance] saveWechatOpenID:openID];
-                    
-                    // 微信服务登录成功
+                }
+                
+                // 微信登录授权成功
+                if([weakSelf.delegate respondsToSelector:@selector(wechatLoginSuccess)]){
                     [weakSelf.delegate wechatLoginSuccess];
                 }
             }];
-//            [HttpRequestUtil JJ_WechatLogin:wxUrl appid:@"" secret:@"" code:aresp.code callback:^(NSDictionary *data, NSError *error) {
-//                if(error){
-//                    [SVProgressHUD showErrorWithStatus:@"网络错误请重试"];
-//                    [SVProgressHUD dismissWithDelay:2.0];
-//                    return ;
-//                }
-//
-//                if([data objectForKey:@"errcode"]){
-//                    [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errmsg"]];
-//                    [SVProgressHUD dismissWithDelay:2.0];
-//                    return;
-//                }
-//
-//
-//
-//
-//            }];
         }else if(aresp.errCode == -4){
             // 拒绝
             [SVProgressHUD showErrorWithStatus:@"用户拒绝"];
