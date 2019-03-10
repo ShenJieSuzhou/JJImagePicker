@@ -176,9 +176,9 @@
 }
 
 + (void)JJ_WechatUserInfo:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block{
-    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?access_token=%@&openid=%@", url, openID, token];
+    NSString *accessUrlStr = [NSString stringWithFormat:@"%@?access_token=%@&openid=%@", url, token, openID];
     
-    [[AFNetwork shareManager] requestWithMethod:GET url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+    [[AFNetwork shareManager] requestWithMethod:POST url:accessUrlStr params:nil success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         block(nil, error);

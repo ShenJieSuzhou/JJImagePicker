@@ -15,6 +15,8 @@
 #import "JJWechatManager.h"
 #import "JJTokenManager.h"
 #import "HttpRequestUrlDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "GlobalDefine.h"
 
 
 @interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
@@ -31,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //test
+
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.jjTabBarView setHidden:YES];
     
@@ -148,23 +150,66 @@
     [[JJWechatManager shareInstance] clickWechatLogin:self];
 }
 
+- (void)dismissViewController{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 #pragma mark wechatLoginDelegate
 - (void)wechatLoginSuccess{
     NSLog(@"%s", __func__);
     // 获取用户信息
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD show];
+    
+    
+    __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_WechatUserInfo:GET_WECHAT_USERINFO openId:[JJTokenManager shareInstance].getWechatOpenID accessToken:[JJTokenManager shareInstance].getWechatToken callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
         
+        if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:JJ_LOGININFO_EXCEPTION];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }
         
-        
+        // update 用户信息
+        if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
+            NSString *uid = [data objectForKey:@"user_id"];
+            NSString *userName = [data objectForKey:@"userName"];
+            NSString *token = [data objectForKey:@"token"];
+            NSString *fans = [data objectForKey:@"fans"];
+            NSString *foucs = [data objectForKey:@"focus"];
+            NSString *iconUrl = [data objectForKey:@"iconUrl"];
+            int gender = [[data objectForKey:@"genda"] intValue];
+            NSString *birth = [data objectForKey:@"birth"];
+            NSString *phone = [data objectForKey:@"telephone"];
+            //取出token user_id username
+            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:nil];
+            [[JJTokenManager shareInstance] setUserLoginInfo:userModel];
+
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            [weakSelf dismissViewController];
+        }
     }];
 }
 
 - (void)wechatLoginDenied{
     NSLog(@"%s", __func__);
+    [SVProgressHUD showErrorWithStatus:JJ_WECHATLOGIN_DENIED];
+    [SVProgressHUD dismissWithDelay:2.0f];
 }
 
 - (void)wechatLoginCancel{
     NSLog(@"%s", __func__);
+    [SVProgressHUD showErrorWithStatus:JJ_WECHATLOGIN_CANCEL];
+    [SVProgressHUD dismissWithDelay:2.0f];
 }
 
 @end
