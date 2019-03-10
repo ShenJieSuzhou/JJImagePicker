@@ -31,54 +31,56 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD show];
     
-    NSLog(@"%s", __func__);
-    __weak typeof(self) weakSelf = self;
-    //如果已经授权过微信登录
-    NSString *accessToken = [JJTokenManager shareInstance].getWechatToken;
-    NSString *openId = [JJTokenManager shareInstance].getWechatOpenID;
-    if(accessToken && openId){
-        NSString *refreshToken = [JJTokenManager shareInstance].getWechatRefreshtoken;
-        
-        [HttpRequestUtil JJ_WechatRefreshToken:@"https://api.weixin.qq.com/sns/oauth2/refresh_token" appid:@"wx544a9dd772ec8e0d" grantType:@"refresh_token" refreshToken:refreshToken callback:^(NSDictionary *data, NSError *error) {
-            
-            if(error){
-                [SVProgressHUD showWithStatus:@"网络出错了!"];
-                [SVProgressHUD dismissWithDelay:2.0f];
-                return ;
-            }
-            
-            if([data objectForKey:@"errcode"]){
-                [SVProgressHUD showWithStatus:[data objectForKey:@"errmsg"]];
-                [SVProgressHUD dismissWithDelay:2.0f];
-                
-                return;
-            }
-            
-            NSString *newReAccessToken = [data objectForKey:@"REFRESH_TOKEN"];
-            NSString *newAccessToken = [data objectForKey:@"ACCESS_TOKEN"];
-            NSString *newOpenId = [data objectForKey:@"OPENID"];
-            
-            if(newReAccessToken){
-                // 未超时
-                if(newAccessToken == accessToken){
-                    // 登录成功
-                    [SVProgressHUD dismiss];
-                    [weakSelf.delegate wechatLoginSuccess];
-                }else{
-                    // 更新access_token、refresh_token、open_id
-                    [[JJTokenManager shareInstance] saveWechatRefreshtoken:newReAccessToken];
-                    [[JJTokenManager shareInstance] saveWechatToken:newAccessToken];
-                    [[JJTokenManager shareInstance] saveWechatOpenID:newOpenId];
-                    // 获取用户信息
-                    [weakSelf wechatLoginByRequestForUserInfo];
-                }
-            }else{
-                [weakSelf wechatLogin:baseView];
-            }
-        }];
-    }else{
-        [self wechatLogin:baseView];
-    }
+    [self wechatLogin:baseView];
+    
+//    NSLog(@"%s", __func__);
+//    __weak typeof(self) weakSelf = self;
+//    //如果已经授权过微信登录
+//    NSString *accessToken = [JJTokenManager shareInstance].getWechatToken;
+//    NSString *openId = [JJTokenManager shareInstance].getWechatOpenID;
+//    if(accessToken && openId){
+//        NSString *refreshToken = [JJTokenManager shareInstance].getWechatRefreshtoken;
+//
+//        [HttpRequestUtil JJ_WechatRefreshToken:@"https://api.weixin.qq.com/sns/oauth2/refresh_token" appid:@"wx544a9dd772ec8e0d" grantType:@"refresh_token" refreshToken:refreshToken callback:^(NSDictionary *data, NSError *error) {
+//
+//            if(error){
+//                [SVProgressHUD showWithStatus:@"网络出错了!"];
+//                [SVProgressHUD dismissWithDelay:2.0f];
+//                return ;
+//            }
+//
+//            if([data objectForKey:@"errcode"]){
+//                [SVProgressHUD showWithStatus:[data objectForKey:@"errmsg"]];
+//                [SVProgressHUD dismissWithDelay:2.0f];
+//
+//                return;
+//            }
+//
+//            NSString *newReAccessToken = [data objectForKey:@"REFRESH_TOKEN"];
+//            NSString *newAccessToken = [data objectForKey:@"ACCESS_TOKEN"];
+//            NSString *newOpenId = [data objectForKey:@"OPENID"];
+//
+//            if(newReAccessToken){
+//                // 未超时
+//                if(newAccessToken == accessToken){
+//                    // 登录成功
+//                    [SVProgressHUD dismiss];
+//                    [weakSelf.delegate wechatLoginSuccess];
+//                }else{
+//                    // 更新access_token、refresh_token、open_id
+//                    [[JJTokenManager shareInstance] saveWechatRefreshtoken:newReAccessToken];
+//                    [[JJTokenManager shareInstance] saveWechatToken:newAccessToken];
+//                    [[JJTokenManager shareInstance] saveWechatOpenID:newOpenId];
+//                    // 获取用户信息
+//                    [weakSelf wechatLoginByRequestForUserInfo];
+//                }
+//            }else{
+//                [weakSelf wechatLogin:baseView];
+//            }
+//        }];
+//    }else{
+//        [self wechatLogin:baseView];
+//    }
 }
 
 
@@ -126,14 +128,14 @@
 //    }];
 //}
 
-- (void)registerWechatUserInfo:(NSString *)nikename avatar:(NSString *)headimgurl{
-    [HttpRequestUtil JJ_WechatRegisterUserInfo:WECHAT_REGISTER_NEWUSER nickName:nikename headImgUrl:headimgurl callback:^(NSDictionary *data, NSError *error) {
-        
-        
-        
-        
-    }];
-}
+//- (void)registerWechatUserInfo:(NSString *)nikename avatar:(NSString *)headimgurl{
+//    [HttpRequestUtil JJ_WechatRegisterUserInfo:WECHAT_REGISTER_NEWUSER nickName:nikename headImgUrl:headimgurl callback:^(NSDictionary *data, NSError *error) {
+//
+//
+//
+//
+//    }];
+//}
 
 
 #pragma mark - WXApiDelegate
@@ -186,6 +188,7 @@
                     [[JJTokenManager shareInstance] saveWechatOpenID:openID];
                 }
                 
+                [SVProgressHUD dismiss];
                 // 微信登录授权成功
                 if([weakSelf.delegate respondsToSelector:@selector(wechatLoginSuccess)]){
                     [weakSelf.delegate wechatLoginSuccess];

@@ -38,8 +38,8 @@
 
 #define BIND_PHONE_REQUEST                              @"http://172.16.10.45:8080/setting/api/bindUserPhone"
 
-#define WECHAT_AUTHORIZATION                            @"http://172.16.10.45:8080/admin/api/login/weChatLogin"
+#define WECHAT_AUTHORIZATION                            @"http://172.16.10.45:8080/admin/api/login/weChatAuthorization"
 
-#define GET_WECHAT_USERINFO                             @"http://172.16.10.45:8080/admin/api/getWeChatUserInfo"
+#define THIRDPLATFORM_LOGIN                             @"http://172.16.10.45:8080/admin/api/thirdPlatformLogin"
 
 #endif /* HttpRequestUrlDefine_h */

@@ -163,9 +163,8 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD show];
     
-    
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_WechatUserInfo:GET_WECHAT_USERINFO openId:[JJTokenManager shareInstance].getWechatOpenID accessToken:[JJTokenManager shareInstance].getWechatToken callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_WechatUserLogin:THIRDPLATFORM_LOGIN openId:[JJTokenManager shareInstance].getWechatOpenID accessToken:[JJTokenManager shareInstance].getWechatToken type:@"1" extend:@"" callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];

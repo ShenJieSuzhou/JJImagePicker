@@ -191,6 +191,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param token 获取到的token
  @param block 回调
  */
-+ (void)JJ_WechatUserInfo:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block;
++ (void)JJ_WechatUserLogin:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token type:(NSString *)type extend:(NSString *)extend callback:(requestCallBack) block;
 
 @end
