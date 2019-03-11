@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "HomeContentmManager.h"
 #import "JSONKit.h"
+#import "HttpRequestUrlDefine.h"
+
 #define JJDEBUG YES
 
 @implementation HomeViewController
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     [config.userContentController addScriptMessageHandler:self name:@"getHomeData"];
@@ -37,6 +40,17 @@
     // Dispose of any resources that can be recreated.
     
 }
+
+
+- (void)receiveLoginSuccess:(NSNotification *)notify{
+    [self TriggerRefresh];
+}
+
+
+-(void)TriggerRefresh{
+    
+}
+
 
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{

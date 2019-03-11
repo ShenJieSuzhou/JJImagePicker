@@ -12,6 +12,8 @@
 
 #import "WXApi.h"
 #import "JJWechatManager.h"
+#import "WelcomeViewController.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,14 +25,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //去服务器请求数据
-//    [HttpRequestUtil JJ_RequestTHeData:@"http://172.30.1.135:8080/hot/api/findAll" callback:^(NSDictionary *data) {
-//        [[HomeContentmManager shareInstance] setHomeContent:data];
-//    }];
-    
     //微信注册
     [WXApi registerApp:@"wx544a9dd772ec8e0d"];
     
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+    // 判断用户是否是第一次进APP
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
+        self.window.rootViewController = [WelcomeViewController new];
+        [self.window makeKeyAndVisible];
+    }else{
+        self.window.rootViewController = [ViewController new];
+        [self.window makeKeyAndVisible];
+    }
+
     return YES;
 }
 
@@ -69,6 +78,14 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return [WXApi handleOpenURL:url delegate:[JJWechatManager shareInstance]];
+}
+
+#pragma mark - my logic
+-(void) StartApp{
+    // 检测更新
+    NSLog(@"检测更新");
+    // 注册网路状态改变通知
+    NSLog(@"注册网路状态改变通知");
 }
 
 @end

@@ -16,9 +16,13 @@
 #import "InterestingViewController.h"
 #import "JJLoginViewController.h"
 #import "JJZMLoginViewController.h"
+#import "LoginSessionManager.h"
+#import "HttpRequestUrlDefine.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
-@interface ViewController ()<JJTabBarDelegate>
+@interface ViewController ()<JJTabBarDelegate, LoginSessionDelegate>
 
 @property (strong, nonatomic) PhotoEditingViewController *photoEditingView;
 @property (strong, nonatomic) HomeViewController *homeViewController;
@@ -30,9 +34,20 @@
 
 @implementation ViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // 用户是否登录
+    [LoginSessionManager getInstance].delegate = self;
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        [SVProgressHUD dismiss];
+        [self popLoginViewController];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     CustomTabbar *cusTabbar = [[CustomTabbar alloc] init];
     cusTabbar.mdelegate = self;
@@ -81,5 +96,43 @@
 
     }];
 }
+
+/**
+ 弹出登录界面
+ */
+- (void)popLoginViewController{
+    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+    [self presentViewController:jjLoginView animated:YES completion:^{
+        
+    }];
+}
+
+//#pragma - mark LoginSessionDelegate
+//- (void)tokenVerifySuccessful{
+//    [SVProgressHUD dismiss];
+//    //刷新数据
+////    [self refreshViewInfo];
+//}
+//
+//#pragma mark - notification
+//- (void)receiveLoginSuccess:(NSNotification *)notify{
+//    //刷新数据
+////    [self refreshViewInfo];
+//}
+//
+//- (void)tokenVerifyError:(NSString *)errorDesc{
+//    [SVProgressHUD showErrorWithStatus:errorDesc];
+//    [SVProgressHUD dismissWithDelay:2.0f];
+//
+//    [self popLoginViewController];
+//}
+//
+//- (void)networkError:(NSError *)error{
+//    //网络出错了 请刷新界面
+//    [SVProgressHUD showErrorWithStatus:@"网络连接错误，请检查网络"];
+//    [SVProgressHUD dismissWithDelay:2.0f];
+//
+//    [self popLoginViewController];
+//}
 
 @end

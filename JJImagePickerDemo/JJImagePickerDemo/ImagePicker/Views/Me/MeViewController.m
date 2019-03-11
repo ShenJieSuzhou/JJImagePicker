@@ -37,36 +37,14 @@
 
 @implementation MeViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    //判断用户是否登录
-    [SVProgressHUD show];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    [LoginSessionManager getInstance].delegate = self;
-    
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        _isLogin = NO;
-        [SVProgressHUD dismiss];
-//        [self popLoginViewController];
-    }else{
-        [[LoginSessionManager getInstance] verifyUserToken];
-    }
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
+    
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
-//    //刷新数据
-//    [self refreshViewInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,15 +78,8 @@
     return _workView;
 }
 
-
-/**
- 弹出登录界面
- */
-- (void)popLoginViewController{
-    JJLoginViewController *jjLoginView = [JJLoginViewController new];
-    [self presentViewController:jjLoginView animated:YES completion:^{
-        
-    }];
+- (void)receiveLoginSuccess:(NSNotification *)notify{
+    [self refreshViewInfo];
 }
 
 /**
@@ -170,11 +141,6 @@
     [self popLoginViewController];
 }
 
-#pragma mark - notification
-- (void)receiveLoginSuccess:(NSNotification *)notify{
-    //刷新数据
-    [self refreshViewInfo];
-}
 
 #pragma mark - loginoutCallback
 - (void)userLoginOutCallBack:(SettingViewController *)viewController{
@@ -190,16 +156,7 @@
     }];
 }
 
-#pragma - mark LoginSessionDelegate
-- (void)tokenVerifySuccessful{
-    [SVProgressHUD dismiss];
-    _isLogin = YES;
-//    [self.view addSubview:self.detailView];
-//    [self.view addSubview:self.workView];
-//    [self.detailView setLoginState:_isLogin];
-    //刷新数据
-    [self refreshViewInfo];
-}
+
 
 #pragma - mark WorksViewDelegate
 - (void)publishWorksCallback{
@@ -212,19 +169,6 @@
     [self presentViewController:origialWorksView animated:YES completion:^{
         
     }];
-}
-
-- (void)tokenVerifyError:(NSString *)errorDesc{
-    [SVProgressHUD showErrorWithStatus:errorDesc];
-    [SVProgressHUD dismissWithDelay:2.0f];
-
-    [self popLoginViewController];
-}
-
-- (void)networkError:(NSError *)error{
-    //网络出错了 请刷新界面
-    [SVProgressHUD showErrorWithStatus:@"网络连接错误，请检查网络"];
-    [SVProgressHUD dismissWithDelay:2.0f];
 }
 
 - (void)dealloc{

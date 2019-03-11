@@ -20,9 +20,12 @@
 
 
 @interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
+
 @property (strong, nonatomic) LoginSpaceView *loginSpaceView;
 @property (strong, nonatomic) UIButton *wechatBtn;
 @property (strong, nonatomic) UILabel *tipLabel;
+@property (strong, nonatomic) UILabel *titleHead;
+@property (strong, nonatomic) UIButton *switchBtn;
 
 @end
 
@@ -30,6 +33,8 @@
 @synthesize loginSpaceView = _loginSpaceView;
 @synthesize wechatBtn = _wechatBtn;
 @synthesize tipLabel = _tipLabel;
+@synthesize titleHead = _titleHead;
+@synthesize switchBtn = _switchBtn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,28 +42,13 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.jjTabBarView setHidden:YES];
     
-    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setBackgroundColor:[UIColor clearColor]];
-    [cancelBtn setImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
-    [cancelBtn addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:cancelBtn withFrame:CGRectMake(20.0f, 30.0f, 30.0f, 30.0f)];
+    // 欢迎使用糖果相机
+    [self.view addSubview:self.titleHead];
     
-    UIButton *switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [switchBtn setBackgroundColor:[UIColor clearColor]];
-    [switchBtn setTitle:@"帐密登陆" forState:UIControlStateNormal];
-    [switchBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
-    [switchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [switchBtn addTarget:self action:@selector(clickAccountPwdBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setRightBtn:switchBtn withFrame:CGRectMake(self.view.frame.size.width - 100, 30, 80, 30)];
+    // 账号密码登录
     
-    CGFloat w = self.view.frame.size.width;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
-    [title setText:@"登录"];
-    [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
-    [title setTextAlignment:NSTextAlignmentCenter];
-    [title setTextColor:[UIColor blackColor]];
-    [self.customNaviBar addSubview:title];
-
+    
+    // 手机验证码登录
     [self.view addSubview:self.loginSpaceView];
     
     
@@ -85,6 +75,17 @@
     }
     
     return _loginSpaceView;
+}
+
+- (UILabel *)titleHead{
+    if(!_titleHead){
+        _titleHead = [UILabel new];
+        [_titleHead setText:@"欢迎使用糖果相机"];
+        [_titleHead setTextColor:[UIColor blackColor]];
+        [_titleHead setTextAlignment:NSTextAlignmentLeft];
+    }
+    
+    return _titleHead;
 }
 
 - (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code{
