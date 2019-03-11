@@ -17,6 +17,7 @@
 #import "HttpRequestUrlDefine.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GlobalDefine.h"
+#import <Masonry/Masonry.h>
 
 
 @interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
@@ -36,21 +37,40 @@
 @synthesize titleHead = _titleHead;
 @synthesize switchBtn = _switchBtn;
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.titleHead mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(200, 60));
+        make.top.mas_equalTo(self).offset(100.0f);
+        make.left.mas_equalTo(self).offset(20.0f);
+    }];
+    
+    [self.switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+        make.right.mas_equalTo(self).offset(20.0f);
+        make.bottom.mas_equalTo(self.titleHead);
+    }];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.jjTabBarView setHidden:YES];
-    
     // 欢迎使用糖果相机
     [self.view addSubview:self.titleHead];
-    
+
     // 账号密码登录
-    
+    [self.view addSubview:self.switchBtn];
+
     
     // 手机验证码登录
-    [self.view addSubview:self.loginSpaceView];
-    
+//    [self.view addSubview:self.loginSpaceView];
+
     
     // 第三方登录
     _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 160.0f, self.view.frame.size.width, 40.0f)];
@@ -83,9 +103,20 @@
         [_titleHead setText:@"欢迎使用糖果相机"];
         [_titleHead setTextColor:[UIColor blackColor]];
         [_titleHead setTextAlignment:NSTextAlignmentLeft];
+        [_titleHead setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
     }
     
     return _titleHead;
+}
+
+- (UIButton *)switchBtn{
+    if(!_switchBtn){
+        _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_switchBtn setBackgroundColor:[UIColor clearColor]];
+        [_switchBtn setTitle:@"密码登录" forState:UIControlStateNormal];
+    }
+    
+    return _switchBtn;
 }
 
 - (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code{

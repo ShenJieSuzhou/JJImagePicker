@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJg-e6-JZe">
-                    <rect key="frame" x="101" y="294" width="173" height="79"/>
+                    <rect key="frame" x="101" y="274" width="173" height="119"/>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -41,10 +40,9 @@
             <constraints>
                 <constraint firstItem="wJg-e6-JZe" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cZ8-rW-eAc"/>
                 <constraint firstItem="wJg-e6-JZe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="g8h-u5-DRF"/>
-                <constraint firstItem="wJg-e6-JZe" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="101" id="gcu-02-Uko"/>
-                <constraint firstItem="wJg-e6-JZe" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="274" id="hOA-cm-JgX"/>
+                <constraint firstItem="wJg-e6-JZe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="101" id="gcu-02-Uko"/>
+                <constraint firstItem="wJg-e6-JZe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="274" id="hOA-cm-JgX"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="40.799999999999997" y="46.326836581709152"/>
         </view>
         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g4d-ah-Ijq">

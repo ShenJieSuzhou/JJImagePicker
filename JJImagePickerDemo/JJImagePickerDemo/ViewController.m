@@ -39,15 +39,18 @@
     
     // 用户是否登录
     [LoginSessionManager getInstance].delegate = self;
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        [SVProgressHUD dismiss];
-        [self popLoginViewController];
-    }
+//    if(![[LoginSessionManager getInstance] isUserLogin]){
+//        [SVProgressHUD dismiss];
+//        [self popLoginViewController];
+//    }
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self popLoginViewController];
+    
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     CustomTabbar *cusTabbar = [[CustomTabbar alloc] init];
     cusTabbar.mdelegate = self;
@@ -102,7 +105,12 @@
  */
 - (void)popLoginViewController{
     JJLoginViewController *jjLoginView = [JJLoginViewController new];
-    [self presentViewController:jjLoginView animated:YES completion:^{
+//    [self presentViewController:jjLoginView animated:YES completion:^{
+//
+//    }];
+    
+    UIViewController *topRootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [topRootViewController presentViewController:jjLoginView animated:YES completion:^{
         
     }];
 }

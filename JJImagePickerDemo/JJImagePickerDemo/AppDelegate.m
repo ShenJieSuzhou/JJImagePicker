@@ -26,19 +26,19 @@
     // Override point for customization after application launch.
     
     //微信注册
-    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
+//    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
     
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
     // 判断用户是否是第一次进APP
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
-        self.window.rootViewController = [WelcomeViewController new];
-        [self.window makeKeyAndVisible];
-    }else{
-        self.window.rootViewController = [ViewController new];
-        [self.window makeKeyAndVisible];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
+//        self.window.rootViewController = [WelcomeViewController new];
+//        [self.window makeKeyAndVisible];
+//    }else{
+//        self.window.rootViewController = [ViewController new];
+//        [self.window makeKeyAndVisible];
+//    }
 
     return YES;
 }

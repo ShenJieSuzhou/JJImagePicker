@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomPhotoViewController.h"
-
-@interface JJLoginViewController : CustomPhotoViewController
-
-
+@interface JJLoginViewController : UIViewController
 
 @end
 
