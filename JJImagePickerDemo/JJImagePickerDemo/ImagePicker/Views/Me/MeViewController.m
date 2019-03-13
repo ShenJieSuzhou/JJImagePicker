@@ -79,6 +79,7 @@
 }
 
 - (void)receiveLoginSuccess:(NSNotification *)notify{
+    NSLog(@"%s", __func__);
     [self refreshViewInfo];
 }
 

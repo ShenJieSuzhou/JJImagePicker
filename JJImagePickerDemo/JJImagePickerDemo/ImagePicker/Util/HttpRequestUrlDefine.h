@@ -14,9 +14,9 @@
 
 #define LOGINOUT_NOTIFICATION                           @"LOGINOUT_NOTIFICATION"
 
-#define AC_LOGIN_REQUEST                                @"http://172.16.10.45:8080/admin/api/accountLogin"
+#define AC_LOGIN_REQUEST                                @"http://172.16.10.45:8080/admin/api/v1/accountLogin"
 
-#define VERIFY_TOKEN_REQUEST                            @"http://172.16.10.45:8080/admin/api/tokenVerify"
+#define VERIFY_TOKEN_REQUEST                            @"http://172.16.10.45:8080/admin/api/v1/tokenVerify"
 
 #define GET_WORKS_REQUEST                               @"http://172.16.10.45:8080/admin/api/getMyWorks"
 
@@ -38,7 +38,7 @@
 
 #define BIND_PHONE_REQUEST                              @"http://172.16.10.45:8080/setting/api/bindUserPhone"
 
-#define WECHAT_AUTHORIZATION                            @"http://172.16.10.45:8080/admin/api/login/weChatAuthorization"
+#define WECHAT_AUTHORIZATION                            @"http://172.16.10.45:8080/admin/api/weChatAuthorization"
 
 #define THIRDPLATFORM_LOGIN                             @"http://172.16.10.45:8080/admin/api/thirdPlatformLogin"
 

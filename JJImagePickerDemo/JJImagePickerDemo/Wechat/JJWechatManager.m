@@ -188,7 +188,6 @@
                     [[JJTokenManager shareInstance] saveWechatOpenID:openID];
                 }
                 
-                [SVProgressHUD dismiss];
                 // 微信登录授权成功
                 if([weakSelf.delegate respondsToSelector:@selector(wechatLoginSuccess)]){
                     [weakSelf.delegate wechatLoginSuccess];

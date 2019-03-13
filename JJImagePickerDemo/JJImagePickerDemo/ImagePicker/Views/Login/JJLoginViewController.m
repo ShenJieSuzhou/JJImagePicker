@@ -105,6 +105,15 @@
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.tipLabel.mas_bottom).offset(20.0f);
     }];
+    
+    if (![WXApi isWXAppInstalled]) {
+        [_tipLabel setHidden:YES];
+        [_wechatBtn setHidden:YES];
+    }else{
+        [_tipLabel setHidden:NO];
+        [_wechatBtn setHidden:NO];
+    }
+    
 }
 
 - (LoginSpaceView *)loginSpaceView{
@@ -234,9 +243,6 @@
 - (void)wechatLoginSuccess{
     NSLog(@"%s", __func__);
     // 获取用户信息
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    [SVProgressHUD show];
-    
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_WechatUserLogin:THIRDPLATFORM_LOGIN openId:[JJTokenManager shareInstance].getWechatOpenID accessToken:[JJTokenManager shareInstance].getWechatToken type:@"1" extend:@"" callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -269,6 +275,7 @@
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             [SVProgressHUD dismissWithDelay:2.0f];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOGINSUCCESS_NOTIFICATION object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
