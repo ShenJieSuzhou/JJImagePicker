@@ -7,6 +7,9 @@
 //
 
 #import "GBverifyButton.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <Masonry/Masonry.h>
+
 #define R_G_B_16(rgbValue)\
 \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -14,62 +17,85 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
 
-@interface GBverifyButton()
-{
-    
+@interface GBverifyButton(){
     int timeCount;
     NSTimer*timer;
     
 }
 
-@property(nonatomic,retain) UIButton*get_verifyButton;
-@property(nonatomic,retain) UILabel*tipLabel;
+@property(nonatomic,retain) UIButton *verifyButton;
+@property(nonatomic,retain) UILabel *tipLabel;
+
 @end
+
 @implementation GBverifyButton
 
--(id)initWithFrame:(CGRect)frame root:(UIViewController*)rootView Target:(id)target Action:(SEL)action{
-    
+-(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-         self.delegate=rootView;
-         self.frame=frame;
-         self.target=target;
-         self.action=action;
+        [self commonInitlization];
     }
+    
     return self;
 }
 
--(void)setupUI:(UIView *)view{
-    
-    timeCount=60;
+- (id)init{
+    return [self initWithFrame:CGRectZero];
+}
+
+- (void)commonInitlization{
+
+    timeCount = 60;
     
     //获取验证码按钮
-    
-    _get_verifyButton=[self createButtonWithFrame:self.frame ImageName:nil Target:self.target Action:self.action Title:@"获取验证码"];
-    
-    [_get_verifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _get_verifyButton.layer.cornerRadius=3;
-    _get_verifyButton.clipsToBounds=YES;
-    [_get_verifyButton setBackgroundColor:R_G_B_16(0x4edb69)];
-    
-    [view addSubview:_get_verifyButton];
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitleColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [button setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [button addTarget:self action:@selector(clickYZMBtn:) forControlEvents:UIControlEventTouchUpInside];
+    button.layer.cornerRadius = 15;
+    [button.layer setBorderColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f].CGColor];
+    [button.layer setBorderWidth:1.0f];
+    button.clipsToBounds = YES;
+    _verifyButton = button;
+    [self addSubview:_verifyButton];
     
     //验证提交之后的跑秒提示防止用户的重复提交数据有效时间60秒
-    _tipLabel=[[UILabel alloc ]initWithFrame:self.frame];
-    _tipLabel.textAlignment=NSTextAlignmentCenter;
-    _tipLabel.text=[[NSString alloc]initWithFormat:@"%ds后重新获取",timeCount];
-    _tipLabel.textColor=[UIColor whiteColor];
-    _tipLabel.layer.cornerRadius=3;
-    _tipLabel.clipsToBounds=YES;
-    _tipLabel.backgroundColor=[UIColor lightGrayColor];
-    _tipLabel.hidden=YES;
-    [view addSubview:_tipLabel];
+    _tipLabel = [[UILabel alloc ] init];
+    _tipLabel.textAlignment = NSTextAlignmentCenter;
+    [_tipLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    _tipLabel.text = [[NSString alloc]initWithFormat:@"%ds后 重新获取", timeCount];
+    _tipLabel.textColor = [UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f];
+    _tipLabel.layer.cornerRadius = 15;
+    [_tipLabel.layer setBorderColor:[UIColor colorWithRed:230/255.0f green:230/255.0f blue:230/255.0f alpha:1.0f].CGColor];
+    [_tipLabel.layer setBorderWidth:1.0f];
+    _tipLabel.clipsToBounds = YES;
+    _tipLabel.hidden = YES;
+    [self addSubview:_tipLabel];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [_verifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(self.frame.size);
+        make.top.mas_equalTo(self.mas_top);
+        make.left.mas_equalTo(self.mas_left);
+    }];
+    
+    [_tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(self.frame.size);
+        make.top.mas_equalTo(self.mas_top);
+        make.left.mas_equalTo(self.mas_left);
+    }];
+}
+
+- (void)clickYZMBtn:(UIButton *)sender{
+    [self startGetMessage];
 }
 
 #pragma mark-->读秒开始
 -(void)readSecond{
-    
-    _get_verifyButton.hidden=YES;
+    _verifyButton.hidden=YES;
     
     _tipLabel.hidden=NO;
     
@@ -80,22 +106,19 @@ alpha:1.0]
 #pragma mark-->跑秒操作
 -(void)dealTimer{
     
-    _tipLabel.text=[[NSString alloc]initWithFormat:@"%ds后重新发送",timeCount];
+    _tipLabel.text=[[NSString alloc]initWithFormat:@"%ds后 重新发送",timeCount];
     timeCount=timeCount-1;
     if(timeCount==0){
         timer.fireDate=[NSDate distantFuture];
         timeCount=60;
         _tipLabel.hidden=YES;
-        _get_verifyButton.hidden=NO;
+        _verifyButton.hidden=NO;
     }
     
 }
 #pragma mark-获取验证码
 -(void)getVerifyClick{
-    
-    
     if([[NSUserDefaults standardUserDefaults]objectForKey:@"GBVerifyEnterAgain"]==NO){
-        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"GBVerifyEnterAgain"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
@@ -106,11 +129,7 @@ alpha:1.0]
         NSString *timeSp = [NSString stringWithFormat:@"%d", (int)[datenow timeIntervalSince1970]];
         [[NSUserDefaults standardUserDefaults] setObject:timeSp forKey:@"getMessageTime"];
         [[NSUserDefaults standardUserDefaults]synchronize];
-        
-        
     }else{
-        
-        
         //第二次点击，先进行时间对比
         NSString*signTime=[[NSUserDefaults standardUserDefaults]objectForKey:@"getMessageTime"];
         int signTime_NUM=[signTime intValue];
@@ -131,84 +150,45 @@ alpha:1.0]
             [self readSecond];
             
         }else{
-            
-            UIAlertView*al=[[UIAlertView alloc]initWithTitle:@"提示" message:@"您的操作过于频繁请稍后再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-            [al show];
+            [SVProgressHUD showWithStatus:@"您的操作过于频繁请稍后再试"];
+            [SVProgressHUD dismissWithDelay:2.0f];
         }
-        
-        
-        
     }
-    
 }
+
 -(void)setEnabled:(BOOL)enabled{
-    
-    _get_verifyButton.enabled=enabled;
+    _verifyButton.enabled = enabled;
     if(enabled==YES){
         
-        [_get_verifyButton setBackgroundColor:R_G_B_16(0x4edb69)];
+        [_verifyButton setBackgroundColor:R_G_B_16(0x4edb69)];
 
     }else{
         
-       [_get_verifyButton setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:.8]];
+       [_verifyButton setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:.8]];
     }
-   
-    
 }
+
 #pragma -获取验证码
 -(void)startGetMessage{
-    
     [self getVerifyClick];
-    
-    
 }
-- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
-{
-    [_get_verifyButton setTitleColor:color forState:state];
-    _tipLabel.textColor=color;
-    
-}
--(void)setBackgroundColor:(UIColor *)backgroundColor;
-{
-    [_get_verifyButton setBackgroundColor:backgroundColor];
-    
-}
-- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state
-{
-    [_get_verifyButton setBackgroundImage:image forState:state];
 
-    
-}
--(void)setTitleFont:(UIFont*)font{
-    
-    _get_verifyButton.titleLabel.font=font;
-    _tipLabel.font=font;
+//- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state{
+//    [_verifyButton setBackgroundImage:image forState:state];
+//}
+//
+//-(void)setTitleFont:(UIFont*)font{
+//    _verifyButton.titleLabel.font=font;
+//    _tipLabel.font=font;
+//}
 
-    
-}
 -(void)colseTimer{
      //在invalidate之前最好先用isValid先判断是否还在线程中
     if ([timer isValid] == YES) {
         [timer invalidate];
          timer = nil;
     }
+}
 
-}
--(UIButton*)createButtonWithFrame:(CGRect)frame ImageName:(NSString*)imageName Target:(id)target Action:(SEL)action Title:(NSString*)title
-{
-    UIButton*button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=frame;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchDown];
-    
-    return button;
-    
-    
-}
 
 @end

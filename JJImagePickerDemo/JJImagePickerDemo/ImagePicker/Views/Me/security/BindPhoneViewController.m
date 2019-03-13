@@ -25,11 +25,11 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     
     //验证码按钮
-    self.yzmBtn = [[GBverifyButton alloc] initWithFrame:CGRectMake(self.bindView.frame.size.width - 80 - 30, 88.0f, 80, 40) root:self Target:self Action:@selector(clickCodeBtn:)];
-    [self.yzmBtn setupUI:self.bindView];
-    [self.yzmBtn setTitleFont:[UIFont systemFontOfSize:12.0f]];
-    [self.yzmBtn setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
-    [self.bindView addSubview:self.yzmBtn];
+//    self.yzmBtn = [[GBverifyButton alloc] initWithFrame:CGRectMake(self.bindView.frame.size.width - 80 - 30, 88.0f, 80, 40) root:self Target:self Action:@selector(clickCodeBtn:)];
+//    [self.yzmBtn setupUI:self.bindView];
+//    [self.yzmBtn setTitleFont:[UIFont systemFontOfSize:12.0f]];
+//    [self.yzmBtn setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
+//    [self.bindView addSubview:self.yzmBtn];
 }
 
 - (void)viewDidLayoutSubviews{

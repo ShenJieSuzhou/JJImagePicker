@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
+
 #import "GBverifyButton.h"
 
 
@@ -20,17 +22,15 @@
 
 @interface LoginSpaceView : UIView
 
-@property (strong, nonatomic) UIImageView *logoView;
-
 @property (strong, nonatomic) UIView *APView;
 
 @property (strong, nonatomic) UITextField *accountField;
 
-@property (strong, nonatomic) UILabel *acLabel;
+@property (strong, nonatomic) UIImageView *acImageV;
 
 @property (strong, nonatomic) UITextField *yzmField;
 
-@property (strong, nonatomic) UILabel *pwLabel;
+@property (strong, nonatomic) UIImageView *pwImageV;
 
 @property (strong, nonatomic) GBverifyButton *yzmBtn;
 
@@ -38,11 +38,11 @@
 
 @property (weak, nonatomic) id<JJLoginDelegate> delegate;
 
-@property (strong, nonatomic) UIViewController *baseView;
+@property (strong, nonatomic) UIImageView *sep1;
 
-- (id)initWithFrame:(CGRect)frame rootView:(UIViewController *)root;
+@property (strong, nonatomic) UIImageView *sep2;
 
-- (void)setLogo:(UIImage *)logo;
+- (void)dismissTheKeyboard;
 
 @end
 

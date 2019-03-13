@@ -14,8 +14,11 @@
 #import "JJWechatManager.h"
 #import "WelcomeViewController.h"
 #import "ViewController.h"
+#import "CustomNaviViewController.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) CustomNaviViewController *navigationController;
 
 @end
 
@@ -28,18 +31,15 @@
     //微信注册
 //    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
     
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
-    // 判断用户是否是第一次进APP
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
-//        self.window.rootViewController = [WelcomeViewController new];
-//        [self.window makeKeyAndVisible];
-//    }else{
-//        self.window.rootViewController = [ViewController new];
-//        [self.window makeKeyAndVisible];
-//    }
-
+    self.navigationController = [[CustomNaviViewController alloc] initWithRootViewController:[ViewController new]];
+    [self.window setRootViewController:self.navigationController];
+    [self.window makeKeyAndVisible];
+    
+    // 启动App
+    [self StartApp];
     return YES;
 }
 

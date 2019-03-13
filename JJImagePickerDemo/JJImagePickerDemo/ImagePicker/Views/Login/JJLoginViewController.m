@@ -18,11 +18,15 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GlobalDefine.h"
 #import <Masonry/Masonry.h>
+#import "JJZMLoginView.h"
+#import "JJForgetPwViewController.h"
+#import "JJRegisterViewController.h"
 
 
-@interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate>
+@interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate,JJZMLoginDelegate>
 
 @property (strong, nonatomic) LoginSpaceView *loginSpaceView;
+@property (strong, nonatomic) JJZMLoginView *zmLoginView;
 @property (strong, nonatomic) UIButton *wechatBtn;
 @property (strong, nonatomic) UILabel *tipLabel;
 @property (strong, nonatomic) UILabel *titleHead;
@@ -36,74 +40,98 @@
 @synthesize tipLabel = _tipLabel;
 @synthesize titleHead = _titleHead;
 @synthesize switchBtn = _switchBtn;
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.titleHead mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(200, 60));
-        make.top.mas_equalTo(self).offset(100.0f);
-        make.left.mas_equalTo(self).offset(20.0f);
-    }];
-    
-    [self.switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(100, 40));
-        make.right.mas_equalTo(self).offset(20.0f);
-        make.bottom.mas_equalTo(self.titleHead);
-    }];
-    
-}
+@synthesize zmLoginView = _zmLoginView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self.view setFrame:[UIScreen mainScreen].bounds];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+
     // 欢迎使用糖果相机
     [self.view addSubview:self.titleHead];
-
-    // 账号密码登录
+    
+    // 切换按钮
     [self.view addSubview:self.switchBtn];
-
     
     // 手机验证码登录
-//    [self.view addSubview:self.loginSpaceView];
-
+    [self.view addSubview:self.loginSpaceView];
+    
+    // 账密登录
+    [self.view addSubview:self.zmLoginView];
+    [self.zmLoginView setHidden:YES];
+    
+    [self.titleHead mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(200, 60));
+        make.top.mas_equalTo(self.view.mas_top).offset(100.0f);
+        make.left.mas_equalTo(self.view.mas_left).offset(20.0f);
+    }];
+    
+    [self.switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+        make.right.mas_equalTo(self.view.mas_right).offset(-20.0f);
+        make.bottom.mas_equalTo(self.titleHead.mas_bottom);
+    }];
+    
+    [self.loginSpaceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.view.frame.size.width, 200.0f));
+        make.top.mas_equalTo(self.titleHead.mas_bottom).offset(40.0f);
+    }];
+    
+    [self.zmLoginView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.view.frame.size.width, 300.0f));
+        make.top.mas_equalTo(self.titleHead.mas_bottom).offset(40.0f);
+    }];
     
     // 第三方登录
-    _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 160.0f, self.view.frame.size.width, 40.0f)];
+    _tipLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_tipLabel setText:@"-第三方登录-"];
     [_tipLabel setTextAlignment:NSTextAlignmentCenter];
     [_tipLabel setTextColor:[UIColor lightGrayColor]];
     [_tipLabel setFont:[UIFont systemFontOfSize:12.0f]];
     [self.view addSubview:_tipLabel];
+
+    [_tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.view.frame.size.width, 30.0f));
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-150.0f);
+    }];
     
     _wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_wechatBtn setFrame:CGRectMake((self.view.frame.size.width - 156.0f)/2, self.view.frame.size.height - 100.0f, 156.f, 32.f)];
-    [_wechatBtn setBackgroundImage:[UIImage imageNamed:@"icon48_wx_button"] forState:UIControlStateNormal];
+    [_wechatBtn setBackgroundImage:[UIImage imageNamed:@"wechat"] forState:UIControlStateNormal];
     [_wechatBtn addTarget:self action:@selector(clickWechatBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_wechatBtn];
+    [_wechatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.top.mas_equalTo(self.tipLabel.mas_bottom).offset(20.0f);
+    }];
 }
 
 - (LoginSpaceView *)loginSpaceView{
     if(!_loginSpaceView){
-        _loginSpaceView = [[LoginSpaceView alloc] initWithFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, 400.0f) rootView:self];
+        _loginSpaceView = [[LoginSpaceView alloc] initWithFrame:CGRectZero];
         _loginSpaceView.delegate = self;
-        [_loginSpaceView setLogo:[UIImage imageNamed:@"myApp"]];
     }
     
     return _loginSpaceView;
 }
 
+- (JJZMLoginView *)zmLoginView{
+    if(!_zmLoginView){
+        _zmLoginView = [[JJZMLoginView alloc] initWithFrame:CGRectZero];
+        _zmLoginView.delegate = self;
+    }
+    
+    return _zmLoginView;
+}
+
 - (UILabel *)titleHead{
     if(!_titleHead){
         _titleHead = [UILabel new];
-        [_titleHead setText:@"欢迎使用糖果相机"];
+        [_titleHead setText:@"欢迎来到糖果"];
         [_titleHead setTextColor:[UIColor blackColor]];
         [_titleHead setTextAlignment:NSTextAlignmentLeft];
-        [_titleHead setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
+        [_titleHead setFont:[UIFont fontWithName:@"Helvetica-Bold" size:30]];
     }
     
     return _titleHead;
@@ -114,11 +142,49 @@
         _switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_switchBtn setBackgroundColor:[UIColor clearColor]];
         [_switchBtn setTitle:@"密码登录" forState:UIControlStateNormal];
+        [_switchBtn setTitle:@"快速登录" forState:UIControlStateSelected];
+        [_switchBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [_switchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_switchBtn addTarget:self action:@selector(clickAccountPwdBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _switchBtn;
 }
 
+
+/*
+ * 帐密登陆
+ */
+- (void)clickAccountPwdBtn:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    if(sender.selected){
+        [UIView animateWithDuration:5.0 animations:^{
+            [self.loginSpaceView setHidden:YES];
+            [self.zmLoginView setHidden:NO];
+        }];
+    }else{
+        [UIView animateWithDuration:5.0 animations:^{
+            [self.zmLoginView setHidden:YES];
+            [self.loginSpaceView setHidden:NO];
+        }];
+    }
+}
+
+/**
+ 微信登录
+ */
+- (void)clickWechatBtn:(UIButton *)sender{
+    [JJWechatManager shareInstance].delegate = self;
+    [[JJWechatManager shareInstance] clickWechatLogin:self];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.loginSpaceView dismissTheKeyboard];
+    [self.zmLoginView dismissTheKeyboard];
+}
+
+
+#pragma mark - JJLoginDelegate
 - (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code{
     //验证电话号码跟短信验证码格式
     
@@ -149,46 +215,22 @@
     }];
 }
 
-/*
- * 取消登陆
- */
-- (void)clickCancelBtn:(UIButton *)sender{
-    UIViewController *vc = self.presentingViewController;
-    
-    //要跳转的界面
-    while (![vc isKindOfClass:[ViewController class]]) {
-        vc = vc.presentingViewController;
-    }
-    
-    [vc dismissViewControllerAnimated:YES completion:nil];
+#pragma mark - JJZmLoginDelegate
+- (void)getAccountPwdLogin:(NSString *)account code:(NSString *)pwd{
+
 }
 
-/*
- * 帐密登陆
- */
-- (void)clickAccountPwdBtn:(UIButton *)sender{
-    JJZMLoginViewController *loginView = [JJZMLoginViewController new];
-    [self presentViewController:loginView animated:YES completion:^{
-
-    }];
+- (void)callRegisterAccount{
+    JJRegisterViewController *registerView = [JJRegisterViewController new];
+    [self.navigationController pushViewController:registerView animated:YES];
 }
 
-
-/**
- 微信登录
- */
-- (void)clickWechatBtn:(UIButton *)sender{
-    [JJWechatManager shareInstance].delegate = self;
-    [[JJWechatManager shareInstance] clickWechatLogin:self];
+- (void)callForgetPassword{
+    JJForgetPwViewController *forgetPWView = [JJForgetPwViewController new];
+    [self.navigationController pushViewController:forgetPWView animated:YES];
 }
 
-- (void)dismissViewController{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
-#pragma mark wechatLoginDelegate
+#pragma mark - wechatLoginDelegate
 - (void)wechatLoginSuccess{
     NSLog(@"%s", __func__);
     // 获取用户信息
@@ -226,7 +268,8 @@
 
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             [SVProgressHUD dismissWithDelay:2.0f];
-            [weakSelf dismissViewController];
+            
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
 }

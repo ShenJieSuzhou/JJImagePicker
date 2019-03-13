@@ -14,10 +14,10 @@
 #import "CameraPhotoViewController.h"
 #import "CustomTabbar.h"
 #import "InterestingViewController.h"
-#import "JJLoginViewController.h"
 #import "JJZMLoginViewController.h"
 #import "LoginSessionManager.h"
 #import "HttpRequestUrlDefine.h"
+#import "WelcomeViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -29,27 +29,22 @@
 @property (strong, nonatomic) MeViewController *meViewController;
 @property (strong, nonatomic) CameraPhotoViewController *cpViewController;
 
-
 @end
 
 @implementation ViewController
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    // 用户是否登录
-    [LoginSessionManager getInstance].delegate = self;
-//    if(![[LoginSessionManager getInstance] isUserLogin]){
-//        [SVProgressHUD dismiss];
-//        [self popLoginViewController];
-//    }
-    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    // 判断用户是否是第一次进APP
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
+        [self.navigationController pushViewController:[WelcomeViewController new] animated:YES];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self popLoginViewController];
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     CustomTabbar *cusTabbar = [[CustomTabbar alloc] init];
@@ -97,21 +92,6 @@
     self.cpViewController = [CameraPhotoViewController new];
     [self presentViewController:self.cpViewController animated:YES completion:^{
 
-    }];
-}
-
-/**
- 弹出登录界面
- */
-- (void)popLoginViewController{
-    JJLoginViewController *jjLoginView = [JJLoginViewController new];
-//    [self presentViewController:jjLoginView animated:YES completion:^{
-//
-//    }];
-    
-    UIViewController *topRootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    [topRootViewController presentViewController:jjLoginView animated:YES completion:^{
-        
     }];
 }
 

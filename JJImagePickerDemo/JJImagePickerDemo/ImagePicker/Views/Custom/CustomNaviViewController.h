@@ -10,4 +10,7 @@
 
 @interface CustomNaviViewController : UINavigationController
 
+// 是否可右滑返回
+- (void)navigationCanDragBack:(BOOL)bCanDragBack;
+
 @end

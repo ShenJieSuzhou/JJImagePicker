@@ -23,9 +23,7 @@
 
 
 - (IBAction)skip:(id)sender {
-    [self presentViewController:[ViewController new] animated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

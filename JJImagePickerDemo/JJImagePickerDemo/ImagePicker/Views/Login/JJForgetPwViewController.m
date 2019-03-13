@@ -47,9 +47,7 @@
  * 取消登陆
  */
 - (void)clickCancelBtn:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

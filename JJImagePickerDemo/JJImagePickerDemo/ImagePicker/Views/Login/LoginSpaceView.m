@@ -13,21 +13,22 @@
 #define COMMON_HEIGHT 40.0f
 
 @implementation LoginSpaceView
-@synthesize logoView = _logoView;
+
 @synthesize APView = _APView;
 @synthesize accountField = _accountField;
 @synthesize yzmField = _yzmField;
 @synthesize yzmBtn = _yzmBtn;
 @synthesize loginBtn = _loginBtn;
-@synthesize acLabel = _acLabel;
-@synthesize pwLabel = _pwLabel;
+@synthesize acImageV = _acImageV;
+@synthesize pwImageV = _pwImageV;
 @synthesize delegate = _delegate;
-@synthesize baseView = _baseView;
+@synthesize sep1 = _sep1;
+@synthesize sep2 = _sep2;
 
-- (id)initWithFrame:(CGRect)frame rootView:(UIViewController *)root{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        [self commonInitlization:root];
+        [self commonInitlization];
     }
     
     return self;
@@ -37,32 +38,40 @@
     return [self initWithFrame:CGRectZero];
 }
 
-- (void)commonInitlization:(UIViewController *)root{
-    _baseView = root;
-    
-    _logoView = [[UIImageView alloc] init];
-    [_logoView setBackgroundColor:[UIColor clearColor]];
-    _logoView.contentMode = UIViewContentModeScaleAspectFit;
-    [self addSubview:_logoView];
-    
+- (void)commonInitlization{
     _APView = [[UIView alloc] initWithFrame:CGRectZero];
     [_APView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:_APView];
     
-    _acLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 50.0f, COMMON_HEIGHT)];
-    [_acLabel setText:@"+86"];
-    [_acLabel setFont:[UIFont systemFontOfSize:16.0f]];
-    // 添加点击手势
+    // 分割线
+    _sep1 = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [_sep1 setBackgroundColor:[UIColor colorWithRed:237/255.0f green:237/255.0f blue:237/255.0f alpha:1.0f]];
     
-    [self.APView addSubview:_acLabel];
+    _sep2 = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [_sep2 setBackgroundColor:[UIColor colorWithRed:237/255.0f green:237/255.0f blue:237/255.0f alpha:1.0f]];
     
+    [self.APView addSubview:_sep1];
+    [self.APView addSubview:_sep2];
+    
+    // icon
+    _acImageV = [[UIImageView alloc] init];
+    _acImageV.contentMode = UIViewContentModeScaleAspectFit;
+    [_acImageV setImage:[UIImage imageNamed:@"iPhone X"]];
+    [self.APView addSubview:_acImageV];
+    
+    _pwImageV = [[UIImageView alloc] init];
+    _pwImageV.contentMode = UIViewContentModeScaleAspectFit;
+    [_pwImageV setImage:[UIImage imageNamed:@"yzm"]];
+    [self.APView addSubview:_pwImageV];
+    
+    // 输入框
     _accountField = [[UITextField alloc] init];
     _accountField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _accountField.placeholder = @"请输入手机号";
     [_accountField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
     
     _yzmField = [[UITextField alloc] init];
-    _yzmField.secureTextEntry = YES;
+    _yzmField.secureTextEntry = NO;
     _yzmField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _yzmField.placeholder = @"请输入验证码";
     [_yzmField setValue:[UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
@@ -70,69 +79,97 @@
     [self.APView addSubview:_accountField];
     [self.APView addSubview:_yzmField];
     
+    //验证码按钮
+    _yzmBtn = [[GBverifyButton alloc] initWithFrame:CGRectZero];
+    [_yzmBtn setBackgroundColor:[UIColor clearColor]];
+    [self.APView addSubview:_yzmBtn];
+    
     _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_loginBtn setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
-    [_loginBtn.layer setCornerRadius:10.0f];
+    [_loginBtn.layer setCornerRadius:20.0f];
     [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    [_loginBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_loginBtn];
+    [_loginBtn addTarget:self action:@selector(clickLoginBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.APView addSubview:_loginBtn];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat w = self.frame.size.width;
-    CGFloat h = self.frame.size.height;
-    //logo
-    [_logoView setFrame:CGRectMake((w - 100)/2 , 50.0f, 100.0f, 100.0f)];
-    [_logoView.layer setCornerRadius:50.0f];
-    [_logoView.layer setBorderColor:[UIColor colorWithRed:231/255.0f green:231/255.0f blue:231/255.0f alpha:1.0f].CGColor];
-    [_logoView.layer setBorderWidth:1.0f];
-    [_logoView.layer setMasksToBounds:YES];
     
-    [_APView setFrame:CGRectMake(LOGIN_MARGIN, 200.0f, w - 40.0f, 102.0f)];
+    [self.APView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(self.frame.size);
+        make.top.mas_equalTo(self.mas_top);
+        make.left.mas_equalTo(self.mas_left);
+    }];
+    
+    
+    [self.acImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.top.mas_equalTo(self.APView.mas_top);
+        make.left.mas_equalTo(self.APView.mas_left).offset(40.0f);
+        make.right.mas_equalTo(self.APView.mas_left).offset(70.0f);
+    }];
+    
     //电话输入框
-    [_accountField setFrame:CGRectMake(55.0f, 5.0f, w - 40.0f - 80.0f - YZMBTN_WIDTH, COMMON_HEIGHT)];
-    //验证码按钮
-    _yzmBtn = [[GBverifyButton alloc] initWithFrame:CGRectMake(_APView.frame.size.width - LOGIN_MARGIN - YZMBTN_WIDTH, 10.0f, YZMBTN_WIDTH, YZMBTN_HEIGHT) root:_baseView Target:self Action:@selector(clickYZMBtn:)];
-    [_yzmBtn setupUI:_APView];
-    [_yzmBtn setTitleFont:[UIFont systemFontOfSize:12.0f]];
-    [_yzmBtn setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
-    [_APView addSubview:_yzmBtn];
+    [self.accountField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.APView.mas_top);
+        make.left.mas_equalTo(self.acImageV.mas_right).offset(10.0f);
+        make.right.mas_equalTo(self.mas_right).offset(-40.0f);
+        make.bottom.mas_equalTo(self.acImageV.mas_bottom);
+    }];
     
-    //分割线
-    UIImageView *seperateLine1 = [[UIImageView alloc] initWithFrame:CGRectMake(50.0f, 10.0f, 1.0f, 30.0f)];
-    [seperateLine1 setBackgroundColor:[UIColor colorWithRed:237/255.0f green:237/255.0f blue:237/255.0f alpha:1.0f]];
-    UIImageView *seperateLine2 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 51.0f, w - 60.0f, 1.0f)];
-    [seperateLine2 setBackgroundColor:[UIColor colorWithRed:237/255.0f green:237/255.0f blue:237/255.0f alpha:1.0f]];
-    UIImageView *seperateLine3 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 101.0f, w - 60.0f, 1.0f)];
-    [seperateLine3 setBackgroundColor:[UIColor colorWithRed:237/255.0f green:237/255.0f blue:237/255.0f alpha:1.0f]];
+    //分割
+    [self.sep1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width - 80, 1));
+        make.top.mas_equalTo(self.accountField.mas_bottom).offset(5.0f);
+        make.left.mas_equalTo(self.APView.mas_left).offset(40.0f);
+    }];
     
-    [_APView addSubview:seperateLine1];
-    [_APView addSubview:seperateLine2];
-    [_APView addSubview:seperateLine3];
+    [self.pwImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.sep1.mas_bottom).offset(30.0f);
+        make.left.mas_equalTo(self.APView.mas_left).offset(40.0f);
+        make.right.mas_equalTo(self.APView.mas_left).offset(70.0f);
+    }];
+    
     //验证码栏
-    [_yzmField setFrame:CGRectMake(LOGIN_MARGIN, 56.0f, w - 40.0f, COMMON_HEIGHT)];
+    [self.yzmField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.sep1.mas_bottom).offset(30.0f);
+        make.left.mas_equalTo(self.pwImageV.mas_right).offset(10.0f);
+        make.right.mas_equalTo(self.mas_right).offset(-140.0f);
+        make.bottom.mas_equalTo(self.pwImageV.mas_bottom);
+    }];
+    
+    [self.yzmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.top.mas_equalTo(self.sep1.mas_bottom).offset(30.0f);
+        make.right.mas_equalTo(self.APView.mas_right).offset(-40.0f);
+        make.centerY.mas_equalTo(self.yzmField.mas_centerY);
+    }];
+    
+    [self.sep2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width - 180, 1));
+        make.top.mas_equalTo(self.yzmField.mas_bottom).offset(5.0f);
+        make.left.mas_equalTo(self.APView.mas_left).offset(40.0f);
+    }];
    
     //登录按钮
-    [_loginBtn setFrame:CGRectMake(LOGIN_MARGIN, 350.0f, w - 40.0f, 50.0f)];
+    [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.size.mas_equalTo(CGSizeMake(self.frame.size.width - 80, 40));
+         make.top.mas_equalTo(self.sep2.mas_bottom).offset(40.0f);
+        make.left.mas_equalTo(self.APView.mas_left).offset(40.0f);
+    }];
 }
 
-- (void)setLogo:(UIImage *)logo{
-    [_logoView setImage:logo];
-}
 
-- (void)login:(UIButton *)sender{
+- (void)clickLoginBtn:(UIButton *)sender{
     if([_delegate respondsToSelector:@selector(LoginDataCallBack:code:)]){
         [_delegate LoginDataCallBack:_accountField.text code:_yzmField.text];
     }
 }
 
-- (void)clickYZMBtn:(UIButton *)sender{
-    [_yzmBtn startGetMessage];
-    
-    if([_delegate respondsToSelector:@selector(LoginRequestCode:)]){
-        [_delegate LoginRequestCode:_accountField.text];
-    }
+// 关闭键盘
+- (void)dismissTheKeyboard{
+    [_accountField resignFirstResponder];
+    [_yzmField resignFirstResponder];
 }
 
 @end

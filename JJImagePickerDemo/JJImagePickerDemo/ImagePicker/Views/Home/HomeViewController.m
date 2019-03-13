@@ -10,11 +10,24 @@
 #import "HomeContentmManager.h"
 #import "JSONKit.h"
 #import "HttpRequestUrlDefine.h"
+#import "JJLoginViewController.h"
 
 #define JJDEBUG YES
 
 @implementation HomeViewController
 @synthesize kkWebView = _kkWebView;
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // 用户是否登录
+    //    [LoginSessionManager getInstance].delegate = self;
+    //    if(![[LoginSessionManager getInstance] isUserLogin]){
+    //        [SVProgressHUD dismiss];
+    //        [self popLoginViewController];
+    //    }
+    [self popLoginViewController];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +52,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
+}
+
+/**
+ 弹出登录界面
+ */
+- (void)popLoginViewController{
+    JJLoginViewController *jjLoginView = [JJLoginViewController new];
+    [self.navigationController pushViewController:jjLoginView animated:YES];
 }
 
 
