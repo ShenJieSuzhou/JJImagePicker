@@ -28,8 +28,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //微信注册
-//    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
+    // 微信注册
+    [WXApi registerApp:@"wx544a9dd772ec8e0d"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

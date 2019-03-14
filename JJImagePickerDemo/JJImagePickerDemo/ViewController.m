@@ -14,7 +14,6 @@
 #import "CameraPhotoViewController.h"
 #import "CustomTabbar.h"
 #import "InterestingViewController.h"
-#import "JJZMLoginViewController.h"
 #import "LoginSessionManager.h"
 #import "HttpRequestUrlDefine.h"
 #import "WelcomeViewController.h"

@@ -9,33 +9,34 @@
 #import <UIKit/UIKit.h>
 
 @protocol DetailInfoViewDelegate <NSObject>
-
-- (void)pickUpHeaderImgCallback;
-
 - (void)appSettingClickCallback;
 
-- (void)clickToLoginCallback;
-
-- (void)callLoginViewController;
+@optional
+- (void)changeBackgroundCallback;
 
 @end
 
 @interface DetailInfoView : UIView
 
 @property (nonatomic, strong) UIImageView *backgroundView;
-@property (nonatomic, strong) UIButton *iconView;
 @property (nonatomic, strong) UIButton *settingBtn;
+@property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel  *userName;
-@property (nonatomic, strong) UIButton *foucsBtn;
-@property (nonatomic, strong) UIButton *fansBtn;
 
-@property (nonatomic, strong) UIView *loginBox;
-@property (nonatomic, strong) UIImageView *loginIcon;
-@property (nonatomic, strong) UIButton *loginBtn;
+@property (nonatomic, strong) UIView *worksNumView;
+@property (nonatomic, strong) UILabel *workTitle;
+@property (nonatomic, strong) UILabel *workNum;
+
+@property (nonatomic, strong) UIView *focusView;
+@property (nonatomic, strong) UILabel *focusTitle;
+@property (nonatomic, strong) UILabel *focusNum;
+
+@property (nonatomic, strong) UIView *fansView;
+@property (nonatomic, strong) UILabel *fansTitle;
+@property (nonatomic, strong) UILabel *fansNum;
+
 
 @property (weak, nonatomic) id<DetailInfoViewDelegate> delegate;
-
-- (void)showLoginView;
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum;
 

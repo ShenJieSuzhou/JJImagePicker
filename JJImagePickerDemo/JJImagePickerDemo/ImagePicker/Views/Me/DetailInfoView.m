@@ -16,12 +16,19 @@
 @synthesize settingBtn = _settingBtn;
 @synthesize delegate = _delegate;
 @synthesize userName = _userName;
-@synthesize foucsBtn = _foucsBtn;
-@synthesize fansBtn = _fansBtn;
 
-@synthesize loginBox = _loginBox;
-@synthesize loginIcon = _loginIcon;
-@synthesize loginBtn = _loginBtn;
+@synthesize worksNumView = _worksNumView;
+@synthesize workTitle = _workTitle;
+@synthesize workNum = _workNum;
+
+@synthesize focusView = _focusView;
+@synthesize focusTitle = _focusTitle;
+@synthesize focusNum = _focusNum;
+
+@synthesize fansTitle = _fansTitle;
+@synthesize fansView = _fansView;
+@synthesize fansNum = _fansNum;
+
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -33,13 +40,11 @@
 - (void)commonInitlization{
     // 登录成功后显示的控件
     _backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [_backgroundView setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
+    [_backgroundView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:_backgroundView];
     
-    _iconView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_iconView setBackgroundImage:[UIImage imageNamed:@"userPlaceHold"] forState:UIControlStateNormal];
-    [_iconView addTarget:self action:@selector(pickUpHeaderImg:) forControlEvents:UIControlEventTouchUpInside];
-    [_iconView.layer setCornerRadius:8.0f];
+    _iconView = [[UIImageView alloc] init];
+    [_iconView setImage:[UIImage imageNamed:@"userPlaceHold"]];
     [_iconView.layer setMasksToBounds:YES];
     [self addSubview:_iconView];
     
@@ -51,45 +56,54 @@
     _userName = [[UILabel alloc] init];
     [_userName setTextColor:[UIColor whiteColor]];
     [_userName setFont:[UIFont fontWithName:@"Verdana" size:16.0f]];
-    [_userName setText:@"------"];
+    [_userName setText:@""];
     [self addSubview:_userName];
     
-    _foucsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_foucsBtn setTitle:@"关注 0" forState:UIControlStateNormal];
-    [_foucsBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
-    [_foucsBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_foucsBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [_foucsBtn addTarget:self action:@selector(clickToFocusV:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_foucsBtn];
+    // 作品
+    _worksNumView = [UIView new];
+    [_worksNumView setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:_worksNumView];
     
-    _fansBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_fansBtn setTitle:@"粉丝 0" forState:UIControlStateNormal];
-    [_fansBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
-    [_fansBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_fansBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [_fansBtn addTarget:self action:@selector(clickToFansV:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_fansBtn];
+    _workTitle = [UILabel new];
+    [_workTitle setText:@"发布"];
+    [_workTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_worksNumView addSubview:_workTitle];
     
-    //未登录显示的控件
-    _loginBox = [UIView new];
-    [_loginBox setFrame:self.frame];
-    [_loginBox setBackgroundColor:[UIColor colorWithRed:236/255.0f green:77/255.0f blue:65/255.0f alpha:1.0f]];
-    [self addSubview:_loginBox];
+    _workNum = [UILabel new];
+    [_workNum setText:@"0"];
+    [_workNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_worksNumView addSubview:_workNum];
     
-    _loginIcon = [UIImageView new];
-    [_loginIcon setImage:[UIImage imageNamed:@"userPlaceHold"]];
-    [_loginIcon.layer setCornerRadius:8.0f];
-    [_loginIcon.layer setMasksToBounds:YES];
-    [_loginBox addSubview:_loginIcon];
+    // 关注
+    _focusView = [UIView new];
+    [_focusView setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:_focusView];
     
-    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_loginBtn setTitle:@"登录查看个人主页" forState:UIControlStateNormal];
-    [_loginBtn.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
-    [_loginBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_loginBtn.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [_loginBtn addTarget:self action:@selector(clickToLogin:) forControlEvents:UIControlEventTouchUpInside];
-    [_loginBox addSubview:_loginBtn];
+    _focusTitle = [UILabel new];
+    [_focusTitle setText:@"关注"];
+    [_focusTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_focusView addSubview:_focusTitle];
     
+    
+    _focusNum = [UILabel new];
+    [_focusNum setText:@"0"];
+    [_focusNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_focusView addSubview:_focusNum];
+    
+    // 粉丝
+    _fansView = [UIView new];
+    [_fansView setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:_fansView];
+    
+    _fansTitle = [UILabel new];
+    [_fansTitle setText:@"粉丝"];
+    [_fansTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_fansView addSubview:_fansTitle];
+    
+    _fansNum = [UILabel new];
+    [_fansNum setText:@"0"];
+    [_fansNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_fansView addSubview:_fansNum];
 }
 
 - (void)layoutSubviews{
@@ -108,39 +122,39 @@
         make.top.equalTo(self.iconView);
     }];
     
-    [_foucsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
-        make.left.equalTo(self.iconView.mas_right).offset(20.0f);
-        make.bottom.equalTo(self.iconView);
-    }];
+//    [_foucsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
+//        make.left.equalTo(self.iconView.mas_right).offset(20.0f);
+//        make.bottom.equalTo(self.iconView);
+//    }];
+//
+//    [_fansBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
+//        make.left.equalTo(self.foucsBtn.mas_right).offset(20.0f);
+//        make.bottom.equalTo(self.iconView);
+//    }];
+//
+//    [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(25.0f, 25.0f));
+//        make.centerY.equalTo(self);
+//        make.right.equalTo(self).offset(-20.0f);
+//    }];
     
-    [_fansBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
-        make.left.equalTo(self.foucsBtn.mas_right).offset(20.0f);
-        make.bottom.equalTo(self.iconView);
-    }];
-    
-    [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(25.0f, 25.0f));
-        make.centerY.equalTo(self);
-        make.right.equalTo(self).offset(-20.0f);
-    }];
-    
-    [_loginBox mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.size.mas_equalTo(self);
-    }];
-    
-    [_loginIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
-        make.centerY.equalTo(self.loginBox);
-        make.left.equalTo(self.loginBox).offset(40.0f);
-    }];
-    
-    [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(150.0f, 80.0f));
-        make.centerY.equalTo(self.loginBox);
-        make.left.equalTo(self.loginIcon.mas_right).offset(20.0f);
-    }];
+//    [_loginBox mas_makeConstraints:^(MASConstraintMaker *make) {
+//       make.size.mas_equalTo(self);
+//    }];
+//
+//    [_loginIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
+//        make.centerY.equalTo(self.loginBox);
+//        make.left.equalTo(self.loginBox).offset(40.0f);
+//    }];
+//
+//    [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(150.0f, 80.0f));
+//        make.centerY.equalTo(self.loginBox);
+//        make.left.equalTo(self.loginIcon.mas_right).offset(20.0f);
+//    }];
 }
 
 - (void)setLoginState:(BOOL)isLogin{
@@ -153,23 +167,13 @@
 //    }
 }
 
-- (void)showLoginView{
-    [_loginBox setHidden:NO];
-}
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
-    
-    [_loginBox setHidden:YES];
-    
-    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]] forState:UIControlStateNormal];
-    [_userName setText:name];
-    [_foucsBtn setTitle:[NSString stringWithFormat:@"关注 %@", focusNum] forState:UIControlStateNormal];
-    [_fansBtn setTitle:[NSString stringWithFormat:@"粉丝 %@", fansNum] forState:UIControlStateNormal];
-}
 
-
-- (void)pickUpHeaderImg:(UIButton *)sender{
-    [_delegate pickUpHeaderImgCallback];
+//    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]] forState:UIControlStateNormal];
+//    [_userName setText:name];
+//    [_foucsBtn setTitle:[NSString stringWithFormat:@"关注 %@", focusNum] forState:UIControlStateNormal];
+//    [_fansBtn setTitle:[NSString stringWithFormat:@"粉丝 %@", fansNum] forState:UIControlStateNormal];
 }
 
 - (void)clickSetting:(UIButton *)sender{
@@ -186,10 +190,6 @@
 
 - (void)clickToFansV:(UIButton *)sender{
     
-}
-
-- (void)clickToLogin:(UIButton *)sender{
-    [_delegate callLoginViewController];
 }
 
 @end

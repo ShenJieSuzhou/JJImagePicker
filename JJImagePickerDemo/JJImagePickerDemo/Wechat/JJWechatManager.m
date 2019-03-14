@@ -92,7 +92,7 @@
         [WXApi sendAuthReq:req viewController:baseView delegate:self];
     }else{
         [SVProgressHUD showWithStatus:@"请先安装微信客户端"];
-        [SVProgressHUD dismissWithDelay:2.0f];
+        [SVProgressHUD dismiss];
     }
 }
 

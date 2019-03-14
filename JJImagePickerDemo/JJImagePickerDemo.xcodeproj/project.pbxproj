@@ -62,6 +62,13 @@
 		E51EE7E42236211B005088F6 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7E22236211B005088F6 /* WelcomeViewController.xib */; };
 		E51EE7E72238D5BC005088F6 /* JJZMLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7E62238D5BC005088F6 /* JJZMLoginView.m */; };
 		E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7E92238E73B005088F6 /* JJRegisterViewController.m */; };
+		E51EE7F3223A5E80005088F6 /* personal_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7EC223A5E7F005088F6 /* personal_4.png */; };
+		E51EE7F4223A5E80005088F6 /* personal_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7ED223A5E7F005088F6 /* personal_1.png */; };
+		E51EE7F5223A5E80005088F6 /* personal_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7EE223A5E7F005088F6 /* personal_2.png */; };
+		E51EE7F6223A5E80005088F6 /* personal_7.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7EF223A5E80005088F6 /* personal_7.png */; };
+		E51EE7F7223A5E80005088F6 /* personal_6.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7F0223A5E80005088F6 /* personal_6.png */; };
+		E51EE7F8223A5E80005088F6 /* personal_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7F1223A5E80005088F6 /* personal_3.png */; };
+		E51EE7F9223A5E80005088F6 /* personal_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7F2223A5E80005088F6 /* personal_5.png */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
 		E522784E20BFCEBD003E2F38 /* JJImageViewPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */; };
 		E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */ = {isa = PBXBuildFile; fileRef = E522786820C0E464003E2F38 /* redarrowRighticon.png */; };
@@ -346,6 +353,13 @@
 		E51EE7E62238D5BC005088F6 /* JJZMLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZMLoginView.m; sourceTree = "<group>"; };
 		E51EE7E82238E73B005088F6 /* JJRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJRegisterViewController.h; sourceTree = "<group>"; };
 		E51EE7E92238E73B005088F6 /* JJRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJRegisterViewController.m; sourceTree = "<group>"; };
+		E51EE7EC223A5E7F005088F6 /* personal_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_4.png; sourceTree = "<group>"; };
+		E51EE7ED223A5E7F005088F6 /* personal_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_1.png; sourceTree = "<group>"; };
+		E51EE7EE223A5E7F005088F6 /* personal_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_2.png; sourceTree = "<group>"; };
+		E51EE7EF223A5E80005088F6 /* personal_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_7.png; sourceTree = "<group>"; };
+		E51EE7F0223A5E80005088F6 /* personal_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_6.png; sourceTree = "<group>"; };
+		E51EE7F1223A5E80005088F6 /* personal_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_3.png; sourceTree = "<group>"; };
+		E51EE7F2223A5E80005088F6 /* personal_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_5.png; sourceTree = "<group>"; };
 		E522784520BF8F7A003E2F38 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E522784C20BFCEBD003E2F38 /* JJImageViewPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageViewPicker.h; sourceTree = "<group>"; };
 		E522784D20BFCEBD003E2F38 /* JJImageViewPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageViewPicker.m; sourceTree = "<group>"; };
@@ -829,6 +843,20 @@
 			path = framework;
 			sourceTree = "<group>";
 		};
+		E51EE7EB223A5E56005088F6 /* personalbk */ = {
+			isa = PBXGroup;
+			children = (
+				E51EE7ED223A5E7F005088F6 /* personal_1.png */,
+				E51EE7EE223A5E7F005088F6 /* personal_2.png */,
+				E51EE7F1223A5E80005088F6 /* personal_3.png */,
+				E51EE7EC223A5E7F005088F6 /* personal_4.png */,
+				E51EE7F2223A5E80005088F6 /* personal_5.png */,
+				E51EE7F0223A5E80005088F6 /* personal_6.png */,
+				E51EE7EF223A5E80005088F6 /* personal_7.png */,
+			);
+			path = personalbk;
+			sourceTree = "<group>";
+		};
 		E522784120BF8F0F003E2F38 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +917,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E51EE7EB223A5E56005088F6 /* personalbk */,
 				E5DB336322290885008D7818 /* myApp.png */,
 				E5DB334E22278F6C008D7818 /* mt */,
 				E551669B2159E779001FBFC1 /* stickers */,
@@ -1433,12 +1462,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */,
+				E51EE7F9223A5E80005088F6 /* personal_5.png in Resources */,
+				E51EE7F4223A5E80005088F6 /* personal_1.png in Resources */,
 				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
 				E55166B62159E7F0001FBFC1 /* spider.png in Resources */,
 				E5DF2D90214B93320048A80E /* YUCIGreenBlueChannelOverlayBlend.cikernel in Resources */,
 				E547D18F20F89ACE00893D85 /* flashAutoIcon.png in Resources */,
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
 				E5CFB54F20D36DE20021EB68 /* uls_tb_all_return_p@3x.png in Resources */,
+				E51EE7F7223A5E80005088F6 /* personal_6.png in Resources */,
 				E547D1A020F89ACE00893D85 /* closeButton.png in Resources */,
 				E547D1A220F89ACE00893D85 /* swapButton@2x.png in Resources */,
 				E547D19B20F89ACE00893D85 /* libraryConfirm.png in Resources */,
@@ -1485,6 +1517,7 @@
 				E547D1B120F89ACE00893D85 /* flashOffIcon.png in Resources */,
 				E547D18D20F89ACE00893D85 /* libraryButton@2x.png in Resources */,
 				E547D19920F89ACE00893D85 /* retakeButton.png in Resources */,
+				E51EE7F5223A5E80005088F6 /* personal_2.png in Resources */,
 				E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */,
 				E5DB33602227C904008D7818 /* bwgirl.jpg in Resources */,
 				E547D18E20F89ACE00893D85 /* libraryCancel@3x.png in Resources */,
@@ -1492,10 +1525,12 @@
 				E547D19320F89ACE00893D85 /* flashOnIcon@3x.png in Resources */,
 				E55166B32159E7F0001FBFC1 /* hat.png in Resources */,
 				E547D19F20F89ACE00893D85 /* cameraPermissionsIcon@3x.png in Resources */,
+				E51EE7F8223A5E80005088F6 /* personal_3.png in Resources */,
 				E5CFB55A20D3879B0021EB68 /* uls_tb_intro_return_n@3x.png in Resources */,
 				E58C252021DE2C95001C4D8F /* LoginPWDViewController.xib in Resources */,
 				E5DB335E2227C904008D7818 /* night.jpg in Resources */,
 				E547D19220F89ACE00893D85 /* swapButton.png in Resources */,
+				E51EE7F3223A5E80005088F6 /* personal_4.png in Resources */,
 				E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */,
 				E547D19120F89ACE00893D85 /* cameraButtonHighlighted@3x.png in Resources */,
 				E547D18920F89ACE00893D85 /* cameraButtonHighlighted.png in Resources */,
@@ -1504,6 +1539,7 @@
 				E55166AE2159E7F0001FBFC1 /* cat.png in Resources */,
 				E51EE7E42236211B005088F6 /* WelcomeViewController.xib in Resources */,
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
+				E51EE7F6223A5E80005088F6 /* personal_7.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
 				E571BD44210F0045009DD369 /* content.json in Resources */,
 				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
@@ -1844,8 +1880,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WSSN499SLU;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7FLG9F2622;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1857,10 +1893,10 @@
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 					"$(PROJECT_DIR)/JJImagePickerDemo/framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.candy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jj.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = UniversalSnailDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1871,8 +1907,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7FLG9F2622;
 				INFOPLIST_FILE = JJImagePickerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1884,7 +1920,7 @@
 					"$(PROJECT_DIR)/JJImagePickerDemo/Libs",
 					"$(PROJECT_DIR)/JJImagePickerDemo/framework",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.snailgames.candy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jj.candy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

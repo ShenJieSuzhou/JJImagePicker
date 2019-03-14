@@ -67,5 +67,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <!-- 微信 URL Scheme 白名单-->
+        <string>wechat</string>
+        <string>weixin</string>
+    </array>
 </dict>
 </plist>

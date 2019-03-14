@@ -11,6 +11,7 @@
 #import "JSONKit.h"
 #import "HttpRequestUrlDefine.h"
 #import "JJLoginViewController.h"
+#import "LoginSessionManager.h"
 
 #define JJDEBUG YES
 
@@ -19,14 +20,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     // 用户是否登录
-    //    [LoginSessionManager getInstance].delegate = self;
-    //    if(![[LoginSessionManager getInstance] isUserLogin]){
-    //        [SVProgressHUD dismiss];
-    //        [self popLoginViewController];
-    //    }
-    [self popLoginViewController];
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        [self popLoginViewController];
+    }
 }
 
 - (void)viewDidLoad {
@@ -70,7 +67,7 @@
 
 
 -(void)TriggerRefresh{
-    
+    NSLog(@"11111111111111111");
 }
 
 

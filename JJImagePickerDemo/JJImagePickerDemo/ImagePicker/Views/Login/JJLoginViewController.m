@@ -192,6 +192,21 @@
     [self.zmLoginView dismissTheKeyboard];
 }
 
+- (void)updateUserLoginInfo:(NSDictionary *)userInfo{
+    NSString *uid = [userInfo objectForKey:@"user_id"];
+    NSString *userName = [userInfo objectForKey:@"userName"];
+    NSString *token = [userInfo objectForKey:@"token"];
+    NSString *fans = [userInfo objectForKey:@"fans"];
+    NSString *foucs = [userInfo objectForKey:@"focus"];
+    NSString *iconUrl = [userInfo objectForKey:@"iconUrl"];
+    int gender = [[userInfo objectForKey:@"genda"] intValue];
+    NSString *birth = [userInfo objectForKey:@"birth"];
+    NSString *phone = [userInfo objectForKey:@"telephone"];
+    //取出token user_id username
+    LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:nil];
+    [[JJTokenManager shareInstance] setUserLoginInfo:userModel];
+}
+
 
 #pragma mark - JJLoginDelegate
 - (void)LoginDataCallBack:(NSString *)telephone code:(NSString *)code{
@@ -226,7 +241,31 @@
 
 #pragma mark - JJZmLoginDelegate
 - (void)getAccountPwdLogin:(NSString *)account code:(NSString *)pwd{
-
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_LoginByAccountPwd:AC_LOGIN_REQUEST account:account pwd:pwd callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }
+        
+        if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
+            // update 用户信息
+            [weakSelf updateUserLoginInfo:data];
+            
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOGINSUCCESS_NOTIFICATION object:nil];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
 }
 
 - (void)callRegisterAccount{
@@ -257,21 +296,10 @@
             return;
         }
         
-        // update 用户信息
         if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
-            NSString *uid = [data objectForKey:@"user_id"];
-            NSString *userName = [data objectForKey:@"userName"];
-            NSString *token = [data objectForKey:@"token"];
-            NSString *fans = [data objectForKey:@"fans"];
-            NSString *foucs = [data objectForKey:@"focus"];
-            NSString *iconUrl = [data objectForKey:@"iconUrl"];
-            int gender = [[data objectForKey:@"genda"] intValue];
-            NSString *birth = [data objectForKey:@"birth"];
-            NSString *phone = [data objectForKey:@"telephone"];
-            //取出token user_id username
-            LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:nil];
-            [[JJTokenManager shareInstance] setUserLoginInfo:userModel];
-
+            // update 用户信息
+            [weakSelf updateUserLoginInfo:data];
+            
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
             [SVProgressHUD dismissWithDelay:2.0f];
             
