@@ -25,7 +25,7 @@
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
-#define DETAIL_INFO_VIEW_HEIGHT 150.0f
+#define DETAIL_INFO_VIEW_HEIGHT 300.0f
 
 @interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate,WorksViewDelegate>
 

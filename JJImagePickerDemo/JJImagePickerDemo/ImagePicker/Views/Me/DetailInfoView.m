@@ -29,35 +29,47 @@
 @synthesize fansView = _fansView;
 @synthesize fansNum = _fansNum;
 
+@synthesize personalBKs = _personalBKs;
+
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         [self commonInitlization];
     }
+    
     return self;
 }
 
 - (void)commonInitlization{
+    _personalBKs =  [NSArray arrayWithObjects:@"personal_1", @"personal_2", @"personal_3", @"personal_4", @"personal_5",@"personal_6", @"personal_7", nil];
+    
+    NSString *bgName = [self.personalBKs objectAtIndex:[self getRandomNumber:0 to:6]];
+    
     // 登录成功后显示的控件
     _backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _backgroundView.contentMode = UIViewContentModeScaleAspectFit;
     [_backgroundView setBackgroundColor:[UIColor whiteColor]];
+    [_backgroundView setImage:[UIImage imageNamed:bgName]];
     [self addSubview:_backgroundView];
     
     _iconView = [[UIImageView alloc] init];
     [_iconView setImage:[UIImage imageNamed:@"userPlaceHold"]];
+    _iconView.layer.cornerRadius = 40.0f;
+    _iconView.layer.borderWidth = 2.0f;
+    _iconView.layer.borderColor = [UIColor whiteColor].CGColor;
     [_iconView.layer setMasksToBounds:YES];
-    [self addSubview:_iconView];
+    [_backgroundView addSubview:_iconView];
     
     _settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_settingBtn setBackgroundImage:[UIImage imageNamed:@"UserSetting"] forState:UIControlStateNormal];
     [_settingBtn addTarget:self action:@selector(clickSetting:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_settingBtn];
+    [_backgroundView addSubview:_settingBtn];
     
     _userName = [[UILabel alloc] init];
     [_userName setTextColor:[UIColor whiteColor]];
-    [_userName setFont:[UIFont fontWithName:@"Verdana" size:16.0f]];
+    [_userName setFont:[UIFont fontWithName:@"Verdana" size:20.0f]];
     [_userName setText:@""];
-    [self addSubview:_userName];
+    [_backgroundView addSubview:_userName];
     
     // 作品
     _worksNumView = [UIView new];
@@ -104,92 +116,117 @@
     [_fansNum setText:@"0"];
     [_fansNum setFont:[UIFont systemFontOfSize:15.0f]];
     [_fansView addSubview:_fansNum];
+    
+    UIGestureRecognizer *gestureFocus = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFocusView:)];
+    [_focusView addGestureRecognizer:gestureFocus];
+    
+    UIGestureRecognizer *gestureFans = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFansView:)];
+    [_fansView addGestureRecognizer:gestureFans];
+    
+    UIGestureRecognizer *gestureWorks = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickWorksView:)];
+    [_worksNumView addGestureRecognizer:gestureWorks];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    [_backgroundView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top);
+        make.left.mas_equalTo(self.mas_left);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(-60.0f);
+        make.right.mas_equalTo(self.mas_right);
+    }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
-        make.centerY.equalTo(self);
-        make.left.equalTo(self).offset(40.0f);
+        make.center.mas_equalTo(self.backgroundView);
     }];
     
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(180.0f, 30.0f));
-        make.left.equalTo(self.iconView.mas_right).offset(20.0f);
-        make.top.equalTo(self.iconView);
+        make.size.mas_equalTo(CGSizeMake(200.0f, 30.0f));
+        make.top.equalTo(self.iconView.mas_bottom).offset(30.0f);
+        make.centerX.mas_equalTo(self.backgroundView);
     }];
     
-//    [_foucsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
-//        make.left.equalTo(self.iconView.mas_right).offset(20.0f);
-//        make.bottom.equalTo(self.iconView);
-//    }];
-//
-//    [_fansBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(100.0f, 40.0f));
-//        make.left.equalTo(self.foucsBtn.mas_right).offset(20.0f);
-//        make.bottom.equalTo(self.iconView);
-//    }];
-//
-//    [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(25.0f, 25.0f));
-//        make.centerY.equalTo(self);
-//        make.right.equalTo(self).offset(-20.0f);
-//    }];
+    [_worksNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
+        make.top.mas_equalTo(self.backgroundView.mas_bottom);
+        make.left.mas_equalTo(self.mas_left);
+    }];
     
-//    [_loginBox mas_makeConstraints:^(MASConstraintMaker *make) {
-//       make.size.mas_equalTo(self);
-//    }];
-//
-//    [_loginIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
-//        make.centerY.equalTo(self.loginBox);
-//        make.left.equalTo(self.loginBox).offset(40.0f);
-//    }];
-//
-//    [_loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(150.0f, 80.0f));
-//        make.centerY.equalTo(self.loginBox);
-//        make.left.equalTo(self.loginIcon.mas_right).offset(20.0f);
-//    }];
+    [_workTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.worksNumView);
+        make.top.mas_equalTo(self.worksNumView).offset(10.0f);
+    }];
+    
+    [_workNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.worksNumView);
+        make.bottom.mas_equalTo(self.worksNumView).offset(-10.0f);
+    }];
+    
+    [_focusView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
+        make.top.mas_equalTo(self.backgroundView.mas_bottom);
+        make.left.mas_equalTo(self.worksNumView.mas_right);
+    }];
+    
+    [_focusTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.focusView);
+        make.top.mas_equalTo(self.focusView).offset(10.0f);
+    }];
+    
+    [_focusNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.focusView);
+        make.bottom.mas_equalTo(self.focusView).offset(-10.0f);
+    }];
+    
+    [_fansView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
+        make.top.mas_equalTo(self.backgroundView.mas_bottom);
+        make.right.mas_equalTo(self.mas_right);
+    }];
+    
+    [_focusTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.fansView);
+        make.top.mas_equalTo(self.fansView).offset(10.0f);
+    }];
+    
+    [_fansNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
+        make.center.mas_equalTo(self.fansView);
+        make.bottom.mas_equalTo(self.fansView).offset(-10.0f);
+    }];
 }
 
-- (void)setLoginState:(BOOL)isLogin{
-//    if(!isLogin){
-//        [_loginBtn setHidden:NO];
-//        [_userName setHidden:YES];
-//    }else{
-//        [_loginBtn setHidden:YES];
-//        [_userName setHidden:NO];
-//    }
+- (int)getRandomNumber:(int)from to:(int)to{
+    return (int)(from + (arc4random() % (to - from + 1)));
 }
-
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
-
-//    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]] forState:UIControlStateNormal];
-//    [_userName setText:name];
-//    [_foucsBtn setTitle:[NSString stringWithFormat:@"关注 %@", focusNum] forState:UIControlStateNormal];
-//    [_fansBtn setTitle:[NSString stringWithFormat:@"粉丝 %@", fansNum] forState:UIControlStateNormal];
+    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]]];
+    [_userName setText:name];
+    [_focusNum setText:@""];
+    [_fansNum setText:@""];
 }
 
 - (void)clickSetting:(UIButton *)sender{
     [_delegate appSettingClickCallback];
 }
 
-- (void)clickToLoginV:(UIButton *)sender{
-//    [_delegate clickToLoginCallback];
+- (void)clickFocusView:(UIGestureRecognizer *)sender{
+    NSLog(@"clickFocusView");
 }
 
-- (void)clickToFocusV:(UIButton *)sender{
-    
+- (void)clickFansView:(UIGestureRecognizer *)sender{
+    NSLog(@"clickFansView");
 }
 
-- (void)clickToFansV:(UIButton *)sender{
-    
+- (void)clickWorksView:(UIGestureRecognizer *)sender{
+    NSLog(@"clickWorksView");
 }
 
 @end

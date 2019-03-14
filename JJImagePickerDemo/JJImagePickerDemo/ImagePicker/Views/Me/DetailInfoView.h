@@ -35,6 +35,8 @@
 @property (nonatomic, strong) UILabel *fansTitle;
 @property (nonatomic, strong) UILabel *fansNum;
 
+@property (copy, nonatomic) NSArray *personalBKs;
+
 
 @property (weak, nonatomic) id<DetailInfoViewDelegate> delegate;
 
