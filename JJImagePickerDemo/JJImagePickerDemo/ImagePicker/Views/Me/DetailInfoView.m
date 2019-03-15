@@ -25,8 +25,8 @@
 @synthesize focusTitle = _focusTitle;
 @synthesize focusNum = _focusNum;
 
-@synthesize fansTitle = _fansTitle;
 @synthesize fansView = _fansView;
+@synthesize fansTitle = _fansTitle;
 @synthesize fansNum = _fansNum;
 
 @synthesize personalBKs = _personalBKs;
@@ -61,13 +61,14 @@
     [_backgroundView addSubview:_iconView];
     
     _settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_settingBtn setBackgroundImage:[UIImage imageNamed:@"UserSetting"] forState:UIControlStateNormal];
+    [_settingBtn setBackgroundImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
     [_settingBtn addTarget:self action:@selector(clickSetting:) forControlEvents:UIControlEventTouchUpInside];
     [_backgroundView addSubview:_settingBtn];
     
     _userName = [[UILabel alloc] init];
     [_userName setTextColor:[UIColor whiteColor]];
     [_userName setFont:[UIFont fontWithName:@"Verdana" size:20.0f]];
+    [_userName setTextAlignment:NSTextAlignmentCenter];
     [_userName setText:@""];
     [_backgroundView addSubview:_userName];
     
@@ -78,28 +79,32 @@
     
     _workTitle = [UILabel new];
     [_workTitle setText:@"发布"];
-    [_workTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_workTitle setFont:[UIFont boldSystemFontOfSize:16.0f]];
+    [_workTitle setTextAlignment:NSTextAlignmentCenter];
     [_worksNumView addSubview:_workTitle];
     
     _workNum = [UILabel new];
     [_workNum setText:@"0"];
     [_workNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_workNum setTextAlignment:NSTextAlignmentCenter];
     [_worksNumView addSubview:_workNum];
     
     // 关注
     _focusView = [UIView new];
     [_focusView setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:_focusView];
-    
+
     _focusTitle = [UILabel new];
     [_focusTitle setText:@"关注"];
-    [_focusTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_focusTitle setFont:[UIFont boldSystemFontOfSize:16.0f]];
+    [_focusTitle setTextAlignment:NSTextAlignmentCenter];
+    [_focusTitle setTextColor:[UIColor blackColor]];
     [_focusView addSubview:_focusTitle];
-    
-    
+
     _focusNum = [UILabel new];
     [_focusNum setText:@"0"];
     [_focusNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_focusNum setTextAlignment:NSTextAlignmentCenter];
     [_focusView addSubview:_focusNum];
     
     // 粉丝
@@ -109,30 +114,33 @@
     
     _fansTitle = [UILabel new];
     [_fansTitle setText:@"粉丝"];
-    [_fansTitle setFont:[UIFont boldSystemFontOfSize:20.0f]];
+    [_fansTitle setFont:[UIFont boldSystemFontOfSize:16.0f]];
+    [_fansTitle setTextAlignment:NSTextAlignmentCenter];
     [_fansView addSubview:_fansTitle];
     
     _fansNum = [UILabel new];
     [_fansNum setText:@"0"];
     [_fansNum setFont:[UIFont systemFontOfSize:15.0f]];
+    [_fansNum setTextAlignment:NSTextAlignmentCenter];
     [_fansView addSubview:_fansNum];
     
     UIGestureRecognizer *gestureFocus = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFocusView:)];
     [_focusView addGestureRecognizer:gestureFocus];
-    
+
     UIGestureRecognizer *gestureFans = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFansView:)];
     [_fansView addGestureRecognizer:gestureFans];
-    
+
     UIGestureRecognizer *gestureWorks = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickWorksView:)];
     [_worksNumView addGestureRecognizer:gestureWorks];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
     [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.left.mas_equalTo(self.mas_left);
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-60.0f);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(-80.0f);
         make.right.mas_equalTo(self.mas_right);
     }];
     
@@ -143,61 +151,65 @@
     
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(200.0f, 30.0f));
-        make.top.equalTo(self.iconView.mas_bottom).offset(30.0f);
+        make.top.equalTo(self.iconView.mas_bottom).offset(10.0f);
         make.centerX.mas_equalTo(self.backgroundView);
     }];
     
-    [_worksNumView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
-        make.top.mas_equalTo(self.backgroundView.mas_bottom);
-        make.left.mas_equalTo(self.mas_left);
+    [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
+        make.right.mas_equalTo(self.backgroundView.mas_right).offset(-20.0f);
+        make.top.mas_equalTo(self.backgroundView.mas_top).offset(40.0f);
     }];
     
+    NSArray *array = [NSArray arrayWithObjects:_worksNumView, _focusView, _fansView, nil];
+    [array mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
+    [array mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.backgroundView.mas_bottom);
+        make.width.mas_equalTo(self.frame.size.width / 3);
+        make.height.mas_equalTo(80.0f);
+    }];
+    
+//    [_worksNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
+//        make.top.mas_equalTo(self.backgroundView.mas_bottom);
+//        make.left.mas_equalTo(self.mas_left);
+//    }];
+//
     [_workTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.worksNumView);
         make.top.mas_equalTo(self.worksNumView).offset(10.0f);
+        make.centerX.mas_equalTo(self.worksNumView.mas_centerX);
     }];
-    
+
     [_workNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.worksNumView);
+        make.centerX.mas_equalTo(self.worksNumView.mas_centerX);
         make.bottom.mas_equalTo(self.worksNumView).offset(-10.0f);
     }];
-    
-    [_focusView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
-        make.top.mas_equalTo(self.backgroundView.mas_bottom);
-        make.left.mas_equalTo(self.worksNumView.mas_right);
-    }];
-    
+
+    // 关注
     [_focusTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.focusView);
         make.top.mas_equalTo(self.focusView).offset(10.0f);
+        make.centerX.mas_equalTo(self.focusView.mas_centerX);
     }];
-    
+
     [_focusNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.focusView);
+        make.centerX.mas_equalTo(self.focusView.mas_centerX);
         make.bottom.mas_equalTo(self.focusView).offset(-10.0f);
     }];
-    
-    [_fansView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
-        make.top.mas_equalTo(self.backgroundView.mas_bottom);
-        make.right.mas_equalTo(self.mas_right);
-    }];
-    
-    [_focusTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    // 粉丝
+    [_fansTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.fansView);
         make.top.mas_equalTo(self.fansView).offset(10.0f);
+        make.centerX.mas_equalTo(self.fansView.mas_centerX);
     }];
-    
+
     [_fansNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
-        make.center.mas_equalTo(self.fansView);
+        make.centerX.mas_equalTo(self.fansTitle.mas_centerX);
         make.bottom.mas_equalTo(self.fansView).offset(-10.0f);
     }];
 }
@@ -209,8 +221,8 @@
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
     [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]]];
     [_userName setText:name];
-    [_focusNum setText:@""];
-    [_fansNum setText:@""];
+//    [_focusNum setText:@""];
+//    [_fansNum setText:@""];
 }
 
 - (void)clickSetting:(UIButton *)sender{
