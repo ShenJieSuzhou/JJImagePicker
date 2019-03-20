@@ -43,13 +43,13 @@
 - (void)commonInitlization{
     _personalBKs =  [NSArray arrayWithObjects:@"personal_1", @"personal_2", @"personal_3", @"personal_4", @"personal_5",@"personal_6", @"personal_7", nil];
     
-    NSString *bgName = [self.personalBKs objectAtIndex:[self getRandomNumber:0 to:6]];
+    NSString *bgName = [self.personalBKs objectAtIndex:[self getRandomNumber:0 to:7]];
     
     // 登录成功后显示的控件
     _backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    _backgroundView.contentMode = UIViewContentModeScaleAspectFill;
     [_backgroundView setBackgroundColor:[UIColor whiteColor]];
-    [_backgroundView setImage:[UIImage imageNamed:bgName]];
+    [_backgroundView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", bgName]]];
     [self addSubview:_backgroundView];
     
     _iconView = [[UIImageView alloc] init];
@@ -61,7 +61,9 @@
     [_backgroundView addSubview:_iconView];
     
     _settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_settingBtn setBackgroundImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+    [_settingBtn setBackgroundColor:[UIColor clearColor]];
+    [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
+    [_settingBtn.titleLabel setTextColor:[UIColor whiteColor]];
     [_settingBtn addTarget:self action:@selector(clickSetting:) forControlEvents:UIControlEventTouchUpInside];
     [_backgroundView addSubview:_settingBtn];
     
@@ -156,9 +158,9 @@
     }];
     
     [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
+        make.size.mas_equalTo(CGSizeMake(50.0f, 30.0f));
         make.right.mas_equalTo(self.backgroundView.mas_right).offset(-20.0f);
-        make.top.mas_equalTo(self.backgroundView.mas_top).offset(40.0f);
+        make.top.mas_equalTo(self.backgroundView.mas_top).offset(35.0f);
     }];
     
     NSArray *array = [NSArray arrayWithObjects:_worksNumView, _focusView, _fansView, nil];
