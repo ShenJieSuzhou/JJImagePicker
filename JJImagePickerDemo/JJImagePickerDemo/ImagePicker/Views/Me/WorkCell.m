@@ -27,12 +27,9 @@
     self.workImageV.clipsToBounds = YES;
     [self.workImageV setBackgroundColor:[UIColor clearColor]];
     [self addSubview:self.workImageV];
+
     
-//    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
-//    [self addSubview:self.likeBtn];
-    
-    _multImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"albumCover"]];
+    _multImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mutileImages"]];
     _multImg.contentMode = UIViewContentModeScaleAspectFill;
     _multImg.clipsToBounds = YES;
     [_multImg setBackgroundColor:[UIColor clearColor]];
@@ -47,16 +44,10 @@
         make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(2.5, 2.5, 2.5, 2.5));
     }];
     
-//    [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(75.0f, 25.0f));
-//        make.bottom.equalTo(self).offset(-10.0f);
-//        make.right.equalTo(self).offset(-10.0f);
-//    }];
-    
     [_multImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
-        make.bottom.equalTo(self.workImageV).offset(10.0f);
-        make.right.equalTo(self.workImageV).offset(10.0f);
+        make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
+        make.bottom.equalTo(self.workImageV).offset(-5.0f);
+        make.right.equalTo(self.workImageV).offset(-5.0f);
     }];
 }
 
@@ -80,7 +71,7 @@
                 [weakself.workImageV setImage:image];
             });
         }else{
-            [weakself.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [weakself.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] placeholderImage:[UIImage imageNamed:@"workDefault"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 if(!error){
                     [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString completion:^{
                         NSLog(@"图片缓存成功");
@@ -91,7 +82,8 @@
             }];
         }
     }];
-    [self.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    
+    [self.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] placeholderImage:[UIImage imageNamed:@"workDefault"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         [weakself.workImageV setImage:image];
     }];
 }

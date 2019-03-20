@@ -133,9 +133,7 @@
 - (void)appSettingClickCallback{
     SettingViewController *settingView = [SettingViewController new];
     settingView.delegate = self;
-    [self presentViewController:settingView animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:settingView animated:YES];
 }
 
 #pragma mark - loginoutCallback

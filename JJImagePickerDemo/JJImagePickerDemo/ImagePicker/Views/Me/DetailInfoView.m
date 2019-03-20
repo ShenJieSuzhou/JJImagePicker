@@ -41,12 +41,12 @@
 }
 
 - (void)commonInitlization{
-    _personalBKs =  [NSArray arrayWithObjects:@"personal_1", @"personal_2", @"personal_3", @"personal_4", @"personal_5",@"personal_6", @"personal_7", nil];
+    _personalBKs =  [NSArray arrayWithObjects:@"personal_1", @"personal_2", @"personal_3", @"personal_4", @"personal_5",@"personal_6", @"personal_7", @"personal_8", nil];
     
     NSString *bgName = [self.personalBKs objectAtIndex:[self getRandomNumber:0 to:7]];
     
     // 登录成功后显示的控件
-    _backgroundView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _backgroundView = [[UIImageView alloc] init];
     _backgroundView.contentMode = UIViewContentModeScaleAspectFill;
     [_backgroundView setBackgroundColor:[UIColor whiteColor]];
     [_backgroundView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", bgName]]];
@@ -64,14 +64,13 @@
     [_settingBtn setBackgroundColor:[UIColor clearColor]];
     [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
     [_settingBtn.titleLabel setTextColor:[UIColor whiteColor]];
-    [_settingBtn addTarget:self action:@selector(clickSetting:) forControlEvents:UIControlEventTouchUpInside];
-    [_backgroundView addSubview:_settingBtn];
+    [_settingBtn addTarget:self action:@selector(clickSettingT:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_settingBtn];
     
     _userName = [[UILabel alloc] init];
     [_userName setTextColor:[UIColor whiteColor]];
     [_userName setFont:[UIFont fontWithName:@"Verdana" size:20.0f]];
     [_userName setTextAlignment:NSTextAlignmentCenter];
-    [_userName setText:@""];
     [_backgroundView addSubview:_userName];
     
     // 作品
@@ -126,13 +125,13 @@
     [_fansNum setTextAlignment:NSTextAlignmentCenter];
     [_fansView addSubview:_fansNum];
     
-    UIGestureRecognizer *gestureFocus = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFocusView:)];
+    UITapGestureRecognizer *gestureFocus = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFocusView:)];
     [_focusView addGestureRecognizer:gestureFocus];
 
-    UIGestureRecognizer *gestureFans = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickFansView:)];
+    UITapGestureRecognizer *gestureFans = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFansView:)];
     [_fansView addGestureRecognizer:gestureFans];
 
-    UIGestureRecognizer *gestureWorks = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(clickWorksView:)];
+    UITapGestureRecognizer *gestureWorks = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickWorksView:)];
     [_worksNumView addGestureRecognizer:gestureWorks];
 }
 
@@ -150,7 +149,7 @@
         make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
         make.center.mas_equalTo(self.backgroundView);
     }];
-    
+
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(200.0f, 30.0f));
         make.top.equalTo(self.iconView.mas_bottom).offset(10.0f);
@@ -159,8 +158,8 @@
     
     [_settingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 30.0f));
-        make.right.mas_equalTo(self.backgroundView.mas_right).offset(-20.0f);
-        make.top.mas_equalTo(self.backgroundView.mas_top).offset(35.0f);
+        make.right.mas_equalTo(self.mas_right).offset(-20.0f);
+        make.top.mas_equalTo(self.mas_top).offset(35.0f);
     }];
     
     NSArray *array = [NSArray arrayWithObjects:_worksNumView, _focusView, _fansView, nil];
@@ -170,7 +169,7 @@
         make.width.mas_equalTo(self.frame.size.width / 3);
         make.height.mas_equalTo(80.0f);
     }];
-    
+
 //    [_worksNumView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
 //        make.top.mas_equalTo(self.backgroundView.mas_bottom);
@@ -227,7 +226,7 @@
 //    [_fansNum setText:@""];
 }
 
-- (void)clickSetting:(UIButton *)sender{
+- (void)clickSettingT:(UIButton *)sender{
     [_delegate appSettingClickCallback];
 }
 

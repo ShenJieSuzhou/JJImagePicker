@@ -20,7 +20,7 @@
 
 #define GET_WORKS_REQUEST                               @"http://172.16.10.45:8080/admin/api/getMyWorks"
 
-#define POST_WORKS_REQUEST                               @"http://172.16.10.45:8080/admin/api/postMyWorks"
+#define POST_WORKS_REQUEST                              @"http://172.16.10.45:8080/admin/api/postMyWorks"
 
 #define UPDATE_NICKNAME_REQUEST                         @"http://172.16.10.45:8080/admin/setting/api/updateNickName"
 

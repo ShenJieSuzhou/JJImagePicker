@@ -67,9 +67,7 @@
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -83,17 +81,14 @@
                 NSString *name = cell.detailTextLabel.text;
                 EditNameViewController *editNameView = [EditNameViewController new];
                 editNameView.delegate = self;
-                [self presentViewController:editNameView animated:YES completion:^{
-                    [editNameView setNickName:name];
-                }];
+                [editNameView setNickName:name];
+                [self.navigationController pushViewController:editNameView animated:YES];
             }
                 break;
             case 2:{
                 EditAgendViewController *agendaView = [EditAgendViewController new];
                 agendaView.delegate = self;
-                [self presentViewController:agendaView animated:YES completion:^{
-                    
-                }];
+                [self.navigationController pushViewController:agendaView animated:YES];
             }
                 break;
             case 3:{
@@ -112,9 +107,7 @@
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             SecurityViewController *securityView = [SecurityViewController new];
-            [self presentViewController:securityView animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:securityView animated:YES];
         }
     }else if(indexPath.section == 2){
         
@@ -122,9 +115,7 @@
         
     }else if(indexPath.section == 4){
         AboutAppViewController *aboutView = [AboutAppViewController new];
-        [self presentViewController:aboutView animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:aboutView animated:YES];
     }else if(indexPath.section == 5){
         //通知服务器下线
         [[JJTokenManager shareInstance] removeAllUserInfo];
@@ -158,9 +149,7 @@
 
 #pragma mark EditAgendDelegate
 - (void)EditAgendSucceedCallBack:(int)agend viewController:(EditAgendViewController *)viewCtrl{
-    [viewCtrl dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [viewCtrl.navigationController popViewControllerAnimated:YES];
     
     NSString *value = @"";
     if(agend == 0){
@@ -181,9 +170,7 @@
 
 #pragma mark EditNameDelegate
 - (void)EditNameSuccessCallBack:(NSString *)name viewController:(EditNameViewController *)viewCtl{
-    [viewCtl dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [viewCtl.navigationController popViewControllerAnimated:YES];
     
     UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     if(!cell){

@@ -47,9 +47,7 @@
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //懒加载

@@ -114,9 +114,7 @@
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickSaveBtn:(UIButton *)sender{

@@ -37,9 +37,7 @@
 }
 
 - (void)clickCancelBtn:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
