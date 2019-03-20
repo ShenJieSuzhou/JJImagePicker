@@ -139,15 +139,7 @@
 #pragma mark - loginoutCallback
 - (void)userLoginOutCallBack:(SettingViewController *)viewController{
     //回到首页
-//    UIWindow *windowW = [UIApplication sharedApplication].keyWindow;
-//    UITabBarController *tabBarVC = (UITabBarController *)windowW.rootViewController;
-//    if(tabBarVC) {
-//        [tabBarVC setSelectedIndex:0];
-//    }
-//
-//    [viewController dismissViewControllerAnimated:YES completion:^{
-//
-//    }];
+    [self.navigationController pushViewController:[JJLoginViewController new] animated:YES];
 }
 
 
