@@ -303,9 +303,9 @@
         [editViewController setParentPage:PAGE_PUBLISH];
         editViewController.delegate = self;
         UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
-        
+       
         [self presentViewController:editViewController animated:YES completion:^{
-            [editViewController setEditImage:origanial];
+             [editViewController setEditImage:origanial];
         }];
     }else if(indexPath.row == [self.selectedImages count]){
         if([self.selectedImages count] == 9){
@@ -315,6 +315,7 @@
             [editViewController setParentPage:PAGE_PUBLISH];
             editViewController.delegate = self;
             UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
+            
             
             [self presentViewController:editViewController animated:YES completion:^{
                 [editViewController setEditImage:origanial];

@@ -123,7 +123,7 @@
         imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
         imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;
-        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
+//        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
     }
 }
 
@@ -166,7 +166,6 @@
 //完成
 - (void)finishedBtnClick:(UIButton *)sender{
     //跳转到发布页面
-//    _preViewImage = nil;
     _preImage = nil;
     _editToolView = nil;
     _editData = nil;
@@ -174,13 +173,29 @@
     _historys = nil;
     _pAdjustModel = nil;
     
+    if([self.selectedStickers count] > 0){
+        for (int i = 0; i < [self.selectedStickers count]; i++) {
+            StickerParttenView *stickerView = [self.selectedStickers objectAtIndex:i];
+            [stickerView hideDelAndMoveBtn];
+        }
+    }
+    
+    UIImage *combineImg = [self combineImagesToOne:_preViewImage];
     if(_parentPage == PAGE_GALLARY){
         
     }else if(_parentPage == PAGE_PUBLISH){
         if([_delegate respondsToSelector:@selector(AdjustImageFinished:image:)]){
-            [_delegate AdjustImageFinished:self image:_preViewImage.image];
+            [_delegate AdjustImageFinished:self image:combineImg];
         }
     }
+}
+
+- (UIImage *)combineImagesToOne:(UIImageView *)view{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, [[UIScreen mainScreen] scale]);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 - (NSMutableArray *)parseDataToObject:(NSDictionary *)fieldDic{
@@ -208,8 +223,6 @@
             toolType = JJEditToolFilter;
         }else if([name isEqualToString:@"sticker"]){
             toolType = JJEditToolSticker;
-//        }else if([name isEqualToString:@"playWords"]){
-//            toolType = JJEditToolWords;
         }else if([name isEqualToString:@"Brush"]){
             toolType = JJEditToolBrush;
         }else if([name isEqualToString:@"tag"]){
@@ -441,8 +454,6 @@
         return;
     }
 
-//    [self.selectedStickers removeAllObjects];
-//    self.selectedStickers = stickers;
     for (int i = 0; i < [stickers count]; i++) {
         StickerParttenView *sticker = [stickers objectAtIndex:i];
         [self.preViewImage addSubview:sticker];
