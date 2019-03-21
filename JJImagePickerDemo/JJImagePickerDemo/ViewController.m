@@ -89,9 +89,11 @@
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
     self.cpViewController = [CameraPhotoViewController new];
-    [self presentViewController:self.cpViewController animated:YES completion:^{
-
-    }];
+//    [self presentViewController:self.cpViewController animated:YES completion:^{
+//
+//    }];
+    
+    [self.navigationController pushViewController:self.cpViewController animated:YES];
 }
 
 //#pragma - mark LoginSessionDelegate

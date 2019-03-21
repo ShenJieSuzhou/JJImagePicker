@@ -87,6 +87,12 @@
     self.pAdjustModel = [[AdjustModel alloc] init];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    [self layoutImageView];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -136,7 +142,6 @@
     }
     
     [self.preViewImage setImage:image];
-    [self layoutImageView];
 }
 
 - (UIImageView *)preViewImage{
@@ -160,9 +165,7 @@
     _historys = nil;
     _pAdjustModel = nil;
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //完成
@@ -277,10 +280,7 @@
             jjCropView.delegate = self;
             //加载裁剪
             [jjCropView setOptionsAray:[NSMutableArray arrayWithArray:array]];
-            [self presentViewController:jjCropView animated:YES completion:^{
-                
-            }];
-            
+            [self.navigationController pushViewController:jjCropView animated:YES];
         }
             break;
         case JJEditToolAdjust:{
@@ -288,18 +288,14 @@
             [adjustView setSlideValue:self.pAdjustModel];
             [adjustView setEditImage:self.preViewImage.image];
             [adjustView setAdToolArrays:array];
-            [self presentViewController:adjustView animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:adjustView animated:YES];
         }
             break;
         case JJEditToolFilter:{
             FilterViewController *jjFilterView = [FilterViewController new];
             jjFilterView.delegate = self;
             [jjFilterView setEditImage:self.preViewImage.image];
-            [self presentViewController:jjFilterView animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:jjFilterView animated:YES];
         }
             break;
         case JJEditToolSticker:{
@@ -308,17 +304,13 @@
             [jjStickerView setStickerArrays:[NSMutableArray arrayWithArray:array]];
             [jjStickerView setSelectedStickers:self.selectedStickers];
             [jjStickerView setEditImage:self.preViewImage.image];
-            [self presentViewController:jjStickerView animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:jjStickerView animated:YES];
         }
             break;
         case JJEditToolBrush:{
             WordsBrushViewController *wordsBrushView = [WordsBrushViewController new];
             wordsBrushView.delegate = self;
-            [self presentViewController:wordsBrushView animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:wordsBrushView animated:YES];
         }
             break;
         case JJEditToolTag:{
@@ -352,9 +344,7 @@
             scrawlViewController.delegate = self;
             [scrawlViewController setSToolArrays:array];
             [scrawlViewController setEditImage:self.preViewImage.image];
-            [self presentViewController:scrawlViewController animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:scrawlViewController animated:YES];
         }
             break;
         default:
@@ -363,9 +353,7 @@
 }
 
 - (void)PhotoEditSubEditToolDismiss{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
@@ -380,18 +368,13 @@
     
     self.preViewImage.image = image;
     [self layoutImageView];
-    [cropViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [cropViewController.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)filterViewController:(nonnull FilterViewController *)filterViewController didAddFilterToImage:(nonnull UIImage *)image{
     self.preViewImage.image = image;
     [self layoutImageView];
-    
-    [filterViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [filterViewController.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -JJTagCategoryDelegate
@@ -437,6 +420,7 @@
 
 #pragma mark - JJWordsDelegate
 - (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsModel *)words{
+    [viewController.navigationController popViewControllerAnimated:YES];
     WordsView *view = [[WordsView alloc] initWithFrame:self.preViewImage.frame];
     view.delegate = self;
     [view setWModel:words];
@@ -459,6 +443,7 @@
 
 #pragma mark - JJStickDelegate
 - (void)stickerViewController:(nonnull StickerViewController *)viewController didAddStickerToImage:(nonnull NSMutableArray *)stickers{
+    [viewController.navigationController popViewControllerAnimated:YES];
     if([stickers count] == 0 || !stickers){
         return;
     }

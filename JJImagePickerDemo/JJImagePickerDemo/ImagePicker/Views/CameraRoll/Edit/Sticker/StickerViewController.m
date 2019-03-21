@@ -236,9 +236,6 @@
     }
     
     [self.delegate stickerViewController:self didAddStickerToImage:self.selStickers];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -250,9 +247,7 @@
         _preViewImage = nil;
         _layerV = nil;
         _stickerListView = nil;
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

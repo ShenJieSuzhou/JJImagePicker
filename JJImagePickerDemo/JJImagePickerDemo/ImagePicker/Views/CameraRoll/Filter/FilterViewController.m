@@ -128,9 +128,7 @@
     _layerV = nil;
     _filterView = nil;
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditToolConfirm{

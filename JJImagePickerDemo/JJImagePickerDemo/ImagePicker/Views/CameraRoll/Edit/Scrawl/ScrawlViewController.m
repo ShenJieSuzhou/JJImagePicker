@@ -82,9 +82,7 @@
 - (void)PhotoEditSubEditToolDismiss{
     [self.mosaicDrawingboard cancelPaint];
     self.mosaicDrawingboard = nil;
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
@@ -92,9 +90,7 @@
     if([_delegate respondsToSelector:@selector(ScrawlDidFinished:)]){
         [_delegate ScrawlDidFinished:image];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV actionType:(PhotoEditScrawlType)scrawlType{

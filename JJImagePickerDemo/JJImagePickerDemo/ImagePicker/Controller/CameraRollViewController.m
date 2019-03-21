@@ -42,10 +42,8 @@
 
 #pragma mark - JJCameraSessionDelegate
 //取消拍照
-- (void)captureImageCancel{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+- (void)captureImageCancel{    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)captureImageFinished:(UIImage *)image{
@@ -84,10 +82,12 @@
 //编辑照片
 - (void)editImage:(UIButton *)sender{
     UIImage *photoImage = self.snapShotView.snapShot;
-    __weak typeof(self) weakSelf = self;
-    [self presentViewController:self.photoEditingView animated:YES completion:^{
-        [weakSelf.photoEditingView setEditImage:photoImage];
-    }];
+//    __weak typeof(self) weakSelf = self;
+//    [self presentViewController:self.photoEditingView animated:YES completion:^{
+//        [weakSelf.photoEditingView setEditImage:photoImage];
+//    }];
+    [self.photoEditingView setEditImage:photoImage];
+    [self.navigationController pushViewController:self.photoEditingView animated:YES];
 }
 
 //使用该照片，并存入相册

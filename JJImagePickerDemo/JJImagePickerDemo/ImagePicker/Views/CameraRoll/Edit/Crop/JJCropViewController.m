@@ -323,9 +323,7 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 110.0f;
     [self.editSubToolView removeFromSuperview];
     self.editSubToolView = nil;
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //裁剪结果提交

@@ -98,10 +98,8 @@
     return _cusNavbar;
 }
 
-- (void)OnCancelCLick:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+- (void)OnCancelCLick:(UIButton *)sender{    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)OnConfirmlCLick:(UIButton *)sender{
@@ -110,9 +108,6 @@
         
         [_delegate WordsBrushViewController:self didAddWordsToImage:model];
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 #pragma mark - keyboard

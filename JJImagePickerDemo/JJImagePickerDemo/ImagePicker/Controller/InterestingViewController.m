@@ -216,6 +216,8 @@
 //    }
 //
 //    [vc dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //发表
@@ -304,9 +306,8 @@
         editViewController.delegate = self;
         UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
        
-        [self presentViewController:editViewController animated:YES completion:^{
-             [editViewController setEditImage:origanial];
-        }];
+        [editViewController setEditImage:origanial];
+        [self.navigationController pushViewController:editViewController animated:YES];
     }else if(indexPath.row == [self.selectedImages count]){
         if([self.selectedImages count] == 9){
             _currentIndex = indexPath.row;
@@ -315,11 +316,9 @@
             [editViewController setParentPage:PAGE_PUBLISH];
             editViewController.delegate = self;
             UIImage *origanial = [self.selectedImages objectAtIndex:indexPath.row];
-            
-            
-            [self presentViewController:editViewController animated:YES completion:^{
-                [editViewController setEditImage:origanial];
-            }];
+            [editViewController setEditImage:origanial];
+
+            [self.navigationController pushViewController:editViewController animated:YES];
         }else{
             //添加图片
             PhotosViewController *photoViewControl = [PhotosViewController new];
@@ -328,9 +327,7 @@
             int leftNum = (int)(JJ_MAX_PHOTO_NUM - [self.selectedImages count]);
             [photoViewControl setUpGridView:leftNum min:0];
             
-            [self presentViewController:photoViewControl animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:photoViewControl animated:YES];
         }
     }
 }

@@ -83,24 +83,18 @@
         PhotosViewController *photosView = [PhotosViewController new];
         [photosView setUpGridView:JJ_MAX_PHOTO_NUM min:0];
         //获取相机胶卷的图片
-        [self presentViewController:photosView animated:YES completion:^{
-
-        }];
+        [self.navigationController pushViewController:photosView animated:YES];
     }
 }
 
 - (void)clickCamera:(UIButton *)sender{
     //弹出相机 📷
     CameraRollViewController *cameraView = [[CameraRollViewController alloc] init];
-    [self presentViewController:cameraView animated:YES completion:^{
-
-    }];
+    [self.navigationController pushViewController:cameraView animated:YES];
 }
 
 - (void)closeView:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

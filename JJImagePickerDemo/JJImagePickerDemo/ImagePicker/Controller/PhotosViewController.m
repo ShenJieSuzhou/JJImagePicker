@@ -162,9 +162,8 @@
 
 //点击取消操作，跳转到app主界面
 - (void)OnCancelCLick:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self.photoGridView.selectedImageAssetArray removeAllObjects];
-    }];
+    [self.photoGridView.selectedImageAssetArray removeAllObjects];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //调整标题按钮的箭头方向
@@ -231,9 +230,7 @@
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.imageAssetsArray selectedImageAssetArray:self.selectedAssetsArray currentImageIndex:indexath.row singleCheckMode:NO];
 
-    [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
-
-    }];
+    [self.navigationController pushViewController:self.photoPreviewViewController animated:YES];
 }
 
 - (void)JJImagePickerViewController:(GridView *)gridView selectedNum:(NSUInteger)selectedCounts{

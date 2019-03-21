@@ -10,6 +10,8 @@
 #import "PhotoEditingViewController.h"
 #import "GlobalDefine.h"
 
+#import <SVProgressHUD/SVProgressHUD.h>
+
 @interface PhotoPreviewViewController ()
 
 @end
@@ -123,9 +125,11 @@
 
 //返回到imagePickView
 - (void)backBtnClick:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
+//    [self dismissViewControllerAnimated:YES completion:^{
 //        [self.photoPreviewView removeFromSuperview];
-    }];
+//    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //点击CheckBox
@@ -136,11 +140,9 @@
         if([self.selectedImageAssetArray count] == self.maxSelectedNum){
             sender.selected = NO;
             self.alertTitleWhenPhotoExceedMaxCount = [NSString stringWithFormat:@"你最多只能选择%@张图片", @(self.maxSelectedNum)];
-            
-            UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message:self.alertTitleWhenPhotoExceedMaxCount preferredStyle:UIAlertControllerStyleAlert];
-            [self presentViewController:alertView animated:YES completion:nil];
-            [self performSelector:@selector(dismiss:) withObject:alertView afterDelay:1.0];
-            
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD showWithStatus:self.alertTitleWhenPhotoExceedMaxCount];
+            [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }
         
@@ -170,10 +172,6 @@
     }
 }
 
-- (void)dismiss:(UIAlertController *)alert{
-    [alert dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)editPhotoBtnClicked:(UIButton *)sender{
 //    PhotoEditingViewController *photoEditView = [PhotoEditingViewController new];
 //    //获得一个照片对象
@@ -191,16 +189,12 @@
             [_mDelegate imagePickerPreviewDidFinish:self ];
         }
         
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         //跳转到编辑文本照片界面
         [self.interestingView setPublishSelectedImages:self.selectedImageAssetArray];
         //跳转到编辑文本照片界面
-        [self presentViewController:self.interestingView animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:self.interestingView animated:YES];
     }
 }
 

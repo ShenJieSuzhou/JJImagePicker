@@ -141,9 +141,7 @@
     _layerV = nil;
     _adjustView = nil;
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditToolConfirm{
@@ -154,9 +152,7 @@
     _preViewImage = nil;
     _layerV = nil;
     _adjustView = nil;
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)PhotoEditSubEditTool:(UICollectionView *)collectionV adjustType:(PhotoEditAdjustTYPE)adjustType{
