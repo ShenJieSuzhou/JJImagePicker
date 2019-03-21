@@ -19,6 +19,7 @@
 @interface PhotoEditingViewController ()
 @property (nonatomic, strong) NSMutableArray *historys;
 @property (nonatomic, strong) NSMutableArray *selectedStickers;
+@property (nonatomic, strong) NSMutableArray *selectedWords;
 @end
 
 @implementation PhotoEditingViewController
@@ -33,6 +34,7 @@
 @synthesize historys = _historys;
 @synthesize pAdjustModel = _pAdjustModel;
 @synthesize parentPage = _parentPage;
+@synthesize selectedWords = _selectedWords;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,6 +43,7 @@
     
     self.historys = [[NSMutableArray alloc] init];
     self.selectedStickers = [[NSMutableArray alloc] init];
+    self.selectedWords = [[NSMutableArray alloc] init];
     
     //背景色去除
     [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
@@ -123,7 +126,6 @@
         imageFrame.origin.x = (CGRectGetWidth(self.layerV.frame) - imageFrame.size.width) * 0.5f;
         imageFrame.origin.y = (CGRectGetHeight(self.layerV.frame) - imageFrame.size.height) * 0.5f;
         self.preViewImage.frame = imageFrame;
-//        self.preViewImage.center = (CGPoint){CGRectGetMidX(viewFrame), CGRectGetMidY(viewFrame)};
     }
 }
 
@@ -243,9 +245,6 @@
 
 /**
  屏幕触摸
-
- @param touches
- @param event 
  */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if([self.selectedStickers count] > 0){
@@ -254,6 +253,14 @@
             [stickerView hideDelAndMoveBtn];
         }
     }
+    
+    if([self.selectedWords count] > 0){
+        for (int i = 0; i < [self.selectedWords count]; i++) {
+            WordsView *wordsView = [self.selectedWords objectAtIndex:i];
+            [wordsView hideBoardAndCloseImg];
+        }
+    }
+    
 }
 
 #pragma mark - PhotoEditingDelegate
@@ -306,8 +313,6 @@
             }];
         }
             break;
-//        case JJEditToolWords:
-//            break;
         case JJEditToolBrush:{
             WordsBrushViewController *wordsBrushView = [WordsBrushViewController new];
             wordsBrushView.delegate = self;
@@ -433,7 +438,11 @@
 #pragma mark - JJWordsDelegate
 - (void)WordsBrushViewController:(nonnull WordsBrushViewController *)viewController didAddWordsToImage:(WordsModel *)words{
     WordsView *view = [[WordsView alloc] initWithFrame:self.preViewImage.frame];
+    view.delegate = self;
     [view setWModel:words];
+    // 保存笔刷到数组中
+    [self.selectedWords addObject:view];
+    
     [self.preViewImage addSubview:view];
 }
 
@@ -458,6 +467,27 @@
         StickerParttenView *sticker = [stickers objectAtIndex:i];
         [self.preViewImage addSubview:sticker];
     }
+}
+
+
+#pragma mark - WordsBrushDelegate
+- (void)WordsBrushTapped:(nonnull WordsView *)wordsView{
+    if([self.selectedWords count] > 0){
+        for (int i = 0; i < [self.selectedWords count]; i++) {
+            WordsView *wordsView = [self.selectedWords objectAtIndex:i];
+            [wordsView hideBoardAndCloseImg];
+        }
+    }
+    
+    [wordsView showBoardAndCloseImg];
+}
+
+- (void)WordsBrushDelete:(nonnull WordsView *)wordsView{
+    if([self.selectedWords containsObject:wordsView]){
+        [self.selectedWords removeObject:wordsView];
+    }
+    
+    [wordsView removeFromSuperview];
 }
 
 @end

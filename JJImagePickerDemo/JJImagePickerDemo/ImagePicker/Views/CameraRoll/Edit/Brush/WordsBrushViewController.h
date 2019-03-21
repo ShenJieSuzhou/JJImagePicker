@@ -22,7 +22,7 @@
 @property (strong, nonatomic) BrushPaneView *brushPaneView;
 @property (strong, nonatomic) TextEditView *textEditView;
 @property (strong, nonatomic) CustomNaviBarView *cusNavbar;
-@property (strong, nonatomic) id<JJWordsDelegate> delegate;
+@property (weak, nonatomic) id<JJWordsDelegate> delegate;
 @end
 
 

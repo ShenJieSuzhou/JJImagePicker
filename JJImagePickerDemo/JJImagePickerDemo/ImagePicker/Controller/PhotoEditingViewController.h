@@ -16,6 +16,7 @@
 #import "JJTagCategoryView.h"
 #import "ScrawlViewController.h"
 #import "WordsBrushViewController.h"
+#import "WordsView.h"
 
 typedef enum : NSUInteger {
     PAGE_GALLARY,
@@ -31,7 +32,7 @@ typedef enum : NSUInteger {
 
 //typedef void(^AdjustViewFinishCallBack)(UIImage *adjustImage, UIViewController *viewController);
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate,ScrawlDelegate>
+@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate,ScrawlDelegate,WordsBrushDelegate>
 
 @property (nonatomic, weak) id<AdjustImageFinishedDelegate> delegate;
 

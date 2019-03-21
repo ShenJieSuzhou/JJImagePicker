@@ -208,14 +208,14 @@
 }
 
 - (void)OnCancelCLick:(UIButton *)sender{
-    UIViewController *vc = self.presentingViewController;
-    
-    //要跳转的界面
-    while (![vc isKindOfClass:[ViewController class]]) {
-        vc = vc.presentingViewController;
-    }
-    
-    [vc dismissViewControllerAnimated:YES completion:nil];
+//    UIViewController *vc = self.presentingViewController;
+//
+//    //要跳转的界面
+//    while (![vc isKindOfClass:[ViewController class]]) {
+//        vc = vc.presentingViewController;
+//    }
+//
+//    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 //发表
