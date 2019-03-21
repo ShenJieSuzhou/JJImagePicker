@@ -15,6 +15,8 @@
 #import "InterestingViewController.h"
 #import "PhotoEditingViewController.h"
 
+#import <SVProgressHUD/SVProgressHUD.h>
+
 @interface PhotosViewController ()<CameraRollViewDelegate, JJImagePickerViewControllerDelegate, PhotoPreviewViewControllerDelegate>
 
 @property (nonatomic, strong) CameraRollView *cameraRollView;
@@ -249,13 +251,9 @@
 }
 
 - (void)JJImagePickerViewController:(GridView *)gridView exceedMaxCount:(NSString *)alert{
-    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"" message:alert preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:alertView animated:YES completion:nil];
-    [self performSelector:@selector(dismiss:) withObject:alertView afterDelay:1.0];
-}
-
-- (void)dismiss:(UIAlertController *)alert{
-    [alert dismissViewControllerAnimated:YES completion:nil];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD showWithStatus:alert];
+    [SVProgressHUD dismissWithDelay:1.0f];
 }
 
 #pragma -mark 底部按钮点击事件
@@ -266,9 +264,7 @@
     //初始化预览相册，当前显示的照片索引
     [self.photoPreviewViewController initImagePickerPreviewViewWithImagesAssetArray:self.imageAssetsArray selectedImageAssetArray:self.selectedAssetsArray currentImageIndex:0 singleCheckMode:NO];
     
-    [self presentViewController:self.photoPreviewViewController animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:self.photoPreviewViewController animated:YES];
 }
 
 - (void)imagePickViewFinishBtnClick:(UIButton *)sender{
@@ -280,10 +276,7 @@
     }else{
         //跳转到编辑文本照片界面
         [self.interestingViewController setPublishSelectedImages:self.selectedAssetsArray];
-        //跳转到编辑文本照片界面
-        [self presentViewController:self.interestingViewController animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:self.interestingViewController animated:YES];
     }
 }
 

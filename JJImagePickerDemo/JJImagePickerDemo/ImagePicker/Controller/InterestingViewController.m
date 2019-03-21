@@ -411,8 +411,7 @@
 
 #pragma mark - AdjustImageFinishedDelegate
 - (void)AdjustImageFinished:(UIViewController *)viewController image:(UIImage *)image{
-    [viewController dismissViewControllerAnimated:YES completion:^{
-    }];
+    [viewController.navigationController popViewControllerAnimated:YES];
     
     [self.selectedImages replaceObjectAtIndex:_currentIndex withObject:image];
     [self.previewCollection reloadData];

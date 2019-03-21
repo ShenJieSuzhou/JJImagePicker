@@ -21,9 +21,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 用户是否登录
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        [self popLoginViewController];
-    }
+//    if(![[LoginSessionManager getInstance] isUserLogin]){
+//        [self popLoginViewController];
+//    }
 }
 
 - (void)viewDidLoad {
