@@ -432,9 +432,8 @@
         }];
     }
     
-    [viewControl dismissViewControllerAnimated:YES completion:^{
-        [self.previewCollection reloadData];
-    }];
+    [self.previewCollection reloadData];
+    [viewControl.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

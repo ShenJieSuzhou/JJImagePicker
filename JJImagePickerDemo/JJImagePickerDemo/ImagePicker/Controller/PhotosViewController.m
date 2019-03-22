@@ -144,9 +144,9 @@
 }
 
 - (void)setSelectedPhotos:(NSMutableArray *)selectedImages{
-    if(!self.photoGridView){
-//        [self.photoGridView updateSelectedImageArray:selectedImages];
-    }
+//    if(!self.photoGridView){
+////        [self.photoGridView updateSelectedImageArray:selectedImages];
+//    }
 }
 
 - (void)OnCameraRollClick:(id)sender{
