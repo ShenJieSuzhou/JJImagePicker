@@ -48,6 +48,8 @@
 		E50B411822421ADB00797DC2 /* personal_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B411022421ADB00797DC2 /* personal_5.jpg */; };
 		E50B411922421ADB00797DC2 /* personal_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B411122421ADB00797DC2 /* personal_6.jpg */; };
 		E50B411A22421ADB00797DC2 /* personal_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B411222421ADB00797DC2 /* personal_3.jpg */; };
+		E50B411D2248A40E00797DC2 /* HomePublsihCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B411C2248A40E00797DC2 /* HomePublsihCell.m */; };
+		E50B41202248BD7200797DC2 /* HomePhotosCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -324,6 +326,10 @@
 		E50B411022421ADB00797DC2 /* personal_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_5.jpg; sourceTree = "<group>"; };
 		E50B411122421ADB00797DC2 /* personal_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_6.jpg; sourceTree = "<group>"; };
 		E50B411222421ADB00797DC2 /* personal_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_3.jpg; sourceTree = "<group>"; };
+		E50B411B2248A40E00797DC2 /* HomePublsihCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePublsihCell.h; sourceTree = "<group>"; };
+		E50B411C2248A40E00797DC2 /* HomePublsihCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePublsihCell.m; sourceTree = "<group>"; };
+		E50B411E2248BD7200797DC2 /* HomePhotosCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePhotosCollectionView.h; sourceTree = "<group>"; };
+		E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePhotosCollectionView.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -746,6 +752,10 @@
 			children = (
 				4487D801218534D4001E7849 /* HomeViewController.h */,
 				4487D802218534D4001E7849 /* HomeViewController.m */,
+				E50B411B2248A40E00797DC2 /* HomePublsihCell.h */,
+				E50B411C2248A40E00797DC2 /* HomePublsihCell.m */,
+				E50B411E2248BD7200797DC2 /* HomePhotosCollectionView.h */,
+				E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1638,10 +1648,12 @@
 				E58C251821D4B2ED001C4D8F /* Works.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
+				E50B411D2248A40E00797DC2 /* HomePublsihCell.m in Sources */,
 				E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */,
 				E5FBADEA21EDD2E100A91A65 /* OriginalWorksViewController.m in Sources */,
 				E50E97E0217DBC290029E231 /* WordsView.m in Sources */,
 				E512B1D9215A061800B06B1B /* StickerCollectionView.m in Sources */,
+				E50B41202248BD7200797DC2 /* HomePhotosCollectionView.m in Sources */,
 				4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */,
 				E542B6D321913603002A7E1E /* JJBottomMenu.m in Sources */,
 				E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */,
