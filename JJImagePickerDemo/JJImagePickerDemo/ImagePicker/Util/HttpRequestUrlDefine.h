@@ -16,6 +16,8 @@
 
 #define AC_LOGIN_REQUEST                                @"http://172.16.10.45:8080/login/accountLogin"
 
+#define REGISTER_USER_REQUEST                           @"http://172.16.10.45:8080/login/registeUser"
+
 #define VERIFY_TOKEN_REQUEST                            @"http://172.16.10.45:8080/login/tokenVerify"
 
 #define GET_WORKS_REQUEST                               @"http://172.16.10.45:8080/admin/api/getMyWorks"

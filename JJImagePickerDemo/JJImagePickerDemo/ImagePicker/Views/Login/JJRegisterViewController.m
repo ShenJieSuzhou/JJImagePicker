@@ -8,7 +8,12 @@
 
 #import "JJRegisterViewController.h"
 #import <Masonry/Masonry.h>
-
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+#import "GlobalDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "JJTokenManager.h"
+#import "LoginModel.h"
 
 @interface JJRegisterViewController ()
 
@@ -222,7 +227,88 @@
 }
 
 - (void)registerUserToLogin:(UIButton *)sender{
-    NSLog(@"登录");
+    if([_accountF.text length] == 0){
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+        [SVProgressHUD showWithStatus:@"用户名不能为空"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if([_accountF.text length] > 24){
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+        [SVProgressHUD showWithStatus:@"用户名不能超过24个字符"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if([_pwdF1.text length] == 0 || [_pwdF2.text length] == 0){
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+        [SVProgressHUD showWithStatus:@"密码不能为空"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if([_pwdF1.text length] < 6 || [_pwdF2.text length] < 6){
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+        [SVProgressHUD showWithStatus:@"密码不能少于6个字符"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if(![_pwdF1.text isEqualToString:_pwdF2.text]){
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+        [SVProgressHUD showWithStatus:@"密码不一致"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    NSString *account = _accountF.text;
+    NSString *password = _pwdF1.text;
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+    [SVProgressHUD show];
+    [HttpRequestUtil JJ_RegisterNewUser:REGISTER_USER_REQUEST account:account pwd:password callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }
+        
+        if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
+            // update 用户信息
+            [weakSelf updateUserLoginInfo:data];
+            
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOGINSUCCESS_NOTIFICATION object:nil];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+}
+
+- (void)updateUserLoginInfo:(NSDictionary *)userInfo{
+    NSString *uid = [userInfo objectForKey:@"user_id"];
+    NSString *userName = [userInfo objectForKey:@"userName"];
+    NSString *token = [userInfo objectForKey:@"token"];
+    NSString *fans = [userInfo objectForKey:@"fans"];
+    NSString *foucs = [userInfo objectForKey:@"focus"];
+    NSString *iconUrl = [userInfo objectForKey:@"iconUrl"];
+    int gender = [[userInfo objectForKey:@"genda"] intValue];
+    NSString *birth = [userInfo objectForKey:@"birth"];
+    NSString *phone = [userInfo objectForKey:@"telephone"];
+    //取出token user_id username
+    LoginModel *userModel = [[LoginModel alloc] initWithName:uid name:userName icon:iconUrl focus:foucs fans:fans gender:gender birth:birth phone:phone token:token works:nil];
+    [[JJTokenManager shareInstance] setUserLoginInfo:userModel];
 }
 
 

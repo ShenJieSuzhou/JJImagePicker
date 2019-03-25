@@ -27,6 +27,15 @@
     }];
 }
 
++ (void)JJ_RegisterNewUser:(NSString *)url account:(NSString *)account pwd:(NSString *)pwd callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:account, @"account", pwd, @"pwd", nil];
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
 + (void)JJ_RequestSMSCode:(NSString *)url phone:(NSString *)telephone callback:(requestCallBack) block{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:telephone, @"phone", nil];
     [[AFNetwork shareManager] requestURL:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
