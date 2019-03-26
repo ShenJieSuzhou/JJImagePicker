@@ -50,6 +50,9 @@
 		E50B411A22421ADB00797DC2 /* personal_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B411222421ADB00797DC2 /* personal_3.jpg */; };
 		E50B411D2248A40E00797DC2 /* HomePublsihCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B411C2248A40E00797DC2 /* HomePublsihCell.m */; };
 		E50B41202248BD7200797DC2 /* HomePhotosCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */; };
+		E50B41232249D4F100797DC2 /* HomeCubeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B41222249D4F100797DC2 /* HomeCubeModel.m */; };
+		E50B41262249F9AE00797DC2 /* HomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B41252249F9AE00797DC2 /* HomeTopView.m */; };
+		E50B4129224A13DB00797DC2 /* HomeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -330,6 +333,12 @@
 		E50B411C2248A40E00797DC2 /* HomePublsihCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePublsihCell.m; sourceTree = "<group>"; };
 		E50B411E2248BD7200797DC2 /* HomePhotosCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePhotosCollectionView.h; sourceTree = "<group>"; };
 		E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePhotosCollectionView.m; sourceTree = "<group>"; };
+		E50B41212249D4F100797DC2 /* HomeCubeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCubeModel.h; sourceTree = "<group>"; };
+		E50B41222249D4F100797DC2 /* HomeCubeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCubeModel.m; sourceTree = "<group>"; };
+		E50B41242249F9AE00797DC2 /* HomeTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTopView.h; sourceTree = "<group>"; };
+		E50B41252249F9AE00797DC2 /* HomeTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTopView.m; sourceTree = "<group>"; };
+		E50B4127224A13DB00797DC2 /* HomeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDetailsViewController.h; sourceTree = "<group>"; };
+		E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeDetailsViewController.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -756,6 +765,10 @@
 				E50B411C2248A40E00797DC2 /* HomePublsihCell.m */,
 				E50B411E2248BD7200797DC2 /* HomePhotosCollectionView.h */,
 				E50B411F2248BD7200797DC2 /* HomePhotosCollectionView.m */,
+				E50B41242249F9AE00797DC2 /* HomeTopView.h */,
+				E50B41252249F9AE00797DC2 /* HomeTopView.m */,
+				E50B4127224A13DB00797DC2 /* HomeDetailsViewController.h */,
+				E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -923,6 +936,8 @@
 				E5AE62F821C10F2200639CF8 /* LoginModel.m */,
 				E58C251621D4B2ED001C4D8F /* Works.h */,
 				E58C251721D4B2ED001C4D8F /* Works.m */,
+				E50B41212249D4F100797DC2 /* HomeCubeModel.h */,
+				E50B41222249D4F100797DC2 /* HomeCubeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1690,6 +1705,7 @@
 				446CFDD521C2AAF300E4D979 /* JJToast.m in Sources */,
 				E5506BEE212FB7D80077E62B /* TabBarView.m in Sources */,
 				E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */,
+				E50B4129224A13DB00797DC2 /* HomeDetailsViewController.m in Sources */,
 				44208E14219E96A80090D983 /* JJForgetPwViewController.m in Sources */,
 				E5DB3340221D637F008D7818 /* CustomNewsBanner.m in Sources */,
 				4487D803218534D4001E7849 /* HomeViewController.m in Sources */,
@@ -1707,6 +1723,7 @@
 				44208E2121A164BE0090D983 /* SecurityViewController.m in Sources */,
 				44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */,
 				E53F2FCB2178891100142A38 /* ScrawlAdjustView.m in Sources */,
+				E50B41232249D4F100797DC2 /* HomeCubeModel.m in Sources */,
 				E55BA987219BF34D0078472D /* LoginSessionManager.m in Sources */,
 				E56B9CC420AD2FA700021DF8 /* AppDelegate.m in Sources */,
 				E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */,
@@ -1737,6 +1754,7 @@
 				E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */,
+				E50B41262249F9AE00797DC2 /* HomeTopView.m in Sources */,
 				449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */,
 				E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */,
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,

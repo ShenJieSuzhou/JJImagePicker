@@ -9,13 +9,14 @@
 #import "HomePhotosCollectionView.h"
 #import <Masonry/Masonry.h>
 #import "HomePublsihCell.h"
-#import "Works.h"
+
 
 
 #define PHOTOS_CELL_IDENTIFIER @"PHOTOS_CELL_IDENTIFIER"
 #define PHOTOS_HEADER_CELL_IDENTIFIER @"PHOTOS_HEADER_CELL_IDENTIFIER"
 #define PHOTOS_FOOTER_CELL_IDENTIFIER @"PHOTOS_FOOTER_CELL_IDENTIFIER"
 
+static CGFloat kMagin = 10.f;
 
 @implementation HomePhotosCollectionReusableView
 
@@ -27,8 +28,6 @@
 }
 
 - (void)commonInitlization{
-    [self setBackgroundColor:[UIColor whiteColor]];
-    
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_titleLabel setTextAlignment:NSTextAlignmentLeft];
     [_titleLabel setText:@"发现"];
@@ -55,6 +54,7 @@
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+        [self setBackgroundColor:[UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1]];
         [self commonInitlization];
     }
     return self;
@@ -62,15 +62,13 @@
 
 - (void)commonInitlization{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    CGFloat itemWidth = self.frame.size.width/2;
-    layout.itemSize = CGSizeMake(itemWidth, itemWidth/0.6);
+    CGFloat itemWidth = (self.frame.size.width - 3 * kMagin) / 2;
+    layout.itemSize = CGSizeMake(itemWidth ,itemWidth / 0.6);
     layout.collectionView.pagingEnabled = YES;
-    layout.minimumLineSpacing = 0;
-    layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
+    layout.sectionInset = UIEdgeInsetsMake(kMagin, kMagin, kMagin, kMagin);
     _photosCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
-    [_photosCollection setBackgroundColor:[UIColor whiteColor]];
+    [_photosCollection setBackgroundColor:[UIColor clearColor]];
     //设置数据源代理
     _photosCollection.dataSource = self;
     _photosCollection.delegate = self;
@@ -89,8 +87,8 @@
     
 }
 
-- (void)updateWorksArray:(NSMutableArray *)works{
-   
+- (void)updatephotosArray:(NSMutableArray *)photos{
+    self.photosArray = photos;
     [_photosCollection reloadData];
 }
 
@@ -100,7 +98,7 @@
  * @brief 设置 HeadCollectionViewCell frame 大小
  */
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(self.frame.size.width, 100);
+    return CGSizeMake(self.frame.size.width, 0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -109,11 +107,11 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    Works *work = [_photosArray objectAtIndex:indexPath.row];
+    HomeCubeModel *work = [_photosArray objectAtIndex:indexPath.row];
     if(work){
-//        if([_delegate respondsToSelector:@selector(goToWorksDetailViewCallback:)]){
-//            [_delegate goToWorksDetailViewCallback:work];
-//        }
+        if([_delegate respondsToSelector:@selector(goToDetailViewCallback:)]){
+            [_delegate goToDetailViewCallback:work];
+        }
     }
 }
 
@@ -129,18 +127,18 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     HomePublsihCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PHOTOS_CELL_IDENTIFIER forIndexPath:indexPath];
     
-    Works *myWorks = [_photosArray objectAtIndex:indexPath.row];
-//    [cell updateCell:[myWorks.path objectAtIndex:0] isMult:isMult];
+    HomeCubeModel *myWorks = [_photosArray objectAtIndex:indexPath.row];
+    [cell updateCell:myWorks];
     
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    if([kind isEqualToString:UICollectionElementKindSectionHeader]){
-        HomePhotosCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PHOTOS_HEADER_CELL_IDENTIFIER forIndexPath:indexPath];
-        
-        return header;
-    }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
+//    if([kind isEqualToString:UICollectionElementKindSectionHeader]){
+//        HomePhotosCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PHOTOS_HEADER_CELL_IDENTIFIER forIndexPath:indexPath];
+//
+//        return header;
+//    }else if([kind isEqualToString:UICollectionElementKindSectionFooter]){
 //        UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:PHOTOS_FOOTER_CELL_IDENTIFIER forIndexPath:indexPath];
 //        if(footerView == nil)
 //        {
@@ -161,9 +159,9 @@
 //                make.center.mas_equalTo(footerView);
 //            }];
 //        }
-        
-        return nil;
-    }
+//
+//        return nil;
+//    }
     
     return nil;
 }

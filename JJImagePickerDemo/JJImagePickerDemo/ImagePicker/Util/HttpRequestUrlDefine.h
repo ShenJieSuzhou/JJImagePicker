@@ -44,4 +44,6 @@
 
 #define THIRDPLATFORM_LOGIN                             @"http://172.16.10.45:8080/login/thirdPlatformLogin"
 
+#define HOT_DISCOVERY_REQUEST                           @"http://172.16.10.45:8080/admin/hot/findAll"
+
 #endif /* HttpRequestUrlDefine_h */

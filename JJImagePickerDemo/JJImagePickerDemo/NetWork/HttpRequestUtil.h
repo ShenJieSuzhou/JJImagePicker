@@ -46,7 +46,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
 
-
 /**
  发布自己的作品
 
@@ -57,7 +56,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param block 回调
  */
 + (void)JJ_PublishMyPhotoWorks:(NSString *)url token:(NSString *)token photoInfo:(NSString *)photoInfo userid:(NSString *)userid callback:(requestCallBack) block;
-
 
 /**
  跟新用户昵称
@@ -126,7 +124,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_SetUserNewPassword:(NSString *)url token:(NSString *)token oldPwd:(NSString *)oldpwd newPwd:(NSString *)newPwd userid:(NSString *)userid callback:(requestCallBack) block;
 
 
-
 /**
  绑定手机请求验证码
 
@@ -160,6 +157,22 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 
 
 + (void)JJ_WechatRequestLogin:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token callback:(requestCallBack) block;
+
+/**
+ 获取主页数据
+
+ @param url 请求地址
+ @param token token
+ @param block 回调
+ */
++ (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex callback:(requestCallBack) block;
+
+
+
+
+
+
+
 
 
 //+++ 以下接口废弃 +++//

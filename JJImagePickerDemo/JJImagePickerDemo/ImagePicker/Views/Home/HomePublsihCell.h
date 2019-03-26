@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Works.h"
+#import "HomeCubeModel.h"
 
 @interface HomePublsihCell : UICollectionViewCell
 
@@ -17,7 +18,7 @@
 @property (strong, nonatomic) UIButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeCount;
 
-- (void)updateCell:(Works *)work;
+- (void)updateCell:(HomeCubeModel *)work;
 
 @end
 

@@ -7,6 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeCubeModel.h"
+
+@protocol  HomePhotosViewDelegate <NSObject>
+
+- (void)goToDetailViewCallback:(HomeCubeModel *)work;
+
+@end
+
 
 @interface HomePhotosCollectionReusableView : UICollectionReusableView
 
@@ -22,6 +30,10 @@
 @property (strong, nonatomic) UICollectionView *photosCollection;
 
 @property (strong, nonatomic) NSMutableArray *photosArray;
+
+@property (weak, nonatomic) id<HomePhotosViewDelegate> delegate;
+
+- (void)updatephotosArray:(NSMutableArray *)photos;
 
 @end
 

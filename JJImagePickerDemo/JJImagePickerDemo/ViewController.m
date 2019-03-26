@@ -44,7 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];
     CustomTabbar *cusTabbar = [[CustomTabbar alloc] init];
     cusTabbar.mdelegate = self;

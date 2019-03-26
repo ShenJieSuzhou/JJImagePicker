@@ -43,6 +43,7 @@
 /*
  * Tips
  */
+#define JJ_PULLDATA_ERROR @"获取数据失败，请重试"
 #define JJ_NETWORK_ERROR @"网络失败，请重试"
 #define JJ_NO_PHOTOS @"你还没有内容，快去发布吧"
 #define JJ_PUBLISH_ERROR @"发布失败"
