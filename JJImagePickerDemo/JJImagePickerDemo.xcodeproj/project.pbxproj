@@ -53,6 +53,8 @@
 		E50B41232249D4F100797DC2 /* HomeCubeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B41222249D4F100797DC2 /* HomeCubeModel.m */; };
 		E50B41262249F9AE00797DC2 /* HomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B41252249F9AE00797DC2 /* HomeTopView.m */; };
 		E50B4129224A13DB00797DC2 /* HomeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */; };
+		E50B412C224B1AB900797DC2 /* OthersMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */; };
+		E50B412F224B1ACC00797DC2 /* CandyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -339,6 +341,10 @@
 		E50B41252249F9AE00797DC2 /* HomeTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTopView.m; sourceTree = "<group>"; };
 		E50B4127224A13DB00797DC2 /* HomeDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeDetailsViewController.h; sourceTree = "<group>"; };
 		E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeDetailsViewController.m; sourceTree = "<group>"; };
+		E50B412A224B1AB900797DC2 /* OthersMainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OthersMainPageViewController.h; sourceTree = "<group>"; };
+		E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OthersMainPageViewController.m; sourceTree = "<group>"; };
+		E50B412D224B1ACC00797DC2 /* CandyFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFansViewController.h; sourceTree = "<group>"; };
+		E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFansViewController.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -769,6 +775,10 @@
 				E50B41252249F9AE00797DC2 /* HomeTopView.m */,
 				E50B4127224A13DB00797DC2 /* HomeDetailsViewController.h */,
 				E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */,
+				E50B412A224B1AB900797DC2 /* OthersMainPageViewController.h */,
+				E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */,
+				E50B412D224B1ACC00797DC2 /* CandyFansViewController.h */,
+				E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1697,6 +1707,7 @@
 				E5506BF7212FD2010077E62B /* JJEditTool.m in Sources */,
 				E5506BE3212FB7D80077E62B /* EditingToolView.m in Sources */,
 				4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */,
+				E50B412C224B1AB900797DC2 /* OthersMainPageViewController.m in Sources */,
 				E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */,
 				E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */,
 				E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */,
@@ -1752,6 +1763,7 @@
 				E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */,
+				E50B412F224B1ACC00797DC2 /* CandyFansViewController.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */,
 				E50B41262249F9AE00797DC2 /* HomeTopView.m in Sources */,
