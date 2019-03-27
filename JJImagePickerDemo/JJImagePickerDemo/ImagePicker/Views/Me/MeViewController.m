@@ -152,9 +152,7 @@
 - (void)goToWorksDetailViewCallback:(Works *)work{
     OriginalWorksViewController *origialWorksView = [OriginalWorksViewController new];
     [origialWorksView setWorksInfo:work];
-    [self presentViewController:origialWorksView animated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:origialWorksView animated:YES];
 }
 
 - (void)dealloc{

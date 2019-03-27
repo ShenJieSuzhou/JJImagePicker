@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import <Masonry/Masonry.h>
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+#import "JJTokenManager.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "Works.h"
 
 @interface OthersMainPageViewController : UIViewController
 
-@end
+- (void)setDetailInfo:(NSString *)userId avater:(UIImage *)avater name:(NSString *)name;
 
-NS_ASSUME_NONNULL_END
+@end

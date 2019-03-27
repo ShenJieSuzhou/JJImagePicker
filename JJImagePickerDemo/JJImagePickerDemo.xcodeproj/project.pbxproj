@@ -55,6 +55,7 @@
 		E50B4129224A13DB00797DC2 /* HomeDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4128224A13DB00797DC2 /* HomeDetailsViewController.m */; };
 		E50B412C224B1AB900797DC2 /* OthersMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */; };
 		E50B412F224B1ACC00797DC2 /* CandyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */; };
+		E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4132224B1BB600797DC2 /* OthersIDView.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -345,6 +346,8 @@
 		E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OthersMainPageViewController.m; sourceTree = "<group>"; };
 		E50B412D224B1ACC00797DC2 /* CandyFansViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFansViewController.h; sourceTree = "<group>"; };
 		E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFansViewController.m; sourceTree = "<group>"; };
+		E50B4131224B1BB600797DC2 /* OthersIDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OthersIDView.h; sourceTree = "<group>"; };
+		E50B4132224B1BB600797DC2 /* OthersIDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OthersIDView.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -765,6 +768,7 @@
 		4487D7FE218534A7001E7849 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E50B4130224B1B7E00797DC2 /* SubViews */,
 				4487D801218534D4001E7849 /* HomeViewController.h */,
 				4487D802218534D4001E7849 /* HomeViewController.m */,
 				E50B411B2248A40E00797DC2 /* HomePublsihCell.h */,
@@ -830,6 +834,15 @@
 				63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E50B4130224B1B7E00797DC2 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E50B4131224B1BB600797DC2 /* OthersIDView.h */,
+				E50B4132224B1BB600797DC2 /* OthersIDView.m */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		E5172610215DBF77008431A1 /* Tags */ = {
@@ -1759,6 +1772,7 @@
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */,
+				E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */,
 				E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */,
 				E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,

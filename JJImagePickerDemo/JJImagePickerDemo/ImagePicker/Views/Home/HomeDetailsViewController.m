@@ -14,9 +14,10 @@
 #import "UIScrollView+UITouch.h"
 #import "JJThumbPhotoCell.h"
 #import "JJTokenManager.h"
+#import "OthersMainPageViewController.h"
 
 @interface HomeDetailsViewController ()
-@property (strong, nonatomic) UIImageView *iconView;
+@property (strong, nonatomic) UIButton *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UICollectionView *workView;
 @property (strong, nonatomic) UIScrollView *worksInfoView;
@@ -126,20 +127,33 @@
     [self.view addSubview:self.worksInfoView];
     
     //icon
-    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    [self.iconView setBackgroundColor:[UIColor clearColor]];
+//    [self.iconView.layer setCornerRadius:self.iconView.frame.size.width / 2];
+//    [self.iconView.layer setMasksToBounds:YES];
+//    NSString *avatar = self.photoWork.iconUrl;
+//    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
+//    [self.worksInfoView addSubview:self.iconView];
+    self.iconView = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.iconView setBackgroundColor:[UIColor clearColor]];
-    [self.iconView.layer setCornerRadius:self.iconView.frame.size.width/2];
+    [self.iconView.layer setCornerRadius:20.0f];
     [self.iconView.layer setMasksToBounds:YES];
-    NSString *avatar = [JJTokenManager shareInstance].getUserAvatar;
-    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
+    NSString *avatar = self.photoWork.iconUrl;
+    
+    [self.iconView setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]] forState:UIControlStateNormal];
+//    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
     [self.worksInfoView addSubview:self.iconView];
+    
+    [self.iconView addTarget:self action:@selector(goToUserZone:) forControlEvents:UIControlEventTouchUpInside];
+//    UITapGestureRecognizer *gestureUser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToUserZone:)];
+//    [self.iconView addGestureRecognizer:gestureUser];
     
     //名字
     self.nameLabel = [[UILabel alloc] init];
     [self.nameLabel setTextAlignment:NSTextAlignmentLeft];
     [self.nameLabel setTextColor:[UIColor blackColor]];
     [self.nameLabel setFont:[UIFont systemFontOfSize:16.0f]];
-    [self.nameLabel setText:[JJTokenManager shareInstance].getUserName];
+    [self.nameLabel setText:self.photoWork.name];
     [self.worksInfoView addSubview:self.nameLabel];
     
     //关注
@@ -257,6 +271,13 @@
         make.right.equalTo(self.workView);
         make.centerY.equalTo(self.likeBtn);
     }];
+}
+
+- (void)goToUserZone:(UIGestureRecognizer *)sender{
+    OthersMainPageViewController *otherZoneView = [OthersMainPageViewController new];
+    [otherZoneView setDetailInfo:self.photoWork.userid avater:self.iconView.currentBackgroundImage name:self.photoWork.name];
+    
+    [self.navigationController pushViewController:otherZoneView animated:YES];
 }
 
 - (void)clickConcernBtn:(UIButton *)sender{

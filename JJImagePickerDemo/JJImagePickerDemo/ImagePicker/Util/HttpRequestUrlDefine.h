@@ -24,6 +24,8 @@
 
 #define POST_WORKS_REQUEST                              @"http://172.16.10.45:8080/admin/api/postMyWorks"
 
+#define OTHERS_DATA_REQUEST                             @"http://172.16.10.45:8080/admin/api/othersData"
+
 #define UPDATE_NICKNAME_REQUEST                         @"http://172.16.10.45:8080/admin/setting/api/updateNickName"
 
 #define UPDATE_GENDER_REQUEST                           @"http://172.16.10.45:8080/admin/setting/api/updateGender"

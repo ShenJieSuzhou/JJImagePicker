@@ -11,9 +11,10 @@
 
 @protocol WorksViewDelegate <NSObject>
 
-- (void)publishWorksCallback;
-
 - (void)goToWorksDetailViewCallback:(Works *)work;
+
+@optional
+- (void)publishWorksCallback;
 
 @end
 
