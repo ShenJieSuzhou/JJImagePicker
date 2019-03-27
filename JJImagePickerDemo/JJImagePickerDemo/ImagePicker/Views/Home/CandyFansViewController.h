@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomPhotoViewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface CandyFansViewController : CustomPhotoViewController<UITableViewDelegate, UITableViewDataSource>
 
-@interface CandyFansViewController : UIViewController
+@property (strong, nonatomic) NSMutableArray *fansList;
+
+@property (strong, nonatomic) UITableView *fansTableView;
 
 @end
 
-NS_ASSUME_NONNULL_END
+

@@ -251,11 +251,12 @@
 }
 
 - (void)clickLikesView:(UIGestureRecognizer *)sender{
-    NSLog(@"clickLikesView");
+//    [_delegate showFansListCallback];
 }
 
 - (void)clickFansView:(UIGestureRecognizer *)sender{
     NSLog(@"clickFansView");
+    [_delegate showFansListCallback];
 }
 
 - (void)clickWorksView:(UIGestureRecognizer *)sender{
