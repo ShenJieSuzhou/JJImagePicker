@@ -72,8 +72,8 @@
     }];
 }
 
-+ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", nil];
++ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", fansid, @"fans_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {        
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

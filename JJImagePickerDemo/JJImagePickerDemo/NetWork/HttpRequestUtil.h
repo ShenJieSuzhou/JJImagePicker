@@ -44,7 +44,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block;
 
 /**
  发布自己的作品

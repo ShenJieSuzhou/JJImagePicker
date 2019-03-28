@@ -23,7 +23,7 @@
 @property (strong, nonatomic) OthersIDView *othersIDView;
 @property (strong, nonatomic) WorksView *workView;
 
-@property (copy, nonatomic) NSString *userId;
+@property (copy, nonatomic) NSString *fansId;
 @property (strong, nonatomic) UIImage *avaterImg;
 @property (copy, nonatomic) NSString *nikeName;
 @property (copy, nonatomic) NSArray *fansList;
@@ -33,7 +33,7 @@
 @implementation OthersMainPageViewController
 @synthesize othersIDView = _othersIDView;
 @synthesize workView = _workView;
-@synthesize userId = _userId;
+@synthesize fansId = _fansId;
 @synthesize avaterImg = _avaterImg;
 @synthesize nikeName = _nikeName;
 @synthesize fansList = _fansList;
@@ -53,8 +53,8 @@
     [self requestUserInfo];
 }
 
-- (void)setDetailInfo:(NSString *)userId avater:(UIImage *)avater name:(NSString *)name{
-    self.userId = userId;
+- (void)setDetailInfo:(NSString *)fansId avater:(UIImage *)avater name:(NSString *)name{
+    self.fansId = fansId;
     self.avaterImg = avater;
     self.nikeName = name;
 }
@@ -86,7 +86,7 @@
 - (void)requestUserInfo{
     [SVProgressHUD show];
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_GetMyWorksArray:OTHERS_DATA_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:self.userId callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_GetMyWorksArray:OTHERS_DATA_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID fansid:self.fansId callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
@@ -95,6 +95,11 @@
         }
         
         if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            if([[data objectForKey:@"errorCode"] isEqualToString:@"1008"]){
+                [SVProgressHUD showErrorWithStatus:JJ_LOGININFO_EXPIRED];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return;
+            }
             [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
             return;

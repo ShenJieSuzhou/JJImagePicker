@@ -50,6 +50,7 @@
 #define JJ_PUBLISH_SUCCESS @"发布成功"
 #define JJ_PUBLISH_UPLOAD_SUCCESS @"上传成功，正在发布"
 #define JJ_LOGININFO_EXCEPTION  @"登录数据异常"
+#define JJ_LOGININFO_EXPIRED  @"登录数据过期,请重新登录"
 #define JJ_WECHATLOGIN_DENIED   @"微信登录用户拒绝"
 #define JJ_WECHATLOGIN_CANCEL @"微信登录用户取消"
 

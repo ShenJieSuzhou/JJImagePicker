@@ -9,6 +9,7 @@
 #import "CandyFansViewController.h"
 #import "FansModel.h"
 #import "FansCell.h"
+#import "OthersMainPageViewController.h"
 
 #define CANDY_FANSCELL_IDENTIFIER @"CANDY_FANSCELL_IDENTIFIER"
 
@@ -95,9 +96,13 @@
     return fansCell;
 }
 
+// 跳转到粉丝详情页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
+    FansModel *fansModel = [self.fansList objectAtIndex:indexPath.row];
+    OthersMainPageViewController *fansZone = [OthersMainPageViewController new];
+    UIImage *fansIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:fansModel.iconUrl]]];
+    [fansZone setDetailInfo:fansModel.userId avater:fansIcon name:fansModel.userName];
+    [self.navigationController pushViewController:fansZone animated:YES];
 }
 
 @end

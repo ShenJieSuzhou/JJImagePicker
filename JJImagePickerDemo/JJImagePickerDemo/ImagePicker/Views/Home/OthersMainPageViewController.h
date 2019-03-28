@@ -16,6 +16,6 @@
 
 @interface OthersMainPageViewController : UIViewController
 
-- (void)setDetailInfo:(NSString *)userId avater:(UIImage *)avater name:(NSString *)name;
+- (void)setDetailInfo:(NSString *)fansId avater:(UIImage *)avater name:(NSString *)name;
 
 @end
