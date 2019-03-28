@@ -13,7 +13,7 @@
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        [self setBackgroundColor:[UIColor colorWithRed:97/255.0f green:191/255.0f blue:129/255.0f alpha:1]];
+        [self setBackgroundColor:[UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1]];
         [self commonInitlization];
     }
     

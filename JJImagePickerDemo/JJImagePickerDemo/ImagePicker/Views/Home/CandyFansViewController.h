@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) UITableView *fansTableView;
 
+- (void)setCandyFansList:(NSMutableArray *)fansData;
+
 @end
 
 

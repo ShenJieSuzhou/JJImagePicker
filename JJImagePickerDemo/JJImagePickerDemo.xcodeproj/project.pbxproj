@@ -56,6 +56,8 @@
 		E50B412C224B1AB900797DC2 /* OthersMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */; };
 		E50B412F224B1ACC00797DC2 /* CandyFansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */; };
 		E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4132224B1BB600797DC2 /* OthersIDView.m */; };
+		E50B4136224C7A0600797DC2 /* FansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4135224C7A0600797DC2 /* FansModel.m */; };
+		E50B413A224C940C00797DC2 /* FansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4138224C940C00797DC2 /* FansCell.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -348,6 +350,10 @@
 		E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFansViewController.m; sourceTree = "<group>"; };
 		E50B4131224B1BB600797DC2 /* OthersIDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OthersIDView.h; sourceTree = "<group>"; };
 		E50B4132224B1BB600797DC2 /* OthersIDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OthersIDView.m; sourceTree = "<group>"; };
+		E50B4134224C7A0600797DC2 /* FansModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FansModel.h; sourceTree = "<group>"; };
+		E50B4135224C7A0600797DC2 /* FansModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FansModel.m; sourceTree = "<group>"; };
+		E50B4137224C940C00797DC2 /* FansCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FansCell.h; sourceTree = "<group>"; };
+		E50B4138224C940C00797DC2 /* FansCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FansCell.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -841,6 +847,8 @@
 			children = (
 				E50B4131224B1BB600797DC2 /* OthersIDView.h */,
 				E50B4132224B1BB600797DC2 /* OthersIDView.m */,
+				E50B4137224C940C00797DC2 /* FansCell.h */,
+				E50B4138224C940C00797DC2 /* FansCell.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -961,6 +969,8 @@
 				E58C251721D4B2ED001C4D8F /* Works.m */,
 				E50B41212249D4F100797DC2 /* HomeCubeModel.h */,
 				E50B41222249D4F100797DC2 /* HomeCubeModel.m */,
+				E50B4134224C7A0600797DC2 /* FansModel.h */,
+				E50B4135224C7A0600797DC2 /* FansModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1731,6 +1741,7 @@
 				E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */,
 				E50B4129224A13DB00797DC2 /* HomeDetailsViewController.m in Sources */,
 				44208E14219E96A80090D983 /* JJForgetPwViewController.m in Sources */,
+				E50B413A224C940C00797DC2 /* FansCell.m in Sources */,
 				E5DB3340221D637F008D7818 /* CustomNewsBanner.m in Sources */,
 				4487D803218534D4001E7849 /* HomeViewController.m in Sources */,
 				E5506BE0212FB7D80077E62B /* TOCropScrollView.m in Sources */,
@@ -1771,6 +1782,7 @@
 				4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
+				E50B4136224C7A0600797DC2 /* FansModel.m in Sources */,
 				E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */,
 				E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */,
 				E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */,

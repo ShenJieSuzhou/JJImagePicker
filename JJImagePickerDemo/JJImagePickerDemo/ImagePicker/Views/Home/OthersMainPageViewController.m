@@ -140,6 +140,7 @@
 #pragma mark - OthersIDInfoViewDelegate
 - (void)showFansListCallback{
     CandyFansViewController *fansView = [CandyFansViewController new];
+    [fansView setCandyFansList:[NSMutableArray arrayWithArray:self.fansList]];
     [self.navigationController pushViewController:fansView animated:YES];
 }
 
