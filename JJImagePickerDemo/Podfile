@@ -7,5 +7,6 @@ target 'JJImagePickerDemo' do
     pod 'Masonry'
     pod 'YYText'
     pod 'Qiniu', "~> 7.1"
-
+    pod 'MJRefresh'
+    
 end

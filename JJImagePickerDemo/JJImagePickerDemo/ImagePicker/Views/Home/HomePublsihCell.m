@@ -52,10 +52,13 @@
     [_avaterView.layer setMasksToBounds:YES];
     [self addSubview:_avaterView];
     
-    _likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_likeBtn setBackgroundColor:[UIColor clearColor]];
-    [_likeBtn setBackgroundImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-    [_likeBtn setBackgroundImage:[UIImage imageNamed:@"like_sel"] forState:UIControlStateSelected];
+    _likeBtn = [JJLikeButton coolButtonWithImage:[UIImage imageNamed:@"heart"] ImageFrame:CGRectMake(0, 0, 20, 20)];
+    //图片选中状态颜色
+    _likeBtn.imageColorOn = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //圆圈颜色
+    _likeBtn.circleColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //线条颜色
+    _likeBtn.lineColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
     [_likeBtn addTarget:self action:@selector(clickLikeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeBtn];
     
@@ -104,9 +107,15 @@
     }];
 }
 
-- (void)clickLikeBtn:(UIButton *)sender{
+- (void)clickLikeBtn:(JJLikeButton *)sender{
     NSLog(@"%s", __func__);
-    sender.selected = !sender.selected;
+    if (sender.selected) {
+        //未选中状态
+        [sender deselect];
+    } else {
+        //选中状态
+        [sender select];
+    }
 }
 
 - (void)updateCell:(HomeCubeModel *)work{
