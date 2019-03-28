@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeCubeModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @protocol  HomePhotosViewDelegate <NSObject>
 

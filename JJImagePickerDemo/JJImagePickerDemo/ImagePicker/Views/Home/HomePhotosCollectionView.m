@@ -80,6 +80,43 @@ static CGFloat kMagin = 10.f;
     [_photosCollection registerClass:[HomePhotosCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PHOTOS_HEADER_CELL_IDENTIFIER];
     [_photosCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:PHOTOS_FOOTER_CELL_IDENTIFIER];
     [self addSubview:_photosCollection];
+    
+    //下拉刷新
+    __weak typeof(self) weakSelf = self;
+    _photosCollection.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+//        for (int i = 0; i<10; i++) {
+//            [weakSelf.colors insertObject:MJRandomColor atIndex:0];
+//        }
+//
+//        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [weakSelf.collectionView reloadData];
+//
+//            // 结束刷新
+//            [weakSelf.collectionView.mj_header endRefreshing];
+//        });
+        [weakSelf.photosCollection.mj_header endRefreshing];
+    }];
+    [_photosCollection.mj_header beginRefreshing];
+    
+    // 上拉刷新
+    _photosCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        for (int i = 0; i<5; i++) {
+//            [weakSelf.colors addObject:MJRandomColor];
+//        }
+//
+//        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [weakSelf.collectionView reloadData];
+//
+//            // 结束刷新
+//            [weakSelf.collectionView.mj_footer endRefreshing];
+//        });
+        [weakSelf.photosCollection.mj_footer endRefreshing];
+    }];
+    // 默认先隐藏footer
+//    _photosCollection.mj_footer.hidden = YES;
 }
 
 - (void)layoutSubviews{
