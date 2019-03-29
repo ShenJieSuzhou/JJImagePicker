@@ -12,6 +12,8 @@
 
 @property (nonatomic, copy) NSArray *path;
 
+@property (nonatomic, copy) NSString *photoId;
+
 @property (nonatomic, copy) NSString *userid;
 
 @property (nonatomic, copy) NSString *work;
@@ -24,7 +26,7 @@
 
 @property (nonatomic, copy) NSString *postTime;
 
-- (instancetype)initWithPath:(NSArray *)path userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(NSString *)likes avater:(NSString *)avater time:(NSString *)postTime;
+- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(NSString *)likes avater:(NSString *)avater time:(NSString *)postTime;
 
 @end
 

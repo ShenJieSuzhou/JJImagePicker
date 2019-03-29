@@ -114,7 +114,8 @@
             NSMutableArray *photoList = [[NSMutableArray alloc] init];
             for(int i = 0; i < [works count]; i++){
                 NSDictionary *dic = [works objectAtIndex:i];
-                NSString *userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userid"]];
+                NSString *photoId = [dic objectForKey:@"photoid"];
+                NSString *userId = [dic objectForKey:@"userid"];
                 NSString *pathStr = [dic objectForKey:@"path"];
                 NSString *name = [dic objectForKey:@"name"];
                 NSString *work = [dic objectForKey:@"work"];
@@ -123,7 +124,7 @@
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime];
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime];
                 [photoList addObject:homeCube];
             }
             [weakSelf.homePhotoView updatephotosArray:photoList];

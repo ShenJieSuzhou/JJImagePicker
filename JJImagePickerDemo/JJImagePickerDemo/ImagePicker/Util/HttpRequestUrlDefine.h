@@ -48,4 +48,8 @@
 
 #define HOT_DISCOVERY_REQUEST                           @"http://172.16.10.45:8080/admin/hot/findAll"
 
+#define POST_LIKE_REQUEST                               @"http://172.16.10.45:8080/admin/photo/like"
+
+#define POST_UNLIKE_REQUEST                             @"http://172.16.10.45:8080/admin/photo/unlike"
+
 #endif /* HttpRequestUrlDefine_h */

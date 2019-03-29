@@ -10,9 +10,10 @@
 
 @implementation HomeCubeModel
 
-- (instancetype)initWithPath:(NSArray *)path userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(NSString *)likes avater:(NSString *)avater time:(NSString *)postTime{
+- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(NSString *)likes avater:(NSString *)avater time:(NSString *)postTime{
     self = [super init];
     if(self){
+        self.photoId = [photoId copy];
         self.path = [path copy];
         self.userid = [userid copy];
         self.work = [work copy];

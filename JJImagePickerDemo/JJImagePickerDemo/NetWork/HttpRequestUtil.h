@@ -57,6 +57,31 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_PublishMyPhotoWorks:(NSString *)url token:(NSString *)token photoInfo:(NSString *)photoInfo userid:(NSString *)userid callback:(requestCallBack) block;
 
+
+/**
+ 点赞
+
+ @param url 请求地址
+ @param token token
+ @param photoId 照片对象
+ @param userid 用户id
+ @param block 回调
+ */
++ (void)JJ_INCREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block;
+
+
+/**
+ 取消赞
+
+ @param url 请求地址
+ @param token token
+ @param photoId 照片对象
+ @param userid 用户id
+ @param block 回调
+ */
++ (void)JJ_DECREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block;
+
+
 /**
  跟新用户昵称
 

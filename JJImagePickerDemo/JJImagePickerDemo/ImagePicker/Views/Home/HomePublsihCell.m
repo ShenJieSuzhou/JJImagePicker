@@ -9,7 +9,11 @@
 #import "HomePublsihCell.h"
 #import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+#import "JJTokenManager.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "GlobalDefine.h"
 
 @implementation HomePublsihCell
 @synthesize hpImageView = _hpImageView;
@@ -17,6 +21,10 @@
 @synthesize avaterView = _avaterView;
 @synthesize likeBtn = _likeBtn;
 @synthesize likeCount = _likeCount;
+@synthesize currentLikes = _currentLikes;
+@synthesize photoID = _photoID;
+@synthesize userID = _userID;
+
 
 - (id)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
@@ -107,14 +115,41 @@
     }];
 }
 
+// 用户点赞操作
 - (void)clickLikeBtn:(JJLikeButton *)sender{
     NSLog(@"%s", __func__);
     if (sender.selected) {
         //未选中状态
         [sender deselect];
+        self.currentLikes = self.currentLikes - 1;
     } else {
         //选中状态
         [sender select];
+        self.currentLikes = self.currentLikes + 1;
+    }
+    [_likeCount setText:[NSString stringWithFormat:@"%ld", (long)self.currentLikes]];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoSomething:) object:sender];
+    [self performSelector:@selector(toDoSomething:) withObject:sender afterDelay:0.2f];
+}
+
+// 将数据上传服务器
+- (void)toDoSomething:(UIButton *)button{
+    if(button.selected){
+        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+        }];
+    }else{
+        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+        }];
     }
 }
 
@@ -123,6 +158,9 @@
     NSString *avater = work.iconUrl;
     NSString *desc = work.work;
     NSString *likeCount = work.likeNum;
+    self.currentLikes = likeCount.integerValue;
+    self.photoID = work.photoId;
+    self.userID = work.userid;
     
     [_hpImageView sd_setImageWithURL:[NSURL URLWithString:showedImgUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
