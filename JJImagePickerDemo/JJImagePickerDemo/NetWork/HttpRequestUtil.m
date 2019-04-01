@@ -99,8 +99,8 @@
     }];
 }
 
-+ (void)JJ_INCREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid createrID:(NSString *)createrID callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", photoId, @"photoId", userid, @"user_id",  createrID, @"createrID",nil];
++ (void)JJ_INCREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", photoId, @"photoId", userid, @"user_id" ,nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -108,8 +108,8 @@
     }];
 }
 
-+ (void)JJ_DECREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", photoId, @"photoId", userid, @"user_id", fansid, @"fans_id", nil];
++ (void)JJ_DECREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", photoId, @"photoId", userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
