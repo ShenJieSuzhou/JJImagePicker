@@ -78,7 +78,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户id
  @param block 回调
  */
-+ (void)JJ_INCREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_INCREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block;
 
 
 /**
@@ -90,7 +90,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户id
  @param block 回调
  */
-+ (void)JJ_DECREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_DECREMENT_LIKECOUNT:(NSString *)url token:(NSString *)token photoId:(NSString *)photoId userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block;
 
 
 /**
