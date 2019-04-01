@@ -162,10 +162,11 @@ static CGFloat kMagin = 10.f;
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    HomePublsihCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PHOTOS_CELL_IDENTIFIER forIndexPath:indexPath];
+    HomePublsihCell *cell = (HomePublsihCell *)[collectionView dequeueReusableCellWithReuseIdentifier:PHOTOS_CELL_IDENTIFIER forIndexPath:indexPath];
     
     HomeCubeModel *myWorks = [_photosArray objectAtIndex:indexPath.row];
     [cell updateCell:myWorks];
+    [cell setNeedsLayout];
     
     return cell;
 }

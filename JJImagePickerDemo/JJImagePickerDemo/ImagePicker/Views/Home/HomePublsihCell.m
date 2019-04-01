@@ -24,6 +24,8 @@
 @synthesize currentLikes = _currentLikes;
 @synthesize photoID = _photoID;
 @synthesize userID = _userID;
+@synthesize hasLiked = _hasLiked;
+@synthesize homeCubeModel = _homeCubeModel;
 
 
 - (id)initWithFrame:(CGRect)frame{
@@ -122,11 +124,17 @@
         //未选中状态
         [sender deselect];
         self.currentLikes = self.currentLikes - 1;
+        self.hasLiked = NO;
     } else {
         //选中状态
         [sender select];
         self.currentLikes = self.currentLikes + 1;
+        self.hasLiked = YES;
     }
+    
+    _homeCubeModel.likeNum = self.currentLikes;
+    _homeCubeModel.hasLiked = self.hasLiked;
+    
     [_likeCount setText:[NSString stringWithFormat:@"%ld", (long)self.currentLikes]];
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoSomething:) object:sender];
     [self performSelector:@selector(toDoSomething:) withObject:sender afterDelay:0.2f];
@@ -134,31 +142,35 @@
 
 // 将数据上传服务器
 - (void)toDoSomething:(UIButton *)button{
-    if(button.selected){
-        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
-            if(error){
-                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-                [SVProgressHUD dismissWithDelay:1.0f];
-                return ;
-            }
-        }];
-    }else{
-        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
-            if(error){
-                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-                [SVProgressHUD dismissWithDelay:1.0f];
-                return ;
-            }
-        }];
-    }
+//    if(button.selected){
+//        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
+//            if(error){
+//                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+//                [SVProgressHUD dismissWithDelay:1.0f];
+//                return ;
+//            }
+//            //
+//
+//        }];
+//    }else{
+//        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:self.userID callback:^(NSDictionary *data, NSError *error) {
+//            if(error){
+//                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+//                [SVProgressHUD dismissWithDelay:1.0f];
+//                return ;
+//            }
+//            //
+//        }];
+//    }
 }
 
 - (void)updateCell:(HomeCubeModel *)work{
+    _homeCubeModel = work;
     NSString *showedImgUrl = [work.path objectAtIndex:0];
     NSString *avater = work.iconUrl;
     NSString *desc = work.work;
-    NSString *likeCount = work.likeNum;
-    self.currentLikes = likeCount.integerValue;
+    int likeCount = work.likeNum;
+    self.currentLikes = likeCount;
     self.photoID = work.photoId;
     self.userID = work.userid;
     
@@ -171,7 +183,19 @@
         
     }];
     
-    [_likeCount setText:likeCount];
+    [_likeCount setText:[NSString stringWithFormat:@"%d", likeCount]];
+    
+    if(work.hasLiked){
+        self.hasLiked = YES;
+    }else{
+        self.hasLiked = NO;
+    }
+    
+    if (self.hasLiked) {
+        [_likeBtn select];
+    } else {
+        [_likeBtn deselect];
+    }
 }
 
 

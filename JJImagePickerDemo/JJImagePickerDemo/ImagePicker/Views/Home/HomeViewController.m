@@ -119,12 +119,13 @@
                 NSString *pathStr = [dic objectForKey:@"path"];
                 NSString *name = [dic objectForKey:@"name"];
                 NSString *work = [dic objectForKey:@"work"];
-                NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
+                int likeNum = [[dic objectForKey:@"likeNum"] intValue];
+                int hasLike = [[dic objectForKey:@"hasLiked"] intValue];
                 NSString *iconUrl = [dic objectForKey:@"iconUrl"];
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime];
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO];
                 [photoList addObject:homeCube];
             }
             [weakSelf.homePhotoView updatephotosArray:photoList];

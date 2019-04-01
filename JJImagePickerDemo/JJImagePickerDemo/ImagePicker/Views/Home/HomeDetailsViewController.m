@@ -211,7 +211,7 @@
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
     [self.likeNum setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.likeNum setText:self.photoWork.likeNum];
+    [self.likeNum setText:[NSString stringWithFormat:@"%d", self.photoWork.likeNum]];
     [self.worksInfoView addSubview:self.likeNum];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {

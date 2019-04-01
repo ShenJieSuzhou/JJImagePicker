@@ -86,7 +86,7 @@
 - (void)requestUserInfo{
     [SVProgressHUD show];
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_GetMyWorksArray:OTHERS_DATA_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID fansid:self.fansId callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_GetOthersWorksArray:OTHERS_DATA_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID fansid:self.fansId callback:^(NSDictionary *data, NSError *error) {
         [SVProgressHUD dismiss];
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];

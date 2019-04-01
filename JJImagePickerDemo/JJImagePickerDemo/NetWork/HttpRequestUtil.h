@@ -44,7 +44,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block;
++ (void)JJ_GetMyWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
 
 /**
  发布自己的作品
@@ -57,6 +57,17 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_PublishMyPhotoWorks:(NSString *)url token:(NSString *)token photoInfo:(NSString *)photoInfo userid:(NSString *)userid callback:(requestCallBack) block;
 
+
+/**
+ 查看别人的作品
+
+ @param url 请求地址
+ @param token token
+ @param userid 用户ID
+ @param fansid 粉丝ID
+ @param block 回调
+ */
++ (void)JJ_GetOthersWorksArray:(NSString *)url token:(NSString *)token userid:(NSString *)userid fansid:(NSString *)fansid callback:(requestCallBack) block;
 
 /**
  点赞

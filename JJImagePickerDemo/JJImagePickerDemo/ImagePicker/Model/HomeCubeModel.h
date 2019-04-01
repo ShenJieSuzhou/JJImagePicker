@@ -20,13 +20,15 @@
 
 @property (nonatomic, copy) NSString *name;
 
-@property (nonatomic, copy) NSString *likeNum;
+@property (assign) int likeNum;
 
 @property (nonatomic, copy) NSString *iconUrl;
 
 @property (nonatomic, copy) NSString *postTime;
 
-- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(NSString *)likes avater:(NSString *)avater time:(NSString *)postTime;
+@property (assign) BOOL hasLiked;
+
+- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked;
 
 @end
 

@@ -18,10 +18,12 @@
 @property (strong, nonatomic) UIImageView *avaterView;
 @property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeCount;
-@property (assign) NSInteger currentLikes;
+@property (assign) int currentLikes;
 
 @property (strong, nonatomic) NSString *photoID;
 @property (strong, nonatomic) NSString *userID;
+@property (assign) BOOL hasLiked;
+@property (strong, nonatomic) HomeCubeModel *homeCubeModel;
 
 - (void)updateCell:(HomeCubeModel *)work;
 
