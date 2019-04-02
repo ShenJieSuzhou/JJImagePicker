@@ -7,21 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <WebKit/WebKit.h>
-//#import <JavaScriptCore/JavaScriptCore.h>
+
 #import "HomePhotosCollectionView.h"
 #import "HomeTopView.h"
-
+#import "JJPageInfo.h"
 //@interface HomeViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
 //@property (strong, nonatomic) WKWebView *kkWebView;
+//#import <WebKit/WebKit.h>
+//#import <JavaScriptCore/JavaScriptCore.h>
 
 
 @interface HomeViewController : UIViewController<HomePhotosViewDelegate>
 
-@property (assign) NSInteger *pageIndex;
+@property (assign) NSInteger pageIndex;
 
 @property (strong, nonatomic) HomePhotosCollectionView *homePhotoView;
 
 @property (strong, nonatomic) HomeTopView *homeTopView;
+
+@property (strong, nonatomic) NSMutableArray *photoDataSource;
+
+@property (strong, nonatomic) JJPageInfo *currentPageInfo;
 
 @end

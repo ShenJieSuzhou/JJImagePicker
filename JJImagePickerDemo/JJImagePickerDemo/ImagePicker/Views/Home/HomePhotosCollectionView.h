@@ -14,6 +14,10 @@
 
 - (void)goToDetailViewCallback:(HomeCubeModel *)work;
 
+- (void)downPullFreshData:(MJRefreshHeader *)mjHeader;
+
+- (void)upPullFreshData:(MJRefreshFooter *)mjFooter;
+
 @end
 
 

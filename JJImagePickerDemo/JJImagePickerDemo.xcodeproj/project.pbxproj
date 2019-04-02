@@ -59,6 +59,8 @@
 		E50B4136224C7A0600797DC2 /* FansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4135224C7A0600797DC2 /* FansModel.m */; };
 		E50B413A224C940C00797DC2 /* FansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B4138224C940C00797DC2 /* FansCell.m */; };
 		E50B413E224CC48500797DC2 /* JJLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B413D224CC48500797DC2 /* JJLikeButton.m */; };
+		E50B414122537A9900797DC2 /* JJPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414022537A9900797DC2 /* JJPageInfo.m */; };
+		E50B414422537B2700797DC2 /* JJDataParaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414322537B2700797DC2 /* JJDataParaseUtil.m */; };
 		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
@@ -357,6 +359,10 @@
 		E50B4138224C940C00797DC2 /* FansCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FansCell.m; sourceTree = "<group>"; };
 		E50B413C224CC48500797DC2 /* JJLikeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLikeButton.h; sourceTree = "<group>"; };
 		E50B413D224CC48500797DC2 /* JJLikeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLikeButton.m; sourceTree = "<group>"; };
+		E50B413F22537A9900797DC2 /* JJPageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPageInfo.h; sourceTree = "<group>"; };
+		E50B414022537A9900797DC2 /* JJPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPageInfo.m; sourceTree = "<group>"; };
+		E50B414222537B2700797DC2 /* JJDataParaseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDataParaseUtil.h; sourceTree = "<group>"; };
+		E50B414322537B2700797DC2 /* JJDataParaseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDataParaseUtil.m; sourceTree = "<group>"; };
 		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
@@ -976,6 +982,8 @@
 				E50B41222249D4F100797DC2 /* HomeCubeModel.m */,
 				E50B4134224C7A0600797DC2 /* FansModel.h */,
 				E50B4135224C7A0600797DC2 /* FansModel.m */,
+				E50B413F22537A9900797DC2 /* JJPageInfo.h */,
+				E50B414022537A9900797DC2 /* JJPageInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1398,6 +1406,8 @@
 				E58C251521C36E49001C4D8F /* HttpRequestUrlDefine.h */,
 				E58C252721DF3C1A001C4D8F /* DeviceType.h */,
 				E58C252821DF3C1A001C4D8F /* DeviceType.m */,
+				E50B414222537B2700797DC2 /* JJDataParaseUtil.h */,
+				E50B414322537B2700797DC2 /* JJDataParaseUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1757,6 +1767,7 @@
 				E5DF2E04214CDBF50048A80E /* YUCIRGBToneCurve.m in Sources */,
 				E5DB334D221EC76C008D7818 /* UIScrollView+UITouch.m in Sources */,
 				E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */,
+				E50B414122537A9900797DC2 /* JJPageInfo.m in Sources */,
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
 				44208E1B21A164790090D983 /* DetailInfoView.m in Sources */,
@@ -1787,6 +1798,7 @@
 				E542B8082192BD9D002A7E1E /* HNEmojiContact.m in Sources */,
 				E55782572179CBD3003B20BB /* UIView+MosaicExtension.m in Sources */,
 				4477BC9B21D7C462009128F5 /* EditSignViewController.m in Sources */,
+				E50B414422537B2700797DC2 /* JJDataParaseUtil.m in Sources */,
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				E50B4136224C7A0600797DC2 /* FansModel.m in Sources */,

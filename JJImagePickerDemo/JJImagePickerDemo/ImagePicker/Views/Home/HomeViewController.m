@@ -18,20 +18,28 @@
 #import "GlobalDefine.h"
 #import "HomeCubeModel.h"
 #import "HomeDetailsViewController.h"
+#import <MJRefresh/MJRefresh.h>
+
 
 #define JJDEBUG YES
 
+static NSInteger jjPageSize = 10;
+
 @implementation HomeViewController
-//@synthesize kkWebView = _kkWebView;
-@synthesize pageIndex = _pageIndex;
+
+@synthesize currentPageInfo = _currentPageInfo;
 @synthesize homePhotoView = _homePhotoView;
 @synthesize homeTopView = _homeTopView;
+@synthesize photoDataSource = _photoDataSource;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 用户是否登录
     if(![[LoginSessionManager getInstance] isUserLogin]){
         [self popLoginViewController];
+    }else{
+        // 网络请求
+        [self reloadHomedata:0 size:jjPageSize];
     }
 }
 
@@ -40,31 +48,14 @@
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     
-    
-//    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-//    [config.userContentController addScriptMessageHandler:self name:@"getHomeData"];
-//
-//    self.kkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) configuration:config];
-//    self.kkWebView.UIDelegate = self;
-//    self.kkWebView.navigationDelegate = self;
-//    [self.view addSubview:self.kkWebView];
-//
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"Cream"];
-//    NSURL *fileURL = [NSURL fileURLWithPath:path];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-//    [self.kkWebView loadRequest:request];
+    // 数据源
+    _photoDataSource = [[NSMutableArray alloc] init];
     
     // 添加 topview
     [self.view addSubview:self.homeTopView];
     
     // 添加 CollectionView
     [self.view addSubview:self.homePhotoView];
-    
-    // 初始请求页数
-    _pageIndex = 0;
-    
-    // 网络请求
-    [self requestHomedata];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,27 +79,22 @@
     return _homeTopView;
 }
 
-// 请求首页信息
-- (void)requestHomedata{
-    [SVProgressHUD show];
+// 加载首页信息
+- (void)reloadHomedata:(NSInteger) page size:(NSInteger)pageSize{
+    [self.homePhotoView.photosCollection.mj_header beginRefreshing];
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:@"1" callback:^(NSDictionary *data, NSError *error) {
-        [SVProgressHUD dismiss];
+    [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
             return ;
         }
         
-        if(!data){
+        if(!data || [[data objectForKey:@"result"] isEqualToString:@"0"]){
             [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
             return;
         }else{
-            if([[data objectForKey:@"result"] isEqualToString:@"0"]){
-                return;
-            }
-            
             //用户作品
             NSArray *works = [[data objectForKey:@"works"] copy];
             NSMutableArray *photoList = [[NSMutableArray alloc] init];
@@ -128,9 +114,50 @@
                 HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO];
                 [photoList addObject:homeCube];
             }
-            [weakSelf.homePhotoView updatephotosArray:photoList];
+            
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] init];
+            if([data objectForKey:@"pageInfo"]){
+                [pageInfo parseData:[data objectForKey:@"pageInfo"]];
+            }
+            
+            [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
         }
     }];
+}
+
+// 加载更多首页信息
+- (void)loadMoreHomedata:(NSInteger) page size:(NSInteger)pageSize{
+    [self.homePhotoView.photosCollection.mj_header endRefreshing];
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
+        
+        
+    }];
+}
+
+
+- (void)latestInfoRequestCallBack:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
+ 
+    if(pageInfo.currentPage == 0){
+        [self.homePhotoView.photosCollection.mj_header endRefreshing];
+        [self.homePhotoView.photosCollection.mj_footer endRefreshing];
+    }else{
+        [self.homePhotoView.photosCollection.mj_footer endRefreshing];
+    }
+    
+    _currentPageInfo = pageInfo;
+    if(_currentPageInfo.currentPage == 0){
+        [_photoDataSource removeAllObjects];
+    }
+    
+    [_photoDataSource addObjectsFromArray:[photoList copy]];
+    
+    [_homePhotoView updatephotosArray:_photoDataSource];
 }
 
 
@@ -151,6 +178,8 @@
 
 -(void)TriggerRefresh{
     NSLog(@"%s", __func__);
+    // 网络请求
+    [self reloadHomedata:0 size:jjPageSize];
 }
 
 #pragma mark - HomePhotosViewDelegate
@@ -160,104 +189,14 @@
     [self.navigationController pushViewController:homeDetailView animated:YES];
 }
 
+// 下拉刷新
+-(void)downPullFreshData:(MJRefreshHeader *)mjHeader{
+    [self reloadHomedata:0 size:jjPageSize];
+}
 
-
-#pragma mark - UIWebViewDelegate
-//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-//    return YES;
-//}
-//
-//- (void)webViewDidStartLoad:(UIWebView *)webView{
-//
-//}
-//
-//- (void)webViewDidFinishLoad:(UIWebView *)webView{
-//    //获取该UIWebView的javascript上下文
-//
-//}
-//
-//- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-//
-//}
-
-
-#pragma mark - WKScriptMessageHandler
-//实现js注入方法的协议方法
-//- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-//    if([message.name isEqualToString:@"getHomeData"]){
-//        NSLog(@"%@", message.body);
-//
-//        if(JJDEBUG){
-//            NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",@""];
-//            [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                if(error){
-//                    NSLog(@"++++++error: %@++++++", error);
-//                }
-//            }];
-//        }else{
-//            NSMutableArray *array = [[HomeContentmManager shareInstance] getHomeContent];
-//            if([array count] == 0){
-//                return;
-//            }
-//            NSData *data = [self toJSONData:[array objectAtIndex:0]];
-//            NSString *jsonString = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
-//            NSString *jsStr = [NSString stringWithFormat:@"sendKey('%@')",jsonString];
-//            [self.kkWebView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-//                if(error){
-//                    NSLog(@"++++++error: %@++++++", error);
-//                }
-//            }];
-//        }
-//    }
-//}
-//
-//-(NSData *)toJSONData:(id)theData{
-//    NSError *error = nil;
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theData
-//                                                       options:0
-//                                                         error:&error];
-//    if ([jsonData length] > 0 && error == nil){
-//        return jsonData;
-//    }else{
-//        return nil;
-//    }
-//}
-//
-//#pragma mark - WKNavigationDelegate
-//- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
-//{
-//    //开始加载
-//    //    [webView
-//}
-//
-//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-//{
-//    //    //加载完成
-//    //    //获取该UIWebView的javascript上下文
-//    //    JSContext *jsContext = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-//    //
-//    //    //这也是一种获取标题的方法。
-//    //    JSValue *value = [jsContext evaluateScript:@"document.title"];
-//    //    //更新标题
-//    //    NSLog(@"%@", value.toString);
-//
-//
-//}
-//
-//- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
-//    //网络错误
-//}
-//
-//#pragma mark WKUIDelegate
-//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
-//{
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:message preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler();
-//    }];
-//    [alert addAction:action];
-//    [self presentViewController:alert animated:YES completion:nil];
-//}
-
+// 上拉获取更多数据
+- (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
+    [self loadMoreHomedata:++_pageIndex size:jjPageSize];
+}
 
 @end

@@ -232,8 +232,8 @@
 }
 
 
-+ (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex callback:(requestCallBack) block{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", pageIndex, @"pageIndex", nil];
++ (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", pageIndex, @"pageIndex", size, @"pageSize", nil];
     
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);

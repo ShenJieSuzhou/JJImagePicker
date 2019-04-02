@@ -201,13 +201,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param token token
  @param block 回调
  */
-+ (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex callback:(requestCallBack) block;
-
-
-
-
-
-
++ (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
 
 
 
