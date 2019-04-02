@@ -20,7 +20,6 @@
 #import "HomeDetailsViewController.h"
 #import <MJRefresh/MJRefresh.h>
 
-
 #define JJDEBUG YES
 
 static NSInteger jjPageSize = 10;
@@ -81,7 +80,6 @@ static NSInteger jjPageSize = 10;
 
 // 加载首页信息
 - (void)reloadHomedata:(NSInteger) page size:(NSInteger)pageSize{
-    [self.homePhotoView.photosCollection.mj_header beginRefreshing];
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -127,7 +125,6 @@ static NSInteger jjPageSize = 10;
 
 // 加载更多首页信息
 - (void)loadMoreHomedata:(NSInteger) page size:(NSInteger)pageSize{
-    [self.homePhotoView.photosCollection.mj_header endRefreshing];
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -136,7 +133,38 @@ static NSInteger jjPageSize = 10;
             return ;
         }
         
-        
+        if(!data || [[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return;
+        }else{
+            //用户作品
+            NSArray *works = [[data objectForKey:@"works"] copy];
+            NSMutableArray *photoList = [[NSMutableArray alloc] init];
+            for(int i = 0; i < [works count]; i++){
+                NSDictionary *dic = [works objectAtIndex:i];
+                NSString *photoId = [dic objectForKey:@"photoid"];
+                NSString *userId = [dic objectForKey:@"userid"];
+                NSString *pathStr = [dic objectForKey:@"path"];
+                NSString *name = [dic objectForKey:@"name"];
+                NSString *work = [dic objectForKey:@"work"];
+                int likeNum = [[dic objectForKey:@"likeNum"] intValue];
+                int hasLike = [[dic objectForKey:@"hasLiked"] intValue];
+                NSString *iconUrl = [dic objectForKey:@"iconUrl"];
+                NSString *postTime = [dic objectForKey:@"postTime"];
+                NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
+                
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO];
+                [photoList addObject:homeCube];
+            }
+            
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] init];
+            if([data objectForKey:@"pageInfo"]){
+                [pageInfo parseData:[data objectForKey:@"pageInfo"]];
+            }
+            
+            [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
+        }
     }];
 }
 
@@ -196,7 +224,7 @@ static NSInteger jjPageSize = 10;
 
 // 上拉获取更多数据
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
-    [self loadMoreHomedata:++_pageIndex size:jjPageSize];
+    [self loadMoreHomedata:++self.currentPageInfo.currentPage size:jjPageSize];
 }
 
 @end
