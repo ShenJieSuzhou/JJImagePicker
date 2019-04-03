@@ -15,6 +15,7 @@
 #import "JJThumbPhotoCell.h"
 #import "JJTokenManager.h"
 #import "OthersMainPageViewController.h"
+#import "HttpRequestUrlDefine.h"
 
 @interface HomeDetailsViewController ()
 @property (strong, nonatomic) UIButton *iconView;
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) UIScrollView *worksInfoView;
 @property (strong, nonatomic) YYLabel *worksDesc;
 @property (strong, nonatomic) UILabel *timeLine;
-@property (strong, nonatomic) UIButton *shareBtn;
+@property (strong, nonatomic) UIButton *focusBtn;
 @property (strong, nonatomic) HomeCubeModel *photoWork;
 @property (strong, nonatomic) UIButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
@@ -127,13 +128,6 @@
     [self.view addSubview:self.worksInfoView];
     
     //icon
-//    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//    [self.iconView setBackgroundColor:[UIColor clearColor]];
-//    [self.iconView.layer setCornerRadius:self.iconView.frame.size.width / 2];
-//    [self.iconView.layer setMasksToBounds:YES];
-//    NSString *avatar = self.photoWork.iconUrl;
-//    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
-//    [self.worksInfoView addSubview:self.iconView];
     self.iconView = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.iconView setBackgroundColor:[UIColor clearColor]];
     [self.iconView.layer setCornerRadius:20.0f];
@@ -141,12 +135,9 @@
     NSString *avatar = self.photoWork.iconUrl;
     
     [self.iconView setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]] forState:UIControlStateNormal];
-//    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
     [self.worksInfoView addSubview:self.iconView];
     
     [self.iconView addTarget:self action:@selector(goToUserZone:) forControlEvents:UIControlEventTouchUpInside];
-//    UITapGestureRecognizer *gestureUser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToUserZone:)];
-//    [self.iconView addGestureRecognizer:gestureUser];
     
     //名字
     self.nameLabel = [[UILabel alloc] init];
@@ -157,18 +148,25 @@
     [self.worksInfoView addSubview:self.nameLabel];
     
     //关注
-    self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.shareBtn setTitle:@"关注" forState:UIControlStateNormal];
-    [self.shareBtn setBackgroundColor:[UIColor clearColor]];
-    [self.shareBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.shareBtn.titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.shareBtn.layer setBorderWidth:1.0f];
-    [self.shareBtn.layer setBorderColor:[UIColor redColor].CGColor];
-    [self.shareBtn.layer setCornerRadius:8.0f];
-    [self.shareBtn.layer setMasksToBounds:YES];
-    [self.shareBtn addTarget:self action:@selector(clickConcernBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.worksInfoView addSubview:self.shareBtn];
-    [self.shareBtn setHidden:YES];
+    self.focusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+    [self.focusBtn setTitle:@"已关注" forState:UIControlStateSelected];
+    [self.focusBtn setBackgroundImage:[UIImage imageNamed:@"focusbk"] forState:UIControlStateNormal];
+    [self.focusBtn setBackgroundImage:[UIImage imageNamed:@"unfocusbk"] forState:UIControlStateSelected];
+    [self.focusBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.focusBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [self.focusBtn.titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    [self.focusBtn.layer setCornerRadius:8.0f];
+    [self.focusBtn.layer setMasksToBounds:YES];
+    [self.focusBtn addTarget:self action:@selector(clickFocusBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.worksInfoView addSubview:self.focusBtn];
+    
+    // 是否是自己
+    if(self.photoWork.isYourWork){
+        [_focusBtn setHidden:YES];
+    }else{
+        [_focusBtn setHidden:NO];
+    }
     
     //图片
     [self.worksInfoView addSubview:self.workView];
@@ -225,8 +223,8 @@
         make.centerY.mas_equalTo(self.iconView);
     }];
     
-    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(45.0f, 25.0f));
+    [self.focusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(50.0f, 25.0f));
         make.centerY.mas_equalTo(self.iconView);
         make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 60.0f);
     }];
@@ -280,8 +278,12 @@
     [self.navigationController pushViewController:otherZoneView animated:YES];
 }
 
-- (void)clickConcernBtn:(UIButton *)sender{
-    NSLog(@"111111");
+- (void)clickFocusBtn:(UIButton *)sender{
+    NSLog(@"%s", __func__);
+    sender.selected = !sender.selected;
+   
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoFocus:) object:sender];
+    [self performSelector:@selector(toDoFocus:) withObject:sender afterDelay:0.2f];
 }
 
 - (void)clickLikeBtn:(UIButton *)sender{
@@ -289,11 +291,11 @@
     if(sender.selected){
         
     }
+    
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoLike:) object:sender];
+    [self performSelector:@selector(toDoLike:) withObject:sender afterDelay:0.2f];
 }
 
-- (void)clickCancelBtn:(UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo{
     if(!detailInfo){
@@ -370,6 +372,36 @@
 
 - (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
     [newsbanner removeFromSuperview];
+}
+
+// 关注
+- (void)toDoFocus:(UIButton *)sender{
+    if (sender.selected) {
+        // 已关注
+        [HttpRequestUtil JJ_BeginFocus:START_FOCUS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID focusObj:self.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                return ;
+            }
+            
+        }];
+    } else {
+        // 未关注
+        [HttpRequestUtil JJ_CancelFocus:CANCEL_FOCUS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID focusObj:self.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                return ;
+            }
+            
+        }];
+    }
+}
+
+// 点赞
+- (void)toDoLike:(UIButton *)sender{
+    
+}
+
+- (void)clickCancelBtn:(UIButton *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

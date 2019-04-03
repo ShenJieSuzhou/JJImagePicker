@@ -204,6 +204,29 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_HomePageRquestData:(NSString *)url token:(NSString *)token userid:(NSString *)userid pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
 
 
+/**
+ 关注他人
+
+ @param url 请求地址
+ @param token token
+ @param userid 我的id
+ @param fcousObjId 关注人id
+ @param block 回调
+ */
++ (void)JJ_BeginFocus:(NSString *)url token:(NSString *)token userid:(NSString *)userid focusObj:(NSString *)fcousObjId callback:(requestCallBack) block;
+
+
+/**
+ 取消关注
+
+ @param url 请求地址
+ @param token token
+ @param userid 我的id
+ @param fcousObjId 关注人id
+ @param block 回调
+ */
++ (void)JJ_CancelFocus:(NSString *)url token:(NSString *)token userid:(NSString *)userid focusObj:(NSString *)fcousObjId callback:(requestCallBack) block;
+
 
 //+++ 以下接口废弃 +++//
 

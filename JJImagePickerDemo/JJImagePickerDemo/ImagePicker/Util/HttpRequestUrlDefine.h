@@ -52,6 +52,10 @@
 
 #define POST_UNLIKE_REQUEST                             @"http://172.16.10.45:8080/admin/photo/unlike"
 
+#define START_FOCUS_REQUEST                             @"http://172.16.10.45:8080/admin/photo/focus"
+
+#define CANCEL_FOCUS_REQUEST                             @"http://172.16.10.45:8080/admin/photo/unfocus"
+
 
 //#define AC_LOGIN_REQUEST                                @"http://192.168.31.87:8080/login/accountLogin"
 //

@@ -111,7 +111,8 @@ static int jjPageSize = 10;
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO];
+                BOOL isMy = [[JJTokenManager shareInstance].getUserID isEqualToString:userId] ? YES:NO;
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO isYourWork:isMy];
                 [photoList addObject:homeCube];
             }
             
@@ -157,7 +158,8 @@ static int jjPageSize = 10;
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
                 
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO];
+                BOOL isMy = [[JJTokenManager shareInstance].getUserID isEqualToString:userId] ? YES:NO;
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO isYourWork:isMy];
                 [photoList addObject:homeCube];
             }
             
@@ -172,7 +174,7 @@ static int jjPageSize = 10;
 
 
 - (void)latestInfoRequestCallBack:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
- 
+
     if(pageInfo.currentPage == 0){
         [self.homePhotoView.photosCollection.mj_header endRefreshing];
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
