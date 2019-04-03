@@ -11,6 +11,7 @@
 #import "GlobalDefine.h"
 #import <Masonry/Masonry.h>
 
+
 #define WORKS_CELL_IDENTIFIER @"WORKS_CELL_IDENTIFIER"
 #define WORKS_HEADER_CELL_IDENTIFIER @"WORKS_HEADER_CELL_IDENTIFIER"
 #define WORKS_FOOTER_CELL_IDENTIFIER @"WORKS_FOOTER_CELL_IDENTIFIER"
@@ -104,6 +105,13 @@
     [_publishBtn setBackgroundColor:[UIColor redColor]];
     [_publishBtn addTarget:self action:@selector(clickPublishBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_worksCollection addSubview:_publishBtn];
+    
+    // 上拉刷新
+    __weak typeof(self) weakSelf = self;
+    _worksCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf.delegate worksUpPullFreshDataCallback];
+    }];
+    
     
     //没有作品时 显示
     _tips = [[UILabel alloc] init];

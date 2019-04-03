@@ -22,20 +22,30 @@
 #import <Masonry/Masonry.h>
 #import "OriginalWorksViewController.h"
 #import "HttpRequestUtil.h"
+#import "JJPageInfo.h"
+#import "GlobalDefine.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
 #define DETAIL_INFO_VIEW_HEIGHT 300.0f
+
+static int jjMyworksPageSize = 6;
 
 @interface MeViewController ()<DetailInfoViewDelegate,LoginSessionDelegate,LoginOutDelegate,WorksViewDelegate>
 
 @property (strong, nonatomic) DetailInfoView *detailView;
 @property (strong, nonatomic) WorksView *workView;
 @property (assign) BOOL isLogin;
+@property (strong, nonatomic) NSMutableArray *photoDataSource;
+@property (strong, nonatomic) JJPageInfo *currentPageInfo;
 
 @end
 
 @implementation MeViewController
+@synthesize photoDataSource = _photoDataSource;
+@synthesize detailView = _detailView;
+@synthesize workView = _workView;
+@synthesize currentPageInfo = _currentPageInfo;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -48,7 +58,14 @@
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
     
-    [self refreshViewInfo];
+    // 加载基本信息
+    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
+    
+    // 我的作品数据
+    _photoDataSource = [NSMutableArray new];
+    
+    // 加载作品信息
+    [self loadUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,24 +100,32 @@
 }
 
 - (void)receiveLoginSuccess:(NSNotification *)notify{
-    [self refreshViewInfo];
+    [self loadUserInfo];
 }
 
 /**
- 刷新用户界面
+ * 获取用户数据
  */
-- (void)refreshViewInfo{
-     NSLog(@"%s", __func__);
-    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
-        
-    __weak typeof(self) weakSelf = self;    
-    [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+- (void)loadUserInfo{
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"0"] pageSize:[NSString stringWithFormat:@"%d", jjMyworksPageSize] callback:^(NSDictionary *data, NSError *error) {
         
         if(error){
+            [self.workView.worksCollection.mj_header endRefreshing];
+            [self.workView.worksCollection.mj_footer endRefreshing];
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
             return ;
         }
         
         if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            if([[data objectForKey:@"errorCode"] isEqualToString:@"1008"]){
+                [SVProgressHUD showErrorWithStatus:JJ_LOGININFO_EXPIRED];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return;
+            }
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }
         
@@ -121,9 +146,88 @@
             [photoList addObject:postWork];
         }
         
-        [weakSelf.workView updateWorksArray:photoList];
+        // 当前页
+        int currentPage = [[data objectForKey:@"currentPage"] intValue];
+        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
+        // 刷新
+        [weakSelf refreshViewInfo:pageInfo photoList:photoList];
     }];
 }
+
+/**
+ 获取更多用户信息
+ */
+- (void)loadMoreUserInfo:(int)page size:(int)pageSize{
+    __weak typeof(self) weakSelf = self;
+     [HttpRequestUtil JJ_GetMyWorksArray:GET_WORKS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [self.workView.worksCollection.mj_header endRefreshing];
+            [self.workView.worksCollection.mj_footer endRefreshing];
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return ;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            if([[data objectForKey:@"errorCode"] isEqualToString:@"1008"]){
+                [SVProgressHUD showErrorWithStatus:JJ_LOGININFO_EXPIRED];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return;
+            }
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
+        
+         //用户作品
+         NSArray *works = [[data objectForKey:@"works"] copy];
+         NSMutableArray *photoList = [[NSMutableArray alloc] init];
+         for(int i = 0; i < [works count]; i++){
+             NSDictionary *dic = [works objectAtIndex:i];
+             NSString *userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userid"]];
+             NSString *photoId = [NSString stringWithFormat:@"%@", [dic objectForKey:@"photoid"]];
+             NSString *pathStr = [dic objectForKey:@"path"];
+             NSString *postTime = [dic objectForKey:@"postTime"];
+             NSString *work = [dic objectForKey:@"work"];
+             NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
+             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
+             
+             Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
+             [photoList addObject:postWork];
+         }
+         
+         // 当前页
+         int currentPage = [[data objectForKey:@"currentPage"] intValue];
+         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
+         // 刷新
+         [weakSelf refreshViewInfo:pageInfo photoList:photoList];
+    }];
+}
+
+/**
+ 刷新用户界面
+ */
+- (void)refreshViewInfo:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
+    
+    if(pageInfo.currentPage == 0){
+        [_workView.worksCollection.mj_header endRefreshing];
+        [_workView.worksCollection.mj_footer endRefreshing];
+    }else{
+        if([photoList count] < jjMyworksPageSize){
+            [_workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        }
+        [_workView.worksCollection.mj_footer endRefreshing];
+    }
+    
+    _currentPageInfo = pageInfo;
+    if(_currentPageInfo.currentPage == 0){
+        [_photoDataSource removeAllObjects];
+    }
+    
+    [_photoDataSource addObjectsFromArray:[photoList copy]];
+    [_workView updateWorksArray:_photoDataSource];
+}
+
 
 #pragma - mark DetailInfoViewDelegate
 - (void)pickUpHeaderImgCallback{
@@ -153,6 +257,10 @@
     OriginalWorksViewController *origialWorksView = [OriginalWorksViewController new];
     [origialWorksView setWorksInfo:work];
     [self.navigationController pushViewController:origialWorksView animated:YES];
+}
+
+- (void)worksUpPullFreshDataCallback{
+    [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
 }
 
 - (void)dealloc{

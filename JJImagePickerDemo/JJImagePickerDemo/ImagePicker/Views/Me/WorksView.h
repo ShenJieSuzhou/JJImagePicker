@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MJRefresh/MJRefresh.h>
 #import "Works.h"
 
 @protocol WorksViewDelegate <NSObject>
 
 - (void)goToWorksDetailViewCallback:(Works *)work;
+
+- (void)worksUpPullFreshDataCallback;
 
 @optional
 - (void)publishWorksCallback;
