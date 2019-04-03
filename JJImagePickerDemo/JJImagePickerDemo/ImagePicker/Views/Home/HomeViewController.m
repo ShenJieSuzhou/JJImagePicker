@@ -22,7 +22,7 @@
 
 #define JJDEBUG YES
 
-static NSInteger jjPageSize = 10;
+static int jjPageSize = 10;
 
 @implementation HomeViewController
 
@@ -79,7 +79,7 @@ static NSInteger jjPageSize = 10;
 }
 
 // 加载首页信息
-- (void)reloadHomedata:(NSInteger) page size:(NSInteger)pageSize{
+- (void)reloadHomedata:(int) page size:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -113,10 +113,9 @@ static NSInteger jjPageSize = 10;
                 [photoList addObject:homeCube];
             }
             
-            JJPageInfo *pageInfo = [[JJPageInfo alloc] init];
-            if([data objectForKey:@"pageInfo"]){
-                [pageInfo parseData:[data objectForKey:@"pageInfo"]];
-            }
+            // 当前页
+            int currentPage = [[data objectForKey:@"currentPage"] intValue];
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjPageSize currentPage:currentPage];
             
             [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
         }
@@ -124,7 +123,7 @@ static NSInteger jjPageSize = 10;
 }
 
 // 加载更多首页信息
-- (void)loadMoreHomedata:(NSInteger) page size:(NSInteger)pageSize{
+- (void)loadMoreHomedata:(int) page size:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -158,10 +157,9 @@ static NSInteger jjPageSize = 10;
                 [photoList addObject:homeCube];
             }
             
-            JJPageInfo *pageInfo = [[JJPageInfo alloc] init];
-            if([data objectForKey:@"pageInfo"]){
-                [pageInfo parseData:[data objectForKey:@"pageInfo"]];
-            }
+            // 当前页
+            int currentPage = [[data objectForKey:@"currentPage"] intValue];
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjPageSize currentPage:currentPage];
             
             [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
         }
@@ -175,6 +173,9 @@ static NSInteger jjPageSize = 10;
         [self.homePhotoView.photosCollection.mj_header endRefreshing];
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
     }else{
+        if([photoList count] < jjPageSize){
+            [self.homePhotoView.photosCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        }
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
     }
     
@@ -224,7 +225,7 @@ static NSInteger jjPageSize = 10;
 
 // 上拉获取更多数据
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
-    [self loadMoreHomedata:++self.currentPageInfo.currentPage size:jjPageSize];
+    [self loadMoreHomedata:_currentPageInfo ? _currentPageInfo.currentPage + 1 : 0 size:jjPageSize];
 }
 
 @end

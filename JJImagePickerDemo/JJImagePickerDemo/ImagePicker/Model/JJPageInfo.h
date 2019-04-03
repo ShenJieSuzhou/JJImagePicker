@@ -14,6 +14,6 @@
 @property (assign, nonatomic) int pageSize;          //页大小
 @property (assign, nonatomic) int currentPage;        //当前页
 
-- (BOOL)parseData:(NSDictionary *)data;
+- (instancetype)initWithTotalPage:(int)totalPage size:(int)pageSize currentPage:(int)currentPage;
 
 @end
