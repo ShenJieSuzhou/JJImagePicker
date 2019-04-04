@@ -102,10 +102,13 @@ static CGFloat kMagin = 10.f;
 }
 
 - (void)updatephotosArray:(NSMutableArray *)photos{
-    self.photosArray = photos;
+    _photosArray = photos;
     [_photosCollection reloadData];
 }
 
+- (void)homeUIRefresh{
+    [_photosCollection reloadData];
+}
 
 #pragma mark - UICollectionViewDelegate
 /*
@@ -123,8 +126,8 @@ static CGFloat kMagin = 10.f;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HomeCubeModel *work = [_photosArray objectAtIndex:indexPath.row];
     if(work){
-        if([_delegate respondsToSelector:@selector(goToDetailViewCallback:)]){
-            [_delegate goToDetailViewCallback:work];
+        if([_delegate respondsToSelector:@selector(goToDetailViewCallback:index:)]){
+            [_delegate goToDetailViewCallback:work index:indexPath];
         }
     }
 }

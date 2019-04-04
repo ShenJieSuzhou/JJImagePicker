@@ -228,6 +228,17 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_CancelFocus:(NSString *)url token:(NSString *)token userid:(NSString *)userid focusObj:(NSString *)fcousObjId callback:(requestCallBack) block;
 
 
+/**
+ 查询是否是好友
+
+ @param url 请求地址
+ @param token token
+ @param userid 我的id
+ @param fcousObjId 关注人id
+ @param block 回调
+ */
++ (void)JJ_QueryFocusInfo:(NSString *)url token:(NSString *)token userid:(NSString *)userid focusObj:(NSString *)fcousObjId callback:(requestCallBack) block;
+
 //+++ 以下接口废弃 +++//
 
 /**

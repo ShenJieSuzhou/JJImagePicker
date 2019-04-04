@@ -11,6 +11,7 @@
 #import "HomePhotosCollectionView.h"
 #import "HomeTopView.h"
 #import "JJPageInfo.h"
+#import "HomeDetailsViewController.h"
 //@interface HomeViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
 //@property (strong, nonatomic) WKWebView *kkWebView;
 //#import <WebKit/WebKit.h>

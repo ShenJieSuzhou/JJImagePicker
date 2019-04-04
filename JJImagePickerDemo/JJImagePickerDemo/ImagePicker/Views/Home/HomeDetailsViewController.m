@@ -16,6 +16,10 @@
 #import "JJTokenManager.h"
 #import "OthersMainPageViewController.h"
 #import "HttpRequestUrlDefine.h"
+#import "HttpRequestUtil.h"
+#import "JJLikeButton.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "GlobalDefine.h"
 
 @interface HomeDetailsViewController ()
 @property (strong, nonatomic) UIButton *iconView;
@@ -26,12 +30,15 @@
 @property (strong, nonatomic) UILabel *timeLine;
 @property (strong, nonatomic) UIButton *focusBtn;
 @property (strong, nonatomic) HomeCubeModel *photoWork;
-@property (strong, nonatomic) UIButton *likeBtn;
+@property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
 @property (strong, nonatomic) NSMutableArray *photosArray;
 @property (assign) NSInteger albumRows;
 @property (assign) NSInteger albumColums;
 @property (assign) BOOL isEven;
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
+@property (assign) int currentLikes;
+
 
 // 大图模式
 @property (strong, nonatomic) CustomNewsBanner *completeWorkView;
@@ -168,6 +175,13 @@
         [_focusBtn setHidden:NO];
     }
     
+    // 是否关注
+    if(self.photoWork.hasFocused){
+        self.focusBtn.selected = YES;
+    }else{
+        self.focusBtn.selected = NO;
+    }
+    
     //图片
     [self.worksInfoView addSubview:self.workView];
     
@@ -197,19 +211,29 @@
     [self.worksInfoView addSubview:self.timeLine];
     
     //点赞
-    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
-    [self.likeBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-    [self.likeBtn setImage:[UIImage imageNamed:@"like_sel"] forState:UIControlStateSelected];
+    self.likeBtn = [JJLikeButton coolButtonWithImage:[UIImage imageNamed:@"heart"] ImageFrame:CGRectMake(0, 0, 20, 20)];
+    //图片选中状态颜色
+    self.likeBtn.imageColorOn = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //圆圈颜色
+    self.likeBtn.circleColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //线条颜色
+    self.likeBtn.lineColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
     [self.likeBtn addTarget:self action:@selector(clickLikeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.likeBtn];
     
+    if(self.photoWork.hasLiked){
+        [self.likeBtn select];
+    }else{
+        [self.likeBtn deselect];
+    }
+    
     //点赞数
+    self.currentLikes = self.photoWork.likeNum;
     self.likeNum = [[UILabel alloc] init];
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
     [self.likeNum setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.likeNum setText:[NSString stringWithFormat:@"%d", self.photoWork.likeNum]];
+    [self.likeNum setText:[NSString stringWithFormat:@"%d", self.currentLikes]];
     [self.worksInfoView addSubview:self.likeNum];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -282,27 +306,39 @@
     NSLog(@"%s", __func__);
     sender.selected = !sender.selected;
    
+    [_photoWork setHasFocused:sender.selected];
+    
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoFocus:) object:sender];
     [self performSelector:@selector(toDoFocus:) withObject:sender afterDelay:0.2f];
 }
 
-- (void)clickLikeBtn:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    if(sender.selected){
-        
+- (void)clickLikeBtn:(JJLikeButton *)sender{
+    if (sender.selected) {
+        //未选中状态
+        [sender deselect];
+        self.currentLikes = self.currentLikes - 1;
+    } else {
+        //选中状态
+        [sender select];
+        self.currentLikes = self.currentLikes + 1;
     }
     
+    [_photoWork setLikeNum:self.currentLikes];
+    [_photoWork setHasLiked:sender.selected];
+    
+    [_likeNum setText:[NSString stringWithFormat:@"%ld", (long)self.currentLikes]];
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoLike:) object:sender];
     [self performSelector:@selector(toDoLike:) withObject:sender afterDelay:0.2f];
 }
 
 
-- (void)setWorksInfo:(HomeCubeModel *)detailInfo{
+- (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath{
     if(!detailInfo){
         return;
     }
     
     self.photoWork = detailInfo;
+    self.selectedIndex = indexPath;
 }
 
 -(UICollectionView *)workView{
@@ -382,7 +418,6 @@
             if(error){
                 return ;
             }
-            
         }];
     } else {
         // 未关注
@@ -390,14 +425,31 @@
             if(error){
                 return ;
             }
-            
         }];
     }
 }
 
 // 点赞
 - (void)toDoLike:(UIButton *)sender{
-    
+    if(sender.selected){
+        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoId userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
+        }];
+    }else{
+        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoId userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
+        }];
+    }
 }
 
 - (void)clickCancelBtn:(UIButton *)sender{

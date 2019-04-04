@@ -9,8 +9,11 @@
 #import "HomeCubeModel.h"
 
 @implementation HomeCubeModel
+@synthesize hasFocused = _hasFocused;
+@synthesize hasLiked = _hasLiked;
+@synthesize likeNum = _likeNum;
 
-- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked isYourWork:(BOOL)isYourWork{
+- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked hasFocused:(BOOL)hasFocused isYourWork:(BOOL)isYourWork{
     self = [super init];
     if(self){
         self.photoId = [photoId copy];
@@ -23,6 +26,7 @@
         self.postTime = [postTime copy];
         self.hasLiked = hasLiked;
         self.isYourWork = isYourWork;
+        self.hasFocused = hasFocused;
     }
     return self;
 }

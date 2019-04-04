@@ -17,7 +17,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GlobalDefine.h"
 #import "HomeCubeModel.h"
-#import "HomeDetailsViewController.h"
 #import <MJRefresh/MJRefresh.h>
 
 #define JJDEBUG YES
@@ -36,9 +35,8 @@ static int jjPageSize = 10;
     // 用户是否登录
     if(![[LoginSessionManager getInstance] isUserLogin]){
         [self popLoginViewController];
-    }else{
-        // 网络请求
-        [self reloadHomedata:0 size:jjPageSize];
+    }{
+        [self.homePhotoView homeUIRefresh];
     }
 }
 
@@ -55,6 +53,9 @@ static int jjPageSize = 10;
     
     // 添加 CollectionView
     [self.view addSubview:self.homePhotoView];
+    
+    // 网络请求
+    [self reloadHomedata:0 size:jjPageSize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,12 +108,13 @@ static int jjPageSize = 10;
                 NSString *work = [dic objectForKey:@"work"];
                 int likeNum = [[dic objectForKey:@"likeNum"] intValue];
                 int hasLike = [[dic objectForKey:@"hasLiked"] intValue];
+                BOOL hasFocused = [[dic objectForKey:@"hasFocused"] boolValue];
                 NSString *iconUrl = [dic objectForKey:@"iconUrl"];
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
                 BOOL isMy = [[JJTokenManager shareInstance].getUserID isEqualToString:userId] ? YES:NO;
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO isYourWork:isMy];
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO hasFocused:hasFocused isYourWork:isMy];
                 [photoList addObject:homeCube];
             }
             
@@ -134,7 +136,7 @@ static int jjPageSize = 10;
             [self.homePhotoView.photosCollection.mj_footer endRefreshing];
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
-            return ;
+            return;
         }
         
         if(!data || [[data objectForKey:@"result"] isEqualToString:@"0"]){
@@ -154,12 +156,13 @@ static int jjPageSize = 10;
                 NSString *work = [dic objectForKey:@"work"];
                 int likeNum = [[dic objectForKey:@"likeNum"] intValue];
                 int hasLike = [[dic objectForKey:@"hasLiked"] intValue];
+                BOOL hasFocused = [[dic objectForKey:@"hasFocused"] boolValue];
                 NSString *iconUrl = [dic objectForKey:@"iconUrl"];
                 NSString *postTime = [dic objectForKey:@"postTime"];
                 NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
                 
                 BOOL isMy = [[JJTokenManager shareInstance].getUserID isEqualToString:userId] ? YES:NO;
-                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO isYourWork:isMy];
+                HomeCubeModel *homeCube = [[HomeCubeModel alloc] initWithPath:photos photoId:photoId userid:userId work:work name:name like:likeNum avater:iconUrl time:postTime hasLiked:hasLike == 1?YES:NO hasFocused:hasFocused isYourWork:isMy];
                 [photoList addObject:homeCube];
             }
             
@@ -218,14 +221,14 @@ static int jjPageSize = 10;
 }
 
 #pragma mark - HomePhotosViewDelegate
-- (void)goToDetailViewCallback:(HomeCubeModel *)work{
+- (void)goToDetailViewCallback:(HomeCubeModel *)work index:(NSIndexPath *)index{
     HomeDetailsViewController *homeDetailView = [HomeDetailsViewController new];
-    [homeDetailView setWorksInfo:work];
+    [homeDetailView setWorksInfo:work index:index];
     [self.navigationController pushViewController:homeDetailView animated:YES];
 }
 
 // 下拉刷新
--(void)downPullFreshData:(MJRefreshHeader *)mjHeader{
+- (void)downPullFreshData:(MJRefreshHeader *)mjHeader{
     [self reloadHomedata:0 size:jjPageSize];
 }
 

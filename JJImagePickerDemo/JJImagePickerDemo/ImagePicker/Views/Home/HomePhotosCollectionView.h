@@ -12,7 +12,7 @@
 
 @protocol  HomePhotosViewDelegate <NSObject>
 
-- (void)goToDetailViewCallback:(HomeCubeModel *)work;
+- (void)goToDetailViewCallback:(HomeCubeModel *)work index:(NSIndexPath *)index;
 
 - (void)downPullFreshData:(MJRefreshHeader *)mjHeader;
 
@@ -39,6 +39,8 @@
 @property (weak, nonatomic) id<HomePhotosViewDelegate> delegate;
 
 - (void)updatephotosArray:(NSMutableArray *)photos;
+
+- (void)homeUIRefresh;
 
 @end
 

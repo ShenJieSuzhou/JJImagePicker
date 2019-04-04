@@ -28,9 +28,11 @@
 
 @property (assign) BOOL hasLiked;
 
+@property (assign) BOOL hasFocused;
+
 @property (assign) BOOL isYourWork;
 
-- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked isYourWork:(BOOL)isYourWork;
+- (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked hasFocused:(BOOL)hasFocused isYourWork:(BOOL)isYourWork;
 
 @end
 
