@@ -61,9 +61,15 @@
     [_backgroundView addSubview:_iconView];
     
     _concernBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_concernBtn setBackgroundColor:[UIColor clearColor]];
     [_concernBtn setTitle:@"关注" forState:UIControlStateNormal];
     [_concernBtn setTitle:@"已关注" forState:UIControlStateSelected];
+    [_concernBtn setBackgroundImage:[UIImage imageNamed:@"focusbk"] forState:UIControlStateNormal];
+    [_concernBtn setBackgroundImage:[UIImage imageNamed:@"unfocusbk"] forState:UIControlStateSelected];
+    [_concernBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_concernBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [_concernBtn.titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    [_concernBtn.layer setCornerRadius:8.0f];
+    [_concernBtn.layer setMasksToBounds:YES];
     [_concernBtn.titleLabel setTextColor:[UIColor whiteColor]];
     [_concernBtn addTarget:self action:@selector(clickConcernBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_concernBtn];
@@ -170,7 +176,7 @@
     }];
     
     [_concernBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50.0f, 30.0f));
+        make.size.mas_equalTo(CGSizeMake(50.0f, 25.0f));
         make.right.mas_equalTo(self.mas_right).offset(-20.0f);
         make.top.mas_equalTo(self.mas_top).offset(35.0f);
     }];
@@ -233,17 +239,19 @@
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 
-- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount{
+- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount hasFocused:(BOOL)hasFocused{
     
     [_iconView setImage:avater];
     [_userName setText:name];
     [_workNum setText:worksCount];
     [_fansNum setText:fansNum];
     [_likesNum setText:likesCount];
+    _concernBtn.selected = hasFocused;
 }
 
 - (void)clickConcernBtn:(UIButton *)sender{
-    [_delegate focusHerCandy];
+    sender.selected = !sender.selected;
+    [_delegate focusHerCandy:sender];
 }
 
 - (void)clickGoBackBtn:(UIButton *)sender{

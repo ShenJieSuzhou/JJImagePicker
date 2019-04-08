@@ -297,8 +297,9 @@
 
 - (void)goToUserZone:(UIGestureRecognizer *)sender{
     OthersMainPageViewController *otherZoneView = [OthersMainPageViewController new];
-    [otherZoneView setDetailInfo:self.photoWork.userid avater:self.iconView.currentBackgroundImage name:self.photoWork.name];
     
+//    [otherZoneView setDetailInfo:self.photoWork.userid avater:self.iconView.currentBackgroundImage name:self.photoWork.name];
+    [otherZoneView setUserZone:self.photoWork];
     [self.navigationController pushViewController:otherZoneView animated:YES];
 }
 

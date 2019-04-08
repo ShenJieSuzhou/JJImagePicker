@@ -9,7 +9,9 @@
 #import "FansModel.h"
 
 @implementation FansModel
-//@synthesize iconUrl = _iconUrl;
+@synthesize iconUrl = _iconUrl;
+@synthesize userId = _userId;
+@synthesize userName = _userName;
 
 - (instancetype)initWithUser:(NSString *)userid name:(NSString *)userName iconUrl:(NSString *)iconUrl{
     self = [super init];

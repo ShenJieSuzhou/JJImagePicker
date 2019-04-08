@@ -99,9 +99,12 @@
 // 跳转到粉丝详情页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FansModel *fansModel = [self.fansList objectAtIndex:indexPath.row];
+    
+    //请求粉丝信息
+    
+    
     OthersMainPageViewController *fansZone = [OthersMainPageViewController new];
-    UIImage *fansIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:fansModel.iconUrl]]];
-    [fansZone setDetailInfo:fansModel.userId avater:fansIcon name:fansModel.userName];
+    [fansZone setFansModel:fansModel];
     [self.navigationController pushViewController:fansZone animated:YES];
 }
 

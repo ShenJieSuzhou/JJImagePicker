@@ -13,6 +13,8 @@
 #import "OriginalWorksViewController.h"
 #import "CandyFansViewController.h"
 #import "JJPageInfo.h"
+#import "HttpRequestUtil.h"
+
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -28,9 +30,11 @@ static int jjWorkPageSize = 6;
 @property (copy, nonatomic) NSString *fansId;
 @property (strong, nonatomic) UIImage *avaterImg;
 @property (copy, nonatomic) NSString *nikeName;
+@property (assign) BOOL hasFocused;
 @property (copy, nonatomic) NSArray *fansList;
 @property (strong, nonatomic) JJPageInfo *currentPageInfo;
 @property (strong, nonatomic) NSMutableArray *worksDataSource;
+@property (strong, nonatomic) HomeCubeModel *userInfo;
 
 @end
 
@@ -43,6 +47,8 @@ static int jjWorkPageSize = 6;
 @synthesize fansList = _fansList;
 @synthesize currentPageInfo = _currentPageInfo;
 @synthesize worksDataSource = _worksDataSource;
+@synthesize userInfo = _userInfo;
+@synthesize hasFocused = _hasFocused;
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -61,10 +67,20 @@ static int jjWorkPageSize = 6;
     [self requestUserInfo];
 }
 
-- (void)setDetailInfo:(NSString *)fansId avater:(UIImage *)avater name:(NSString *)name{
-    self.fansId = fansId;
-    self.avaterImg = avater;
-    self.nikeName = name;
+- (void)setUserZone:(HomeCubeModel *)zoneInfo{
+    self.userInfo = zoneInfo;
+    self.fansId = self.userInfo.userid;
+    NSString *avatar = self.userInfo.iconUrl;
+    self.avaterImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]];
+    self.nikeName = self.userInfo.name;
+    self.hasFocused = self.userInfo.hasFocused;
+}
+
+- (void)setFansModel:(FansModel *)fansModel{
+    self.fansId = fansModel.userId;
+    self.nikeName = fansModel.userName;
+    NSString *avatar = fansModel.iconUrl;
+    self.avaterImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]];
 }
 
 -(OthersIDView *)othersIDView{
@@ -120,6 +136,7 @@ static int jjWorkPageSize = 6;
         NSString *likesCount = [data objectForKey:@"likesCount"];
         NSArray *nFansList = [data objectForKey:@"fansList"];
         weakSelf.fansList = nFansList;
+        weakSelf.hasFocused = [[data objectForKey:@"hasFocused"] boolValue];
         
         NSArray *works = [[data objectForKey:@"works"] copy];
         NSMutableArray *photoList = [[NSMutableArray alloc] init];
@@ -142,7 +159,7 @@ static int jjWorkPageSize = 6;
         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjWorkPageSize currentPage:currentPage];
         
         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
-        [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo];
+        [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo hasFocused:weakSelf.hasFocused];
     }];
 }
 
@@ -176,6 +193,7 @@ static int jjWorkPageSize = 6;
         NSString *likesCount = [data objectForKey:@"likesCount"];
         NSArray *nFansList = [data objectForKey:@"fansList"];
         weakSelf.fansList = nFansList;
+        weakSelf.hasFocused = [[data objectForKey:@"hasFocused"] boolValue];
         
         NSArray *works = [[data objectForKey:@"works"] copy];
         NSMutableArray *photoList = [[NSMutableArray alloc] init];
@@ -198,17 +216,17 @@ static int jjWorkPageSize = 6;
         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjWorkPageSize currentPage:currentPage];
         
         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
-        [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo];
+        [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo hasFocused:weakSelf.hasFocused];
     }];
 }
 
 /**
  刷新用户界面
  */
-- (void)refreshViewInfo:(UIImage *)avater nickname:(NSString *)name postCount:(NSString *)postCount fans:(NSString *)fans likes:(NSString *)likes posts:(NSMutableArray *)posts pageInfo:(JJPageInfo *)pageInfo{
+- (void)refreshViewInfo:(UIImage *)avater nickname:(NSString *)name postCount:(NSString *)postCount fans:(NSString *)fans likes:(NSString *)likes posts:(NSMutableArray *)posts pageInfo:(JJPageInfo *)pageInfo hasFocused:(BOOL)hasFocused{
     
     // 基本信息
-    [self.othersIDView updateViewInfo:avater name:name worksCount:postCount fans:fans likes:likes];
+    [self.othersIDView updateViewInfo:avater name:name worksCount:postCount fans:fans likes:likes hasFocused:hasFocused];
     
     if(pageInfo.currentPage == 0){
         [self.workView.worksCollection.mj_header endRefreshing];
@@ -236,14 +254,16 @@ static int jjWorkPageSize = 6;
     [self.navigationController pushViewController:fansView animated:YES];
 }
 
-- (void)focusHerCandy{
+- (void)focusHerCandy:(UIButton *)sender{
+    [self.userInfo setHasFocused:sender.selected];
     
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoFocus:) object:sender];
+    [self performSelector:@selector(toDoFocus:) withObject:sender afterDelay:0.2f];
 }
 
 - (void)goback{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 #pragma mark - WorksViewDelegate
 - (void)goToWorksDetailViewCallback:(Works *)work{
@@ -254,6 +274,25 @@ static int jjWorkPageSize = 6;
 
 - (void)worksUpPullFreshDataCallback{
     [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjWorkPageSize];
+}
+
+// 关注
+- (void)toDoFocus:(UIButton *)sender{
+    if (sender.selected) {
+        // 已关注
+        [HttpRequestUtil JJ_BeginFocus:START_FOCUS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID focusObj:self.fansId callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                return ;
+            }
+        }];
+    } else {
+        // 未关注
+        [HttpRequestUtil JJ_CancelFocus:CANCEL_FOCUS_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID focusObj:self.fansId callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                return ;
+            }
+        }];
+    }
 }
 
 @end
