@@ -32,12 +32,8 @@ static int jjPageSize = 10;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    // 用户是否登录
-    if(![[LoginSessionManager getInstance] isUserLogin]){
-        [self popLoginViewController];
-    }{
-        [self.homePhotoView homeUIRefresh];
-    }
+
+    [self.homePhotoView homeUIRefresh];
 }
 
 - (void)viewDidLoad {
@@ -54,14 +50,17 @@ static int jjPageSize = 10;
     // 添加 CollectionView
     [self.view addSubview:self.homePhotoView];
     
-    // 网络请求
-    [self reloadHomedata:0 size:jjPageSize];
+    // 用户是否登录
+    if(![[LoginSessionManager getInstance] isUserLogin]){
+        [self popLoginViewController];
+    }else{
+        [self reloadHomedata:0 size:jjPageSize];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
 }
 
 - (HomePhotosCollectionView *)homePhotoView{

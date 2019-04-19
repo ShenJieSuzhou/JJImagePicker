@@ -86,7 +86,7 @@ static CGFloat kMagin = 10.f;
     _photosCollection.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf.delegate downPullFreshData:weakSelf.photosCollection.mj_header];
     }];
-    [_photosCollection.mj_header beginRefreshing];
+//    [_photosCollection.mj_header beginRefreshing];
     
     // 上拉刷新
     _photosCollection.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
