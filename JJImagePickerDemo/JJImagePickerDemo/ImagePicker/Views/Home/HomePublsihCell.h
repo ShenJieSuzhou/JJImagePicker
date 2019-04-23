@@ -10,11 +10,12 @@
 #import "Works.h"
 #import "HomeCubeModel.h"
 #import "JJLikeButton.h"
+#import <YYText/YYLabel.h>
 
 @interface HomePublsihCell : UICollectionViewCell
 
 @property (strong, nonatomic) UIImageView *hpImageView;
-@property (strong, nonatomic) UILabel *imgDesclabel;
+@property (strong, nonatomic) YYLabel *imgDesclabel;
 @property (strong, nonatomic) UIImageView *avaterView;
 @property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeCount;

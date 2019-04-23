@@ -48,7 +48,7 @@
     [_hpImageView.layer setMasksToBounds:YES];
     [self addSubview:_hpImageView];
     
-    _imgDesclabel = [[UILabel alloc] init];
+    _imgDesclabel = [[YYLabel alloc] init];
     [_imgDesclabel setTextAlignment:NSTextAlignmentLeft];
     _imgDesclabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [_imgDesclabel setText:@""];
@@ -179,7 +179,10 @@ if(button.selected){
         
     }];
     
-    [_imgDesclabel setText:desc];
+    //描述
+    NSString *imgdescRE = [desc stringByRemovingPercentEncoding];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:imgdescRE];
+    [_imgDesclabel setAttributedText:text];
     [_avaterView sd_setImageWithURL:[NSURL URLWithString:avater] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
     }];

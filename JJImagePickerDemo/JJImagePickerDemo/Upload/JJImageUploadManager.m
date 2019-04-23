@@ -13,7 +13,7 @@
 #include <CommonCrypto/CommonHMAC.h>
 #import<QNConfiguration.h>
 
-#define QNDNS @"http://pmuz5wt3t.bkt.clouddn.com"
+#define QNDNS @"http://candyart.top"
 
 @interface JJImageUploadManager()
 
