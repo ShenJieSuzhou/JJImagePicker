@@ -236,6 +236,7 @@
 		E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB56820E2169F0021EB68 /* wb_style_orange.png */; };
 		E5DA0014226EE4020043F17A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA0013226EE4020043F17A /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E5DA0018226EE4A50043F17A /* NetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA0017226EE4A50043F17A /* NetworkConfig.m */; };
+		E5DA001C22700EA40043F17A /* PushUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DA001B22700EA40043F17A /* PushUtil.m */; };
 		E5DB333D22154BD1008D7818 /* JJImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */; };
 		E5DB3340221D637F008D7818 /* CustomNewsBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB333E221D637E008D7818 /* CustomNewsBanner.m */; };
 		E5DB3349221D82EF008D7818 /* JJThumbPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */; };
@@ -643,6 +644,8 @@
 		E5DA0013226EE4020043F17A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E5DA0016226EE4A50043F17A /* NetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConfig.h; sourceTree = "<group>"; };
 		E5DA0017226EE4A50043F17A /* NetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkConfig.m; sourceTree = "<group>"; };
+		E5DA001A22700EA40043F17A /* PushUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushUtil.h; sourceTree = "<group>"; };
+		E5DA001B22700EA40043F17A /* PushUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushUtil.m; sourceTree = "<group>"; };
 		E5DB333B22154BD1008D7818 /* JJImageUploadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJImageUploadManager.h; sourceTree = "<group>"; };
 		E5DB333C22154BD1008D7818 /* JJImageUploadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJImageUploadManager.m; sourceTree = "<group>"; };
 		E5DB333E221D637E008D7818 /* CustomNewsBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNewsBanner.m; sourceTree = "<group>"; };
@@ -1327,6 +1330,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E5DA001922700E7C0043F17A /* PushUtil */,
 				E51EE7CB222D195A005088F6 /* framework */,
 				E51EE7C7222D1932005088F6 /* Wechat */,
 				E5DB333722154B78008D7818 /* Upload */,
@@ -1436,6 +1440,15 @@
 				E5DA0017226EE4A50043F17A /* NetworkConfig.m */,
 			);
 			path = NetworkConfig;
+			sourceTree = "<group>";
+		};
+		E5DA001922700E7C0043F17A /* PushUtil */ = {
+			isa = PBXGroup;
+			children = (
+				E5DA001A22700EA40043F17A /* PushUtil.h */,
+				E5DA001B22700EA40043F17A /* PushUtil.m */,
+			);
+			path = PushUtil;
 			sourceTree = "<group>";
 		};
 		E5DB333722154B78008D7818 /* Upload */ = {
@@ -1851,6 +1864,7 @@
 				E5506BDE212FB7D80077E62B /* JJCropViewController.m in Sources */,
 				E5506C0721412B250077E62B /* JJFilterManager.m in Sources */,
 				E55BA99321A3E16D0078472D /* WorkCell.m in Sources */,
+				E5DA001C22700EA40043F17A /* PushUtil.m in Sources */,
 				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
 				E542B8062192BD9D002A7E1E /* EmojiScrollView.m in Sources */,
 				E5DF2D8D214B93320048A80E /* YUCIHighPass.m in Sources */,

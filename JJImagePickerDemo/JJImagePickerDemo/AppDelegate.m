@@ -18,6 +18,7 @@
 #import "Reachability.h"
 #import "NetworkConfig.h"
 #import <UserNotifications/UserNotifications.h>
+#import "PushUtil.h"
 
 @interface AppDelegate ()
 
@@ -44,6 +45,7 @@
     
     // 启动App
     [self startApp];
+    
     return YES;
 }
 
@@ -86,6 +88,32 @@
     return [WXApi handleOpenURL:url delegate:[JJWechatManager shareInstance]];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    if (application.applicationState == UIApplicationStateActive) {
+        // 这里真实需要处理交互的地方
+        // 获取通知所带的数据
+//        NSString *content = [notification.userInfo objectForKey:@"content"];
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"本地推送" message:content preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//        }];
+//        [alertController addAction:alertAction];
+//
+//        [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+        
+    }
+    // 更新显示的徽章个数
+    NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    badge --;
+    badge = badge >= 0? badge: 0;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+    NSArray *localNotification = [UIApplication sharedApplication].scheduledLocalNotifications;
+    for (UILocalNotification *notification in localNotification) {
+        // 在不需要再推送时，可以取消推送
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+    }
+}
+
 #pragma mark - my logic
 - (void) startApp{
     // 检测更新
@@ -99,7 +127,7 @@
     [self.netReach startNotifier];
     
     //本地推送
-    [self registerAPN];
+    [PushUtil authLocalNotifition];
 }
 
 - (void)reachabilityChanged:(NSNotification *)note{
@@ -157,97 +185,6 @@
 //            }
 //        }];
 //    }
-}
-
-
-#pragma mark -localNotication
-- (void)registerAPN{
-    if ([[UIApplication sharedApplication]  respondsToSelector:@selector(registerForRemoteNotifications)]) {
-        // 这里 types 可以自定义，如果 types 为 0，那么所有的用户通知均会静默的接收，系统不会给用户任何提示(当然，App 可以自己处理并给出提示)
-        UIUserNotificationType types = (UIUserNotificationType) (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert);
-        // 这里 categories 可暂不深入，本文后面会详细讲解。
-        UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-        // 当应用安装后第一次调用该方法时，系统会弹窗提示用户是否允许接收通知
-        [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    }
-    [self registerLocalNotificationInOldWay:10];
-}
-
-- (void)registerLocalNotificationInOldWay:(NSInteger)alertTime {
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    // 设置触发通知的时间
-    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
-    NSLog(@"fireDate=%@",fireDate);
-    
-    notification.fireDate = fireDate;
-    // 时区
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    // 设置重复的间隔
-    notification.repeatInterval = kCFCalendarUnitSecond;
-    
-    // 通知内容
-    notification.alertBody =  @"该起床了...";
-    notification.applicationIconBadgeNumber = 1;
-    // 通知被触发时播放的声音
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    // 通知参数
-    NSDictionary *userDict = [NSDictionary dictionaryWithObject:@"开始学习iOS开发了" forKey:@"key"];
-    notification.userInfo = userDict;
-    
-    // ios8后，需要添加这个注册，才能得到授权
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
-                                                                                 categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        // 通知重复提示的单位，可以是天、周、月
-        notification.repeatInterval = NSCalendarUnitDay;
-    } else {
-        // 通知重复提示的单位，可以是天、周、月
-        notification.repeatInterval = NSDayCalendarUnit;
-    }
-    
-    // 执行通知注册
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
-
-// 移除某一个指定的通知
-- (void)removeOneNotificationWithID:(NSString *)noticeId {
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        [center getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-            for (UNNotificationRequest *req in requests){
-                NSLog(@"存在的ID:%@\n",req.identifier);
-            }
-            NSLog(@"移除currentID:%@",noticeId);
-        }];
-        
-        [center removePendingNotificationRequestsWithIdentifiers:@[noticeId]];
-    }else {
-        NSArray *array=[[UIApplication sharedApplication] scheduledLocalNotifications];
-        for (UILocalNotification *localNotification in array){
-            NSDictionary *userInfo = localNotification.userInfo;
-            NSString *obj = [userInfo objectForKey:@"noticeId"];
-            if ([obj isEqualToString:noticeId]) {
-                [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
-            }
-        }
-    }
-}
-
-// 移除所有通知
-- (void)removeAllNotification {
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        [center removeAllPendingNotificationRequests];
-    }else {
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    }
-}
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    NSLog(@"didReceiveLocalNotification notification");
-    application.applicationIconBadgeNumber -= 1;
 }
 
 @end
