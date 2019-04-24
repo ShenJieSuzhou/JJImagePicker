@@ -33,7 +33,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    CGFloat width = self.frame.size.width/3;
+    CGFloat width = self.frame.size.width/3;                                                                                                              
     Class class = NSClassFromString(@"UITabBarButton");
     for (UIView *view in self.subviews) {
         if ([view isEqual:self.centerBtn]) {//self.centerButton
