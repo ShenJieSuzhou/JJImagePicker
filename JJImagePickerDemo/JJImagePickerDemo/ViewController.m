@@ -93,41 +93,8 @@
 }
 
 -(void)tabBar:(CustomTabbar *)tabBar clickCenterButton:(UIButton *)sender{
-    self.cpViewController = [CameraPhotoViewController new];
-//    [self presentViewController:self.cpViewController animated:YES completion:^{
-//
-//    }];
-    
+    self.cpViewController = [CameraPhotoViewController new];    
     [self.navigationController pushViewController:self.cpViewController animated:YES];
 }
-
-
-//#pragma - mark LoginSessionDelegate
-//- (void)tokenVerifySuccessful{
-//    [SVProgressHUD dismiss];
-//    //刷新数据
-////    [self refreshViewInfo];
-//}
-//
-//#pragma mark - notification
-//- (void)receiveLoginSuccess:(NSNotification *)notify{
-//    //刷新数据
-////    [self refreshViewInfo];
-//}
-//
-//- (void)tokenVerifyError:(NSString *)errorDesc{
-//    [SVProgressHUD showErrorWithStatus:errorDesc];
-//    [SVProgressHUD dismissWithDelay:2.0f];
-//
-//    [self popLoginViewController];
-//}
-//
-//- (void)networkError:(NSError *)error{
-//    //网络出错了 请刷新界面
-//    [SVProgressHUD showErrorWithStatus:@"网络连接错误，请检查网络"];
-//    [SVProgressHUD dismissWithDelay:2.0f];
-//
-//    [self popLoginViewController];
-//}
 
 @end
