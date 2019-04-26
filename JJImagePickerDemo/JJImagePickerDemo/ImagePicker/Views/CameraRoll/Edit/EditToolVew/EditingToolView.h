@@ -23,7 +23,7 @@ typedef enum : NSUInteger {
 } PhotoEditSubTools;
 
 typedef enum NSUInteger{
-    JJSmoothSkinAdjust,
+    JJSmoothBrightSkinAdjust,
     JJExposureAdjust,
     JJTemperatureAdjsut,
     JJContrastAdjust,

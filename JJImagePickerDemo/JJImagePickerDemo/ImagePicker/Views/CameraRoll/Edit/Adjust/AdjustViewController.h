@@ -10,6 +10,7 @@
 #import "EditingToolView.h"
 #import "CustomSlider.h"
 #import "AdjustModel.h"
+#import <GPUImage/GPUImage.h>
 
 @class AdjustViewController;
 @protocol AdjustmentDelegate <NSObject>
@@ -29,8 +30,17 @@
 @property (nonatomic, strong) EditingSubToolView *adjustView;
 //工具
 @property (nonatomic, copy) NSArray *adToolArrays;
-//UISlide
+//UISlide 通用
 @property (nonatomic, strong) CustomSlider *jjSlider;
+
+//美白效果 磨皮与提亮
+@property (nonatomic, strong) CustomSlider *smoothSlider;
+@property (nonatomic, strong) CustomSlider *brightSlider;
+@property (strong, nonatomic) GPUImageFilterGroup *groupFilter;
+@property (strong, nonatomic) GPUImageBilateralFilter *bilateralFilter;
+@property (strong, nonatomic) GPUImageBrightnessFilter *brightnessFilter;
+@property (strong, nonatomic) GPUImagePicture *staticPicture;
+
 //调整的类型
 @property (assign) PhotoEditAdjustTYPE jjAdjustType;
 //图片调整数值

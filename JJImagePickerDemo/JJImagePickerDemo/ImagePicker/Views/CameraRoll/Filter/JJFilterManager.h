@@ -17,7 +17,7 @@ typedef void(^jjFilterRenderBlock)(UIImage *image);
 
 + (JJFilterManager *)getInstance;
 - (UIImage *)renderImage:(NSString *)filterName image:(UIImage *)image;
-- (UIImage *)renderImageWithBeauty:(UIImage *)image inputAmount:(CGFloat)amount;
+//- (UIImage *)renderImageWithBeauty:(UIImage *)image inputAmount:(CGFloat)amount;
 - (UIImage *)renderImageWithExposure:(UIImage *)image inputAmount:(CGFloat)amount;
 - (UIImage *)renderImageWithTemperature:(UIImage *)image inputAmount:(CGFloat)amount;
 - (UIImage *)renderImageWithSaturation:(UIImage *)image inputAmount:(CGFloat)amount;

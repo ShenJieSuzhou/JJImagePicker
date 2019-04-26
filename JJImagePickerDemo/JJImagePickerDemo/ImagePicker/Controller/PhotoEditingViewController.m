@@ -285,6 +285,7 @@
             break;
         case JJEditToolAdjust:{
             AdjustViewController *adjustView = [AdjustViewController new];
+            adjustView.mDelegate = self;
             [adjustView setSlideValue:self.pAdjustModel];
             [adjustView setEditImage:self.preViewImage.image];
             [adjustView setAdToolArrays:array];

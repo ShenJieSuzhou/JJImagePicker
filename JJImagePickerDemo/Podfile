@@ -8,5 +8,6 @@ target 'JJImagePickerDemo' do
     pod 'YYText'
     pod 'Qiniu', "~> 7.1"
     pod 'MJRefresh'
-    
+    pod 'GPUImage'
+
 end

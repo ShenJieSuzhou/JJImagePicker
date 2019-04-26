@@ -12,6 +12,7 @@
 @interface AdjustModel : NSObject
 
 @property (assign) float skin;
+@property (assign) float brightness;
 @property (assign) float exposure;
 @property (assign) float temperature;
 @property (assign) float contrast;

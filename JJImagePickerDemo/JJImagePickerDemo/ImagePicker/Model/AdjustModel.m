@@ -12,6 +12,7 @@
 
 - (instancetype)init{
     if(self = [super init]){
+        _brightness = 0.0f;
         _skin = 0.0f;
         _exposure = 0.0f;
         _temperature = 6500.0f;

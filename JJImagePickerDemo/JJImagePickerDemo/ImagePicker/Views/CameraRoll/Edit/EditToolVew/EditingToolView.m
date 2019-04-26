@@ -268,7 +268,7 @@
         }
         
         if(index == 0){
-            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJSmoothSkinAdjust];
+            [_delegate PhotoEditSubEditTool:collectionView adjustType:JJSmoothBrightSkinAdjust];
         }else if(index == 1){
             [_delegate PhotoEditSubEditTool:collectionView adjustType:JJExposureAdjust];
         }else if(index == 2){
