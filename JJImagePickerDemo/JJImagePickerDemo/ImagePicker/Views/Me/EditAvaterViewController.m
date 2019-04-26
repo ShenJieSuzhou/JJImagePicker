@@ -71,7 +71,7 @@
 
 // 修改头像， 进入相册选择后上传服务器
 - (void)clickChangeAvaterBtn:(UIButton *)sender{
-    
+    // 弹出系统相册
     
 }
 
