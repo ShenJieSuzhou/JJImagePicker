@@ -34,10 +34,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem setTitle:@"个人头像"];
+    UIImage *img = [[UIImage imageNamed:@"in_pay_back"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(leftBarBtnClicked)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
     
-    
-//    [self.view addSubview:self.avaterView];
+    [self.view addSubview:self.avaterView];
     [self.view addSubview:self.changeAvaterBtn];
     
     [self.avaterView sd_setImageWithURL:[NSURL URLWithString:_avaterUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -67,9 +69,14 @@
     return _changeAvaterBtn;
 }
 
+// 修改头像， 进入相册选择后上传服务器
 - (void)clickChangeAvaterBtn:(UIButton *)sender{
     
     
+}
+
+- (void)leftBarBtnClicked{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
