@@ -49,6 +49,7 @@ static int jjMyworksPageSize = 6;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {

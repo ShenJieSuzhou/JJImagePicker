@@ -1,0 +1,25 @@
+//
+//  EditAvaterViewController.h
+//  JJImagePickerDemo
+//
+//  Created by shenjie on 2019/4/26.
+//  Copyright © 2019年 shenjie. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class EditAvaterViewController;
+@protocol EditAvaterDelegate <NSObject>
+
+- (void)EditAvaterSuccessCallBack:(NSString *)name viewController:(EditAvaterViewController *)viewCtl;
+
+@end
+
+@interface EditAvaterViewController : UIViewController
+
+@property (weak, nonatomic) id<EditAvaterDelegate> delegate;
+
+@property (strong, nonatomic) NSString *avaterUrl;
+
+@end
+

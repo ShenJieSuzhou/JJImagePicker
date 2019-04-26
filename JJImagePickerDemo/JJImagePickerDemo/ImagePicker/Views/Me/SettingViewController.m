@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "SettingViewCell.h"
 #import "SecurityViewController.h"
+#import "EditAvaterViewController.h"
 #import "EditNameViewController.h"
 #import "EditAgendViewController.h"
 #import "JJDatePicker.h"
@@ -26,6 +27,11 @@
 @implementation SettingViewController
 //@synthesize datePicker = _datePicker;
 @synthesize delegate = _delegate;
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,7 +80,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         switch (indexPath.row) {
-            case 0:
+            case 0:{
+                NSString *iconUrl = [JJTokenManager shareInstance].getUserAvatar;
+                EditAvaterViewController *editAvater = [EditAvaterViewController new];
+                [editAvater setAvaterUrl:iconUrl];
+                [self.navigationController pushViewController:editAvater animated:YES];
+            }
                 break;
             case 1:{
                 UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

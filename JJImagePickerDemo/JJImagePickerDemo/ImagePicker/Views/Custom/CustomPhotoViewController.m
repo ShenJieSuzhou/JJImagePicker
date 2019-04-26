@@ -19,6 +19,7 @@
 //@synthesize isPublishViewAsk = _isPublishViewAsk;
 @synthesize currentPhotoNum = _currentPhotoNum;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -34,6 +35,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     if(_customNaviBar && !_customNaviBar.hidden){
         [self.view bringSubviewToFront:_customNaviBar];
     }

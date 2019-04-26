@@ -58,6 +58,9 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 110.0f;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     
     // If we're animating onto the screen, set a flag
     // so we can manually control the status bar fade out timing

@@ -36,7 +36,10 @@
 @synthesize pwImgV1 = _pwImgV1;
 @synthesize pwImgV2 = _pwImgV2;
 
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

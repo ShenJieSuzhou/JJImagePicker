@@ -29,6 +29,7 @@
 @synthesize alertTitleWhenPhotoExceedMaxCount = _alertTitleWhenPhotoExceedMaxCount;
 @synthesize checkBox = _checkBox;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,6 +62,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self refreshImagePreview];
     
     //标记该照片是否在选中行列

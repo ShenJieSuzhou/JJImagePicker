@@ -33,8 +33,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setNavigationBarHidden:NO];       // 使导航条有效
-    [self.navigationBar setHidden:YES];     // 隐藏导航条，但由于导航条有效，系统的返回按钮页有效，所以可以使用系统的右滑返回手势。
+//    [self setNavigationBarHidden:NO];       // 使导航条有效
+//    [self.navigationBar setHidden:YES];     // 隐藏导航条，但由于导航条有效，系统的返回按钮页有效，所以可以使用系统的右滑返回手势。
 
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -53,6 +53,10 @@
 }
 
 
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [super pushViewController:viewController animated:animated];
+    [self setNavigationBarHidden:YES animated:YES];
+}
 
 
 @end

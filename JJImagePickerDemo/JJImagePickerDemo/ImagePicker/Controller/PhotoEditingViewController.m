@@ -36,6 +36,11 @@
 @synthesize parentPage = _parentPage;
 @synthesize selectedWords = _selectedWords;
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
