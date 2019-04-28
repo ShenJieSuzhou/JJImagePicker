@@ -18,7 +18,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HttpRequestUrlDefine.h"
 
-@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate>
+@interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate,EditAvaterDelegate>
 
 @property (strong, nonatomic) UITableView *settingTable;
 
@@ -83,6 +83,7 @@
             case 0:{
                 NSString *iconUrl = [JJTokenManager shareInstance].getUserAvatar;
                 EditAvaterViewController *editAvater = [EditAvaterViewController new];
+                editAvater.delegate = self;
                 [editAvater setAvaterUrl:iconUrl];
                 [self.navigationController pushViewController:editAvater animated:YES];
             }
@@ -156,6 +157,17 @@
     }
     cell.detailTextLabel.text = date;
     [[JJTokenManager shareInstance] saveUserBirth:date];
+}
+
+#pragma mark EditAvaterDelegate
+- (void)EditAvaterSuccessCallBack:(UIImage *)avater{
+    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    if(!cell){
+        return;
+    }
+    
+    UIImageView *avaterView = (UIImageView *) [cell viewWithTag:190];
+    [avaterView setImage:avater];
 }
 
 #pragma mark EditAgendDelegate
@@ -238,6 +250,7 @@
                 CGFloat height = cell.frame.size.height;
                 CGFloat width = self.view.frame.size.width;
                 UIImageView *avater = [[UIImageView alloc] initWithFrame:CGRectMake(width - height - 10.0f, 5.0f,  height-10,  height-10)];
+                avater.tag = 190;
                 NSString *iconUrl = [JJTokenManager shareInstance].getUserAvatar;
                 [avater sd_setImageWithURL:[NSURL URLWithString:iconUrl] placeholderImage:[UIImage imageNamed:@"userPlaceHold"]];
                 [avater.layer setCornerRadius:(height-10)/2.0];

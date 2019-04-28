@@ -9,6 +9,11 @@
 #import "EditAvaterViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CropAvaterViewController.h"
+#import "JJImageUploadManager.h"
+#import "GlobalDefine.h"
+#import "JJTokenManager.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
 #define MODIFIY_BUTTON_WIDTH 140.0f
@@ -122,15 +127,23 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)EditAvaterSuccessCallBack:(NSString *)name viewController:(EditAvaterViewController *)viewCtl{
-    
-}
-
 #pragma mark - CropAvaterDelegate
 - (void)cropAvater:(nonnull CropAvaterViewController *)cropViewController didCropToImage:(nonnull UIImage *)image{
     [self.avaterView setImage:image];
     // 上传图床
-    
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    //将所选的图片上传至云
+    __weak typeof(self) weakSelf = self;
+    [[JJImageUploadManager shareInstance] uploadImageToQN:image uploadResult:^(BOOL isSuccess, NSString *file) {
+        if(isSuccess){
+            [[JJTokenManager shareInstance] saveUserAvatar:file];
+        }else{
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismiss];
+            return;
+        }
+    }];
     [cropViewController.navigationController popViewControllerAnimated:YES];
 }
 

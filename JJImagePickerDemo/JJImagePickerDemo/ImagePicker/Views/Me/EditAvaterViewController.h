@@ -13,7 +13,7 @@
 @class EditAvaterViewController;
 @protocol EditAvaterDelegate <NSObject>
 
-- (void)EditAvaterSuccessCallBack:(NSString *)name viewController:(EditAvaterViewController *)viewCtl;
+- (void)EditAvaterSuccessCallBack:(UIImage *)avater;
 
 @end
 
