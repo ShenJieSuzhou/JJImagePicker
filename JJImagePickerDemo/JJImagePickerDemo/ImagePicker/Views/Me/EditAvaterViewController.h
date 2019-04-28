@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CropAvaterViewController.h"
+
 
 @class EditAvaterViewController;
 @protocol EditAvaterDelegate <NSObject>
@@ -20,6 +22,8 @@
 @property (weak, nonatomic) id<EditAvaterDelegate> delegate;
 
 @property (strong, nonatomic) NSString *avaterUrl;
+
+@property (strong, nonatomic) CropAvaterViewController *cropAvaterView;
 
 @end
 

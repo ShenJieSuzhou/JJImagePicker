@@ -213,6 +213,7 @@
 		E56B9CD220AD2FA800021DF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56B9CD120AD2FA800021DF8 /* main.m */; };
 		E571BD44210F0045009DD369 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = E571BD43210F0044009DD369 /* content.json */; };
 		E5794C22227321F9007F20FC /* EditAvaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5794C21227321F9007F20FC /* EditAvaterViewController.m */; };
+		E5794C2522757BEB007F20FC /* CropAvaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5794C2422757BEB007F20FC /* CropAvaterViewController.m */; };
 		E57FDC91217AFC1000D7561A /* WordsBrushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */; };
 		E57FDC97217AFD9600D7561A /* TextEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC96217AFD9600D7561A /* TextEditView.m */; };
 		E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57FDC99217AFE1C00D7561A /* BrushPaneView.m */; };
@@ -597,6 +598,8 @@
 		E571BD43210F0044009DD369 /* content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
 		E5794C20227321F9007F20FC /* EditAvaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditAvaterViewController.h; sourceTree = "<group>"; };
 		E5794C21227321F9007F20FC /* EditAvaterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAvaterViewController.m; sourceTree = "<group>"; };
+		E5794C2322757BEB007F20FC /* CropAvaterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CropAvaterViewController.h; sourceTree = "<group>"; };
+		E5794C2422757BEB007F20FC /* CropAvaterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CropAvaterViewController.m; sourceTree = "<group>"; };
 		E57FDC8F217AFC1000D7561A /* WordsBrushViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsBrushViewController.h; sourceTree = "<group>"; };
 		E57FDC90217AFC1000D7561A /* WordsBrushViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsBrushViewController.m; sourceTree = "<group>"; };
 		E57FDC95217AFD9600D7561A /* TextEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextEditView.h; sourceTree = "<group>"; };
@@ -818,6 +821,8 @@
 				E58C251A21D5CD7D001C4D8F /* SettingViewCell.m */,
 				E5794C20227321F9007F20FC /* EditAvaterViewController.h */,
 				E5794C21227321F9007F20FC /* EditAvaterViewController.m */,
+				E5794C2322757BEB007F20FC /* CropAvaterViewController.h */,
+				E5794C2422757BEB007F20FC /* CropAvaterViewController.m */,
 				4477BC9621D7C447009128F5 /* EditNameViewController.h */,
 				4477BC9721D7C447009128F5 /* EditNameViewController.m */,
 				4477BC9921D7C462009128F5 /* EditSignViewController.h */,
@@ -1708,6 +1713,7 @@
 				E5506B61212FB3330077E62B /* InterestingViewController.m in Sources */,
 				4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */,
 				E5DA0018226EE4A50043F17A /* NetworkConfig.m in Sources */,
+				E5794C2522757BEB007F20FC /* CropAvaterViewController.m in Sources */,
 				E512B1D6215A045000B06B1B /* TagModel.m in Sources */,
 				E5506BE2212FB7D80077E62B /* EditingToolCell.m in Sources */,
 				44208E2421A164F50090D983 /* CacheImageViewController.m in Sources */,
