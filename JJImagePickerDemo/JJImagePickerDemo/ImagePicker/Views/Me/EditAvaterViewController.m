@@ -13,6 +13,7 @@
 #import "GlobalDefine.h"
 #import "JJTokenManager.h"
 
+
 #import <SVProgressHUD/SVProgressHUD.h>
 
 
@@ -129,22 +130,42 @@
 
 #pragma mark - CropAvaterDelegate
 - (void)cropAvater:(nonnull CropAvaterViewController *)cropViewController didCropToImage:(nonnull UIImage *)image{
-    [self.avaterView setImage:image];
     // 上传图床
     [SVProgressHUD show];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     //将所选的图片上传至云
-    __weak typeof(self) weakSelf = self;
+     __weak typeof(self) weakself = self;
     [[JJImageUploadManager shareInstance] uploadImageToQN:image uploadResult:^(BOOL isSuccess, NSString *file) {
         if(isSuccess){
-            [[JJTokenManager shareInstance] saveUserAvatar:file];
+            // 回调 并保存头像
+            [weakself.delegate EditAvaterSuccessCallBack:file localImg:image viewControl:weakself];
         }else{
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismiss];
             return;
         }
     }];
-    [cropViewController.navigationController popViewControllerAnimated:YES];
 }
+
+
+//[SVProgressHUD show];
+//[SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//NSString *nickName = self.nickNameField.text;
+//__weak typeof(self) weakself = self;
+//[HttpRequestUtil JJ_UpdateUserNickName:UPDATE_NICKNAME_REQUEST token:[JJTokenManager shareInstance].getUserToken name:nickName userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+//    [SVProgressHUD dismiss];
+//    if(error){
+//        NSLog(@"%@", error);
+//        [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+//        [SVProgressHUD dismissWithDelay:2.0f];
+//        return ;
+//    }
+//    if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+//        [weakself.delegate EditNameSuccessCallBack:nickName viewController:weakself];
+//    }else{
+//        [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+//        [SVProgressHUD dismissWithDelay:2.0f];
+//    }
+//}];
 
 @end

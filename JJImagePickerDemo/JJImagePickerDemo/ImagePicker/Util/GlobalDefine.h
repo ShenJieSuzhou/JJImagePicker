@@ -53,6 +53,7 @@
 #define JJ_LOGININFO_EXPIRED  @"登录数据过期,请重新登录"
 #define JJ_WECHATLOGIN_DENIED   @"微信登录用户拒绝"
 #define JJ_WECHATLOGIN_CANCEL @"微信登录用户取消"
+#define JJ_MODIFIY_SUCCESS @"修改成功"
 
 
 #endif /* GlobalDefine_h */

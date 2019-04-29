@@ -134,6 +134,8 @@ static const CGFloat kTOCropViewControllerToolbarHeight = 110.0f;
 }
 
 - (void)clickCompleteBtn:(UIButton *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+    
     CGRect cropFrame = self.cropView.imageCropFrame;
     UIImage *cropImage = nil;
     cropImage = [self.image croppedImageWithFrame:cropFrame angle:0 circularClip:NO];

@@ -17,6 +17,10 @@
 #import "JJTokenManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "HttpRequestUrlDefine.h"
+#import "HttpRequestUtil.h"
+#import "GlobalDefine.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate,EditAvaterDelegate>
 
@@ -160,14 +164,33 @@
 }
 
 #pragma mark EditAvaterDelegate
-- (void)EditAvaterSuccessCallBack:(UIImage *)avater{
-    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    if(!cell){
-        return;
-    }
+- (void)EditAvaterSuccessCallBack:(NSString *)imageUrl localImg:(UIImage *)img viewControl:(EditAvaterViewController *)editViewCtrl{
+    [editViewCtrl.navigationController popViewControllerAnimated:YES];
     
-    UIImageView *avaterView = (UIImageView *) [cell viewWithTag:190];
-    [avaterView setImage:avater];
+    [HttpRequestUtil JJ_UpdateUserAvatar:UPDATE_AVATAR_REQUEST token:[JJTokenManager shareInstance].getUserToken avatar:imageUrl userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return ;
+        }
+    
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [[JJTokenManager shareInstance] saveUserAvatar:imageUrl];
+            UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            if(!cell){
+                return;
+            }
+            
+            UIImageView *avaterView = (UIImageView *) [cell viewWithTag:190];
+            [avaterView setImage:img];
+            [SVProgressHUD showSuccessWithStatus:JJ_MODIFIY_SUCCESS];
+            [SVProgressHUD dismissWithDelay:1.0f];
+        }else{
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:1.0f];
+        }
+    }];
 }
 
 #pragma mark EditAgendDelegate
