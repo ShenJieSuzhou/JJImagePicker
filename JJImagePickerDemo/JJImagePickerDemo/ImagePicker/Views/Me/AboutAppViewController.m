@@ -7,16 +7,23 @@
 //
 
 #import "AboutAppViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface AboutAppViewController ()
 
+
+@property (strong, nonatomic) NSMutableArray *contentArray;
 @end
 
 @implementation AboutAppViewController
+@synthesize appIconV = _appIconV;
+@synthesize version = _version;
+@synthesize myCopyRightH = _myCopyRightH;
+@synthesize myCopyRightB = _myCopyRightB;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -24,25 +31,127 @@
     // Do any additional setup after loading the view.
     
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
+    [self.navigationItem setTitle:@"关于我们"];
+    UIImage *img = [[UIImage imageNamed:@"in_pay_back"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(leftBarBtnClicked)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
     
-    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setBackgroundColor:[UIColor clearColor]];
-    [cancelBtn setImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
-    [cancelBtn addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:cancelBtn withFrame:CGRectMake(20.0f, 30.0f, 30.0f, 30.0f)];
+    self.contentArray = [[NSMutableArray alloc] initWithObjects:@"给我们评分", @"检查更新", nil];
     
-    CGFloat w = self.view.frame.size.width;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
-    [title setText:@"关于我们"];
-    [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
-    [title setTextAlignment:NSTextAlignmentCenter];
-    [title setTextColor:[UIColor blackColor]];
-    [self.customNaviBar addSubview:title];
-    [self.jjTabBarView setHidden:YES];
+    [self.view addSubview:self.aboutTableView];
 }
 
-- (void)clickCancelBtn:(id)sender{
+- (void)leftBarBtnClicked{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (UIImageView *)appIconV{
+    if(!_appIconV){
+        _appIconV = [[UIImageView alloc] init];
+        _appIconV.contentMode = UIViewContentModeScaleAspectFit;
+        [_appIconV setImage:[UIImage imageNamed:@"account"]];
+    }
+    
+    return _appIconV;
+}
+
+- (UITableView *)aboutTableView{
+    if(!_aboutTableView){
+        _aboutTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
+        [_aboutTableView setBackgroundColor:[UIColor whiteColor]];
+        _aboutTableView.delegate = self;
+        _aboutTableView.dataSource = self;
+        _aboutTableView.tableHeaderView = [UIView new];
+        _aboutTableView.tableFooterView = [UIView new];
+    }
+
+    return _aboutTableView;
+}
+
+- (UILabel *)version{
+    if(!_version){
+        _version = [[UILabel alloc] init];
+        [_version setTextAlignment:NSTextAlignmentCenter];
+        NSString *vt = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        [_version setText:[NSString stringWithFormat:@"版本号: %@", vt]];
+    }
+    
+    return _version;
+}
+
+- (UILabel *)myCopyRightH{
+    if(!_myCopyRightH){
+        _myCopyRightH = [[UILabel alloc] init];
+        [_myCopyRightH setTextAlignment:NSTextAlignmentCenter];
+        [_myCopyRightH setText:@"糖果科技 版权所有"];
+    }
+    
+    return _myCopyRightH;
+}
+
+- (UILabel *)myCopyRightB{
+    if(!_myCopyRightB){
+        _myCopyRightB = [[UILabel alloc] init];
+        [_myCopyRightB setTextAlignment:NSTextAlignmentCenter];
+        [_myCopyRightB setText:@"Copyright ©️ 2018-2019 CandyCam. All Rights Reserved"];
+    }
+    
+    return _myCopyRightB;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.contentArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell.textLabel setText:[self.contentArray objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    [self.appIconV setFrame:CGRectMake((self.view.frame.size.width - 80)/2, 10, 80, 80)];
+    [self.version setFrame:CGRectMake(0, 90, self.view.frame.size.width, 20.0f)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100.0f)];
+    header.backgroundColor = [UIColor clearColor];
+    [header addSubview:self.appIconV];
+    [header addSubview:self.version];
+    return header;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    [self.myCopyRightH setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [self.myCopyRightB setFrame:CGRectMake(0, 20, self.view.frame.size.width, 20)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0f)];
+    footer.backgroundColor = [UIColor clearColor];
+    [footer addSubview:self.myCopyRightH];
+    [footer addSubview:self.myCopyRightB];
+
+    return footer;
+}  
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 120.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.001f;
 }
 
 @end

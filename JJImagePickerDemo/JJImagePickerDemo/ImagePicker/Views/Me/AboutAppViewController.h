@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomPhotoViewController.h"
 
-@interface AboutAppViewController : CustomPhotoViewController
+@interface AboutAppViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *aboutTableView;
+@property (strong, nonatomic) UIImageView *appIconV;
+@property (strong, nonatomic) UILabel *version;
+@property (strong, nonatomic) UILabel *myCopyRightH;
+@property (strong, nonatomic) UILabel *myCopyRightB;
 
 @end
 
