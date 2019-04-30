@@ -82,7 +82,7 @@
     notification.repeatInterval = kCFCalendarUnitSecond;
     
     // 通知内容
-    notification.alertBody =  @"当你变成了更好的你，就一定会遇到更好的人，你是谁，就会遇到谁，我的心中只有你，糖果🍬";
+    notification.alertBody =  @"当你变成了更好的你，就一定会遇到更好的人，你是谁，就会遇到谁，我的心中只有你，糖果 🍬";
     notification.applicationIconBadgeNumber += 1;
     // 通知被触发时播放的声音
     notification.soundName = UILocalNotificationDefaultSoundName;
@@ -115,7 +115,7 @@
 /** 通知授权*/
 + (void)authLocalNotifition{
     if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone){
-        [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
     }
 }
 

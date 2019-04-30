@@ -89,7 +89,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    if (application.applicationState == UIApplicationStateActive) {
+//    if (application.applicationState == UIApplicationStateActive) {
         // 这里真实需要处理交互的地方
         // 获取通知所带的数据
 //        NSString *content = [notification.userInfo objectForKey:@"content"];
@@ -101,7 +101,7 @@
 //
 //        [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
         
-    }
+//    }
     // 更新显示的徽章个数
     NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
     badge --;

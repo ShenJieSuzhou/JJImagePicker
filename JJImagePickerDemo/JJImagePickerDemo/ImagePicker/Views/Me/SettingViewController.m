@@ -19,6 +19,7 @@
 #import "HttpRequestUrlDefine.h"
 #import "HttpRequestUtil.h"
 #import "GlobalDefine.h"
+#import "PushUtil.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -316,10 +317,13 @@
         CGFloat swiBtnHeight = 40.0f;
         CGFloat swiBtnWidth = 50.0f;
         UISwitch *switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 5.0f,  swiBtnWidth,  swiBtnHeight)];
-        [switchFunc setOnTintColor:[UIColor blueColor]];
+        [switchFunc setOnTintColor:[UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1]];
         [switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-        [switchFunc setOn:YES];
+        
+        BOOL bUserPushNotificationEnabled = [[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone ? YES : NO;
+        [switchFunc setOn:bUserPushNotificationEnabled];
         [cell addSubview:switchFunc];
+        
     }else if(indexPath.section == 3){
         cell.textLabel.text = @"清除缓存";
     }else if(indexPath.section == 4){
@@ -344,11 +348,16 @@
  @param sender 控件
  */
 - (void)switchAction:(UISwitch *)sender{
+    
     if(!sender.on){
-        NSLog(@"关闭");
+        [PushUtil removeAllLocalNotifications];
+        [sender setOn:NO];
         return;
     }
-    NSLog(@"打开");
+    
+    [sender setOn:YES];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    [PushUtil registerLocalNotification];
 }
 
 
