@@ -32,6 +32,7 @@
 @implementation SettingViewController
 //@synthesize datePicker = _datePicker;
 @synthesize delegate = _delegate;
+@synthesize switchFunc = _switchFunc;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -41,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSwitch) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelBtn setBackgroundColor:[UIColor clearColor]];
@@ -316,13 +318,14 @@
         CGFloat width = self.view.frame.size.width;
         CGFloat swiBtnHeight = 40.0f;
         CGFloat swiBtnWidth = 50.0f;
-        UISwitch *switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 5.0f,  swiBtnWidth,  swiBtnHeight)];
-        [switchFunc setOnTintColor:[UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1]];
-        [switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        _switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 5.0f,  swiBtnWidth,  swiBtnHeight)];
+        [_switchFunc setOnTintColor:[UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1]];
+        UIButton *maskButton = [[UIButton alloc] initWithFrame:_switchFunc.bounds];
+        [maskButton setBackgroundColor:[UIColor clearColor]];
+        [_switchFunc addSubview:maskButton];
+        [maskButton addTarget:self action:@selector(switchButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         
-        BOOL bUserPushNotificationEnabled = [[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone ? YES : NO;
-        [switchFunc setOn:bUserPushNotificationEnabled];
-        [cell addSubview:switchFunc];
+        [cell addSubview:_switchFunc];
         
     }else if(indexPath.section == 3){
         cell.textLabel.text = @"清除缓存";
@@ -350,7 +353,7 @@
 - (void)switchAction:(UISwitch *)sender{
     
     if(!sender.on){
-        [PushUtil removeAllLocalNotifications];
+
         [sender setOn:NO];
         return;
     }
@@ -358,6 +361,25 @@
     [sender setOn:YES];
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     [PushUtil registerLocalNotification];
+}
+
+- (void)switchButtonClicked {
+    // 跳转到系统设置
+    NSURL *settingURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if (@available(iOS 10.0, *)) {
+        [[UIApplication sharedApplication] openURL:settingURL options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        //iOS10之前
+        [[UIApplication sharedApplication] openURL:settingURL];
+    }
+}
+
+/**
+ switch 开关
+ */
+- (void) refreshSwitch {
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    _switchFunc.on = (setting.types != UIUserNotificationTypeNone);
 }
 
 

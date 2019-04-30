@@ -16,5 +16,6 @@
 @interface SettingViewController : CustomPhotoViewController
 
 @property (weak, nonatomic) id<LoginOutDelegate> delegate;
+@property (strong, nonatomic) UISwitch *switchFunc;
 
 @end
