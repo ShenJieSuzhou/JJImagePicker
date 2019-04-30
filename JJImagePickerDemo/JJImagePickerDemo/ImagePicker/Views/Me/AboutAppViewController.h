@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UILabel *version;
 @property (strong, nonatomic) UILabel *myCopyRightH;
 @property (strong, nonatomic) UILabel *myCopyRightB;
+@property (strong, nonatomic) UIView *footerV;
 
 @end
 

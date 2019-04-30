@@ -20,6 +20,7 @@
 @synthesize version = _version;
 @synthesize myCopyRightH = _myCopyRightH;
 @synthesize myCopyRightB = _myCopyRightB;
+@synthesize footerV = _footerV;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -39,6 +40,7 @@
     self.contentArray = [[NSMutableArray alloc] initWithObjects:@"给我们评分", @"检查更新", nil];
     
     [self.view addSubview:self.aboutTableView];
+    [self.aboutTableView addSubview:self.footerV];
 }
 
 - (void)leftBarBtnClicked{
@@ -49,7 +51,7 @@
     if(!_appIconV){
         _appIconV = [[UIImageView alloc] init];
         _appIconV.contentMode = UIViewContentModeScaleAspectFit;
-        [_appIconV setImage:[UIImage imageNamed:@"account"]];
+        [_appIconV setImage:[UIImage imageNamed:@"aboutme"]];
     }
     
     return _appIconV;
@@ -62,7 +64,7 @@
         _aboutTableView.delegate = self;
         _aboutTableView.dataSource = self;
         _aboutTableView.tableHeaderView = [UIView new];
-        _aboutTableView.tableFooterView = [UIView new];
+//        _aboutTableView.tableFooterView = [UIView new];
     }
 
     return _aboutTableView;
@@ -72,6 +74,8 @@
     if(!_version){
         _version = [[UILabel alloc] init];
         [_version setTextAlignment:NSTextAlignmentCenter];
+        [_version setFont:[UIFont systemFontOfSize:11.0f]];
+        [_version setTextColor:[UIColor grayColor]];
         NSString *vt = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         [_version setText:[NSString stringWithFormat:@"版本号: %@", vt]];
     }
@@ -83,6 +87,8 @@
     if(!_myCopyRightH){
         _myCopyRightH = [[UILabel alloc] init];
         [_myCopyRightH setTextAlignment:NSTextAlignmentCenter];
+        [_myCopyRightH setFont:[UIFont systemFontOfSize:12.0f]];
+        [_myCopyRightH setTextColor:[UIColor grayColor]];
         [_myCopyRightH setText:@"糖果科技 版权所有"];
     }
     
@@ -93,10 +99,23 @@
     if(!_myCopyRightB){
         _myCopyRightB = [[UILabel alloc] init];
         [_myCopyRightB setTextAlignment:NSTextAlignmentCenter];
+        [_myCopyRightB setFont:[UIFont systemFontOfSize:12.0f]];
+        [_myCopyRightB setTextColor:[UIColor grayColor]];
         [_myCopyRightB setText:@"Copyright ©️ 2018-2019 CandyCam. All Rights Reserved"];
     }
     
     return _myCopyRightB;
+}
+
+-(UIView *)footerV{
+    if (!_footerV) {
+        _footerV = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 140, [UIScreen mainScreen].bounds.size.width, 40)];
+        [self.myCopyRightH setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+        [self.myCopyRightB setFrame:CGRectMake(0, 20, self.view.frame.size.width, 20)];
+        [_footerV addSubview:self.myCopyRightH];
+        [_footerV addSubview:self.myCopyRightB];
+    }
+    return _footerV;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -122,7 +141,7 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    [self.appIconV setFrame:CGRectMake((self.view.frame.size.width - 80)/2, 10, 80, 80)];
+    [self.appIconV setFrame:CGRectMake((self.view.frame.size.width - 80)/2, 10, 70, 70)];
     [self.version setFrame:CGRectMake(0, 90, self.view.frame.size.width, 20.0f)];
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100.0f)];
     header.backgroundColor = [UIColor clearColor];
@@ -132,18 +151,17 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    [self.myCopyRightH setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-    [self.myCopyRightB setFrame:CGRectMake(0, 20, self.view.frame.size.width, 20)];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0f)];
-    footer.backgroundColor = [UIColor clearColor];
-    [footer addSubview:self.myCopyRightH];
-    [footer addSubview:self.myCopyRightB];
+    
+//    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.0f)];
+//    footer.backgroundColor = [UIColor clearColor];
+//    [footer addSubview:self.myCopyRightH];
+//    [footer addSubview:self.myCopyRightB];
 
-    return footer;
+    return nil;
 }  
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40.0f;
+    return 60.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -151,7 +169,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.001f;
+    return 0;
 }
 
 @end
