@@ -8,6 +8,12 @@
 
 #import "AboutAppViewController.h"
 #import <Masonry/Masonry.h>
+#import "GlobalDefine.h"
+
+
+#define APPID @""
+#define APPSTORE_APPPYNAME @""
+
 
 @interface AboutAppViewController ()
 
@@ -137,7 +143,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.row == 0){
+        NSURL*appURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/%@/id%@?mt=8",APPSTORE_APPPYNAME,APPID]];
+        [[UIApplication sharedApplication] openURL:appURL];
+        
+    }else if(indexPath.row == 1){
+        NSString* str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?mt=8&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software&id=%@", APPID];
+        NSURL  *rateURL = [NSURL URLWithString:str];
+        if (!IsiOS7Later)
+        {
+            [[UIApplication sharedApplication] openURL:rateURL];
+        }
+        else
+        {
+            NSURL*appURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/%@/id%@?mt=8&uo=4",APPSTORE_APPPYNAME,APPID]];
+            [[UIApplication sharedApplication] openURL:appURL];
+        }
+    }
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

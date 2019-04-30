@@ -20,6 +20,11 @@
 #define Point(x, y)                         CGPointMake(x, y)
 
 
+#define IOSVersion                          [[[UIDevice currentDevice] systemVersion] floatValue]
+#define IsiOS7Later                         !(IOSVersion < 7.0)
+#define IsiOS8Later                         !(IOSVersion < 8.0)
+
+
 #define RGB_TitleNormal                     RGB(255.0f, 255.0f, 255.0f)
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define RGB(r, g, b)                        [UIColor colorWithRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
@@ -54,6 +59,7 @@
 #define JJ_WECHATLOGIN_DENIED   @"微信登录用户拒绝"
 #define JJ_WECHATLOGIN_CANCEL @"微信登录用户取消"
 #define JJ_MODIFIY_SUCCESS @"修改成功"
+
 
 
 #endif /* GlobalDefine_h */
