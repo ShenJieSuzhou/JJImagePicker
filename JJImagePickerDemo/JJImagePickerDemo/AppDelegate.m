@@ -19,6 +19,10 @@
 #import "NetworkConfig.h"
 #import <UserNotifications/UserNotifications.h>
 #import "PushUtil.h"
+#import "GlobalDefine.h"
+
+#import <SDWebImage/SDImageCache.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface AppDelegate ()
 
@@ -142,29 +146,32 @@
 
 #pragma mark - Clear Cache
 - (void) clearCache{
-    
-}
-
-- (void)clearCacheSuccess{
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //清除SDWebImage图片缓存
+        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+            [SVProgressHUD showSuccessWithStatus:@"缓存清理成功"];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            [[NSNotificationCenter defaultCenter] postNotificationName:JJ_CLEAR_CACHE_SUCCESS object:nil];
+        }];
+    });
 }
 
 - (long) getCacheSize{
-//    long totalSize = (long)[[SDImageCache sharedImageCache] getSize];
-//
-//    totalSize += (long)[[NSURLCache sharedURLCache] currentDiskUsage];
-//    NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//
-//    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
-//    for (NSString *p in files) {
-//        NSError *error;
-//        NSString *path = [cachPath stringByAppendingPathComponent:p];
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//            totalSize += [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error] fileSize];
-//        }
-//    }
+    long totalSize = (long)[[SDImageCache sharedImageCache] getSize];
+
+    totalSize += (long)[[NSURLCache sharedURLCache] currentDiskUsage];
+    NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachPath];
+    for (NSString *p in files) {
+        NSError *error;
+        NSString *path = [cachPath stringByAppendingPathComponent:p];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            totalSize += [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error] fileSize];
+        }
+    }
     
-    return 0;
+    return totalSize;
 }
 
 #pragma mark - welcome

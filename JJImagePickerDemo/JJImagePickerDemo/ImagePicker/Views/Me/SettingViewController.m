@@ -20,12 +20,14 @@
 #import "HttpRequestUtil.h"
 #import "GlobalDefine.h"
 #import "PushUtil.h"
+#import "AppDelegate.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,JJDatePickerDelegate,EditAgendDelegate,EditNameDelegate,EditAvaterDelegate>
 
 @property (strong, nonatomic) UITableView *settingTable;
+@property (strong, nonatomic) UILabel *cacheSize;
 
 @end
 
@@ -33,6 +35,7 @@
 //@synthesize datePicker = _datePicker;
 @synthesize delegate = _delegate;
 @synthesize switchFunc = _switchFunc;
+@synthesize cacheSize = _cacheSize;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -43,6 +46,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSwitch) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCacheSuccess) name:JJ_CLEAR_CACHE_SUCCESS object: nil];
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelBtn setBackgroundColor:[UIColor clearColor]];
@@ -84,6 +89,10 @@
 }
 
 #pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60.0f;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         switch (indexPath.row) {
@@ -131,7 +140,7 @@
     }else if(indexPath.section == 2){
         
     }else if(indexPath.section == 3){
-        
+        [((AppDelegate*)[UIApplication sharedApplication].delegate) clearCache];
     }else if(indexPath.section == 4){
         AboutAppViewController *aboutView = [AboutAppViewController new];
         [self.navigationController pushViewController:aboutView animated:YES];
@@ -150,7 +159,7 @@
 
 #pragma mark JJDatePickerDelegate
 - (void)cancelBtnClickCallBack:(JJDatePicker *)picker{
-     [self.settingTable setUserInteractionEnabled:YES];
+    [self.settingTable setUserInteractionEnabled:YES];
     [picker removeFromSuperview];
 }
 
@@ -328,7 +337,14 @@
         [cell addSubview:_switchFunc];
         
     }else if(indexPath.section == 3){
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.text = @"清除缓存";
+        CGFloat cacheSizeLabelH = 20.0f;
+        CGFloat cacheSizeLabelW = 80.0f;
+        _cacheSize = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - cacheSizeLabelW - 20.0f, 20.0f, cacheSizeLabelW, cacheSizeLabelH)];
+        [_cacheSize setText:[NSString stringWithFormat:@"%ld M", [((AppDelegate *)[UIApplication sharedApplication].delegate) getCacheSize]]];
+        [cell addSubview:_cacheSize];
+        
     }else if(indexPath.section == 4){
         cell.textLabel.text = @"关于爱拍享";
     }else if(indexPath.section == 5){
@@ -377,11 +393,15 @@
 /**
  switch 开关
  */
-- (void) refreshSwitch {
+- (void) refreshSwitch{
     UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
     _switchFunc.on = (setting.types != UIUserNotificationTypeNone);
 }
 
+// 缓存清理成功
+- (void) clearCacheSuccess{
+    [_cacheSize setText:@"0 M"];
+}
 
 /**
  更新用户信息
@@ -389,6 +409,5 @@
 - (void)updateUserInfo{
     
 }
-
 
 @end

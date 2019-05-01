@@ -44,6 +44,9 @@
 #define JJ_PREVIEWCELL_IDENTIFIER_LIVEPHOTO @"jj_previewcell_identifer_live"
 #define JJ_PREVIEWCELL_IDENTIFIER_VIDEO @"jj_previewcell_identifer_video"
 
+// NSNotification
+#define JJ_CLEAR_CACHE_SUCCESS @"JJ_CLEAR_CACHE_SUCCESS"
+
 
 /*
  * Tips
