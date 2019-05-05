@@ -9,6 +9,7 @@
 #import "DetailInfoView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Masonry/Masonry.h>
+#import "JJCacheUtil.h"
 
 @implementation DetailInfoView
 @synthesize backgroundView = _backgroundView;
@@ -220,7 +221,13 @@
 }
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
-    [_iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconurl]]]];
+    __weak typeof(self) weakself = self;
+    [JJCacheUtil diskImageExistsWithUrl:iconurl completion:^(UIImage *image) {        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.iconView setImage:image];
+        });
+    }];
+    
     [_userName setText:name];
 //    [_focusNum setText:@""];
 //    [_fansNum setText:@""];

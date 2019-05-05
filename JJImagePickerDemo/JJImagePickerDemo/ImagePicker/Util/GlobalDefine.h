@@ -35,6 +35,8 @@
 
 #define JJCHECKBOX  [UIColor colorWithRed:255/255.f green:34/255.f blue:29/255.f alpha:1.0f];
 
+#define JJ_NAV_ST_H  self.navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height
+
 #define JJ_MAX_PHOTO_NUM 9
 #define JJ_CELL_VIDEO_IDENTIFIER @"video"
 #define JJ_CELL_IMAGE_UNKNOWNTYPE @"imageOrunknown"

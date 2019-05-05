@@ -9,7 +9,7 @@
 #import "CustomNewsBanner.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-
+#import "JJCacheUtil.h"
 
 @implementation CustomNewsBanner
 
@@ -95,6 +95,11 @@
     _pageControl.center = CGPointMake(rect.size.width / 2.0, rect.size.height - 20.0);
     _pageControl.numberOfPages = [_productsArray count];
     
+    if([_productsArray count] == 1){
+        [_pageControl setHidden:YES];
+        _scrollView.scrollEnabled = NO;
+    }
+    
     //3.下载按钮
     [_downloadBtn setFrame:CGRectMake(rect.size.width - 80.0f, rect.size.height - 40.0f, 30.0f, 30.0f)];
 }
@@ -113,8 +118,18 @@
 - (void)reloadImage{
     int leftImageIndex, rightImageIndex;
     NSInteger imageCount = [_productsArray count];
-    
     CGPoint contentOffset = [_scrollView contentOffset];
+    __weak typeof(self) weakself = self;
+    
+    if(imageCount == 1){
+        NSString *url = [_productsArray objectAtIndex:_currentIndex];
+        [JJCacheUtil diskImageExistsWithUrl:url completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.imgVCenter setImage:image];
+            });
+        }];
+        return;
+    }
     
     //向右滑动
     if(contentOffset.x > self.frame.size.width){
@@ -124,38 +139,79 @@
     }
     
     NSString *url = [_productsArray objectAtIndex:_currentIndex];
-    [_imgVCenter sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
+    [JJCacheUtil diskImageExistsWithUrl:url completion:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.imgVCenter setImage:image];
+        });
+    }];
     
     //重新设置左右图片
     leftImageIndex = (int)(_currentIndex+imageCount-1)%imageCount;
     rightImageIndex = (int)(_currentIndex+1)%imageCount;
     
     NSString *url1 = [_productsArray objectAtIndex:leftImageIndex];
-    [_imgVLeft sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
+    [JJCacheUtil diskImageExistsWithUrl:url1 completion:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.imgVLeft setImage:image];
+        });
+    }];
     
     NSString *url2 = [_productsArray objectAtIndex:rightImageIndex];
-    [_imgVRight sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
+    [JJCacheUtil diskImageExistsWithUrl:url2 completion:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.imgVRight setImage:image];
+        });
+    }];
 }
 
 - (void)setDefaultImage{
     int count = (int)[_productsArray count];
-    NSString *url = [_productsArray objectAtIndex:count - 1];
-    [_imgVLeft sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
-    
-    NSString *url1 = [_productsArray objectAtIndex:0];
-    [_imgVCenter sd_setImageWithURL:[NSURL URLWithString:url1] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
-    
-    NSString *url2 = [_productsArray objectAtIndex:1];
-    [_imgVRight sd_setImageWithURL:[NSURL URLWithString:url2] placeholderImage:[UIImage imageNamed:@"default_icon"] options:SDWebImageProgressiveDownload];
-    
+    __weak typeof(self) weakself = self;
+    if(count == 1){
+        NSString *url = [_productsArray objectAtIndex:0];
+        [JJCacheUtil diskImageExistsWithUrl:url completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.imgVCenter setImage:image];
+            });
+        }];
+    }else{
+        NSString *url = [_productsArray objectAtIndex:count - 1];
+        [JJCacheUtil diskImageExistsWithUrl:url completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.imgVLeft setImage:image];
+            });
+        }];
+        
+        NSString *url1 = [_productsArray objectAtIndex:0];
+        [JJCacheUtil diskImageExistsWithUrl:url1 completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.imgVCenter setImage:image];
+            });
+        }];
+        
+        NSString *url2 = [_productsArray objectAtIndex:1];
+        [JJCacheUtil diskImageExistsWithUrl:url2 completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.imgVRight setImage:image];
+            });
+        }];
+    }
     _currentIndex = 0;
     _pageControl.currentPage = _currentIndex;
 }
 
 - (void)saveImgToAlbum:(id)sender{
     NSString *url = [_productsArray objectAtIndex:_currentIndex];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:url] completion:^(BOOL isInCache) {
+        if (isInCache) {
+            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]];
+            UIImage *adImage = [[SDWebImageManager sharedManager].imageCache imageFromDiskCacheForKey:key];
+            UIImageWriteToSavedPhotosAlbum(adImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }else{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
+    }];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -179,6 +235,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+   
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event{
     if([[self delegate] respondsToSelector:@selector(newsbanner:didSelectItemAtIndex:)]){
         [_delegate newsbanner:self didSelectItemAtIndex:_currentIndex];
     }

@@ -228,6 +228,7 @@
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
+		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
 		E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */; };
@@ -627,6 +628,8 @@
 		E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTokenManager.m; sourceTree = "<group>"; };
 		E5AE62F721C10F2200639CF8 /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		E5AE62F821C10F2200639CF8 /* LoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		E5C18013227EE56D008F1942 /* JJCacheUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCacheUtil.h; sourceTree = "<group>"; };
+		E5C18014227EE56D008F1942 /* JJCacheUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCacheUtil.m; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LivePhoto_Corner@3x.png"; sourceTree = "<group>"; };
@@ -1409,6 +1412,8 @@
 				E58C252821DF3C1A001C4D8F /* DeviceType.m */,
 				E50B414222537B2700797DC2 /* JJDataParaseUtil.h */,
 				E50B414322537B2700797DC2 /* JJDataParaseUtil.m */,
+				E5C18013227EE56D008F1942 /* JJCacheUtil.h */,
+				E5C18014227EE56D008F1942 /* JJCacheUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1750,6 +1755,7 @@
 				E5506BE4212FB7D80077E62B /* TOActivityCroppedImageProvider.m in Sources */,
 				449A1F812169EF9D0007A91A /* JJCollectionReusableView.m in Sources */,
 				E5DA0014226EE4020043F17A /* Reachability.m in Sources */,
+				E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */,
 				E5506BDF212FB7D80077E62B /* TOCropOverlayView.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,

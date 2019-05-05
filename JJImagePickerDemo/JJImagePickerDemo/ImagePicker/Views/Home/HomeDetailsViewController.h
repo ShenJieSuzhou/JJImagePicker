@@ -12,17 +12,7 @@
 #import "CustomNewsBanner.h"
 #import "HomeCubeModel.h"
 
-//@protocol HomeDetailsChangeDelegate <NSObject>
-//
-//- (void)likeChangeCallback:(BOOL)like index:(NSIndexPath *)indexPath;
-//
-//- (void)focusChangeCallback:(BOOL)focus index:(NSIndexPath *)indexPath;
-//
-//@end
-
-@interface HomeDetailsViewController : CustomPhotoViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate>
-
-//@property (weak, nonatomic) id<HomeDetailsChangeDelegate> delegate;
+@interface HomeDetailsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate>
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath;
 

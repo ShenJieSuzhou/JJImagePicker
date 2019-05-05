@@ -57,34 +57,33 @@
 
  @param workUrl 地址
  */
-- (void)updateCell:(NSString *)workUrl isMult:(BOOL)isMuti{
+- (void)updateCell:(nullable NSString *)workUrl isMult:(BOOL)isMuti{
     if(!isMuti){
         [_multImg setHidden:YES];
     }
-    
-//    [self.likeBtn setTitle:likeNum forState:UIControlStateNormal];
+
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     __weak typeof(self) weakself = self;
-    [[SDImageCache sharedImageCache] diskImageExistsWithKey:workUrl completion:^(BOOL isInCache) {
+    NSURL *nsUrl = [NSURL URLWithString:workUrl];
+    
+    [manager diskImageExistsForURL:nsUrl completion:^(BOOL isInCache) {
         if(isInCache){
-            UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:workUrl];
+            NSString *key = [manager cacheKeyForURL:nsUrl];
+            UIImage *image = [[manager imageCache] imageFromDiskCacheForKey:key];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakself.workImageV setImage:image];
             });
         }else{
-            [weakself.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] placeholderImage:[UIImage imageNamed:@"workDefault"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                if(!error){
-                    [[SDImageCache sharedImageCache] storeImage:image forKey:imageURL.absoluteString completion:^{
-                        NSLog(@"图片缓存成功");
-                    }];
-                }else{
-                    NSLog(@"图片异步加载出错 %@", error);
-                }
+            [manager loadImageWithURL:[NSURL URLWithString:workUrl] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                
+            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                NSString *key = [manager cacheKeyForURL:nsUrl];
+                [manager saveImageToCache:image forURL:[NSURL URLWithString:key]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself.workImageV setImage:image];
+                });
             }];
         }
-    }];
-    
-    [self.workImageV sd_setImageWithURL:[NSURL URLWithString:workUrl] placeholderImage:[UIImage imageNamed:@"workDefault"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        [weakself.workImageV setImage:image];
     }];
 }
 
