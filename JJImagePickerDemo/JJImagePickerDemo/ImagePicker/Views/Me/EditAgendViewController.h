@@ -16,6 +16,6 @@
 
 @end
 
-@interface EditAgendViewController : CustomPhotoViewController
+@interface EditAgendViewController : UIViewController
 @property (weak, nonatomic) id<EditAgendDelegate> delegate;
 @end

@@ -10,6 +10,7 @@
 #import "JJTokenManager.h"
 #import "LoginPWDViewController.h"
 #import "BindPhoneViewController.h"
+#import "GlobalDefine.h"
 
 @interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,27 +22,17 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setBackgroundColor:[UIColor clearColor]];
-    [cancelBtn setImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
-    [cancelBtn addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:cancelBtn withFrame:CGRectMake(20.0f, 30.0f, 30.0f, 30.0f)];
     
-    CGFloat w = self.view.frame.size.width;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
-    [title setText:@"帐号安全"];
-    [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
-    [title setTextAlignment:NSTextAlignmentCenter];
-    [title setTextColor:[UIColor blackColor]];
-    [self.customNaviBar addSubview:title];
-    
-    [self.jjTabBarView setHidden:YES];
+    [self.navigationItem setTitle:@"帐号安全"];
+    UIImage *img = [[UIImage imageNamed:@"tabbar_close"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(clickCancelBtn:)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
     
     [self.view addSubview:self.securityTable];
 }
@@ -58,7 +49,7 @@
 //懒加载
 - (UITableView *)securityTable{
     if(!_securityTable){
-        _securityTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.customNaviBar.frame.size.height) style:UITableViewStyleGrouped];
+        _securityTable = [[UITableView alloc] initWithFrame:CGRectMake(0, JJ_NAV_ST_H, self.view.frame.size.width, self.view.frame.size.height - JJ_NAV_ST_H) style:UITableViewStyleGrouped];
         _securityTable.delegate = self;
         _securityTable.dataSource = self;
         _securityTable.tableFooterView = [UIView new];

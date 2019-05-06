@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
 
-@interface SecurityViewController : CustomPhotoViewController
+@interface SecurityViewController : UIViewController
 
 @end

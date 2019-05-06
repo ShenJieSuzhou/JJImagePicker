@@ -13,7 +13,7 @@
 - (void)userLoginOutCallBack:(SettingViewController *)viewController;
 @end
 
-@interface SettingViewController : CustomPhotoViewController
+@interface SettingViewController : UIViewController
 
 @property (weak, nonatomic) id<LoginOutDelegate> delegate;
 @property (strong, nonatomic) UISwitch *switchFunc;

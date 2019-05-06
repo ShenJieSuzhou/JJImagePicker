@@ -15,7 +15,7 @@
 
 @end
 
-@interface EditNameViewController : CustomPhotoViewController
+@interface EditNameViewController : UIViewController
 
 @property (weak, nonatomic) id<EditNameDelegate> delegate;
 
