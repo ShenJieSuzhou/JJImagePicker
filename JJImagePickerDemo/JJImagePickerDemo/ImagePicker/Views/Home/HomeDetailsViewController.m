@@ -227,7 +227,7 @@
     self.likeNum = [[UILabel alloc] init];
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
-    [self.likeNum setFont:[UIFont systemFontOfSize:12.0f]];
+    [self.likeNum setFont:[UIFont systemFontOfSize:13.0f]];
     [self.likeNum setText:[NSString stringWithFormat:@"%d", self.currentLikes]];
     [self.worksInfoView addSubview:self.likeNum];
     
@@ -277,7 +277,7 @@
     }];
     
     [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(25.0f, 23.0f));
+        make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
         make.centerY.mas_equalTo(self.timeLine);
         make.right.mas_equalTo(self.workView).offset(-50.0f);
         make.bottom.equalTo(self.worksInfoView).offset(-50.0f);
@@ -292,7 +292,6 @@
 
 - (void)goToUserZone:(UIGestureRecognizer *)sender{
     OthersMainPageViewController *otherZoneView = [OthersMainPageViewController new];
-    
     [otherZoneView setUserZone:self.photoWork];
     [self.navigationController pushViewController:otherZoneView animated:YES];
 }

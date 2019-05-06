@@ -280,7 +280,6 @@ static int jjMyworksPageSize = 6;
 }
 
 
-
 #pragma - mark WorksViewDelegate
 - (void)publishWorksCallback{
     NSLog(@"跳转到拍照 选择相片界面");

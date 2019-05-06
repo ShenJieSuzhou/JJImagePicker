@@ -142,27 +142,27 @@
 
 // 将数据上传服务器
 - (void)toDoSomething:(UIButton *)button{
-if(button.selected){
-[HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
-    if(error){
-        [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-        [SVProgressHUD dismissWithDelay:1.0f];
-        return ;
-    }
-    // token 过期
+    if(button.selected){
+        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
 
-}];
-}else{
-[HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
-    if(error){
-        [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-        [SVProgressHUD dismissWithDelay:1.0f];
-        return ;
+        }];
+        }else{
+        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoID userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
+            
+        }];
     }
-    // token 过期
-    
-}];
-}
 }
 
 - (void)updateCell:(HomeCubeModel *)work{
