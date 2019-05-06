@@ -14,6 +14,7 @@
 #import "CandyFansViewController.h"
 #import "JJPageInfo.h"
 #import "HttpRequestUtil.h"
+#import "JJCacheUtil.h"
 
 
 #define USERVIEW_WIDTH self.view.frame.size.width
@@ -72,7 +73,9 @@ static int jjWorkPageSize = 6;
     self.userInfo = zoneInfo;
     self.fansId = self.userInfo.userid;
     NSString *avatar = self.userInfo.iconUrl;
-    self.avaterImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]];
+    [JJCacheUtil diskImageExistsWithUrl:avatar completion:^(UIImage *image) {
+        self.avaterImg = image;
+    }];
     self.nikeName = self.userInfo.name;
     self.hasFocused = self.userInfo.hasFocused;
 }
@@ -81,7 +84,9 @@ static int jjWorkPageSize = 6;
     self.fansId = fansModel.userId;
     self.nikeName = fansModel.userName;
     NSString *avatar = fansModel.iconUrl;
-    self.avaterImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]];
+    [JJCacheUtil diskImageExistsWithUrl:avatar completion:^(UIImage *image) {
+        self.avaterImg = image;
+    }];
 }
 
 -(OthersIDView *)othersIDView{
@@ -251,6 +256,7 @@ static int jjWorkPageSize = 6;
 #pragma mark - OthersIDInfoViewDelegate
 - (void)showFansListCallback{
     CandyFansViewController *fansView = [CandyFansViewController new];
+    [fansView setShowTitle:@"粉丝"];
     [fansView setCandyFansList:[NSMutableArray arrayWithArray:self.fansList]];
     [self.navigationController pushViewController:fansView animated:YES];
 }

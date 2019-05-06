@@ -24,6 +24,8 @@
 #import "HttpRequestUtil.h"
 #import "JJPageInfo.h"
 #import "GlobalDefine.h"
+#import "CandyFansViewController.h"
+#import "CandyFollowerViewController.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -38,6 +40,8 @@ static int jjMyworksPageSize = 6;
 @property (assign) BOOL isLogin;
 @property (strong, nonatomic) NSMutableArray *photoDataSource;
 @property (strong, nonatomic) JJPageInfo *currentPageInfo;
+@property (copy, nonatomic) NSArray *fansList;
+@property (copy, nonatomic) NSArray *followersList;
 
 @end
 
@@ -46,6 +50,8 @@ static int jjMyworksPageSize = 6;
 @synthesize detailView = _detailView;
 @synthesize workView = _workView;
 @synthesize currentPageInfo = _currentPageInfo;
+@synthesize fansList = _fansList;
+@synthesize followersList = _followersList;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -58,10 +64,7 @@ static int jjMyworksPageSize = 6;
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
-    
-    // 加载基本信息
-    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName focus:[JJTokenManager shareInstance].getFocusPlayerNum fans:[JJTokenManager shareInstance].getUserFans];
-    
+
     // 我的作品数据
     _photoDataSource = [NSMutableArray new];
     
@@ -130,6 +133,11 @@ static int jjMyworksPageSize = 6;
             return;
         }
         
+        // 用户信息
+        NSArray *nFansList = [[data objectForKey:@"fans"] copy];
+        NSArray *nFollowerList = [[data objectForKey:@"followers"] copy];
+        weakSelf.fansList = nFansList;
+        weakSelf.followersList = nFollowerList;
         //用户作品
         NSArray *works = [[data objectForKey:@"works"] copy];
         NSMutableArray *photoList = [[NSMutableArray alloc] init];
@@ -151,7 +159,8 @@ static int jjMyworksPageSize = 6;
         int currentPage = [[data objectForKey:@"currentPage"] intValue];
         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
         // 刷新
-        [weakSelf refreshViewInfo:pageInfo photoList:photoList];
+        NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
+        [weakSelf refreshViewInfo:postCount fansNum:[nFansList count] followerNum:[nFollowerList count] pageInfo:pageInfo photoList:photoList];
     }];
 }
 
@@ -180,6 +189,11 @@ static int jjMyworksPageSize = 6;
             return;
         }
         
+         // 用户信息
+         NSArray *nFansList = [[data objectForKey:@"fans"] copy];
+         NSArray *nFollowerList = [[data objectForKey:@"followers"] copy];
+         weakSelf.fansList = nFansList;
+         weakSelf.followersList = nFollowerList;
          //用户作品
          NSArray *works = [[data objectForKey:@"works"] copy];
          NSMutableArray *photoList = [[NSMutableArray alloc] init];
@@ -201,14 +215,18 @@ static int jjMyworksPageSize = 6;
          int currentPage = [[data objectForKey:@"currentPage"] intValue];
          JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
          // 刷新
-         [weakSelf refreshViewInfo:pageInfo photoList:photoList];
+         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
+         [weakSelf refreshViewInfo:postCount fansNum:[nFansList count] followerNum:[nFollowerList count] pageInfo:pageInfo photoList:photoList];
     }];
 }
 
 /**
  刷新用户界面
  */
-- (void)refreshViewInfo:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
+- (void)refreshViewInfo:(NSString *)postCount fansNum:(NSUInteger)fans followerNum:(NSUInteger)followers pageInfo:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
+    
+    // 加载基本信息
+    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName postCount:postCount focus:[NSString stringWithFormat:@"%ld", followers] fans:[NSString stringWithFormat:@"%ld", fans]];
     
     if(pageInfo.currentPage == 0){
         [_workView.worksCollection.mj_header endRefreshing];
@@ -239,6 +257,20 @@ static int jjMyworksPageSize = 6;
     SettingViewController *settingView = [SettingViewController new];
     settingView.delegate = self;
     [self.navigationController pushViewController:settingView animated:YES];
+}
+
+- (void)showMyFans{
+    CandyFansViewController *fansView = [CandyFansViewController new];
+    [fansView setShowTitle:@"粉丝"];
+    [fansView setCandyFansList:[NSMutableArray arrayWithArray:self.fansList]];
+    [self.navigationController pushViewController:fansView animated:YES];
+}
+
+- (void)showMyFollowers{
+    CandyFollowerViewController *followerView = [CandyFollowerViewController new];
+    [followerView setShowTitle:@"关注"];
+    [followerView setCandyfollowersList:[NSMutableArray arrayWithArray:self.followersList]];
+    [self.navigationController pushViewController:followerView animated:YES];
 }
 
 #pragma mark - loginoutCallback

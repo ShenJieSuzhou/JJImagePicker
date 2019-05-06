@@ -220,7 +220,7 @@
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 
-- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum{
+- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name postCount:(NSString *)posts focus:(NSString *)focusNum fans:(NSString *)fansNum{
     __weak typeof(self) weakself = self;
     [JJCacheUtil diskImageExistsWithUrl:iconurl completion:^(UIImage *image) {        
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -229,8 +229,9 @@
     }];
     
     [_userName setText:name];
-//    [_focusNum setText:@""];
-//    [_fansNum setText:@""];
+    [_workNum setText:posts];
+    [_focusNum setText:focusNum];
+    [_fansNum setText:fansNum];
 }
 
 - (void)clickSettingT:(UIButton *)sender{
@@ -239,10 +240,12 @@
 
 - (void)clickFocusView:(UIGestureRecognizer *)sender{
     NSLog(@"clickFocusView");
+    [_delegate showMyFollowers];
 }
 
 - (void)clickFansView:(UIGestureRecognizer *)sender{
     NSLog(@"clickFansView");
+    [_delegate showMyFans];
 }
 
 - (void)clickWorksView:(UIGestureRecognizer *)sender{

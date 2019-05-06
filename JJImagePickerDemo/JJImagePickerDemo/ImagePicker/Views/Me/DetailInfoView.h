@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @protocol DetailInfoViewDelegate <NSObject>
+
 - (void)appSettingClickCallback;
+
+- (void)showMyFollowers;
+
+- (void)showMyFans;
 
 @optional
 - (void)changeBackgroundCallback;
@@ -40,6 +45,6 @@
 
 @property (weak, nonatomic) id<DetailInfoViewDelegate> delegate;
 
-- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name focus:(NSString *)focusNum fans:(NSString *)fansNum;
+- (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name postCount:(NSString *)posts focus:(NSString *)focusNum fans:(NSString *)fansNum;
 
 @end

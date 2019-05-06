@@ -229,6 +229,7 @@
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
+		E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
 		E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */; };
@@ -630,6 +631,8 @@
 		E5AE62F821C10F2200639CF8 /* LoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		E5C18013227EE56D008F1942 /* JJCacheUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCacheUtil.h; sourceTree = "<group>"; };
 		E5C18014227EE56D008F1942 /* JJCacheUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCacheUtil.m; sourceTree = "<group>"; };
+		E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFollowerViewController.h; sourceTree = "<group>"; };
+		E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFollowerViewController.m; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LivePhoto_Corner@3x.png"; sourceTree = "<group>"; };
@@ -842,6 +845,8 @@
 				E5DB333E221D637E008D7818 /* CustomNewsBanner.m */,
 				E5DB3347221D82EF008D7818 /* JJThumbPhotoCell.h */,
 				E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */,
+				E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */,
+				E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1730,6 +1735,7 @@
 				E56B9CC720AD2FA700021DF8 /* ViewController.m in Sources */,
 				E5FBADED21F1B54C00A91A65 /* UIScrollView+UITouch.m in Sources */,
 				4477BCA121D7C497009128F5 /* EditAgendViewController.m in Sources */,
+				E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */,
 				E58C251821D4B2ED001C4D8F /* Works.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,

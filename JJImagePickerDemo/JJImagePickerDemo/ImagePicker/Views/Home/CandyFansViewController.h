@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
 
-@interface CandyFansViewController : CustomPhotoViewController<UITableViewDelegate, UITableViewDataSource>
+@interface CandyFansViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *fansList;
 
 @property (strong, nonatomic) UITableView *fansTableView;
+
+@property (copy, nonatomic) NSString *showTitle;
 
 - (void)setCandyFansList:(NSMutableArray *)fansData;
 

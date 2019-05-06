@@ -1,26 +1,26 @@
 //
-//  CandyFansViewController.m
+//  CandyFollowerViewController.m
 //  JJImagePickerDemo
 //
-//  Created by shenjie on 2019/3/27.
+//  Created by shenjie on 2019/5/6.
 //  Copyright © 2019年 shenjie. All rights reserved.
 //
 
-#import "CandyFansViewController.h"
+#import "CandyFollowerViewController.h"
 #import "FansModel.h"
 #import "FansCell.h"
 #import "OthersMainPageViewController.h"
 #import "GlobalDefine.h"
 
-#define CANDY_FANSCELL_IDENTIFIER @"CANDY_FANSCELL_IDENTIFIER"
+#define CANDY_FOLLOWERCELL_IDENTIFIER @"CANDY_FOLLOWERCELL_IDENTIFIER"
 
-@interface CandyFansViewController ()
+@interface CandyFollowerViewController ()
 
 @end
 
-@implementation CandyFansViewController
-@synthesize fansTableView = _fansTableView;
-@synthesize fansList = _fansList;
+@implementation CandyFollowerViewController
+@synthesize followerTableView = _followerTableView;
+@synthesize followerList = _followerList;
 @synthesize showTitle = _showTitle;
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -40,35 +40,35 @@
     [self.navigationItem setLeftBarButtonItem:leftItem];
     
     // 添加fanstable
-    [self.view addSubview:self.fansTableView];
+    [self.view addSubview:self.followerTableView];
 }
 
-- (void)setCandyFansList:(NSMutableArray *)fansData{
-    if(!fansData){
+- (void)setCandyfollowersList:(NSMutableArray *)followersData{
+    if(!followersData){
         return;
     }
     
     // 初始化fans用户
-    self.fansList = [[NSMutableArray alloc] init];
+    self.followerList = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < [fansData count]; i++) {
-        NSDictionary *fansinfo = [fansData objectAtIndex:i];
+    for (int i = 0; i < [followersData count]; i++) {
+        NSDictionary *fansinfo = [followersData objectAtIndex:i];
         NSString *userId = [fansinfo objectForKey:@"userId"];
         NSString *userName = [fansinfo objectForKey:@"name"];
         NSString *iconUrl = [fansinfo objectForKey:@"iconUrl"];
         FansModel *model = [[FansModel alloc] initWithUser:userId name:userName iconUrl:iconUrl];
-        [self.fansList addObject:model];
+        [self.followerList addObject:model];
     }
 }
 
-- (UITableView *)fansTableView{
-    if(!_fansTableView){
-        _fansTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, JJ_NAV_ST_H, self.view.frame.size.width, self.view.frame.size.height - JJ_NAV_ST_H) style:UITableViewStylePlain];
-        _fansTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _fansTableView.delegate = self;
-        _fansTableView.dataSource = self;
+- (UITableView *)followerTableView{
+    if(!_followerTableView){
+        _followerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, JJ_NAV_ST_H, self.view.frame.size.width, self.view.frame.size.height - JJ_NAV_ST_H) style:UITableViewStylePlain];
+        _followerTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _followerTableView.delegate = self;
+        _followerTableView.dataSource = self;
     }
-    return _fansTableView;
+    return _followerTableView;
 }
 
 
@@ -81,18 +81,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
- 
-    return [self.fansList count];
+    
+    return [self.followerList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    FansCell *fansCell = [tableView dequeueReusableCellWithIdentifier:CANDY_FANSCELL_IDENTIFIER];
+    FansCell *fansCell = [tableView dequeueReusableCellWithIdentifier:CANDY_FOLLOWERCELL_IDENTIFIER];
     if(!fansCell){
-        fansCell = [[FansCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CANDY_FANSCELL_IDENTIFIER];
+        fansCell = [[FansCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CANDY_FOLLOWERCELL_IDENTIFIER];
         [fansCell setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50.0f)];
     }
     
-    FansModel *fansModel = [self.fansList objectAtIndex:indexPath.row];
+    FansModel *fansModel = [self.followerList objectAtIndex:indexPath.row];
     NSString *url = [fansModel iconUrl];
     NSString *name = [fansModel userName];
     [fansCell updateCell:url name:name];
@@ -102,7 +102,7 @@
 
 // 跳转到粉丝详情页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    FansModel *fansModel = [self.fansList objectAtIndex:indexPath.row];
+    FansModel *fansModel = [self.followerList objectAtIndex:indexPath.row];
     
     //请求粉丝信息
     
