@@ -21,6 +21,7 @@
 #import "JJLikeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GlobalDefine.h"
+#import "MeViewController.h"
 
 @interface HomeDetailsViewController ()
 @property (strong, nonatomic) UIButton *iconView;
@@ -133,6 +134,7 @@
     
     //icon
     self.iconView = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.iconView.contentMode = UIViewContentModeScaleAspectFill;
     [self.iconView setBackgroundColor:[UIColor clearColor]];
     [self.iconView.layer setCornerRadius:20.0f];
     [self.iconView.layer setMasksToBounds:YES];

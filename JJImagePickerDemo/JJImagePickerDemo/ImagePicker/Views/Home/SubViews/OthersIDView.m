@@ -53,6 +53,7 @@
     [self addSubview:_backgroundView];
     
     _iconView = [[UIImageView alloc] init];
+    _iconView.contentMode = UIViewContentModeScaleAspectFill;
     [_iconView setImage:[UIImage imageNamed:@"userPlaceHold"]];
     _iconView.layer.cornerRadius = 40.0f;
     _iconView.layer.borderWidth = 2.0f;
@@ -189,13 +190,6 @@
         make.height.mas_equalTo(80.0f);
     }];
     
-    //    [_worksNumView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.size.mas_equalTo(CGSizeMake(self.frame.size.width / 3, 80.0f));
-    //        make.top.mas_equalTo(self.backgroundView.mas_bottom);
-    //        make.left.mas_equalTo(self.mas_left);
-    //    }];
-    //
-    
     [_workTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100.0f, 30.0f));
         make.top.mas_equalTo(self.worksNumView).offset(10.0f);
@@ -239,7 +233,7 @@
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 
-- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount hasFocused:(BOOL)hasFocused{
+- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount hasFocused:(BOOL)hasFocused isSelf:(BOOL)isSelf{
     
     [_iconView setImage:avater];
     [_userName setText:name];
@@ -247,6 +241,10 @@
     [_fansNum setText:fansNum];
     [_likesNum setText:likesCount];
     _concernBtn.selected = hasFocused;
+    
+    if(isSelf){
+        [_concernBtn setHidden:YES];
+    }
 }
 
 - (void)clickConcernBtn:(UIButton *)sender{

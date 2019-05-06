@@ -32,6 +32,7 @@ static int jjWorkPageSize = 6;
 @property (strong, nonatomic) UIImage *avaterImg;
 @property (copy, nonatomic) NSString *nikeName;
 @property (assign) BOOL hasFocused;
+@property (assign) BOOL isYourself;
 @property (copy, nonatomic) NSArray *fansList;
 @property (strong, nonatomic) JJPageInfo *currentPageInfo;
 @property (strong, nonatomic) NSMutableArray *worksDataSource;
@@ -50,6 +51,7 @@ static int jjWorkPageSize = 6;
 @synthesize worksDataSource = _worksDataSource;
 @synthesize userInfo = _userInfo;
 @synthesize hasFocused = _hasFocused;
+@synthesize isYourself = _isYourself;
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -78,6 +80,7 @@ static int jjWorkPageSize = 6;
     }];
     self.nikeName = self.userInfo.name;
     self.hasFocused = self.userInfo.hasFocused;
+    self.isYourself = self.userInfo.isYourWork;
 }
 
 - (void)setFansModel:(FansModel *)fansModel{
@@ -232,7 +235,7 @@ static int jjWorkPageSize = 6;
 - (void)refreshViewInfo:(UIImage *)avater nickname:(NSString *)name postCount:(NSString *)postCount fans:(NSString *)fans likes:(NSString *)likes posts:(NSMutableArray *)posts pageInfo:(JJPageInfo *)pageInfo hasFocused:(BOOL)hasFocused{
     
     // 基本信息
-    [self.othersIDView updateViewInfo:avater name:name worksCount:postCount fans:fans likes:likes hasFocused:hasFocused];
+    [self.othersIDView updateViewInfo:avater name:name worksCount:postCount fans:fans likes:likes hasFocused:hasFocused isSelf:self.isYourself];
     
     if(pageInfo.currentPage == 0){
         [self.workView.worksCollection.mj_header endRefreshing];

@@ -44,8 +44,7 @@
 
 @property (weak, nonatomic) id<OthersIDInfoViewDelegate> delegate;
 
-- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount hasFocused:(BOOL)hasFocused;
-
+- (void)updateViewInfo:(UIImage *)avater name:(NSString *)name worksCount:(NSString *)worksCount fans:(NSString *)fansNum likes:(NSString *)likesCount hasFocused:(BOOL)hasFocused isSelf:(BOOL)isSelf;
 
 @end
 
