@@ -8,6 +8,7 @@
 
 #import "WorkCell.h"
 #import <Masonry/Masonry.h>
+#import "JJCacheUtil.h"
 
 @implementation WorkCell
 @synthesize workImageV = _workImageV;
@@ -61,30 +62,36 @@
     if(!isMuti){
         [_multImg setHidden:YES];
     }
-
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     __weak typeof(self) weakself = self;
-    NSURL *nsUrl = [NSURL URLWithString:workUrl];
-    
-    [manager diskImageExistsForURL:nsUrl completion:^(BOOL isInCache) {
-        if(isInCache){
-            NSString *key = [manager cacheKeyForURL:nsUrl];
-            UIImage *image = [[manager imageCache] imageFromDiskCacheForKey:key];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself.workImageV setImage:image];
-            });
-        }else{
-            [manager loadImageWithURL:[NSURL URLWithString:workUrl] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                
-            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-                NSString *key = [manager cacheKeyForURL:nsUrl];
-                [manager saveImageToCache:image forURL:[NSURL URLWithString:key]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakself.workImageV setImage:image];
-                });
-            }];
-        }
+    [JJCacheUtil diskImageExistsWithUrl:workUrl completion:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.workImageV setImage:image];
+        });
     }];
+    
+//    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//    __weak typeof(self) weakself = self;
+//    NSURL *nsUrl = [NSURL URLWithString:workUrl];
+//
+//    [manager diskImageExistsForURL:nsUrl completion:^(BOOL isInCache) {
+//        if(isInCache){
+//            NSString *key = [manager cacheKeyForURL:nsUrl];
+//            UIImage *image = [[manager imageCache] imageFromDiskCacheForKey:key];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakself.workImageV setImage:image];
+//            });
+//        }else{
+//            [manager loadImageWithURL:[NSURL URLWithString:workUrl] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+//
+//            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+//                NSString *key = [manager cacheKeyForURL:nsUrl];
+//                [manager saveImageToCache:image forURL:[NSURL URLWithString:key]];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [weakself.workImageV setImage:image];
+//                });
+//            }];
+//        }
+//    }];
 }
 
 @end

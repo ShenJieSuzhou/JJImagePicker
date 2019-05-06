@@ -14,7 +14,7 @@
 #import "UIScrollView+UITouch.h"
 #import "JJThumbPhotoCell.h"
 #import "JJTokenManager.h"
-
+#import "GlobalDefine.h"
 
 @interface OriginalWorksViewController ()
 @property (strong, nonatomic) UIImageView *iconView;
@@ -44,7 +44,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -112,24 +112,14 @@
 
 - (void)setupUI{
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
-    
-    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setBackgroundColor:[UIColor clearColor]];
-    [cancelBtn setImage:[UIImage imageNamed:@"tabbar_close"] forState:UIControlStateNormal];
-    [cancelBtn addTarget:self action:@selector(clickCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:cancelBtn withFrame:CGRectMake(20.0f, 30.0f, 30.0f, 30.0f)];
-    
-    CGFloat w = self.view.frame.size.width;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((w - 200)/2, 25.0f, 200.0f, 40.0f)];
-    [title setText:@"作品详情"];
-    [title setFont:[UIFont boldSystemFontOfSize:24.0f]];
-    [title setTextAlignment:NSTextAlignmentCenter];
-    [title setTextColor:[UIColor blackColor]];
-    [self.customNaviBar addSubview:title];
-    [self.jjTabBarView setHidden:YES];
+
+    [self.navigationItem setTitle:@"作品详情"];
+    UIImage *img = [[UIImage imageNamed:@"tabbar_close"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(clickCancelBtn:)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
     
     //滚动视图
-    self.worksInfoView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height + 10.0f, self.view.frame.size.height, self.view.frame.size.height - self.customNaviBar.frame.size.height - 10.0f)];
+    self.worksInfoView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, JJ_NAV_ST_H, self.view.frame.size.height, self.view.frame.size.height - JJ_NAV_ST_H)];
     self.worksInfoView.showsHorizontalScrollIndicator = NO;
     self.worksInfoView.alwaysBounceVertical = YES;
     [self.worksInfoView setBackgroundColor:[UIColor whiteColor]];
@@ -138,10 +128,10 @@
     //icon
     self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [self.iconView setBackgroundColor:[UIColor clearColor]];
-    [self.iconView.layer setCornerRadius:self.iconView.frame.size.width/2];
+    [self.iconView.layer setCornerRadius:self.iconView.frame.size.width / 2];
     [self.iconView.layer setMasksToBounds:YES];
     NSString *avatar = [JJTokenManager shareInstance].getUserAvatar;
-    [self.iconView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatar]]]];
+    [self loadIconAvater:avatar];
     [self.worksInfoView addSubview:self.iconView];
     
     //名字
@@ -359,6 +349,31 @@
 
 - (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
     [newsbanner removeFromSuperview];
+}
+
+#pragma -mark 加载头像
+- (void)loadIconAvater:(NSString *)avatar{
+    __weak typeof(self) weakself = self;
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager diskImageExistsForURL:[NSURL URLWithString:avatar] completion:^(BOOL isInCache) {
+        if(isInCache){
+            NSString *key = [manager cacheKeyForURL:[NSURL URLWithString:avatar]];
+            UIImage *image = [[manager imageCache] imageFromDiskCacheForKey:key];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.iconView setImage:image];
+            });
+        }else{
+            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:avatar] options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                
+            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                NSString *key = [manager cacheKeyForURL:[NSURL URLWithString:avatar]];
+                [manager saveImageToCache:image forURL:[NSURL URLWithString:key]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakself.iconView setImage:image];
+                });
+            }];
+        }
+    }];
 }
 
 @end
