@@ -171,7 +171,7 @@
         }
     }
     
-    return totalSize;
+    return totalSize / (1024*1024);
 }
 
 #pragma mark - welcome

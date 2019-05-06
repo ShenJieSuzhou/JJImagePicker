@@ -75,7 +75,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 #pragma mark - UITableViewDataSource
@@ -118,14 +118,16 @@
                 }
                 break;
         }
-    }else if (indexPath.section == 1) {
-        cell.textLabel.text = @"绑定手机号";
-        if([JJTokenManager shareInstance].getUserMobile.length == 0){
-            cell.detailTextLabel.text = @"未绑定";
-        }else{
-            cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserMobile;
-        }
     }
+    
+//    else if (indexPath.section == 1) {
+//        cell.textLabel.text = @"绑定手机号";
+//        if([JJTokenManager shareInstance].getUserMobile.length == 0){
+//            cell.detailTextLabel.text = @"未绑定";
+//        }else{
+//            cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserMobile;
+//        }
+//    }
     
     return cell;
 }

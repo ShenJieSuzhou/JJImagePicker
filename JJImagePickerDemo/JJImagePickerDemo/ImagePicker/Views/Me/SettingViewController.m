@@ -315,7 +315,7 @@
         CGFloat width = self.view.frame.size.width;
         CGFloat swiBtnHeight = 40.0f;
         CGFloat swiBtnWidth = 50.0f;
-        _switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 5.0f,  swiBtnWidth,  swiBtnHeight)];
+        _switchFunc = [[UISwitch alloc] initWithFrame:CGRectMake(width - swiBtnWidth - 20.0f, 10.0f,  swiBtnWidth,  swiBtnHeight)];
         [_switchFunc setOnTintColor:[UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1]];
         UIButton *maskButton = [[UIButton alloc] initWithFrame:_switchFunc.bounds];
         [maskButton setBackgroundColor:[UIColor clearColor]];
@@ -327,11 +327,7 @@
     }else if(indexPath.section == 3){
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.text = @"清除缓存";
-        CGFloat cacheSizeLabelH = 20.0f;
-        CGFloat cacheSizeLabelW = 80.0f;
-        _cacheSize = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width - cacheSizeLabelW - 20.0f, 20.0f, cacheSizeLabelW, cacheSizeLabelH)];
-        [_cacheSize setText:[NSString stringWithFormat:@"%ld M", [((AppDelegate *)[UIApplication sharedApplication].delegate) getCacheSize]]];
-        [cell addSubview:_cacheSize];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld M", [((AppDelegate *)[UIApplication sharedApplication].delegate) getCacheSize]];
         
     }else if(indexPath.section == 4){
         cell.textLabel.text = @"关于爱拍享";
@@ -339,7 +335,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         CGFloat height = cell.frame.size.height;
         CGFloat width = self.view.frame.size.width;
-        UILabel *logOutT = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        UILabel *logOutT = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, width, height)];
         logOutT.textAlignment = NSTextAlignmentCenter;//文字居中
         [logOutT setTextColor:[UIColor redColor]];
         logOutT.text = @"退出登录";
@@ -388,7 +384,11 @@
 
 // 缓存清理成功
 - (void) clearCacheSuccess{
-    [_cacheSize setText:@"0 M"];
+    UITableViewCell *cell = [self.settingTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+    if(!cell){
+        return;
+    }
+    cell.detailTextLabel.text = @"0 M";
 }
 
 /**
