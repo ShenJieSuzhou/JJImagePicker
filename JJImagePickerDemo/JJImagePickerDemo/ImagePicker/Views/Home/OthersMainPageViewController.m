@@ -165,7 +165,8 @@ static int jjWorkPageSize = 6;
         
         // 当前页
         int currentPage = [[data objectForKey:@"currentPage"] intValue];
-        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjWorkPageSize currentPage:currentPage];
+        int totalPages = [[data objectForKey:@"totalPages"] intValue];
+        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjWorkPageSize currentPage:currentPage];
         
         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
         [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo hasFocused:weakSelf.hasFocused];
@@ -222,7 +223,8 @@ static int jjWorkPageSize = 6;
         
         // 当前页
         int currentPage = [[data objectForKey:@"currentPage"] intValue];
-        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjWorkPageSize currentPage:currentPage];
+        int totalPages = [[data objectForKey:@"totalPages"] intValue];
+        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjWorkPageSize currentPage:currentPage];
         
         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
         [weakSelf refreshViewInfo:weakSelf.avaterImg nickname:weakSelf.nikeName postCount:postCount fans:fans likes:likesCount posts:photoList pageInfo:pageInfo hasFocused:weakSelf.hasFocused];
@@ -240,23 +242,18 @@ static int jjWorkPageSize = 6;
     if(pageInfo.currentPage == 0){
         [self.workView.worksCollection.mj_header endRefreshing];
         [self.workView.worksCollection.mj_footer endRefreshing];
-    }else{
-        if([posts count] < jjWorkPageSize){
-            [self.self.workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
-        }
-        [self.self.workView.worksCollection.mj_footer endRefreshing];
-    }
-    
-    _currentPageInfo = pageInfo;
-    if(_currentPageInfo.currentPage == 0){
         [_worksDataSource removeAllObjects];
     }
     
+    [self.workView.worksCollection.mj_header endRefreshing];
+    [self.workView.worksCollection.mj_footer endRefreshing];
+    
+    _currentPageInfo = pageInfo;
     [_worksDataSource addObjectsFromArray:[posts copy]];
     [self.workView updateWorksArray:_worksDataSource];
 }
 
-#pragma mark - OthersIDInfoViewDelegate
+#pragma mark - OthersIDInfoViewDelegate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 - (void)showFansListCallback{
     CandyFansViewController *fansView = [CandyFansViewController new];
     [fansView setShowTitle:@"粉丝"];
@@ -283,7 +280,12 @@ static int jjWorkPageSize = 6;
 }
 
 - (void)worksUpPullFreshDataCallback{
-    [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjWorkPageSize];
+    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+        [self.workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        [self.workView.worksCollection.mj_footer endRefreshing];
+    }else{
+        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjWorkPageSize];
+    }
 }
 
 // 关注

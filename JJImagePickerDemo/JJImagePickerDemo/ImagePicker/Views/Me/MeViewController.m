@@ -157,7 +157,8 @@ static int jjMyworksPageSize = 6;
         
         // 当前页
         int currentPage = [[data objectForKey:@"currentPage"] intValue];
-        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
+        int totalPages = [[data objectForKey:@"totalPages"] intValue];
+        JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjMyworksPageSize currentPage:currentPage];
         // 刷新
         NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
         [weakSelf refreshViewInfo:postCount fansNum:[nFansList count] followerNum:[nFollowerList count] pageInfo:pageInfo photoList:photoList];
@@ -213,7 +214,8 @@ static int jjMyworksPageSize = 6;
          
          // 当前页
          int currentPage = [[data objectForKey:@"currentPage"] intValue];
-         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:currentPage];
+         int totalPages = [[data objectForKey:@"totalPages"] intValue];
+         JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjMyworksPageSize currentPage:currentPage];
          // 刷新
          NSString *postCount = [NSString stringWithFormat:@"%lu", (unsigned long)[photoList count]];
          [weakSelf refreshViewInfo:postCount fansNum:[nFansList count] followerNum:[nFollowerList count] pageInfo:pageInfo photoList:photoList];
@@ -226,22 +228,17 @@ static int jjMyworksPageSize = 6;
 - (void)refreshViewInfo:(NSString *)postCount fansNum:(NSUInteger)fans followerNum:(NSUInteger)followers pageInfo:(JJPageInfo *)pageInfo photoList:(NSMutableArray *)photoList{
     
     // 加载基本信息
-    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName postCount:postCount focus:[NSString stringWithFormat:@"%ld", followers] fans:[NSString stringWithFormat:@"%ld", fans]];
+    [self.detailView updateViewInfo:[JJTokenManager shareInstance].getUserAvatar name:[JJTokenManager shareInstance].getUserName postCount:postCount focus:[NSString stringWithFormat:@"%lu", (unsigned long)followers] fans:[NSString stringWithFormat:@"%lu", (unsigned long)fans]];
     
     if(pageInfo.currentPage == 0){
         [_workView.worksCollection.mj_header endRefreshing];
         [_workView.worksCollection.mj_footer endRefreshing];
-    }else{
-        if([photoList count] < jjMyworksPageSize){
-            [_workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
-        }
-        [_workView.worksCollection.mj_footer endRefreshing];
-    }
-    
-    _currentPageInfo = pageInfo;
-    if(_currentPageInfo.currentPage == 0){
         [_photoDataSource removeAllObjects];
     }
+    
+    [self.workView.worksCollection.mj_header endRefreshing];
+    [self.workView.worksCollection.mj_footer endRefreshing];
+    _currentPageInfo = pageInfo;
     
     [_photoDataSource addObjectsFromArray:[photoList copy]];
     [_workView updateWorksArray:_photoDataSource];
@@ -292,7 +289,12 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)worksUpPullFreshDataCallback{
-    [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
+    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+        [self.workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        [self.workView.worksCollection.mj_footer endRefreshing];
+    }else{
+        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
+    }
 }
 
 - (void)dealloc{

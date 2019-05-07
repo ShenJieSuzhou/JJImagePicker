@@ -120,7 +120,8 @@ static int jjPageSize = 10;
             
             // 当前页
             int currentPage = [[data objectForKey:@"currentPage"] intValue];
-            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjPageSize currentPage:currentPage];
+            int totalPages = [[data objectForKey:@"totalPages"] intValue];
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjPageSize currentPage:currentPage];
             
             [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
         }
@@ -168,7 +169,8 @@ static int jjPageSize = 10;
             
             // 当前页
             int currentPage = [[data objectForKey:@"currentPage"] intValue];
-            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjPageSize currentPage:currentPage];
+            int totalPages = [[data objectForKey:@"totalPages"] intValue];
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:jjPageSize currentPage:currentPage];
             
             [weakSelf latestInfoRequestCallBack:pageInfo photoList:photoList];
         }
@@ -181,20 +183,14 @@ static int jjPageSize = 10;
     if(pageInfo.currentPage == 0){
         [self.homePhotoView.photosCollection.mj_header endRefreshing];
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
-    }else{
-        if([photoList count] < jjPageSize){
-            [self.homePhotoView.photosCollection.mj_footer setState:MJRefreshStateNoMoreData];
-        }
-        [self.homePhotoView.photosCollection.mj_footer endRefreshing];
-    }
-    
-    _currentPageInfo = pageInfo;
-    if(_currentPageInfo.currentPage == 0){
         [_photoDataSource removeAllObjects];
     }
+
+    [self.homePhotoView.photosCollection.mj_header endRefreshing];
+    [self.homePhotoView.photosCollection.mj_footer endRefreshing];
     
+    _currentPageInfo = pageInfo;
     [_photoDataSource addObjectsFromArray:[photoList copy]];
-    
     [_homePhotoView updatephotosArray:_photoDataSource];
 }
 
@@ -234,7 +230,12 @@ static int jjPageSize = 10;
 
 // 上拉获取更多数据
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
-    [self loadMoreHomedata:_currentPageInfo ? _currentPageInfo.currentPage + 1 : 0 size:jjPageSize];
+    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+        [self.homePhotoView.photosCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        [self.homePhotoView.photosCollection.mj_footer endRefreshing];
+    }else{
+        [self loadMoreHomedata:_currentPageInfo ? _currentPageInfo.currentPage + 1 : 0 size:jjPageSize];
+    }
 }
 
 @end
