@@ -23,6 +23,7 @@
 		4477BC9E21D7C47E009128F5 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BC9D21D7C47E009128F5 /* AboutAppViewController.m */; };
 		4477BCA121D7C497009128F5 /* EditAgendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BCA021D7C497009128F5 /* EditAgendViewController.m */; };
 		4477BCA421D9F952009128F5 /* JJDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4477BCA321D9F952009128F5 /* JJDatePicker.m */; };
+		4480E297228321B90086D1BE /* WelocomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4480E296228321B90086D1BE /* WelocomePageController.m */; };
 		4487D7F721841739001E7849 /* HttpRequestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7F621841739001E7849 /* HttpRequestUtil.m */; };
 		4487D7FD21841A93001E7849 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D7FB21841A93001E7849 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4487D803218534D4001E7849 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4487D802218534D4001E7849 /* HomeViewController.m */; };
@@ -79,8 +80,6 @@
 		E51EE7D8222FC979005088F6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D7222FC979005088F6 /* libc++.tbd */; };
 		E51EE7DA222FC990005088F6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7D9222FC990005088F6 /* CoreTelephony.framework */; };
 		E51EE7DC222FC995005088F6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51EE7DB222FC995005088F6 /* SystemConfiguration.framework */; };
-		E51EE7E32236211B005088F6 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7E12236211B005088F6 /* WelcomeViewController.m */; };
-		E51EE7E42236211B005088F6 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51EE7E22236211B005088F6 /* WelcomeViewController.xib */; };
 		E51EE7E72238D5BC005088F6 /* JJZMLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7E62238D5BC005088F6 /* JJZMLoginView.m */; };
 		E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51EE7E92238E73B005088F6 /* JJRegisterViewController.m */; };
 		E522784620BF8F7A003E2F38 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E522784520BF8F7A003E2F38 /* Photos.framework */; };
@@ -235,8 +234,6 @@
 		E5C1802B2282D52F008F1942 /* welcome_p1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180272282D52F008F1942 /* welcome_p1.png */; };
 		E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180282282D52F008F1942 /* welcome_p3.png */; };
 		E5C1802D2282D52F008F1942 /* welcome_p2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180292282D52F008F1942 /* welcome_p2.png */; };
-		E5C180312282D7A5008F1942 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */; };
-		E5C180342282D7E8008F1942 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C180332282D7E8008F1942 /* DHGifImageOperation.m */; };
 		E5C180362282DCAC008F1942 /* guideImage_button_backgound.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
@@ -300,6 +297,8 @@
 		4477BCA021D7C497009128F5 /* EditAgendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditAgendViewController.m; sourceTree = "<group>"; };
 		4477BCA221D9F952009128F5 /* JJDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDatePicker.h; sourceTree = "<group>"; };
 		4477BCA321D9F952009128F5 /* JJDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDatePicker.m; sourceTree = "<group>"; };
+		4480E295228321B90086D1BE /* WelocomePageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelocomePageController.h; sourceTree = "<group>"; };
+		4480E296228321B90086D1BE /* WelocomePageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelocomePageController.m; sourceTree = "<group>"; };
 		4487D7F521841739001E7849 /* HttpRequestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpRequestUtil.h; sourceTree = "<group>"; };
 		4487D7F621841739001E7849 /* HttpRequestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpRequestUtil.m; sourceTree = "<group>"; };
 		4487D7FB21841A93001E7849 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -401,9 +400,6 @@
 		E51EE7D7222FC979005088F6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E51EE7D9222FC990005088F6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E51EE7DB222FC995005088F6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		E51EE7E02236211B005088F6 /* WelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
-		E51EE7E12236211B005088F6 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		E51EE7E22236211B005088F6 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		E51EE7E52238D5BC005088F6 /* JJZMLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJZMLoginView.h; sourceTree = "<group>"; };
 		E51EE7E62238D5BC005088F6 /* JJZMLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZMLoginView.m; sourceTree = "<group>"; };
 		E51EE7E82238E73B005088F6 /* JJRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJRegisterViewController.h; sourceTree = "<group>"; };
@@ -646,10 +642,6 @@
 		E5C180272282D52F008F1942 /* welcome_p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p1.png; sourceTree = "<group>"; };
 		E5C180282282D52F008F1942 /* welcome_p3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p3.png; sourceTree = "<group>"; };
 		E5C180292282D52F008F1942 /* welcome_p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p2.png; sourceTree = "<group>"; };
-		E5C1802F2282D7A5008F1942 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
-		E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
-		E5C180322282D7E8008F1942 /* DHGifImageOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
-		E5C180332282D7E8008F1942 /* DHGifImageOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
 		E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideImage_button_backgound.png; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
@@ -1346,7 +1338,6 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E5C1802E2282D77F008F1942 /* GuidePage */,
 				E5DA001922700E7C0043F17A /* PushUtil */,
 				E51EE7CB222D195A005088F6 /* framework */,
 				E51EE7C7222D1932005088F6 /* Wechat */,
@@ -1362,9 +1353,8 @@
 				E56B9CC520AD2FA700021DF8 /* ViewController.h */,
 				E56B9CC620AD2FA700021DF8 /* ViewController.m */,
 				E56B9CC820AD2FA700021DF8 /* Main.storyboard */,
-				E51EE7E02236211B005088F6 /* WelcomeViewController.h */,
-				E51EE7E12236211B005088F6 /* WelcomeViewController.m */,
-				E51EE7E22236211B005088F6 /* WelcomeViewController.xib */,
+				4480E295228321B90086D1BE /* WelocomePageController.h */,
+				4480E296228321B90086D1BE /* WelocomePageController.m */,
 				E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */,
 				E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */,
 				E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */,
@@ -1428,17 +1418,6 @@
 				E5C180262282D52F008F1942 /* welcome_p4.png */,
 			);
 			path = welcome;
-			sourceTree = "<group>";
-		};
-		E5C1802E2282D77F008F1942 /* GuidePage */ = {
-			isa = PBXGroup;
-			children = (
-				E5C1802F2282D7A5008F1942 /* DHGuidePageHUD.h */,
-				E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */,
-				E5C180322282D7E8008F1942 /* DHGifImageOperation.h */,
-				E5C180332282D7E8008F1942 /* DHGifImageOperation.m */,
-			);
-			path = GuidePage;
 			sourceTree = "<group>";
 		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
@@ -1676,7 +1655,6 @@
 				44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */,
 				E547D1AC20F89ACE00893D85 /* cameraButtonHighlighted@2x.png in Resources */,
 				E55166AE2159E7F0001FBFC1 /* cat.png in Resources */,
-				E51EE7E42236211B005088F6 /* WelcomeViewController.xib in Resources */,
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
 				E571BD44210F0045009DD369 /* content.json in Resources */,
@@ -1767,7 +1745,6 @@
 				4477BCA421D9F952009128F5 /* JJDatePicker.m in Sources */,
 				E5506BFA212FD8A00077E62B /* JJLoadConfig.m in Sources */,
 				E5DB333D22154BD1008D7818 /* JJImageUploadManager.m in Sources */,
-				E51EE7E32236211B005088F6 /* WelcomeViewController.m in Sources */,
 				E512B1DC215A17C400B06B1B /* StickerViewController.m in Sources */,
 				E51726472160B66A008431A1 /* UIView+ZYTagView.m in Sources */,
 				E5506B61212FB3330077E62B /* InterestingViewController.m in Sources */,
@@ -1803,6 +1780,7 @@
 				449A1F7C2169EF9D0007A91A /* JJTagsCollectionViewCell.m in Sources */,
 				E58C251B21D5CD7D001C4D8F /* SettingViewCell.m in Sources */,
 				E5506BDB212FB7D80077E62B /* DropButton.m in Sources */,
+				4480E297228321B90086D1BE /* WelocomePageController.m in Sources */,
 				E5506B63212FB3330077E62B /* PhotoEditingViewController.m in Sources */,
 				E51EE7CA222D194F005088F6 /* JJWechatManager.m in Sources */,
 				E56B9CD220AD2FA800021DF8 /* main.m in Sources */,
@@ -1880,7 +1858,6 @@
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				E50B4136224C7A0600797DC2 /* FansModel.m in Sources */,
-				E5C180342282D7E8008F1942 /* DHGifImageOperation.m in Sources */,
 				E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */,
 				E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */,
 				E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */,
@@ -1904,7 +1881,6 @@
 				E55BA99321A3E16D0078472D /* WorkCell.m in Sources */,
 				E5DA001C22700EA40043F17A /* PushUtil.m in Sources */,
 				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
-				E5C180312282D7A5008F1942 /* DHGuidePageHUD.m in Sources */,
 				E542B8062192BD9D002A7E1E /* EmojiScrollView.m in Sources */,
 				E5DB3349221D82EF008D7818 /* JJThumbPhotoCell.m in Sources */,
 				44208E1E21A1648A0090D983 /* SettingViewController.m in Sources */,

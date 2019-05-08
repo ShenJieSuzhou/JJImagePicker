@@ -1,27 +1,20 @@
 //
-//  WelcomeViewController.m
+//  WelocomePageController.m
 //  JJImagePickerDemo
 //
-//  Created by shenjie on 2019/3/11.
+//  Created by silicon on 2019/5/8.
 //  Copyright © 2019年 shenjie. All rights reserved.
 //
 
-#import "WelcomeViewController.h"
-#import "ViewController.h"
-#import "DHGuidePageHUD.h"
+#import "WelocomePageController.h"
 
-@interface WelcomeViewController ()<UIScrollViewDelegate>
+@interface WelocomePageController ()
 
 @end
 
-@implementation WelcomeViewController
+@implementation WelocomePageController
 @synthesize guideScrollView = _guideScrollView;
 @synthesize pageControl = _pageControl;
-@synthesize welcomeP1 = _welcomeP1;
-@synthesize welcomeP2 = _welcomeP2;
-@synthesize welcomeP3 = _welcomeP3;
-@synthesize welcomeP4 = _welcomeP4;
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -30,33 +23,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    CGFloat JJScreenW = self.view.bounds.size.width;
-    CGFloat JJScreenH = self.view.bounds.size.height;
+    // Do any additional setup after loading the view.
     
-    NSArray *imageArray = @[@"welcome_p1", @"welcome_p2", @"welcome_p3", @"welcome_p4"];
+    CGFloat JJScreenW = self.view.frame.size.width;
+    CGFloat JJScreenH = self.view.frame.size.height;
+    
+    NSArray *imageArray = @[@"welcome_p1", @"welcome_p2", @"welcome_p3"];
     
     // 设置引导视图的scrollview
-     _guideScrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-     [_guideScrollView setBackgroundColor:[UIColor whiteColor]];
-     // 根据传入图片数组中的个数来计算UIScrollView的contentSize
-     [_guideScrollView setContentSize:CGSizeMake(JJScreenW * 4, JJScreenH)];
-     [_guideScrollView setBounces:NO];
-     [_guideScrollView setPagingEnabled:YES];
-     [_guideScrollView setShowsHorizontalScrollIndicator:NO];
-     [_guideScrollView setDelegate:self];
-     [self.view addSubview:_guideScrollView];
+    _guideScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, JJScreenW, JJScreenH)];
+    [_guideScrollView setDelegate:self];
+    [_guideScrollView setBackgroundColor:[UIColor whiteColor]];
+    
+    // 根据传入图片数组中的个数来计算UIScrollView的contentSize
+    [_guideScrollView setContentSize:CGSizeMake(JJScreenW * 3, JJScreenH)];
+    _guideScrollView.contentOffset = CGPointMake(0, 0);
+    [_guideScrollView setBounces:NO];
+    [_guideScrollView setPagingEnabled:YES];
+    [_guideScrollView setShowsHorizontalScrollIndicator:NO];
+    [_guideScrollView setShowsVerticalScrollIndicator:NO];
+    if (@available(iOS 11.0, *)) {
+        _guideScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
+    [self.view addSubview:_guideScrollView];
     
     // 添加在引导视图上的多张引导图片
     for (int i = 0; i < imageArray.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(JJScreenW*i, 0, JJScreenW, JJScreenH)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(JJScreenW * i, 0, JJScreenW, JJScreenH)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         UIImage *img = [UIImage imageNamed:[imageArray objectAtIndex:i]];
         [imageView setImage:img];
         [_guideScrollView addSubview:imageView];
         
         // 设置在最后一张图片上显示进入体验按钮
-        if (i == imageArray.count-1) {
+        if (i == imageArray.count - 1) {
             [imageView setUserInteractionEnabled:YES];
             UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(JJScreenW*0.3, JJScreenH*0.8, JJScreenW*0.4, JJScreenH*0.08)];
             [startButton setTitle:@"开始体验" forState:UIControlStateNormal];
@@ -76,13 +77,7 @@
 }
 
 - (void)buttonClick:(UIButton *)button {
-    [UIView animateWithDuration:1 animations:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-}
-
-- (IBAction)skip:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -91,9 +86,7 @@
     int pageNum = offsetWidth / [[UIScreen mainScreen] bounds].size.width;
     self.pageControl.currentPage = pageNum;
     if (scrollView.contentOffset.x >= scrollView.contentSize.width - self.view.bounds.size.width + 40) {
-        [UIView animateWithDuration:1 animations:^{
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

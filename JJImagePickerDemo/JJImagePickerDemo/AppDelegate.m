@@ -12,7 +12,6 @@
 
 #import "WXApi.h"
 #import "JJWechatManager.h"
-#import "WelcomeViewController.h"
 #import "ViewController.h"
 #import "CustomNaviViewController.h"
 #import "Reachability.h"

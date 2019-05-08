@@ -16,10 +16,10 @@
 #import "InterestingViewController.h"
 #import "LoginSessionManager.h"
 #import "HttpRequestUrlDefine.h"
-#import "WelcomeViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UserNotifications/UserNotifications.h>
+#import "WelocomePageController.h"
 
 #import "PushUtil.h"
 
@@ -40,7 +40,7 @@
     // 判断用户是否是第一次进APP
     if (![[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_firstStart", version]]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_firstStart", version]];
-        [self.navigationController pushViewController:[WelcomeViewController new] animated:YES];
+        [self.navigationController pushViewController:[WelocomePageController new] animated:YES];
     }
 }
 
