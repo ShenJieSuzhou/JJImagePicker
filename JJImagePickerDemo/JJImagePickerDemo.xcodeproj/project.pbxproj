@@ -230,6 +230,7 @@
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
 		E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */; };
+		E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
 		E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */; };
@@ -633,6 +634,7 @@
 		E5C18014227EE56D008F1942 /* JJCacheUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCacheUtil.m; sourceTree = "<group>"; };
 		E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFollowerViewController.h; sourceTree = "<group>"; };
 		E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFollowerViewController.m; sourceTree = "<group>"; };
+		E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max@2x.png"; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LivePhoto_Corner@3x.png"; sourceTree = "<group>"; };
@@ -1346,6 +1348,7 @@
 				E51EE7E12236211B005088F6 /* WelcomeViewController.m */,
 				E51EE7E22236211B005088F6 /* WelcomeViewController.xib */,
 				E56B9CCB20AD2FA800021DF8 /* Assets.xcassets */,
+				E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */,
 				E56B9CCD20AD2FA800021DF8 /* LaunchScreen.storyboard */,
 				E56B9CD020AD2FA800021DF8 /* Info.plist */,
 				E56B9CD120AD2FA800021DF8 /* main.m */,
@@ -1573,6 +1576,7 @@
 				E547D19520F89ACE00893D85 /* cameraButton@3x.png in Resources */,
 				E547D19620F89ACE00893D85 /* libraryConfirm@3x.png in Resources */,
 				E50B411922421ADB00797DC2 /* personal_6.jpg in Resources */,
+				E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */,
 				E547D1A620F89ACE00893D85 /* flashOffIcon@3x.png in Resources */,
 				E55166B12159E7F0001FBFC1 /* grave.png in Resources */,
 				E545F54920C12F2700E74CA1 /* gallery_title_arrow@2x.png in Resources */,

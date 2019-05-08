@@ -46,6 +46,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [NSThread sleepForTimeInterval:1.0f];
+    
     //定时推送：时间注意,早上9点推送
     [PushUtil registerLocalNotification];
     
