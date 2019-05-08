@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface WelcomeViewController : UIViewController
+
+@property (strong, nonatomic) UIScrollView *guideScrollView;
+@property (strong, nonatomic) UIPageControl *pageControl;
+
+@property (strong, nonatomic) UIImageView *welcomeP1;
+@property (strong, nonatomic) UIImageView *welcomeP2;
+@property (strong, nonatomic) UIImageView *welcomeP3;
+@property (strong, nonatomic) UIImageView *welcomeP4;
+
 
 @end
 
-NS_ASSUME_NONNULL_END

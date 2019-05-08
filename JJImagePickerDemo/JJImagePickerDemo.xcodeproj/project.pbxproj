@@ -231,6 +231,13 @@
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
 		E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */; };
 		E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */; };
+		E5C1802A2282D52F008F1942 /* welcome_p4.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180262282D52F008F1942 /* welcome_p4.png */; };
+		E5C1802B2282D52F008F1942 /* welcome_p1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180272282D52F008F1942 /* welcome_p1.png */; };
+		E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180282282D52F008F1942 /* welcome_p3.png */; };
+		E5C1802D2282D52F008F1942 /* welcome_p2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180292282D52F008F1942 /* welcome_p2.png */; };
+		E5C180312282D7A5008F1942 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */; };
+		E5C180342282D7E8008F1942 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C180332282D7E8008F1942 /* DHGifImageOperation.m */; };
+		E5C180362282DCAC008F1942 /* guideImage_button_backgound.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
 		E5CFB54A20D284BD0021EB68 /* UICollectionView+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB54920D284BD0021EB68 /* UICollectionView+JJ.m */; };
@@ -635,6 +642,15 @@
 		E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFollowerViewController.h; sourceTree = "<group>"; };
 		E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFollowerViewController.m; sourceTree = "<group>"; };
 		E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max@2x.png"; sourceTree = "<group>"; };
+		E5C180262282D52F008F1942 /* welcome_p4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p4.png; sourceTree = "<group>"; };
+		E5C180272282D52F008F1942 /* welcome_p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p1.png; sourceTree = "<group>"; };
+		E5C180282282D52F008F1942 /* welcome_p3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p3.png; sourceTree = "<group>"; };
+		E5C180292282D52F008F1942 /* welcome_p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p2.png; sourceTree = "<group>"; };
+		E5C1802F2282D7A5008F1942 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
+		E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
+		E5C180322282D7E8008F1942 /* DHGifImageOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
+		E5C180332282D7E8008F1942 /* DHGifImageOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
+		E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideImage_button_backgound.png; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
 		E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LivePhoto_Corner@3x.png"; sourceTree = "<group>"; };
@@ -1002,6 +1018,7 @@
 		E522786720C0E433003E2F38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5C180252282D2E4008F1942 /* welcome */,
 				E51EE7EB223A5E56005088F6 /* personalbk */,
 				E5DB336322290885008D7818 /* myApp.png */,
 				E5DB334E22278F6C008D7818 /* mt */,
@@ -1329,6 +1346,7 @@
 		E56B9CC120AD2FA700021DF8 /* JJImagePickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E5C1802E2282D77F008F1942 /* GuidePage */,
 				E5DA001922700E7C0043F17A /* PushUtil */,
 				E51EE7CB222D195A005088F6 /* framework */,
 				E51EE7C7222D1932005088F6 /* Wechat */,
@@ -1398,6 +1416,29 @@
 				E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */,
 			);
 			path = TokenManager;
+			sourceTree = "<group>";
+		};
+		E5C180252282D2E4008F1942 /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */,
+				E5C180272282D52F008F1942 /* welcome_p1.png */,
+				E5C180292282D52F008F1942 /* welcome_p2.png */,
+				E5C180282282D52F008F1942 /* welcome_p3.png */,
+				E5C180262282D52F008F1942 /* welcome_p4.png */,
+			);
+			path = welcome;
+			sourceTree = "<group>";
+		};
+		E5C1802E2282D77F008F1942 /* GuidePage */ = {
+			isa = PBXGroup;
+			children = (
+				E5C1802F2282D7A5008F1942 /* DHGuidePageHUD.h */,
+				E5C180302282D7A5008F1942 /* DHGuidePageHUD.m */,
+				E5C180322282D7E8008F1942 /* DHGifImageOperation.h */,
+				E5C180332282D7E8008F1942 /* DHGifImageOperation.m */,
+			);
+			path = GuidePage;
 			sourceTree = "<group>";
 		};
 		E5CFB53420D10F840021EB68 /* Util */ = {
@@ -1561,6 +1602,7 @@
 			files = (
 				E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */,
 				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
+				E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */,
 				E55166B62159E7F0001FBFC1 /* spider.png in Resources */,
 				E547D18F20F89ACE00893D85 /* flashAutoIcon.png in Resources */,
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
@@ -1572,9 +1614,11 @@
 				E5DB335F2227C904008D7818 /* pengke.jpg in Resources */,
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,
 				E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */,
+				E5C1802B2282D52F008F1942 /* welcome_p1.png in Resources */,
 				E547D1A420F89ACE00893D85 /* confirmButton.png in Resources */,
 				E547D19520F89ACE00893D85 /* cameraButton@3x.png in Resources */,
 				E547D19620F89ACE00893D85 /* libraryConfirm@3x.png in Resources */,
+				E5C1802A2282D52F008F1942 /* welcome_p4.png in Resources */,
 				E50B411922421ADB00797DC2 /* personal_6.jpg in Resources */,
 				E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */,
 				E547D1A620F89ACE00893D85 /* flashOffIcon@3x.png in Resources */,
@@ -1594,6 +1638,7 @@
 				E50B411422421ADB00797DC2 /* personal_7.jpg in Resources */,
 				E547D1B020F89ACE00893D85 /* retakeButton@2x.png in Resources */,
 				E547D19420F89ACE00893D85 /* cameraButton.png in Resources */,
+				E5C180362282DCAC008F1942 /* guideImage_button_backgound.png in Resources */,
 				E547D1A920F89ACE00893D85 /* closeButton@3x.png in Resources */,
 				E522786920C0E464003E2F38 /* redarrowRighticon.png in Resources */,
 				E547D19820F89ACE00893D85 /* swapButton@3x.png in Resources */,
@@ -1642,6 +1687,7 @@
 				E547D19720F89ACE00893D85 /* placeholder.png in Resources */,
 				E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */,
 				E547D1AF20F89ACE00893D85 /* cameraPermissionsIcon@2x.png in Resources */,
+				E5C1802D2282D52F008F1942 /* welcome_p2.png in Resources */,
 				E5DB33612227C904008D7818 /* yellow.jpg in Resources */,
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,
@@ -1834,6 +1880,7 @@
 				E5506BFE212FF4870077E62B /* FilterViewController.m in Sources */,
 				449A1F842169F74F0007A91A /* JJTagView.m in Sources */,
 				E50B4136224C7A0600797DC2 /* FansModel.m in Sources */,
+				E5C180342282D7E8008F1942 /* DHGifImageOperation.m in Sources */,
 				E58C252521DE2CBA001C4D8F /* BindPhoneViewController.m in Sources */,
 				E50B4133224B1BB600797DC2 /* OthersIDView.m in Sources */,
 				E51EE7EA2238E73B005088F6 /* JJRegisterViewController.m in Sources */,
@@ -1857,6 +1904,7 @@
 				E55BA99321A3E16D0078472D /* WorkCell.m in Sources */,
 				E5DA001C22700EA40043F17A /* PushUtil.m in Sources */,
 				E57FDC9A217AFE1C00D7561A /* BrushPaneView.m in Sources */,
+				E5C180312282D7A5008F1942 /* DHGuidePageHUD.m in Sources */,
 				E542B8062192BD9D002A7E1E /* EmojiScrollView.m in Sources */,
 				E5DB3349221D82EF008D7818 /* JJThumbPhotoCell.m in Sources */,
 				44208E1E21A1648A0090D983 /* SettingViewController.m in Sources */,

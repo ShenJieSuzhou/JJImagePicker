@@ -35,5 +35,6 @@
 @end
 
 @protocol CustomNewsBannerDelegate<NSObject>
+@optional
 - (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index;
 @end
