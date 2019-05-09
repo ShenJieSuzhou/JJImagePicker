@@ -28,7 +28,7 @@
     CGFloat JJScreenW = self.view.frame.size.width;
     CGFloat JJScreenH = self.view.frame.size.height;
     
-    NSArray *imageArray = @[@"welcome_p1", @"welcome_p2", @"welcome_p3"];
+    NSArray *imageArray = @[@"welcome_p1", @"welcome_p2", @"welcome_p3", @"welcome_p4"];
     
     // 设置引导视图的scrollview
     _guideScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, JJScreenW, JJScreenH)];
@@ -36,7 +36,7 @@
     [_guideScrollView setBackgroundColor:[UIColor whiteColor]];
     
     // 根据传入图片数组中的个数来计算UIScrollView的contentSize
-    [_guideScrollView setContentSize:CGSizeMake(JJScreenW * 3, JJScreenH)];
+    [_guideScrollView setContentSize:CGSizeMake(JJScreenW * 4, JJScreenH)];
     _guideScrollView.contentOffset = CGPointMake(0, 0);
     [_guideScrollView setBounces:NO];
     [_guideScrollView setPagingEnabled:YES];
