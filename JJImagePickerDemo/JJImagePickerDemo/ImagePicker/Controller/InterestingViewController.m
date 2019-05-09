@@ -25,6 +25,7 @@
 #import "JSONKit.h"
 #import "JJTokenManager.h"
 #import "HttpRequestUrlDefine.h"
+#import "GlobalDefine.h"
 
 
 #define PUBLISH_VIEW_WIDTH self.view.frame.size.width
@@ -265,6 +266,7 @@
             return ;
         }
         if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:JJ_PUBLISH_WORKS_SUCCESS object:nil];
             //发布成功
             [SVProgressHUD showSuccessWithStatus:JJ_PUBLISH_SUCCESS];
             [SVProgressHUD dismissWithDelay:2.0f];

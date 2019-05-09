@@ -63,6 +63,7 @@ static int jjMyworksPageSize = 6;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publishWorksSuccess:) name:JJ_PUBLISH_WORKS_SUCCESS object:nil];
     [self.view setBackgroundColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1]];
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.workView];
@@ -107,6 +108,10 @@ static int jjMyworksPageSize = 6;
 
 - (void)receiveLoginSuccess:(NSNotification *)notify{
     [self loadUserInfo];
+}
+
+- (void)publishWorksSuccess:(NSNotification *)notify{
+    [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
 }
 
 /**
