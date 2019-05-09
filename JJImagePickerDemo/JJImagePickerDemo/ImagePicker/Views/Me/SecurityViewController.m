@@ -12,7 +12,7 @@
 #import "BindPhoneViewController.h"
 #import "GlobalDefine.h"
 
-@interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource,SetPwdDelegate>
 
 @property (strong, nonatomic) UITableView *securityTable;
 
@@ -62,14 +62,11 @@
     if(indexPath.section == 0){
         LoginPWDViewController *loginPWDCtrl = [[LoginPWDViewController alloc] initWithNibName:@"LoginPWDViewController" bundle:nil];
         loginPWDCtrl.isFreshMan = NO;
-        [self presentViewController:loginPWDCtrl animated:YES completion:^{
-            
-        }];
+        loginPWDCtrl.delegate = self;
+        [self.navigationController pushViewController:loginPWDCtrl animated:YES];
     }else if(indexPath.section == 1){
         BindPhoneViewController *bindViewCtrl = [[BindPhoneViewController alloc] initWithNibName:@"BindPhoneViewController" bundle:nil];
-        [self presentViewController:bindViewCtrl animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:bindViewCtrl animated:YES];
     }
 }
 
@@ -111,11 +108,7 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"登录密码";
-                if([JJTokenManager shareInstance].getPassword.length == 0){
-                    cell.detailTextLabel.text = @"未设置";
-                }else{
-                    cell.detailTextLabel.text = @"更改";
-                }
+                cell.detailTextLabel.text = @"更改";
                 break;
         }
     }
@@ -130,6 +123,15 @@
 //    }
     
     return cell;
+}
+
+- (void)setPwdSuccessCallBack:(LoginPWDViewController *)viewCtl{
+//    UITableViewCell *cell = [self.securityTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    if(!cell){
+//        return;
+//    }
+//    cell.detailTextLabel.text = @"更改";
+    [viewCtl.navigationController popViewControllerAnimated:YES];
 }
 
 @end

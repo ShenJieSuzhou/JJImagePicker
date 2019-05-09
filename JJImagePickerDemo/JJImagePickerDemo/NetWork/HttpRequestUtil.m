@@ -326,7 +326,7 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", oldpwd, @"oldpwd", newPwd, @"newPwd",userid, @"user_id", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", oldpwd, @"oldPwd", newPwd, @"newPwd",userid, @"user_id", nil];
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

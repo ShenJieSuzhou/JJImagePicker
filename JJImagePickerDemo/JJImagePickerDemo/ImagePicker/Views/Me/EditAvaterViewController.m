@@ -50,10 +50,8 @@
     
     [self.view addSubview:self.avaterView];
     [self.view addSubview:self.changeAvaterBtn];
-    
-    [self.avaterView sd_setImageWithURL:[NSURL URLWithString:_avaterUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
-    }];
+    [self.avaterView sd_setImageWithURL:[NSURL URLWithString:_avaterUrl] placeholderImage:[UIImage imageNamed:@"userPlaceHold"]];
 }
 
 - (UIImageView *)avaterView{

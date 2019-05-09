@@ -26,6 +26,8 @@
 #import "GlobalDefine.h"
 #import "CandyFansViewController.h"
 #import "CandyFollowerViewController.h"
+#import "JJImageManager.h"
+#import "PhotosViewController.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -279,7 +281,17 @@ static int jjMyworksPageSize = 6;
 
 #pragma - mark WorksViewDelegate
 - (void)publishWorksCallback{
-    NSLog(@"跳转到拍照 选择相片界面");
+    if([JJImageManager requestAlbumPemission] == JJPHAuthorizationStatusNotAuthorized){
+        //如果没有获取访问权限，或者访问权限已被明确静止，则显示提示语，引导用户开启授权
+        [SVProgressHUD showWithStatus:@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+    }else{
+        //弹出相册选择器
+        PhotosViewController *photosView = [[PhotosViewController alloc] init];
+        [photosView setUpGridView:JJ_MAX_PHOTO_NUM min:0];
+        //获取相机胶卷的图片
+        [self.navigationController pushViewController:photosView animated:YES];
+    }
 }
 
 - (void)goToWorksDetailViewCallback:(Works *)work{

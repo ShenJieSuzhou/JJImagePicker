@@ -283,7 +283,6 @@
     NSString *account = _accountF.text;
     NSString *password = _pwdF1.text;
     
-    
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
     [SVProgressHUD show];

@@ -9,6 +9,11 @@
 #import "LoginPWDViewController.h"
 #import <Masonry/Masonry.h>
 #import "DeviceType.h"
+#import "HttpRequestUrlDefine.h"
+#import "HttpRequestUtil.h"
+#import "JJTokenManager.h"
+#import "GlobalDefine.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #define SCREEN_WIDTH self.view.frame.size.width
 #define SCREEN_HEIGHT self.view.frame.size.height
@@ -18,6 +23,7 @@
 @end
 
 @implementation LoginPWDViewController
+@synthesize delegate = _delegate;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -208,16 +214,56 @@
  更新密码
  */
 - (IBAction)mClickSaveBtn:(id)sender {
+    if([self.oldPwdField.text length] == 0 || [self.oldPwdField.text length] == 0 || [self.mPwdField.text length] == 0 || [self.mPwdField.text length] == 0 || [self.checkMPwdField.text length] == 0 || [self.checkMPwdField.text length] == 0){
+        
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
     
+    if([self IsChinese:self.oldPwdField.text] && [self IsChinese:self.mPwdField.text] && [self IsChinese:self.checkMPwdField.text]){
+        [SVProgressHUD showErrorWithStatus:@"密码不能包含中文"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if([_mPwdField.text length] < 6 || [_mPwdField.text length] < 6){
+        [SVProgressHUD showErrorWithStatus:@"密码不能少于6个字符"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    if(![_mPwdField.text isEqualToString:_checkMPwdField.text]){
+        [SVProgressHUD showErrorWithStatus:@"密码不一致"];
+        [SVProgressHUD dismissWithDelay:1.0];
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+    [SVProgressHUD show];
+    [HttpRequestUtil JJ_SetUserNewPassword:UPDATE_MY_PASSWORD token:[JJTokenManager shareInstance].getUserToken oldPwd:self.oldPwdField.text newPwd:self.mPwdField.text userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [SVProgressHUD dismiss];
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:2.0f];
+            return ;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [weakSelf.delegate setPwdSuccessCallBack:weakSelf];
+        }else{
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:2.0f];
+        }
+    }];
 }
 
 /**
  取消
  */
 - (void)clickCancelBtn:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)isIphoneX{
@@ -226,6 +272,17 @@
     }else{
         return NO;
     }
+}
+
+-(BOOL)IsChinese:(NSString *)str{
+    for(int i=0; i< [str length];i++){
+        int a = [str characterAtIndex:i];
+        if( a > 0x4e00 && a < 0x9fff){
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

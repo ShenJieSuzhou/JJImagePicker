@@ -34,7 +34,7 @@
 
 #define UPDATE_AVATAR_REQUEST                           @"http://172.16.10.45:8080/setting/api/updateUserAvatar"
 
-#define SET_NEWUSERPWD_REQUEST                          @"http://172.16.10.45:8080/setting/api/setNewUserPwd"
+#define UPDATE_MY_PASSWORD                              @"http://172.16.10.45:8080/setting/api/updatePwd"
 
 #define SET_NEWPWD_REQUEST                              @"http://172.16.10.45:8080/setting/api/setNewPwd"
 

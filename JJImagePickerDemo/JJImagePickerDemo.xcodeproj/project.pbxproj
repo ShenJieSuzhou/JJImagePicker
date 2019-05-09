@@ -62,7 +62,6 @@
 		E50B413E224CC48500797DC2 /* JJLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B413D224CC48500797DC2 /* JJLikeButton.m */; };
 		E50B414122537A9900797DC2 /* JJPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414022537A9900797DC2 /* JJPageInfo.m */; };
 		E50B414422537B2700797DC2 /* JJDataParaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414322537B2700797DC2 /* JJDataParaseUtil.m */; };
-		E50C094F2175C3D90035C3C2 /* Cream in Resources */ = {isa = PBXBuildFile; fileRef = E50C094E2175C3D80035C3C2 /* Cream */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
 		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
@@ -369,7 +368,6 @@
 		E50B414022537A9900797DC2 /* JJPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPageInfo.m; sourceTree = "<group>"; };
 		E50B414222537B2700797DC2 /* JJDataParaseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDataParaseUtil.h; sourceTree = "<group>"; };
 		E50B414322537B2700797DC2 /* JJDataParaseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDataParaseUtil.m; sourceTree = "<group>"; };
-		E50C094E2175C3D80035C3C2 /* Cream */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cream; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
 		E512B1D1215A034B00B06B1B /* StickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerModel.h; sourceTree = "<group>"; };
@@ -1344,7 +1342,6 @@
 				E5DB333722154B78008D7818 /* Upload */,
 				E5AE62F321C0FEE500639CF8 /* TokenManager */,
 				4487D7F421841704001E7849 /* NetWork */,
-				E50C094E2175C3D80035C3C2 /* Cream */,
 				4462607520CD1A260004C579 /* Category */,
 				E522786720C0E433003E2F38 /* Resources */,
 				E522784120BF8F0F003E2F38 /* ImagePicker */,
@@ -1671,7 +1668,6 @@
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,
 				E51EE7D2222D1989005088F6 /* README.txt in Resources */,
 				E50B411622421ADB00797DC2 /* personal_2.jpg in Resources */,
-				E50C094F2175C3D90035C3C2 /* Cream in Resources */,
 				E50B411322421ADB00797DC2 /* personal_1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

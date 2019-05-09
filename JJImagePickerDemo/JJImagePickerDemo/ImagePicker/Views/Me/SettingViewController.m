@@ -184,6 +184,7 @@
             
             UIImageView *avaterView = (UIImageView *) [cell viewWithTag:190];
             [avaterView setImage:img];
+            [[NSNotificationCenter defaultCenter] postNotificationName:JJ_UPDATE_AVATAR_SUCCESS object:@{@"avater":img}];
             [SVProgressHUD showSuccessWithStatus:JJ_MODIFIY_SUCCESS];
             [SVProgressHUD dismissWithDelay:1.0f];
         }else{
@@ -224,6 +225,8 @@
     }
     cell.detailTextLabel.text = name;
     [[JJTokenManager shareInstance] saveUserName:name];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:JJ_UPDATE_NAME_SUCCESS object:@{@"nickName":name}];
 }
 
 #pragma mark - UITableViewDataSource
@@ -389,13 +392,6 @@
         return;
     }
     cell.detailTextLabel.text = @"0 M";
-}
-
-/**
- 更新用户信息
- */
-- (void)updateUserInfo{
-    
 }
 
 @end

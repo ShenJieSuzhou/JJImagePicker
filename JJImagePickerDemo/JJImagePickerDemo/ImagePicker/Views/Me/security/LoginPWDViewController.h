@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
 
+@class LoginPWDViewController;
+@protocol SetPwdDelegate <NSObject>
+
+- (void)setPwdSuccessCallBack:(LoginPWDViewController *)viewCtl;
+
+@end
+
 @interface LoginPWDViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIView *nUserView;
@@ -32,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *myTitle;
+
+@property (weak, nonatomic) id<SetPwdDelegate> delegate;
 
 @property (assign) BOOL isFreshMan;
 

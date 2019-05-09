@@ -10,6 +10,7 @@
 #import "PhotosViewController.h"
 #import "JJImageManager.h"
 #import "CameraRollViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation JJImageViewPicker
 
@@ -27,7 +28,8 @@
     UIAlertAction *album = [UIAlertAction actionWithTitle:@"从相册中选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if([JJImageManager requestAlbumPemission] == JJPHAuthorizationStatusNotAuthorized){
             //如果没有获取访问权限，或者访问权限已被明确静止，则显示提示语，引导用户开启授权
-            NSLog(@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册");
+            [SVProgressHUD showWithStatus:@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册"];
+            [SVProgressHUD dismissWithDelay:1.0f];
         }else{
             //弹出相册选择器
             PhotosViewController *photosView = [[PhotosViewController alloc] init];

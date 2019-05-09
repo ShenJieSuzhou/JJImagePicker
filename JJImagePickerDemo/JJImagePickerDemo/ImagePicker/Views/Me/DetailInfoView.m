@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Masonry/Masonry.h>
 #import "JJCacheUtil.h"
+#import "GlobalDefine.h"
 
 @implementation DetailInfoView
 @synthesize backgroundView = _backgroundView;
@@ -42,6 +43,9 @@
 }
 
 - (void)commonInitlization{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvater:) name:JJ_UPDATE_AVATAR_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNickname:) name:JJ_UPDATE_NAME_SUCCESS object:nil];
+    
     _personalBKs =  [NSArray arrayWithObjects:@"personal_1", @"personal_2", @"personal_3", @"personal_4", @"personal_5",@"personal_6", @"personal_7", @"personal_8", nil];
     
     NSString *bgName = [self.personalBKs objectAtIndex:[self getRandomNumber:0 to:7]];
@@ -223,12 +227,17 @@
 
 - (void)updateViewInfo:(NSString *)iconurl name:(NSString *)name postCount:(NSString *)posts focus:(NSString *)focusNum fans:(NSString *)fansNum{
     __weak typeof(self) weakself = self;
-    [JJCacheUtil diskImageExistsWithUrl:iconurl completion:^(UIImage *image) {        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself.iconView setImage:image];
-        });
-    }];
     
+    if(iconurl.length == 0){
+        [self.iconView setImage:[UIImage imageNamed:@"userPlaceHold"]];
+    }else{
+        [JJCacheUtil diskImageExistsWithUrl:iconurl completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.iconView setImage:image];
+            });
+        }];
+    }
+
     [_userName setText:name];
     [_workNum setText:posts];
     [_focusNum setText:focusNum];
@@ -251,6 +260,18 @@
 
 - (void)clickWorksView:(UIGestureRecognizer *)sender{
     NSLog(@"clickWorksView");
+}
+
+- (void)updateAvater:(NSNotification *)notify{
+    NSDictionary *dic = (NSDictionary *)notify.object;
+    UIImage *newAvatar = [dic objectForKey:@"avater"];
+    [_iconView setImage:newAvatar];
+}
+
+- (void)updateNickname:(NSNotification *)notify{
+    NSDictionary *dic = (NSDictionary *)notify.object;
+    NSString *nickname = [dic objectForKey:@"nickName"];
+    [_userName setText:nickname];
 }
 
 @end
