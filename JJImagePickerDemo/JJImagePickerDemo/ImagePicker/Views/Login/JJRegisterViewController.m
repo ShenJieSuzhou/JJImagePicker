@@ -232,21 +232,21 @@
 - (void)registerUserToLogin:(UIButton *)sender{
     if([_accountF.text length] == 0){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"用户名不能为空"];
+        [SVProgressHUD showErrorWithStatus:@"用户名不能为空"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
     
     if([_accountF.text length] > 24){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"用户名不能超过24个字符"];
+        [SVProgressHUD showErrorWithStatus:@"用户名不能超过24个字符"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
     
-    if(![self isChineseWithStr:_accountF.text]){
+    if([self IsChinese:_accountF.text]){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"用户名不能包含中文"];
+        [SVProgressHUD showErrorWithStatus:@"用户名不能包含中文"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
@@ -254,28 +254,28 @@
     
     if([_pwdF1.text length] == 0 || [_pwdF2.text length] == 0){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"密码不能为空"];
+        [SVProgressHUD showErrorWithStatus:@"密码不能为空"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
     
-    if(![self isChineseWithStr:_pwdF1.text]){
+    if([self IsChinese:_pwdF1.text]){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"密码不能包含中文"];
+        [SVProgressHUD showErrorWithStatus:@"密码不能包含中文"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
     
     if([_pwdF1.text length] < 6 || [_pwdF2.text length] < 6){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"密码不能少于6个字符"];
+        [SVProgressHUD showErrorWithStatus:@"密码不能少于6个字符"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
     
     if(![_pwdF1.text isEqualToString:_pwdF2.text]){
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-        [SVProgressHUD showWithStatus:@"密码不一致"];
+        [SVProgressHUD showErrorWithStatus:@"密码不一致"];
         [SVProgressHUD dismissWithDelay:1.0];
         return;
     }
@@ -350,14 +350,11 @@
  @param str 字符串
  @return 结果
  */
-- (BOOL)isChineseWithStr:(NSString *)str
-{
-    for(int i = 0; i < [str length]; i++){
+-(BOOL)IsChinese:(NSString *)str{
+    for(int i=0; i< [str length];i++){
         int a = [str characterAtIndex:i];
         if( a > 0x4e00 && a < 0x9fff){
             return YES;
-        }else{
-            return NO;
         }
     }
     
