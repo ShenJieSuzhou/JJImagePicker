@@ -165,6 +165,7 @@
             __weak typeof(self) weakSelf = self;
             // 请求access_token
             [HttpRequestUtil JJ_WechatGetAccessToken:WECHAT_AUTHORIZATION code:aresp.code callback:^(NSDictionary *data, NSError *error) {
+                [SVProgressHUD dismiss];
                 if(error){
                     [SVProgressHUD showErrorWithStatus:@"网络错误请重试"];
                     [SVProgressHUD dismissWithDelay:2.0];

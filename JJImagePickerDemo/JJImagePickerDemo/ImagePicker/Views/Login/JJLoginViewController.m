@@ -58,13 +58,14 @@
     
     // 切换按钮
     [self.view addSubview:self.switchBtn];
+    [self.switchBtn setHidden:YES];
     
     // 手机验证码登录
     [self.view addSubview:self.loginSpaceView];
     
     // 账密登录
     [self.view addSubview:self.zmLoginView];
-    [self.zmLoginView setHidden:YES];
+    [self.loginSpaceView setHidden:YES];
     
     [self.titleHead mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(200, 60));
