@@ -252,9 +252,7 @@
  @param photos 照片
  */
 - (void)postMyPhotosToPublic:(NSString *)content photos:(NSMutableArray *)photos{
-    NSMutableDictionary *publishDic = [[NSMutableDictionary alloc] init];
-    [publishDic setValue:content forKey:@"content"];
-    [publishDic setValue:photos forKey:@"photos"];
+    NSDictionary *publishDic = [[NSDictionary alloc] initWithObjectsAndKeys:content, @"content", photos, @"photos", nil];
     
     NSString *jsonStr = [publishDic JSONString];
     NSLog(@"%@", jsonStr);

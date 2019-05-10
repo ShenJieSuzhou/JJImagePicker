@@ -72,6 +72,7 @@ static int jjMyworksPageSize = 6;
     _photoDataSource = [NSMutableArray new];
     
     // 加载作品信息
+    _currentPageInfo = [[JJPageInfo alloc] initWithTotalPage:0 size:jjMyworksPageSize currentPage:0];
     [self loadUserInfo];
 }
 
@@ -107,11 +108,16 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)receiveLoginSuccess:(NSNotification *)notify{
+    
     [self loadUserInfo];
 }
 
 - (void)publishWorksSuccess:(NSNotification *)notify{
-    [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
+    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
+    }else{
+        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
+    }
 }
 
 /**
@@ -307,8 +313,7 @@ static int jjMyworksPageSize = 6;
 
 - (void)worksUpPullFreshDataCallback{
     if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
-        [self.workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
-        [self.workView.worksCollection.mj_footer endRefreshing];
+        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
     }else{
         [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
     }

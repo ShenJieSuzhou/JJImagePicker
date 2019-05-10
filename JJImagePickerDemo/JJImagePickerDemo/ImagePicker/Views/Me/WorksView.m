@@ -143,6 +143,7 @@
     if([self.worksArray count] == 0 || !self.worksArray){
         [self.publishBtn setHidden:NO];
         [self.tips setHidden:NO];
+        [self.worksCollection reloadData];
         return ;
     }
     
