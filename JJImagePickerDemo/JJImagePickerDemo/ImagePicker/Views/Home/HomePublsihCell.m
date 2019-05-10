@@ -57,7 +57,6 @@
     [self addSubview:_imgDesclabel];
     
     _avaterView = [[UIImageView alloc] init];
-    [_avaterView setImage:[UIImage imageNamed:@"userPlaceHold"]];
     _avaterView.layer.cornerRadius = 12.5f;
     [_avaterView.layer setMasksToBounds:YES];
     [self addSubview:_avaterView];
@@ -183,7 +182,7 @@
     NSString *imgdescRE = [desc stringByRemovingPercentEncoding];
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:imgdescRE];
     [_imgDesclabel setAttributedText:text];
-    [_avaterView sd_setImageWithURL:[NSURL URLWithString:avater] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_avaterView sd_setImageWithURL:[NSURL URLWithString:avater] placeholderImage:[UIImage imageNamed:@"userPlaceHold"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
     }];
     

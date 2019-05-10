@@ -10,7 +10,9 @@
 
 @implementation Works
 
-- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes{
+@synthesize hasLiked = _hasLiked;
+
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes hasLiked:(BOOL)hasLiked;{
     self = [super init];
     if(self){
         self.path = [path copy];
@@ -19,6 +21,7 @@
         self.work = [work copy];
         self.postTime = [postTime copy];
         self.likeNum = [likes copy];
+        self.hasLiked = hasLiked;
     }
     return self;
 }

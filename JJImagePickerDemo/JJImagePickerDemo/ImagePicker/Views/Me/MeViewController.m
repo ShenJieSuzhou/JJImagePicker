@@ -163,8 +163,8 @@ static int jjMyworksPageSize = 6;
             NSString *work = [dic objectForKey:@"work"];
             NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
-            
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
+            BOOL hasLiked = [[dic objectForKey:@"hasLiked"] boolValue];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
             [photoList addObject:postWork];
         }
         
@@ -219,9 +219,10 @@ static int jjMyworksPageSize = 6;
              NSString *postTime = [dic objectForKey:@"postTime"];
              NSString *work = [dic objectForKey:@"work"];
              NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
+             BOOL hasLiked = [[dic objectForKey:@"hasLiked"] boolValue];
              NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
              
-             Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum];
+             Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
              [photoList addObject:postWork];
          }
          

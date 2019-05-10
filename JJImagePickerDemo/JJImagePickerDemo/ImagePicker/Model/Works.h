@@ -22,7 +22,9 @@
 
 @property (nonatomic, copy) NSString *likeNum;
 
-- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes;
+@property (assign) BOOL hasLiked;
+
+- (instancetype)initWithPath:(NSArray *)path photoID:(NSString *)photoID userid:(NSString *)userid work:(NSString *)work time:(NSString *)postTime like:(NSString *)likes hasLiked:(BOOL)hasLiked;
 
 
 @end

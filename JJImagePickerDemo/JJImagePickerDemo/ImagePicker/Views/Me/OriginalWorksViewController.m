@@ -15,6 +15,11 @@
 #import "JJThumbPhotoCell.h"
 #import "JJTokenManager.h"
 #import "GlobalDefine.h"
+#import "JJLikeButton.h"
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface OriginalWorksViewController ()
 @property (strong, nonatomic) UIImageView *iconView;
@@ -25,12 +30,13 @@
 @property (strong, nonatomic) UILabel *timeLine;
 @property (strong, nonatomic) UIButton *shareBtn;
 @property (strong, nonatomic) Works *photoWork;
-@property (strong, nonatomic) UIButton *likeBtn;
+@property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
 @property (strong, nonatomic) NSMutableArray *photosArray;
 @property (assign) NSInteger albumRows;
 @property (assign) NSInteger albumColums;
 @property (assign) BOOL isEven;
+@property (assign) int currentLikes;
 
 // 大图模式
 @property (strong, nonatomic) CustomNewsBanner *completeWorkView;
@@ -131,7 +137,14 @@
     [self.iconView.layer setCornerRadius:self.iconView.frame.size.width / 2];
     [self.iconView.layer setMasksToBounds:YES];
     NSString *avatar = [JJTokenManager shareInstance].getUserAvatar;
-    [self loadIconAvater:avatar];
+    if(avatar.length == 0){
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"userPlaceHold"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+        }];
+    }else{
+        [self loadIconAvater:avatar];
+    }
+    
     [self.worksInfoView addSubview:self.iconView];
     
     //名字
@@ -184,15 +197,26 @@
     [self.timeLine setText:self.photoWork.postTime];
     [self.worksInfoView addSubview:self.timeLine];
     
+    
     //点赞
-    self.likeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.likeBtn setBackgroundColor:[UIColor clearColor]];
-    [self.likeBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
-    [self.likeBtn setImage:[UIImage imageNamed:@"like_sel"] forState:UIControlStateSelected];
+    self.likeBtn = [JJLikeButton coolButtonWithImage:[UIImage imageNamed:@"heart"] ImageFrame:CGRectMake(0, 0, 20, 20)];
+    //图片选中状态颜色
+    self.likeBtn.imageColorOn = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //圆圈颜色
+    self.likeBtn.circleColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
+    //线条颜色
+    self.likeBtn.lineColor = [UIColor colorWithRed:240/255.0f green:76/255.0f blue:64/255.0f alpha:1];
     [self.likeBtn addTarget:self action:@selector(clickLikeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.likeBtn];
     
+    if(self.photoWork.hasLiked){
+        [self.likeBtn select];
+    }else{
+        [self.likeBtn deselect];
+    }
+    
     //点赞数
+    self.currentLikes = self.photoWork.likeNum.intValue;
     self.likeNum = [[UILabel alloc] init];
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
@@ -263,10 +287,45 @@
     NSLog(@"111111");
 }
 
-- (void)clickLikeBtn:(UIButton *)sender{
-    sender.selected = !sender.selected;
+- (void)clickLikeBtn:(JJLikeButton *)sender{
+    if (sender.selected) {
+        //未选中状态
+        [sender deselect];
+        self.currentLikes = self.currentLikes - 1;
+    } else {
+        //选中状态
+        [sender select];
+        self.currentLikes = self.currentLikes + 1;
+    }
+    
+    [_photoWork setLikeNum:[NSString stringWithFormat:@"%d", self.currentLikes]];
+    [_photoWork setHasLiked:sender.selected];
+    
+    [_likeNum setText:[NSString stringWithFormat:@"%ld", (long)self.currentLikes]];
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(toDoLike:) object:sender];
+    [self performSelector:@selector(toDoLike:) withObject:sender afterDelay:0.2f];
+}
+
+// 点赞
+- (void)toDoLike:(UIButton *)sender{
     if(sender.selected){
-        
+        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
+        }];
+    }else{
+        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            // token 过期
+        }];
     }
 }
 
