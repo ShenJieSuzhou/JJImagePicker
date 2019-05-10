@@ -168,13 +168,13 @@
                 [SVProgressHUD dismiss];
                 if(error){
                     [SVProgressHUD showErrorWithStatus:@"网络错误请重试"];
-                    [SVProgressHUD dismissWithDelay:2.0];
+                    [SVProgressHUD dismissWithDelay:1.0];
                     return ;
                 }
                 
                 if([data objectForKey:@"errorCode"]){
                     [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
-                    [SVProgressHUD dismissWithDelay:2.0];
+                    [SVProgressHUD dismissWithDelay:1.0];
                     return;
                 }
                 
@@ -197,12 +197,12 @@
         }else if(aresp.errCode == -4){
             // 拒绝
             [SVProgressHUD showErrorWithStatus:@"用户拒绝"];
-            [SVProgressHUD dismissWithDelay:2.0];
+            [SVProgressHUD dismissWithDelay:1.0];
             [self.delegate wechatLoginDenied];
         }else if(aresp.errCode == -2){
             // 取消
             [SVProgressHUD showErrorWithStatus:@"用户取消"];
-            [SVProgressHUD dismissWithDelay:2.0];
+            [SVProgressHUD dismissWithDelay:1.0];
             [self.delegate wechatLoginCancel];
         }
     }
