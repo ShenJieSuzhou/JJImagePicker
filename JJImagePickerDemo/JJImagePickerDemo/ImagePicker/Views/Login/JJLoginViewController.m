@@ -293,7 +293,7 @@
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:2.0f];
-            return ;
+            return ; 
         }
         
         if([[data objectForKey:@"result"] isEqualToString:@"0"]){

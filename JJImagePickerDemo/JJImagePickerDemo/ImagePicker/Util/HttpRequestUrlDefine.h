@@ -93,6 +93,8 @@
 
 #define START_FOCUS_REQUEST                             @"http://192.168.31.87:8080/admin/photo/focus"
 
-#define CANCEL_FOCUS_REQUEST                             @"http://192.168.31.87:8080/admin/photo/unfocus"
+#define CANCEL_FOCUS_REQUEST                            @"http://192.168.31.87:8080/admin/photo/unfocus"
+
+#define UPDATE_MY_PASSWORD                              @"http://192.168.31.87:8080/setting/api/updatePwd"
 
 #endif /* HttpRequestUrlDefine_h */
