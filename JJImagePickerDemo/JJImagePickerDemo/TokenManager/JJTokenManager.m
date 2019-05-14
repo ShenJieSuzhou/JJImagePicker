@@ -295,6 +295,26 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
 }
 
 
+- (void)saveLoginType:(int)type{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:type] forKey:@"JJ_LOGIN_TYPE"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (int)getLoginType{
+    NSNumber *jjType = [[NSUserDefaults standardUserDefaults] objectForKey:@"JJ_LOGIN_TYPE"];
+    if(!jjType){
+        return 0;
+    }
+    
+    return jjType.intValue;
+}
+
+- (void)cancelLoginType{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"JJ_LOGIN_TYPE"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 //  移除所有用户信息
 - (void)removeAllUserInfo {
     [self cancelUserID];
@@ -307,6 +327,7 @@ NSString *const TOKEN_KEY = @"eyJhbGciOiJI";
     [self cancelPassword];
     [self cancelUserBirth];
     [self cancelUserWorks];
+    [self cancelLoginType];
 }
 
 //  添加用户信息

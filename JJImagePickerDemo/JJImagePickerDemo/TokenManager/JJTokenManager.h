@@ -94,5 +94,11 @@
 - (void)saveWechatRefreshtoken:(NSString *)refreshToken;
 - (NSString *)getWechatRefreshtoken;
 - (void)cancelWechatRefreshtoken;
+
+// 登录方式
+- (void)saveLoginType:(int)type;
+- (int)getLoginType;
+- (void)cancelLoginType;
+
 @end
 

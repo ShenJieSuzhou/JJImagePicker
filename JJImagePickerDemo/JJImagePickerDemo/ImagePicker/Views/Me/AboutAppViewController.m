@@ -57,7 +57,7 @@
     if(!_appIconV){
         _appIconV = [[UIImageView alloc] init];
         _appIconV.contentMode = UIViewContentModeScaleAspectFit;
-        [_appIconV setImage:[UIImage imageNamed:@"aboutme"]];
+        [_appIconV setImage:[UIImage imageNamed:@"app"]];
     }
     
     return _appIconV;

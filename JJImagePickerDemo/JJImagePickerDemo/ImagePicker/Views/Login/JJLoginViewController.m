@@ -223,6 +223,8 @@
         if(!error){
             
         }else{
+            // 手机号码登录
+            [[JJTokenManager shareInstance] saveLoginType:2];
             
         }
     }];
@@ -262,6 +264,9 @@
         }
         
         if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
+            // 帐密登录
+            [[JJTokenManager shareInstance] saveLoginType:1];
+            
             // update 用户信息
             [weakSelf updateUserLoginInfo:data];
             
@@ -303,6 +308,8 @@
         }
         
         if([[data objectForKey:@"errorCode"] isEqualToString:@"1"]){
+            // 微信登录
+            [[JJTokenManager shareInstance] saveLoginType:3];
             // update 用户信息
             [weakSelf updateUserLoginInfo:data];
             
