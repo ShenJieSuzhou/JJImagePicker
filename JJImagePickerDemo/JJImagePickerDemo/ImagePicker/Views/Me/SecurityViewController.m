@@ -72,7 +72,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 3;
 }
 
 #pragma mark - UITableViewDataSource
@@ -81,6 +81,8 @@
         case 0:
             return 1;
         case 1:
+            return 1;
+        case 2:
             return 1;
         default:
             break;
@@ -111,16 +113,17 @@
                 cell.detailTextLabel.text = @"更改";
                 break;
         }
+    }else if (indexPath.section == 1) {
+        cell.textLabel.text = @"手机号";
+        if([JJTokenManager shareInstance].getUserMobile.length == 0){
+            cell.detailTextLabel.text = @"未绑定";
+        }else{
+            cell.detailTextLabel.text = @"已绑定";
+        }
+    }else if (indexPath.section == 2){
+        cell.textLabel.text = @"微信";
+        cell.detailTextLabel.text = @"已绑定";
     }
-    
-//    else if (indexPath.section == 1) {
-//        cell.textLabel.text = @"绑定手机号";
-//        if([JJTokenManager shareInstance].getUserMobile.length == 0){
-//            cell.detailTextLabel.text = @"未绑定";
-//        }else{
-//            cell.detailTextLabel.text = [JJTokenManager shareInstance].getUserMobile;
-//        }
-//    }
     
     return cell;
 }
