@@ -91,9 +91,9 @@ static int jjPageSize = 10;
             return ;
         }
         
-        if(!data || [[data objectForKey:@"result"] isEqualToString:@"0"]){
-            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
-            [SVProgressHUD dismissWithDelay:2.0f];
+        if([[data objectForKey:@"result"] isEqualToString:@"0"]){
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }else{
             //用户作品
