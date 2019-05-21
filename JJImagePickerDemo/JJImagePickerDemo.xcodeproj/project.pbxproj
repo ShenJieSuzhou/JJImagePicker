@@ -2042,6 +2042,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = candyDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Debug;
 		};
@@ -2069,6 +2070,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = candyDis;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
 			};
 			name = Release;
 		};

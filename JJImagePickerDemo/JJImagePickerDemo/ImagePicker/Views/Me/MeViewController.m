@@ -108,12 +108,11 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)receiveLoginSuccess:(NSNotification *)notify{
-    
     [self loadUserInfo];
 }
 
 - (void)publishWorksSuccess:(NSNotification *)notify{
-    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
         [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
     }else{
         [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
@@ -313,7 +312,7 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)worksUpPullFreshDataCallback{
-    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
     }else{
         [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];

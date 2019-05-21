@@ -230,7 +230,8 @@ static int jjPageSize = 10;
 
 // 上拉获取更多数据
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
-    if(_currentPageInfo.currentPage + 1 > _currentPageInfo.totalPage){
+    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
+        [self loadMoreHomedata:_currentPageInfo.currentPage size:jjPageSize];
         [self.homePhotoView.photosCollection.mj_footer setState:MJRefreshStateNoMoreData];
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
     }else{
