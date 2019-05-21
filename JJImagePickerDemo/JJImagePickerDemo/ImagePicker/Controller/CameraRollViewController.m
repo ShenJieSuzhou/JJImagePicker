@@ -10,10 +10,11 @@
 #import "CameraSessionView.h"
 #import "SnapshotPreviewView.h"
 #import "PhotoEditingViewController.h"
+#import "InterestingViewController.h"
 #import <Photos/Photos.h>
 
 
-@interface CameraRollViewController ()<JJCameraSessionDelegate>
+@interface CameraRollViewController ()<JJCameraSessionDelegate,AdjustImageFinishedDelegate>
 @property (nonatomic, strong) CameraSessionView *cameraView;
 @property (nonatomic, strong) SnapshotPreviewView *snapShotView;
 @property (nonatomic, strong) PhotoEditingViewController *photoEditingView;
@@ -75,6 +76,7 @@
 - (PhotoEditingViewController *)photoEditingView{
     if(!_photoEditingView){
         _photoEditingView = [[PhotoEditingViewController alloc] init];
+        _photoEditingView.delegate = self;
     }
     return _photoEditingView;
 }
@@ -87,30 +89,40 @@
 //编辑照片
 - (void)editImage:(UIButton *)sender{
     UIImage *photoImage = self.snapShotView.snapShot;
-//    __weak typeof(self) weakSelf = self;
-//    [self presentViewController:self.photoEditingView animated:YES completion:^{
-//        [weakSelf.photoEditingView setEditImage:photoImage];
-//    }];
     [self.photoEditingView setEditImage:photoImage];
     [self.navigationController pushViewController:self.photoEditingView animated:YES];
 }
 
 //使用该照片，并存入相册
 - (void)useBtnClick:(UIButton *)sender{
-
+    
+//    //保存至相册
+//    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//        //写入图片到相册
+//        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:photoImage];
+//
+//    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//        if(!error){
+//
+//        }else{
+//            NSLog(@"%@", error);
+//        }
+//    }];
+    
+    // 跳转到发布界面
     UIImage *photoImage = self.snapShotView.snapShot;
-    //保存至相册
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        //写入图片到相册
-        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:photoImage];
-        
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        if(!error){
-            NSLog(@"success = %d", success);
-        }else{
-            NSLog(@"%@", error);
-        }
-    }];
+    InterestingViewController *interestingView = [InterestingViewController new];
+    [interestingView setCamSelectedImage:photoImage];
+    [self.navigationController pushViewController:interestingView animated:YES];
+}
+
+#pragma AdjustImageFinished
+- (void)AdjustImageFinished:(UIViewController *)viewController image:(UIImage *)image{
+    [viewController.navigationController popViewControllerAnimated:YES];
+    
+    InterestingViewController *interestingView = [InterestingViewController new];
+    [interestingView setCamSelectedImage:image];
+    [self.navigationController pushViewController:interestingView animated:YES];
 }
 
 @end

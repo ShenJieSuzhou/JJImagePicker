@@ -30,7 +30,6 @@ typedef enum : NSUInteger {
 
 @end
 
-//typedef void(^AdjustViewFinishCallBack)(UIImage *adjustImage, UIViewController *viewController);
 
 @interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate,ScrawlDelegate,WordsBrushDelegate>
 

@@ -191,12 +191,13 @@
     }
     
     UIImage *combineImg = [self combineImagesToOne:_preViewImage];
-    if(_parentPage == PAGE_GALLARY){
-        
-    }else if(_parentPage == PAGE_PUBLISH){
-        if([_delegate respondsToSelector:@selector(AdjustImageFinished:image:)]){
-            [_delegate AdjustImageFinished:self image:combineImg];
-        }
+//    if(_parentPage == PAGE_GALLARY){
+//
+//    }else if(_parentPage == PAGE_PUBLISH){
+//
+//    }
+    if([_delegate respondsToSelector:@selector(AdjustImageFinished:image:)]){
+        [_delegate AdjustImageFinished:self image:combineImg];
     }
 }
 

@@ -193,6 +193,16 @@
     return _previewCollection;
 }
 
+- (void)setCamSelectedImage:(UIImage *)image{
+    if(!image){
+        return;
+    }
+    
+    //所选图片数组
+    self.selectedImages = [[NSMutableArray alloc] init];
+    [self.selectedImages addObject:image];
+}
+
 - (void)setPublishSelectedImages:(NSMutableArray *)images{
     if(!images){
         return;

@@ -13,4 +13,6 @@
 
 - (void)setPublishSelectedImages:(NSMutableArray *)images;
 
+- (void)setCamSelectedImage:(UIImage *)image;
+
 @end

@@ -454,6 +454,10 @@
 
 #pragma -mark 加载头像
 - (void)loadIconAvater:(NSString *)avatar{
+    if(avatar.length == 0){
+        [self.iconView setBackgroundImage:[UIImage imageNamed:@"userPlaceHold"] forState:UIControlStateNormal];
+        return;
+    }
     __weak typeof(self) weakself = self;
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     [manager diskImageExistsForURL:[NSURL URLWithString:avatar] completion:^(BOOL isInCache) {
