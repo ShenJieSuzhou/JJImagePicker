@@ -18,6 +18,7 @@
 #import "GlobalDefine.h"
 #import "HomeCubeModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "MyWebViewController.h"
 
 #define JJDEBUG YES
 
@@ -29,6 +30,7 @@ static int jjPageSize = 10;
 @synthesize homePhotoView = _homePhotoView;
 @synthesize homeTopView = _homeTopView;
 @synthesize photoDataSource = _photoDataSource;
+@synthesize warmingBox = _warmingBox;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -39,6 +41,7 @@ static int jjPageSize = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     
@@ -51,6 +54,12 @@ static int jjPageSize = 10;
     // 添加 CollectionView
     [self.view addSubview:self.homePhotoView];
     
+    // 判断用户是否是第一次进APP
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"showKindWarming"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showKindWarming"];
+        [self.view addSubview:self.warmingBox];
+    }
+    
     // 用户是否登录
     if(![[LoginSessionManager getInstance] isUserLogin]){
         [self popLoginViewController];
@@ -62,6 +71,16 @@ static int jjPageSize = 10;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (kindWarming *)warmingBox{
+    if(!_warmingBox){
+        _warmingBox = [kindWarming getInstance];
+        [_warmingBox setFrame:self.view.frame];
+        _warmingBox.delegate = self;
+    }
+    
+    return _warmingBox;
 }
 
 - (HomePhotosCollectionView *)homePhotoView{
@@ -214,6 +233,22 @@ static int jjPageSize = 10;
     NSLog(@"%s", __func__);
     // 网络请求
     [self reloadHomedata:0 size:jjPageSize];
+}
+
+
+#pragma mark - kindWarmingDelegate
+- (void)showUserItem:(kindWarming *)view{
+    MyWebViewController *myWebView = [MyWebViewController new];
+    [myWebView.navigationItem setTitle:@"用户服务协议"];
+    [myWebView loadRequest:@"http://www.candyart.top/userItem"];
+    [self.navigationController pushViewController:myWebView animated:YES];
+}
+
+- (void)showPrivacy:(kindWarming *)view{
+    MyWebViewController *myWebView = [MyWebViewController new];
+    [myWebView.navigationItem setTitle:@"隐私政策"];
+    [myWebView loadRequest:@"http://www.candyart.top/privacy"];
+    [self.navigationController pushViewController:myWebView animated:YES];
 }
 
 #pragma mark - HomePhotosViewDelegate

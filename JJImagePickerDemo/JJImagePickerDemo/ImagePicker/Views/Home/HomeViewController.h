@@ -12,13 +12,13 @@
 #import "HomeTopView.h"
 #import "JJPageInfo.h"
 #import "HomeDetailsViewController.h"
+#import "kindWarming.h"
 //@interface HomeViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,WKScriptMessageHandler>
 //@property (strong, nonatomic) WKWebView *kkWebView;
-//#import <WebKit/WebKit.h>
 //#import <JavaScriptCore/JavaScriptCore.h>
 
 
-@interface HomeViewController : UIViewController<HomePhotosViewDelegate>
+@interface HomeViewController : UIViewController<HomePhotosViewDelegate, kindWarmingDelegate>
 
 @property (assign) NSInteger pageIndex;
 
@@ -29,5 +29,7 @@
 @property (strong, nonatomic) NSMutableArray *photoDataSource;
 
 @property (strong, nonatomic) JJPageInfo *currentPageInfo;
+
+@property (strong, nonatomic) kindWarming *warmingBox;
 
 @end

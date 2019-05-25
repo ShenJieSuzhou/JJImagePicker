@@ -21,6 +21,7 @@
 #import "GlobalDefine.h"
 #import "PushUtil.h"
 #import "AppDelegate.h"
+#import "UserItemsViewController.h"
 
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -133,6 +134,10 @@
         AboutAppViewController *aboutView = [AboutAppViewController new];
         [self.navigationController pushViewController:aboutView animated:YES];
     }else if(indexPath.section == 5){
+        UserItemsViewController *userItemView = [UserItemsViewController new];
+        [self.navigationController pushViewController:userItemView animated:YES];
+        
+    }else if(indexPath.section == 6){
         //通知服务器下线
         [[JJTokenManager shareInstance] removeAllUserInfo];
         if([_delegate respondsToSelector:@selector(userLoginOutCallBack:)]){
@@ -142,7 +147,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    return 7;
 }
 
 #pragma mark JJDatePickerDelegate
@@ -246,6 +251,8 @@
             return 1;
         case 6:
             return 1;
+        case 7:
+            return 1;
         default:
             break;
     }
@@ -335,6 +342,8 @@
     }else if(indexPath.section == 4){
         cell.textLabel.text = @"关于爱拍享";
     }else if(indexPath.section == 5){
+        cell.textLabel.text = @"糖果相机服务条款";
+    }else if(indexPath.section == 6){
         cell.accessoryType = UITableViewCellAccessoryNone;
         CGFloat height = cell.frame.size.height;
         CGFloat width = self.view.frame.size.width;

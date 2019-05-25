@@ -258,6 +258,10 @@
 		E5DF2D9B214B9E7C0048A80E /* AdjustViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2D9A214B9E7C0048A80E /* AdjustViewController.m */; };
 		E5DF2E07214CF9030048A80E /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E06214CF9030048A80E /* CustomSlider.m */; };
 		E5DF2E372154E7940048A80E /* StickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5DF2E362154E7940048A80E /* StickerCell.m */; };
+		E5E3788A22990A0D0091A62E /* kindWarming.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E3788922990A0D0091A62E /* kindWarming.m */; };
+		E5E3788C22990A2E0091A62E /* kindWarming.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5E3788B22990A2E0091A62E /* kindWarming.xib */; };
+		E5E3788F2299276C0091A62E /* MyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E3788E2299276C0091A62E /* MyWebViewController.m */; };
+		E5E378922299385E0091A62E /* UserItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E378912299385E0091A62E /* UserItemsViewController.m */; };
 		E5FBADEA21EDD2E100A91A65 /* OriginalWorksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */; };
 		E5FBADED21F1B54C00A91A65 /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FBADEC21F1B54C00A91A65 /* UIScrollView+UITouch.m */; };
 		E60495F2E56420C65745DC04 /* libPods-JJImagePickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */; };
@@ -677,6 +681,13 @@
 		E5DF2E06214CF9030048A80E /* CustomSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
 		E5DF2E352154E7940048A80E /* StickerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerCell.h; sourceTree = "<group>"; };
 		E5DF2E362154E7940048A80E /* StickerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerCell.m; sourceTree = "<group>"; };
+		E5E3788822990A0D0091A62E /* kindWarming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kindWarming.h; sourceTree = "<group>"; };
+		E5E3788922990A0D0091A62E /* kindWarming.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kindWarming.m; sourceTree = "<group>"; };
+		E5E3788B22990A2E0091A62E /* kindWarming.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = kindWarming.xib; sourceTree = "<group>"; };
+		E5E3788D2299276C0091A62E /* MyWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyWebViewController.h; sourceTree = "<group>"; };
+		E5E3788E2299276C0091A62E /* MyWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWebViewController.m; sourceTree = "<group>"; };
+		E5E378902299385E0091A62E /* UserItemsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItemsViewController.h; sourceTree = "<group>"; };
+		E5E378912299385E0091A62E /* UserItemsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItemsViewController.m; sourceTree = "<group>"; };
 		E5FBADE821EDD2E100A91A65 /* OriginalWorksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OriginalWorksViewController.h; sourceTree = "<group>"; };
 		E5FBADE921EDD2E100A91A65 /* OriginalWorksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OriginalWorksViewController.m; sourceTree = "<group>"; };
 		E5FBADEB21F1B54C00A91A65 /* UIScrollView+UITouch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouch.h"; sourceTree = "<group>"; };
@@ -809,6 +820,8 @@
 				E50B412B224B1AB900797DC2 /* OthersMainPageViewController.m */,
 				E50B412D224B1ACC00797DC2 /* CandyFansViewController.h */,
 				E50B412E224B1ACC00797DC2 /* CandyFansViewController.m */,
+				E5E3788D2299276C0091A62E /* MyWebViewController.h */,
+				E5E3788E2299276C0091A62E /* MyWebViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -855,6 +868,8 @@
 				E5DB3348221D82EF008D7818 /* JJThumbPhotoCell.m */,
 				E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */,
 				E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */,
+				E5E378902299385E0091A62E /* UserItemsViewController.h */,
+				E5E378912299385E0091A62E /* UserItemsViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -877,6 +892,9 @@
 				E50B4138224C940C00797DC2 /* FansCell.m */,
 				E50B413C224CC48500797DC2 /* JJLikeButton.h */,
 				E50B413D224CC48500797DC2 /* JJLikeButton.m */,
+				E5E3788822990A0D0091A62E /* kindWarming.h */,
+				E5E3788922990A0D0091A62E /* kindWarming.m */,
+				E5E3788B22990A2E0091A62E /* kindWarming.xib */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1649,6 +1667,7 @@
 				E56B9CCA20AD2FA700021DF8 /* Main.storyboard in Resources */,
 				E547D19120F89ACE00893D85 /* cameraButtonHighlighted@3x.png in Resources */,
 				E547D18920F89ACE00893D85 /* cameraButtonHighlighted.png in Resources */,
+				E5E3788C22990A2E0091A62E /* kindWarming.xib in Resources */,
 				44966A2120C2948600156BCA /* gallery_title_arrow_up@3x.png in Resources */,
 				E547D1AC20F89ACE00893D85 /* cameraButtonHighlighted@2x.png in Resources */,
 				E55166AE2159E7F0001FBFC1 /* cat.png in Resources */,
@@ -1786,6 +1805,7 @@
 				449A1F812169EF9D0007A91A /* JJCollectionReusableView.m in Sources */,
 				E5DA0014226EE4020043F17A /* Reachability.m in Sources */,
 				E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */,
+				E5E378922299385E0091A62E /* UserItemsViewController.m in Sources */,
 				E5506BDF212FB7D80077E62B /* TOCropOverlayView.m in Sources */,
 				443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,
@@ -1823,6 +1843,7 @@
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
 				E5506BE9212FB7D80077E62B /* JJCollectionViewFlowLayout.m in Sources */,
 				44208E1B21A164790090D983 /* DetailInfoView.m in Sources */,
+				E5E3788A22990A0D0091A62E /* kindWarming.m in Sources */,
 				E5506B5F212FB3330077E62B /* PhotoPreviewViewController.m in Sources */,
 				E55BA98D219C0EC70078472D /* LoginSpaceView.m in Sources */,
 				44208E2121A164BE0090D983 /* SecurityViewController.m in Sources */,
@@ -1865,6 +1886,7 @@
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
 				E542B6CA2189820F002A7E1E /* CameraPhotoViewController.m in Sources */,
 				E50B41262249F9AE00797DC2 /* HomeTopView.m in Sources */,
+				E5E3788F2299276C0091A62E /* MyWebViewController.m in Sources */,
 				449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */,
 				E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */,
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,
