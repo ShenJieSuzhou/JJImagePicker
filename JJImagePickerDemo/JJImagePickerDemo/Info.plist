@@ -46,11 +46,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>如果不允许，你将无法在糖果相机中拍摄照片.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string></string>
+	<string>如果不允许，你将无法访问系统相册进行编辑以及保存处理后的照片.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>如果不允许，你将无法访问系统相册进行编辑以及保存处理后的照片.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
