@@ -21,6 +21,7 @@
 #import "JJZMLoginView.h"
 #import "JJForgetPwViewController.h"
 #import "JJRegisterViewController.h"
+#import "MyWebViewController.h"
 
 
 @interface JJLoginViewController ()<JJLoginDelegate,JJWXLoginDelegate,JJZMLoginDelegate>
@@ -31,6 +32,7 @@
 @property (strong, nonatomic) UILabel *tipLabel;
 @property (strong, nonatomic) UILabel *titleHead;
 @property (strong, nonatomic) UIButton *switchBtn;
+@property (strong, nonatomic) UILabel *userProtocol;
 
 @end
 
@@ -41,6 +43,7 @@
 @synthesize titleHead = _titleHead;
 @synthesize switchBtn = _switchBtn;
 @synthesize zmLoginView = _zmLoginView;
+@synthesize userProtocol = _userProtocol;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -120,6 +123,22 @@
         [_wechatBtn setHidden:NO];
     }
     
+    // 用户协议
+    _userProtocol = [[UILabel alloc] initWithFrame:CGRectZero];
+    [_userProtocol setText:@"登陆即代表同意《用户协议》"];
+    [_userProtocol setTextAlignment:NSTextAlignmentCenter];
+    [_userProtocol setTextColor:[UIColor lightGrayColor]];
+    [_userProtocol setFont:[UIFont systemFontOfSize:12.0f]];
+    _userProtocol.userInteractionEnabled = YES;
+    [self.view addSubview:_userProtocol];
+
+    [_userProtocol mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.view.frame.size.width, 30.0f));
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-30.0f);
+    }];
+    
+    UITapGestureRecognizer *gestureFocus = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUserProtocol:)];
+    [_userProtocol addGestureRecognizer:gestureFocus];
 }
 
 - (LoginSpaceView *)loginSpaceView{
@@ -183,6 +202,13 @@
             [self.loginSpaceView setHidden:NO];
         }];
     }
+}
+
+- (void)tapUserProtocol:(UIGestureRecognizer *)sender{
+    MyWebViewController *myWebView = [MyWebViewController new];
+    [myWebView.navigationItem setTitle:@"用户服务协议"];
+    [myWebView loadRequest:@"http://www.candyart.top/userItem"];
+    [self.navigationController pushViewController:myWebView animated:YES];
 }
 
 /**

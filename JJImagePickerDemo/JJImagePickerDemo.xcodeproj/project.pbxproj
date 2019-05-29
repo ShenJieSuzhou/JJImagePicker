@@ -224,6 +224,8 @@
 		E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58C252421DE2CBA001C4D8F /* BindPhoneViewController.xib */; };
 		E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C252821DF3C1A001C4D8F /* DeviceType.m */; };
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
+		E5A5A029229E85D200349C51 /* reportView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A5A028229E85D200349C51 /* reportView.m */; };
+		E5A5A02B229E85E400349C51 /* reportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5A5A02A229E85E400349C51 /* reportView.xib */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
@@ -631,6 +633,9 @@
 		E58C252821DF3C1A001C4D8F /* DeviceType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceType.m; sourceTree = "<group>"; };
 		E597BDD42186A9F2000B5A34 /* HomeContentmManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeContentmManager.h; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.h; sourceTree = SOURCE_ROOT; };
 		E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeContentmManager.m; path = JJImagePickerDemo/ImagePicker/Controller/HomeContentmManager.m; sourceTree = SOURCE_ROOT; };
+		E5A5A027229E85D200349C51 /* reportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reportView.h; sourceTree = "<group>"; };
+		E5A5A028229E85D200349C51 /* reportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reportView.m; sourceTree = "<group>"; };
+		E5A5A02A229E85E400349C51 /* reportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = reportView.xib; sourceTree = "<group>"; };
 		E5AE62F421C0FF1000639CF8 /* JJTokenManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTokenManager.h; sourceTree = "<group>"; };
 		E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTokenManager.m; sourceTree = "<group>"; };
 		E5AE62F721C10F2200639CF8 /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
@@ -895,6 +900,9 @@
 				E5E3788822990A0D0091A62E /* kindWarming.h */,
 				E5E3788922990A0D0091A62E /* kindWarming.m */,
 				E5E3788B22990A2E0091A62E /* kindWarming.xib */,
+				E5A5A027229E85D200349C51 /* reportView.h */,
+				E5A5A028229E85D200349C51 /* reportView.m */,
+				E5A5A02A229E85E400349C51 /* reportView.xib */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1595,6 +1603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */,
+				E5A5A02B229E85E400349C51 /* reportView.xib in Resources */,
 				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
 				E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */,
 				E55166B62159E7F0001FBFC1 /* spider.png in Resources */,
@@ -1780,6 +1789,7 @@
 				E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */,
 				E58C251821D4B2ED001C4D8F /* Works.m in Sources */,
 				E5DF2E372154E7940048A80E /* StickerCell.m in Sources */,
+				E5A5A029229E85D200349C51 /* reportView.m in Sources */,
 				E5506BED212FB7D80077E62B /* JJVideoToolBar.m in Sources */,
 				E50B411D2248A40E00797DC2 /* HomePublsihCell.m in Sources */,
 				E542B6D821915EA5002A7E1E /* JJPublishViewFlowLayout.m in Sources */,
@@ -2063,7 +2073,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = candyDev;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = arm64;
 			};
 			name = Debug;
@@ -2091,7 +2101,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = candyDis;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = arm64;
 			};
 			name = Release;

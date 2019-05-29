@@ -18,7 +18,7 @@
 //#import <JavaScriptCore/JavaScriptCore.h>
 
 
-@interface HomeViewController : UIViewController<HomePhotosViewDelegate, kindWarmingDelegate>
+@interface HomeViewController : UIViewController<HomePhotosViewDelegate>
 
 @property (assign) NSInteger pageIndex;
 

@@ -9,5 +9,6 @@ target 'JJImagePickerDemo' do
     pod 'Qiniu', "~> 7.1"
     pod 'MJRefresh'
     pod 'GPUImage'
+    pod 'LEEAlert'
 
 end

@@ -283,7 +283,7 @@ static int jjWorkPageSize = 6;
 
 - (void)worksUpPullFreshDataCallback{
     if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
-         [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjWorkPageSize];
+//         [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjWorkPageSize];
         [self.workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
         [self.workView.worksCollection.mj_footer endRefreshing];
     }else{

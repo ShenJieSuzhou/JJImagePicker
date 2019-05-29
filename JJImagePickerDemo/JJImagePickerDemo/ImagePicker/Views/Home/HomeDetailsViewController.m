@@ -22,6 +22,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GlobalDefine.h"
 #import "MeViewController.h"
+#import <LEEAlert/LEEAlert.h>
+#import "reportView.h"
 
 @interface HomeDetailsViewController ()
 @property (strong, nonatomic) UIButton *iconView;
@@ -31,6 +33,7 @@
 @property (strong, nonatomic) YYLabel *worksDesc;
 @property (strong, nonatomic) UILabel *timeLine;
 @property (strong, nonatomic) UIButton *focusBtn;
+@property (strong, nonatomic) UIButton *moreBtn;
 @property (strong, nonatomic) HomeCubeModel *photoWork;
 @property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
@@ -165,6 +168,12 @@
     [self.focusBtn addTarget:self action:@selector(clickFocusBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.focusBtn];
     
+    // 更多
+    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.worksInfoView addSubview:self.moreBtn];
+    
     // 是否是自己
     if(self.photoWork.isYourWork){
         [_focusBtn setHidden:YES];
@@ -247,7 +256,13 @@
     [self.focusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 25.0f));
         make.centerY.mas_equalTo(self.iconView);
-        make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 60.0f);
+        make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 110.0f);
+    }];
+    
+    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
+        make.centerY.mas_equalTo(self.iconView);
+        make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 40.0f);
     }];
     
     [self.workView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -404,6 +419,46 @@
 
 - (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
     [newsbanner removeFromSuperview];
+}
+
+// 更多
+- (void)clickMoreBtn:(UIButton *)sender{
+    reportView *reportV = [reportView getInstance];
+    [LEEAlert actionsheet].config
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        custom.view = reportV;
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeDefault;
+        action.title = @"取消";
+        action.titleColor = [UIColor grayColor];
+    })
+    .LeeShow();
+    
+    
+    
+    
+    
+    
+//
+//
+//    [LEEAlert actionsheet].config
+//    .LeeAddCustomView(^(LEECustomView *custom) {
+//
+//        custom.view = reportV;
+//        
+//        custom.positionType = LEECustomViewPositionTypeCenter;
+//    })
+//    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+//    .LeeAddAction(^(LEEAction *action) {
+//
+//        action.type = LEEActionTypeDefault;
+//
+//        action.title = @"取消";
+//
+//        action.titleColor = [UIColor grayColor];
+//    })
+//    .LeeShow();
 }
 
 // 关注

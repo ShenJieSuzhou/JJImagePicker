@@ -112,11 +112,12 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)publishWorksSuccess:(NSNotification *)notify{
-    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
-        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
-    }else{
-        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
-    }
+//    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
+//        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
+//    }else{
+//        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
+//    }
+    [self loadUserInfo];
 }
 
 /**
@@ -313,7 +314,9 @@ static int jjMyworksPageSize = 6;
 
 - (void)worksUpPullFreshDataCallback{
     if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
-       [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
+//       [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
+        [_workView.worksCollection.mj_footer setState:MJRefreshStateNoMoreData];
+        [_workView.worksCollection.mj_footer endRefreshing];
     }else{
         [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
     }

@@ -54,11 +54,11 @@ static int jjPageSize = 10;
     // 添加 CollectionView
     [self.view addSubview:self.homePhotoView];
     
-    // 判断用户是否是第一次进APP
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"showKindWarming"]){
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showKindWarming"];
-        [self.view addSubview:self.warmingBox];
-    }
+//    // 判断用户是否是第一次进APP
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"showKindWarming"]){
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showKindWarming"];
+//        [self.view addSubview:self.warmingBox];
+//    }
     
     // 用户是否登录
     if(![[LoginSessionManager getInstance] isUserLogin]){
@@ -73,15 +73,15 @@ static int jjPageSize = 10;
     // Dispose of any resources that can be recreated.
 }
 
-- (kindWarming *)warmingBox{
-    if(!_warmingBox){
-        _warmingBox = [kindWarming getInstance];
-        [_warmingBox setFrame:self.view.frame];
-        _warmingBox.delegate = self;
-    }
-    
-    return _warmingBox;
-}
+//- (kindWarming *)warmingBox{
+//    if(!_warmingBox){
+//        _warmingBox = [kindWarming getInstance];
+//        [_warmingBox setFrame:self.view.frame];
+//        _warmingBox.delegate = self;
+//    }
+//
+//    return _warmingBox;
+//}
 
 - (HomePhotosCollectionView *)homePhotoView{
     if(!_homePhotoView){
@@ -236,20 +236,20 @@ static int jjPageSize = 10;
 }
 
 
-#pragma mark - kindWarmingDelegate
-- (void)showUserItem:(kindWarming *)view{
-    MyWebViewController *myWebView = [MyWebViewController new];
-    [myWebView.navigationItem setTitle:@"用户服务协议"];
-    [myWebView loadRequest:@"http://www.candyart.top/userItem"];
-    [self.navigationController pushViewController:myWebView animated:YES];
-}
-
-- (void)showPrivacy:(kindWarming *)view{
-    MyWebViewController *myWebView = [MyWebViewController new];
-    [myWebView.navigationItem setTitle:@"隐私政策"];
-    [myWebView loadRequest:@"http://www.candyart.top/privacy"];
-    [self.navigationController pushViewController:myWebView animated:YES];
-}
+//#pragma mark - kindWarmingDelegate
+//- (void)showUserItem:(kindWarming *)view{
+//    MyWebViewController *myWebView = [MyWebViewController new];
+//    [myWebView.navigationItem setTitle:@"用户服务协议"];
+//    [myWebView loadRequest:@"http://www.candyart.top/userItem"];
+//    [self.navigationController pushViewController:myWebView animated:YES];
+//}
+//
+//- (void)showPrivacy:(kindWarming *)view{
+//    MyWebViewController *myWebView = [MyWebViewController new];
+//    [myWebView.navigationItem setTitle:@"隐私政策"];
+//    [myWebView loadRequest:@"http://www.candyart.top/privacy"];
+//    [self.navigationController pushViewController:myWebView animated:YES];
+//}
 
 #pragma mark - HomePhotosViewDelegate
 - (void)goToDetailViewCallback:(HomeCubeModel *)work index:(NSIndexPath *)index{
@@ -266,7 +266,7 @@ static int jjPageSize = 10;
 // 上拉获取更多数据
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
     if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
-        [self loadMoreHomedata:_currentPageInfo.currentPage size:jjPageSize];
+//        [self loadMoreHomedata:_currentPageInfo.currentPage size:jjPageSize];
         [self.homePhotoView.photosCollection.mj_footer setState:MJRefreshStateNoMoreData];
         [self.homePhotoView.photosCollection.mj_footer endRefreshing];
     }else{
