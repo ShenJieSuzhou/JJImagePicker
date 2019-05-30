@@ -125,7 +125,7 @@
     
     // 用户协议
     _userProtocol = [[UILabel alloc] initWithFrame:CGRectZero];
-    [_userProtocol setText:@"登陆即代表同意《用户协议》"];
+    [_userProtocol setText:@"登录即代表同意《用户协议》"];
     [_userProtocol setTextAlignment:NSTextAlignmentCenter];
     [_userProtocol setTextColor:[UIColor lightGrayColor]];
     [_userProtocol setFont:[UIFont systemFontOfSize:12.0f]];

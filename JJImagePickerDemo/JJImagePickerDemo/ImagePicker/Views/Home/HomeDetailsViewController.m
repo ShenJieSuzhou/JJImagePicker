@@ -540,7 +540,15 @@
 }
 
 - (void)clickPullBlackCallBack{
-    
+    [LEEAlert alert].config
+    .LeeContent(@"该用户在加入黑名单之后，他的内容将不会呈现给你。你是否确定要将他加入黑名单？")
+    .LeeCancelAction(@"取消", ^{
+        // 取消点击事件Block
+    })
+    .LeeAction(@"确认", ^{
+        // 确认点击事件Block
+    })
+    .LeeShow();
 }
 
 #pragma -mark 加载头像
