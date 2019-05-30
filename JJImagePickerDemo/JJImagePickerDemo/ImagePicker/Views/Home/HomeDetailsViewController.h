@@ -11,8 +11,9 @@
 #import "CustomPhotoViewController.h"
 #import "CustomNewsBanner.h"
 #import "HomeCubeModel.h"
+#import "reportView.h"
 
-@interface HomeDetailsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate>
+@interface HomeDetailsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate, reportViewDelegate>
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath;
 

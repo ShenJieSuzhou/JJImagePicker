@@ -226,6 +226,8 @@
 		E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BDD52186A9F2000B5A34 /* HomeContentmManager.m */; };
 		E5A5A029229E85D200349C51 /* reportView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A5A028229E85D200349C51 /* reportView.m */; };
 		E5A5A02B229E85E400349C51 /* reportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5A5A02A229E85E400349C51 /* reportView.xib */; };
+		E5A5A02E229F88F800349C51 /* SelectedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A5A02D229F88F800349C51 /* SelectedListModel.m */; };
+		E5A5A031229F891900349C51 /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A5A030229F891900349C51 /* SelectedListView.m */; };
 		E5AE62F621C0FF1000639CF8 /* JJTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */; };
 		E5AE62F921C10F2200639CF8 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5AE62F821C10F2200639CF8 /* LoginModel.m */; };
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
@@ -636,6 +638,10 @@
 		E5A5A027229E85D200349C51 /* reportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reportView.h; sourceTree = "<group>"; };
 		E5A5A028229E85D200349C51 /* reportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reportView.m; sourceTree = "<group>"; };
 		E5A5A02A229E85E400349C51 /* reportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = reportView.xib; sourceTree = "<group>"; };
+		E5A5A02C229F88F800349C51 /* SelectedListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedListModel.h; sourceTree = "<group>"; };
+		E5A5A02D229F88F800349C51 /* SelectedListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedListModel.m; sourceTree = "<group>"; };
+		E5A5A02F229F891900349C51 /* SelectedListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedListView.h; sourceTree = "<group>"; };
+		E5A5A030229F891900349C51 /* SelectedListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedListView.m; sourceTree = "<group>"; };
 		E5AE62F421C0FF1000639CF8 /* JJTokenManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTokenManager.h; sourceTree = "<group>"; };
 		E5AE62F521C0FF1000639CF8 /* JJTokenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTokenManager.m; sourceTree = "<group>"; };
 		E5AE62F721C10F2200639CF8 /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
@@ -903,6 +909,10 @@
 				E5A5A027229E85D200349C51 /* reportView.h */,
 				E5A5A028229E85D200349C51 /* reportView.m */,
 				E5A5A02A229E85E400349C51 /* reportView.xib */,
+				E5A5A02C229F88F800349C51 /* SelectedListModel.h */,
+				E5A5A02D229F88F800349C51 /* SelectedListModel.m */,
+				E5A5A02F229F891900349C51 /* SelectedListView.h */,
+				E5A5A030229F891900349C51 /* SelectedListView.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1848,6 +1858,7 @@
 				E5506BE7212FB7D80077E62B /* GridView.m in Sources */,
 				E51EE7E72238D5BC005088F6 /* JJZMLoginView.m in Sources */,
 				E5DB334D221EC76C008D7818 /* UIScrollView+UITouch.m in Sources */,
+				E5A5A02E229F88F800349C51 /* SelectedListModel.m in Sources */,
 				E5172619215E10B6008431A1 /* TagCategoryView.m in Sources */,
 				E50B414122537A9900797DC2 /* JJPageInfo.m in Sources */,
 				449A1F7D2169EF9D0007A91A /* TagEditView.m in Sources */,
@@ -1874,6 +1885,7 @@
 				E5506BE8212FB7D80077E62B /* JJCollectionViewCell.m in Sources */,
 				E557824C2179CBC5003B20BB /* PKMosaicImageView.m in Sources */,
 				44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */,
+				E5A5A031229F891900349C51 /* SelectedListView.m in Sources */,
 				44208E1821A1640E0090D983 /* WorksView.m in Sources */,
 				E5506BE1212FB7D80077E62B /* TOCropView.m in Sources */,
 				E53F2FC82178879D00142A38 /* ScrawlViewController.m in Sources */,

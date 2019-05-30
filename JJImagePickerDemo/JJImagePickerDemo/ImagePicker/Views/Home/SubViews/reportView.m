@@ -9,28 +9,23 @@
 #import "reportView.h"
 
 @implementation reportView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+@synthesize delegate = _delegate;
 
 +(instancetype)getInstance{
     return [[[NSBundle mainBundle] loadNibNamed:@"reportView" owner:self options:nil] firstObject];
 }
 
 - (IBAction)reportContent:(id)sender {
+    NSLog(@"%s", __func__);
     
-    
+    [_delegate clickTipOffCallBack];
 }
 
 
 - (IBAction)pullToBlacklist:(id)sender {
-
+    NSLog(@"%s", __func__);
     
+    [_delegate clickPullBlackCallBack];
 }
 
 

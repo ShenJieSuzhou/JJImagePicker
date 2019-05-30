@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol reportViewDelegate
 
-NS_ASSUME_NONNULL_BEGIN
+- (void)clickTipOffCallBack;
+
+- (void)clickPullBlackCallBack;
+
+@end
 
 @interface reportView : UIView
+
+@property (weak, nonatomic) id<reportViewDelegate> delegate;
 
 +(instancetype)getInstance;
 
 @end
 
-NS_ASSUME_NONNULL_END

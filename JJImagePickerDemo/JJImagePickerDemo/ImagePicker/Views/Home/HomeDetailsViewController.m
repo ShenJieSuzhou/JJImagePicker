@@ -23,7 +23,9 @@
 #import "GlobalDefine.h"
 #import "MeViewController.h"
 #import <LEEAlert/LEEAlert.h>
-#import "reportView.h"
+#import "SelectedListView.h"
+#import "SelectedListModel.h"
+
 
 @interface HomeDetailsViewController ()
 @property (strong, nonatomic) UIButton *iconView;
@@ -423,10 +425,17 @@
 
 // 更多
 - (void)clickMoreBtn:(UIButton *)sender{
+    // 自定义试图
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 65)];
     reportView *reportV = [reportView getInstance];
+    reportV.delegate = self;
+    
+    [customView addSubview:reportV];
+    
     [LEEAlert actionsheet].config
     .LeeAddCustomView(^(LEECustomView *custom) {
-        custom.view = reportV;
+        custom.view = customView;
+        custom.isAutoWidth = YES;
     })
     .LeeAddAction(^(LEEAction *action) {
         action.type = LEEActionTypeDefault;
@@ -434,31 +443,6 @@
         action.titleColor = [UIColor grayColor];
     })
     .LeeShow();
-    
-    
-    
-    
-    
-    
-//
-//
-//    [LEEAlert actionsheet].config
-//    .LeeAddCustomView(^(LEECustomView *custom) {
-//
-//        custom.view = reportV;
-//        
-//        custom.positionType = LEECustomViewPositionTypeCenter;
-//    })
-//    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-//    .LeeAddAction(^(LEEAction *action) {
-//
-//        action.type = LEEActionTypeDefault;
-//
-//        action.title = @"取消";
-//
-//        action.titleColor = [UIColor grayColor];
-//    })
-//    .LeeShow();
 }
 
 // 关注
@@ -505,6 +489,58 @@
 
 - (void)clickCancelBtn:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma -mark reportViewDelegate
+- (void)clickTipOffCallBack{
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
+    
+    view.isSingle = YES;
+    
+    view.array = @[[[SelectedListModel alloc] initWithSid:0 Title:@"垃圾广告"] ,
+                   [[SelectedListModel alloc] initWithSid:1 Title:@"淫秽色情"] ,
+                   [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
+                   [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
+                   [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
+    
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        
+        
+    };
+    
+    [LEEAlert actionsheet].config
+    .LeeTitle(@"举报内容问题")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        
+        custom.view = view;
+        
+        custom.isAutoWidth = YES;
+    })
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeAddAction(^(LEEAction *action) {
+        
+        action.title = @"取消";
+        
+        action.titleColor = [UIColor blackColor];
+        
+        action.backgroundColor = [UIColor whiteColor];
+    })
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeHeaderColor([UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0f])
+    .LeeActionSheetBottomMargin(0.0f) // 设置底部距离屏幕的边距为0
+    .LeeCornerRadius(0.0f) // 设置圆角曲率为0
+    .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
+        
+        // 这是最大宽度为屏幕宽度 (横屏和竖屏)
+        
+        return CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    })
+    .LeeShow();
+}
+
+- (void)clickPullBlackCallBack{
+    
 }
 
 #pragma -mark 加载头像
