@@ -15,7 +15,9 @@
 #import "JJPageInfo.h"
 #import "HttpRequestUtil.h"
 #import "JJCacheUtil.h"
-
+#import <LEEAlert/LEEAlert.h>
+#import "SelectedListView.h"
+#import "SelectedListModel.h"
 
 #define USERVIEW_WIDTH self.view.frame.size.width
 #define USERVIEW_HEIGHT self.view.frame.size.height
@@ -75,9 +77,13 @@ static int jjWorkPageSize = 6;
     self.userInfo = zoneInfo;
     self.fansId = self.userInfo.userid;
     NSString *avatar = self.userInfo.iconUrl;
-    [JJCacheUtil diskImageExistsWithUrl:avatar completion:^(UIImage *image) {
-        self.avaterImg = image;
-    }];
+    if(avatar.length == 0){
+        self.avaterImg = [UIImage imageNamed:@"userPlaceHold"];
+    }else{
+        [JJCacheUtil diskImageExistsWithUrl:avatar completion:^(UIImage *image) {
+            self.avaterImg = image;
+        }];
+    }
     self.nikeName = self.userInfo.name;
     self.hasFocused = self.userInfo.hasFocused;
     self.isYourself = self.userInfo.isYourWork;
@@ -270,8 +276,89 @@ static int jjWorkPageSize = 6;
     [self performSelector:@selector(toDoFocus:) withObject:sender afterDelay:0.2f];
 }
 
+- (void)clickMore{
+    // 自定义试图
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 65)];
+    reportView *reportV = [reportView getInstance];
+    reportV.delegate = self;
+    
+    [customView addSubview:reportV];
+    
+    [LEEAlert actionsheet].config
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        custom.view = customView;
+        custom.isAutoWidth = YES;
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeDefault;
+        action.title = @"取消";
+        action.titleColor = [UIColor grayColor];
+    })
+    .LeeShow();
+}
+
 - (void)goback{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma -mark reportViewDelegate
+- (void)clickTipOffCallBack{
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
+    
+    view.isSingle = YES;
+    
+    view.array = @[[[SelectedListModel alloc] initWithSid:0 Title:@"垃圾广告"] ,
+                   [[SelectedListModel alloc] initWithSid:1 Title:@"淫秽色情"] ,
+                   [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
+                   [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
+                   [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
+    
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        
+        
+    };
+    
+    [LEEAlert actionsheet].config
+    .LeeTitle(@"举报内容问题")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        
+        custom.view = view;
+        
+        custom.isAutoWidth = YES;
+    })
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeAddAction(^(LEEAction *action) {
+        
+        action.title = @"取消";
+        
+        action.titleColor = [UIColor blackColor];
+        
+        action.backgroundColor = [UIColor whiteColor];
+    })
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeHeaderColor([UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0f])
+    .LeeActionSheetBottomMargin(0.0f) // 设置底部距离屏幕的边距为0
+    .LeeCornerRadius(0.0f) // 设置圆角曲率为0
+    .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
+        
+        // 这是最大宽度为屏幕宽度 (横屏和竖屏)
+        
+        return CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    })
+    .LeeShow();
+}
+
+- (void)clickPullBlackCallBack{
+    [LEEAlert alert].config
+    .LeeContent(@"该用户在加入黑名单之后，他的内容将不会呈现给你。你是否确定要将他加入黑名单？")
+    .LeeCancelAction(@"取消", ^{
+        // 取消点击事件Block
+    })
+    .LeeAction(@"确认", ^{
+        // 确认点击事件Block
+    })
+    .LeeShow();
 }
 
 #pragma mark - WorksViewDelegate
