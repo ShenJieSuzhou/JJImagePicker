@@ -15,10 +15,9 @@
 #import "Works.h"
 #import "HomeCubeModel.h"
 #import "FansModel.h"
-#import "reportView.h"
 
 
-@interface OthersMainPageViewController : UIViewController<reportViewDelegate>
+@interface OthersMainPageViewController : UIViewController
 
 // 设置空间信息
 - (void)setUserZone:(HomeCubeModel *)zoneInfo;

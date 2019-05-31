@@ -14,7 +14,7 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize iconView = _iconView;
 @synthesize concernBtn = _concernBtn;
-@synthesize moreBtn = _moreBtn;
+//@synthesize moreBtn = _moreBtn;
 @synthesize goBackBtn = _goBackBtn;
 @synthesize delegate = _delegate;
 @synthesize userName = _userName;
@@ -75,13 +75,6 @@
     [_concernBtn.titleLabel setTextColor:[UIColor whiteColor]];
     [_concernBtn addTarget:self action:@selector(clickConcernBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_concernBtn];
-    
-    // 更多
-    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
-    [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.moreBtn];
-    
     
     _goBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_goBackBtn setBackgroundImage:[UIImage imageNamed:@"arrowBack"] forState:UIControlStateNormal];
@@ -186,12 +179,6 @@
     
     [_concernBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 25.0f));
-        make.right.mas_equalTo(self.mas_right).offset(-50.0f);
-        make.top.mas_equalTo(self.mas_top).offset(35.0f);
-    }];
-    
-    [_moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.right.mas_equalTo(self.mas_right).offset(-10.0f);
         make.top.mas_equalTo(self.mas_top).offset(35.0f);
     }];
@@ -266,9 +253,9 @@
     [_delegate focusHerCandy:sender];
 }
 
-- (void)clickMoreBtn:(UIButton *)sender{
-    [_delegate clickMore];
-}
+//- (void)clickMoreBtn:(UIButton *)sender{
+//    [_delegate clickMore];
+//}
 
 - (void)clickGoBackBtn:(UIButton *)sender{
     [_delegate goback];

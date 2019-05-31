@@ -10,8 +10,9 @@
 #import "CustomPhotoViewController.h"
 #import "Works.h"
 #import "CustomNewsBanner.h"
+#import "reportView.h"
 
-@interface OriginalWorksViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate>
+@interface OriginalWorksViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate,reportViewDelegate>
 
 - (void)setWorksInfo:(Works *)workModel;
 

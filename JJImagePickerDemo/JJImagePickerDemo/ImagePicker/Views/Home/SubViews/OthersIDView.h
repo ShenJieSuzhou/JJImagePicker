@@ -14,7 +14,7 @@
 
 - (void)focusHerCandy:(UIButton *)sender;
 
-- (void)clickMore;
+//- (void)clickMore;
 
 - (void)goback;
 
@@ -25,7 +25,6 @@
 
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) UIButton *concernBtn;
-@property (strong, nonatomic) UIButton *moreBtn;
 @property (nonatomic, strong) UIButton *goBackBtn;
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel  *userName;

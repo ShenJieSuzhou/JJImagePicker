@@ -503,27 +503,37 @@
                    [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
                    [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
     
+    __weak typeof(self) weakSelf = self;
     view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
-        
-        
+        SelectedListModel *selectedModel = [array objectAtIndex:0];
+        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoid:weakSelf.photoWork.photoId reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }
+        }];
     };
-    
+
     [LEEAlert actionsheet].config
     .LeeTitle(@"举报内容问题")
     .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
     .LeeAddCustomView(^(LEECustomView *custom) {
-        
         custom.view = view;
-        
         custom.isAutoWidth = YES;
     })
     .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
     .LeeAddAction(^(LEEAction *action) {
-        
         action.title = @"取消";
-        
         action.titleColor = [UIColor blackColor];
-        
         action.backgroundColor = [UIColor whiteColor];
     })
     .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
@@ -531,22 +541,37 @@
     .LeeActionSheetBottomMargin(0.0f) // 设置底部距离屏幕的边距为0
     .LeeCornerRadius(0.0f) // 设置圆角曲率为0
     .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
-        
         // 这是最大宽度为屏幕宽度 (横屏和竖屏)
-        
         return CGRectGetWidth([[UIScreen mainScreen] bounds]);
     })
     .LeeShow();
 }
 
 - (void)clickPullBlackCallBack{
+    __weak typeof(self) weakSelf = self;
+    
     [LEEAlert alert].config
-    .LeeContent(@"该用户在加入黑名单之后，他的内容将不会呈现给你。你是否确定要将他加入黑名单？")
+    .LeeContent(JJ_ADDTO_BLACKLIST)
     .LeeCancelAction(@"取消", ^{
         // 取消点击事件Block
     })
     .LeeAction(@"确认", ^{
-        // 确认点击事件Block
+        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD showSuccessWithStatus:JJ_ADDBLACKLIST_SUCCESS];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                 [weakSelf.navigationController popViewControllerAnimated:YES];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }
+        }];
     })
     .LeeShow();
 }

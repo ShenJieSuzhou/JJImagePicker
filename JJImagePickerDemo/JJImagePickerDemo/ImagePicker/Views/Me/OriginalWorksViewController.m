@@ -18,7 +18,9 @@
 #import "JJLikeButton.h"
 #import "HttpRequestUtil.h"
 #import "HttpRequestUrlDefine.h"
-
+#import <LEEAlert/LEEAlert.h>
+#import "SelectedListView.h"
+#import "SelectedListModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface OriginalWorksViewController ()
@@ -29,6 +31,7 @@
 @property (strong, nonatomic) YYLabel *worksDesc;
 @property (strong, nonatomic) UILabel *timeLine;
 @property (strong, nonatomic) UIButton *shareBtn;
+@property (strong, nonatomic) UIButton *moreBtn;
 @property (strong, nonatomic) Works *photoWork;
 @property (strong, nonatomic) JJLikeButton *likeBtn;
 @property (strong, nonatomic) UILabel *likeNum;
@@ -169,6 +172,13 @@
     [self.worksInfoView addSubview:self.shareBtn];
     [self.shareBtn setHidden:YES];
     
+    // 更多
+    self.moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.worksInfoView addSubview:self.moreBtn];
+    
+    
     //图片
     [self.worksInfoView addSubview:self.workView];
     
@@ -238,7 +248,13 @@
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(45.0f, 25.0f));
         make.centerY.mas_equalTo(self.iconView);
-        make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 60.0f);
+        make.left.mas_equalTo(self.worksInfoView).offset(self.view.frame.size.width - 110.0f);
+    }];
+    
+    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
+        make.right.mas_equalTo(self.worksInfoView.mas_right).offset(-10.0f);
+        make.top.mas_equalTo(self.worksInfoView.mas_top).offset(35.0f);
     }];
     
     [self.workView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -281,6 +297,27 @@
         make.right.equalTo(self.workView);
         make.centerY.equalTo(self.likeBtn);
     }];
+}
+
+- (void)clickMoreBtn:(UIButton *)sender{
+    // 自定义试图
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 65)];
+    reportView *reportV = [reportView getInstance];
+    reportV.delegate = self;
+
+    [customView addSubview:reportV];
+
+    [LEEAlert actionsheet].config
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        custom.view = customView;
+        custom.isAutoWidth = YES;
+    })
+    .LeeAddAction(^(LEEAction *action) {
+        action.type = LEEActionTypeDefault;
+        action.title = @"取消";
+        action.titleColor = [UIColor grayColor];
+    })
+    .LeeShow();
 }
 
 - (void)clickConcernBtn:(UIButton *)sender{
@@ -433,6 +470,91 @@
             }];
         }
     }];
+}
+
+#pragma -mark reportViewDelegate
+- (void)clickTipOffCallBack{
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
+
+    view.isSingle = YES;
+
+    view.array = @[[[SelectedListModel alloc] initWithSid:0 Title:@"垃圾广告"] ,
+                   [[SelectedListModel alloc] initWithSid:1 Title:@"淫秽色情"] ,
+                   [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
+                   [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
+                   [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
+
+    __weak typeof(self) weakSelf = self;
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        SelectedListModel *selectedModel = [array objectAtIndex:0];
+        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoid:weakSelf.photoWork.photoid reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }
+        }];
+    };
+
+    [LEEAlert actionsheet].config
+    .LeeTitle(@"举报内容问题")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeAddCustomView(^(LEECustomView *custom) {
+        custom.view = view;
+        custom.isAutoWidth = YES;
+    })
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeAddAction(^(LEEAction *action) {
+        action.title = @"取消";
+        action.titleColor = [UIColor blackColor];
+        action.backgroundColor = [UIColor whiteColor];
+    })
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeHeaderColor([UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0f])
+    .LeeActionSheetBottomMargin(0.0f) // 设置底部距离屏幕的边距为0
+    .LeeCornerRadius(0.0f) // 设置圆角曲率为0
+    .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
+        // 这是最大宽度为屏幕宽度 (横屏和竖屏)
+        return CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    })
+    .LeeShow();
+}
+
+- (void)clickPullBlackCallBack{
+    __weak typeof(self) weakSelf = self;
+    [LEEAlert alert].config
+    .LeeContent(JJ_ADDTO_BLACKLIST)
+    .LeeCancelAction(@"取消", ^{
+        // 取消点击事件Block
+    })
+    .LeeAction(@"确认", ^{
+        // 确认点击事件Block
+        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD showSuccessWithStatus:JJ_ADDBLACKLIST_SUCCESS];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }
+        }];
+    })
+    .LeeShow();
 }
 
 @end

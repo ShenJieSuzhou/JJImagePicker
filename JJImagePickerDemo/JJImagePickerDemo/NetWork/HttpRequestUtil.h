@@ -273,4 +273,40 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_WechatUserLogin:(NSString *)url openId:(NSString *)openID accessToken:(NSString *)token type:(NSString *)type extend:(NSString *)extend callback:(requestCallBack) block;
 
+
+
+/**
+ 举报
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param photoid 作品ID
+ @param reason 原因
+ @param block 回调
+ */
++ (void)JJ_TipOff:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoid:(NSString *)photoid reason:(NSString *)reason callback:(requestCallBack) block;
+
+/**
+ 拉黑
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param block 回调
+ */
++ (void)JJ_PullBlack:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
+
+
+/**
+ 从黑名单释放
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param block 回调
+ */
++ (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
+
+
 @end
