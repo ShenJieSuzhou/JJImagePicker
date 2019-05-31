@@ -176,6 +176,10 @@
     [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.moreBtn];
     
+    if([self.photoWork.userid isEqualToString:[JJTokenManager shareInstance].getUserID]){
+        [self.moreBtn setHidden:YES];
+    }
+    
     // 是否是自己
     if(self.photoWork.isYourWork){
         [_focusBtn setHidden:YES];
@@ -494,19 +498,22 @@
 - (void)tipOffSelectedCallBack:(SelectedListModel *)model{
     __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid photoid:weakSelf.photoWork.photoId reason:model.title callback:^(NSDictionary *data, NSError *error) {
-        if(error){
-            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-            [SVProgressHUD dismissWithDelay:1.0f];
-            return ;
-        }
-        
-        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
-            [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
-            [SVProgressHUD dismissWithDelay:1.0f];
-        }else{
-            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
-            [SVProgressHUD dismissWithDelay:1.0f];
-        }
+        // 切到主线程上，解决不显示提示
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error){
+                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+                [SVProgressHUD dismissWithDelay:1.0f];
+                return ;
+            }
+            
+            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }else{
+                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+                [SVProgressHUD dismissWithDelay:1.0f];
+            }
+        });
     }];
 }
 
@@ -523,12 +530,6 @@
                    [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
                    [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
                    [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
-    
-    
-//    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
-//        SelectedListModel *selectedModel = [array objectAtIndex:0];
-//
-//    };
     
     [LEEAlert actionsheet].config
     .LeeTitle(@"举报内容问题")

@@ -23,7 +23,7 @@
 #import "SelectedListModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@interface OriginalWorksViewController ()
+@interface OriginalWorksViewController ()<TipoffDelegate>
 @property (strong, nonatomic) UIImageView *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UICollectionView *workView;
@@ -139,7 +139,7 @@
     [self.iconView setBackgroundColor:[UIColor clearColor]];
     [self.iconView.layer setCornerRadius:self.iconView.frame.size.width / 2];
     [self.iconView.layer setMasksToBounds:YES];
-    NSString *avatar = [JJTokenManager shareInstance].getUserAvatar;
+    NSString *avatar = self.photoWork.avatar;
     if(avatar.length == 0){
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"userPlaceHold"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
@@ -155,7 +155,7 @@
     [self.nameLabel setTextAlignment:NSTextAlignmentLeft];
     [self.nameLabel setTextColor:[UIColor blackColor]];
     [self.nameLabel setFont:[UIFont systemFontOfSize:16.0f]];
-    [self.nameLabel setText:[JJTokenManager shareInstance].getUserName];
+    [self.nameLabel setText:self.photoWork.nickName];
     [self.worksInfoView addSubview:self.nameLabel];
     
     //关注
@@ -177,7 +177,9 @@
     [self.moreBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
     [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.worksInfoView addSubview:self.moreBtn];
-    
+    if([self.photoWork.userid isEqualToString:[JJTokenManager shareInstance].getUserID]){
+        [self.moreBtn setHidden:YES];
+    }
     
     //图片
     [self.worksInfoView addSubview:self.workView];
@@ -254,7 +256,7 @@
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.right.mas_equalTo(self.worksInfoView.mas_right).offset(-10.0f);
-        make.top.mas_equalTo(self.worksInfoView.mas_top).offset(35.0f);
+        make.centerY.mas_equalTo(self.iconView);
     }];
     
     [self.workView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -346,7 +348,7 @@
 // 点赞
 - (void)toDoLike:(UIButton *)sender{
     if(sender.selected){
-        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_INCREMENT_LIKECOUNT:POST_LIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:self.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];
@@ -355,7 +357,7 @@
             // token 过期
         }];
     }else{
-        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_DECREMENT_LIKECOUNT:POST_UNLIKE_REQUEST token:[JJTokenManager shareInstance].getUserToken photoId:self.photoWork.photoid userid:self.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];
@@ -472,23 +474,12 @@
     }];
 }
 
-#pragma -mark reportViewDelegate
-- (void)clickTipOffCallBack{
-    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
-
-    view.isSingle = YES;
-
-    view.array = @[[[SelectedListModel alloc] initWithSid:0 Title:@"垃圾广告"] ,
-                   [[SelectedListModel alloc] initWithSid:1 Title:@"淫秽色情"] ,
-                   [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
-                   [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
-                   [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
-
+- (void)tipOffSelectedCallBack:(SelectedListModel *)model{
+    SelectedListModel *selectedModel = model;
     __weak typeof(self) weakSelf = self;
-    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
-        SelectedListModel *selectedModel = [array objectAtIndex:0];
+    [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:self.photoWork.userid defendant:weakSelf.photoWork.userid photoid:weakSelf.photoWork.photoid reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
         
-        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid photoid:weakSelf.photoWork.photoid reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];
@@ -502,8 +493,23 @@
                 [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
                 [SVProgressHUD dismissWithDelay:1.0f];
             }
-        }];
-    };
+        });
+    }];
+}
+
+
+#pragma -mark reportViewDelegate
+- (void)clickTipOffCallBack{
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
+    view.mDelegate = self;
+
+    view.isSingle = YES;
+
+    view.array = @[[[SelectedListModel alloc] initWithSid:0 Title:@"垃圾广告"] ,
+                   [[SelectedListModel alloc] initWithSid:1 Title:@"淫秽色情"] ,
+                   [[SelectedListModel alloc] initWithSid:2 Title:@"低俗辱骂"] ,
+                   [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
+                   [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
 
     [LEEAlert actionsheet].config
     .LeeTitle(@"举报内容问题")
@@ -538,7 +544,7 @@
     })
     .LeeAction(@"确认", ^{
         // 确认点击事件Block
-        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:self.photoWork.userid defendant:weakSelf.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];

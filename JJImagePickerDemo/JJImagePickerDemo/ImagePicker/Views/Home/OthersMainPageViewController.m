@@ -164,7 +164,7 @@ static int jjWorkPageSize = 6;
             BOOL hasLiked = [[dic objectForKey:@"hasLiked"] boolValue];
             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
         
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum nickName:weakSelf.userInfo.name avatar:weakSelf.userInfo.iconUrl hasLiked:hasLiked];
             [photoList addObject:postWork];
         }
         
@@ -223,7 +223,7 @@ static int jjWorkPageSize = 6;
             NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum nickName:weakSelf.userInfo.name avatar:weakSelf.userInfo.iconUrl hasLiked:hasLiked];
             [photoList addObject:postWork];
         }
         

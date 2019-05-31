@@ -112,11 +112,6 @@ static int jjMyworksPageSize = 6;
 }
 
 - (void)publishWorksSuccess:(NSNotification *)notify{
-//    if(_currentPageInfo.currentPage + 1 >= _currentPageInfo.totalPage){
-//        [self loadMoreUserInfo:_currentPageInfo.currentPage size:jjMyworksPageSize];
-//    }else{
-//        [self loadMoreUserInfo:_currentPageInfo?_currentPageInfo.currentPage + 1:0 size:jjMyworksPageSize];
-//    }
     [self loadUserInfo];
 }
 
@@ -164,7 +159,7 @@ static int jjMyworksPageSize = 6;
             NSString *likeNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"likeNum"]];
             NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
             BOOL hasLiked = [[dic objectForKey:@"hasLiked"] boolValue];
-            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
+            Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum nickName:[JJTokenManager shareInstance].getUserName avatar:[JJTokenManager shareInstance].getUserAvatar hasLiked:hasLiked];
             [photoList addObject:postWork];
         }
         
@@ -222,7 +217,7 @@ static int jjMyworksPageSize = 6;
              BOOL hasLiked = [[dic objectForKey:@"hasLiked"] boolValue];
              NSArray *photos = [pathStr componentsSeparatedByString:@"|"];
              
-             Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum hasLiked:hasLiked];
+             Works *postWork = [[Works alloc] initWithPath:photos photoID:photoId userid:userId work:work time:postTime like:likeNum nickName:[JJTokenManager shareInstance].getUserName avatar:[JJTokenManager shareInstance].getUserAvatar hasLiked:hasLiked];
              [photoList addObject:postWork];
          }
          
