@@ -128,11 +128,12 @@
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        [self finish];
-        
+//        [self finish];
+        [_mDelegate tipOffSelectedCallBack:model];
     } else {
         
-        if (self.changedBlock) self.changedBlock(self.dataArray);
+        [_mDelegate tipOffSelectedCallBack:model];
+//        if (self.changedBlock) self.changedBlock(self.dataArray);
     }
     
 }

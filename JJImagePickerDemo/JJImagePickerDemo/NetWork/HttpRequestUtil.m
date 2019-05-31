@@ -455,7 +455,7 @@
 }
 
 
-+ (void)JJ_TipOff:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoid:(NSString *)photoid reason:(NSString *)reason callback:(requestCallBack) block{
++ (void)JJ_TipOff:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant photoid:(NSString *)photoid reason:(NSString *)reason callback:(requestCallBack) block{
     NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
     if (NotReachable == netStatus){
         [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
@@ -463,7 +463,7 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", photoid, @"photoid", reason, @"reason", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", defendant, @"defendant", photoid, @"photoid", reason, @"reason", nil];
     
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
@@ -473,7 +473,7 @@
 }
 
 
-+ (void)JJ_PullBlack:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block{
++ (void)JJ_PullBlack:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant callback:(requestCallBack) block{
     NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
     if (NotReachable == netStatus){
         [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
@@ -481,7 +481,7 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", defendant, @"defendant", nil];
     
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);
@@ -491,7 +491,7 @@
 }
 
 
-+ (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block{
++ (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant callback:(requestCallBack) block{
     NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
     if (NotReachable == netStatus){
         [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
@@ -499,7 +499,7 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", defendant, @"defendant", nil];
     
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);

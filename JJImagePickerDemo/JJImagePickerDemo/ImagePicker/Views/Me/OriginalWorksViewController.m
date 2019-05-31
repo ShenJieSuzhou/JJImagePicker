@@ -487,7 +487,8 @@
     __weak typeof(self) weakSelf = self;
     view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
         SelectedListModel *selectedModel = [array objectAtIndex:0];
-        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoid:weakSelf.photoWork.photoid reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
+        
+        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid photoid:weakSelf.photoWork.photoid reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];
@@ -537,7 +538,7 @@
     })
     .LeeAction(@"确认", ^{
         // 确认点击事件Block
-        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];

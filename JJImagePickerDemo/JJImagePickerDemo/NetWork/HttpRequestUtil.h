@@ -285,7 +285,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param reason 原因
  @param block 回调
  */
-+ (void)JJ_TipOff:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoid:(NSString *)photoid reason:(NSString *)reason callback:(requestCallBack) block;
++ (void)JJ_TipOff:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant photoid:(NSString *)photoid reason:(NSString *)reason callback:(requestCallBack) block;
 
 /**
  拉黑
@@ -295,7 +295,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_PullBlack:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_PullBlack:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant callback:(requestCallBack) block;
 
 
 /**
@@ -306,7 +306,7 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param userid 用户ID
  @param block 回调
  */
-+ (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid callback:(requestCallBack) block;
++ (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant callback:(requestCallBack) block;
 
 
 @end

@@ -27,7 +27,7 @@
 #import "SelectedListModel.h"
 
 
-@interface HomeDetailsViewController ()
+@interface HomeDetailsViewController ()<TipoffDelegate>
 @property (strong, nonatomic) UIButton *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UICollectionView *workView;
@@ -429,9 +429,9 @@
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 65)];
     reportView *reportV = [reportView getInstance];
     reportV.delegate = self;
-    
+
     [customView addSubview:reportV];
-    
+
     [LEEAlert actionsheet].config
     .LeeAddCustomView(^(LEECustomView *custom) {
         custom.view = customView;
@@ -491,9 +491,30 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)tipOffSelectedCallBack:(SelectedListModel *)model{
+    __weak typeof(self) weakSelf = self;
+    [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid photoid:weakSelf.photoWork.photoId reason:model.title callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return ;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
+            [SVProgressHUD dismissWithDelay:1.0f];
+        }else{
+            [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
+            [SVProgressHUD dismissWithDelay:1.0f];
+        }
+    }];
+}
+
+
 #pragma -mark reportViewDelegate
 - (void)clickTipOffCallBack{
     SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), 0) style:UITableViewStylePlain];
+    view.mDelegate = self;
     
     view.isSingle = YES;
     
@@ -503,26 +524,12 @@
                    [[SelectedListModel alloc] initWithSid:3 Title:@"涉政涉密"] ,
                    [[SelectedListModel alloc] initWithSid:4 Title:@"欺诈谣言"] ];
     
-    __weak typeof(self) weakSelf = self;
-    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
-        SelectedListModel *selectedModel = [array objectAtIndex:0];
-        [HttpRequestUtil JJ_TipOff:TIPOFF_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoid:weakSelf.photoWork.photoId reason:selectedModel.title callback:^(NSDictionary *data, NSError *error) {
-            if(error){
-                [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-                [SVProgressHUD dismissWithDelay:1.0f];
-                return ;
-            }
-            
-            if([[data objectForKey:@"result"] isEqualToString:@"1"]){
-                [SVProgressHUD showSuccessWithStatus:JJ_TIPOFF_SUCCESS];
-                [SVProgressHUD dismissWithDelay:1.0f];
-            }else{
-                [SVProgressHUD showErrorWithStatus:[data objectForKey:@"errorMsg"]];
-                [SVProgressHUD dismissWithDelay:1.0f];
-            }
-        }];
-    };
-
+    
+//    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+//        SelectedListModel *selectedModel = [array objectAtIndex:0];
+//
+//    };
+    
     [LEEAlert actionsheet].config
     .LeeTitle(@"举报内容问题")
     .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
@@ -556,7 +563,7 @@
         // 取消点击事件Block
     })
     .LeeAction(@"确认", ^{
-        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID callback:^(NSDictionary *data, NSError *error) {
+        [HttpRequestUtil JJ_PullBlack:PULL_BLACK_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID defendant:weakSelf.photoWork.userid callback:^(NSDictionary *data, NSError *error) {
             if(error){
                 [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
                 [SVProgressHUD dismissWithDelay:1.0f];

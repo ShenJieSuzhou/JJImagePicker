@@ -100,7 +100,7 @@
 
 #define RELEASE_BLOCK_REQUEST                           @"http://172.16.10.45:8080/admin/releaseBlockUser"
 
-#define QUERY_BLACKLIST_REQUEST                         @"http://172.16.10.45:8080/queryBlacklist"
+#define QUERY_BLACKLIST_REQUEST                         @"http://172.16.10.45:8080/admin/queryBlacklist"
 
 //#define AC_LOGIN_REQUEST                                @"http://192.168.31.87:8080/login/accountLogin"
 //
