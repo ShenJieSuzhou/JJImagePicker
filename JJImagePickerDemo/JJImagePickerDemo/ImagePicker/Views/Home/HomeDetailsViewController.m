@@ -572,6 +572,7 @@
             }
             
             if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+                [[NSNotificationCenter defaultCenter] postNotificationName:JJ_PULL_BLACKLIST_SUCCESS object:nil];
                 [SVProgressHUD showSuccessWithStatus:JJ_ADDBLACKLIST_SUCCESS];
                 [SVProgressHUD dismissWithDelay:1.0f];
                  [weakSelf.navigationController popViewControllerAnimated:YES];

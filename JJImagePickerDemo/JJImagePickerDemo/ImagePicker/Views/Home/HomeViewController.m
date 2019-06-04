@@ -45,6 +45,8 @@ static int jjPageSize = 10;
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLoginSuccess:) name:LOGINSUCCESS_NOTIFICATION object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(blockUserSuccess:) name:JJ_PULL_BLACKLIST_SUCCESS object:nil];
+    
     // 数据源
     _photoDataSource = [[NSMutableArray alloc] init];
     
@@ -228,6 +230,10 @@ static int jjPageSize = 10;
     [self TriggerRefresh];
 }
 
+- (void)blockUserSuccess:(NSNotification *)notify{
+    NSLog(@"%s", __func__);
+    [self TriggerRefresh];
+}
 
 -(void)TriggerRefresh{
     NSLog(@"%s", __func__);

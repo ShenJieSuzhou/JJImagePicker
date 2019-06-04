@@ -53,6 +53,7 @@
 #define JJ_UPDATE_AVATAR_SUCCESS                        @"JJ_UPDATE_AVATAR_SUCCESS"
 #define JJ_UPDATE_NAME_SUCCESS                          @"JJ_UPDATE_NAME_SUCCESS"
 #define JJ_PUBLISH_WORKS_SUCCESS                        @"JJ_PUBLISH_WORKS_SUCCESS"
+#define JJ_PULL_BLACKLIST_SUCCESS                       @"JJ_PULL_BLACKLIST_SUCCESS"
 
 /*
  * Tips
