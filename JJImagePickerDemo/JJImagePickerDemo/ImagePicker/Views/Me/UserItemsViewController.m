@@ -9,6 +9,7 @@
 #import "UserItemsViewController.h"
 #import "GlobalDefine.h"
 #import "MyWebViewController.h"
+#import "ContactUsViewController.h"
 
 
 @interface UserItemsViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -62,12 +63,15 @@
         [myWebView.navigationItem setTitle:@"隐私政策"];
         [myWebView loadRequest:@"http://www.candyart.top/privacy"];
         [self.navigationController pushViewController:myWebView animated:YES];
+    }else if(indexPath.section == 2){
+        ContactUsViewController *contactUs = [ContactUsViewController new];
+        [self.navigationController pushViewController:contactUs animated:YES];
     }
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 #pragma mark - UITableViewDataSource
@@ -76,6 +80,8 @@
         case 0:
             return 1;
         case 1:
+            return 1;
+        case 2:
             return 1;
         default:
             break;
@@ -103,6 +109,8 @@
         cell.textLabel.text = @"用户服务协议";
     }else if (indexPath.section == 1) {
         cell.textLabel.text = @"隐私政策";
+    }else if (indexPath.section == 2) {
+        cell.textLabel.text = @"联系客服";
     }
     
     return cell;

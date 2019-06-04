@@ -62,6 +62,7 @@
 		E50B413E224CC48500797DC2 /* JJLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B413D224CC48500797DC2 /* JJLikeButton.m */; };
 		E50B414122537A9900797DC2 /* JJPageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414022537A9900797DC2 /* JJPageInfo.m */; };
 		E50B414422537B2700797DC2 /* JJDataParaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B414322537B2700797DC2 /* JJDataParaseUtil.m */; };
+		E50D886522A6745200C3C5C7 /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50D886422A6745200C3C5C7 /* ContactUsViewController.m */; };
 		E50E97E0217DBC290029E231 /* WordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50E97DF217DBC290029E231 /* WordsView.m */; };
 		E512B1D3215A034B00B06B1B /* StickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D2215A034B00B06B1B /* StickerModel.m */; };
 		E512B1D6215A045000B06B1B /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E512B1D5215A045000B06B1B /* TagModel.m */; };
@@ -376,6 +377,8 @@
 		E50B414022537A9900797DC2 /* JJPageInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJPageInfo.m; sourceTree = "<group>"; };
 		E50B414222537B2700797DC2 /* JJDataParaseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDataParaseUtil.h; sourceTree = "<group>"; };
 		E50B414322537B2700797DC2 /* JJDataParaseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDataParaseUtil.m; sourceTree = "<group>"; };
+		E50D886322A6745200C3C5C7 /* ContactUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		E50D886422A6745200C3C5C7 /* ContactUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		E50E97DE217DBC290029E231 /* WordsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsView.h; sourceTree = "<group>"; };
 		E50E97DF217DBC290029E231 /* WordsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsView.m; sourceTree = "<group>"; };
 		E512B1D1215A034B00B06B1B /* StickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerModel.h; sourceTree = "<group>"; };
@@ -881,6 +884,8 @@
 				E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */,
 				E5E378902299385E0091A62E /* UserItemsViewController.h */,
 				E5E378912299385E0091A62E /* UserItemsViewController.m */,
+				E50D886322A6745200C3C5C7 /* ContactUsViewController.h */,
+				E50D886422A6745200C3C5C7 /* ContactUsViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -1903,6 +1908,7 @@
 				E55BA98A219BF4390078472D /* JJLoginViewController.m in Sources */,
 				4462607120CD00B10004C579 /* JJImageManager.m in Sources */,
 				E542B6C721897B42002A7E1E /* CustomTabbar.m in Sources */,
+				E50D886522A6745200C3C5C7 /* ContactUsViewController.m in Sources */,
 				E50B412F224B1ACC00797DC2 /* CandyFansViewController.m in Sources */,
 				E50B413E224CC48500797DC2 /* JJLikeButton.m in Sources */,
 				E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */,
