@@ -28,7 +28,7 @@
     CGFloat JJScreenW = self.view.frame.size.width;
     CGFloat JJScreenH = self.view.frame.size.height;
     
-    NSArray *imageArray = @[@"welcome_p1", @"welcome_p2", @"welcome_p3", @"welcome_p4"];
+    NSArray *imageArray = @[@"welcome_p1.jpg", @"welcome_p2.jpg", @"welcome_p3.jpg", @"welcome_p4.jpg"];
     
     // 设置引导视图的scrollview
     _guideScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, JJScreenW, JJScreenH)];
@@ -52,10 +52,11 @@
     for (int i = 0; i < imageArray.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(JJScreenW * i, 0, JJScreenW, JJScreenH)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [imageView setClipsToBounds:YES];
         UIImage *img = [UIImage imageNamed:[imageArray objectAtIndex:i]];
         [imageView setImage:img];
         [_guideScrollView addSubview:imageView];
-        
+
         // 设置在最后一张图片上显示进入体验按钮
         if (i == imageArray.count - 1) {
             [imageView setUserInteractionEnabled:YES];

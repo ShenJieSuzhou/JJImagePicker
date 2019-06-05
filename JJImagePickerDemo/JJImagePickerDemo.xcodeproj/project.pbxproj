@@ -41,6 +41,10 @@
 		44B91480218D44F5003C1620 /* AdjustModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B9147E218D44F5003C1620 /* AdjustModel.m */; };
 		44BB19BC20E8C88800544001 /* JJImageVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BB20E8C88800544001 /* JJImageVideoPlayerView.m */; };
 		44BB19BF20E8C8E100544001 /* JJZoomImageViewImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */; };
+		E508212922A7643400AA8BAE /* welcome_p3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E508212522A7643400AA8BAE /* welcome_p3.jpg */; };
+		E508212A22A7643400AA8BAE /* welcome_p2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E508212622A7643400AA8BAE /* welcome_p2.jpg */; };
+		E508212B22A7643400AA8BAE /* welcome_p1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E508212722A7643400AA8BAE /* welcome_p1.jpg */; };
+		E508212C22A7643400AA8BAE /* welcome_p4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E508212822A7643400AA8BAE /* welcome_p4.jpg */; };
 		E50B411322421ADB00797DC2 /* personal_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410B22421ADA00797DC2 /* personal_1.jpg */; };
 		E50B411422421ADB00797DC2 /* personal_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410C22421ADB00797DC2 /* personal_7.jpg */; };
 		E50B411522421ADB00797DC2 /* personal_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410D22421ADB00797DC2 /* personal_8.jpg */; };
@@ -234,10 +238,6 @@
 		E5C18015227EE56D008F1942 /* JJCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C18014227EE56D008F1942 /* JJCacheUtil.m */; };
 		E5C1801822800FC5008F1942 /* CandyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */; };
 		E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */; };
-		E5C1802A2282D52F008F1942 /* welcome_p4.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180262282D52F008F1942 /* welcome_p4.png */; };
-		E5C1802B2282D52F008F1942 /* welcome_p1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180272282D52F008F1942 /* welcome_p1.png */; };
-		E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180282282D52F008F1942 /* welcome_p3.png */; };
-		E5C1802D2282D52F008F1942 /* welcome_p2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180292282D52F008F1942 /* welcome_p2.png */; };
 		E5C180362282DCAC008F1942 /* guideImage_button_backgound.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */; };
 		E5CFB53D20D24F1D0021EB68 /* NSString+JJUI.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */; };
 		E5CFB54520D257D00021EB68 /* LivePhoto_Corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFB54120D257D00021EB68 /* LivePhoto_Corner@3x.png */; };
@@ -343,6 +343,10 @@
 		44BB19BE20E8C8E100544001 /* JJZoomImageViewImageGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJZoomImageViewImageGenerator.m; sourceTree = "<group>"; };
 		63A6C6383869E414C14F6123 /* Pods-JJImagePickerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJImagePickerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JJImagePickerDemo/Pods-JJImagePickerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		DCBA2B915425B2D8F24E4F0E /* libPods-JJImagePickerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JJImagePickerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E508212522A7643400AA8BAE /* welcome_p3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_p3.jpg; sourceTree = "<group>"; };
+		E508212622A7643400AA8BAE /* welcome_p2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_p2.jpg; sourceTree = "<group>"; };
+		E508212722A7643400AA8BAE /* welcome_p1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_p1.jpg; sourceTree = "<group>"; };
+		E508212822A7643400AA8BAE /* welcome_p4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_p4.jpg; sourceTree = "<group>"; };
 		E50B410B22421ADA00797DC2 /* personal_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_1.jpg; sourceTree = "<group>"; };
 		E50B410C22421ADB00797DC2 /* personal_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_7.jpg; sourceTree = "<group>"; };
 		E50B410D22421ADB00797DC2 /* personal_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_8.jpg; sourceTree = "<group>"; };
@@ -654,10 +658,6 @@
 		E5C1801622800FC5008F1942 /* CandyFollowerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CandyFollowerViewController.h; sourceTree = "<group>"; };
 		E5C1801722800FC5008F1942 /* CandyFollowerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CandyFollowerViewController.m; sourceTree = "<group>"; };
 		E5C180232282B08C008F1942 /* iPhone XS Max@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max@2x.png"; sourceTree = "<group>"; };
-		E5C180262282D52F008F1942 /* welcome_p4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p4.png; sourceTree = "<group>"; };
-		E5C180272282D52F008F1942 /* welcome_p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p1.png; sourceTree = "<group>"; };
-		E5C180282282D52F008F1942 /* welcome_p3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p3.png; sourceTree = "<group>"; };
-		E5C180292282D52F008F1942 /* welcome_p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_p2.png; sourceTree = "<group>"; };
 		E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guideImage_button_backgound.png; sourceTree = "<group>"; };
 		E5CFB53B20D24F1D0021EB68 /* NSString+JJUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JJUI.h"; sourceTree = "<group>"; };
 		E5CFB53C20D24F1D0021EB68 /* NSString+JJUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JJUI.m"; sourceTree = "<group>"; };
@@ -1449,11 +1449,11 @@
 		E5C180252282D2E4008F1942 /* welcome */ = {
 			isa = PBXGroup;
 			children = (
+				E508212722A7643400AA8BAE /* welcome_p1.jpg */,
+				E508212622A7643400AA8BAE /* welcome_p2.jpg */,
+				E508212522A7643400AA8BAE /* welcome_p3.jpg */,
+				E508212822A7643400AA8BAE /* welcome_p4.jpg */,
 				E5C180352282DCAC008F1942 /* guideImage_button_backgound.png */,
-				E5C180272282D52F008F1942 /* welcome_p1.png */,
-				E5C180292282D52F008F1942 /* welcome_p2.png */,
-				E5C180282282D52F008F1942 /* welcome_p3.png */,
-				E5C180262282D52F008F1942 /* welcome_p4.png */,
 			);
 			path = welcome;
 			sourceTree = "<group>";
@@ -1620,7 +1620,6 @@
 				E55166B02159E7F0001FBFC1 /* ghost2.png in Resources */,
 				E5A5A02B229E85E400349C51 /* reportView.xib in Resources */,
 				E5CFB56920E2169F0021EB68 /* wb_style_orange.png in Resources */,
-				E5C1802C2282D52F008F1942 /* welcome_p3.png in Resources */,
 				E55166B62159E7F0001FBFC1 /* spider.png in Resources */,
 				E547D18F20F89ACE00893D85 /* flashAutoIcon.png in Resources */,
 				E56B9CCF20AD2FA800021DF8 /* LaunchScreen.storyboard in Resources */,
@@ -1629,14 +1628,14 @@
 				E50B411522421ADB00797DC2 /* personal_8.jpg in Resources */,
 				E547D1A220F89ACE00893D85 /* swapButton@2x.png in Resources */,
 				E547D19B20F89ACE00893D85 /* libraryConfirm.png in Resources */,
+				E508212922A7643400AA8BAE /* welcome_p3.jpg in Resources */,
 				E5DB335F2227C904008D7818 /* pengke.jpg in Resources */,
 				44966A2220C2948600156BCA /* gallery_title_arrow_up@2x.png in Resources */,
+				E508212A22A7643400AA8BAE /* welcome_p2.jpg in Resources */,
 				E58C252621DE2CBA001C4D8F /* BindPhoneViewController.xib in Resources */,
-				E5C1802B2282D52F008F1942 /* welcome_p1.png in Resources */,
 				E547D1A420F89ACE00893D85 /* confirmButton.png in Resources */,
 				E547D19520F89ACE00893D85 /* cameraButton@3x.png in Resources */,
 				E547D19620F89ACE00893D85 /* libraryConfirm@3x.png in Resources */,
-				E5C1802A2282D52F008F1942 /* welcome_p4.png in Resources */,
 				E50B411922421ADB00797DC2 /* personal_6.jpg in Resources */,
 				E5C180242282B08C008F1942 /* iPhone XS Max@2x.png in Resources */,
 				E547D1A620F89ACE00893D85 /* flashOffIcon@3x.png in Resources */,
@@ -1675,6 +1674,7 @@
 				E547D18C20F89ACE00893D85 /* confirmButton@2x.png in Resources */,
 				E547D1A320F89ACE00893D85 /* flashOnIcon@2x.png in Resources */,
 				E547D1B120F89ACE00893D85 /* flashOffIcon.png in Resources */,
+				E508212B22A7643400AA8BAE /* welcome_p1.jpg in Resources */,
 				E547D18D20F89ACE00893D85 /* libraryButton@2x.png in Resources */,
 				E547D19920F89ACE00893D85 /* retakeButton.png in Resources */,
 				E56B9CCC20AD2FA800021DF8 /* Assets.xcassets in Resources */,
@@ -1698,6 +1698,7 @@
 				E547D1B220F89ACE00893D85 /* libraryButton.png in Resources */,
 				E547D1AE20F89ACE00893D85 /* libraryButton@3x.png in Resources */,
 				E571BD44210F0045009DD369 /* content.json in Resources */,
+				E508212C22A7643400AA8BAE /* welcome_p4.jpg in Resources */,
 				E545F54A20C12F2700E74CA1 /* gallery_title_arrow@3x.png in Resources */,
 				E547D1AA20F89ACE00893D85 /* placeholder@2x.png in Resources */,
 				E50B411722421ADB00797DC2 /* personal_4.jpg in Resources */,
@@ -1705,7 +1706,6 @@
 				E547D19720F89ACE00893D85 /* placeholder.png in Resources */,
 				E55166AC2159E7F0001FBFC1 /* candy1.png in Resources */,
 				E547D1AF20F89ACE00893D85 /* cameraPermissionsIcon@2x.png in Resources */,
-				E5C1802D2282D52F008F1942 /* welcome_p2.png in Resources */,
 				E5DB33612227C904008D7818 /* yellow.jpg in Resources */,
 				E547D19C20F89ACE00893D85 /* libraryCancel.png in Resources */,
 				E547D1A820F89ACE00893D85 /* cameraPermissionsIcon.png in Resources */,
