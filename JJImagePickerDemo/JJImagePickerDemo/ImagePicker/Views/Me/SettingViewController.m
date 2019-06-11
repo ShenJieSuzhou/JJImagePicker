@@ -344,14 +344,21 @@
     }else if(indexPath.section == 5){
         cell.textLabel.text = @"糖果相机服务条款";
     }else if(indexPath.section == 6){
+        cell = nil;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
         cell.accessoryType = UITableViewCellAccessoryNone;
-        CGFloat height = cell.frame.size.height;
-        CGFloat width = self.view.frame.size.width;
-        UILabel *logOutT = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, width, height)];
-        logOutT.textAlignment = NSTextAlignmentCenter;//文字居中
-        [logOutT setTextColor:[UIColor redColor]];
-        logOutT.text = @"退出登录";
-        [cell addSubview:logOutT];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;//文字居中
+        [cell.textLabel setTextColor:[UIColor redColor]];
+        cell.textLabel.text = @"退出登录";
+//        CGFloat height = cell.frame.size.height;
+//        CGFloat width = self.view.frame.size.width;
+//        UILabel *logOutT = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, width, height)];
+//        logOutT.textAlignment = NSTextAlignmentCenter;//文字居中
+//        [logOutT setTextColor:[UIColor redColor]];
+//        logOutT.text = @"退出登录";
+//        [cell addSubview:logOutT];
     }
     
     return cell;
