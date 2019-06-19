@@ -38,7 +38,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -50,25 +50,16 @@
     self.selectedStickers = [[NSMutableArray alloc] init];
     self.selectedWords = [[NSMutableArray alloc] init];
     
-    //背景色去除
-    [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
-    [self.jjTabBarView setHidden:YES];
-    
     //返回按钮
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"edit_close"] forState:UIControlStateNormal];
-    [backBtn setBackgroundColor:[UIColor clearColor]];
-    [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setLeftBtn:backBtn withFrame:CGRectMake(20.0f, 29.0f, 16.0f, 16.0f)];
-    
+    UIImage *img = [[UIImage imageNamed:@"tabbar_close"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(backBtnClick:)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
+
     //完成
-    UIButton *finishedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [finishedBtn setTitle:@"完成" forState:UIControlStateNormal];
-    [finishedBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [finishedBtn.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
-    [finishedBtn setBackgroundColor:[UIColor clearColor]];
-    [finishedBtn addTarget:self action:@selector(finishedBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar setRightBtn:finishedBtn withFrame:CGRectMake(self.view.bounds.size.width - 60.0f, 25.0f, 40.0f, 20.0f)];
+//    UIImage *finishedImg = [[UIImage imageNamed:@"tabbar_close"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishedBtnClick:)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+    
     
     //底部工具栏
     if(!self.editData){
@@ -80,7 +71,7 @@
     self.editToolView.toolArray = [self parseDataToObject:self.editData];
     [self.view addSubview:self.editToolView];
     
-    self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, self.customNaviBar.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT - self.customNaviBar.frame.size.height)];
+    self.layerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - JJ_EDITTOOL_HEIGHT)];
     [self.layerV setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.layerV];
     

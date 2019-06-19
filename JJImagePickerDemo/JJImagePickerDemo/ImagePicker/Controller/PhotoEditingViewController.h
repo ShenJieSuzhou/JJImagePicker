@@ -31,7 +31,7 @@ typedef enum : NSUInteger {
 @end
 
 
-@interface PhotoEditingViewController : CustomPhotoViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate,ScrawlDelegate,WordsBrushDelegate>
+@interface PhotoEditingViewController : UIViewController<PhotoEditingDelegate,TOCropViewControllerDelegate,JJFilterDelegate,JJStickDelegate,JJTagCategoryDelegate,JJWordsDelegate,AdjustmentDelegate,ScrawlDelegate,WordsBrushDelegate>
 
 @property (nonatomic, weak) id<AdjustImageFinishedDelegate> delegate;
 

@@ -69,7 +69,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -77,29 +77,38 @@
     // Do any additional setup after loading the view.
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
-    //标题
-    [self.customNaviBar setTitle:@"新鲜事" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:18.0f]];
+//    [self.customNaviBar setBackgroundColor:[UIColor whiteColor]];
+//    //标题
+//    [self.customNaviBar setTitle:@"新鲜事" textColor:[UIColor blackColor] font:[UIFont systemFontOfSize:18.0f]];
+    
+    [self.navigationItem setTitle:@"新鲜事"];
+    UIImage *closeImg = [[UIImage imageNamed:@"tabbar_close"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:closeImg style:UIBarButtonItemStyleDone target:self action:@selector(OnCancelCLick:)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
+    
+    UIImage *postImg = [[UIImage imageNamed:@"publish"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithImage:postImg style:UIBarButtonItemStyleDone target:self action:@selector(OnPublishCLick:)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
     
     //取消
-    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancel setFrame:CGRectMake(10.0f, 22.0f, 40.0f, 40.0f)];
-    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancel.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
-    [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar addSubview:cancel];
+//    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [cancel setFrame:CGRectMake(10.0f, 22.0f, 40.0f, 40.0f)];
+//    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+//    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [cancel.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+//    [cancel addTarget:self action:@selector(OnCancelCLick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.customNaviBar addSubview:cancel];
     
-    //发表
-    UIButton *publish = [UIButton buttonWithType:UIButtonTypeCustom];
-    [publish setFrame:CGRectMake(self.customNaviBar.frame.size.width - 50.f, 22.0f, 40.0f, 40.0f)];
-    [publish setBackgroundColor:[UIColor clearColor]];
-    [publish setImage:[UIImage imageNamed:@"publish"] forState:UIControlStateNormal];
-    [publish addTarget:self action:@selector(OnPublishCLick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.customNaviBar addSubview:publish];
+//    //发表
+//    UIButton *publish = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [publish setFrame:CGRectMake(self.customNaviBar.frame.size.width - 50.f, 22.0f, 40.0f, 40.0f)];
+//    [publish setBackgroundColor:[UIColor clearColor]];
+//    [publish setImage:[UIImage imageNamed:@"publish"] forState:UIControlStateNormal];
+//    [publish addTarget:self action:@selector(OnPublishCLick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.customNaviBar addSubview:publish];
     
     //不显示
-    [self.jjTabBarView setHidden:YES];
+//    [self.jjTabBarView setHidden:YES];
     
     self.tuchuagArray = [[NSMutableArray alloc] init];
     [self.view addSubview:self.pScrollView];
@@ -161,7 +170,7 @@
 
 - (JJPublicText *)publicText{
     if(!_publicText){
-        _publicText = [[JJPublicText alloc] initWithFrame:CGRectMake(10, self.customNaviBar.bounds.size.height, PUBLISH_VIEW_WIDTH - 20.0f, PUBLISH_TEXT_HEIGHT)];
+        _publicText = [[JJPublicText alloc] initWithFrame:CGRectMake(10, 10, PUBLISH_VIEW_WIDTH - 20.0f, PUBLISH_TEXT_HEIGHT)];
         _publicText.delegate = self;
     }
     return _publicText;

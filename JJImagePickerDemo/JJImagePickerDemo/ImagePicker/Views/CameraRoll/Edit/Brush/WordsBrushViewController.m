@@ -21,7 +21,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -29,7 +29,14 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor blackColor]];
     
-    [self.view addSubview:self.cusNavbar];
+    UIImage *closeImg = [[UIImage imageNamed:@"tabbar_close"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:closeImg style:UIBarButtonItemStyleDone target:self action:@selector(OnCancelCLick:)];
+    [self.navigationItem setLeftBarButtonItem:leftItem];
+    
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(OnConfirmlCLick:)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+    
+//    [self.view addSubview:self.cusNavbar];
     [self.view addSubview:self.textEditView];
     [self.view addSubview:self.brushPaneView];
     

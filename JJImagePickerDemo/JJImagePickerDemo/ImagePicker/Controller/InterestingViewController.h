@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomPhotoViewController.h"
 
-@interface InterestingViewController : CustomPhotoViewController
+@interface InterestingViewController : UIViewController
 
 - (void)setPublishSelectedImages:(NSMutableArray *)images;
 
