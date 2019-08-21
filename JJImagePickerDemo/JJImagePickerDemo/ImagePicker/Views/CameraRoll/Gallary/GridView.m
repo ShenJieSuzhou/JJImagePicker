@@ -65,7 +65,7 @@
     
     [self.imagesAssetArray removeAllObjects];
 
-    //加载照片比较耗时，所以start loading
+    // 加载照片比较耗时，所以start loading
     [JJImagePickerHelper startLoadingAnimation:self];
     __weak typeof(self) weakSelf = self;
     //遍历相册的事情，就交由子线程去完成吧
@@ -74,7 +74,7 @@
             if(result){
                 [weakSelf.imagesAssetArray addObject:result];
             }else{
-                //需要对界面进行操作，放入主线程执行
+                // 需要对界面进行操作，放入主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
                     __strong typeof(weakSelf) strongSelf = weakSelf;
                     [strongSelf.photoCollectionView reloadData];

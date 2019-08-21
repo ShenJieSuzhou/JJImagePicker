@@ -309,4 +309,15 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
 + (void)JJ_ReleaseFromBlackList:(NSString *)url token:(NSString *)token userid:(NSString *)userid defendant:(NSString *)defendant callback:(requestCallBack) block;
 
 
+/**
+ 拉取评论
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param photoId 作品ID
+ @param block 回调
+ */
++ (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(int)pageIndex pageSize:(int)size callback:(requestCallBack) block;
+
 @end

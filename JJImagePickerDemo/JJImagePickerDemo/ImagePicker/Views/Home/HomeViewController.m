@@ -152,7 +152,7 @@ static int jjPageSize = 10;
 // 加载更多首页信息
 - (void)loadMoreHomedata:(int) page size:(int)pageSize{
     __weak typeof(self) weakSelf = self;
-    [HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
+[HttpRequestUtil JJ_HomePageRquestData:HOT_DISCOVERY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID pageIndex:[NSString stringWithFormat:@"%d", page] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [self.homePhotoView.photosCollection.mj_header endRefreshing];
             [self.homePhotoView.photosCollection.mj_footer endRefreshing];

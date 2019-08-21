@@ -61,7 +61,7 @@
 
 #define QUERY_BLACKLIST_REQUEST                         @"http://www.candyart.top/admin/queryBlacklist"
 
-
+#define QUERY_COMMENT_REQUEST                           @"http://www.candyart.top/admin/api/getComments"
 
 
 
@@ -117,7 +117,7 @@
 //
 //#define UPDATE_MY_PASSWORD                              @"http://172.16.10.113:8080/setting/api/updatePwd"
 
-
+//#define QUERY_COMMENT_REQUEST                           @"http://172.16.10.113:8080/admin/api/getComments"
 
 
 

@@ -25,9 +25,11 @@
 #import <LEEAlert/LEEAlert.h>
 #import "SelectedListView.h"
 #import "SelectedListModel.h"
+#import "CommentView.h"
+#import "JJCommentDetailController.h"
 
 
-@interface HomeDetailsViewController ()<TipoffDelegate>
+@interface HomeDetailsViewController ()<TipoffDelegate, CommentViewDelegate>
 @property (strong, nonatomic) UIButton *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UICollectionView *workView;
@@ -45,7 +47,7 @@
 @property (assign) BOOL isEven;
 @property (strong, nonatomic) NSIndexPath *selectedIndex;
 @property (assign) int currentLikes;
-
+@property(nonatomic, strong) CommentView *commentView;
 
 // 大图模式
 @property (strong, nonatomic) CustomNewsBanner *completeWorkView;
@@ -248,6 +250,10 @@
     [self.likeNum setText:[NSString stringWithFormat:@"%d", self.currentLikes]];
     [self.worksInfoView addSubview:self.likeNum];
     
+    // 评论
+    [self.view addSubview:self.commentView];
+    
+    // 布局调整
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
         make.left.top.mas_equalTo(self.worksInfoView).offset(10.0f);
@@ -311,7 +317,28 @@
         make.right.equalTo(self.workView);
         make.centerY.equalTo(self.likeBtn);
     }];
+    
+    [self.commentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(self.view.frame.size.width, self.view.frame.size.height));
+        make.left.equalTo(self.worksInfoView);
+        make.top.equalTo(self.timeLine.mas_bottom).offset(20.0f);
+    }];
 }
+
+/*
+ * 评论试图
+ */
+- (CommentView *)commentView{
+    if(!_commentView){
+        _commentView = [[CommentView alloc] initWithFrame:CGRectZero];
+        _commentView.delegate = self;
+//        CGFloat offset = getNavAndStatusHight;
+//        [_commentView setFrame:CGRectMake(0, offset, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - offset)];
+    }
+    
+    return _commentView;
+}
+
 
 - (void)goToUserZone:(UIGestureRecognizer *)sender{
     OthersMainPageViewController *otherZoneView = [OthersMainPageViewController new];
@@ -553,6 +580,13 @@
         return CGRectGetWidth([[UIScreen mainScreen] bounds]);
     })
     .LeeShow();
+}
+
+#pragma -mark CommentViewDelegate
+- (void)jumpToCommemtDetailView:(JJTopicFrame *)topicFrame{
+    JJCommentDetailController *detailComment = [JJCommentDetailController new];
+    detailComment.topicFrame = topicFrame;
+    [self.navigationController pushViewController:detailComment animated:YES];
 }
 
 - (void)clickPullBlackCallBack{
