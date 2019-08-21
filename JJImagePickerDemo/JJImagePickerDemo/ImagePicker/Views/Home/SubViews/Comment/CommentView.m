@@ -26,6 +26,7 @@
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
 @synthesize currentPageInfo = _currentPageInfo;
+@synthesize postId = _postId;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -83,7 +84,7 @@
 - (void)loadComments:(int)pageIndex pageSize:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-    [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:pageIndex pageSize:pageSize callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
@@ -159,7 +160,7 @@
 - (void)loadMoreComments:(int)pageIndex pageSize:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-     [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:pageIndex pageSize:pageSize callback:^(NSDictionary *data, NSError *error) {
+     [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];

@@ -508,7 +508,7 @@
     }];
 }
 
-+ (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(int)pageIndex pageSize:(int)size callback:(requestCallBack) block{
++ (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block{
     NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
     if (NotReachable == netStatus){
         [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
@@ -516,7 +516,11 @@
         return;
     }
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token", userid, @"user_id", photoId, @"photoId", pageIndex, @"pageIndex", size, @"pageSize", nil];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   photoId, @"photoId",
+                                   pageIndex, @"pageIndex",
+                                   size, @"pageSize", nil];
     
     [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
         block(dict, nil);

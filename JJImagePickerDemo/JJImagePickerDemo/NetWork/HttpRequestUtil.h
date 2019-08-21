@@ -318,6 +318,6 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  @param photoId 作品ID
  @param block 回调
  */
-+ (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(int)pageIndex pageSize:(int)size callback:(requestCallBack) block;
++ (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
 
 @end

@@ -332,6 +332,7 @@
     if(!_commentView){
         _commentView = [[CommentView alloc] initWithFrame:CGRectZero];
         _commentView.delegate = self;
+        [_commentView setPostId:_photoWork.photoId];
 //        CGFloat offset = getNavAndStatusHight;
 //        [_commentView setFrame:CGRectMake(0, offset, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - offset)];
     }
