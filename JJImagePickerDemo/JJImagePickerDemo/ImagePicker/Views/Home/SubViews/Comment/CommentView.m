@@ -31,7 +31,7 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-        [self commonInitlization];
+        [self setBackgroundColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -48,18 +48,15 @@
     [self addSubview:self.commentContainerV];
     // 放到前面来
     [self.commentContainerV bringSubviewToFront:self.commentTableView];
-    
-    // 加载数据
-    [self loadComments:0 pageSize:10];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    [self.decorateHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width, 25.0f));
-    }];
+//    [self.decorateHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.right.equalTo(self);
+//        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width, 25.0f));
+//    }];
     
     [self.commentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.decorateHeader.mas_bottom);
@@ -74,6 +71,19 @@
     }];
 }
 
+/*
+ * 设置header视图
+ */
+- (void)setCommentDecorateHeader:(JJDetailsInfoView *)view{
+    _decorateHeader = view;
+}
+
+/*
+ * 加载评论
+ */
+- (void)loadComments{
+    [self loadComments:0 pageSize:10];
+}
 
 /**
  首次加载评论

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JJCommentDecorateHeader : UIView
 
+@property (nonatomic, strong) UIView *picView;
+
 @property (nonatomic, strong) YYLabel *titleLabel;
 
 @property (nonatomic, strong) UIImageView *cubeView;

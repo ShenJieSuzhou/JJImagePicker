@@ -22,6 +22,7 @@
 #import "JJCommentInputView.h"
 #import "JJCommentContainerView.h"
 #import "JJPageInfo.h"
+#import "JJDetailsInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate>
 
-@property (nonatomic, strong) JJCommentDecorateHeader *decorateHeader;
+@property (nonatomic, strong) JJDetailsInfoView *decorateHeader;
 
 @property (nonatomic, strong) UITableView *commentTableView;
 
@@ -50,6 +51,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<CommentViewDelegate> delegate;
 
 @property (nonatomic, strong) JJPageInfo *currentPageInfo;
+
+
+- (void)commonInitlization;
+
+/*
+ * 加载评论
+ */
+- (void)loadComments;
 
 @end
 

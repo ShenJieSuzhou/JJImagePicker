@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 #import "CustomPhotoViewController.h"
-#import "CustomNewsBanner.h"
 #import "HomeCubeModel.h"
-#import "reportView.h"
+#import "CommentView.h"
+#import "JJDetailsInfoView.h"
+#import "OthersMainPageViewController.h"
 
-@interface HomeDetailsViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate, reportViewDelegate>
+@interface HomeDetailsViewController : UIViewController<CommentViewDelegate, JJDetailsInfoViewDelegate>
+
+@property (strong, nonatomic) CommentView *commentView;
+@property (strong, nonatomic) HomeCubeModel *photoWork;
+@property (strong, nonatomic) JJDetailsInfoView *detailsInfoView;
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath;
 

@@ -13,6 +13,7 @@
 @implementation JJCommentDecorateHeader
 @synthesize titleLabel = _titleLabel;
 @synthesize cubeView = _cubeView;
+@synthesize picView = _picView;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -24,6 +25,9 @@
 
 - (void)commonInitlization{
     [self setBackgroundColor:[UIColor whiteColor]];
+    
+    self.picView = [[UIView alloc] init];
+    [self addSubview:self.picView];
     
     self.titleLabel = [[YYLabel alloc] init];
     self.titleLabel.text = @"观点";
@@ -40,17 +44,26 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
+    [self.picView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self);
+        make.left.mas_equalTo(self);
+        make.right.mas_equalTo(self);
+        make.bottom.mas_equalTo(self).offset(50.0f);
+    }];
+    
     [self.cubeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(self);
+        make.top.equalTo(self.picView.mas_bottom).offset(10.0f);
+        make.bottom.mas_equalTo(self);
         make.left.mas_equalTo(self).offset(10);
-        make.height.mas_equalTo(self);
+        make.height.mas_equalTo(20.0f);
         make.width.mas_equalTo(5);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.picView.mas_bottom).offset(10.0f);
         make.left.mas_equalTo(self).offset(20);
+        make.bottom.mas_equalTo(self);
         make.width.mas_equalTo(100);
-        make.centerY.mas_equalTo(self);
     }];
 }
 
