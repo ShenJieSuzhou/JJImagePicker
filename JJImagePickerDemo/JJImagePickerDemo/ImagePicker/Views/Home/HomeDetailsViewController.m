@@ -9,7 +9,6 @@
 #import "HomeDetailsViewController.h"
 
 
-
 @interface HomeDetailsViewController ()
 @end
 
@@ -17,7 +16,6 @@
 @synthesize commentView = _commentView;
 @synthesize photoWork = _photoWork;
 @synthesize selectedIndex = _selectedIndex;
-@synthesize detailsInfoView = _detailsInfoView;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -33,15 +31,9 @@
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStyleDone target:self action:@selector(clickCancelBtn:)];
     [self.navigationItem setLeftBarButtonItem:leftItem];
     
-    // 作品详情
-    [self.detailsInfoView setWorksInfo:self.photoWork index:self.selectedIndex];
-    [self.detailsInfoView commonInitlization];
-    
-    [self.commentView setDecorateHeader:self.detailsInfoView];
-    [self.commentView commonInitlization];
     // 评论
     [self.view addSubview:self.commentView];
-    [self.commentView loadComments];
+    [self.commentView show];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -52,7 +44,6 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-
 }
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath{
@@ -73,21 +64,14 @@
  */
 - (CommentView *)commentView{
     if(!_commentView){
-        _commentView = [[CommentView alloc] initWithFrame:CGRectZero];
+        _commentView = [[CommentView alloc] initWithFrame:self.view.bounds];
         _commentView.delegate = self;
-        [_commentView setPostId:_photoWork.photoId];
+        _commentView.cubeModel = _photoWork;
     }
     
     return _commentView;
 }
 
-- (JJDetailsInfoView *)detailsInfoView{
-    if(!_detailsInfoView){
-        _detailsInfoView = [[JJDetailsInfoView alloc] initWithFrame:CGRectZero];
-    }
-    
-    return _detailsInfoView;
-}
 
 #pragma -mark CommentViewDelegate
 - (void)jumpToCommemtDetailView:(JJTopicFrame *)topicFrame{

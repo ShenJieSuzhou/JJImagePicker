@@ -11,6 +11,7 @@
 @implementation JJDetailsInfoHeaderView
 @synthesize delegate = _delegate;
 @synthesize height = _height;
+@synthesize photoWork = _photoWork;
 
 + (instancetype)headerViewWithTableView:(UITableView *)tableView{
     static NSString *ID = @"JJDetailsInfoHeaderView";
@@ -23,152 +24,85 @@
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithReuseIdentifier:reuseIdentifier]){
-        // 初始化
-        [self initPhotoUrl];
-        
         // 创建控件
         [self setupUI];
-        
-        // 布局子控件
-        [self makeSubViewsConstraints];
     }
     
     return self;
 }
 
-- (void)makeSubViewsConstraints{
+- (void)setWorkFrame:(JJWorksFrame *)workFrame{
+    _workFrame = workFrame;
+    
+    _photoWork = _workFrame.workModel;
+    // 头像
+    [self.iconView setFrame:workFrame.avatarFrame];
+    NSString *avatar = _photoWork.iconUrl;
+    [self loadIconAvater:avatar];
+    
+    // 昵称
+    [self.nameLabel setFrame:workFrame.nicknameFrame];
+    [self.nameLabel setText:_photoWork.name];
+    
+    // 关注
+    [self.focusBtn setFrame:workFrame.focusFrame];
+    
+    // 更多
+    [self.moreBtn setFrame:workFrame.moreFrame];
+    
+    // 作品
+    [self.workView setFrame:workFrame.worksFrame];
+    
+    // 描述
+    [self.worksDesc setFrame:workFrame.textFrame];
+    NSString *work = [self.photoWork.work stringByRemovingPercentEncoding];
+    //描述
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:work];
+    
+    text.yy_font = [UIFont systemFontOfSize:15.0f];
+    text.yy_color = [UIColor blackColor];
+    text.yy_lineSpacing = 2;
+    
     CGFloat screenWidth = self.frame.size.width;
-//    CGFloat screenHeight = self.frame.size.height;
+    CGSize size = CGSizeMake(screenWidth - 30, CGFLOAT_MAX);
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
+    self.worksDesc.textLayout = layout;
+    self.worksDesc.attributedText = text;
+    [self.worksDesc setFrame:layout.textBoundingRect];
     
-    // 布局调整
-    [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
-        make.left.top.mas_equalTo(self.contentView).offset(10.0f);
-    }];
+    // 时间
+    [self.timeLine setFrame:workFrame.createTimeFrame];
+    [self.timeLine setText:self.photoWork.postTime];
     
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(150.0f, 30.0f));
-        make.left.equalTo(self.iconView.mas_right).offset(10.0f);
-        make.centerY.mas_equalTo(self.iconView);
-    }];
+    // 点赞
+    [self.likeBtn setFrame:workFrame.likeFrame];
+    if(self.photoWork.hasLiked){
+        [self.likeBtn select];
+    }else{
+        [self.likeBtn deselect];
+    }
     
-    [self.focusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50.0f, 25.0f));
-        make.centerY.mas_equalTo(self.iconView);
-        make.left.mas_equalTo(self.contentView).offset(self.frame.size.width - 110.0f);
-    }];
+    // 点赞数
+    [self.likeNum setFrame:workFrame.likeNumFrame];
+    self.currentLikes = self.photoWork.likeNum;
+    [self.likeNum setText:[NSString stringWithFormat:@"%d", self.currentLikes]];
     
-    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
-        make.centerY.mas_equalTo(self.iconView);
-        make.left.mas_equalTo(self.contentView).offset(self.frame.size.width - 40.0f);
-    }];
+    if([_photoWork.userid isEqualToString:[JJTokenManager shareInstance].getUserID]){
+        [self.moreBtn setHidden:YES];
+    }
     
-    [self.workView mas_makeConstraints:^(MASConstraintMaker *make) {
-        CGFloat workViewHeight = 0.0f;
-        if(self.isEven){
-            workViewHeight = (screenWidth - 10.0f) / self.albumColums * self.albumRows;
-        }else{
-            CGFloat firstCellHeight = (screenWidth - 10.0f)*9/16;
-            workViewHeight = (screenWidth - 10.0f) / self.albumColums * self.albumRows + firstCellHeight;
-        }
-        
-        make.size.mas_equalTo(CGSizeMake(screenWidth - 10.0f, workViewHeight));
-        make.left.equalTo(self.contentView).offset(5.0f);
-        make.right.equalTo(self.contentView).offset(-5.0f);
-        make.top.equalTo(self.iconView.mas_bottom).offset(10.0f);
-    }];
+    // 是否是自己
+    if(self.photoWork.isYourWork){
+        [_focusBtn setHidden:YES];
+    }else{
+        [_focusBtn setHidden:NO];
+    }
     
-    [self.worksDesc mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(self.worksDesc.textLayout.textBoundingSize.width, self.worksDesc.textLayout.textBoundingSize.height));
-        make.left.equalTo(self.contentView).offset(15.0f);
-        make.top.equalTo(self.workView.mas_bottom).offset(10.0f);
-    }];
-    
-    
-    [self.timeLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(150.0f, 20.0f));
-        make.left.equalTo(self.contentView).offset(15.0f);
-        make.top.equalTo(self.worksDesc.mas_bottom).offset(20.0f);
-    }];
-    
-    [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
-        make.centerY.mas_equalTo(self.timeLine);
-        make.right.mas_equalTo(self.workView).offset(-50.0f);
-        make.bottom.equalTo(self.contentView).offset(-50.0f);
-    }];
-    
-    [self.likeNum mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50.0f, 20.0f));
-        make.right.equalTo(self.workView);
-        make.centerY.equalTo(self.likeBtn);
-    }];
-    
-    self.height = self.iconView.jj_height + self.workView.jj_height + self.worksDesc.jj_height + self.timeLine.jj_height;
-    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width, self.height));
-    }];
-}
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    
-}
-
-- (void)initPhotoUrl{
-    _photosArray = [[NSMutableArray alloc] initWithArray:_photoWork.path];
-    //计算几行几列
-    NSInteger photoCount = [_photosArray count];
-    
-    switch (photoCount) {
-        case 1:
-            _albumRows = 1;
-            _albumColums = 1;
-            _isEven = NO;
-            break;
-        case 2:
-            _albumRows = 1;
-            _albumColums = 2;
-            _isEven = YES;
-            break;
-        case 3:
-            _albumRows = 1;
-            _albumColums = 2;
-            _isEven = NO;
-            break;
-        case 4:
-            _albumRows = 2;
-            _albumColums = 2;
-            _isEven = YES;
-            break;
-        case 5:
-            _albumRows = 2;
-            _albumColums = 2;
-            _isEven = NO;
-            break;
-        case 6:
-            _albumRows = 2;
-            _albumColums = 3;
-            _isEven = YES;
-            break;
-        case 7:
-            _albumRows = 2;
-            _albumColums = 3;
-            _isEven = NO;
-            break;
-        case 8:
-            _albumRows = 2;
-            _albumColums = 4;
-            _isEven = YES;
-            break;
-        case 9:
-            _albumRows = 2;
-            _albumColums = 4;
-            _isEven = NO;
-            break;
-        default:
-            break;
+    // 是否关注
+    if(self.photoWork.hasFocused){
+        self.focusBtn.selected = YES;
+    }else{
+        self.focusBtn.selected = NO;
     }
 }
 
@@ -181,8 +115,6 @@
     [self.iconView setBackgroundColor:[UIColor clearColor]];
     [self.iconView.layer setCornerRadius:20.0f];
     [self.iconView.layer setMasksToBounds:YES];
-    NSString *avatar = self.photoWork.iconUrl;
-    [self loadIconAvater:avatar];
     [self.contentView addSubview:self.iconView];
     [self.iconView addTarget:self action:@selector(goToUserZone:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -191,7 +123,6 @@
     [self.nameLabel setTextAlignment:NSTextAlignmentLeft];
     [self.nameLabel setTextColor:[UIColor blackColor]];
     [self.nameLabel setFont:[UIFont systemFontOfSize:16.0f]];
-    [self.nameLabel setText:self.photoWork.name];
     [self.contentView addSubview:self.nameLabel];
     
     //关注
@@ -214,42 +145,10 @@
     [self.moreBtn addTarget:self action:@selector(clickMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.moreBtn];
     
-    if([self.photoWork.userid isEqualToString:[JJTokenManager shareInstance].getUserID]){
-        [self.moreBtn setHidden:YES];
-    }
-    
-    // 是否是自己
-    if(self.photoWork.isYourWork){
-        [_focusBtn setHidden:YES];
-    }else{
-        [_focusBtn setHidden:NO];
-    }
-    
-    // 是否关注
-    if(self.photoWork.hasFocused){
-        self.focusBtn.selected = YES;
-    }else{
-        self.focusBtn.selected = NO;
-    }
-    
     //图片
     [self.contentView addSubview:self.workView];
     
-    NSString *work = [self.photoWork.work stringByRemovingPercentEncoding];
-    //描述
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:work];
-    
-    text.yy_font = [UIFont systemFontOfSize:15.0f];
-    text.yy_color = [UIColor blackColor];
-    text.yy_lineSpacing = 2;
-    
-    CGFloat screenWidth = self.frame.size.width;
-    CGSize size = CGSizeMake(screenWidth - 30, CGFLOAT_MAX);
-    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
     self.worksDesc = [YYLabel new];
-    self.worksDesc.textLayout = layout;
-    self.worksDesc.attributedText = text;
-    [self.worksDesc setFrame:layout.textBoundingRect];
     [self.contentView addSubview:self.worksDesc];
     
     //时间
@@ -257,7 +156,6 @@
     [self.timeLine setTextAlignment:NSTextAlignmentLeft];
     [self.timeLine setTextColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1]];
     [self.timeLine setFont:[UIFont systemFontOfSize:12.0f]];
-    [self.timeLine setText:self.photoWork.postTime];
     [self.contentView addSubview:self.timeLine];
     
     //点赞
@@ -271,19 +169,11 @@
     [self.likeBtn addTarget:self action:@selector(clickLikeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.likeBtn];
     
-    if(self.photoWork.hasLiked){
-        [self.likeBtn select];
-    }else{
-        [self.likeBtn deselect];
-    }
-    
     //点赞数
-    self.currentLikes = self.photoWork.likeNum;
     self.likeNum = [[UILabel alloc] init];
     [self.likeNum setTextAlignment:NSTextAlignmentCenter];
     [self.likeNum setTextColor:[UIColor colorWithRed:125/255.0f green:125/255.0f blue:125/255.0f alpha:1]];
     [self.likeNum setFont:[UIFont systemFontOfSize:13.0f]];
-    [self.likeNum setText:[NSString stringWithFormat:@"%d", self.currentLikes]];
     [self.contentView addSubview:self.likeNum];
 }
 
@@ -322,15 +212,16 @@
 }
 
 
-- (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath{
-    if(!detailInfo){
-        return;
-    }
-    
-    self.photoWork = detailInfo;
-    self.selectedIndex = indexPath;
-    [self.workView reloadData];
-}
+//- (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath{
+//    if(!detailInfo){
+//        return;
+//    }
+//    
+//    self.photoWork = detailInfo;
+//    self.selectedIndex = indexPath;
+//    [self.workView reloadData];
+//    
+//}
 
 -(UICollectionView *)workView{
     if (!_workView) {

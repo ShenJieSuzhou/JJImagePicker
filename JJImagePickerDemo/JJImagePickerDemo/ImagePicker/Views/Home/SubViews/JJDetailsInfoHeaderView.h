@@ -30,6 +30,7 @@
 #import "SelectedListModel.h"
 #import "JJCommentDetailController.h"
 #import "UIView+JJFrame.h"
+#import "JJWorksFrame.h"
 
 @protocol JJDetailsInfoViewDelegate <NSObject>
 
@@ -65,6 +66,8 @@
 // 容器
 @property (strong, nonatomic) HomeCubeModel *photoWork;
 
+@property (strong, nonatomic) JJWorksFrame *workFrame;
+
 @property (nonatomic, weak) id<JJDetailsInfoViewDelegate> delegate;
 
 // 大图模式
@@ -73,8 +76,6 @@
 @property (assign) CGFloat height;
 
 + (instancetype)headerViewWithTableView:(UITableView *)tableView;
-
-- (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath;
 
 
 @end

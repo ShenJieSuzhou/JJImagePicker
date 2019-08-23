@@ -9,7 +9,6 @@
 #import "CommentView.h"
 #import "NSDate+Extension.h"
 #import <MJRefresh/MJRefresh.h>
-#import "JJCommentDetailController.h"
 #import "JJTopicManager.h"
 #import "HttpRequestUtil.h"
 #import <SVProgressHUD.h>
@@ -20,13 +19,12 @@
 @implementation CommentView
 @synthesize  commentTableView = _commentTableView;
 @synthesize selecteTopicFrame = _selecteTopicFrame;
-@synthesize decorateHeader = _decorateHeader;
 @synthesize commentInputView = _commentInputView;
 @synthesize commentContainerV = _commentContainerV;
 @synthesize dataSource = _dataSource;
 @synthesize delegate = _delegate;
 @synthesize currentPageInfo = _currentPageInfo;
-@synthesize postId = _postId;
+@synthesize cubeModel = _cubeModel;
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -41,25 +39,21 @@
     return [self initWithFrame:CGRectZero];
 }
 
-- (void)commonInitlization{
-    self.dataSource = [NSMutableArray new];
-    [self addSubview:self.decorateHeader];
-    [self addSubview:self.commentTableView];
-    [self addSubview:self.commentContainerV];
-    // 放到前面来
-    [self.commentContainerV bringSubviewToFront:self.commentTableView];
+- (void)show{
+    [self commonInitlization];
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
+- (void)commonInitlization{
+    self.dataSource = [NSMutableArray new];
+
+    [self addSubview:self.commentTableView];
+    [self addSubview:self.commentContainerV];
     
-//    [self.decorateHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.equalTo(self);
-//        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width, 25.0f));
-//    }];
+    // 放到前面来
+    [self.commentContainerV bringSubviewToFront:self.commentTableView];
     
     [self.commentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.decorateHeader.mas_bottom);
+        make.top.equalTo(self);
         make.left.right.equalTo(self);
         make.bottom.equalTo(self);
     }];
@@ -69,20 +63,16 @@
         make.bottom.mas_equalTo(self.mas_bottom);
         make.height.mas_equalTo(50.0f);
     }];
-}
-
-/*
- * 设置header视图
- */
-- (void)setCommentDecorateHeader:(JJDetailsInfoView *)view{
-    _decorateHeader = view;
-}
-
-/*
- * 加载评论
- */
-- (void)loadComments{
+    
+    // 请求数据
+    JJWorksFrame *workFrame = [[JJWorksFrame alloc] init];
+    [workFrame setWorkModel:_cubeModel];
+    [self.dataSource insertObject:workFrame atIndex:0];
     [self loadComments:0 pageSize:10];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
 }
 
 /**
@@ -94,7 +84,7 @@
 - (void)loadComments:(int)pageIndex pageSize:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-    [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
+    [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.cubeModel.photoId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
@@ -170,7 +160,7 @@
 - (void)loadMoreComments:(int)pageIndex pageSize:(int)pageSize{
     __weak typeof(self) weakSelf = self;
     [SVProgressHUD show];
-     [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.postId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
+     [HttpRequestUtil JJ_PullComments:QUERY_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:self.cubeModel.photoId pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", pageSize] callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
@@ -311,13 +301,6 @@
     return _commentTableView;
 }
 
-- (JJCommentDecorateHeader *)decorateHeader{
-    if(!_decorateHeader){
-        _decorateHeader = [[JJCommentDecorateHeader alloc] initWithFrame:CGRectZero];
-    }
-    return _decorateHeader;
-}
-
 - (JJCommentInputView *)commentInputView{
     if(!_commentInputView){
         _commentInputView = [[JJCommentInputView alloc] initWithFrame:CGRectZero];
@@ -429,6 +412,9 @@
         JJTopicFrame *topicFrame = (JJTopicFrame *)model;
         JJCommentFrame *commentFrame = topicFrame.commentFrames[indexPath.row];
         return commentFrame.cellHeight;
+    }else if([model isKindOfClass:[JJWorksFrame class]]){
+        JJWorksFrame *workFrame = (JJWorksFrame *)model;
+        return workFrame.height;
     }
     
     return .1f;
@@ -457,11 +443,24 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    JJTopicHeaderView *headerView = [JJTopicHeaderView headerViewWithTableView:tableView];
-    JJTopicFrame *topicFrame = self.dataSource[section];
-    headerView.topicFrame = topicFrame;
-    headerView.delegate = self;
-    return headerView;
+    id model = self.dataSource[section];
+    
+    if([model isKindOfClass:[JJTopicFrame class]]){
+        JJTopicHeaderView *headerView = [JJTopicHeaderView headerViewWithTableView:tableView];
+        JJTopicFrame *topicFrame = (JJTopicFrame *)model;
+        headerView.topicFrame = topicFrame;
+        headerView.delegate = self;
+        return headerView;
+    }else if([model isKindOfClass:[JJWorksFrame class]]){
+        JJWorksFrame *workFrame = (JJWorksFrame *)model;
+        JJDetailsInfoHeaderView *headerView = [JJDetailsInfoHeaderView headerViewWithTableView:tableView];
+        headerView.workFrame = workFrame;
+        headerView.delegate = nil;
+        
+        return headerView;
+    }
+    
+    return nil;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

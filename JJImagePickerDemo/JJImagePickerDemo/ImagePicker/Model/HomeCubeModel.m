@@ -7,6 +7,9 @@
 //
 
 #import "HomeCubeModel.h"
+#import <YYText.h>
+#import "JJCommentConstant.h"
+
 
 @implementation HomeCubeModel
 @synthesize hasFocused = _hasFocused;
@@ -29,6 +32,17 @@
         self.hasFocused = hasFocused;
     }
     return self;
+}
+
+- (NSAttributedString *)attributedText
+{
+    if (self.work == nil) return nil;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.work];
+    attributedString.yy_font = JJFont(JJPxConvertPt(15.0f), NO);
+    attributedString.yy_color = [UIColor blackColor];
+    attributedString.yy_lineSpacing = 10.0f;
+    return attributedString;
 }
 
 @end

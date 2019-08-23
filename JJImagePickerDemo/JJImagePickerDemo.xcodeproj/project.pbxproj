@@ -70,7 +70,7 @@
 		E50B3059230CDDF000F63471 /* JJCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B303B230CDDF000F63471 /* JJCommentCell.m */; };
 		E50B305A230CDDF000F63471 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B303F230CDDF000F63471 /* CommentView.m */; };
 		E50B305D230EAFC100F63471 /* JJDetailsInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B305C230EAFC100F63471 /* JJDetailsInfoHeaderView.m */; };
-		E50B3060230EC43D00F63471 /* JJWorksItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B305F230EC43D00F63471 /* JJWorksItem.m */; };
+		E50B3060230EC43D00F63471 /* JJWorksFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B305F230EC43D00F63471 /* JJWorksFrame.m */; };
 		E50B411322421ADB00797DC2 /* personal_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410B22421ADA00797DC2 /* personal_1.jpg */; };
 		E50B411422421ADB00797DC2 /* personal_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410C22421ADB00797DC2 /* personal_7.jpg */; };
 		E50B411522421ADB00797DC2 /* personal_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E50B410D22421ADB00797DC2 /* personal_8.jpg */; };
@@ -423,8 +423,8 @@
 		E50B3041230CDDF000F63471 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		E50B305B230EAFC100F63471 /* JJDetailsInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDetailsInfoHeaderView.h; sourceTree = "<group>"; };
 		E50B305C230EAFC100F63471 /* JJDetailsInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDetailsInfoHeaderView.m; sourceTree = "<group>"; };
-		E50B305E230EC43D00F63471 /* JJWorksItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJWorksItem.h; sourceTree = "<group>"; };
-		E50B305F230EC43D00F63471 /* JJWorksItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJWorksItem.m; sourceTree = "<group>"; };
+		E50B305E230EC43D00F63471 /* JJWorksFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJWorksFrame.h; sourceTree = "<group>"; };
+		E50B305F230EC43D00F63471 /* JJWorksFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJWorksFrame.m; sourceTree = "<group>"; };
 		E50B410B22421ADA00797DC2 /* personal_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_1.jpg; sourceTree = "<group>"; };
 		E50B410C22421ADB00797DC2 /* personal_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_7.jpg; sourceTree = "<group>"; };
 		E50B410D22421ADB00797DC2 /* personal_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = personal_8.jpg; sourceTree = "<group>"; };
@@ -1218,8 +1218,8 @@
 				E50B4135224C7A0600797DC2 /* FansModel.m */,
 				E50B413F22537A9900797DC2 /* JJPageInfo.h */,
 				E50B414022537A9900797DC2 /* JJPageInfo.m */,
-				E50B305E230EC43D00F63471 /* JJWorksItem.h */,
-				E50B305F230EC43D00F63471 /* JJWorksItem.m */,
+				E50B305E230EC43D00F63471 /* JJWorksFrame.h */,
+				E50B305F230EC43D00F63471 /* JJWorksFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2024,7 +2024,7 @@
 				E50B304C230CDDF000F63471 /* NSString+JJSize.m in Sources */,
 				E547D15B20F7304D00893D85 /* CameraSessionManager.m in Sources */,
 				449A1F7E2169EF9D0007A91A /* JJTagCategoryView.m in Sources */,
-				E50B3060230EC43D00F63471 /* JJWorksItem.m in Sources */,
+				E50B3060230EC43D00F63471 /* JJWorksFrame.m in Sources */,
 				4462607420CD00BA0004C579 /* JJPhoto.m in Sources */,
 				E5506BEF212FB7D80077E62B /* JJPublishPreviewCell.m in Sources */,
 				44A3408921908574001AF358 /* UITextView+Placeholder.m in Sources */,

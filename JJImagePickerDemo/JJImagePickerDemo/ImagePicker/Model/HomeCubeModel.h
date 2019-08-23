@@ -34,5 +34,8 @@
 
 - (instancetype)initWithPath:(NSArray *)path photoId:(NSString *)photoId userid:(NSString *)userid work:(NSString *)work name:(NSString *)name like:(int)likes avater:(NSString *)avater time:(NSString *)postTime hasLiked:(BOOL)hasLiked hasFocused:(BOOL)hasFocused isYourWork:(BOOL)isYourWork;
 
+/** 富文本 */
+- (NSAttributedString *)attributedText;
+
 @end
 

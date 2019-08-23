@@ -18,11 +18,11 @@
 #import "JJUser.h"
 #import "JJTopicHeaderView.h"
 #import "JJTopicFooterView.h"
-#import "JJCommentDecorateHeader.h"
+#import "JJDetailsInfoHeaderView.h"
 #import "JJCommentInputView.h"
 #import "JJCommentContainerView.h"
 #import "JJPageInfo.h"
-#import "JJDetailsInfoView.h"
+#import "JJWorksFrame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,15 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate>
 
-@property (nonatomic, strong) JJDetailsInfoView *decorateHeader;
+@property (nonatomic, strong) JJDetailsInfoHeaderView *detailInfoHeader;
 
 @property (nonatomic, strong) UITableView *commentTableView;
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (nonatomic, strong) JJTopicFrame *selecteTopicFrame;
-
-@property (nonatomic, copy) NSString *postId;
 // 评论框
 @property (nonatomic, strong) JJCommentInputView *commentInputView;
 
@@ -52,13 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) JJPageInfo *currentPageInfo;
 
+@property (nonatomic, strong) HomeCubeModel *cubeModel;
 
-- (void)commonInitlization;
-
-/*
- * 加载评论
- */
-- (void)loadComments;
+- (void)show;
 
 @end
 

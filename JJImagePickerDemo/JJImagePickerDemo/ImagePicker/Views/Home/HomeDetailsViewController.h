@@ -11,14 +11,13 @@
 #import "CustomPhotoViewController.h"
 #import "HomeCubeModel.h"
 #import "CommentView.h"
-#import "JJDetailsInfoView.h"
 #import "OthersMainPageViewController.h"
+#import "JJCommentDetailController.h"
 
 @interface HomeDetailsViewController : UIViewController<CommentViewDelegate, JJDetailsInfoViewDelegate>
 
 @property (strong, nonatomic) CommentView *commentView;
 @property (strong, nonatomic) HomeCubeModel *photoWork;
-@property (strong, nonatomic) JJDetailsInfoView *detailsInfoView;
 @property (strong, nonatomic) NSIndexPath *selectedIndex;
 
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath;
