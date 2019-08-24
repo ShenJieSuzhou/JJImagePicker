@@ -67,7 +67,7 @@
     // 请求数据
     JJWorksFrame *workFrame = [[JJWorksFrame alloc] init];
     [workFrame setWorkModel:_cubeModel];
-    [self.dataSource insertObject:workFrame atIndex:0];
+    [_dataSource insertObject:workFrame atIndex:0];
     [self loadComments:0 pageSize:10];
 }
 
@@ -245,7 +245,7 @@
     if(pageInfo.currentPage == 0){
         [self.commentTableView.mj_header endRefreshing];
         [self.commentTableView.mj_footer endRefreshing];
-        [_dataSource removeAllObjects];
+//        [_dataSource removeAllObjects];
     }
 
     [self.commentTableView.mj_header endRefreshing];
@@ -294,7 +294,7 @@
         _commentTableView.backgroundColor = [UIColor whiteColor];
         _commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        _commentTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downPullFreshData:)];
+//        _commentTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downPullFreshData:)];
         _commentTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upPullFreshData:)];
     }
     
@@ -318,12 +318,12 @@
     return _commentContainerV;
 }
 
-// 上拉刷新
-- (void)downPullFreshData:(MJRefreshHeader *)mjHeader{
-    [self.commentTableView.mj_header endRefreshing];
-//    [self.commentTableView reloadData];
-    [self loadComments:0 pageSize:10];
-}
+//// 上拉刷新
+//- (void)downPullFreshData:(MJRefreshHeader *)mjHeader{
+//    [self.commentTableView.mj_header endRefreshing];
+////    [self.commentTableView reloadData];
+//    [self loadComments:0 pageSize:10];
+//}
 
 // 下拉刷新
 - (void)upPullFreshData:(MJRefreshFooter *)mjFooter{
@@ -412,9 +412,6 @@
         JJTopicFrame *topicFrame = (JJTopicFrame *)model;
         JJCommentFrame *commentFrame = topicFrame.commentFrames[indexPath.row];
         return commentFrame.cellHeight;
-    }else if([model isKindOfClass:[JJWorksFrame class]]){
-        JJWorksFrame *workFrame = (JJWorksFrame *)model;
-        return workFrame.height;
     }
     
     return .1f;
@@ -426,6 +423,9 @@
     if([model isKindOfClass:[JJTopicFrame class]]){
         JJTopicFrame *topicFrame = (JJTopicFrame *)model;
         return topicFrame.height;
+    }else if([model isKindOfClass:[JJWorksFrame class]]){
+        JJWorksFrame *workFrame = (JJWorksFrame *)model;
+        return workFrame.height;
     }
     
     return .1f;
@@ -455,7 +455,7 @@
         JJWorksFrame *workFrame = (JJWorksFrame *)model;
         JJDetailsInfoHeaderView *headerView = [JJDetailsInfoHeaderView headerViewWithTableView:tableView];
         headerView.workFrame = workFrame;
-        headerView.delegate = nil;
+//        headerView.delegate = nil;
         
         return headerView;
     }
@@ -503,7 +503,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.commentTableView.mj_footer.hidden = self.dataSource.count < JJCommentMaxCount;
     
     id model = self.dataSource[section];
     

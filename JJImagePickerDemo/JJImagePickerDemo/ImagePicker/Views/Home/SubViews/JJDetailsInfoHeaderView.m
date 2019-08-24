@@ -12,6 +12,8 @@
 @synthesize delegate = _delegate;
 @synthesize height = _height;
 @synthesize photoWork = _photoWork;
+@synthesize workFrame = _workFrame;
+
 
 + (instancetype)headerViewWithTableView:(UITableView *)tableView{
     static NSString *ID = @"JJDetailsInfoHeaderView";
@@ -31,44 +33,89 @@
     return self;
 }
 
+- (void)initPhotoUrl:(HomeCubeModel *)work{
+    NSMutableArray *photosArray = [[NSMutableArray alloc] initWithArray:work.path];
+    //计算几行几列
+    NSInteger photoCount = [photosArray count];
+    
+    switch (photoCount) {
+        case 1:
+            _albumRows = 1;
+            _albumColums = 1;
+            _isEven = NO;
+            break;
+        case 2:
+            _albumRows = 1;
+            _albumColums = 2;
+            _isEven = YES;
+            break;
+        case 3:
+            _albumRows = 1;
+            _albumColums = 2;
+            _isEven = NO;
+            break;
+        case 4:
+            _albumRows = 2;
+            _albumColums = 2;
+            _isEven = YES;
+            break;
+        case 5:
+            _albumRows = 2;
+            _albumColums = 2;
+            _isEven = NO;
+            break;
+        case 6:
+            _albumRows = 2;
+            _albumColums = 3;
+            _isEven = YES;
+            break;
+        case 7:
+            _albumRows = 2;
+            _albumColums = 3;
+            _isEven = NO;
+            break;
+        case 8:
+            _albumRows = 2;
+            _albumColums = 4;
+            _isEven = YES;
+            break;
+        case 9:
+            _albumRows = 2;
+            _albumColums = 4;
+            _isEven = NO;
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)setWorkFrame:(JJWorksFrame *)workFrame{
     _workFrame = workFrame;
     
     _photoWork = _workFrame.workModel;
+    [self initPhotoUrl:_photoWork];
+    
     // 头像
     [self.iconView setFrame:workFrame.avatarFrame];
     NSString *avatar = _photoWork.iconUrl;
     [self loadIconAvater:avatar];
-    
+
     // 昵称
     [self.nameLabel setFrame:workFrame.nicknameFrame];
     [self.nameLabel setText:_photoWork.name];
-    
+
     // 关注
     [self.focusBtn setFrame:workFrame.focusFrame];
-    
+
     // 更多
     [self.moreBtn setFrame:workFrame.moreFrame];
-    
+
     // 作品
     [self.workView setFrame:workFrame.worksFrame];
-    
+
     // 描述
     [self.worksDesc setFrame:workFrame.textFrame];
-    NSString *work = [self.photoWork.work stringByRemovingPercentEncoding];
-    //描述
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:work];
-    
-    text.yy_font = [UIFont systemFontOfSize:15.0f];
-    text.yy_color = [UIColor blackColor];
-    text.yy_lineSpacing = 2;
-    
-    CGFloat screenWidth = self.frame.size.width;
-    CGSize size = CGSizeMake(screenWidth - 30, CGFLOAT_MAX);
-    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
-    self.worksDesc.textLayout = layout;
-    self.worksDesc.attributedText = text;
-    [self.worksDesc setFrame:layout.textBoundingRect];
+    self.worksDesc.attributedText = self.photoWork.attributedText;
     
     // 时间
     [self.timeLine setFrame:workFrame.createTimeFrame];
@@ -269,22 +316,22 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat cellWidth = 0.0f;
     CGFloat cellHeight = 0.0f;
-    
+
     if(_isEven){
         CGFloat width = collectionView.frame.size.width;
-        cellWidth = width/_albumColums;
+        cellWidth = width / _albumColums;
         cellHeight = cellWidth;
     }else{
         if(indexPath.row == 0){
             cellWidth = collectionView.frame.size.width;
-            cellHeight = cellWidth*9/16;
+            cellHeight = cellWidth * 9 / 16;
         }else{
             CGFloat width = collectionView.frame.size.width;
-            cellWidth = width/_albumColums;
+            cellWidth = width / _albumColums;
             cellHeight = cellWidth;
         }
     }
-    
+
     return CGSizeMake(cellWidth, cellHeight);
 }
 

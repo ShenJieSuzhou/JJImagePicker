@@ -133,7 +133,7 @@
     // 内容
     CGFloat textX = nicknameX;
     CGSize textLimitSize = CGSizeMake(width - textX - 10, MAXFLOAT);
-    CGFloat textY = CGRectGetMaxY(self.worksFrame) + CGRectGetHeight(self.worksFrame);
+    CGFloat textY = CGRectGetMaxY(self.worksFrame) + 30.0f;
     CGFloat textH = [YYTextLayout layoutWithContainerSize:textLimitSize text:workModel.attributedText].textBoundingSize.height + 20.0f;
     
     self.textFrame = (CGRect){{textX , textY} , {textLimitSize.width, textH}};
