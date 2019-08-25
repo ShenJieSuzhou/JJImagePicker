@@ -39,9 +39,9 @@
     if (self.work == nil) return nil;
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.work];
-    attributedString.yy_font = JJFont(JJPxConvertPt(15.0f), NO);
+    attributedString.yy_font = JJFont(JJPxConvertPt(14.0f), NO);
     attributedString.yy_color = [UIColor blackColor];
-    attributedString.yy_lineSpacing = 10.0f;
+    attributedString.yy_lineSpacing = 12.0f;
     return attributedString;
 }
 

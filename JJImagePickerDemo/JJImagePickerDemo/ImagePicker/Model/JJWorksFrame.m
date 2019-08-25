@@ -110,14 +110,14 @@
     
     // 昵称
     CGFloat nicknameX = CGRectGetMaxX(self.avatarFrame) + 10.0f;
-    CGFloat nicknameY = CGRectGetMidY(self.avatarFrame);
+    CGFloat nicknameY = CGRectGetMinY(self.avatarFrame);
     CGFloat nicknameW = CGRectGetMinX(self.focusFrame) - nicknameX;
     CGFloat nicknameH = moreH;
     self.nicknameFrame = CGRectMake(nicknameX, nicknameY, nicknameW, nicknameH);
     
     // 作品
     CGFloat workX = avatarX;
-    CGFloat workY = CGRectGetMaxY(self.nicknameFrame);
+    CGFloat workY = CGRectGetMaxY(self.avatarFrame) + 10.0f;
     CGFloat workW = width - 20.0f;
     
     CGFloat workViewHeight = 0.0f;
@@ -131,15 +131,15 @@
     self.worksFrame = CGRectMake(workX, workY, workW, workH);
     
     // 内容
-    CGFloat textX = nicknameX;
+    CGFloat textX = avatarX;
     CGSize textLimitSize = CGSizeMake(width - textX - 10, MAXFLOAT);
-    CGFloat textY = CGRectGetMaxY(self.worksFrame) + 30.0f;
+    CGFloat textY = CGRectGetMaxY(self.worksFrame) + 0.0f;
     CGFloat textH = [YYTextLayout layoutWithContainerSize:textLimitSize text:workModel.attributedText].textBoundingSize.height + 20.0f;
     
     self.textFrame = (CGRect){{textX , textY} , {textLimitSize.width, textH}};
     
     // 时间
-    CGFloat createX = nicknameX;
+    CGFloat createX = avatarX;
     CGFloat createY = CGRectGetMaxY(self.textFrame);
     CGFloat createW = width - createX - 100;
     CGFloat createH = moreH;

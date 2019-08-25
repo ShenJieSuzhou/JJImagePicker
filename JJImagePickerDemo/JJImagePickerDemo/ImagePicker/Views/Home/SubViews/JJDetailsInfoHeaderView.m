@@ -155,7 +155,7 @@
 
 - (void)setupUI{
     //Container
-    self.contentView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     //icon
     self.iconView = [UIButton buttonWithType:UIButtonTypeCustom];
     self.iconView.contentMode = UIViewContentModeScaleAspectFill;
@@ -196,6 +196,7 @@
     [self.contentView addSubview:self.workView];
     
     self.worksDesc = [YYLabel new];
+    self.worksDesc.numberOfLines = 0;
     [self.contentView addSubview:self.worksDesc];
     
     //时间

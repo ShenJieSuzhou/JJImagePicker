@@ -15,6 +15,7 @@
 #import "GlobalDefine.h"
 #import "HttpRequestUrlDefine.h"
 #import "JJTokenManager.h"
+#import "JJDetailsInfoFooterView.h"
 
 @implementation CommentView
 @synthesize  commentTableView = _commentTableView;
@@ -437,6 +438,8 @@
     if([model isKindOfClass:[JJTopicFrame class]]){
         JJTopicFrame *topicFrame = (JJTopicFrame *)model;
         return topicFrame.commentFrames.count > 0 ? JJTopicVerticalSpace:JJGlobalBottomLineHeight;
+    }else{
+        return 70.0f;
     }
     
     return .1f;
@@ -464,9 +467,18 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    JJTopicFooterView *footerView = [JJTopicFooterView footerViewWithTableView:tableView];
-    [footerView setSection:section allSections:self.dataSource.count];
-    return footerView;
+    id model = self.dataSource[section];
+    if([model isKindOfClass:[JJTopicFrame class]]){
+        JJTopicFooterView *footerView = [JJTopicFooterView footerViewWithTableView:tableView];
+        [footerView setSection:section allSections:self.dataSource.count];
+        return footerView;
+    }else if([model isKindOfClass:[JJWorksFrame class]]){
+        JJDetailsInfoFooterView *footerView = [JJDetailsInfoFooterView footerViewWithTableView:tableView];
+        
+        return footerView;
+    }
+    
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

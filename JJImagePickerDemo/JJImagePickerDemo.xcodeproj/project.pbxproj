@@ -14,6 +14,7 @@
 		44208E2121A164BE0090D983 /* SecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E2021A164BE0090D983 /* SecurityViewController.m */; };
 		44208E2421A164F50090D983 /* CacheImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44208E2321A164F50090D983 /* CacheImageViewController.m */; };
 		443D3C4920CCFDA900E0C255 /* JJPhotoAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */; };
+		444E642123127C7E00EB701C /* JJDetailsInfoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E642023127C7E00EB701C /* JJDetailsInfoFooterView.m */; };
 		4462607120CD00B10004C579 /* JJImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462606F20CD00B10004C579 /* JJImageManager.m */; };
 		4462607420CD00BA0004C579 /* JJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607220CD00B90004C579 /* JJPhoto.m */; };
 		4462607B20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 4462607A20CD1B4A0004C579 /* PHPhotoLibrary+JJ.m */; };
@@ -313,6 +314,8 @@
 		44208E2321A164F50090D983 /* CacheImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheImageViewController.m; sourceTree = "<group>"; };
 		443D3C4720CCFDA900E0C255 /* JJPhotoAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoAlbum.m; sourceTree = "<group>"; };
 		443D3C4820CCFDA900E0C255 /* JJPhotoAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoAlbum.h; sourceTree = "<group>"; };
+		444E641F23127C7E00EB701C /* JJDetailsInfoFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDetailsInfoFooterView.h; sourceTree = "<group>"; };
+		444E642023127C7E00EB701C /* JJDetailsInfoFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJDetailsInfoFooterView.m; sourceTree = "<group>"; };
 		4462606F20CD00B10004C579 /* JJImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJImageManager.m; sourceTree = "<group>"; };
 		4462607020CD00B10004C579 /* JJImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJImageManager.h; sourceTree = "<group>"; };
 		4462607220CD00B90004C579 /* JJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhoto.m; sourceTree = "<group>"; };
@@ -1094,6 +1097,8 @@
 				E5A5A030229F891900349C51 /* SelectedListView.m */,
 				E50B305B230EAFC100F63471 /* JJDetailsInfoHeaderView.h */,
 				E50B305C230EAFC100F63471 /* JJDetailsInfoHeaderView.m */,
+				444E641F23127C7E00EB701C /* JJDetailsInfoFooterView.h */,
+				444E642023127C7E00EB701C /* JJDetailsInfoFooterView.m */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -2083,6 +2088,7 @@
 				E50B3059230CDDF000F63471 /* JJCommentCell.m in Sources */,
 				E50B305D230EAFC100F63471 /* JJDetailsInfoHeaderView.m in Sources */,
 				E55BA990219C16E70078472D /* GBverifyButton.m in Sources */,
+				444E642123127C7E00EB701C /* JJDetailsInfoFooterView.m in Sources */,
 				E5506BF0212FB7D80077E62B /* CameraSessionView.m in Sources */,
 				E597BDD62186A9F2000B5A34 /* HomeContentmManager.m in Sources */,
 				E50B3054230CDDF000F63471 /* JJCommentInputView.m in Sources */,
