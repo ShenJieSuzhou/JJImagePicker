@@ -65,7 +65,7 @@
         fromUserHighlight.userInfo = @{@"JJCommentUserKey":self.fromUser};
         [mutableAttributedString yy_setTextHighlight:fromUserHighlight range:fromUserRange];
         [mutableAttributedString yy_setColor:JJAlphaColor(49, 116, 161, 1) range:NSMakeRange(0, self.fromUser.nickname.length)];
-        
+
         NSRange toUserRange = [textString rangeOfString:[NSString stringWithFormat:@"%@:", self.toUser.nickname]];
         YYTextHighlight *toUserHighlight = [YYTextHighlight highlightWithBackgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]];
         toUserHighlight.userInfo = @{@"JJCommentUserKey":self.toUser};

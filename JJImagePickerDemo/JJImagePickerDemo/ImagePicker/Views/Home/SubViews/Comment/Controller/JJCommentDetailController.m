@@ -55,6 +55,7 @@
     // 标题
     self.title = @"全部回复";
     self.dataSource = [NSMutableArray new];
+    
     // 初始化
     [self setUpSubViews];
     
@@ -133,37 +134,43 @@
             JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:10 currentPage:currentPage];
             
             // 解析数据
-            NSDictionary *topicTemp = (NSDictionary *)data;
-            NSInteger commentsCount = [[topicTemp objectForKey:@"commentsCount"] intValue];
-            NSString *createTime = [topicTemp objectForKey:@"createTime"];
-            BOOL isLike = [[topicTemp objectForKey:@"islike"] boolValue];
-            NSInteger likeNums = [[topicTemp objectForKey:@"likeNums"] intValue];
-            NSString *content = [topicTemp objectForKey:@"text"];
-            NSInteger topicId = [[topicTemp objectForKey:@"topicID"] intValue];
-            // 用户信息
-            NSDictionary *userDic = [topicTemp objectForKey:@"user"];
-            NSString *avatarUrl = [userDic objectForKey:@"avatarUrl"];
-            NSString *nickName = [userDic objectForKey:@"nickName"];
-            NSInteger uerId = [[userDic objectForKey:@"uerId"] intValue];
-            
-            JJUser *user = [[JJUser alloc] init];
-            user.userId =[NSString stringWithFormat:@"%ld", (long)uerId];
-            user.nickname = nickName;
-            user.avatarUrl = avatarUrl;
-            
-            JJTopic *topic = [[JJTopic alloc] init];
-            topic.topicID = [NSString stringWithFormat:@"%ld", (long)topicId];
-            topic.likeNums = likeNums;
-            topic.like = isLike;
-            topic.createTime = createTime;
-            topic.text = content;
-            topic.user = user;
-            topic.commentsCount = commentsCount;
-            
-            // 添加到数据源中
-            JJTopicFrame *topicFrame = [[JJTopicFrame alloc] init];
-            topicFrame.topic = topic;
-//            [weakSelf latestInfoRequestCallBack:pageInfo commemtList:topicFrames];
+            NSMutableArray *commentFrames = [[NSMutableArray alloc] init];
+            NSArray *replys = [data objectForKey:@"replys"];
+            for (int i = 0; i < replys.count; i++) {
+                NSDictionary *replyInfo = [replys objectAtIndex:i];
+                NSString *createTime = [replyInfo objectForKey:@"createTime"];
+                NSString *content = [replyInfo objectForKey:@"text"];
+                NSInteger commentID = [[replyInfo objectForKey:@"commentID"] intValue];
+                NSInteger replyID = [[replyInfo objectForKey:@"replyID"] intValue];
+                // 用户信息
+                NSDictionary *toUserDic = [replyInfo objectForKey:@"toUser"];
+                NSString *toAvatarUrl = [toUserDic objectForKey:@"avatarUrl"];
+                NSString *toNickName = [toUserDic objectForKey:@"nickName"];
+                NSInteger toUserId = [[toUserDic objectForKey:@"uerId"] intValue];
+                
+                NSDictionary *fromUserDic = [replyInfo objectForKey:@"fromUser"];
+                NSString *fromAvatarUrl = [fromUserDic objectForKey:@"avatarUrl"];
+                NSString *fromNickName = [fromUserDic objectForKey:@"nickName"];
+                NSInteger fromUerId = [[fromUserDic objectForKey:@"uerId"] intValue];
+                
+                JJUser *toUser = [[JJUser alloc] init];
+                toUser.userId =[NSString stringWithFormat:@"%ld", (long)toUserId];
+                toUser.nickname = toNickName;
+                toUser.avatarUrl = toAvatarUrl;
+                
+                JJUser *fromUser = [[JJUser alloc] init];
+                fromUser.userId =[NSString stringWithFormat:@"%ld", (long)fromUerId];
+                fromUser.nickname = fromNickName;
+                fromUser.avatarUrl = fromAvatarUrl;
+                
+                JJComment *comment = [[JJComment alloc] initWithPostId:[NSString stringWithFormat:@"%ld", (long)replyID] commentId:[NSString stringWithFormat:@"%ld", (long)commentID] createTime:createTime text:content toUser:toUser fromUser:fromUser];
+                
+                // 添加到数据源中
+                JJCommentFrame *commentFrame = [[JJCommentFrame alloc] init];
+                commentFrame.comment = comment;
+                [commentFrames addObject:commentFrame];
+            }
+            [weakSelf latestInfoRequestCallBack:pageInfo commemtList:commentFrames];
         }else{
             [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
@@ -179,22 +186,21 @@
     }];
 }
 
-- (void)latestInfoRequestCallBack:(JJPageInfo *)pageInfo commemtList:(NSMutableArray *)photoList{
+- (void)latestInfoRequestCallBack:(JJPageInfo *)pageInfo commemtList:(NSMutableArray *)comments{
     
     if(pageInfo.currentPage == 0){
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        //        [_dataSource removeAllObjects];
+        [_dataSource removeAllObjects];
     }
     
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     
     _currentPageInfo = pageInfo;
-    [_dataSource addObjectsFromArray:[photoList copy]];
+    [_dataSource addObjectsFromArray:[comments copy]];
     [self.tableView reloadData];
 }
-
 
 /*
  * 加载新数据
