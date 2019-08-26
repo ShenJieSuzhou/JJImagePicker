@@ -320,4 +320,17 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_PullComments:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
 
+/**
+ 拉取回复
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param commentId 评论ID
+ @param pageIndex 页数
+ @param size 总数
+ @param block 回调
+ */
++ (void)JJ_PullReplys:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
+
 @end

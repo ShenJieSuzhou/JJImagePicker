@@ -30,9 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)jumpToCommemtDetailView:(JJTopicFrame *)topicFrame;
 
+- (void)goToUserZoneInViewController;
+
+- (void)pullToBlackListInViewController;
+
 @end
 
-@interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate>
+@interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate, JJDetailsInfoViewDelegate>
 
 @property (nonatomic, strong) JJDetailsInfoHeaderView *detailInfoHeader;
 
@@ -51,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) JJPageInfo *currentPageInfo;
 
 @property (nonatomic, strong) HomeCubeModel *cubeModel;
+
 
 - (void)show;
 

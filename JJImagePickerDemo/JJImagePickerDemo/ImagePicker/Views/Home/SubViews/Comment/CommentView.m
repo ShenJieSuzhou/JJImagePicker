@@ -40,6 +40,7 @@
     return [self initWithFrame:CGRectZero];
 }
 
+
 - (void)show{
     [self commonInitlization];
 }
@@ -229,7 +230,7 @@
 
 
 - (JJTopicFrame *)topicFrameWithTopic:(JJTopic *)topic{
-    if(topic.commentsCount > 1){
+    if(topic.commentsCount > 0){
         JJComment *comment = [[JJComment alloc] init];
         comment.commentId = @"ALLCOMMENT";
         comment.text = [NSString stringWithFormat:@"查看全部%zd条回复", topic.commentsCount];
@@ -458,7 +459,7 @@
         JJWorksFrame *workFrame = (JJWorksFrame *)model;
         JJDetailsInfoHeaderView *headerView = [JJDetailsInfoHeaderView headerViewWithTableView:tableView];
         headerView.workFrame = workFrame;
-//        headerView.delegate = nil;
+        headerView.delegate = self;
         
         return headerView;
     }
@@ -498,9 +499,9 @@
         }
         
         //回复自己则忽略
-//        if([commentFrame.comment.fromUser.userId isEqualToString:@"own"]){
-//            return;
-//        }
+        if([commentFrame.comment.fromUser.userId isEqualToString:[JJTokenManager shareInstance].getUserID]){
+            return;
+        }
         
         //回复评论
         JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:commentFrame.comment];
@@ -541,10 +542,38 @@
     return nil;
 }
 
+
+
+#pragma mark - JJTopicHeaderViewDelegate
+/** 点击头像或昵称的事件回调 */
 - (void)topicHeaderViewDidClickedTopicContent:(JJTopicHeaderView *)topicHeaderView{
     self.selecteTopicFrame = topicHeaderView.topicFrame;
     JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:topicHeaderView.topicFrame.topic];
     [self replyCommentWithCommentReply:commentReply];
+}
+
+/** 点击头像或昵称的事件回调 */
+- (void)topicHeaderViewDidClickedUser:(JJTopicHeaderView *)topicHeaderView{
+    
+}
+
+/** 用户点击更多按钮 */
+- (void)topicHeaderViewForClickedMoreAction:(JJTopicHeaderView *)topicHeaderView{
+    
+}
+
+/** 用户点击点赞按钮 */
+- (void)topicHeaderViewForClickedLikeAction:(JJTopicHeaderView *)topicHeaderView{
+    
+}
+
+#pragma mark - JJDetailsInfoViewDelegate
+- (void)goToUserZone{
+    [_delegate goToUserZoneInViewController];
+}
+
+- (void)pullToBlackList{
+    [_delegate pullToBlackListInViewController];
 }
 
 @end

@@ -529,6 +529,25 @@
     }];
 }
 
-
++ (void)JJ_PullReplys:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block{
+    NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
+    if (NotReachable == netStatus){
+        [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+        return;
+    }
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   commentId, @"commentId",
+                                   pageIndex, @"pageIndex",
+                                   size, @"pageSize", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
 
 @end

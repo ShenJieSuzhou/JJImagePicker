@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "JJTopicFrame.h"
+#import "HttpRequestUtil.h"
+#import "HttpRequestUrlDefine.h"
+#import "JJTokenManager.h"
+#import "GlobalDefine.h"
+#import "JJPageInfo.h"
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JJCommentDetailController : UIViewController
 
 @property (nonatomic, strong) JJTopicFrame *topicFrame;
+
+@property (nonatomic, strong) JJPageInfo *currentPageInfo;
 
 @end
 

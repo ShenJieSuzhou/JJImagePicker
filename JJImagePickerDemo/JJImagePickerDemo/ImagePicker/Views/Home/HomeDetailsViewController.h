@@ -14,7 +14,7 @@
 #import "OthersMainPageViewController.h"
 #import "JJCommentDetailController.h"
 
-@interface HomeDetailsViewController : UIViewController<CommentViewDelegate, JJDetailsInfoViewDelegate>
+@interface HomeDetailsViewController : UIViewController<CommentViewDelegate>
 
 @property (strong, nonatomic) CommentView *commentView;
 @property (strong, nonatomic) HomeCubeModel *photoWork;

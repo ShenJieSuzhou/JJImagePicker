@@ -80,15 +80,15 @@
     [self.navigationController pushViewController:detailComment animated:YES];
 }
 
-
-- (void)goToUserZone{
+- (void)goToUserZoneInViewController{
     OthersMainPageViewController *otherZoneView = [OthersMainPageViewController new];
     [otherZoneView setUserZone:self.photoWork];
     [self.navigationController pushViewController:otherZoneView animated:YES];
 }
 
-- (void)pullToBlackList{
+- (void)pullToBlackListInViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 @end
