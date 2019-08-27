@@ -18,10 +18,13 @@
     
     CGFloat textX = JJCommentHorizontalSpace;
     CGFloat textY = JJCommentVerticalSpace;
+    self.maxW = [UIScreen mainScreen].bounds.size.width - JJCommentHorizontalSpace*3 - JJTopicAvatarWH;
     CGSize textLimitSize = CGSizeMake(self.maxW - 2*textX, MAXFLOAT);
     CGFloat textH = [YYTextLayout layoutWithContainerSize:textLimitSize text:_comment.attributedText].textBoundingSize.height;
     self.textFrame = CGRectMake(textX, textY, textLimitSize.width, textH);
     self.cellHeight = CGRectGetMaxY(self.textFrame) + JJCommentVerticalSpace;
 }
+
+
 
 @end
