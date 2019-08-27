@@ -346,52 +346,20 @@
 }
 
 #pragma mark - JJCommentInputViewDelegate
-- (void)commentInputView:(JJTopicFrame *)topicFrame{
-    [self.dataSource insertObject:topicFrame atIndex:0];
-    [self.commentTableView reloadData];
-}
-
-- (void)commentInputView:(JJCommentFrame *)newCommentFrame comment:(JJComment *)comment{
-    self.selecteTopicFrame.topic.commentsCount = self.selecteTopicFrame.topic.commentsCount + 1;
-    if(self.selecteTopicFrame.topic.commentsCount > 2){
-        NSInteger count = self.selecteTopicFrame.commentFrames.count;
-        NSInteger index = count - 1;
-        [self.selecteTopicFrame.commentFrames insertObject:newCommentFrame atIndex:index];
-        [self.selecteTopicFrame.topic.replayComments insertObject:comment atIndex:index];
-        
-        JJComment *lastComment = self.selecteTopicFrame.topic.replayComments.lastObject;
-        lastComment.text = [NSString stringWithFormat:@"查看全部%zd条回复" , self.selecteTopicFrame.topic.commentsCount];
-    }else{
-        if (self.selecteTopicFrame.topic.replayComments.count == 2)
-        {
-            // 添加数据源
-            [self.selecteTopicFrame.commentFrames addObject:newCommentFrame];
-            [self.selecteTopicFrame.topic.replayComments addObject:comment];
-            
-            // 设置假数据
-            JJComment *lastComment = [[JJComment alloc] init];
-            lastComment.commentId = @"ALLCOMMENT";
-            lastComment.text = [NSString stringWithFormat:@"查看全部%zd条回复" , self.selecteTopicFrame.topic.commentsCount];
-            JJCommentFrame *lastCommentFrame =  [[JJTopicManager shareInstance] commentFramesWithComments:@[lastComment]].lastObject;
-            // 添加假数据
-            [self.selecteTopicFrame.commentFrames addObject:lastCommentFrame];
-            [self.selecteTopicFrame.topic.replayComments addObject:lastComment];
-        }else{
-            // 添加数据源
-            [self.selecteTopicFrame.commentFrames addObject:newCommentFrame];
-            [self.selecteTopicFrame.topic.replayComments addObject:comment];
-        }
-    }
+- (void)commentInputView:(JJTopic *)topic{
+    topic.postId = self.cubeModel.photoId;
+    topic.topicID = [NSString stringWithFormat:@"%ld", (long)[self mh_randomNumber:1 to:10000]];
     
-    [self reloadSelectedSection];
-}
-
-- (void)reloadSelectedSection{
-    [self.commentTableView beginUpdates];
-    NSInteger index = [self.dataSource indexOfObject:self.selecteTopicFrame];
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-    [self.commentTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-    [self.commentTableView endUpdates];
+    JJTopicFrame *topicFrame = [self topicFrameWithTopic:topic];
+    [self.dataSource insertObject:topicFrame atIndex:1];
+    
+    // 发送请求
+    [HttpRequestUtil JJ_SubmitComment:SUBMIT_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:topic.postId fromUserId:[JJTokenManager shareInstance].getUserID content:topic.text callback:^(NSDictionary *data, NSError *error) {
+        
+    }];
+    
+    
+    [self.commentTableView reloadData];
 }
 
 #pragma mark - JJCommentContainerViewDelegate
@@ -545,7 +513,6 @@
 
 
 #pragma mark - JJTopicHeaderViewDelegate
-/** 点击头像或昵称的事件回调 */
 - (void)topicHeaderViewDidClickedTopicContent:(JJTopicHeaderView *)topicHeaderView{
     self.selecteTopicFrame = topicHeaderView.topicFrame;
     JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:topicHeaderView.topicFrame.topic];

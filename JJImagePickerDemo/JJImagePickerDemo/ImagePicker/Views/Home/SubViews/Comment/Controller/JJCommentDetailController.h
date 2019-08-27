@@ -13,6 +13,7 @@
 #import "JJTokenManager.h"
 #import "GlobalDefine.h"
 #import "JJPageInfo.h"
+#import "JJCommentReplay.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

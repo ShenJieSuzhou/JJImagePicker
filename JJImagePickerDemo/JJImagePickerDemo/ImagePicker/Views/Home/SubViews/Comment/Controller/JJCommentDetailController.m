@@ -63,17 +63,17 @@
     [self loadReplys:0 size:10];
 }
 
+- (void)viewWillLayoutSubviews{
+    
+}
+
 - (void)setUpSubViews{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.tableView];
-    
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.equalTo(self.view);
-    }];
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     header.automaticallyChangeAlpha = YES;
@@ -102,7 +102,7 @@
 
 - (JJCommentContainerView *)commentContainer{
     if(!_commentContainer){
-        _commentContainer = [[JJCommentContainerView alloc] initWithFrame:CGRectZero];
+        _commentContainer = [[JJCommentContainerView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50.0f)];
         _commentContainer.delegate = self;
         [_commentContainer setCommentCount:100];
     }
@@ -235,23 +235,8 @@
 
 #pragma mark - JJCommentContainerViewDelegate
 -(void)commentContaninerBtnClickAction:(JJCommentContainerView *)commentContainerView{
-    JJCommentInputView *inputView = [[JJCommentInputView alloc] initWithFrame:CGRectZero];
-    inputView.delegate = self;
-    [inputView setCacheTopicText];
-    [inputView show];
-}
-
-#pragma mark - JJCommentInputViewDelegate
-- (void)commentInputView:(JJCommentInputView *)inputPanelView attributedText:(NSString *)attributedText{
-    
-}
-
-- (void)commentInputView:(JJTopicFrame *)topicFrame{
-    
-}
-
-- (void)commentInputView:(JJCommentFrame *)newCommentFrame comment:(JJComment *)comment{
-    
+    JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:self.topicFrame.topic];
+    [self replyCommentWithCommentReply:commentReply];
 }
 
 #pragma mark - tableviewdelegate
@@ -287,6 +272,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    self.tableView.mj_footer.hidden = self.dataSource.count < JJCommentMaxCount;
     return self.dataSource.count;
 }
 
@@ -296,6 +282,32 @@
     cell.commentFrame = commentFrame;
     cell.delegate = self;
     return cell;
+}
+
+#pragma mark - JJCommentInputViewDelegate
+- (void)commentInputView:(JJCommentFrame *)newCommentFrame comment:(JJComment *)comment{
+    // 添加数据源
+    [self.topicFrame.commentFrames addObject:newCommentFrame];
+    [self.topicFrame.topic.replayComments addObject:comment];
+    
+    [_dataSource addObject:newCommentFrame];
+    // 发送网络请求
+    [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:[NSString stringWithFormat:@"%@", comment.commentId] fromUid:comment.fromUser.userId toUid:comment.toUser.userId content:comment.text callback:^(NSDictionary *data, NSError *error) {
+        
+    }];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - JJTopicHeaderViewDelegate
+- (void)topicHeaderViewDidClickedTopicContent:(JJTopicHeaderView *)topicHeaderView{
+    JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:self.topicFrame.topic];
+    [self replyCommentWithCommentReply:commentReply];
+}
+
+/** 点击头像或昵称的事件回调 */
+- (void)topicHeaderViewDidClickedUser:(JJTopicHeaderView *)topicHeaderView{
+    
 }
 
 @end

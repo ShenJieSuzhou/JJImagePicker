@@ -121,6 +121,14 @@
 
 #define QUERY_REPLY_REQUEST                             @"http://172.16.10.113:8080/admin/api/getReplys"
 
+#define SUBMIT_COMMENT_REQUEST                          @"http://172.16.10.113:8080/admin/api/submitComment"
+
+#define SUBMIT_REPLY_REQUEST                            @"http://172.16.10.113:8080/admin/api/submitReply"
+
+#define DELETEC_COMMENT_REQUEST                         @"http://172.16.10.113:8080/admin//api/deleteComment"
+
+#define DELETEC_REPLY_REQUEST                           @"http://172.16.10.113:8080/admin//api/deleteReply"
+
 //#define AC_LOGIN_REQUEST                                @"http://192.168.0.103:8080/login/accountLogin"
 //
 //#define REGISTER_USER_REQUEST                           @"http://192.168.0.103:8080/login/registeUser"

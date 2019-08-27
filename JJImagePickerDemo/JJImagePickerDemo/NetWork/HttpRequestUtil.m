@@ -550,4 +550,85 @@
     }];
 }
 
++ (void)JJ_SubmitComment:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId fromUserId:(NSString *)fromUserId content:(NSString *)content callback:(requestCallBack) block {
+    NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
+    if (NotReachable == netStatus){
+        [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+        return;
+    }
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   photoId, @"photoId",
+                                   fromUserId, @"from_userId",
+                                   content, @"content", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)JJ_SubmitReply:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId fromUid:(NSString *)fromUid toUid:(NSString *)toUid content:(NSString *)content callback:(requestCallBack) block{
+    NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
+    if (NotReachable == netStatus){
+        [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+        return;
+    }
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   commentId, @"commentId",
+                                   fromUid, @"from_uid",
+                                   toUid, @"to_uid",
+                                   content, @"content", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)JJ_DeleteComment:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId callback:(requestCallBack) block{
+    NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
+    if (NotReachable == netStatus){
+        [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+        return;
+    }
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   commentId, @"commentId", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
++ (void)JJ_DeleteReply:(NSString *)url token:(NSString *)token userid:(NSString *)userid replyId:(NSString *)replyId callback:(requestCallBack) block{
+    NetworkStatus netStatus = [NetworkConfig sharedConfig].status;
+    if (NotReachable == netStatus){
+        [SVProgressHUD showErrorWithStatus:@"您似乎还没有连接到网络，请检查后再试！"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+        return;
+    }
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
+                                   userid, @"user_id",
+                                   replyId, @"replyId", nil];
+    
+    [[AFNetwork shareManager] requestWithMethod:POST url:url params:params success:^(NSURLSessionDataTask *task, NSDictionary *dict) {
+        block(dict, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, error);
+    }];
+}
+
 @end

@@ -56,7 +56,7 @@
     if(self.toUser && self.toUser.nickname.length > 0){
         NSString *textString = [NSString stringWithFormat:@"%@回复%@: %@", self.fromUser.nickname, self.toUser.nickname, self.text];
         NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:textString];
-        mutableAttributedString.yy_font = JJReguFont(14.0f);
+        mutableAttributedString.yy_font = JJBlodFont(13.0f);
         mutableAttributedString.yy_color = [UIColor blackColor];
         mutableAttributedString.yy_lineSpacing = JJCommentContentLineSpacing;
         
@@ -76,7 +76,7 @@
     }else{
         NSString *textString = [NSString stringWithFormat:@"%@: %@", self.fromUser.nickname, self.text];
         NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:textString];
-        mutableAttributedString.yy_font = JJReguFont(14.0f);
+        mutableAttributedString.yy_font = JJBlodFont(13.0f);
         mutableAttributedString.yy_color = [UIColor blackColor];
         mutableAttributedString.yy_lineSpacing = JJCommentContentLineSpacing;
         

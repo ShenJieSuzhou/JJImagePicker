@@ -9,6 +9,8 @@
 #import "JJCommentInputView.h"
 #import "JJTopic.h"
 #import "NSDate+Extension.h"
+#import <SVProgressHUD.h>
+#import "JJTokenManager.h"
 
 @interface JJCommentInputView()
 
@@ -396,27 +398,28 @@
 /** 发送 */
 - (void)send{
     if (self.textView.attributedText.length==0) {
-//        [MBProgressHUD mh_showTips:@"回复内容不能为空"];
+        [SVProgressHUD showInfoWithStatus:@"回复内容不能为空"];
+        [SVProgressHUD dismissWithDelay:1.0f];
         return;
     }
 
     if (self.textView.attributedText.length > JJCommentMaxWords) {
-//        [MBProgressHUD mh_showTips:@"回复内容超过上限"];
+        [SVProgressHUD showInfoWithStatus:@"回复内容超过上限"];
+        [SVProgressHUD dismissWithDelay:1.0f];
         return;
     }
 
     // 把内容调回去
     if(self.commentReply){
-//        [self.delegate commentInputView:self attributedText:self.textView.text];
         JJComment *comment = [[JJComment alloc] init];
-        comment.postId = @"";
-        comment.commentId = [NSString stringWithFormat:@"%zd",[self mh_randomNumber:30 to:100]];
+        comment.postId = self.commentReply.postId;
+        comment.commentId = self.commentReply.commentReplyId;
         comment.text = self.textView.text;
         comment.createTime = [NSDate jj_currentTimestamp];
         JJUser *fromuser = [[JJUser alloc] init];
-        fromuser.avatarUrl = @"";
-        fromuser.nickname = @"乔布斯";
-        fromuser.userId = @"0001";
+        fromuser.avatarUrl = [JJTokenManager shareInstance].getUserID;
+        fromuser.nickname = [JJTokenManager shareInstance].getUserName;
+        fromuser.userId = [JJTokenManager shareInstance].getUserID;
         comment.fromUser = fromuser;
         
         if(self.commentReply.isReply){
@@ -431,18 +434,20 @@
     }else{
         JJTopic *topic = [[JJTopic alloc] init];
         topic.postId = @"";
-        topic.topicID = [NSString stringWithFormat:@"%zd",[self mh_randomNumber:30 to:100]];
+        topic.topicID = @"";
         topic.likeNums = 0;
         topic.like = NO;
         topic.createTime = [NSDate jj_currentTimestamp];
         topic.text = self.textView.attributedText.string;
         topic.commentsCount = 0;
+        
         JJUser *user = [[JJUser alloc] init];
-        user.avatarUrl = @"";
-        user.nickname = @"乔布斯";
-        user.userId = @"0001";
+        user.avatarUrl = [JJTokenManager shareInstance].getUserAvatar;
+        user.nickname = [JJTokenManager shareInstance].getUserName;
+        user.userId = [JJTokenManager shareInstance].getUserID;
         topic.user = user;
-        [self.delegate commentInputView:[self topicFrameWithTopic:topic]];
+        
+        [self.delegate commentInputView:topic];
     }
 
     // 隐藏

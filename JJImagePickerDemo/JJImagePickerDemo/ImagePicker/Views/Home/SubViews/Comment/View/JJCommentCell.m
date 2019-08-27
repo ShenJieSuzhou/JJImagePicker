@@ -45,12 +45,15 @@
 
 - (void)setup{
     self.backgroundColor = [UIColor whiteColor];
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
 }
 
 - (void)setCommentFrame:(JJCommentFrame *)commentFrame{
     _commentFrame = commentFrame;
     JJComment *comment = commentFrame.comment;
+    if([comment.commentId isEqualToString:@"ALLCOMMENT"]){
+        self.contentView.backgroundColor = [UIColor whiteColor];
+    }
     
     // 位置布局赋值
     self.contentLabel.frame = commentFrame.textFrame;

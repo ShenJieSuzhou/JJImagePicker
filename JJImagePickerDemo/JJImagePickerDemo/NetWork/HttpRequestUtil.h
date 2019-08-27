@@ -333,4 +333,57 @@ typedef void(^requestCallBack)(NSDictionary *data, NSError *error);
  */
 + (void)JJ_PullReplys:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId pageIndex:(NSString *)pageIndex pageSize:(NSString *)size callback:(requestCallBack) block;
 
+
+/**
+ 提交评论
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param photoId 作品ID
+ @param fromUserId 评论人
+ @param content 评论内容
+ @param block 回调
+ */
++ (void)JJ_SubmitComment:(NSString *)url token:(NSString *)token userid:(NSString *)userid photoId:(NSString *)photoId fromUserId:(NSString *)fromUserId content:(NSString *)content callback:(requestCallBack) block;
+
+
+/**
+ 提交回复
+
+ @param url 地址
+ @param token token
+ @param userid 用户ID
+ @param commentId 评论ID
+ @param fromUid 来自
+ @param toUid 回复
+ @param content 内容
+ @param block 回调
+ */
++ (void)JJ_SubmitReply:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId fromUid:(NSString *)fromUid toUid:(NSString *)toUid content:(NSString *)content callback:(requestCallBack) block;
+
+
+/**
+ 删除评论
+
+ @param url url 地址
+ @param token token
+ @param userid 用户ID
+ @param commentId 评论ID
+ @param block 回调
+ */
++ (void)JJ_DeleteComment:(NSString *)url token:(NSString *)token userid:(NSString *)userid commentId:(NSString *)commentId callback:(requestCallBack) block;
+
+
+/**
+ 删除回复
+
+ @param url url 地址
+ @param token token
+ @param userid 用户ID
+ @param replyId 回复ID
+ @param block 回调
+ */
++ (void)JJ_DeleteReply:(NSString *)url token:(NSString *)token userid:(NSString *)userid replyId:(NSString *)replyId callback:(requestCallBack) block;
+
 @end
