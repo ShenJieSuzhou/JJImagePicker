@@ -559,7 +559,7 @@
     }
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:token, @"token",
-                                   userid, @"user_id",
+                                   userid,  @"user_id",
                                    photoId, @"photoId",
                                    fromUserId, @"from_userId",
                                    content, @"content", nil];

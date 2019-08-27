@@ -356,8 +356,24 @@
     // 发送请求
     [HttpRequestUtil JJ_SubmitComment:SUBMIT_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:topic.postId fromUserId:[JJTokenManager shareInstance].getUserID content:topic.text callback:^(NSDictionary *data, NSError *error) {
         
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
+        
+        if(!data){
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [SVProgressHUD showSuccessWithStatus:JJ_COMMENT_SUCCESS];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
     }];
-    
     
     [self.commentTableView reloadData];
 }

@@ -179,10 +179,71 @@
 }
 
 - (void)loadMoreReplys:(int)pageIndex size:(int)size{
+    __weak typeof(self) weakSelf = self;
     [HttpRequestUtil JJ_PullReplys:QUERY_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:_topicFrame.topic.topicID pageIndex:[NSString stringWithFormat:@"%d", pageIndex] pageSize:[NSString stringWithFormat:@"%d", size] callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
         
+        if(!data){
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
         
-        
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [SVProgressHUD dismiss];
+            // 分页数据
+            NSDictionary *page = [data objectForKey:@"page"];
+            // 当前页
+            int currentPage = [[page objectForKey:@"currentPage"] intValue];
+            int totalPages = [[page objectForKey:@"totalPage"] intValue];
+            JJPageInfo *pageInfo = [[JJPageInfo alloc] initWithTotalPage:totalPages size:10 currentPage:currentPage];
+            
+            // 解析数据
+            NSMutableArray *commentFrames = [[NSMutableArray alloc] init];
+            NSArray *replys = [data objectForKey:@"replys"];
+            for (int i = 0; i < replys.count; i++) {
+                NSDictionary *replyInfo = [replys objectAtIndex:i];
+                NSString *createTime = [replyInfo objectForKey:@"createTime"];
+                NSString *content = [replyInfo objectForKey:@"text"];
+                NSInteger commentID = [[replyInfo objectForKey:@"commentID"] intValue];
+                NSInteger replyID = [[replyInfo objectForKey:@"replyID"] intValue];
+                // 用户信息
+                NSDictionary *toUserDic = [replyInfo objectForKey:@"toUser"];
+                NSString *toAvatarUrl = [toUserDic objectForKey:@"avatarUrl"];
+                NSString *toNickName = [toUserDic objectForKey:@"nickName"];
+                NSInteger toUserId = [[toUserDic objectForKey:@"uerId"] intValue];
+                
+                NSDictionary *fromUserDic = [replyInfo objectForKey:@"fromUser"];
+                NSString *fromAvatarUrl = [fromUserDic objectForKey:@"avatarUrl"];
+                NSString *fromNickName = [fromUserDic objectForKey:@"nickName"];
+                NSInteger fromUerId = [[fromUserDic objectForKey:@"uerId"] intValue];
+                
+                JJUser *toUser = [[JJUser alloc] init];
+                toUser.userId =[NSString stringWithFormat:@"%ld", (long)toUserId];
+                toUser.nickname = toNickName;
+                toUser.avatarUrl = toAvatarUrl;
+                
+                JJUser *fromUser = [[JJUser alloc] init];
+                fromUser.userId =[NSString stringWithFormat:@"%ld", (long)fromUerId];
+                fromUser.nickname = fromNickName;
+                fromUser.avatarUrl = fromAvatarUrl;
+                
+                JJComment *comment = [[JJComment alloc] initWithPostId:[NSString stringWithFormat:@"%ld", (long)replyID] commentId:[NSString stringWithFormat:@"%ld", (long)commentID] createTime:createTime text:content toUser:toUser fromUser:fromUser];
+                
+                // 添加到数据源中
+                JJCommentFrame *commentFrame = [[JJCommentFrame alloc] init];
+                commentFrame.comment = comment;
+                [commentFrames addObject:commentFrame];
+            }
+            [weakSelf latestInfoRequestCallBack:pageInfo commemtList:commentFrames];
+        }else{
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+        }
     }];
 }
 
@@ -256,9 +317,9 @@
     JJCommentFrame *commentFrame = self.dataSource[indexPath.row];
 
     //回复自己则忽略
-    //        if([commentFrame.comment.fromUser.userId isEqualToString:@"own"]){
-    //            return;
-    //        }
+    if([commentFrame.comment.fromUser.userId isEqualToString:[JJTokenManager shareInstance].getUserID]){
+        return;
+    }
 
     // 回复评论
     JJCommentReplay *commentReply = [[JJTopicManager shareInstance] commentReplyWithModel:commentFrame.comment];
@@ -293,6 +354,23 @@
     [_dataSource addObject:newCommentFrame];
     // 发送网络请求
     [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:[NSString stringWithFormat:@"%@", comment.commentId] fromUid:comment.fromUser.userId toUid:comment.toUser.userId content:comment.text callback:^(NSDictionary *data, NSError *error) {
+        if(error){
+            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
+        
+        if(!data){
+            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
+        
+        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
+            [SVProgressHUD showSuccessWithStatus:JJ_COMMENT_SUCCESS];
+            [SVProgressHUD dismissWithDelay:1.0f];
+            return;
+        }
         
     }];
     

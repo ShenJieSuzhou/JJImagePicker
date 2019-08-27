@@ -71,7 +71,7 @@
 #define JJ_MODIFIY_SUCCESS @"修改成功"
 #define JJ_TIPOFF_SUCCESS @"举报成功"
 #define JJ_ADDBLACKLIST_SUCCESS @"屏蔽成功"
-
+#define JJ_COMMENT_SUCCESS @"评论成功"
 
 #define JJ_ADDTO_BLACKLIST @"该用户在加入黑名单之后，他的内容将不会呈现给你。你是否确定要将他加入黑名单？"
 
