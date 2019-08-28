@@ -95,24 +95,24 @@
     self.avatarFrame = (CGRect){{avatarX , avatarY},{avatarW , avatarH}};
     
     // 关注
-    CGFloat focusX = width - 90.0f;
-    CGFloat focusY = avatarY;
+    CGFloat focusX = width - 100.0f;
+    CGFloat focusY = (avatarY * 2 + CGRectGetHeight(self.avatarFrame) - 25.0f) / 2;
     CGFloat focusW = 50.0f;
     CGFloat focusH = 25.0f;
     self.focusFrame = (CGRect){{focusX , focusY},{focusW , focusH}};
     
     // 布局更多
-    CGFloat moreW = 30.0f;
-    CGFloat moreX = width - moreW - focusW;
-    CGFloat moreY = avatarY;
-    CGFloat moreH = 30.0f;
+    CGFloat moreW = 25.0f;
+    CGFloat moreX = width - moreW - 10;
+    CGFloat moreY = focusY;
+    CGFloat moreH = 25.0f;
     self.moreFrame = CGRectMake(moreX, moreY, moreW, moreH);
     
     // 昵称
     CGFloat nicknameX = CGRectGetMaxX(self.avatarFrame) + 10.0f;
     CGFloat nicknameY = CGRectGetMinY(self.avatarFrame);
     CGFloat nicknameW = CGRectGetMinX(self.focusFrame) - nicknameX;
-    CGFloat nicknameH = moreH;
+    CGFloat nicknameH = avatarWH;
     self.nicknameFrame = CGRectMake(nicknameX, nicknameY, nicknameW, nicknameH);
     
     // 作品
@@ -122,10 +122,10 @@
     
     CGFloat workViewHeight = 0.0f;
     if(self.isEven){
-        workViewHeight = (width - 10.0f) / self.albumColums * self.albumRows;
+        workViewHeight = workW / self.albumColums * self.albumRows;
     }else{
-        CGFloat firstCellHeight = (width - 10.0f)*9/16;
-        workViewHeight = (width - 10.0f) / self.albumColums * self.albumRows + firstCellHeight;
+        CGFloat firstCellHeight = workW*9/16;
+        workViewHeight = self.albumRows == 1?firstCellHeight:workW / self.albumColums * self.albumRows + firstCellHeight;
     }
     CGFloat workH = workViewHeight;
     self.worksFrame = CGRectMake(workX, workY, workW, workH);
