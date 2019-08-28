@@ -61,7 +61,7 @@ CGFloat const JJCommentHeaderViewHeight = 100.0f;
 CGFloat const JJCommentToolBarHeight  = 44.0f  ;
 
 /** 每页数据 */
-NSUInteger const JJCommentMaxCount = 30;
+NSUInteger const JJCommentMaxCount = 10;
 
 /**
  *  全局细线高度 .75f

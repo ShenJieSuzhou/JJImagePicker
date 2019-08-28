@@ -69,10 +69,8 @@
 }
 
 #pragma mark - 布局子控件
-- (void)makeSubViewsConstraints
-{
+- (void)makeSubViewsConstraints{
     [self.divider mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.left.bottom.and.right.equalTo(self.contentView);
         make.height.mas_equalTo(JJGlobalBottomLineHeight);
     }];

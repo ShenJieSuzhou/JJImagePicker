@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) UIImageView *seperateLine;
 
+@property (strong, nonatomic) UIView *noCommentV;
+
 + (instancetype)footerViewWithTableView:(UITableView *)tableView;
 @end
 

@@ -296,7 +296,6 @@
         _commentTableView.backgroundColor = [UIColor whiteColor];
         _commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-//        _commentTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(downPullFreshData:)];
         _commentTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upPullFreshData:)];
     }
     
@@ -584,7 +583,8 @@
         JJTopicFrame *topicFrame = (JJTopicFrame *)model;
         return topicFrame.commentFrames.count > 0 ? JJTopicVerticalSpace:JJGlobalBottomLineHeight;
     }else{
-        return 70.0f;
+        CGFloat height = self.dataSource.count > 1?70.0f:400.0f;
+        return height;
     }
     
     return .1f;
@@ -619,7 +619,7 @@
         return footerView;
     }else if([model isKindOfClass:[JJWorksFrame class]]){
         JJDetailsInfoFooterView *footerView = [JJDetailsInfoFooterView footerViewWithTableView:tableView];
-        
+        footerView.noCommentV.hidden = self.dataSource.count > 1?YES:NO;
         return footerView;
     }
     
@@ -656,6 +656,7 @@
 
 #pragma mark - tableviewdatasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    _commentTableView.mj_footer.hidden = self.dataSource.count < JJCommentMaxCount;
      return self.dataSource.count;
 }
 
