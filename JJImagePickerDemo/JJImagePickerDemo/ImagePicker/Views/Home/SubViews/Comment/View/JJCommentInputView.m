@@ -409,47 +409,19 @@
         return;
     }
 
-    // 把内容调回去
     if(self.commentReply){
-        JJComment *comment = [[JJComment alloc] init];
-        comment.postId = self.commentReply.postId;
-        comment.commentId = self.commentReply.commentReplyId;
-        comment.text = self.textView.text;
-        comment.createTime = [NSDate jj_currentTimestamp];
-        JJUser *fromuser = [[JJUser alloc] init];
-        fromuser.avatarUrl = [JJTokenManager shareInstance].getUserID;
-        fromuser.nickname = [JJTokenManager shareInstance].getUserName;
-        fromuser.userId = [JJTokenManager shareInstance].getUserID;
-        comment.fromUser = fromuser;
-        
-        if(self.commentReply.isReply){
-            JJUser *toUser = [[JJUser alloc] init];
-            toUser.avatarUrl = self.commentReply.user.avatarUrl;
-            toUser.userId = self.commentReply.user.userId;
-            toUser.nickname = self.commentReply.user.nickname;
-            comment.toUser = toUser;
+        // 代理回调
+        if(self.delegate && [self.delegate respondsToSelector:@selector(inputViewForReply:attributedText:)]){
+            [self.delegate inputViewForReply:self attributedText:self.textView.text];
         }
-        
-        [self.delegate commentInputView:[self commentFramesWithComment:comment] comment:comment];
     }else{
-        JJTopic *topic = [[JJTopic alloc] init];
-        topic.postId = @"";
-        topic.topicID = @"";
-        topic.likeNums = 0;
-        topic.like = NO;
-        topic.createTime = [NSDate jj_currentTimestamp];
-        topic.text = self.textView.attributedText.string;
-        topic.commentsCount = 0;
-        
-        JJUser *user = [[JJUser alloc] init];
-        user.avatarUrl = [JJTokenManager shareInstance].getUserAvatar;
-        user.nickname = [JJTokenManager shareInstance].getUserName;
-        user.userId = [JJTokenManager shareInstance].getUserID;
-        topic.user = user;
-        
-        [self.delegate commentInputView:topic];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(inputViewForComment:attributedText:)]) {
+            // 把内容调回去
+            [self.delegate inputViewForComment:self attributedText:self.textView.text];
+        }
     }
-
+    
+    
     // 隐藏
     [self dismissByUser:YES];
 }

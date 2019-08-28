@@ -9,5 +9,19 @@
 #import "JJUser.h"
 
 @implementation JJUser
+@synthesize userId = _userId;
+@synthesize nickname = _nickname;
+@synthesize avatarUrl = _avatarUrl;
+
+- (id)init{
+    self = [super init];
+    if(self){
+        self.userId = @"";
+        self.nickname = @"";
+        self.avatarUrl = @"";
+    }
+    
+    return self;
+}
 
 @end

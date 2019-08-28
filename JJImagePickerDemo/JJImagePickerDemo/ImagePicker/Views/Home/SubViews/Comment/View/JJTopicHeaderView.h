@@ -18,7 +18,7 @@
 /** 点击头像或昵称的事件回调 */
 - (void)topicHeaderViewDidClickedUser:(JJTopicHeaderView *)topicHeaderView;
 
-/** 点击头像或昵称的事件回调 */
+/** 点击文本事件回调 */
 - (void)topicHeaderViewDidClickedTopicContent:(JJTopicHeaderView *)topicHeaderView;
 
 /** 用户点击更多按钮 */

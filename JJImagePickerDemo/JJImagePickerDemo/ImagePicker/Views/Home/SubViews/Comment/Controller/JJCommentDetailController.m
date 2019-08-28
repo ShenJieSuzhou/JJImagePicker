@@ -154,7 +154,12 @@
                 NSInteger fromUerId = [[fromUserDic objectForKey:@"uerId"] intValue];
                 
                 JJUser *toUser = [[JJUser alloc] init];
-                toUser.userId =[NSString stringWithFormat:@"%ld", (long)toUserId];
+                if(toUserId == 0){
+                    toUser.userId = @"";
+                }else{
+                    toUser.userId =[NSString stringWithFormat:@"%ld", (long)toUserId];
+                }
+                
                 toUser.nickname = toNickName;
                 toUser.avatarUrl = toAvatarUrl;
                 
@@ -346,12 +351,33 @@
 }
 
 #pragma mark - JJCommentInputViewDelegate
-- (void)commentInputView:(JJCommentFrame *)newCommentFrame comment:(JJComment *)comment{
-    // 添加数据源
+- (void)inputViewForReply:(JJCommentInputView *)inputPanelView attributedText:(NSString *)attributedText{
+    // 评论或者回复成功
+    JJComment *comment = [[JJComment alloc] init];
+    comment.postId = self.topicFrame.topic.postId;
+    comment.commentId = self.topicFrame.topic.topicID;
+    comment.text = attributedText;
+    comment.createTime = [NSDate jj_currentTimestamp];
+    JJUser *fromuser = [[JJUser alloc] init];
+    fromuser.avatarUrl = [JJTokenManager shareInstance].getUserID;
+    fromuser.nickname = [JJTokenManager shareInstance].getUserName;
+    fromuser.userId = [JJTokenManager shareInstance].getUserID;
+    comment.fromUser = fromuser;
+    
+    JJUser *toUser = [[JJUser alloc] init];
+    if(inputPanelView.commentReply.isReply){
+        toUser.avatarUrl = inputPanelView.commentReply.user.avatarUrl;
+        toUser.userId = inputPanelView.commentReply.user.userId;
+        toUser.nickname = inputPanelView.commentReply.user.nickname;
+    }
+    comment.toUser = toUser;
+    
+    // 添加数据
+    JJCommentFrame* newCommentFrame = [[JJTopicManager shareInstance] commentFramesWithComments:@[comment]].lastObject;
     [self.topicFrame.commentFrames addObject:newCommentFrame];
     [self.topicFrame.topic.replayComments addObject:comment];
-    
     [_dataSource addObject:newCommentFrame];
+    
     // 发送网络请求
     [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:[NSString stringWithFormat:@"%@", comment.commentId] fromUid:comment.fromUser.userId toUid:comment.toUser.userId content:comment.text callback:^(NSDictionary *data, NSError *error) {
         if(error){
@@ -359,19 +385,19 @@
             [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }
-        
+
         if(!data){
             [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }
-        
+
         if([[data objectForKey:@"result"] isEqualToString:@"1"]){
             [SVProgressHUD showSuccessWithStatus:JJ_COMMENT_SUCCESS];
             [SVProgressHUD dismissWithDelay:1.0f];
             return;
         }
-        
+
     }];
     
     [self.tableView reloadData];
