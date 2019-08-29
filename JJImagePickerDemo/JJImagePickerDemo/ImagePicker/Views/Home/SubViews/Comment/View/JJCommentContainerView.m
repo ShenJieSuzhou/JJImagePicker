@@ -26,15 +26,15 @@
 }
 
 - (void)commonInitlization{
-    [self setBackgroundColor:JJAlphaColor(244, 243, 245, 1)];
+    [self setBackgroundColor:JJAlphaColor(234, 233, 235, 1)];
     [self.layer setBorderWidth:1.0];
     [self.layer setBorderColor:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1].CGColor];
     [self.layer setMasksToBounds:YES];
     
-    [self.commentBtn setTitle:[NSString stringWithFormat:@"已有%zd条评论，快来说说你的感想吧", _commentCount] forState:UIControlStateNormal];
+    [self.commentBtn setTitle:@"快来说说你的感想吧" forState:UIControlStateNormal];
     
     [self addSubview:self.commentBtn];
-    [self addSubview:self.commentCountView];
+//    [self addSubview:self.commentCountView];
     [self addSubview:self.shareBtn];
 }
 
@@ -44,17 +44,17 @@
     [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.0f);
         make.centerY.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width * 0.7, 30));
+        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width - 60, 30));
     }];
     
-    [self.commentCountView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.commentBtn.mas_right).offset(20.0f);
-        make.centerY.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
+//    [self.commentCountView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.commentBtn.mas_right).offset(20.0f);
+//        make.centerY.equalTo(self);
+//        make.size.mas_equalTo(CGSizeMake(30, 30));
+//    }];
 
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.commentCountView.mas_right).offset(20.0f);
+        make.left.equalTo(self.commentBtn.mas_right).offset(10.0f);
         make.centerY.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
