@@ -49,6 +49,7 @@
     [NSThread sleepForTimeInterval:1.0f];
     
     //定时推送：时间注意,早上9点推送
+    [PushUtil removeAllLocalNotifications];
     [PushUtil registerLocalNotification];
     
     [self.tabBar setBackgroundColor:[UIColor whiteColor]];

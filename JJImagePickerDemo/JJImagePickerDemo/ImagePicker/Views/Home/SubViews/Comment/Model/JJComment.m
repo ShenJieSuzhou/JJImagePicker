@@ -41,11 +41,8 @@
 - (NSAttributedString *)attributedText{
     
     if ([self.commentId isEqualToString:@"ALLCOMMENT"]) {
-        
-        // 测试数据
-        NSString *textString = [NSString stringWithFormat:@"%@",self.text];
-        
-        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:textString];
+        NSString *imgdescRE = [self.text stringByRemovingPercentEncoding];
+        NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:imgdescRE];
         mutableAttributedString.yy_font = JJReguFont(14.0f);
         mutableAttributedString.yy_color = JJAlphaColor(75, 126, 160, 1);
         mutableAttributedString.yy_lineSpacing = JJCommentContentLineSpacing;
@@ -54,7 +51,7 @@
     
     
     if(self.toUser && self.toUser.nickname.length > 0){
-        NSString *textString = [NSString stringWithFormat:@"%@回复%@: %@", self.fromUser.nickname, self.toUser.nickname, self.text];
+        NSString *textString = [[NSString stringWithFormat:@"%@回复%@: %@", self.fromUser.nickname, self.toUser.nickname, self.text] stringByRemovingPercentEncoding];
         NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:textString];
         mutableAttributedString.yy_font = JJBlodFont(13.0f);
         mutableAttributedString.yy_color = [UIColor blackColor];
@@ -74,7 +71,7 @@
         
         return mutableAttributedString;
     }else{
-        NSString *textString = [NSString stringWithFormat:@"%@: %@", self.fromUser.nickname, self.text];
+        NSString *textString = [[NSString stringWithFormat:@"%@: %@", self.fromUser.nickname, self.text] stringByRemovingPercentEncoding];
         NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:textString];
         mutableAttributedString.yy_font = JJBlodFont(13.0f);
         mutableAttributedString.yy_color = [UIColor blackColor];

@@ -37,8 +37,8 @@
 - (NSAttributedString *)attributedText
 {
     if (self.work == nil) return nil;
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.work];
+    NSString *imgdescRE = [self.work stringByRemovingPercentEncoding];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:imgdescRE];
     attributedString.yy_font = JJFont(JJPxConvertPt(14.0f), NO);
     attributedString.yy_color = [UIColor blackColor];
     attributedString.yy_lineSpacing = 12.0f;

@@ -48,7 +48,7 @@
     
     // 头像
     self.avatarView.frame = topicFrame.avatarFrame;
-    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl] placeholderImage:[UIImage imageNamed:@"default"]];
+    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl] placeholderImage:[UIImage imageNamed:@"userPlaceHold"]];
     
     // 昵称
     self.nicknameLable.frame = topicFrame.nicknameFrame;

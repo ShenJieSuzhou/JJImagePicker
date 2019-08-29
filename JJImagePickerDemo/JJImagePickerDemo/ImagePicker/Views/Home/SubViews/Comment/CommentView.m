@@ -366,7 +366,9 @@
     [self.dataSource insertObject:topicFrame atIndex:1];
     
     // 发送请求
-    [HttpRequestUtil JJ_SubmitComment:SUBMIT_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:topic.postId fromUserId:[JJTokenManager shareInstance].getUserID content:topic.text callback:^(NSDictionary *data, NSError *error) {
+    // 编码
+    NSString *commentConent = [topic.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [HttpRequestUtil JJ_SubmitComment:SUBMIT_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:topic.postId fromUserId:[JJTokenManager shareInstance].getUserID content:commentConent callback:^(NSDictionary *data, NSError *error) {
         
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
@@ -431,7 +433,9 @@
     }
     
     // 发送请求
-    [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:comment.commentId fromUid:[JJTokenManager shareInstance].getUserID toUid:comment.toUser.userId content:comment.text callback:^(NSDictionary *data, NSError *error) {
+    // 特殊符号符合编码
+    NSString *commentConent = [comment.text stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:comment.commentId fromUid:[JJTokenManager shareInstance].getUserID toUid:comment.toUser.userId content:commentConent callback:^(NSDictionary *data, NSError *error) {
         if(error){
             [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
             [SVProgressHUD dismissWithDelay:1.0f];
@@ -453,81 +457,6 @@
     
     [self reloadSelectedSection];
 }
-
-//- (void)commentInputView:(JJTopic *)topic{
-//    topic.postId = self.cubeModel.photoId;
-//    topic.topicID = [NSString stringWithFormat:@"%ld", (long)[self mh_randomNumber:1 to:10000]];
-//
-//    JJTopicFrame *topicFrame = [self topicFrameWithTopic:topic];
-//    [self.dataSource insertObject:topicFrame atIndex:1];
-//
-//    // 发送请求
-//    [HttpRequestUtil JJ_SubmitComment:SUBMIT_COMMENT_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID photoId:topic.postId fromUserId:[JJTokenManager shareInstance].getUserID content:topic.text callback:^(NSDictionary *data, NSError *error) {
-//
-//        if(error){
-//            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//
-//        if(!data){
-//            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//
-//        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
-//            [SVProgressHUD showSuccessWithStatus:JJ_COMMENT_SUCCESS];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//    }];
-//
-//    [self.commentTableView reloadData];
-//}
-//
-//- (void)commentInputView:(JJCommentFrame *)newCommentFrame comment:(JJComment *)comment{
-//    self.selecteTopicFrame.topic.commentsCount = self.selecteTopicFrame.topic.commentsCount + 1;
-//    if(self.selecteTopicFrame.topic.commentsCount > 0){
-//        NSInteger count = self.selecteTopicFrame.commentFrames.count;
-//        NSInteger index = 0;
-//        if(count > 0){
-//            index = count - 1;
-//        }
-//
-//        //设置假数据
-//        JJComment *lastComment = [[JJComment alloc] init];
-//        lastComment.commentId = @"ALLCOMMENT";
-//        lastComment.text = [NSString stringWithFormat:@"查看全部%zd条回复" , self.selecteTopicFrame.topic.commentsCount];
-//        JJCommentFrame *lastCommentFrame =  [[JJTopicManager shareInstance] commentFramesWithComments:@[lastComment]].lastObject;
-//        // 添加假数据
-//        [self.selecteTopicFrame.commentFrames addObject:lastCommentFrame];
-//        [self.selecteTopicFrame.topic.replayComments addObject:lastComment];
-//    }
-//
-//    // 发送请求
-//    [HttpRequestUtil JJ_SubmitReply:SUBMIT_REPLY_REQUEST token:[JJTokenManager shareInstance].getUserToken userid:[JJTokenManager shareInstance].getUserID commentId:comment.commentId fromUid:[JJTokenManager shareInstance].getUserID toUid:comment.toUser.userId content:comment.text callback:^(NSDictionary *data, NSError *error) {
-//        if(error){
-//            [SVProgressHUD showErrorWithStatus:JJ_NETWORK_ERROR];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//
-//        if(!data){
-//            [SVProgressHUD showErrorWithStatus:JJ_PULLDATA_ERROR];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//
-//        if([[data objectForKey:@"result"] isEqualToString:@"1"]){
-//            [SVProgressHUD showSuccessWithStatus:JJ_COMMENT_SUCCESS];
-//            [SVProgressHUD dismissWithDelay:1.0f];
-//            return;
-//        }
-//    }];
-//
-//    [self reloadSelectedSection];
-//}
 
 - (void)reloadSelectedSection{
     [self.commentTableView beginUpdates];

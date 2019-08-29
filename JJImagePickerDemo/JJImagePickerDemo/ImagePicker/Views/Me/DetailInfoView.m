@@ -58,6 +58,7 @@
     [self addSubview:_backgroundView];
     
     _iconView = [[UIImageView alloc] init];
+    [_iconView setBackgroundColor:[UIColor whiteColor]];
     _iconView.contentMode = UIViewContentModeScaleAspectFill;
     [_iconView setImage:[UIImage imageNamed:@"userPlaceHold"]];
     _iconView.layer.cornerRadius = 40.0f;

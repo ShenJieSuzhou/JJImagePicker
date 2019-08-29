@@ -35,8 +35,8 @@
     if(!self.text){
         return nil;
     }
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_text];
+    NSString *imgdescRE = [self.text stringByRemovingPercentEncoding];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:imgdescRE];
     attributedString.yy_font = [UIFont systemFontOfSize:15.0f];
     attributedString.yy_color = [UIColor blackColor];
     attributedString.yy_lineSpacing = JJCommentContentLineSpacing;
