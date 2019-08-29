@@ -36,16 +36,6 @@
     [self.commentView show];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    
-}
-
 - (void)setWorksInfo:(HomeCubeModel *)detailInfo index:(NSIndexPath *)indexPath{
     if(!detailInfo){
         return;

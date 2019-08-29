@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomNewsBanner.h"
 #import "HomeCubeModel.h"
 #import "reportView.h"
 #import <Masonry/Masonry.h>
@@ -37,6 +36,8 @@
 - (void)goToUserZone;
 
 - (void)pullToBlackList;
+
+- (void)showHDImageView:(NSArray *)picsArray;
 //
 //- (void)focusHerCandy:(UIButton *)sender;
 //
@@ -46,7 +47,7 @@
 
 @end
 
-@interface JJDetailsInfoHeaderView : UITableViewHeaderFooterView<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomNewsBannerDelegate, reportViewDelegate, TipoffDelegate>
+@interface JJDetailsInfoHeaderView : UITableViewHeaderFooterView<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, reportViewDelegate, TipoffDelegate>
 
 @property (strong, nonatomic) UIButton *iconView;
 @property (strong, nonatomic) UILabel *nameLabel;
@@ -69,9 +70,6 @@
 @property (strong, nonatomic) JJWorksFrame *workFrame;
 
 @property (nonatomic, weak) id<JJDetailsInfoViewDelegate> delegate;
-
-// 大图模式
-@property (strong, nonatomic) CustomNewsBanner *completeWorkView;
 
 @property (assign) CGFloat height;
 

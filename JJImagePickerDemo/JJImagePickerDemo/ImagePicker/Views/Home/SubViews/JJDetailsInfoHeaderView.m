@@ -306,12 +306,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //跳转预览图
-    
-    _completeWorkView = [[CustomNewsBanner alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    _completeWorkView.delegate = self;
-    [_completeWorkView setProductsArray:[[NSMutableArray alloc] initWithArray:_photoWork.path]];
-    
-    [self addSubview:_completeWorkView];
+    if(_delegate && [_delegate respondsToSelector:@selector(showHDImageView:)]){
+        [_delegate showHDImageView:_photoWork.path];
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -334,10 +331,6 @@
     }
 
     return CGSizeMake(cellWidth, cellHeight);
-}
-
-- (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
-    [newsbanner removeFromSuperview];
 }
 
 // 更多

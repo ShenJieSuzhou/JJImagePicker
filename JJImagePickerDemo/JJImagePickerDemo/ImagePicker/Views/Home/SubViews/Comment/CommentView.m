@@ -710,4 +710,16 @@
     [_delegate pullToBlackListInViewController];
 }
 
+-(void)showHDImageView:(NSArray *)picsArray{
+    _completeWorkView = [[CustomNewsBanner alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    _completeWorkView.delegate = self;
+    [_completeWorkView setProductsArray:[[NSMutableArray alloc] initWithArray:picsArray]];
+    
+    [self addSubview:_completeWorkView];
+}
+
+#pragma -mark CustomNewsBannerDelegate
+- (void)newsbanner:(CustomNewsBanner *)newsbanner didSelectItemAtIndex:(NSInteger)index{
+    [newsbanner removeFromSuperview];
+}
 @end

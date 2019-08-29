@@ -23,6 +23,7 @@
 #import "JJCommentContainerView.h"
 #import "JJPageInfo.h"
 #import "JJWorksFrame.h"
+#import "CustomNewsBanner.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate, JJDetailsInfoViewDelegate>
+@interface CommentView : UIView<UITableViewDelegate, UITableViewDataSource, JJCommentCellDelegate, JJTopicHeaderViewDelegate, JJCommentContainerViewDelegate, JJCommentInputViewDelegate, JJDetailsInfoViewDelegate, CustomNewsBannerDelegate>
 
 @property (nonatomic, strong) JJDetailsInfoHeaderView *detailInfoHeader;
 
@@ -56,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) HomeCubeModel *cubeModel;
 
+// 大图模式
+@property (strong, nonatomic) CustomNewsBanner *completeWorkView;
 
 - (void)show;
 

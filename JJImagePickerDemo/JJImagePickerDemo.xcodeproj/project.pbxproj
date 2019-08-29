@@ -64,7 +64,6 @@
 		E50B3052230CDDF000F63471 /* CommentCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B302F230CDDF000F63471 /* CommentCountView.m */; };
 		E50B3053230CDDF000F63471 /* JJTopicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B3031230CDDF000F63471 /* JJTopicHeaderView.m */; };
 		E50B3054230CDDF000F63471 /* JJCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B3034230CDDF000F63471 /* JJCommentInputView.m */; };
-		E50B3056230CDDF000F63471 /* JJCommentDecorateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B3036230CDDF000F63471 /* JJCommentDecorateHeader.m */; };
 		E50B3057230CDDF000F63471 /* JJTopicFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B3037230CDDF000F63471 /* JJTopicFooterView.m */; };
 		E50B3058230CDDF000F63471 /* JJCommentContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B3039230CDDF000F63471 /* JJCommentContainerView.m */; };
 		E50B3059230CDDF000F63471 /* JJCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E50B303B230CDDF000F63471 /* JJCommentCell.m */; };
@@ -410,13 +409,11 @@
 		E50B3032230CDDF000F63471 /* JJCommentContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCommentContainerView.h; sourceTree = "<group>"; };
 		E50B3033230CDDF000F63471 /* JJCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCommentCell.h; sourceTree = "<group>"; };
 		E50B3034230CDDF000F63471 /* JJCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCommentInputView.m; sourceTree = "<group>"; };
-		E50B3036230CDDF000F63471 /* JJCommentDecorateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCommentDecorateHeader.m; sourceTree = "<group>"; };
 		E50B3037230CDDF000F63471 /* JJTopicFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJTopicFooterView.m; sourceTree = "<group>"; };
 		E50B3038230CDDF000F63471 /* CommentCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCountView.h; sourceTree = "<group>"; };
 		E50B3039230CDDF000F63471 /* JJCommentContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCommentContainerView.m; sourceTree = "<group>"; };
 		E50B303A230CDDF000F63471 /* JJTopicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJTopicHeaderView.h; sourceTree = "<group>"; };
 		E50B303B230CDDF000F63471 /* JJCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCommentCell.m; sourceTree = "<group>"; };
-		E50B303C230CDDF000F63471 /* JJCommentDecorateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCommentDecorateHeader.h; sourceTree = "<group>"; };
 		E50B303E230CDDF000F63471 /* JJCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCommentInputView.h; sourceTree = "<group>"; };
 		E50B303F230CDDF000F63471 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		E50B3040230CDDF000F63471 /* JJTopicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJTopicManager.h; sourceTree = "<group>"; };
@@ -1058,13 +1055,11 @@
 				E50B3032230CDDF000F63471 /* JJCommentContainerView.h */,
 				E50B3033230CDDF000F63471 /* JJCommentCell.h */,
 				E50B3034230CDDF000F63471 /* JJCommentInputView.m */,
-				E50B3036230CDDF000F63471 /* JJCommentDecorateHeader.m */,
 				E50B3037230CDDF000F63471 /* JJTopicFooterView.m */,
 				E50B3038230CDDF000F63471 /* CommentCountView.h */,
 				E50B3039230CDDF000F63471 /* JJCommentContainerView.m */,
 				E50B303A230CDDF000F63471 /* JJTopicHeaderView.h */,
 				E50B303B230CDDF000F63471 /* JJCommentCell.m */,
-				E50B303C230CDDF000F63471 /* JJCommentDecorateHeader.h */,
 				E50B303E230CDDF000F63471 /* JJCommentInputView.h */,
 			);
 			path = View;
@@ -2120,7 +2115,6 @@
 				449A1F7F2169EF9D0007A91A /* JJResizeFlowLayout.m in Sources */,
 				E58C252921DF3C1B001C4D8F /* DeviceType.m in Sources */,
 				E5172616215DBFB8008431A1 /* TagsViewController.m in Sources */,
-				E50B3056230CDDF000F63471 /* JJCommentDecorateHeader.m in Sources */,
 				E5506BF2212FB7D80077E62B /* CustomNaviBarView.m in Sources */,
 				E50B304F230CDDF000F63471 /* NSDateFormatter+Extension.m in Sources */,
 				449A1F872169FB3D0007A91A /* SubTagModel.m in Sources */,

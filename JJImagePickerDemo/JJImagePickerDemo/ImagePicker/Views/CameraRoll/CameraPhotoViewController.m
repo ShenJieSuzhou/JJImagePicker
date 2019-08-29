@@ -99,7 +99,11 @@
 }
 
 - (void)closeView:(UIButton *)sender{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.bgImgView removeFromSuperview];
+    [self.cameraBtn removeFromSuperview];
+    [self.closeBtn removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
