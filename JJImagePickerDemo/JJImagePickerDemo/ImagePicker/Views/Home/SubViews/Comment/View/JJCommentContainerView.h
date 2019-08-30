@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIButton *shareBtn;
 
+@property (nonatomic, strong) UIButton *sendBtn;
+
 @property (nonatomic, strong) CommentCountView *commentCountView;
 
 @property (nonatomic, weak) id<JJCommentContainerViewDelegate> delegate;

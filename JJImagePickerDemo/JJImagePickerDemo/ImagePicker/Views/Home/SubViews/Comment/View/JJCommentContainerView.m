@@ -14,6 +14,7 @@
 @synthesize commentCount = _commentCount;
 @synthesize commentBtn = _commentBtn;
 @synthesize shareBtn = _shareBtn;
+@synthesize sendBtn = _sendBtn;
 @synthesize commentCountView = _commentCountView;
 @synthesize delegate = _delegate;
 
@@ -35,7 +36,9 @@
     
     [self addSubview:self.commentBtn];
 //    [self addSubview:self.commentCountView];
-    [self addSubview:self.shareBtn];
+//    [self addSubview:self.shareBtn];
+    
+    [self addSubview:self.sendBtn];
 }
 
 - (void)layoutSubviews{
@@ -44,7 +47,7 @@
     [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10.0f);
         make.centerY.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width - 60, 30));
+        make.size.mas_equalTo(CGSizeMake([UIScreen mainScreen].bounds.size.width - 80, 30));
     }];
     
 //    [self.commentCountView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,10 +56,16 @@
 //        make.size.mas_equalTo(CGSizeMake(30, 30));
 //    }];
 
-    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.commentBtn.mas_right).offset(10.0f);
+//        make.centerY.equalTo(self);
+//        make.size.mas_equalTo(CGSizeMake(30, 30));
+//    }];
+    
+    [self.sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.commentBtn.mas_right).offset(10.0f);
         make.centerY.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
+        make.size.mas_equalTo(CGSizeMake(50, 30));
     }];
 }
 
@@ -94,6 +103,16 @@
         [_shareBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     }
     return _shareBtn;
+}
+
+- (UIButton *)sendBtn{
+    if(!_sendBtn){
+        _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:JJAlphaColor(194, 194, 194, 1) forState:UIControlStateNormal];
+        [_sendBtn.titleLabel setFont:JJBlodFont(15.0f)];
+    }
+    return _sendBtn;
 }
 
 #pragma mark - 事件处理
