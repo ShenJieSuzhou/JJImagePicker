@@ -11,6 +11,7 @@
 #import "LoginPWDViewController.h"
 #import "BindPhoneViewController.h"
 #import "GlobalDefine.h"
+#import <SVProgressHUD.h>
 
 @interface SecurityViewController ()<UITableViewDelegate,UITableViewDataSource,SetPwdDelegate>
 
@@ -65,8 +66,10 @@
         loginPWDCtrl.delegate = self;
         [self.navigationController pushViewController:loginPWDCtrl animated:YES];
     }else if(indexPath.section == 1){
-        BindPhoneViewController *bindViewCtrl = [[BindPhoneViewController alloc] initWithNibName:@"BindPhoneViewController" bundle:nil];
-        [self.navigationController pushViewController:bindViewCtrl animated:YES];
+        [SVProgressHUD showWithStatus:@"功能暂未开放"];
+        [SVProgressHUD dismissWithDelay:1.0f];
+//        BindPhoneViewController *bindViewCtrl = [[BindPhoneViewController alloc] initWithNibName:@"BindPhoneViewController" bundle:nil];
+//        [self.navigationController pushViewController:bindViewCtrl animated:YES];
     }
 }
 
